@@ -24,22 +24,6 @@ body {
     font-family: 'ABCOracle', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
 }
 
-.radial-menu {
-    position: relative;
-    width: 16rem;
-    height: 16rem;
-}
-
-.radial-item {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform-origin: 0 0;
-    font-family: 'ABCOtto', ui-sans-serif;
-    color: #454b54;
-    font-size: 1.15rem;
-}
-
 body a {
     text-decoration: underline !important;
     text-decoration-thickness: 2px !important;
@@ -51,8 +35,4 @@ body a {
 
 body a:hover {
     text-decoration-color: #9ca3af !important;
-}
-
-.radial-menu .radial-item.font-bold {
-    text-decoration: none !important;
 }
