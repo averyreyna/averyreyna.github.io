@@ -9,50 +9,31 @@
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-white min-h-screen flex items-center justify-center">
-    <div class="flex flex-col md:flex-row items-center justify-center w-full">
-        <div class="flex flex-col items-center justify-center mr-0 md:mr-12">
-            <div class="radial-menu mb-6">
-                <a href="/" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-otto radial-item" id="me-link" style="color:#454b54; font-size:1.15rem;">me</a>
-                <span class="radial-item" style="transform: rotate(0deg) translateY(-7.2rem);">posts</span>
-                <span class="radial-item" style="transform: rotate(60deg) translateY(-7.2rem);">projects</span>
-                <a href="pages/reading.html" class="radial-item" id="reading-link" style="transform: rotate(120deg) translateY(-7.2rem);">reading</a>
-                <span class="radial-item" style="transform: rotate(180deg) translateY(-7.2rem);">shots</span>
-                <span class="radial-item" style="transform: rotate(240deg) translateY(-7.2rem);">tunes</span>
-                <span class="radial-item" style="transform: rotate(300deg) translateY(-7.2rem);">work</span>
-            </div>
-            <div class="flex space-x-6 mt-2 text-2xl">
-                <a href="#" class="text-gray-700 hover:text-black" aria-label="GitHub">
-                    <i class="fa-brands fa-github"></i>
-                </a>
-                <a href="#" class="text-gray-700 hover:text-black" aria-label="LinkedIn">
-                    <i class="fa-brands fa-linkedin"></i>
-                </a>
-            </div>
+<body class="bg-white min-h-screen flex flex-col items-center justify-center font-oracle">
+    <main class="flex flex-col items-start justify-center w-full max-w-xl px-4">
+        <h1 class="text-3xl md:text-4xl font-otto text-gray-900 mb-2">Avery Reyna</h1>
+        <p class="italic text-gray-500 mb-3">[ay-VUR-ee ray-NUH]</p>
+        <p class="text-gray-700 mb-4">
+            I'm a Software Engineer at <a href="" target="_blank">Capital One</a> building visualization tools for monitoring data quality across the enterprise. I graduated from the <a href="https://www.ucf.edu/" target="_blank">University of Central Florida</a> and was able to research on computational social science and human-computer interaction with <a href="https://www.jonathanpowell.org/" target="_blank">Jonathan Powell</a> and <a href="https://www.pamelawisniewski.com/" target="_blank">Pamela Wisniewski</a>, respectively. In my free time, I contribute to open source projects for <a href="https://mlcommons.org/" target="_blank">MLCommons</a> and rejoined the <a href="https://coupcast.github.io/" target="_blank">CoupCast</a> project, now under the maintainence of <a href="https://www.uky.edu/" target="_blank">University of Kentucky</a>.
+        </p>
+        <div class="flex flex-row space-x-4 text-2xl mb-1">
+            <a href="https://www.are.na/avery-reyna/channels" target="_blank" class="text-gray-700 hover:text-black" aria-label="Arena">
+                <i class="fa-solid fa-cube"></i>
+            </a>
+            <a href="mailto:avery.reyna16@gmail.com" target="_blank"class="text-gray-700 hover:text-black" aria-label="Email">
+                <i class="fa-solid fa-envelope"></i>
+            </a>
+            <a href="https://github.com/averyreyna" target="_blank" class="text-gray-700 hover:text-black" aria-label="GitHub">
+                <i class="fa-brands fa-github"></i>
+            </a>
+            <a href="https://scholar.google.com/citations?user=WecCIHwAAAAJ&hl=en" target="_blank" class="text-gray-700 hover:text-black" aria-label="Google Scholar">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/avery-reyna/" target="_blank" class="text-gray-700 hover:text-black" aria-label="LinkedIn">
+                <i class="fa-brands fa-linkedin"></i>
+            </a>
         </div>
-        <div class="mt-8 md:mt-0 flex flex-col justify-center items-center md:items-start text-center md:text-left">
-            <h1 class="text-3xl font-bold text-gray-900 font-otto">Avery Reyna</h1>
-            <p class="italic text-gray-500 mt-1 mb-4">[ay-VUR-ee ray-NUH]</p>
-            <p class="max-w-xl text-gray-700">
-                I'm a Software Engineer at <a href="" target="_blank">Capital One</a> monitoring data quality across the enterprise. I graduated from the <a href="https://www.ucf.edu/" target="_blank">University of Central Florida</a> and was able to research on computational social science and human-computer interaction with <a href="https://www.jonathanpowell.org/" target="_blank">Jonathan Powell</a> and <a href="https://www.pamelawisniewski.com/" target="_blank">Pamela Wisniewski</a>, respectively. In my free time, I contribute to open source projects for <a href="https://mlcommons.org/" target="_blank">MLCommons</a> and rejoined the <a href="https://coupcast.github.io/" target="_blank">CoupCast</a> project, now under the maintainence of <a href="https://www.uky.edu/" target="_blank">University of Kentucky</a>.
-            </p>
-        </div>
-    </div>
-    <script>
-        // Highlight the reading link if on the reading page
-        if (window.location.pathname.endsWith('/pages/reading.html')) {
-            const readingLink = document.getElementById('reading-link');
-            if (readingLink) {
-                readingLink.classList.add('font-bold');
-            }
-        }
-        // Highlight the me link if on the home page
-        if (window.location.pathname === '/' || window.location.pathname.endsWith('/index.html')) {
-            const meLink = document.getElementById('me-link');
-            if (meLink) {
-                meLink.classList.add('font-bold');
-            }
-        }
-    </script>
+        <p class="text-xs text-gray-400 mt-8">This is currently under construction—check back soon!</p>
+    </main>
 </body>
 </html>
