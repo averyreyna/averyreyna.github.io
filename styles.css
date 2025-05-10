@@ -1,13 +1,13 @@
 @font-face {
     font-family: 'ABCOtto';
-    src: url('/fonts/clean/ABC Otto/ABCOtto-Regular-Trial.woff2') format('woff2');
+    src: url('/fonts/ABC Otto/ABCOtto-Regular-Trial.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'ABCOracle';
-    src: url('/fonts/clean/ABC Oracle/ABCOracle-Regular-Trial.woff2') format('woff2');
+    src: url('/fonts/ABC Oracle/ABCOracle-Regular-Trial.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
 }
@@ -35,4 +35,11 @@ body a {
 
 body a:hover {
     text-decoration-color: #9ca3af !important;
+}
+
+html, body {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
 }
