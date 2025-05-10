@@ -29,12 +29,17 @@ body a {
     text-decoration-thickness: 2px !important;
     text-decoration-color: #d1d5db !important;
     text-underline-offset: 3px !important;
-    transition: text-decoration-color 0.2s ease;
     color: inherit;
 }
 
-body a:hover {
-    text-decoration-color: #9ca3af !important;
+@media (min-width: 768px) {
+    body a {
+        transition: text-decoration-color 0.2s ease;
+    }
+    
+    body a:hover {
+        text-decoration-color: #9ca3af !important;
+    }
 }
 
 html, body {
