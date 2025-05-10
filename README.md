@@ -1,3 +1,3 @@
 # averyreyna.github.io
 
-My personal website that is always under construction.
+My personal website, which is always under construction
