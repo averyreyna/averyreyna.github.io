@@ -137,7 +137,6 @@ p, li {
   font-weight: 700;
 }
 
-/* Research heading with dynamic line */
 .research-heading {
   display: flex;
   align-items: center;
@@ -155,4 +154,85 @@ p, li {
   height: 1px;
   background: #d1d5db;
   border: none;
+}
+
+/* Projects Page Styles - Compact, Centered */
+.projects-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.projects-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.2rem 1rem;
+  margin-top: 1.5rem;
+  justify-items: start;
+}
+
+.project-card {
+  background: none;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  transition: none;
+}
+
+.project-image {
+  width: 100%;
+  max-width: 180px;
+  height: 110px;
+  object-fit: cover;
+  background: #e5e7eb;
+  margin-bottom: 0.7rem;
+  aspect-ratio: unset;
+}
+
+.project-info {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.project-title {
+  font-family: 'ABC Otto', 'Times New Roman', Times, serif;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 0.15rem 0;
+}
+
+.project-desc {
+  font-size: 0.92rem;
+  color: #444;
+  margin-bottom: 0.3rem;
+  font-style: italic;
+  opacity: 0.7;
+}
+
+.project-year {
+  font-size: 0.8rem;
+  color: #aaa;
+  margin-top: 0.1rem;
+  font-family: 'ABC Oracle', serif;
+}
+
+@media (max-width: 600px) {
+  .projects-container {
+    padding: 1rem 0.25rem;
+  }
+  .project-image {
+    height: 80px;
+    max-width: 120px;
+    margin-bottom: 0.5rem;
+  }
+  .projects-grid {
+    gap: 0.7rem;
+  }
 }
