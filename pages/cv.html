@@ -6,7 +6,7 @@
     <title>Avery Reyna | CV</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" type="image/png" href="/favicon.png">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="bg-white min-h-screen font-oracle">
@@ -14,41 +14,37 @@
         <ul class="flex flex-row gap-4">
             <li><a href="/index.html" class="nav-link">About</a></li>
             <li><a href="/pages/cv.html" class="nav-link nav-link-active">CV</a></li>
-            <li><a href="#" class="nav-link">Projects</a></li>
-            <li><a href="#" class="nav-link">Writing</a></li>
+            <li><a href="/pages/projects.html" class="nav-link">Projects</a></li>
+            <li><a href="/pages/writing.html" class="nav-link">Writing</a></li>
         </ul>
     </nav>
-    <main class="w-full max-w-2xl mx-auto px-4">
-        <!-- Header -->
-        <header class="mb-8">
-            <h1 class="text-3xl font-bold mb-1 font-otto">Avery Reyna</h1>
-            <div class="italic text-gray-700 mb-2">Researcher and Software Engineer <span class="text-blue-700">(HCI + ML)</span></div>
-            <p class="text-base text-gray-800 mb-2">I design and develop <span class="text-blue-700 font-medium">interactive interfaces</span> to help people <span class="text-orange-700 font-medium">understand machine learning</span> models and data-driven systems. I also create data visualizations and write interactive articles to communicate complex ideas.</p>
-            <p class="text-base text-gray-800 mb-2">I have collaborated with researchers, designers, and developers at OpenAI, Anthropic, and other organizations.</p>
-            <div class="flex flex-wrap gap-4 text-sm text-gray-700 mt-3">
-                <a href="/cv.pdf" class="md:hover:text-gray-800 transition-colors text-lg" target="_blank" rel="noopener"><i class="fa-regular fa-file-pdf"></i></a>
-                <a href="mailto:avery@reyna.com" class="md:hover:text-gray-800 transition-colors text-lg"><i class="fa-regular fa-envelope"></i></a>
-                <a href="https://github.com/averyreyna" class="md:hover:text-gray-800 transition-colors text-lg" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
-                <a href="https://instagram.com/averyreyna" class="md:hover:text-gray-800 transition-colors text-lg" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://twitter.com/averyreyna" class="md:hover:text-gray-800 transition-colors text-lg" target="_blank" rel="noopener"><i class="fa-brands fa-twitter"></i></a>
-                <a href="https://linkedin.com/in/averyreyna" class="md:hover:text-gray-800 transition-colors text-lg" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i></a>
-            </div>
-        </header>
-        <hr class="my-6">
-        <section class="mb-12">
-            <h2 class="text-xl font-bold mb-6">Education</h2>
-            <div class="space-y-6">
-                <div class="flex flex-row gap-6">
-                    <div class="w-36 flex-shrink-0 text-sm text-gray-600">2018 — 2023</div>
-                    <div class="flex-1">
-                        <div class="font-semibold">B.S. in Social Sciences</div>
-                        <div class="text-gray-700">University of Central Florida</div>
-                        <div class="italic text-gray-600 text-sm">Minors in Cultural Anthropology, Political Science, and Sociology</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <h2 class="text-xl font-bold mb-6">Recent Publications</h2>
+    <main class="w-full max-w-2xl mx-auto px-4" style="margin-top: 0; text-align: left;">
+        <h1 class="text-2xl font-bold mb-2 font-otto">Avery Reyna</h1>
+        <div class="italic text-gray-700 mb-2">Researcher and Software Engineer <span class="text-blue-700">(HCI + ML)</span></div>
+        <p class="text-base text-gray-800 mb-2">I design and develop <span class="text-blue-700 font-medium">interactive interfaces</span> to help people <span class="text-orange-700 font-medium">understand machine learning</span> models and data-driven systems. I also create data visualizations and write interactive articles to communicate complex ideas.</p>
+        <p class="text-base text-gray-800 mb-2">I have collaborated with researchers, designers, and developers at OpenAI, Anthropic, and other organizations.</p>
+        <div class="flex flex-wrap gap-4 text-sm text-gray-700 mt-3 mb-4">
+            <a href="/cv.pdf" class="md:hover:text-gray-800 transition-colors text-lg" target="_blank" rel="noopener"><i class="fa-regular fa-file-pdf"></i></a>
+            <a href="mailto:avery@reyna.com" class="md:hover:text-gray-800 transition-colors text-lg"><i class="fa-regular fa-envelope"></i></a>
+            <a href="https://github.com/averyreyna" class="md:hover:text-gray-800 transition-colors text-lg" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
+            <a href="https://instagram.com/averyreyna" class="md:hover:text-gray-800 transition-colors text-lg" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://twitter.com/averyreyna" class="md:hover:text-gray-800 transition-colors text-lg" target="_blank" rel="noopener"><i class="fa-brands fa-twitter"></i></a>
+            <a href="https://linkedin.com/in/averyreyna" class="md:hover:text-gray-800 transition-colors text-lg" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+        <div class="research-heading">
+            <span class="research-heading-text">Education</span>
+            <span class="research-heading-line"></span>
+        </div>
+        <div class="space-y-0.5 mb-6">
+            <div class="text-sm text-gray-600">2018 — 2023</div>
+            <div class="font-semibold">B.S. in Social Sciences</div>
+            <div class="text-gray-700">University of Central Florida</div>
+            <div class="italic text-gray-600 text-sm">Minors in Cultural Anthropology, Political Science, and Sociology</div>
+        </div>
+        <div class="research-heading">
+            <span class="research-heading-text">Publications</span>
+            <span class="research-heading-line"></span>
+        </div>
         <div class="space-y-1">
             <div class="py-2 flex flex-col gap-0.5">
                 <span class="font-semibold text-gray-900 mb-0.5 leading-tight" style="margin-bottom:0.1rem;">Help Supporters: Exploring the Design Space of Assistive Technologies to Support Face-to-Face Help Between Blind and Sighted Strangers</span>
