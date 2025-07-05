@@ -2,60 +2,75 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Avery Reyna | Projects</title>
-  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 </head>
 <body class="bg-white min-h-screen font-oracle">
   <nav class="w-full max-w-2xl mx-auto flex flex-row items-center justify-start py-4 px-4 mb-2" style="font-family: 'ABC Otto', sans-serif;">
     <ul class="flex flex-row gap-4">
-        <li><a href="#" class="nav-link nav-link-active">About</a></li>
-        <li><a href="/pages/cv.html" class="nav-link">CV</a></li>
-        <li><a href="/pages/projects.html" class="nav-link">Projects</a></li>
-        <li><a href="#" class="nav-link">Writing</a></li>
+      <li><a href="/index.html" class="nav-link">About</a></li>
+      <li><a href="/pages/cv.html" class="nav-link">CV</a></li>
+      <li><a href="/pages/projects.html" class="nav-link nav-link-active">Projects</a></li>
+      <li><a href="/pages/writing.html" class="nav-link">Writing</a></li>
     </ul>
-</nav>
+  </nav>
   <main class="w-full max-w-2xl mx-auto px-4" style="margin-top: 0; text-align: left;">
-    <h1 class="text-2xl font-bold mb-2 font-otto">Projects</h1>
-    <div class="projects-grid">
-      <div class="project-card">
-        <img src="/assets/experiments/scrutinize_2.gif" class="project-image">
-        <div class="project-info">
-          <h2 class="project-title">Scrutinize</h2>
-          <p class="project-desc">Editing DeepSeek's essays with interactive human-centered annotation</p>
-          <span class="project-year">2025</span>
+    <h1 class="text-2xl font-bold mb-8 font-otto">Projects</h1>
+    <div class="flex flex-col gap-6">
+      <!-- 2025 -->
+      <div>
+        <div class="font-otto font-bold text-xl mb-2">2025</div>
+        <div class="flex flex-col gap-6">
+          <div class="flex flex-row gap-5 items-start">
+            <img src="/assets/experiments/scrutinize_2.gif" class="project-image" style="width:120px; height:75px; object-fit:cover; border-radius:4px; margin-top:2px; transition:filter 0.3s;" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
+            <div>
+              <div class="font-semibold project-title" style="font-size:1.05rem;">Scrutinize</div>
+              <div class="project-desc italic" style="font-size:0.92rem; opacity:0.8;">Editing DeepSeek's essays with interactive human-centered annotation</div>
+              <div class="project-year text-xs mt-1">2025</div>
+            </div>
+          </div>
+          <div class="flex flex-row gap-5 items-start">
+            <img src="/assets/experiments/specter_3.gif" class="project-image" style="width:120px; height:75px; object-fit:cover; border-radius:4px; margin-top:2px; transition:filter 0.3s;" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
+            <div>
+              <div class="font-semibold project-title" style="font-size:1.05rem;">Specter</div>
+              <div class="project-desc italic" style="font-size:0.92rem; opacity:0.8;">Ephemeral Deepseek-based AI assistant made for the writing process</div>
+              <div class="project-year text-xs mt-1">2025</div>
+            </div>
+          </div>
+          <div class="flex flex-row gap-5 items-start">
+            <img src="/assets/experiments/meta_measure_3.gif" class="project-image" style="width:120px; height:75px; object-fit:cover; border-radius:4px; margin-top:2px; transition:filter 0.3s;" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
+            <div>
+              <div class="font-semibold project-title" style="font-size:1.05rem;">Meta Measure</div>
+              <div class="project-desc italic" style="font-size:0.92rem; opacity:0.8;">Evaluating Claude Sonnet 3.7's ability to assess research ideas from across all disciplines</div>
+              <div class="project-year text-xs mt-1">2025</div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="project-card">
-        <img src="/assets/experiments/specter_3.gif" class="project-image">
-        <div class="project-info">
-          <h2 class="project-title">Specter</h2>
-          <p class="project-desc">Ephemeral Deepseek-based AI assistant made for the writing process</p>
-          <span class="project-year">2025</span>
-        </div>
-      </div>
-      <div class="project-card">
-        <img src="/assets/experiments/meta_measure_3.gif" class="project-image">
-        <div class="project-info">
-          <h2 class="project-title">Meta Measure</h2>
-          <p class="project-desc">Evaluating Claude Sonnet 3.7's ability to assess research ideas from across all disciplines</p>
-          <span class="project-year">2025</span>
-        </div>
-      </div>
-      <div class="project-card">
-        <img src="/assets/articles/digi_1.png" class="project-image">
-        <div class="project-info">
-          <h2 class="project-title">Digital Transformation</h2>
-          <p class="project-desc">Filling the gap on the use of digital solutions to address challenges in the region</p>
-          <span class="project-year">2022</span>
-        </div>
-      </div>
-      <div class="project-card">
-        <img src="/assets/articles/digi_2.png" class="project-image">
-        <div class="project-info">
-          <h2 class="project-title">Public Procurement</h2>
-          <p class="project-desc">Recommendations to make public benefits more efficient, accessible, and timely</p>
-          <span class="project-year">2022</span>
+      <!-- 2022 -->
+      <div>
+        <div class="font-otto font-bold text-xl mb-2">2022</div>
+        <div class="flex flex-col gap-6">
+          <div class="flex flex-row gap-5 items-start">
+            <img src="/assets/articles/digi_1.png" class="project-image" style="width:120px; height:75px; object-fit:cover; border-radius:4px; margin-top:2px; transition:filter 0.3s;" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
+            <div>
+              <div class="font-semibold project-title" style="font-size:1.05rem;">Digital Transformation</div>
+              <div class="project-desc italic" style="font-size:0.92rem; opacity:0.8;">Filling the gap on the use of digital solutions to address challenges in the region</div>
+              <div class="project-year text-xs mt-1">2022</div>
+            </div>
+          </div>
+          <div class="flex flex-row gap-5 items-start">
+            <img src="/assets/articles/digi_2.png" class="project-image" style="width:120px; height:75px; object-fit:cover; border-radius:4px; margin-top:2px; transition:filter 0.3s;" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
+            <div>
+              <div class="font-semibold project-title" style="font-size:1.05rem;">Public Procurement</div>
+              <div class="project-desc italic" style="font-size:0.92rem; opacity:0.8;">Recommendations to make public benefits more efficient, accessible, and timely</div>
+              <div class="project-year text-xs mt-1">2022</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
