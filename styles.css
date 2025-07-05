@@ -1,3 +1,36 @@
+/* Hide scrollbars across the entire website */
+html {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+html::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+}
+
+body {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    font-family: 'ABC Oracle', 'Georgia', 'Times New Roman', Times, serif;
+    background: #fff;
+    min-height: 100vh;
+    margin: 0;
+}
+
+body::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+}
+
+/* Hide scrollbars for all elements */
+* {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+*::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+}
+
 @font-face {
     font-family: 'ABC Oracle';
     src: url('fonts/ABC Oracle/ABCOracle-Regular-Trial.woff2') format('woff2');
@@ -12,13 +45,6 @@
     font-weight: normal;
     font-style: normal;
     font-display: swap;
-}
-
-body {
-    font-family: 'ABC Oracle', 'Georgia', 'Times New Roman', Times, serif;
-    background: #fff;
-    min-height: 100vh;
-    margin: 0;
 }
 
 .font-otto {
@@ -286,4 +312,13 @@ p, li {
   margin: 0 !important;
   padding: 0 !important;
   line-height: 1;
+}
+
+/* Remove underline from project links in all states */
+.project-link,
+.project-link:visited,
+.project-link:hover,
+.project-link:active,
+.project-link:focus {
+  text-decoration: none !important;
 }
