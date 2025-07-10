@@ -15,7 +15,7 @@
             <li><a href="#" class="nav-link nav-link-active">About</a></li>
             <li><a href="/pages/cv.html" class="nav-link">CV</a></li>
             <li><a href="/pages/projects.html" class="nav-link">Projects</a></li>
-            <li><a href="/pages/writing.html" class="nav-link">Writing</a></li>
+            <!-- <li><a href="/pages/writing.html" class="nav-link">Writing</a></li> -->
         </ul>
     </nav>
     <main class="w-full max-w-2xl mx-auto px-4 pb-8" style="margin-top: 0; text-align: left;">
@@ -78,6 +78,22 @@
                 </span>
             </div>
         </div>
+        <div id="bottom-quote-section" class="mt-8 flex flex-row items-center gap-3 text-gray-500 font-otto" style="font-size: 0.92rem; margin-left: 0;">
+            <span id="bottom-quote-text">Weird is different, but different isn’t necessarily weird.</span>
+            <button id="bottom-quote-btn" class="quote-btn-no-underline focus:outline-none bg-transparent border-none cursor-pointer p-0 text-gray-500" style="font-size: 0.92rem;">View another</button>
+        </div>
+        <script>
+            const quotes = [
+                "I played bassoon for 7 years, starting from when I was 10."
+            ];
+            let quoteIndex = 0;
+            const quoteText = document.getElementById('bottom-quote-text');
+            const quoteBtn = document.getElementById('bottom-quote-btn');
+            quoteBtn.addEventListener('click', () => {
+                quoteIndex = (quoteIndex + 1) % quotes.length;
+                quoteText.textContent = quotes[quoteIndex];
+            });
+        </script>
     </main>
 </body>
 </html>
