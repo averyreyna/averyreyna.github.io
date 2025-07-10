@@ -332,17 +332,9 @@ p, li {
     margin: -8px -12px;
 }
 
-.experience-item:hover {
-    /* Remove background color effect */
-}
-
 .experience-content {
     position: relative;
     flex: 1;
-}
-
-.experience-header {
-    /* No transition */
 }
 
 .experience-description {
