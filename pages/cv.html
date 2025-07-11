@@ -8,6 +8,42 @@
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="stylesheet" href="/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+      .experience-item { position: relative; }
+      .experience-description {
+        display: none;
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 50;
+        background: #fff;
+        color: #333;
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+        min-width: 220px;
+        max-width: 320px;
+        font-size: 0.85rem;
+        pointer-events: none;
+        border: 1px solid #e5e7eb;
+      }
+      .experience-item::after {
+        content: "";
+        position: absolute;
+        top: 0.2rem;
+        right: 0.2rem;
+        width: 22px;
+        height: 22px;
+        background: #fff; /* Match background */
+        border-radius: 50%;
+        z-index: 100;
+        display: block;
+        pointer-events: none;
+        border: none;
+        box-shadow: none;
+        /* If you want it 100% invisible, you can also set opacity: 0; */
+      }
+    </style>
 </head>
 <body class="bg-white min-h-screen font-oracle">
     <nav class="w-full max-w-2xl mx-auto flex flex-row items-center justify-start py-4 px-4 mb-2" style="font-family: 'ABC Otto', sans-serif;">
@@ -44,7 +80,7 @@
             <span class="research-heading-line"></span>
         </div>
         <div class="space-y-1 mb-6">
-            <div class="experience-item py-1 flex flex-col gap-1">
+            <div class="experience-item py-1 flex flex-col gap-0.5">
                 <div class="experience-content">
                     <div class="experience-header">
                         <span class="font-semibold text-gray-900 leading-tight">Capital One</span>
@@ -53,7 +89,7 @@
                 </div>
                 <span class="text-xs text-gray-500 whitespace-nowrap">Aug 2023 — Feb 2024</span>
             </div>
-            <div class="experience-item py-1 flex flex-col gap-1">
+            <div class="experience-item py-1 flex flex-col gap-0.5">
                 <div class="experience-content">
                     <div class="experience-header">
                         <span class="font-semibold text-gray-900 leading-tight">ActBlue</span>
@@ -62,16 +98,7 @@
                 </div>
                 <span class="text-xs text-gray-500 whitespace-nowrap">Aug 2022 — May 2023</span>
             </div>
-            <div class="experience-item py-1 flex flex-col gap-1">
-                <div class="experience-content">
-                    <div class="experience-header">
-                        <span class="font-semibold text-gray-900 leading-tight">XR Access</span>
-                        <span class="block text-xs text-gray-700 -mt-0.5">REU Participant</span>
-                    </div>
-                </div>
-                <span class="text-xs text-gray-500 whitespace-nowrap">Jun 2022 — Aug 2022</span>
-            </div>
-            <div class="experience-item py-1 flex flex-col gap-1">
+            <div class="experience-item py-1 flex flex-col gap-0.5">
                 <div class="experience-content">
                     <div class="experience-header">
                         <span class="font-semibold text-gray-900 leading-tight">Swing Left</span>
@@ -80,7 +107,7 @@
                 </div>
                 <span class="text-xs text-gray-500 whitespace-nowrap">May 2022 — May 2023</span>
             </div>
-            <div class="experience-item py-1 flex flex-col gap-1">
+            <div class="experience-item py-1 flex flex-col gap-0.5">
                 <div class="experience-content">
                     <div class="experience-header">
                         <span class="font-semibold text-gray-900 leading-tight">New America</span>
@@ -89,7 +116,7 @@
                 </div>
                 <span class="text-xs text-gray-500 whitespace-nowrap">Aug 2021 — May 2022</span>
             </div>
-            <div class="experience-item py-1 flex flex-col gap-1">
+            <div class="experience-item py-1 flex flex-col gap-0.5">
                 <div class="experience-content">
                     <div class="experience-header">
                         <span class="font-semibold text-gray-900 leading-tight">Council on Foreign Relations</span>
@@ -104,7 +131,7 @@
             <span class="research-heading-line"></span>
         </div>
         <div class="space-y-1 mb-6">
-            <div class="experience-item py-1 flex flex-col gap-1">
+            <div class="experience-item py-1 flex flex-col gap-0.5">
                 <div class="experience-content">
                     <div class="experience-header">
                         <span class="font-semibold text-gray-900 leading-tight">University of Kentucky</span>
@@ -116,7 +143,7 @@
                 </div>
                 <span class="text-xs text-gray-500 whitespace-nowrap">2025 — Present</span>
             </div>
-            <div class="experience-item py-1 flex flex-col gap-1">
+            <div class="experience-item py-1 flex flex-col gap-0.5">
                 <div class="experience-content">
                     <div class="experience-header">
                         <span class="font-semibold text-gray-900 leading-tight">University of Central Florida</span>
@@ -128,7 +155,7 @@
                 </div>
                 <span class="text-xs text-gray-500 whitespace-nowrap">2020 — 2023</span>
             </div>
-            <div class="experience-item py-1 flex flex-col gap-1">
+            <div class="experience-item py-1 flex flex-col gap-0.5">
                 <div class="experience-content">
                     <div class="experience-header">
                         <span class="font-semibold text-gray-900 leading-tight">XR Access</span>
@@ -140,7 +167,7 @@
                 </div>
                 <span class="text-xs text-gray-500 whitespace-nowrap">2022</span>
             </div>
-            <div class="experience-item py-1 flex flex-col gap-1">
+            <div class="experience-item py-1 flex flex-col gap-0.5">
                 <div class="experience-content">
                     <div class="experience-header">
                         <span class="font-semibold text-gray-900 leading-tight">University of Washington Tacoma</span>
@@ -323,8 +350,9 @@ if (window.innerWidth > 768) {
     if (!tooltip) return;
     item.addEventListener('mousemove', (e) => {
       tooltip.style.display = 'block';
-      const offsetX = 18;
-      const offsetY = 18;
+      const offsetX = 4;
+      const offsetY = 6;
+
       let x = e.clientX + offsetX;
       let y = e.clientY + offsetY;
       const tooltipRect = tooltip.getBoundingClientRect();
@@ -332,8 +360,9 @@ if (window.innerWidth > 768) {
       const winHeight = window.innerHeight;
       if (x + tooltipRect.width > winWidth - 12) x = winWidth - tooltipRect.width - 12;
       if (y + tooltipRect.height > winHeight - 12) y = winHeight - tooltipRect.height - 12;
-      tooltip.style.left = x + 'px';
-      tooltip.style.top = y + 'px';
+
+      tooltip.style.left = (x - item.getBoundingClientRect().left) + 'px';
+      tooltip.style.top = (y - item.getBoundingClientRect().top) + 'px';
     });
     item.addEventListener('mouseleave', () => {
       tooltip.style.display = 'none';
