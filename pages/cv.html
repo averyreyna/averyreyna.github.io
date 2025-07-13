@@ -8,42 +8,6 @@
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="stylesheet" href="/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-      .experience-item { position: relative; }
-      .experience-description {
-        display: none;
-        position: absolute;
-        left: 0;
-        top: 0;
-        z-index: 50;
-        background: #fff;
-        color: #333;
-        padding: 0.5rem 0.75rem;
-        border-radius: 0.5rem;
-        box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-        min-width: 220px;
-        max-width: 320px;
-        font-size: 0.85rem;
-        pointer-events: none;
-        border: 1px solid #e5e7eb;
-      }
-      .experience-item::after {
-        content: "";
-        position: absolute;
-        top: 0.2rem;
-        right: 0.2rem;
-        width: 22px;
-        height: 22px;
-        background: #fff; /* Match background */
-        border-radius: 50%;
-        z-index: 100;
-        display: block;
-        pointer-events: none;
-        border: none;
-        box-shadow: none;
-        /* If you want it 100% invisible, you can also set opacity: 0; */
-      }
-    </style>
 </head>
 <body class="bg-white min-h-screen font-oracle">
     <nav class="w-full max-w-2xl mx-auto flex flex-row items-center justify-start py-4 px-4 mb-2" style="font-family: 'ABC Otto', sans-serif;">
@@ -55,9 +19,10 @@
         </ul>
     </nav>
     <main class="w-full max-w-2xl mx-auto px-4 pb-8" style="margin-top: 0; text-align: left;">
-        <h1 class="text-2xl font-bold mb-2 font-otto">Avery Reyna</h1>
-        <div class="text-gray-700 mb-2">Currently: Washington, DC</div>
-        <div class="flex flex-wrap gap-4 text-sm text-gray-700 mt-3 mb-4">
+        <h1 class="text-2xl font-bold mb-2 font-otto flex flex-row items-center gap-2">
+            Avery Reyna <span class="text-gray-500 font-normal text-lg font-otto">&mdash; Washington, DC</span>
+        </h1>
+        <div class="flex flex-wrap gap-4 text-sm text-gray-700 mt-1 mb-2">
             <a href="/cv.pdf" class="md:hover:text-gray-800 transition-colors text-lg" target="_blank" rel="noopener"><i class="fa-regular fa-file-pdf"></i></a>
             <a href="mailto:avery@reyna.com" class="md:hover:text-gray-800 transition-colors text-lg"><i class="fa-regular fa-envelope"></i></a>
             <a href="https://github.com/averyreyna" class="md:hover:text-gray-800 transition-colors text-lg" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
@@ -70,10 +35,14 @@
             <span class="research-heading-line"></span>
         </div>
         <div class="space-y-0.5 mb-6">
-            <div class="font-semibold">University of Central Florida</div>
-            <div class="text-gray-700">B.S. in Social Sciences</div>
-            <div class="text-sm text-gray-600">2018 — 2023</div>
-            <div class="italic text-gray-600 text-sm">Minors in Cultural Anthropology, Political Science, and Sociology</div>
+            <div class="flex flex-row items-center justify-between gap-2">
+                <span class="font-semibold">University of Central Florida</span>
+                <span class="text-sm text-gray-600 whitespace-nowrap">Jun 2018 — May 2023</span>
+            </div>
+            <div class="flex flex-col gap-0.5">
+                <div class="text-gray-700">B.S. in Social Sciences</div>
+                <div class="italic text-gray-600 text-sm">Minors in Cultural Anthropology, Political Science, and Sociology</div>
+            </div>
         </div>
         <div class="research-heading">
             <span class="research-heading-text">Work Experience</span>
@@ -84,46 +53,33 @@
                 <div class="experience-content">
                     <div class="experience-header">
                         <span class="font-semibold text-gray-900 leading-tight">Capital One</span>
-                        <span class="block text-xs text-gray-700 -mt-0.5">Software Engineer in Training</span>
+                    </div>
+                    <div class="flex flex-row items-center justify-between gap-2">
+                        <span class="block text-xs text-gray-700">Software Engineer</span>
+                        <span class="block text-xs text-gray-500 whitespace-nowrap">Feb 2024 — Present</span>
+                    </div>
+                    <div class="flex flex-row items-center justify-between gap-2">
+                        <span class="block text-xs text-gray-700">CODA Associate</span>
+                        <span class="block text-xs text-gray-500 whitespace-nowrap">Aug 2023 — Feb 2024</span>
+                    </div>
+                    <div class="experience-description">
+                        <span class="block text-xs text-gray-600 -mt-0.5">Both TDP rotations were within Cyber Tech, with my first being in identity and access management and my second being in detection and mitigation</span>
                     </div>
                 </div>
-                <span class="text-xs text-gray-500 whitespace-nowrap">Aug 2023 — Feb 2024</span>
             </div>
             <div class="experience-item py-1 flex flex-col gap-0.5">
-                <div class="experience-content">
-                    <div class="experience-header">
-                        <span class="font-semibold text-gray-900 leading-tight">ActBlue</span>
-                        <span class="block text-xs text-gray-700 -mt-0.5">Data Science Intern</span>
+                <div class="flex flex-row items-center justify-between gap-2">
+                    <div class="experience-content">
+                        <div class="experience-header">
+                            <span class="font-semibold text-gray-900 leading-tight">Various Companies</span>
+                            <span class="block text-xs text-gray-700 -mt-0.5">Research Intern</span>
+                        </div>
+                        <div class="experience-description">
+                            <span class="block text-xs text-gray-600 -mt-0.5">PMBF Program, UNA-Orlando, The COVID-19 Tracking Project at The Atlantic, the Council on Foreign Relations, The Hub Project, Swing Left, New America, ActBlue, and KRC Research</span>
+                        </div>
                     </div>
+                    <span class="text-xs text-gray-500 whitespace-nowrap">Jan 2019 — Dec 2022</span>
                 </div>
-                <span class="text-xs text-gray-500 whitespace-nowrap">Aug 2022 — May 2023</span>
-            </div>
-            <div class="experience-item py-1 flex flex-col gap-0.5">
-                <div class="experience-content">
-                    <div class="experience-header">
-                        <span class="font-semibold text-gray-900 leading-tight">Swing Left</span>
-                        <span class="block text-xs text-gray-700 -mt-0.5">Data Science Intern</span>
-                    </div>
-                </div>
-                <span class="text-xs text-gray-500 whitespace-nowrap">May 2022 — May 2023</span>
-            </div>
-            <div class="experience-item py-1 flex flex-col gap-0.5">
-                <div class="experience-content">
-                    <div class="experience-header">
-                        <span class="font-semibold text-gray-900 leading-tight">New America</span>
-                        <span class="block text-xs text-gray-700 -mt-0.5">Research Intern</span>
-                    </div>
-                </div>
-                <span class="text-xs text-gray-500 whitespace-nowrap">Aug 2021 — May 2022</span>
-            </div>
-            <div class="experience-item py-1 flex flex-col gap-0.5">
-                <div class="experience-content">
-                    <div class="experience-header">
-                        <span class="font-semibold text-gray-900 leading-tight">Council on Foreign Relations</span>
-                        <span class="block text-xs text-gray-700 -mt-0.5">Research Intern</span>
-                    </div>
-                </div>
-                <span class="text-xs text-gray-500 whitespace-nowrap">Jan 2021 — May 2021</span>
             </div>
         </div>
         <div class="research-heading">
@@ -132,52 +88,91 @@
         </div>
         <div class="space-y-1 mb-6">
             <div class="experience-item py-1 flex flex-col gap-0.5">
-                <div class="experience-content">
-                    <div class="experience-header">
-                        <span class="font-semibold text-gray-900 leading-tight">University of Kentucky</span>
-                        <span class="block text-xs text-gray-700 -mt-0.5">External Collaborator</span>
+                <div class="flex flex-row items-center justify-between gap-2">
+                    <div class="experience-content">
+                        <div class="experience-header">
+                            <span class="font-semibold text-gray-900 leading-tight">UC San Diego</span>
+                            <span class="block text-xs text-gray-700 -mt-0.5">External Collaborator</span>
+                        </div>
+                        <div class="experience-description">
+                            <span class="block text-xs text-gray-600 -mt-0.5">Studying agentic AI coding workflows</span>
+                        </div>
                     </div>
-                    <div class="experience-description">
-                        <span class="block text-xs text-gray-600 -mt-0.5">Rejoined the maintenance team of the CoupCast project</span>
-                    </div>
+                    <span class="text-xs text-gray-500 whitespace-nowrap">Jun 2025 — Present</span>
                 </div>
-                <span class="text-xs text-gray-500 whitespace-nowrap">2025 — Present</span>
             </div>
             <div class="experience-item py-1 flex flex-col gap-0.5">
-                <div class="experience-content">
-                    <div class="experience-header">
-                        <span class="font-semibold text-gray-900 leading-tight">University of Central Florida</span>
-                        <span class="block text-xs text-gray-700 -mt-0.5">Undergraduate Researcher</span>
+                <div class="flex flex-row items-center justify-between gap-2">
+                    <div class="experience-content">
+                        <div class="experience-header">
+                            <span class="font-semibold text-gray-900 leading-tight">University of Kentucky</span>
+                            <span class="block text-xs text-gray-700 -mt-0.5">External Collaborator</span>
+                        </div>
+                        <div class="experience-description">
+                            <span class="block text-xs text-gray-600 -mt-0.5">Rejoined the CoupCast project</span>
+                        </div>
                     </div>
-                    <div class="experience-description">
-                        <span class="block text-xs text-gray-600 -mt-0.5">Studied computational social science, human-computer interaction, and urban sociology</span>
-                    </div>
+                    <span class="text-xs text-gray-500 whitespace-nowrap">Jun 2025 — Present</span>
                 </div>
-                <span class="text-xs text-gray-500 whitespace-nowrap">2020 — 2023</span>
             </div>
             <div class="experience-item py-1 flex flex-col gap-0.5">
-                <div class="experience-content">
-                    <div class="experience-header">
-                        <span class="font-semibold text-gray-900 leading-tight">XR Access</span>
-                        <span class="block text-xs text-gray-700 -mt-0.5">REU Participant</span>
+                <div class="flex flex-row items-center justify-between gap-2">
+                    <div class="experience-content">
+                        <div class="experience-header">
+                            <span class="font-semibold text-gray-900 leading-tight">University of Central Florida</span>
+                            <span class="block text-xs text-gray-700 -mt-0.5">Undergraduate Researcher</span>
+                        </div>
+                        <div class="experience-description">
+                            <span class="block text-xs text-gray-600 -mt-0.5">Studied computational social science, human-computer interaction, and urban sociology</span>
+                        </div>
                     </div>
-                    <div class="experience-description">
-                        <span class="block text-xs text-gray-600 -mt-0.5">Integrated spatial interactions in desktop screen readers and made four assistive technology prototypes</span>
-                    </div>
+                    <span class="text-xs text-gray-500 whitespace-nowrap">Aug 2020 — May 2023</span>
                 </div>
-                <span class="text-xs text-gray-500 whitespace-nowrap">2022</span>
             </div>
             <div class="experience-item py-1 flex flex-col gap-0.5">
-                <div class="experience-content">
-                    <div class="experience-header">
-                        <span class="font-semibold text-gray-900 leading-tight">University of Washington Tacoma</span>
-                        <span class="block text-xs text-gray-700 -mt-0.5">REU Participant</span>
+                <div class="flex flex-row items-center justify-between gap-2">
+                    <div class="experience-content">
+                        <div class="experience-header">
+                            <span class="font-semibold text-gray-900 leading-tight">XR Access</span>
+                            <span class="block text-xs text-gray-700 -mt-0.5">REU Participant</span>
+                        </div>
+                        <div class="experience-description">
+                            <span class="block text-xs text-gray-600 -mt-0.5">Integrated spatial interactions in desktop screen readers and made four assistive technology prototypes</span>
+                        </div>
                     </div>
-                    <div class="experience-description">
-                        <span class="block text-xs text-gray-600 -mt-0.5">Used the Mapper algorithm on block group data from Mecklenburg County to find communities of interests</span>
-                    </div>
+                    <span class="text-xs text-gray-500 whitespace-nowrap">Jun 2022 — Aug 2022</span>
                 </div>
-                <span class="text-xs text-gray-500 whitespace-nowrap">2021</span>
+            </div>
+            <div class="experience-item py-1 flex flex-col gap-0.5">
+                <div class="flex flex-row items-center justify-between gap-2">
+                    <div class="experience-content">
+                        <div class="experience-header">
+                            <span class="font-semibold text-gray-900 leading-tight">University of Washington Tacoma</span>
+                            <span class="block text-xs text-gray-700 -mt-0.5">REU Participant</span>
+                        </div>
+                        <div class="experience-description">
+                            <span class="block text-xs text-gray-600 -mt-0.5">Used the Mapper algorithm on block group data from Mecklenburg County to find communities of interests</span>
+                        </div>
+                    </div>
+                    <span class="text-xs text-gray-500 whitespace-nowrap">Jun 2021 — Aug 2021</span>
+                </div>
+            </div>
+        </div>
+        <div class="research-heading">
+            <span class="research-heading-text">Teaching Experience</span>
+            <span class="research-heading-line"></span>
+        </div>
+        <div class="space-y-1 mb-6">
+            <div class="experience-item py-1 flex flex-col gap-0.5">
+                <div class="flex flex-row items-center justify-between gap-2">
+                    <div class="experience-content">
+                        <div class="experience-header">
+                            <span class="font-semibold text-gray-900 leading-tight">University of Central Florida</span>
+                            <span class="block text-xs text-gray-700 -mt-0.5">Undergraduate Instructor</span>
+                        </div>
+                    </div>
+                    <span class="text-xs text-gray-500 whitespace-nowrap">Aug 2020 — Dec 2020</span>
+                </div>
             </div>
         </div>
         <div class="research-heading">
@@ -260,6 +255,20 @@
             </div>
         </div>
         <div class="research-heading">
+            <span class="research-heading-text">Talks</span>
+            <span class="research-heading-line"></span>
+        </div>
+        <div class="space-y-1">
+            <div class="py-2 flex flex-col gap-0.5">
+                <span class="font-semibold text-gray-900 mb-0.5 leading-tight" style="margin-bottom:0.1rem;">Cartographic Limits and Interdisciplinary Science: Maps and Mathematics in Pursuit of Social Justice</span>
+                <span class="text-xs text-gray-500">NACIS 2022</span>
+                <span class="text-xs text-gray-700">Alexis Wood, <b>Avery Reyna</b>, Aya Konishi, David Retchless, and Jim Thatcher</span>
+                <span class="flex flex-row flex-wrap gap-2 mt-0.5">
+                    <a href="#" class="publication-link text-gray-500 text-xs" target="_blank" rel="noopener">Talk</a>
+                </span>
+            </div>
+        </div>
+        <div class="research-heading">
             <span class="research-heading-text">Presentations</span>
             <span class="research-heading-line"></span>
         </div>
@@ -295,46 +304,58 @@
         </div>
         <div class="space-y-1 mb-6">
             <div class="py-1 flex flex-col gap-1">
-                <div>
-                    <span class="font-semibold text-gray-900 leading-tight">Senior Scholar</span>
-                    <span class="block text-xs text-gray-700 -mt-0.5">UCF School of Politics, Security, and International Affairs</span>
+                <div class="flex flex-row items-center justify-between gap-2">
+                    <div>
+                        <span class="font-semibold text-gray-900 leading-tight">Senior Scholar</span>
+                        <span class="block text-xs text-gray-700 -mt-0.5">UCF School of Politics, Security, and International Affairs</span>
+                    </div>
+                    <span class="text-xs text-gray-500 whitespace-nowrap">2022</span>
                 </div>
-                <span class="text-xs text-gray-500 whitespace-nowrap">2022</span>
             </div>
             <div class="py-1 flex flex-col gap-1">
-                <div>
-                    <span class="font-semibold text-gray-900 leading-tight">Summer Undergraduate Research Fellowship</span>
-                    <span class="block text-xs text-gray-700 -mt-0.5">UCF Office of Undergraduate Research</span>
+                <div class="flex flex-row items-center justify-between gap-2">
+                    <div>
+                        <span class="font-semibold text-gray-900 leading-tight">Summer Undergraduate Research Fellowship</span>
+                        <span class="block text-xs text-gray-700 -mt-0.5">UCF Office of Undergraduate Research</span>
+                    </div>
+                    <span class="text-xs text-gray-500 whitespace-nowrap">2022</span>
                 </div>
-                <span class="text-xs text-gray-500 whitespace-nowrap">2022</span>
             </div>
             <div class="py-1 flex flex-col gap-1">
-                <div>
-                    <span class="font-semibold text-gray-900 leading-tight">Political Science Endowed Scholarship</span>
-                    <span class="block text-xs text-gray-700 -mt-0.5">UCF School of Politics, Security, and International Affairs</span>
+                <div class="flex flex-row items-center justify-between gap-2">
+                    <div>
+                        <span class="font-semibold text-gray-900 leading-tight">Political Science Endowed Scholarship</span>
+                        <span class="block text-xs text-gray-700 -mt-0.5">UCF School of Politics, Security, and International Affairs</span>
+                    </div>
+                    <span class="text-xs text-gray-500 whitespace-nowrap">2020</span>
                 </div>
-                <span class="text-xs text-gray-500 whitespace-nowrap">2020</span>
             </div>
             <div class="py-1 flex flex-col gap-1">
-                <div>
-                    <span class="font-semibold text-gray-900 leading-tight">Leader-in-Residence</span>
-                    <span class="block text-xs text-gray-700 -mt-0.5">Hispanic Association of Colleges and Universities</span>
+                <div class="flex flex-row items-center justify-between gap-2">
+                    <div>
+                        <span class="font-semibold text-gray-900 leading-tight">Leader-in-Residence</span>
+                        <span class="block text-xs text-gray-700 -mt-0.5">Hispanic Association of Colleges and Universities</span>
+                    </div>
+                    <span class="text-xs text-gray-500 whitespace-nowrap">2020</span>
                 </div>
-                <span class="text-xs text-gray-500 whitespace-nowrap">2020</span>
             </div>
             <div class="py-1 flex flex-col gap-1">
-                <div>
-                    <span class="font-semibold text-gray-900 leading-tight">Excellence in Action Award</span>
-                    <span class="block text-xs text-gray-700 -mt-0.5">UCF Office of Diversity Education and Training</span>
+                <div class="flex flex-row items-center justify-between gap-2">
+                    <div>
+                        <span class="font-semibold text-gray-900 leading-tight">Excellence in Action Award</span>
+                        <span class="block text-xs text-gray-700 -mt-0.5">UCF Office of Diversity Education and Training</span>
+                    </div>
+                    <span class="text-xs text-gray-500 whitespace-nowrap">2020</span>
                 </div>
-                <span class="text-xs text-gray-500 whitespace-nowrap">2020</span>
             </div>
             <div class="py-1 flex flex-col gap-1">
-                <div>
-                    <span class="font-semibold text-gray-900 leading-tight">Burnett Honors Scholar</span>
-                    <span class="block text-xs text-gray-700 -mt-0.5">Burnett Honors College</span>
+                <div class="flex flex-row items-center justify-between gap-2">
+                    <div>
+                        <span class="font-semibold text-gray-900 leading-tight">Burnett Honors Scholar</span>
+                        <span class="block text-xs text-gray-700 -mt-0.5">Burnett Honors College</span>
+                    </div>
+                    <span class="text-xs text-gray-500 whitespace-nowrap">2019</span>
                 </div>
-                <span class="text-xs text-gray-500 whitespace-nowrap">2019</span>
             </div>
         </div>
         <div class="mt-8 text-gray-500 font-otto" style="font-size: 0.75rem; margin-left: 0;">
@@ -342,7 +363,6 @@
         </div>
     </main>
 <script>
-// Tooltip follows cursor for .experience-item, but not on mobile
 if (window.innerWidth > 768) {
   const experienceItems = document.querySelectorAll('.experience-item');
   experienceItems.forEach(item => {
