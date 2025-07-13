@@ -10,6 +10,15 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 </head>
 <body class="bg-white min-h-screen font-oracle">
+  <!-- Responsive Warning Banner -->
+  <div class="responsive-warning" id="responsiveWarning">
+      <i class="fas fa-exclamation-triangle"></i>
+      <span class="warning-text">This page is optimized for larger screens. For the best experience, please use a device with a wider viewport.</span>
+      <button class="close-warning" onclick="closeWarning()">
+          <i class="fas fa-times"></i>
+      </button>
+  </div>
+
   <nav class="w-full max-w-2xl mx-auto flex flex-row items-center justify-start py-4 px-4 mb-2" style="font-family: 'ABC Otto', sans-serif;">
     <ul class="flex flex-row gap-1">
       <li><a href="/index.html" class="nav-link">About</a></li>
@@ -20,23 +29,64 @@
   </nav>
   <main class="w-full max-w-2xl mx-auto px-4 pb-8" style="margin-top: 0; text-align: left;">
     <h1 class="text-2xl font-bold mb-8 font-otto">News</h1>
+    <a href="/index.html" class="publication-link no-arrow text-gray-500 text-xs mt-2 inline-block mb-4">
+      <i class="fas fa-arrow-left mr-1"></i>Go back home
+    </a>
     <div class="flex flex-col space-y-4">
       <div>
         <span class="font-semibold text-gray-900">October 2024:</span>
         <span class="text-gray-800">Started my second TDP rotation at Capital One, staying within Cyber Tech, but working in detection and mitigation.</span>
       </div>
       <div>
+        <span class="font-semibold text-gray-900">March 2024:</span>
+        <span class="text-gray-800">Second project I was a part of at the CEAL Lab, <i>Help Supporters</i>, was accepted to CHI 2024! Read the paper in May.</span>
+      </div>
+      <div>
         <span class="font-semibold text-gray-900">February 2024:</span>
-        <span class="text-gray-800">Graduate from CODA and started my first TDP rotation at Capital One! I'll be working on building custom authorization plugins for the company's access portal.</span>
+        <span class="text-gray-800">Graduated from CODA and started my first TDP rotation at Capital One! I'll be working on building custom authorization plugins for the company's access portal.</span>
       </div>
       <div>
         <span class="font-semibold text-gray-900">August 2023:</span>
-        <span class="text-gray-800">Joined Capital One taking part in the CODA program, learning to be a enterprise-ready Software Engineer in six months.</span>
-    </div>
+        <span class="text-gray-800">Got accepted to ASSETS 2023 with the work I did at Brian Smith's CEAL Lab! Read the paper in October. I also joined Capital One after graduation, taking part in the CODA program learning to be a enterprise-ready Software Engineer in six months.</span>
+      </div>
     </div>
     <div class="mt-8 text-gray-500 font-otto" style="font-size: 0.75rem; margin-left: 0;">
         <span>Last updated: July 2025</span>
     </div>
   </main>
+
+  <script>
+    // Responsive warning functionality
+    function checkScreenSize() {
+        const warning = document.getElementById('responsiveWarning');
+        const body = document.body;
+        
+        // Show warning only on screens between 481px and 1199px
+        if (window.innerWidth >= 481 && window.innerWidth < 1200) {
+            if (!localStorage.getItem('warningDismissed')) {
+                warning.classList.add('show');
+                body.classList.add('warning-active');
+            }
+        } else {
+            warning.classList.remove('show');
+            body.classList.remove('warning-active');
+        }
+    }
+
+    function closeWarning() {
+        const warning = document.getElementById('responsiveWarning');
+        const body = document.body;
+        
+        warning.classList.remove('show');
+        body.classList.remove('warning-active');
+        
+        // Remember that user dismissed the warning
+        localStorage.setItem('warningDismissed', 'true');
+    }
+
+    // Check screen size on load and resize
+    window.addEventListener('load', checkScreenSize);
+    window.addEventListener('resize', checkScreenSize);
+  </script>
 </body>
 </html>

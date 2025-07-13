@@ -10,6 +10,15 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 </head>
 <body class="bg-white min-h-screen font-oracle">
+  <!-- Responsive Warning Banner -->
+  <div class="responsive-warning" id="responsiveWarning">
+      <i class="fas fa-exclamation-triangle"></i>
+      <span class="warning-text">This page is optimized for larger screens. For the best experience, please use a device with a wider viewport.</span>
+      <button class="close-warning" onclick="closeWarning()">
+          <i class="fas fa-times"></i>
+      </button>
+  </div>
+
   <nav class="w-full max-w-2xl mx-auto flex flex-row items-center justify-start py-4 px-4 mb-2" style="font-family: 'ABC Otto', sans-serif;">
     <ul class="flex flex-row gap-1">
       <li><a href="/index.html" class="nav-link">About</a></li>
@@ -141,5 +150,39 @@
         <span>Last updated: July 2025</span>
     </div>
   </main>
+
+  <script>
+    // Responsive warning functionality
+    function checkScreenSize() {
+        const warning = document.getElementById('responsiveWarning');
+        const body = document.body;
+        
+        // Show warning only on screens between 481px and 1199px
+        if (window.innerWidth >= 481 && window.innerWidth < 1200) {
+            if (!localStorage.getItem('warningDismissed')) {
+                warning.classList.add('show');
+                body.classList.add('warning-active');
+            }
+        } else {
+            warning.classList.remove('show');
+            body.classList.remove('warning-active');
+        }
+    }
+
+    function closeWarning() {
+        const warning = document.getElementById('responsiveWarning');
+        const body = document.body;
+        
+        warning.classList.remove('show');
+        body.classList.remove('warning-active');
+        
+        // Remember that user dismissed the warning
+        localStorage.setItem('warningDismissed', 'true');
+    }
+
+    // Check screen size on load and resize
+    window.addEventListener('load', checkScreenSize);
+    window.addEventListener('resize', checkScreenSize);
+  </script>
 </body>
 </html>

@@ -10,6 +10,15 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="bg-white min-h-screen font-oracle">
+    <!-- Responsive Warning Banner -->
+    <div class="responsive-warning" id="responsiveWarning">
+        <i class="fas fa-exclamation-triangle"></i>
+        <span class="warning-text">This page is optimized for larger screens. For the best experience, please use a device with a wider viewport.</span>
+        <button class="close-warning" onclick="closeWarning()">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
     <nav class="w-full max-w-2xl mx-auto flex flex-row items-center justify-start py-4 px-4 mb-2" style="font-family: 'ABC Otto', sans-serif;">
         <ul class="flex flex-row gap-1">
             <li><a href="#" class="nav-link nav-link-active">About</a></li>
@@ -22,7 +31,7 @@
         <div class="mb-8 clearfix">
             <img src="/assets/photos/avery_reyna.png" class="hidden md:block rounded-lg w-[150px] h-[180px] object-cover shadow-sm float-left mr-5 mb-2" alt="Avery Reyna" />
             <h1 class="text-2xl font-bold mb-1 font-otto">Hello! I'm Avery Reyna.</h1>
-            <p class="text-base text-gray-800 leading-snug">I'm a Software Engineer at <a href="https://capitalone.com" target="_blank" rel="noopener">Capital One</a>, building metric visualization tools for a platform that monitors data quality across the enterprise. Before that, I received my BS at the <a href="https://www.ucf.edu/" target="_blank" rel="noopener">University of Central Florida</a> with minors in Cultural Anthropology, Political Science, and Sociology. I had the privilege of working with <a href="" target="_blank" rel="noopener">Amy Donley</a>, <a href="" target="_blank" rel="noopener">Pamela Wisniewski</a>, and <a href="https://www.linkedin.com/in/jonathan-powell-00000000000000000000000000000000/" target="_blank" rel="noopener">Jonathan Powell</a> researching urban sociology, human-computer interaction, and computational social science. While conducting research, I worked at places like The Hub Project, the Council on Foreign Relations, New America, and <a>ActBlue</a>. In my free time, I am conducting field research, starting experiments, and building prototypes as <a href="" target="_blank" rel="noopener">Self Adjoint Operator</a>.</p>
+            <p class="text-base text-gray-800 leading-snug">I'm a Software Engineer at <a href="https://capitalone.com" target="_blank" rel="noopener">Capital One</a>, building metric visualization tools for a platform that monitors data quality across the enterprise. Before that, I received my BS at the <a href="https://www.ucf.edu/" target="_blank" rel="noopener">University of Central Florida</a> with minors in Cultural Anthropology, Political Science, and Sociology. I had the privilege of working with <a href="https://amydonley.com/" target="_blank" rel="noopener">Amy Donley</a>, <a href="https://stirlab.org/" target="_blank" rel="noopener">Pamela Wisniewski</a>, and <a href="https://jonathanmpowell.com/" target="_blank" rel="noopener">Jonathan Powell</a> researching urban sociology, human-computer interaction, and computational social science. While conducting research, I worked at places like <a href="https://thehubproject.com/" target="_blank" rel="noopener">The Hub Project</a>, the <a href="https://www.cfr.org/" target="_blank" rel="noopener">Council on Foreign Relations</a>, <a href="https://newamerica.org/" target="_blank" rel="noopener">New America</a>, and <a href="https://actblue.com/" target="_blank" rel="noopener">ActBlue</a>. In my free time, I am conducting field research, starting experiments, and building prototypes as <a href="" target="_blank" rel="noopener">Self Adjoint Operator</a>.
         </div>
         <div class="research-heading">
             <span class="research-heading-text">Recent News</span>
@@ -34,12 +43,12 @@
                 <span class="text-gray-800">Started my second TDP rotation at Capital One, staying within Cyber Tech, but working in detection and mitigation.</span>
             </div>
             <div>
+                <span class="font-semibold text-gray-900">March 2024:</span>
+                <span class="text-gray-800">Second project I was a part of at the CEAL Lab, <i>Help Supporters</i>, was accepted to CHI 2024! Read the paper in May.</span>
+              </div>
+            <div>
                 <span class="font-semibold text-gray-900">February 2024:</span>
                 <span class="text-gray-800">Graduate from CODA and started my first TDP rotation at Capital One! I'll be working on building custom authorization plugins for the company's access portal.</span>
-            </div>
-            <div>
-                <span class="font-semibold text-gray-900">August 2023:</span>
-                <span class="text-gray-800">Joined Capital One taking part in the CODA program, learning to be a enterprise-ready Software Engineer in six months.</span>
             </div>
             <a href="/pages/news.html" class="publication-link text-gray-500 text-xs mt-2 inline-block">
                 View all news
@@ -82,5 +91,39 @@
             <span>Last updated: July 2025</span>
         </div>
     </main>
+
+    <script>
+        // Responsive warning functionality
+        function checkScreenSize() {
+            const warning = document.getElementById('responsiveWarning');
+            const body = document.body;
+            
+            // Show warning only on screens between 481px and 1199px
+            if (window.innerWidth >= 481 && window.innerWidth < 1200) {
+                if (!localStorage.getItem('warningDismissed')) {
+                    warning.classList.add('show');
+                    body.classList.add('warning-active');
+                }
+            } else {
+                warning.classList.remove('show');
+                body.classList.remove('warning-active');
+            }
+        }
+
+        function closeWarning() {
+            const warning = document.getElementById('responsiveWarning');
+            const body = document.body;
+            
+            warning.classList.remove('show');
+            body.classList.remove('warning-active');
+            
+            // Remember that user dismissed the warning
+            localStorage.setItem('warningDismissed', 'true');
+        }
+
+        // Check screen size on load and resize
+        window.addEventListener('load', checkScreenSize);
+        window.addEventListener('resize', checkScreenSize);
+    </script>
 </body>
 </html>
