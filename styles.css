@@ -342,26 +342,10 @@ p, li {
     flex: 1;
 }
 
-/* Hide experience-description by default and prevent visual artifacts */
-.experience-description {
-  display: none;
-  position: absolute;
-  background: none;
-  border: none;
-  box-shadow: none;
-  pointer-events: none;
-  z-index: 50;
-  left: 0;
-  top: 0;
-  min-width: 0;
-  min-height: 0;
-  padding: 0;
-}
+
 
 @media (max-width: 768px) {
-    .experience-description {
-        display: none !important;
-    }
+
 }
 
 .experience-item:hover .experience-header {
@@ -391,12 +375,7 @@ p, li {
     .experience-item::after {
         right: 4px;
     }
-    .experience-description {
-        min-width: 100px;
-        max-width: 90vw;
-        padding: 6px 7px;
-        font-size: 0.85rem;
-    }
+
 }
 
 /* Bottom quote section styles */
@@ -466,23 +445,6 @@ p, li {
 
 /* Experience item tooltip styles moved from cv.html */
 .experience-item { position: relative; }
-.experience-description {
-  display: none;
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: 50;
-  background: #fff;
-  color: #333;
-  padding: 0.5rem 0.75rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-  min-width: 220px;
-  max-width: 320px;
-  font-size: 0.85rem;
-  pointer-events: none;
-  border: 1px solid #e5e7eb;
-}
 .experience-item::after {
   content: "";
   position: absolute;
