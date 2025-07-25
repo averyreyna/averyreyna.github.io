@@ -88,6 +88,15 @@ body::-webkit-scrollbar {
     font-display: swap;
 }
 
+/* ABC Diatype Semi-Mono Font Family */
+@font-face {
+    font-family: 'ABC Diatype Semi-Mono';
+    src: url('fonts/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-Bold-Trial.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
 @font-face {
     font-family: 'ABC Diatype';
     src: url('fonts/ABC Diatype/ABCDiatype-HeavyItalic-Trial.woff2') format('woff2');
@@ -259,6 +268,18 @@ p, li {
   font-weight: 600;
   font-family: 'ABC Diatype', sans-serif;
 }
+
+/* ABC Diatype Semi-Mono heading styles */
+.main-heading-semi-mono {
+  font-family: 'ABC Diatype Semi-Mono', monospace;
+  font-weight: 700;
+}
+
+.section-heading-semi-mono {
+  font-family: 'ABC Diatype Semi-Mono', monospace;
+  font-weight: 700;
+  font-size: 1.125rem;
+}
 .research-heading-line {
   flex: 1;
   height: 1px;
@@ -337,10 +358,9 @@ p, li {
 }
 
 .project-title {
-  font-family: 'ABC Diatype', sans-serif;
-
+  font-family: 'ABC Diatype Semi-Mono', monospace;
+  font-weight: 700;
   font-size: 1rem;
-  font-weight: 600;
   margin: 0;
   line-height: 1;
 }
@@ -349,7 +369,6 @@ p, li {
   font-size: 0.82rem;
   color: #444;
   margin-bottom: 0;
-  font-style: italic;
   opacity: 0.7;
   margin: 0 !important;
   padding: 0 !important;
@@ -374,7 +393,7 @@ p, li {
 .project-year {
   font-size: 0.8rem;
   color: #aaa;
-  margin-top: 0.2rem !important;
+  margin-top: 0.5rem !important;
   font-family: 'ABC Diatype', sans-serif;
   margin: 0 !important;
   padding: 0 !important;
@@ -529,18 +548,49 @@ p, li {
   padding: 0.18rem 0.7rem;
   border-radius: 0.35rem;
   background: #f3f4f6;
-  color: #444;
+  color: #374151;
   border: none;
   cursor: pointer;
-  transition: background 0.15s, color 0.15s;
-  font-family: inherit;
-  font-weight: 500;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+  margin: 0.15rem 0.25rem 0.15rem 0;
+  transition: background-color 0.2s ease;
 }
 
-.filter-tag.active, .filter-tag:hover {
+.filter-tag:hover {
   background: #e5e7eb;
-  color: #222;
+}
+
+.filter-tag.active {
+  background: #d1d5db;
+  color: #1f2937;
+}
+
+.filter-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-bottom: 1.5rem;
+  align-items: center;
+}
+
+.filter-label {
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin-right: 0.5rem;
+  font-weight: 500;
+}
+
+footer {
+  background-color: #f8f9fa;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  padding: 2rem 0;
+  margin-top: 3rem;
+}
+
+.footer-content {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
 .project-link[style*='display: none'] { 
