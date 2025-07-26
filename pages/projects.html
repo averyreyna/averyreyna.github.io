@@ -61,7 +61,6 @@
             this.classList.add('active');
             const filter = this.getAttribute('data-filter');
             projects.forEach(link => {
-              // Get the project title text, excluding the colored dot
               const titleElement = link.querySelector('.project-title');
               const title = titleElement ? titleElement.textContent.replace(/●\s*/, '').trim() : '';
               
@@ -130,7 +129,7 @@
               <div>
                 <div class="font-semibold project-title flex items-center"><span style="color: #8B4513; font-size: 0.6em; margin-right: 0.5em;">●</span>Metrics Dashboard</div>
                 <div class="project-year text-xs">May '25</div>
-                <div class="project-desc">Building a customizable in-house monitoring tool to replace external platforms</div>
+                <div class="project-desc">Building a customizable in-house heartbeat monitoring solution to replace Grafana dashboards</div>
               </div>
             </div>
           </a>
@@ -211,7 +210,7 @@
         <div class="flex flex-col gap-6 project-year-section">
           <a href="https://www.newamerica.org/digital-impact-governance-initiative/reports/digital-transformation-opportunities-and-challenges-in-the-lower-mekong-region/" target="_blank" class="block project-link">
             <div class="flex flex-row gap-5 items-center">
-              <img src="/assets/articles/digi_1.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
+              <img src="/assets/articles/digital_transformation.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div>
                 <div class="font-semibold project-title flex items-center"><span style="color: #4682B4; font-size: 0.6em; margin-right: 0.5em;">●</span>Digital Transformation</div>
                 <div class="project-year text-xs">Nov '22</div>
@@ -221,7 +220,7 @@
           </a>
           <a href="https://www.newamerica.org/digital-impact-governance-initiative/reports/reconceptualizing-public-procurement/" target="_blank" class="block project-link">
             <div class="flex flex-row gap-5 items-center">
-              <img src="/assets/articles/digi_2.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
+              <img src="/assets/articles/public_procurement.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div>
                 <div class="font-semibold project-title flex items-center"><span style="color: #4682B4; font-size: 0.6em; margin-right: 0.5em;">●</span>Public Procurement</div>
                 <div class="project-year text-xs">Oct '22</div>
