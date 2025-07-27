@@ -23,12 +23,12 @@
   <main class="w-full max-w-2xl mx-auto px-4 pb-8" style="margin-top: 0; text-align: left;">
     <h1 class="text-2xl font-bold mb-8 font-diatype">Projects</h1>
     <div id="project-filter-bar" class="flex flex-row flex-wrap gap-2 mb-8">
-      <button class="filter-tag" data-filter="all">All</button>
       <button class="filter-tag flex items-center" data-filter="Article"><span style="color: #B87333; font-size: 0.6em; margin-right: 0.5em;">●</span>Article</button>
       <button class="filter-tag flex items-center" data-filter="Industry"><span style="color: #8B4513; font-size: 0.6em; margin-right: 0.5em;">●</span>Industry</button>
       <button class="filter-tag flex items-center" data-filter="Prototype"><span style="color: #228B22; font-size: 0.6em; margin-right: 0.5em;">●</span>Prototype</button>
       <button class="filter-tag flex items-center" data-filter="Report"><span style="color: #4682B4; font-size: 0.6em; margin-right: 0.5em;">●</span>Report</button>
       <button class="filter-tag flex items-center" data-filter="Research"><span style="color: #8A2BE2; font-size: 0.6em; margin-right: 0.5em;">●</span>Research</button>
+      <button id="clear-filter" class="filter-tag" data-filter="clear" style="display: none;">Clear</button>
     </div>
 
     <script>
@@ -55,48 +55,71 @@
         const projects = document.querySelectorAll('.project-link');
         const yearSections = document.querySelectorAll('.project-year-section');
         const yearContainers = document.querySelectorAll('.flex.flex-col.gap-6 > div');
+        const clearButton = document.getElementById('clear-filter');
+        
+        function showAllProjects() {
+          projects.forEach(link => {
+            link.style.display = '';
+          });
+          yearContainers.forEach((container) => {
+            const section = container.querySelector('.project-year-section');
+            if (section) {
+              const visibleProjects = section.querySelectorAll('.project-link:not([style*="display: none"])');
+              if (visibleProjects.length === 0) {
+                container.style.display = 'none';
+              } else {
+                container.style.display = '';
+              }
+            }
+          });
+        }
+        
+        function updateYearContainers() {
+          yearContainers.forEach((container) => {
+            const section = container.querySelector('.project-year-section');
+            if (section) {
+              const visibleProjects = section.querySelectorAll('.project-link:not([style*="display: none"])');
+              if (visibleProjects.length === 0) {
+                container.style.display = 'none';
+              } else {
+                container.style.display = '';
+              }
+            }
+          });
+        }
+        
         tags.forEach(tag => {
           tag.addEventListener('click', function() {
-            tags.forEach(t => t.classList.remove('active'));
-            this.classList.add('active');
             const filter = this.getAttribute('data-filter');
-            projects.forEach(link => {
-              const titleElement = link.querySelector('.project-title');
-              const title = titleElement ? titleElement.textContent.replace(/●\s*/, '').trim() : '';
+            
+            if (filter === 'clear') {
+              // Clear all filters
+              tags.forEach(t => t.classList.remove('active'));
+              clearButton.style.display = 'none';
+              showAllProjects();
+            } else {
+              // Apply filter
+              tags.forEach(t => t.classList.remove('active'));
+              this.classList.add('active');
+              clearButton.style.display = 'block';
               
-              if (filter === 'all') {
-                link.style.display = '';
-              } else if (title && projectTags[title] && projectTags[title].includes(filter)) {
-                link.style.display = '';
-              } else {
-                link.style.display = 'none';
-              }
-            });
-            yearContainers.forEach((container) => {
-              const section = container.querySelector('.project-year-section');
-              if (section) {
-                const visibleProjects = section.querySelectorAll('.project-link:not([style*="display: none"])');
-                if (visibleProjects.length === 0) {
-                  container.style.display = 'none';
+              projects.forEach(link => {
+                const titleElement = link.querySelector('.project-title');
+                const title = titleElement ? titleElement.textContent.replace(/●\s*/, '').trim() : '';
+                
+                if (title && projectTags[title] && projectTags[title].includes(filter)) {
+                  link.style.display = '';
                 } else {
-                  container.style.display = '';
+                  link.style.display = 'none';
                 }
-              }
-            });
+              });
+              updateYearContainers();
+            }
           });
         });
-        document.querySelector('.filter-tag[data-filter="all"]').classList.add('active');
-        yearContainers.forEach((container) => {
-          const section = container.querySelector('.project-year-section');
-          if (section) {
-            const visibleProjects = section.querySelectorAll('.project-link:not([style*="display: none"])');
-            if (visibleProjects.length === 0) {
-              container.style.display = 'none';
-            } else {
-              container.style.display = '';
-            }
-          }
-        });
+        
+        // Initialize with all projects visible and no clear button
+        showAllProjects();
       });
     </script>
     <div class="flex flex-col gap-6">
@@ -105,21 +128,21 @@
         <div class="flex flex-col gap-6 project-year-section">
           <a href="https://www.instagram.com/p/DKvfqtFouqF/?utm_source=ig_web_copy_link" target="_blank" class="block project-link">
             <div class="flex flex-row gap-5 items-center">
-              <img src="/assets/prototypes/scrutinize_2.gif" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
+              <img src="/assets/prototypes/scrutinize.gif" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div>
                 <div class="font-semibold project-title flex items-center"><span style="color: #228B22; font-size: 0.6em; margin-right: 0.5em;">●</span>Scrutinize</div>
-                <div class="project-year text-xs">Jun '25</div>
                 <div class="project-desc">Editing DeepSeek's essays with interactive human-centered annotation</div>
+                <div class="project-year text-xs">Jun '25</div>
               </div>
             </div>
           </a>
           <a href="https://www.instagram.com/p/DKvAULfvXVg/?utm_source=ig_web_copy_link" target="_blank" class="block project-link">
             <div class="flex flex-row gap-5 items-center">
-              <img src="/assets/prototypes/specter_3.gif" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
+              <img src="/assets/prototypes/specter.gif" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div>
                 <div class="font-semibold project-title flex items-center"><span style="color: #228B22; font-size: 0.6em; margin-right: 0.5em;">●</span>Specter</div>
-                <div class="project-year text-xs">Jun '25</div>
                 <div class="project-desc">Ephemeral Deepseek-based AI assistant made for the writing process</div>
+                <div class="project-year text-xs">Jun '25</div>
               </div>
             </div>
           </a>
@@ -128,18 +151,18 @@
               <img src="/assets/industry/metrics_dashboard.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div>
                 <div class="font-semibold project-title flex items-center"><span style="color: #8B4513; font-size: 0.6em; margin-right: 0.5em;">●</span>Metrics Dashboard</div>
-                <div class="project-year text-xs">May '25</div>
                 <div class="project-desc">Building a customizable in-house heartbeat monitoring solution to replace Grafana dashboards</div>
+                <div class="project-year text-xs">May '25</div>
               </div>
             </div>
           </a>
           <a href="https://www.instagram.com/p/DKGRo-yozpb/?utm_source=ig_web_copy_link" target="_blank" class="block project-link">
             <div class="flex flex-row gap-5 items-center">
-              <img src="/assets/prototypes/meta_measure_3.gif" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
+              <img src="/assets/prototypes/meta_measure.gif" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div>
                 <div class="font-semibold project-title flex items-center"><span style="color: #228B22; font-size: 0.6em; margin-right: 0.5em;">●</span>Meta Measure</div>
-                <div class="project-year text-xs">May '25</div>
                 <div class="project-desc">Evaluating Claude Sonnet 3.7's ability to assess research ideas from across all disciplines</div>
+                <div class="project-year text-xs">May '25</div>
               </div>
             </div>
           </a>
@@ -153,8 +176,8 @@
               <img src="/assets/industry/ilm_portal.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div>
                 <div class="font-semibold project-title flex items-center"><span style="color: #8B4513; font-size: 0.6em; margin-right: 0.5em;">●</span>ILM Portal</div>
-                <div class="project-year text-xs">Aug '24</div>
                 <div class="project-desc">Designing a home for custom authorization plugins for teams across Cyber Tech</div>
+                <div class="project-year text-xs">Aug '24</div>
               </div>
             </div>
           </a>
@@ -163,8 +186,8 @@
               <img src="/assets/research/help_supporters.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div>
                 <div class="font-semibold project-title flex items-center"><span style="color: #8A2BE2; font-size: 0.6em; margin-right: 0.5em;">●</span>Help Supporters</div>
-                <div class="project-year text-xs">May '24</div>
                 <div class="project-desc">Exploring the design space of assistive technologies to better support between BLV and sighted parties</div>
+                <div class="project-year text-xs">May '24</div>
               </div>
             </div>
           </a>
@@ -173,8 +196,8 @@
               <img src="/assets/industry/file_upload_tool.gif" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div>
                 <div class="font-semibold project-title flex items-center"><span style="color: #8B4513; font-size: 0.6em; margin-right: 0.5em;">●</span>File Upload Tool</div>
-                <div class="project-year text-xs">Apr '24</div>
                 <div class="project-desc">Revamped the frontend of a custom authorization plugin used by the IAM data analytics team</div>
+                <div class="project-year text-xs">Apr '24</div>
               </div>
             </div>
           </a>
@@ -183,8 +206,8 @@
               <img src="/assets/industry/penetration_tests.gif" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div>
                 <div class="font-semibold project-title flex items-center"><span style="color: #8B4513; font-size: 0.6em; margin-right: 0.5em;">●</span>Penetration Tests</div>
-                <div class="project-year text-xs">Feb '24</div>
                 <div class="project-desc">Rendering editable spreadsheets from imported Excel files into a platform for Security Engineers</div>
+                <div class="project-year text-xs">Feb '24</div>
               </div>
             </div>
           </a>
@@ -198,8 +221,8 @@
               <img src="/assets/research/spacenav.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div>
                 <div class="font-semibold project-title flex items-center"><span style="color: #8A2BE2; font-size: 0.6em; margin-right: 0.5em;">●</span>SpaceNav</div>
-                <div class="project-year text-xs">Oct '23</div>
                 <div class="project-desc">Presenting a formative study conducted with a screen reader that utilizes spatial input and output</div>
+                <div class="project-year text-xs">Oct '23</div>
               </div>
             </div>
           </a>
@@ -213,8 +236,8 @@
               <img src="/assets/articles/digital_transformation.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div>
                 <div class="font-semibold project-title flex items-center"><span style="color: #4682B4; font-size: 0.6em; margin-right: 0.5em;">●</span>Digital Transformation</div>
-                <div class="project-year text-xs">Nov '22</div>
                 <div class="project-desc">Filling the gap on the use of digital solutions to address challenges in the Lower Mekong region</div>
+                <div class="project-year text-xs">Nov '22</div>
               </div>
             </div>
           </a>
@@ -223,8 +246,8 @@
               <img src="/assets/articles/public_procurement.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div>
                 <div class="font-semibold project-title flex items-center"><span style="color: #4682B4; font-size: 0.6em; margin-right: 0.5em;">●</span>Public Procurement</div>
-                <div class="project-year text-xs">Oct '22</div>
                 <div class="project-desc">Recommendations to make public benefits more efficient, accessible, and timely</div>
+                <div class="project-year text-xs">Oct '22</div>
               </div>
             </div>
           </a>
@@ -233,8 +256,8 @@
               <img src="/assets/articles/mapper.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div>
                 <div class="font-semibold project-title flex items-center"><span style="color: #8A2BE2; font-size: 0.6em; margin-right: 0.5em;">●</span>Mappering COI</div>
-                <div class="project-year text-xs">Jan '22</div>
                 <div class="project-desc">Identifying clusters of similarities in demographic and economic census data in Mecklenburg County</div>
+                <div class="project-year text-xs">Jan '22</div>
               </div>
             </div>
           </a>
@@ -248,8 +271,8 @@
               <img src="/assets/articles/marriage_equality.gif" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div>
                 <div class="font-semibold project-title flex items-center"><span style="color: #B87333; font-size: 0.6em; margin-right: 0.5em;">●</span>Marriage Equality</div>
-                <div class="project-year text-xs">Jun '21</div>
                 <div class="project-desc">Debate continues between advocates of individuals and institutions over sex-sex marriage</div>
+                <div class="project-year text-xs">Jun '21</div>
               </div>
             </div>
           </a>
@@ -258,8 +281,8 @@
               <img src="/assets/articles/border_security.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div>
                 <div class="font-semibold project-title flex items-center"><span style="color: #B87333; font-size: 0.6em; margin-right: 0.5em;">●</span>Border Security</div>
-                <div class="project-year text-xs">Apr '21</div>
                 <div class="project-desc">The U.S. is facing a crisis of illegal immigration, and the government is struggling to find a solution</div>
+                <div class="project-year text-xs">Apr '21</div>
               </div>
             </div>
           </a>
@@ -268,8 +291,8 @@
               <img src="/assets/articles/vp.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div>
                 <div class="font-semibold project-title flex items-center"><span style="color: #B87333; font-size: 0.6em; margin-right: 0.5em;">●</span>Foreign Policy</div>
-                <div class="project-year text-xs">Mar '21</div>
                 <div class="project-desc">Political analysts say recent vice presidents have become too great a power center in the White House</div>
+                <div class="project-year text-xs">Mar '21</div>
               </div>
             </div>
           </a>
@@ -278,8 +301,8 @@
               <img src="/assets/articles/nuclear_energy.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div>
                 <div class="font-semibold project-title flex items-center"><span style="color: #B87333; font-size: 0.6em; margin-right: 0.5em;">●</span>Nuclear Energy</div>
-                <div class="project-year text-xs">Mar '21</div>
                 <div class="project-desc">Experts say the fight against climate change could spark a nuclear energy revival</div>
+                <div class="project-year text-xs">Mar '21</div>
               </div>
             </div>
           </a>

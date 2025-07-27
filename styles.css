@@ -334,9 +334,9 @@ p, li {
 }
 
 .project-image {
-  width: 220px;
-  max-width: 220px;
-  height: 135px;
+  width: 150px;
+  max-width: 150px;
+  height: 95px;
   object-fit: cover;
   background: #e5e7eb;
   filter: grayscale(1);
@@ -378,7 +378,7 @@ p, li {
   width: 320px;
   max-width: 320px;
   word-break: break-word;
-  margin-top: 0.2rem !important;
+  margin-top: 0.15rem !important;
 }
 
 @media (max-width: 768px) {
@@ -389,13 +389,26 @@ p, li {
   
   .project-image {
     filter: grayscale(1) !important;
+    width: 120px !important;
+    height: 75px !important;
+    flex-shrink: 0; /* Prevent image from shrinking */
+  }
+  
+  /* Ensure consistent project layout alignment */
+  .project-link .flex.flex-row {
+    align-items: flex-start !important;
+  }
+  
+  /* Ensure consistent spacing in project containers */
+  .project-year-section {
+    gap: 1.5rem !important;
   }
 }
 
 .project-year {
   font-size: 0.8rem;
   color: #aaa;
-  margin-top: 0.5rem !important;
+  margin-top: 0.15rem !important;
   font-family: 'ABC Diatype', sans-serif;
   margin: 0 !important;
   padding: 0 !important;
@@ -425,7 +438,36 @@ p, li {
 
 
 @media (max-width: 768px) {
-
+    /* Reduce section heading font size on mobile for better spacing */
+    .section-heading-semi-mono {
+        font-size: 1rem; /* Reduced from 1.125rem */
+    }
+    
+    /* Ensure main heading is also appropriately sized on mobile */
+    .main-heading-semi-mono {
+        font-size: 1.5rem; /* Slightly smaller than default text-2xl on mobile */
+    }
+    
+    /* Optimize text-2xl headings for mobile (used in projects page) */
+    .text-2xl {
+        font-size: 1.5rem !important; /* Consistent with main-heading-semi-mono */
+    }
+    
+    /* Adjust research heading container spacing */
+    .research-heading {
+        margin-bottom: 0.75rem; /* Slightly tighter spacing */
+    }
+    
+    /* Hide activities and minors text on mobile for cleaner education section */
+    .education-activities,
+    .education-minors {
+        display: none !important;
+    }
+    
+    /* Tighter spacing for education section on mobile */
+    .experience-item {
+        gap: 0.25rem !important;
+    }
 }
 
 
@@ -572,13 +614,7 @@ footer {
   text-decoration: none !important;
 }
 
-.project-image {
-  width: 120px;
-  height: 75px;
-  object-fit: cover;
-  margin-top: 2px;
-  transition: filter 0.3s;
-}
+/* Removed duplicate project-image styles - using the main definition above */
 
 .project-title {
   font-size: 1.05rem;
