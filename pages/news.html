@@ -25,22 +25,150 @@
     <a href="/index.html" class="publication-link no-arrow text-gray-500 text-xs mt-2 inline-block mb-4">
       <i class="fas fa-arrow-left mr-1"></i>Go back home
     </a>
-    <div class="flex flex-col space-y-4">
-      <div>
-        <span class="font-semibold text-gray-900">October 2024:</span>
-        <span class="text-gray-800">Started my second TDP rotation at Capital One, staying within Cyber Tech, but working in detection and mitigation.</span>
+    
+    <div id="news-filter-bar" class="flex flex-row flex-wrap gap-2 mb-8">
+      <button class="filter-tag flex items-center" data-filter="Acceptances">
+        <span class="filter-dot" style="color: #B87333; font-size: 0.6em; margin-right: 0.5em;">●</span>
+        <span class="filter-text">Acceptances</span>
+      </button>
+      <button class="filter-tag flex items-center" data-filter="Engagements">
+        <span class="filter-dot" style="color: #8B4513; font-size: 0.6em; margin-right: 0.5em;">●</span>
+        <span class="filter-text">Engagements</span>
+      </button>
+      <button class="filter-tag flex items-center" data-filter="Milestones">
+        <span class="filter-dot" style="color: #228B22; font-size: 0.6em; margin-right: 0.5em;">●</span>
+        <span class="filter-text">Milestones</span>
+      </button>
+      <button id="clear-filter" class="filter-tag" data-filter="clear" style="display: none;">Clear</button>
+    </div>
+
+    <script>
+      const newsTags = {
+        'October 2024:': ['Engagements'],
+        'March 2024:': ['Acceptances'],
+        'February 2024:': ['Milestones'],
+        'August 2023:': ['Acceptances']
+      };
+      
+      document.addEventListener('DOMContentLoaded', function() {
+        const tags = document.querySelectorAll('.filter-tag');
+        const newsItems = document.querySelectorAll('.news-item');
+        const clearButton = document.getElementById('clear-filter');
+        
+        function showAllNews() {
+          newsItems.forEach(item => {
+            item.style.display = '';
+          });
+        }
+        
+        function isMobile() {
+          return window.innerWidth <= 768;
+        }
+        
+        let expandedTag = null;
+        
+        tags.forEach(tag => {
+          tag.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const filter = this.getAttribute('data-filter');
+            
+            if (filter === 'clear') {
+              showAllNews();
+              tags.forEach(t => t.classList.remove('active'));
+              clearButton.style.display = 'none';
+              return;
+            }
+            
+            if (isMobile()) {
+              if (expandedTag && expandedTag !== this) {
+                expandedTag.classList.remove('expanded');
+              }
+              
+              if (this.classList.contains('expanded')) {
+                this.classList.remove('expanded');
+                expandedTag = null;
+                return;
+              } else {
+                this.classList.add('expanded');
+                expandedTag = this;
+                
+                setTimeout(() => {
+                  if (this.classList.contains('expanded')) {
+                    this.classList.remove('expanded');
+                    expandedTag = null;
+                  }
+                }, 2000);
+              }
+            }
+            
+            tags.forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+            clearButton.style.display = 'inline-block';
+            
+            newsItems.forEach(item => {
+              const itemTitle = item.querySelector('.news-title').textContent.replace(/●\s*/, '').trim();
+              const itemTags = newsTags[itemTitle] || [];
+              
+              if (itemTags.includes(filter)) {
+                item.style.display = '';
+              } else {
+                item.style.display = 'none';
+              }
+            });
+          });
+        });
+        
+        if (isMobile()) {
+          document.addEventListener('click', function(e) {
+            if (!e.target.closest('.filter-tag') && expandedTag) {
+              expandedTag.classList.remove('expanded');
+              expandedTag = null;
+            }
+          });
+        }
+      });
+    </script>
+
+    <div class="flex flex-col gap-6">
+      <div class="news-item">
+        <div class="news-title" style="font-family: 'ABC Diatype Semi-Mono', monospace; font-weight: 700; font-size: 1rem; margin: 0; line-height: 1; display: flex; align-items: center;">
+          <span style="color: #8B4513; font-size: 0.6em; margin-right: 0.5em;">●</span>
+          October 2024:
+        </div>
+        <div class="news-desc" style="font-size: 0.82rem; color: #444; margin-bottom: 0; opacity: 0.7; margin: 0 !important; padding: 0 !important; line-height: 1; word-break: break-word; margin-top: 0.15rem !important;">
+          Started my second TDP rotation at Capital One, staying within Cyber Tech, but working in detection and mitigation.
+        </div>
       </div>
-      <div>
-        <span class="font-semibold text-gray-900">March 2024:</span>
-        <span class="text-gray-800">Second project I was a part of at the CEAL Lab, <i>Help Supporters</i>, was accepted to CHI '24! Read the paper in May.</span>
+      
+      <div class="news-item">
+        <div class="news-title" style="font-family: 'ABC Diatype Semi-Mono', monospace; font-weight: 700; font-size: 1rem; margin: 0; line-height: 1; display: flex; align-items: center;">
+          <span style="color: #B87333; font-size: 0.6em; margin-right: 0.5em;">●</span>
+          March 2024:
+        </div>
+        <div class="news-desc" style="font-size: 0.82rem; color: #444; margin-bottom: 0; opacity: 0.7; margin: 0 !important; padding: 0 !important; line-height: 1; word-break: break-word; margin-top: 0.15rem !important;">
+          Second project I was a part of at the CEAL Lab, <i>Help Supporters</i>, was accepted to CHI '24! Read the paper in May.
+        </div>
       </div>
-      <div>
-        <span class="font-semibold text-gray-900">February 2024:</span>
-        <span class="text-gray-800">Graduated from CODA and started my first TDP rotation at Capital One within Cyber Tech! I'll be building authorization plugins for the company's access portal.</span>
+      
+      <div class="news-item">
+        <div class="news-title" style="font-family: 'ABC Diatype Semi-Mono', monospace; font-weight: 700; font-size: 1rem; margin: 0; line-height: 1; display: flex; align-items: center;">
+          <span style="color: #228B22; font-size: 0.6em; margin-right: 0.5em;">●</span>
+          February 2024:
+        </div>
+        <div class="news-desc" style="font-size: 0.82rem; color: #444; margin-bottom: 0; opacity: 0.7; margin: 0 !important; padding: 0 !important; line-height: 1; word-break: break-word; margin-top: 0.15rem !important;">
+          Graduated from CODA and started my first TDP rotation at Capital One within Cyber Tech! I'll be building authorization plugins for the company's access portal.
+        </div>
       </div>
-      <div>
-        <span class="font-semibold text-gray-900">August 2023:</span>
-        <span class="text-gray-800">Got accepted to ASSETS '23 with the work I did at Brian Smith's CEAL Lab! Read the paper in October. I also joined Capital One after graduation, taking part in the CODA program learning to be a enterprise-ready Software Engineer in six months.</span>
+      
+      <div class="news-item">
+        <div class="news-title" style="font-family: 'ABC Diatype Semi-Mono', monospace; font-weight: 700; font-size: 1rem; margin: 0; line-height: 1; display: flex; align-items: center;">
+          <span style="color: #B87333; font-size: 0.6em; margin-right: 0.5em;">●</span>
+          August 2023:
+        </div>
+        <div class="news-desc" style="font-size: 0.82rem; color: #444; margin-bottom: 0; opacity: 0.7; margin: 0 !important; padding: 0 !important; line-height: 1; word-break: break-word; margin-top: 0.15rem !important;">
+          Got accepted to ASSETS '23 with the work I did at Brian Smith's CEAL Lab! Read the paper in October. I also joined Capital One after graduation, taking part in the CODA program learning to be a enterprise-ready Software Engineer in six months.
+        </div>
       </div>
     </div>
   </main>

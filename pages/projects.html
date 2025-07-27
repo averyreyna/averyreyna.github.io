@@ -23,11 +23,26 @@
   <main class="w-full max-w-2xl mx-auto px-4 pb-8" style="margin-top: 0; text-align: left;">
     <h1 class="text-2xl font-bold mb-8 font-diatype">Projects</h1>
     <div id="project-filter-bar" class="flex flex-row flex-wrap gap-2 mb-8">
-      <button class="filter-tag flex items-center" data-filter="Article"><span style="color: #B87333; font-size: 0.6em; margin-right: 0.5em;">●</span>Article</button>
-      <button class="filter-tag flex items-center" data-filter="Industry"><span style="color: #8B4513; font-size: 0.6em; margin-right: 0.5em;">●</span>Industry</button>
-      <button class="filter-tag flex items-center" data-filter="Prototype"><span style="color: #228B22; font-size: 0.6em; margin-right: 0.5em;">●</span>Prototype</button>
-      <button class="filter-tag flex items-center" data-filter="Report"><span style="color: #4682B4; font-size: 0.6em; margin-right: 0.5em;">●</span>Report</button>
-      <button class="filter-tag flex items-center" data-filter="Research"><span style="color: #8A2BE2; font-size: 0.6em; margin-right: 0.5em;">●</span>Research</button>
+      <button class="filter-tag flex items-center" data-filter="Article">
+        <span class="filter-dot" style="color: #B87333; font-size: 0.6em; margin-right: 0.5em;">●</span>
+        <span class="filter-text">Article</span>
+      </button>
+      <button class="filter-tag flex items-center" data-filter="Industry">
+        <span class="filter-dot" style="color: #8B4513; font-size: 0.6em; margin-right: 0.5em;">●</span>
+        <span class="filter-text">Industry</span>
+      </button>
+      <button class="filter-tag flex items-center" data-filter="Prototype">
+        <span class="filter-dot" style="color: #228B22; font-size: 0.6em; margin-right: 0.5em;">●</span>
+        <span class="filter-text">Prototype</span>
+      </button>
+      <button class="filter-tag flex items-center" data-filter="Report">
+        <span class="filter-dot" style="color: #4682B4; font-size: 0.6em; margin-right: 0.5em;">●</span>
+        <span class="filter-text">Report</span>
+      </button>
+      <button class="filter-tag flex items-center" data-filter="Research">
+        <span class="filter-dot" style="color: #8A2BE2; font-size: 0.6em; margin-right: 0.5em;">●</span>
+        <span class="filter-text">Research</span>
+      </button>
       <button id="clear-filter" class="filter-tag" data-filter="clear" style="display: none;">Clear</button>
     </div>
 
@@ -88,10 +103,49 @@
           });
         }
         
+        // Mobile expansion functionality
+        function isMobile() {
+          return window.innerWidth <= 768;
+        }
+        
+        let expandedTag = null;
+        
         tags.forEach(tag => {
-          tag.addEventListener('click', function() {
+          tag.addEventListener('click', function(e) {
             const filter = this.getAttribute('data-filter');
             
+            // Handle mobile tag expansion for non-clear filter tags
+            if (isMobile() && tag.id !== 'clear-filter') {
+              // If this tag is already expanded, proceed with filtering
+              if (this.classList.contains('expanded')) {
+                // Continue to filtering logic below
+              } else {
+                // Expand this tag and collapse others
+                e.preventDefault();
+                
+                // Collapse any currently expanded tag
+                if (expandedTag && expandedTag !== this) {
+                  expandedTag.classList.remove('expanded');
+                }
+                
+                // Expand this tag
+                this.classList.add('expanded');
+                expandedTag = this;
+                
+                // Auto-collapse after 3 seconds
+                setTimeout(() => {
+                  if (this.classList.contains('expanded')) {
+                    this.classList.remove('expanded');
+                    if (expandedTag === this) {
+                      expandedTag = null;
+                    }
+                  }
+                }, 3000);
+                return;
+              }
+            }
+            
+            // Filtering functionality for both desktop and mobile
             if (filter === 'clear') {
               // Clear all filters
               tags.forEach(t => t.classList.remove('active'));
@@ -116,6 +170,17 @@
               updateYearContainers();
             }
           });
+        });
+        
+        // Collapse expanded tags when clicking outside on mobile
+        document.addEventListener('click', function(e) {
+          if (isMobile() && expandedTag) {
+            const filterBar = document.getElementById('project-filter-bar');
+            if (!filterBar.contains(e.target)) {
+              expandedTag.classList.remove('expanded');
+              expandedTag = null;
+            }
+          }
         });
         
         // Initialize with all projects visible and no clear button
