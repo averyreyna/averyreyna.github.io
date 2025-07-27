@@ -566,6 +566,7 @@ p, li {
   cursor: pointer;
   margin: 0.15rem 0.25rem 0.15rem 0;
   transition: background-color 0.2s ease;
+  position: relative;
 }
 
 .filter-tag:hover {
@@ -575,6 +576,58 @@ p, li {
 .filter-tag.active {
   background: #d1d5db;
   color: #1f2937;
+}
+
+/* Mobile styles for filter tags */
+@media (max-width: 768px) {
+  .filter-tag {
+    padding: 0.4rem;
+    border-radius: 0.35rem;
+    min-width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.15rem 0.25rem 0.15rem 0;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  
+  .filter-tag .filter-text {
+    display: none;
+    margin-left: 0.5em;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  
+  .filter-tag .filter-dot {
+    font-size: 1.2em;
+    margin: 0;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .filter-tag.expanded {
+    width: auto;
+    padding: 0.18rem 0.7rem;
+  }
+  
+  .filter-tag.expanded .filter-text {
+    display: inline;
+    opacity: 1;
+  }
+  
+  .filter-tag.expanded .filter-dot {
+    margin-right: 0.5em;
+  }
+  
+  /* Hide tooltips on mobile */
+  .filter-tooltip {
+    display: none;
+  }
 }
 
 .filter-container {
