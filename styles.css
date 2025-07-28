@@ -10,7 +10,7 @@ html::-webkit-scrollbar {
 body {
     scrollbar-width: none;
     -ms-overflow-style: none;
-    font-family: 'ABC Diatype', sans-serif;
+    font-family: 'ABC ROM', sans-serif;
     background: #fff;
     min-height: 100vh;
     margin: 0;
@@ -33,91 +33,99 @@ body::-webkit-scrollbar {
 
 
 
-/* ABC Diatype Font Family */
+/* ABC ROM Font Family */
 @font-face {
-    font-family: 'ABC Diatype';
-    src: url('fonts/ABC Diatype/ABCDiatype-Regular-Trial.woff2') format('woff2');
+    font-family: 'ABC ROM';
+    src: url('assets/ABC ROM/ABCROM-Regular-Trial.woff2') format('woff2'),
+         url('assets/ABC ROM/ABCROM-Regular-Trial.woff') format('woff');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'ABC Diatype';
-    src: url('fonts/ABC Diatype/ABCDiatype-RegularItalic-Trial.woff2') format('woff2');
+    font-family: 'ABC ROM';
+    src: url('assets/ABC ROM/ABCROM-RegularItalic-Trial.woff2') format('woff2'),
+         url('assets/ABC ROM/ABCROM-RegularItalic-Trial.woff') format('woff');
     font-weight: 400;
     font-style: italic;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'ABC Diatype';
-    src: url('fonts/ABC Diatype/ABCDiatype-Medium-Trial.woff2') format('woff2');
+    font-family: 'ABC ROM';
+    src: url('assets/ABC ROM/ABCROM-Medium-Trial.woff2') format('woff2'),
+         url('assets/ABC ROM/ABCROM-Medium-Trial.woff') format('woff');
     font-weight: 500;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'ABC Diatype';
-    src: url('fonts/ABC Diatype/ABCDiatype-MediumItalic-Trial.woff2') format('woff2');
+    font-family: 'ABC ROM';
+    src: url('assets/ABC ROM/ABCROM-MediumItalic-Trial.woff2') format('woff2'),
+         url('assets/ABC ROM/ABCROM-MediumItalic-Trial.woff') format('woff');
     font-weight: 500;
     font-style: italic;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'ABC Diatype';
-    src: url('fonts/ABC Diatype/ABCDiatype-Bold-Trial.woff2') format('woff2');
+    font-family: 'ABC ROM';
+    src: url('assets/ABC ROM/ABCROM-Bold-Trial.woff2') format('woff2'),
+         url('assets/ABC ROM/ABCROM-Bold-Trial.woff') format('woff');
     font-weight: 600;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'ABC Diatype';
-    src: url('fonts/ABC Diatype/ABCDiatype-BoldItalic-Trial.woff2') format('woff2');
+    font-family: 'ABC ROM';
+    src: url('assets/ABC ROM/ABCROM-BoldItalic-Trial.woff2') format('woff2'),
+         url('assets/ABC ROM/ABCROM-BoldItalic-Trial.woff') format('woff');
     font-weight: 600;
     font-style: italic;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'ABC Diatype';
-    src: url('fonts/ABC Diatype/ABCDiatype-Heavy-Trial.woff2') format('woff2');
+    font-family: 'ABC ROM';
+    src: url('assets/ABC ROM/ABCROM-Heavy-Trial.woff2') format('woff2'),
+         url('assets/ABC ROM/ABCROM-Heavy-Trial.woff') format('woff');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
 }
 
-/* Removed ABC Diatype Semi-Mono - using ABC Diatype instead */
-
 @font-face {
-    font-family: 'ABC Diatype';
-    src: url('fonts/ABC Diatype/ABCDiatype-HeavyItalic-Trial.woff2') format('woff2');
+    font-family: 'ABC ROM';
+    src: url('assets/ABC ROM/ABCROM-HeavyItalic-Trial.woff2') format('woff2'),
+         url('assets/ABC ROM/ABCROM-HeavyItalic-Trial.woff') format('woff');
     font-weight: 700;
     font-style: italic;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'ABC Diatype';
-    src: url('fonts/ABC Diatype/ABCDiatype-Black-Trial.woff2') format('woff2');
+    font-family: 'ABC ROM';
+    src: url('assets/ABC ROM/ABCROM-Black-Trial.woff2') format('woff2'),
+         url('assets/ABC ROM/ABCROM-Black-Trial.woff') format('woff');
     font-weight: 900;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'ABC Diatype';
-    src: url('fonts/ABC Diatype/ABCDiatype-BlackItalic-Trial.woff2') format('woff2');
+    font-family: 'ABC ROM';
+    src: url('assets/ABC ROM/ABCROM-BlackItalic-Trial.woff2') format('woff2'),
+         url('assets/ABC ROM/ABCROM-BlackItalic-Trial.woff') format('woff');
     font-weight: 900;
     font-style: italic;
     font-display: swap;
 }
 
 .font-diatype {
-    font-family: 'ABC Diatype', sans-serif;
+    font-family: 'ABC ROM', sans-serif;
 }
 
 body a {
@@ -163,7 +171,7 @@ body a {
 }
 
 nav {
-    font-family: 'ABC Diatype', sans-serif;
+    font-family: 'ABC ROM', sans-serif;
     border-bottom: none !important;
     margin-bottom: 0.75rem;
 }
@@ -191,7 +199,7 @@ main {
 }
 
 h1 {
-    font-family: 'ABC Diatype', sans-serif;
+    font-family: 'ABC ROM', sans-serif;
     font-weight: bold;
     font-size: 2rem;
     margin-bottom: 0.5rem;
@@ -261,17 +269,17 @@ p, li {
 .research-heading-text {
   font-size: 1.125rem;
   font-weight: 600;
-  font-family: 'ABC Diatype', sans-serif;
+  font-family: 'ABC ROM', sans-serif;
 }
 
-/* ABC Diatype heading styles */
+/* ABC Oracle heading styles */
 .main-heading-semi-mono {
-  font-family: 'ABC Diatype', sans-serif;
+  font-family: 'ABC ROM', sans-serif;
   font-weight: 700;
 }
 
 .section-heading-semi-mono {
-  font-family: 'ABC Diatype', sans-serif;
+  font-family: 'ABC ROM', sans-serif;
   font-weight: 700;
   font-size: 1.125rem;
 }
@@ -353,7 +361,7 @@ p, li {
 }
 
 .project-title {
-  font-family: 'ABC Diatype', sans-serif;
+  font-family: 'ABC ROM', sans-serif;
   font-weight: 700;
   font-size: 0.95rem;
   margin: 0;
@@ -384,15 +392,13 @@ p, li {
     filter: grayscale(1) !important;
     width: 110px !important;
     height: 69px !important;
-    flex-shrink: 0; /* Prevent image from shrinking */
+    flex-shrink: 0;
   }
   
-  /* Ensure consistent project layout alignment */
   .project-link .flex.flex-row {
     align-items: flex-start !important;
   }
   
-  /* Ensure consistent spacing in project containers */
   .project-year-section {
     gap: 1.5rem !important;
   }
@@ -402,7 +408,7 @@ p, li {
   font-size: 0.76rem;
   color: #aaa;
   margin-top: 0.15rem !important;
-  font-family: 'ABC Diatype', sans-serif;
+  font-family: 'ABC ROM', sans-serif;
   margin: 0 !important;
   padding: 0 !important;
   line-height: 1;
@@ -431,56 +437,42 @@ p, li {
 
 
 @media (max-width: 768px) {
-    /* Reduce section heading font size on mobile for better spacing */
     .section-heading-semi-mono {
-        font-size: 1rem; /* Reduced from 1.125rem */
+        font-size: 1rem; 
     }
     
-    /* Ensure main heading is also appropriately sized on mobile */
     .main-heading-semi-mono {
-        font-size: 1.5rem; /* Slightly smaller than default text-2xl on mobile */
+        font-size: 1.5rem; 
     }
     
-    /* Optimize text-2xl headings for mobile (used in projects page) */
     .text-2xl {
-        font-size: 1.5rem !important; /* Consistent with main-heading-semi-mono */
+        font-size: 1.5rem !important; 
     }
     
-    /* Adjust research heading container spacing */
     .research-heading {
-        margin-bottom: 0.75rem; /* Slightly tighter spacing */
+        margin-bottom: 0.75rem;
     }
     
-    /* Hide activities and minors text on mobile for cleaner education section */
     .education-activities,
     .education-minors {
         display: none !important;
     }
     
-    /* Tighter spacing for education section on mobile */
     .experience-item {
         gap: 0.25rem !important;
     }
 }
-
-
-
-
-
-
 
 @media (max-width: 768px) {
     .experience-item {
         padding: 6px 8px;
         margin: -6px -8px;
     }
-
-
 }
 
 #bottom-quote-section {
     font-size: 0.92rem;
-    font-family: 'ABC Diatype', sans-serif;
+    font-family: 'ABC ROM', sans-serif;
     color: #6b7280;
     font-weight: 400;
     margin-top: 2rem;
@@ -492,7 +484,7 @@ p, li {
 #bottom-quote-text {
     color: #6b7280;
     font-size: 0.92rem;
-    font-family: 'ABC Diatype', sans-serif;
+    font-family: 'ABC ROM', sans-serif;
     letter-spacing: 0.01em;
     font-weight: 400;
 }
@@ -505,7 +497,7 @@ p, li {
     cursor: pointer;
     transition: color 0.2s;
     pointer-events: auto;
-    font-family: 'ABC Diatype', sans-serif;
+    font-family: 'ABC ROM', sans-serif;
     font-weight: 400;
     padding: 0;
 }
@@ -532,7 +524,7 @@ p, li {
     border: none;
     cursor: pointer;
     transition: color 0.2s;
-    font-family: 'ABC Diatype', sans-serif;
+    font-family: 'ABC ROM', sans-serif;
     font-weight: 400;
     padding: 0;
 }
@@ -650,6 +642,25 @@ footer {
   max-width: 700px;
   margin: 0 auto;
   padding: 0 1.5rem;
+}
+
+/* Mobile footer layout */
+@media (max-width: 768px) {
+  .footer-content > .flex {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .footer-content .text-gray-500 {
+    text-align: left;
+    white-space: nowrap;
+  }
+  
+  /* Keep icons in horizontal row */
+  .footer-content .flex.flex-wrap {
+    flex-direction: row;
+  }
 }
 
 .project-link[style*='display: none'] { 
