@@ -16,15 +16,13 @@
     <ul class="flex flex-row gap-1">
       <li><a href="/index.html" class="nav-link">About</a></li>
       <li><a href="/pages/cv.html" class="nav-link">CV</a></li>
+      <li><a href="/pages/news.html" class="nav-link nav-link-active">News</a></li>
       <li><a href="/pages/projects.html" class="nav-link">Projects</a></li>
       <li><a href="/pages/writing.html" class="nav-link">Writing</a></li>
     </ul>
   </nav>
   <main class="w-full max-w-2xl mx-auto px-4 pb-8" style="margin-top: 0; text-align: left;">
     <h1 class="text-2xl font-bold mb-8 font-diatype">News</h1>
-    <a href="/index.html" class="publication-link no-arrow text-gray-500 text-xs mt-2 inline-block mb-4">
-      <i class="fas fa-arrow-left mr-1"></i>Go back home
-    </a>
     
     <div id="news-filter-bar" class="flex flex-row flex-wrap gap-2 mb-8">
       <button class="filter-tag flex items-center" data-filter="Acceptances">
@@ -44,10 +42,10 @@
 
     <script>
       const newsTags = {
-        'October 2024:': ['Engagements'],
-        'March 2024:': ['Acceptances'],
-        'February 2024:': ['Milestones'],
-        'August 2023:': ['Acceptances']
+        'October 2024': ['Milestones'],
+        'March 2024': ['Acceptances'],
+        'February 2024': ['Milestones'],
+        'August 2023': ['Acceptances']
       };
       
       document.addEventListener('DOMContentLoaded', function() {
@@ -58,6 +56,19 @@
         function showAllNews() {
           newsItems.forEach(item => {
             item.style.display = '';
+          });
+          updateYearContainers();
+        }
+        
+        function updateYearContainers() {
+          const yearContainers = document.querySelectorAll('.news-year-section');
+          yearContainers.forEach(container => {
+            const visibleItems = container.querySelectorAll('.news-item:not([style*="display: none"])');
+            if (visibleItems.length === 0) {
+              container.parentElement.style.display = 'none';
+            } else {
+              container.parentElement.style.display = '';
+            }
           });
         }
         
@@ -116,6 +127,8 @@
                 item.style.display = 'none';
               }
             });
+            
+            updateYearContainers();
           });
         });
         
@@ -131,43 +144,53 @@
     </script>
 
     <div class="flex flex-col gap-6">
-      <div class="news-item">
-        <div class="news-title" style="font-family: 'ABC Diatype Semi-Mono', monospace; font-weight: 700; font-size: 1rem; margin: 0; line-height: 1; display: flex; align-items: center;">
-          <span style="color: #8B4513; font-size: 0.6em; margin-right: 0.5em;">●</span>
-          October 2024:
-        </div>
-        <div class="news-desc" style="font-size: 0.82rem; color: #444; margin-bottom: 0; opacity: 0.7; margin: 0 !important; padding: 0 !important; line-height: 1; word-break: break-word; margin-top: 0.15rem !important;">
-          Started my second TDP rotation at Capital One, staying within Cyber Tech, but working in detection and mitigation.
+      <div>
+        <div class="font-diatype font-bold text-xl mb-4 news-year-heading">2024</div>
+        <div class="flex flex-col gap-6 news-year-section">
+          <div class="news-item">
+            <div class="news-title" style="font-family: 'ABC Diatype', sans-serif; font-weight: 700; font-size: 1rem; margin: 0; line-height: 1; display: flex; align-items: center;">
+              <span style="color: #228B22; font-size: 0.6em; margin-right: 0.5em;">●</span>
+              October 2024
+            </div>
+            <div class="news-desc" style="font-size: 0.82rem; color: #444; margin-bottom: 0; opacity: 0.7; margin: 0 !important; padding: 0 !important; line-height: 1; word-break: break-word; margin-top: 0.15rem !important;">
+              Started my second TDP rotation at Capital One, staying within Cyber Tech, but working in detection and mitigation instead of identity and access management. I'll be developing the team's self service platform.
+            </div>
+          </div>
+          
+          <div class="news-item">
+            <div class="news-title" style="font-family: 'ABC Diatype', sans-serif; font-weight: 700; font-size: 1rem; margin: 0; line-height: 1; display: flex; align-items: center;">
+              <span style="color: #B87333; font-size: 0.6em; margin-right: 0.5em;">●</span>
+              March 2024
+            </div>
+            <div class="news-desc" style="font-size: 0.82rem; color: #444; margin-bottom: 0; opacity: 0.7; margin: 0 !important; padding: 0 !important; line-height: 1; word-break: break-word; margin-top: 0.15rem !important;">
+              Second project I was a part of at the CEAL Lab, <i>Help Supporters</i>, was accepted to CHI '24! We explored the design space of assistive technologies to support help between blind and sighted strangers.
+            </div>
+          </div>
+          
+          <div class="news-item">
+            <div class="news-title" style="font-family: 'ABC Diatype', sans-serif; font-weight: 700; font-size: 1rem; margin: 0; line-height: 1; display: flex; align-items: center;">
+              <span style="color: #228B22; font-size: 0.6em; margin-right: 0.5em;">●</span>
+              February 2024
+            </div>
+            <div class="news-desc" style="font-size: 0.82rem; color: #444; margin-bottom: 0; opacity: 0.7; margin: 0 !important; padding: 0 !important; line-height: 1; word-break: break-word; margin-top: 0.15rem !important;">
+              Graduated from CODA and started my first TDP rotation within Cyber Tech! I'll be building authorization plugins for the company's access portal. I will be building full stack features, with a dash of design systems.
+            </div>
+          </div>
         </div>
       </div>
       
-      <div class="news-item">
-        <div class="news-title" style="font-family: 'ABC Diatype Semi-Mono', monospace; font-weight: 700; font-size: 1rem; margin: 0; line-height: 1; display: flex; align-items: center;">
-          <span style="color: #B87333; font-size: 0.6em; margin-right: 0.5em;">●</span>
-          March 2024:
-        </div>
-        <div class="news-desc" style="font-size: 0.82rem; color: #444; margin-bottom: 0; opacity: 0.7; margin: 0 !important; padding: 0 !important; line-height: 1; word-break: break-word; margin-top: 0.15rem !important;">
-          Second project I was a part of at the CEAL Lab, <i>Help Supporters</i>, was accepted to CHI '24! Read the paper in May.
-        </div>
-      </div>
-      
-      <div class="news-item">
-        <div class="news-title" style="font-family: 'ABC Diatype Semi-Mono', monospace; font-weight: 700; font-size: 1rem; margin: 0; line-height: 1; display: flex; align-items: center;">
-          <span style="color: #228B22; font-size: 0.6em; margin-right: 0.5em;">●</span>
-          February 2024:
-        </div>
-        <div class="news-desc" style="font-size: 0.82rem; color: #444; margin-bottom: 0; opacity: 0.7; margin: 0 !important; padding: 0 !important; line-height: 1; word-break: break-word; margin-top: 0.15rem !important;">
-          Graduated from CODA and started my first TDP rotation at Capital One within Cyber Tech! I'll be building authorization plugins for the company's access portal.
-        </div>
-      </div>
-      
-      <div class="news-item">
-        <div class="news-title" style="font-family: 'ABC Diatype Semi-Mono', monospace; font-weight: 700; font-size: 1rem; margin: 0; line-height: 1; display: flex; align-items: center;">
-          <span style="color: #B87333; font-size: 0.6em; margin-right: 0.5em;">●</span>
-          August 2023:
-        </div>
-        <div class="news-desc" style="font-size: 0.82rem; color: #444; margin-bottom: 0; opacity: 0.7; margin: 0 !important; padding: 0 !important; line-height: 1; word-break: break-word; margin-top: 0.15rem !important;">
-          Got accepted to ASSETS '23 with the work I did at Brian Smith's CEAL Lab! Read the paper in October. I also joined Capital One after graduation, taking part in the CODA program learning to be a enterprise-ready Software Engineer in six months.
+      <div>
+        <div class="font-diatype font-bold text-xl mb-4 news-year-heading">2023</div>
+        <div class="flex flex-col gap-6 news-year-section">
+          <div class="news-item">
+            <div class="news-title" style="font-family: 'ABC Diatype', sans-serif; font-weight: 700; font-size: 1rem; margin: 0; line-height: 1; display: flex; align-items: center;">
+              <span style="color: #B87333; font-size: 0.6em; margin-right: 0.5em;">●</span>
+              August 2023
+            </div>
+            <div class="news-desc" style="font-size: 0.82rem; color: #444; margin-bottom: 0; opacity: 0.7; margin: 0 !important; padding: 0 !important; line-height: 1; word-break: break-word; margin-top: 0.15rem !important;">
+              Got accepted to ASSETS '23 with the work I did at Brian Smith's CEAL Lab! Read the paper in October. I also joined Capital One after graduating, where I'll learn become a Software Engineer in six months through CODA.
+            </div>
+          </div>
         </div>
       </div>
     </div>

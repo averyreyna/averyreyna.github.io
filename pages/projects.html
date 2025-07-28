@@ -16,6 +16,7 @@
     <ul class="flex flex-row gap-1">
       <li><a href="/index.html" class="nav-link">About</a></li>
       <li><a href="/pages/cv.html" class="nav-link">CV</a></li>
+      <li><a href="/pages/news.html" class="nav-link">News</a></li>
       <li><a href="/pages/projects.html" class="nav-link nav-link-active">Projects</a></li>
       <li><a href="/pages/writing.html" class="nav-link">Writing</a></li>
     </ul>
@@ -114,25 +115,18 @@
           tag.addEventListener('click', function(e) {
             const filter = this.getAttribute('data-filter');
             
-            // Handle mobile tag expansion for non-clear filter tags
             if (isMobile() && tag.id !== 'clear-filter') {
-              // If this tag is already expanded, proceed with filtering
               if (this.classList.contains('expanded')) {
-                // Continue to filtering logic below
               } else {
-                // Expand this tag and collapse others
                 e.preventDefault();
                 
-                // Collapse any currently expanded tag
                 if (expandedTag && expandedTag !== this) {
                   expandedTag.classList.remove('expanded');
                 }
                 
-                // Expand this tag
                 this.classList.add('expanded');
                 expandedTag = this;
                 
-                // Auto-collapse after 3 seconds
                 setTimeout(() => {
                   if (this.classList.contains('expanded')) {
                     this.classList.remove('expanded');
@@ -145,14 +139,11 @@
               }
             }
             
-            // Filtering functionality for both desktop and mobile
             if (filter === 'clear') {
-              // Clear all filters
               tags.forEach(t => t.classList.remove('active'));
               clearButton.style.display = 'none';
               showAllProjects();
             } else {
-              // Apply filter
               tags.forEach(t => t.classList.remove('active'));
               this.classList.add('active');
               clearButton.style.display = 'block';
@@ -172,7 +163,6 @@
           });
         });
         
-        // Collapse expanded tags when clicking outside on mobile
         document.addEventListener('click', function(e) {
           if (isMobile() && expandedTag) {
             const filterBar = document.getElementById('project-filter-bar');
@@ -183,7 +173,6 @@
           }
         });
         
-        // Initialize with all projects visible and no clear button
         showAllProjects();
       });
     </script>

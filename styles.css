@@ -90,14 +90,7 @@ body::-webkit-scrollbar {
     font-display: swap;
 }
 
-/* ABC Diatype Semi-Mono Font Family */
-@font-face {
-    font-family: 'ABC Diatype Semi-Mono';
-    src: url('fonts/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-Bold-Trial.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-}
+/* Removed ABC Diatype Semi-Mono - using ABC Diatype instead */
 
 @font-face {
     font-family: 'ABC Diatype';
@@ -271,14 +264,14 @@ p, li {
   font-family: 'ABC Diatype', sans-serif;
 }
 
-/* ABC Diatype Semi-Mono heading styles */
+/* ABC Diatype heading styles */
 .main-heading-semi-mono {
-  font-family: 'ABC Diatype Semi-Mono', monospace;
+  font-family: 'ABC Diatype', sans-serif;
   font-weight: 700;
 }
 
 .section-heading-semi-mono {
-  font-family: 'ABC Diatype Semi-Mono', monospace;
+  font-family: 'ABC Diatype', sans-serif;
   font-weight: 700;
   font-size: 1.125rem;
 }
@@ -334,9 +327,9 @@ p, li {
 }
 
 .project-image {
-  width: 150px;
-  max-width: 150px;
-  height: 95px;
+  width: 135px;
+  max-width: 135px;
+  height: 85px;
   object-fit: cover;
   background: #e5e7eb;
   filter: grayscale(1);
@@ -360,37 +353,37 @@ p, li {
 }
 
 .project-title {
-  font-family: 'ABC Diatype Semi-Mono', monospace;
+  font-family: 'ABC Diatype', sans-serif;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 0.95rem;
   margin: 0;
   line-height: 1;
 }
 
 .project-desc {
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   color: #444;
   margin-bottom: 0;
   opacity: 0.7;
   margin: 0 !important;
   padding: 0 !important;
   line-height: 1;
-  width: 320px;
-  max-width: 320px;
+  width: 300px;
+  max-width: 300px;
   word-break: break-word;
   margin-top: 0.15rem !important;
 }
 
 @media (max-width: 768px) {
   .project-desc {
-    width: 220px;
-    max-width: 220px;
+    width: 205px;
+    max-width: 205px;
   }
   
   .project-image {
     filter: grayscale(1) !important;
-    width: 120px !important;
-    height: 75px !important;
+    width: 110px !important;
+    height: 69px !important;
     flex-shrink: 0; /* Prevent image from shrinking */
   }
   
@@ -406,7 +399,7 @@ p, li {
 }
 
 .project-year {
-  font-size: 0.8rem;
+  font-size: 0.76rem;
   color: #aaa;
   margin-top: 0.15rem !important;
   font-family: 'ABC Diatype', sans-serif;

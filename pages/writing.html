@@ -16,35 +16,137 @@
         <ul class="flex flex-row gap-1">
             <li><a href="/index.html" class="nav-link">About</a></li>
             <li><a href="/pages/cv.html" class="nav-link">CV</a></li>
+            <li><a href="/pages/news.html" class="nav-link">News</a></li>
             <li><a href="/pages/projects.html" class="nav-link">Projects</a></li>
             <li><a href="/pages/writing.html" class="nav-link nav-link-active">Writing</a></li>
         </ul>
     </nav>
     <main class="w-full max-w-2xl mx-auto px-4 pb-8" style="margin-top: 0; text-align: left;">
         <h1 class="text-2xl font-bold mb-8 font-diatype">Writing</h1>
+        
+        <div id="writing-filter-bar" class="flex flex-row flex-wrap gap-2 mb-8">
+            <button class="filter-tag flex items-center" data-filter="Complex Vector Space">
+                <span class="filter-dot" style="font-size: 0.6em; margin-right: 0.5em; background: linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3); background-size: 100% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">●</span>
+                <span class="filter-text">Complex Vector Space</span>
+            </button>
+            <button class="filter-tag flex items-center" data-filter="Field Notes">
+                <span class="filter-dot" style="color: #dc2626; font-size: 0.6em; margin-right: 0.5em;">●</span>
+                <span class="filter-text">Field Notes</span>
+            </button>
+            <button id="clear-filter" class="filter-tag" data-filter="clear" style="display: none;">Clear</button>
+        </div>
+
+        <script>
+            const writingTags = {
+                'The Closer I Looked, the More I Saw God': ['Complex Vector Space'],
+                'In the Dark, We Sing': ['Field Notes'],
+                'Laughing with Gelli Haha': ['Complex Vector Space']
+            };
+            
+            document.addEventListener('DOMContentLoaded', function() {
+                const tags = document.querySelectorAll('.filter-tag');
+                const writingItems = document.querySelectorAll('.writing-item');
+                const clearButton = document.getElementById('clear-filter');
+                
+                function showAllWriting() {
+                    writingItems.forEach(item => {
+                        item.style.display = '';
+                    });
+                    updateYearContainers();
+                }
+                
+                function updateYearContainers() {
+                    const yearContainers = document.querySelectorAll('.writing-year-section');
+                    yearContainers.forEach(container => {
+                        const visibleItems = container.querySelectorAll('.writing-item:not([style*="display: none"])');
+                        const yearHeading = container.previousElementSibling;
+                        if (visibleItems.length === 0) {
+                            container.parentElement.style.display = 'none';
+                        } else {
+                            container.parentElement.style.display = '';
+                        }
+                    });
+                }
+                
+                function isMobile() {
+                    return window.innerWidth <= 768;
+                }
+                
+                let expandedTag = null;
+                
+                tags.forEach(tag => {
+                    tag.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        
+                        const filter = this.dataset.filter;
+                        
+                        if (filter === 'clear') {
+                            showAllWriting();
+                            tags.forEach(t => t.classList.remove('active'));
+                            clearButton.style.display = 'none';
+                            return;
+                        }
+                        
+                        const isActive = this.classList.contains('active');
+                        
+                        tags.forEach(t => t.classList.remove('active'));
+                        
+                        if (isActive) {
+                            showAllWriting();
+                            clearButton.style.display = 'none';
+                        } else {
+                            this.classList.add('active');
+                            clearButton.style.display = 'inline-block';
+                            
+                            writingItems.forEach(item => {
+                                const titleElement = item.querySelector('.writing-title');
+                                if (titleElement) {
+                                    const title = titleElement.textContent.replace(/●\s*/, '').trim();
+                                    const itemTags = writingTags[title] || [];
+                                    
+                                    if (itemTags.includes(filter)) {
+                                        item.style.display = '';
+                                    } else {
+                                        item.style.display = 'none';
+                                    }
+                                }
+                            });
+                            updateYearContainers();
+                        }
+                    });
+                });
+                showAllWriting();
+            });
+        </script>
+        
         <div class="flex flex-col gap-6">
             <div>
                 <div class="font-diatype font-bold text-xl mb-2">2025</div>
-                <div class="flex flex-col gap-2">
-                    <div>
+                <div class="flex flex-col gap-6 writing-year-section">
+                    <div class="writing-item">
                         <div class="flex items-center">
-                            <span class="font-semibold" style="font-family: 'ABC Diatype Semi-Mono', monospace;">The Closer I Looked, the More I Saw God</span>
+                            <span class="writing-title font-semibold" style="font-family: 'ABC Diatype', sans-serif; display: flex; align-items: center;">
+                                <span style="font-size: 0.6em; margin-right: 0.5em; background: linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3); background-size: 100% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">●</span>
+                                The Closer I Looked, the More I Saw God
+                            </span>
                         </div>
                         <div class="project-year text-xs">Aug '25</div>
                     </div>
-                </div>
-                <div class="flex flex-col gap-2">
-                    <div>
+                    <div class="writing-item">
                         <div class="flex items-center">
-                            <span class="font-semibold" style="font-family: 'ABC Diatype Semi-Mono', monospace;">In the Dark, We Sing</span>
+                            <span class="writing-title font-semibold" style="font-family: 'ABC Diatype', sans-serif; display: flex; align-items: center;">
+                                <span style="color: #dc2626; font-size: 0.6em; margin-right: 0.5em;">●</span>
+                                In the Dark, We Sing
+                            </span>
                         </div>
                         <div class="project-year text-xs">Aug '25</div>
                     </div>
-                </div>
-                <div class="flex flex-col gap-2">
-                    <div>
+                    <div class="writing-item">
                         <div class="flex items-center">
-                            <span class="font-semibold" style="font-family: 'ABC Diatype Semi-Mono', monospace;">Laughing with Gelli Haha</span>
+                            <span class="writing-title font-semibold" style="font-family: 'ABC Diatype', sans-serif; display: flex; align-items: center;">
+                                <span style="font-size: 0.6em; margin-right: 0.5em; background: linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3); background-size: 100% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">●</span>
+                                Laughing with Gelli Haha
+                            </span>
                         </div>
                         <div class="project-year text-xs">Aug '25</div>
                     </div>
