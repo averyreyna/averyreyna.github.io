@@ -335,15 +335,19 @@ p, li {
 }
 
 .project-image {
-  width: 135px;
-  max-width: 135px;
-  height: 85px;
+  width: 160px;
+  height: 100px;
   object-fit: cover;
   background: #e5e7eb;
   filter: grayscale(1);
   margin-bottom: 0.3rem;
   aspect-ratio: unset;
   transition: filter 0.3s ease;
+  image-rendering: auto;
+  transform: scale(1);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 @media (min-width: 768px) {
@@ -389,9 +393,9 @@ p, li {
   }
   
   .project-image {
-    filter: grayscale(1) !important;
-    width: 110px !important;
-    height: 69px !important;
+    filter: grayscale(0) !important;
+    width: 130px !important;
+    height: 81px !important;
     flex-shrink: 0;
   }
   
