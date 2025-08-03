@@ -585,37 +585,36 @@ p, li {
   
   .filter-tag .filter-text {
     display: none;
-    margin-left: 0.5em;
-    opacity: 0;
-    transition: opacity 0.2s ease;
   }
   
   .filter-tag .filter-dot {
-    font-size: 1.2em;
+    font-size: 1.4em;
     margin: 0;
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    height: 100%;
   }
   
-  .filter-tag.expanded {
-    width: auto;
-    padding: 0.18rem 0.7rem;
-  }
-  
-  .filter-tag.expanded .filter-text {
-    display: inline;
-    opacity: 1;
-  }
-  
-  .filter-tag.expanded .filter-dot {
-    margin-right: 0.5em;
-  }
   
   /* Hide tooltips on mobile */
   .filter-tooltip {
     display: none;
+  }
+  
+  /* Clear button mobile styles */
+  #clear-filter {
+    padding: 0.4rem 0.8rem;
+    height: 2rem;
+    font-size: 0.78rem;
+    background: #e5e7eb;
+    color: #374151;
+  }
+  
+  #clear-filter:hover {
+    background: #d1d5db;
   }
 }
 
