@@ -27,11 +27,11 @@
         <div id="writing-filter-bar" class="flex flex-row flex-wrap gap-2 mb-6">
             <button class="filter-tag flex items-center" data-filter="Complex Vector Space">
                 <span class="filter-text">Complex Vector Space</span>
-                <span class="filter-dot" style="color: #20B2AA; font-size: 0.6em; margin-left: 0.5em;">●</span>
+                <span class="filter-dot" style="color: #20B2AA;">●</span>
             </button>
             <button class="filter-tag flex items-center" data-filter="Field Notes">
                 <span class="filter-text">Field Notes</span>
-                <span class="filter-dot" style="color: #dc2626; font-size: 0.6em; margin-left: 0.5em;">●</span>
+                <span class="filter-dot" style="color: #dc2626;">●</span>
             </button>
             <button id="clear-filter" class="filter-tag" data-filter="clear" style="display: none;">Clear</button>
         </div>
@@ -72,12 +72,8 @@
                     return window.innerWidth <= 768;
                 }
                 
-                let expandedTag = null;
-                
                 tags.forEach(tag => {
                     tag.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        
                         const filter = this.dataset.filter;
                         
                         if (filter === 'clear') {
@@ -87,32 +83,24 @@
                             return;
                         }
                         
-                        const isActive = this.classList.contains('active');
-                        
                         tags.forEach(t => t.classList.remove('active'));
+                        this.classList.add('active');
+                        clearButton.style.display = 'block';
                         
-                        if (isActive) {
-                            showAllWriting();
-                            clearButton.style.display = 'none';
-                        } else {
-                            this.classList.add('active');
-                            clearButton.style.display = 'inline-block';
-                            
-                            writingItems.forEach(item => {
-                                const titleElement = item.querySelector('.writing-title');
-                                if (titleElement) {
-                                    const title = titleElement.textContent.replace(/●\s*/, '').trim();
-                                    const itemTags = writingTags[title] || [];
-                                    
-                                    if (itemTags.includes(filter)) {
-                                        item.style.display = '';
-                                    } else {
-                                        item.style.display = 'none';
-                                    }
+                        writingItems.forEach(item => {
+                            const titleElement = item.querySelector('.writing-title');
+                            if (titleElement) {
+                                const title = titleElement.textContent.replace(/●.*$/, '').trim();
+                                const itemTags = writingTags[title] || [];
+                                
+                                if (itemTags.includes(filter)) {
+                                    item.style.display = '';
+                                } else {
+                                    item.style.display = 'none';
                                 }
-                            });
-                            updateYearContainers();
-                        }
+                            }
+                        });
+                        updateYearContainers();
                     });
                 });
                 showAllWriting();

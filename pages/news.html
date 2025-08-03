@@ -27,15 +27,15 @@
     <div id="news-filter-bar" class="flex flex-row flex-wrap gap-2 mb-6">
       <button class="filter-tag flex items-center" data-filter="Acceptances">
         <span class="filter-text">Acceptances</span>
-        <span class="filter-dot" style="color: #B87333; font-size: 0.6em; margin-left: 0.5em;">●</span>
+        <span class="filter-dot" style="color: #B87333;">●</span>
       </button>
       <button class="filter-tag flex items-center" data-filter="Engagements">
         <span class="filter-text">Engagements</span>
-        <span class="filter-dot" style="color: #8B4513; font-size: 0.6em; margin-left: 0.5em;">●</span>
+        <span class="filter-dot" style="color: #8B4513;">●</span>
       </button>
       <button class="filter-tag flex items-center" data-filter="Milestones">
         <span class="filter-text">Milestones</span>
-        <span class="filter-dot" style="color: #228B22; font-size: 0.6em; margin-left: 0.5em;">●</span>
+        <span class="filter-dot" style="color: #228B22;">●</span>
       </button>
       <button id="clear-filter" class="filter-tag" data-filter="clear" style="display: none;">Clear</button>
     </div>
@@ -80,12 +80,8 @@
           return window.innerWidth <= 768;
         }
         
-        let expandedTag = null;
-        
         tags.forEach(tag => {
           tag.addEventListener('click', function(e) {
-            e.preventDefault();
-            
             const filter = this.getAttribute('data-filter');
             
             if (filter === 'clear') {
@@ -95,34 +91,12 @@
               return;
             }
             
-            if (isMobile()) {
-              if (expandedTag && expandedTag !== this) {
-                expandedTag.classList.remove('expanded');
-              }
-              
-              if (this.classList.contains('expanded')) {
-                this.classList.remove('expanded');
-                expandedTag = null;
-                return;
-              } else {
-                this.classList.add('expanded');
-                expandedTag = this;
-                
-                setTimeout(() => {
-                  if (this.classList.contains('expanded')) {
-                    this.classList.remove('expanded');
-                    expandedTag = null;
-                  }
-                }, 2000);
-              }
-            }
-            
             tags.forEach(t => t.classList.remove('active'));
             this.classList.add('active');
-            clearButton.style.display = 'inline-block';
+            clearButton.style.display = 'block';
             
             newsItems.forEach(item => {
-              const itemTitle = item.querySelector('.news-title').textContent.replace(/●\s*/, '').trim();
+              const itemTitle = item.querySelector('.news-title').textContent.replace(/●.*$/, '').trim();
               const itemTags = newsTags[itemTitle] || [];
               
               if (itemTags.includes(filter)) {
@@ -135,15 +109,6 @@
             updateYearContainers();
           });
         });
-        
-        if (isMobile()) {
-          document.addEventListener('click', function(e) {
-            if (!e.target.closest('.filter-tag') && expandedTag) {
-              expandedTag.classList.remove('expanded');
-              expandedTag = null;
-            }
-          });
-        }
       });
     </script>
 

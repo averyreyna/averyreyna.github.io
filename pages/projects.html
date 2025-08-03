@@ -26,23 +26,23 @@
     <div id="project-filter-bar" class="flex flex-row flex-wrap gap-2 mb-6">
       <button class="filter-tag flex items-center" data-filter="Article">
         <span class="filter-text">Article</span>
-        <span class="filter-dot" style="color: #B87333; font-size: 0.6em; margin-left: 0.5em;">●</span>
+        <span class="filter-dot" style="color: #B87333;">●</span>
       </button>
       <button class="filter-tag flex items-center" data-filter="Industry">
         <span class="filter-text">Industry</span>
-        <span class="filter-dot" style="color: #8B4513; font-size: 0.6em; margin-left: 0.5em;">●</span>
+        <span class="filter-dot" style="color: #8B4513;">●</span>
       </button>
       <button class="filter-tag flex items-center" data-filter="Prototype">
         <span class="filter-text">Prototype</span>
-        <span class="filter-dot" style="color: #228B22; font-size: 0.6em; margin-left: 0.5em;">●</span>
+        <span class="filter-dot" style="color: #228B22;">●</span>
       </button>
       <button class="filter-tag flex items-center" data-filter="Report">
         <span class="filter-text">Report</span>
-        <span class="filter-dot" style="color: #4682B4; font-size: 0.6em; margin-left: 0.5em;">●</span>
+        <span class="filter-dot" style="color: #4682B4;">●</span>
       </button>
       <button class="filter-tag flex items-center" data-filter="Research">
         <span class="filter-text">Research</span>
-        <span class="filter-dot" style="color: #8A2BE2; font-size: 0.6em; margin-left: 0.5em;">●</span>
+        <span class="filter-dot" style="color: #8A2BE2;">●</span>
       </button>
       <button id="clear-filter" class="filter-tag" data-filter="clear" style="display: none;">Clear</button>
     </div>
@@ -108,35 +108,9 @@
           return window.innerWidth <= 768;
         }
         
-        let expandedTag = null;
-        
         tags.forEach(tag => {
           tag.addEventListener('click', function(e) {
             const filter = this.getAttribute('data-filter');
-            
-            if (isMobile() && tag.id !== 'clear-filter') {
-              if (this.classList.contains('expanded')) {
-              } else {
-                e.preventDefault();
-                
-                if (expandedTag && expandedTag !== this) {
-                  expandedTag.classList.remove('expanded');
-                }
-                
-                this.classList.add('expanded');
-                expandedTag = this;
-                
-                setTimeout(() => {
-                  if (this.classList.contains('expanded')) {
-                    this.classList.remove('expanded');
-                    if (expandedTag === this) {
-                      expandedTag = null;
-                    }
-                  }
-                }, 3000);
-                return;
-              }
-            }
             
             if (filter === 'clear') {
               tags.forEach(t => t.classList.remove('active'));
@@ -149,7 +123,7 @@
               
               projects.forEach(link => {
                 const titleElement = link.querySelector('.project-title');
-                const title = titleElement ? titleElement.textContent.replace(/●\s*/, '').trim() : '';
+                const title = titleElement ? titleElement.textContent.replace(/●.*$/, '').trim() : '';
                 
                 if (title && projectTags[title] && projectTags[title].includes(filter)) {
                   link.style.display = '';
@@ -162,16 +136,6 @@
           });
         });
         
-        document.addEventListener('click', function(e) {
-          if (isMobile() && expandedTag) {
-            const filterBar = document.getElementById('project-filter-bar');
-            if (!filterBar.contains(e.target)) {
-              expandedTag.classList.remove('expanded');
-              expandedTag = null;
-            }
-          }
-        });
-        
         showAllProjects();
       });
     </script>
@@ -179,6 +143,26 @@
       <div>
         <div class="font-diatype font-bold text-xl mb-6 project-year-heading">2025</div>
         <div class="flex flex-col gap-6 project-year-section">
+          <a href="https://www.instagram.com/p/DKvfqtFouqF/?utm_source=ig_web_copy_link" target="_blank" class="block project-link">
+            <div class="flex flex-row gap-5 items-center">
+              <img src="" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
+              <div>
+                <div class="font-semibold project-title flex items-center">Palestra<span style="color: #228B22; font-size: 0.6em; margin-left: 0.5em;">●</span></div>
+                <div class="project-desc">Answering in-context questions about AI-generated, psuedo-enterprise codebases</div>
+                <div class="project-year text-xs">Aug '25</div>
+              </div>
+            </div>
+          </a>
+          <a href="https://www.instagram.com/p/DKvfqtFouqF/?utm_source=ig_web_copy_link" target="_blank" class="block project-link">
+            <div class="flex flex-row gap-5 items-center">
+              <img src="" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
+              <div>
+                <div class="font-semibold project-title flex items-center">Rerank<span style="color: #228B22; font-size: 0.6em; margin-left: 0.5em;">●</span></div>
+                <div class="project-desc">Revisiting an experiment on utilizing text summarization models for annotating textual data</div>
+                <div class="project-year text-xs">Aug '25</div>
+              </div>
+            </div>
+          </a>
           <a href="https://www.instagram.com/p/DKvfqtFouqF/?utm_source=ig_web_copy_link" target="_blank" class="block project-link">
             <div class="flex flex-row gap-5 items-center">
               <img src="/assets/prototypes/scrutinize.gif" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
@@ -354,7 +338,7 @@
               <img src="/assets/articles/nuclear_energy.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div>
                 <div class="font-semibold project-title flex items-center">Nuclear Energy<span style="color: #B87333; font-size: 0.6em; margin-left: 0.5em;">●</span></div>
-                <div class="project-desc">Experts say the fight against climate change could spark a nuclear energy revival</div>
+                <div class="project-desc">Before the Fukushima meltdown, officials saw nuclear energy as a way for Japan to achieve some degree of energy independence.</div>
                 <div class="project-year text-xs">Mar '21</div>
               </div>
             </div>
