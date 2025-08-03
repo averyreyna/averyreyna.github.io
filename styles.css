@@ -390,6 +390,7 @@ p, li {
   .project-desc {
     width: 205px;
     max-width: 205px;
+    font-size: 0.6rem;
   }
   
   .project-image {
@@ -565,6 +566,13 @@ p, li {
 .filter-tag.active {
   background: #d1d5db;
   color: #1f2937;
+}
+
+/* Desktop styles for filter tags */
+@media (min-width: 769px) {
+  .filter-tag .filter-dot {
+    margin-left: 0.6em;
+  }
 }
 
 /* Mobile styles for filter tags */
