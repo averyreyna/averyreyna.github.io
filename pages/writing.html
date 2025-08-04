@@ -9,16 +9,57 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <style>
-        .writing-tag {
+        .writing-tag, .project-tag {
             cursor: pointer;
             transition: all 0.2s ease;
         }
-        .writing-tag:hover {
+        .writing-tag:hover, .project-tag:hover {
             opacity: 0.8;
         }
-        .writing-tag.active {
+        .writing-tag.active, .project-tag.active {
             background-color: currentColor;
             color: white !important;
+        }
+        .project-desc {
+            margin-top: -0.5rem !important;
+        }
+        .writing-item {
+            text-decoration: none !important;
+        }
+        .writing-item:hover {
+            text-decoration: none !important;
+        }
+        @media (max-width: 768px) {
+            .project-title {
+                display: block !important;
+            }
+            .project-tag, .writing-tag {
+                display: none !important;
+            }
+            .project-year {
+                display: flex !important;
+                align-items: center !important;
+                gap: 0.5rem !important;
+            }
+            .mobile-tag {
+                font-size: 0.5rem !important;
+                padding: 0.1rem 0.3rem !important;
+                border-radius: 0.25rem !important;
+                font-weight: 400 !important;
+                border: 1px solid !important;
+                display: inline-flex !important;
+                align-items: center !important;
+                cursor: pointer !important;
+                transition: all 0.2s ease !important;
+            }
+            .mobile-tag:hover {
+                opacity: 0.8 !important;
+            }
+        }
+        @media (min-width: 769px) {
+            .mobile-tag {
+                display: none !important;
+            }
         }
     </style>
 </head>
@@ -117,51 +158,122 @@
                     allTags.forEach(tag => tag.classList.remove('active'));
                 }
                 
-                // Initialize - show all writing
+                // Transform writing to compact layout (like projects page)
+                function transformWritingLayout() {
+                    const writingItems = document.querySelectorAll('.writing-item');
+                    writingItems.forEach(item => {
+                        const contentDiv = item.querySelector('div > div:not(.flex-1)');
+                        if (contentDiv && !contentDiv.classList.contains('flex-1')) {
+                            const titleDiv = contentDiv.querySelector('.project-title');
+                            const descDiv = contentDiv.querySelector('.project-desc');
+                            const yearDiv = contentDiv.querySelector('.project-year');
+                            
+                            if (titleDiv && descDiv && yearDiv) {
+                                // Add flex-1 class and restructure
+                                contentDiv.classList.add('flex-1');
+                                
+                                // Create wrapper for title and date
+                                const titleWrapper = document.createElement('div');
+                                titleWrapper.className = 'flex items-center justify-between';
+                                
+                                // Move title and year into wrapper
+                                contentDiv.insertBefore(titleWrapper, descDiv);
+                                titleWrapper.appendChild(titleDiv);
+                                titleWrapper.appendChild(yearDiv);
+                            }
+                        }
+                    });
+                }
+                
+                // Create mobile tags for writing
+                function createMobileTags() {
+                    // Remove existing mobile tags first
+                    document.querySelectorAll('.mobile-tag').forEach(tag => tag.remove());
+                    
+                    if (window.innerWidth <= 768) {
+                        const writingItems = document.querySelectorAll('.writing-item');
+                        writingItems.forEach(item => {
+                            const originalTag = item.querySelector('.project-tag');
+                            const yearDiv = item.querySelector('.project-year');
+                            
+                            if (originalTag && yearDiv) {
+                                const mobileTag = originalTag.cloneNode(true);
+                                mobileTag.classList.remove('project-tag');
+                                mobileTag.classList.add('mobile-tag');
+                                mobileTag.style.color = originalTag.style.color;
+                                mobileTag.style.borderColor = originalTag.style.borderColor;
+                                yearDiv.appendChild(mobileTag);
+                                
+                                // Add click handler for mobile tag
+                                mobileTag.addEventListener('click', function(e) {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    const tagText = this.textContent.trim();
+                                    
+                                    if (currentFilter === tagText) {
+                                        currentFilter = null;
+                                        showAllWriting();
+                                        clearActiveStates();
+                                    } else {
+                                        currentFilter = tagText;
+                                        filterWriting(tagText);
+                                        setActiveState(originalTag);
+                                    }
+                                });
+                            }
+                        });
+                    }
+                }
+                
                 showAllWriting();
+                transformWritingLayout();
+                createMobileTags();
+                
+                // Recreate mobile tags on resize
+                window.addEventListener('resize', createMobileTags);
             });
         </script>
         
         <div class="flex flex-col gap-6">
             <div>
-                <div class="font-diatype font-bold text-xl mb-2">2025</div>
-                <div class="flex flex-col gap-6 writing-year-section">
-                    <div class="writing-item">
-                        <div class="flex items-center">
-                            <span class="writing-title font-semibold" style="font-family: 'ABC ROM', sans-serif; display: flex; align-items: center;">
-                                The Closer I Looked, the More I Saw God
-                                <span class="writing-tag" style="font-size: 0.55rem; color: #20B2AA; border: 1px solid #20B2AA; padding: 0.1rem 0.25rem; margin-left: 0.4rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Magdalena Baywatch</span>
-                            </span>
+                <div class="font-diatype font-bold text-xl mb-6">2025</div>
+                <div class="flex flex-col gap-3 writing-year-section">
+                    <a href="" class="block writing-item">
+                        <div class="flex items-center justify-between">
+                            <div class="font-semibold project-title">The Closer I Looked, the More I Saw God</div>
+                            <div class="flex flex-col items-end">
+                                <div class="project-year text-xs">Aug '25</div>
+                                <span class="writing-tag project-tag" style="font-size: 0.55rem; color: #20B2AA; border: 1px solid #20B2AA; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Magdalena Baywatch</span>
+                            </div>
                         </div>
-                        <div class="project-year text-xs">Aug '25</div>
-                    </div>
-                    <div class="writing-item">
-                        <div class="flex items-center">
-                            <span class="writing-title font-semibold" style="font-family: 'ABC ROM', sans-serif; display: flex; align-items: center;">
-                                In the Dark, We Sing
-                                <span class="writing-tag" style="font-size: 0.55rem; color: #dc2626; border: 1px solid #dc2626; padding: 0.1rem 0.25rem; margin-left: 0.4rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Field Notes</span>
-                            </span>
+                    </a>
+                    <a href="" class="block writing-item">
+                        <div class="flex items-center justify-between">
+                            <div class="font-semibold project-title">In the Dark, We Sing</div>
+                            <div class="flex flex-col items-end">
+                                <div class="project-year text-xs">Aug '25</div>
+                                <span class="writing-tag project-tag" style="font-size: 0.55rem; color: #dc2626; border: 1px solid #dc2626; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Field Notes</span>
+                            </div>
                         </div>
-                        <div class="project-year text-xs">Aug '25</div>
-                    </div>
-                    <div class="writing-item">
-                        <div class="flex items-center">
-                            <span class="writing-title font-semibold" style="font-family: 'ABC ROM', sans-serif; display: flex; align-items: center;">
-                                Laughing with Gelli Haha
-                                <span class="writing-tag" style="font-size: 0.55rem; color: #20B2AA; border: 1px solid #20B2AA; padding: 0.1rem 0.25rem; margin-left: 0.4rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Magdalena Baywatch</span>
-                            </span>
+                    </a>
+                    <a href="" class="block writing-item">
+                        <div class="flex items-center justify-between">
+                            <div class="font-semibold project-title">Laughing with Gelli Haha</div>
+                            <div class="flex flex-col items-end">
+                                <div class="project-year text-xs">Aug '25</div>
+                                <span class="writing-tag project-tag" style="font-size: 0.55rem; color: #20B2AA; border: 1px solid #20B2AA; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Magdalena Baywatch</span>
+                            </div>
                         </div>
-                        <div class="project-year text-xs">Aug '25</div>
-                    </div>
-                    <div class="writing-item">
-                        <div class="flex items-center">
-                            <span class="writing-title font-semibold" style="font-family: 'ABC ROM', sans-serif; display: flex; align-items: center;">
-                                It's Survivor, Big Brother, then RuPaul's Drag Race
-                                <span class="writing-tag" style="font-size: 0.55rem; color: #dc2626; border: 1px solid #dc2626; padding: 0.1rem 0.25rem; margin-left: 0.4rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Field Notes</span>
-                            </span>
+                    </a>
+                    <a href="" class="block writing-item">
+                        <div class="flex items-center justify-between">
+                            <div class="font-semibold project-title">It's Survivor, Big Brother, then RuPaul's Drag Race</div>
+                            <div class="flex flex-col items-end">
+                                <div class="project-year text-xs">Aug '25</div>
+                                <span class="writing-tag project-tag" style="font-size: 0.55rem; color: #dc2626; border: 1px solid #dc2626; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Field Notes</span>
+                            </div>
                         </div>
-                        <div class="project-year text-xs">Aug '25</div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
