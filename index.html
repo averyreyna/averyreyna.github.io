@@ -14,7 +14,6 @@
         <ul class="flex flex-row gap-1">
             <li><a href="#" class="nav-link nav-link-active">About</a></li>
             <li><a href="/pages/cv.html" class="nav-link">CV</a></li>
-            <li><a href="/pages/news.html" class="nav-link">News</a></li>
             <li><a href="/pages/projects.html" class="nav-link">Projects</a></li>
             <li><a href="/pages/writing.html" class="nav-link">Writing</a></li>
         </ul>
@@ -27,36 +26,92 @@
         </div>
         
         <div class="research-heading">
-            <span class="section-heading-semi-mono">Recent Announcements</span>
+            <span class="section-heading-semi-mono">Announcements</span>
             <span class="research-heading-line"></span>
         </div>
-        <div class="space-y-1 mb-8">
-            <div class="py-2">
-                <div style="font-family: 'ABC ROM', sans-serif; font-weight: 700; font-size: 1rem; margin: 0; line-height: 1; display: flex; align-items: center;">
-                    October 2024
-                    <span style="color: #228B22; font-size: 0.6em; margin-left: 0.5em;">●</span>
+        <div class="mb-8">
+            <div id="announcements-container" class="space-y-1">
+                <div class="announcement-item py-2" data-index="0">
+                    <div style="font-family: 'ABC ROM', sans-serif; font-weight: 700; font-size: 1rem; margin: 0; line-height: 1; display: flex; align-items: center;">
+                        October 2024
+                        <span style="font-size: 0.55rem; color: #228B22; border: 1px solid #228B22; padding: 0.1rem 0.25rem; margin-left: 0.4rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Milestones</span>
+                    </div>
+                    <div style="font-size: 0.82rem; color: #444; margin-bottom: 0; opacity: 0.7; margin: 0 !important; padding: 0 !important; line-height: 1; word-break: break-word; margin-top: 0.15rem !important;">
+                        Started my second TDP rotation at Capital One staying within Cyber Tech, but working in detection and mitigation instead of identity and access management. I'll be developing the team's self service platform.
+                    </div>
                 </div>
-                <div style="font-size: 0.82rem; color: #444; margin-bottom: 0; opacity: 0.7; margin: 0 !important; padding: 0 !important; line-height: 1; word-break: break-word; margin-top: 0.15rem !important;">
-                    Started my second TDP rotation at Capital One staying within Cyber Tech, but working in detection and mitigation instead of identity and access management. I'll be developing the team's self service platform.
+                <div class="announcement-item py-2" data-index="1">
+                    <div style="font-family: 'ABC ROM', sans-serif; font-weight: 700; font-size: 1rem; margin: 0; line-height: 1; display: flex; align-items: center;">
+                        March 2024
+                        <span style="font-size: 0.55rem; color: #B87333; border: 1px solid #B87333; padding: 0.1rem 0.25rem; margin-left: 0.4rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Acceptances</span>
+                    </div>
+                    <div style="font-size: 0.82rem; color: #444; margin-bottom: 0; opacity: 0.7; margin: 0 !important; padding: 0 !important; line-height: 1; word-break: break-word; margin-top: 0.15rem !important;">
+                        Second project I was a part of at the CEAL Lab, <i>Help Supporters</i>, was accepted to CHI '24! We explored the design space of assistive technologies to support face-to-face help between blind and sighted strangers.
+                    </div>
+                </div>
+                <div class="announcement-item py-2" data-index="2">
+                    <div style="font-family: 'ABC ROM', sans-serif; font-weight: 700; font-size: 1rem; margin: 0; line-height: 1; display: flex; align-items: center;">
+                        February 2024
+                        <span style="font-size: 0.55rem; color: #228B22; border: 1px solid #228B22; padding: 0.1rem 0.25rem; margin-left: 0.4rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Milestones</span>
+                    </div>
+                    <div style="font-size: 0.82rem; color: #444; margin-bottom: 0; opacity: 0.7; margin: 0 !important; padding: 0 !important; line-height: 1; word-break: break-word; margin-top: 0.15rem !important;">
+                        Graduated from CODA and started my first TDP rotation within Cyber Tech! I'll be building authorization plugins for the company's access portal. I will be working on full stack features, with some design systems.
+                    </div>
+                </div>
+                <div class="announcement-item py-2" data-index="3" style="display: none;">
+                    <div style="font-family: 'ABC ROM', sans-serif; font-weight: 700; font-size: 1rem; margin: 0; line-height: 1; display: flex; align-items: center;">
+                        August 2023
+                        <span style="font-size: 0.55rem; color: #B87333; border: 1px solid #B87333; padding: 0.1rem 0.25rem; margin-left: 0.4rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Acceptances</span>
+                    </div>
+                    <div style="font-size: 0.82rem; color: #444; margin-bottom: 0; opacity: 0.7; margin: 0 !important; padding: 0 !important; line-height: 1; word-break: break-word; margin-top: 0.15rem !important;">
+                        Got accepted to ASSETS '23 with the work I did at Brian Smith's CEAL Lab! Read the paper in October. I also joined Capital One after graduating, becoming a Software Engineer in six months through CODA.
+                    </div>
+                </div>
+                <div class="announcement-item py-2" data-index="4" style="display: none;">
+                    <div style="font-family: 'ABC ROM', sans-serif; font-weight: 700; font-size: 1rem; margin: 0; line-height: 1; display: flex; align-items: center;">
+                        March 2023
+                        <span style="font-size: 0.55rem; color: #B87333; border: 1px solid #B87333; padding: 0.1rem 0.25rem; margin-left: 0.4rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Acceptances</span>
+                    </div>
+                    <div style="font-size: 0.82rem; color: #444; margin-bottom: 0; opacity: 0.7; margin: 0 !important; padding: 0 !important; line-height: 1; word-break: break-word; margin-top: 0.15rem !important;">
+                        My second article was accepted for publication in The Loop! Within it, I discuss the already present threats AI causes society, but even through these hardships, these technologies can be used for good.
+                    </div>
+                </div>
+                <div class="announcement-item py-2" data-index="5" style="display: none;">
+                    <div style="font-family: 'ABC ROM', sans-serif; font-weight: 700; font-size: 1rem; margin: 0; line-height: 1; display: flex; align-items: center;">
+                        October 2022
+                        <span style="font-size: 0.55rem; color: #B87333; border: 1px solid #B87333; padding: 0.1rem 0.25rem; margin-left: 0.4rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Acceptances</span>
+                    </div>
+                    <div style="font-size: 0.82rem; color: #444; margin-bottom: 0; opacity: 0.7; margin: 0 !important; padding: 0 !important; line-height: 1; word-break: break-word; margin-top: 0.15rem !important;">
+                        My article discussing the limits of quantititve social science was accepted into The Loop! The piece examines interdisciplinary research methods and how well it captures the complexity of human dynamics.
+                    </div>
+                </div>
+                <div class="announcement-item py-2" data-index="6" style="display: none;">
+                    <div style="font-family: 'ABC ROM', sans-serif; font-weight: 700; font-size: 1rem; margin: 0; line-height: 1; display: flex; align-items: center;">
+                        June 2022
+                        <span style="font-size: 0.55rem; color: #228B22; border: 1px solid #228B22; padding: 0.1rem 0.25rem; margin-left: 0.4rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Milestones</span>
+                    </div>
+                    <div style="font-size: 0.82rem; color: #444; margin-bottom: 0; opacity: 0.7; margin: 0 !important; padding: 0 !important; line-height: 1; word-break: break-word; margin-top: 0.15rem !important;">
+                        Excited to announce that I'll be spending the summer in New York as part of the XR Access REU! I'll be working with the CEAL Lab under Brian Smith's mentorship building assistive technologies prototypes.
+                    </div>
+                </div>
+                <div class="announcement-item py-2" data-index="7" style="display: none;">
+                    <div style="font-family: 'ABC ROM', sans-serif; font-weight: 700; font-size: 1rem; margin: 0; line-height: 1; display: flex; align-items: center;">
+                        June 2021
+                        <span style="font-size: 0.55rem; color: #228B22; border: 1px solid #228B22; padding: 0.1rem 0.25rem; margin-left: 0.4rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Milestones</span>
+                    </div>
+                    <div style="font-size: 0.82rem; color: #444; margin-bottom: 0; opacity: 0.7; margin: 0 !important; padding: 0 !important; line-height: 1; word-break: break-word; margin-top: 0.15rem !important;">
+                        Thrilled to join the University of Washington Tacoma as part of the Spatial Models and Electoral Distrciting REU! I'll be working with Jim and Courtney Thatcher on finding new ways to identify communities of interest.
+                    </div>
                 </div>
             </div>
-            <div class="py-2">
-                <div style="font-family: 'ABC ROM', sans-serif; font-weight: 700; font-size: 1rem; margin: 0; line-height: 1; display: flex; align-items: center;">
-                    March 2024
-                    <span style="color: #B87333; font-size: 0.6em; margin-left: 0.5em;">●</span>
-                </div>
-                <div style="font-size: 0.82rem; color: #444; margin-bottom: 0; opacity: 0.7; margin: 0 !important; padding: 0 !important; line-height: 1; word-break: break-word; margin-top: 0.15rem !important;">
-                    Second project I was a part of at the CEAL Lab, <i>Help Supporters</i>, was accepted to CHI '24! We explored the design space of assistive technologies to support face-to-face help between blind and sighted strangers.
-                </div>
-            </div>
-            <div class="py-2">
-                <div style="font-family: 'ABC ROM', sans-serif; font-weight: 700; font-size: 1rem; margin: 0; line-height: 1; display: flex; align-items: center;">
-                    February 2024
-                    <span style="color: #228B22; font-size: 0.6em; margin-left: 0.5em;">●</span>
-                </div>
-                <div style="font-size: 0.82rem; color: #444; margin-bottom: 0; opacity: 0.7; margin: 0 !important; padding: 0 !important; line-height: 1; word-break: break-word; margin-top: 0.15rem !important;">
-                    Graduated from CODA and started my first TDP rotation within Cyber Tech! I'll be building authorization plugins for the company's access portal. I will be working on full stack features, with some design systems.
-                </div>
+            <div class="flex justify-center items-center gap-3 mt-4">
+                <button id="prev-btn" class="text-gray-400 hover:text-gray-600 transition-colors text-xs disabled:opacity-30 disabled:cursor-not-allowed" disabled>
+                    ← newer
+                </button>
+                <span id="page-indicator" class="text-xs text-gray-500">1 / 3</span>
+                <button id="next-btn" class="text-gray-400 hover:text-gray-600 transition-colors text-xs">
+                    older →
+                </button>
             </div>
         </div>
         
@@ -87,10 +142,10 @@
                 </div>
                 <div>
                     <div style="font-family: 'ABC ROM', sans-serif; font-weight: 700; font-size: 1rem; margin: 0; line-height: 1;">
-                        Non-Computer Science Programming Languages
+                        Interactive AI Writing Assistants
                     </div>
                     <div style="font-size: 0.82rem; color: #444; margin-bottom: 0; opacity: 0.7; margin: 0 !important; padding: 0 !important; line-height: 1; word-break: break-word; margin-top: 0.15rem !important;">
-                        Can we build a high level, type safe language for scientists to use in their research?
+                        Can we build AI writing assistants that better assist users in their writing process?
                     </div>
                 </div>
             </div>
@@ -146,5 +201,51 @@
             </div>
         </div>
     </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const items = document.querySelectorAll('.announcement-item');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const pageIndicator = document.getElementById('page-indicator');
+            
+            const itemsPerPage = 3;
+            const totalPages = Math.ceil(items.length / itemsPerPage);
+            let currentPage = 1;
+            
+            function showPage(page) {
+                items.forEach((item, index) => {
+                    const startIndex = (page - 1) * itemsPerPage;
+                    const endIndex = startIndex + itemsPerPage;
+                    
+                    if (index >= startIndex && index < endIndex) {
+                        item.style.display = '';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+                
+                prevBtn.disabled = page === 1;
+                nextBtn.disabled = page === totalPages;
+                pageIndicator.textContent = `${page} / ${totalPages}`;
+            }
+            
+            prevBtn.addEventListener('click', function() {
+                if (currentPage > 1) {
+                    currentPage--;
+                    showPage(currentPage);
+                }
+            });
+            
+            nextBtn.addEventListener('click', function() {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    showPage(currentPage);
+                }
+            });
+            
+            showPage(currentPage);
+        });
+    </script>
 </body>
 </html>

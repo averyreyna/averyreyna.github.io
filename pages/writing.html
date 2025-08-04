@@ -8,101 +8,116 @@
     <link rel="stylesheet" href="/styles.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <style>
+        .writing-tag {
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .writing-tag:hover {
+            opacity: 0.8;
+        }
+        .writing-tag.active {
+            background-color: currentColor;
+            color: white !important;
+        }
+    </style>
 </head>
 <body class="bg-white min-h-screen font-diatype">
-
-
     <nav class="w-full max-w-2xl mx-auto flex flex-row items-center justify-start py-4 px-4 mb-2">
         <ul class="flex flex-row gap-1">
             <li><a href="/index.html" class="nav-link">About</a></li>
             <li><a href="/pages/cv.html" class="nav-link">CV</a></li>
-            <li><a href="/pages/news.html" class="nav-link">News</a></li>
             <li><a href="/pages/projects.html" class="nav-link">Projects</a></li>
             <li><a href="/pages/writing.html" class="nav-link nav-link-active">Writing</a></li>
         </ul>
     </nav>
     <main class="w-full max-w-2xl mx-auto px-4 pb-8" style="margin-top: 0; text-align: left;">
         <h1 class="text-2xl font-bold mb-4 font-diatype">Writing</h1>
-        
-        <div id="writing-filter-bar" class="flex flex-row flex-wrap gap-2 mb-6">
-            <button class="filter-tag flex items-center" data-filter="Complex Vector Space">
-                <span class="filter-text">Complex Vector Space</span>
-                <span class="filter-dot" style="color: #20B2AA;">●</span>
-            </button>
-            <button class="filter-tag flex items-center" data-filter="Field Notes">
-                <span class="filter-text">Field Notes</span>
-                <span class="filter-dot" style="color: #dc2626;">●</span>
-            </button>
-            <button id="clear-filter" class="filter-tag" data-filter="clear" style="display: none;">Clear</button>
-        </div>
 
         <script>
-            const writingTags = {
-                'The Closer I Looked, the More I Saw God': ['Complex Vector Space'],
-                'In the Dark, We Sing': ['Field Notes'],
-                'Laughing with Gelli Haha': ['Complex Vector Space']
-            };
-            
             document.addEventListener('DOMContentLoaded', function() {
-                const tags = document.querySelectorAll('.filter-tag');
-                const writingItems = document.querySelectorAll('.writing-item');
-                const clearButton = document.getElementById('clear-filter');
+                console.log('Writing page loaded');
+                let currentFilter = null;
                 
-                function showAllWriting() {
-                    writingItems.forEach(item => {
-                        item.style.display = '';
-                    });
-                    updateYearContainers();
-                }
+                // Get all writing tags and add click handlers
+                const tags = document.querySelectorAll('.writing-tag');
+                console.log('Found tags:', tags.length);
                 
-                function updateYearContainers() {
-                    const yearContainers = document.querySelectorAll('.writing-year-section');
-                    yearContainers.forEach(container => {
-                        const visibleItems = container.querySelectorAll('.writing-item:not([style*="display: none"])');
-                        const yearHeading = container.previousElementSibling;
-                        if (visibleItems.length === 0) {
-                            container.parentElement.style.display = 'none';
-                        } else {
-                            container.parentElement.style.display = '';
-                        }
-                    });
-                }
-                
-                function isMobile() {
-                    return window.innerWidth <= 768;
-                }
-                
-                tags.forEach(tag => {
+                tags.forEach((tag, index) => {
+                    console.log('Tag', index, ':', tag.textContent.trim());
                     tag.addEventListener('click', function(e) {
-                        const filter = this.dataset.filter;
+                        e.preventDefault();
+                        e.stopPropagation();
                         
-                        if (filter === 'clear') {
+                        const tagText = this.textContent.trim();
+                        console.log('Clicked tag:', tagText);
+                        
+                        // If clicking the same tag, clear filter
+                        if (currentFilter === tagText) {
+                            console.log('Clearing filter');
+                            currentFilter = null;
                             showAllWriting();
-                            tags.forEach(t => t.classList.remove('active'));
-                            clearButton.style.display = 'none';
-                            return;
+                            clearActiveStates();
+                        } else {
+                            // Apply new filter
+                            console.log('Applying filter:', tagText);
+                            currentFilter = tagText;
+                            filterWriting(tagText);
+                            setActiveState(this);
                         }
-                        
-                        tags.forEach(t => t.classList.remove('active'));
-                        this.classList.add('active');
-                        clearButton.style.display = 'block';
-                        
-                        writingItems.forEach(item => {
-                            const titleElement = item.querySelector('.writing-title');
-                            if (titleElement) {
-                                const title = titleElement.textContent.replace(/●.*$/, '').trim();
-                                const itemTags = writingTags[title] || [];
-                                
-                                if (itemTags.includes(filter)) {
-                                    item.style.display = '';
-                                } else {
-                                    item.style.display = 'none';
-                                }
-                            }
-                        });
-                        updateYearContainers();
                     });
                 });
+                
+                function showAllWriting() {
+                    console.log('Showing all writing');
+                    // Show all writing items
+                    const allWriting = document.querySelectorAll('.writing-item');
+                    console.log('Found writing items:', allWriting.length);
+                    allWriting.forEach(item => {
+                        item.style.display = 'block';
+                    });
+                    
+                    // Show all year sections
+                    const yearSections = document.querySelectorAll('.flex.flex-col.gap-6 > div');
+                    yearSections.forEach(section => {
+                        section.style.display = 'block';
+                    });
+                }
+                
+                function filterWriting(filterTag) {
+                    console.log('Filtering by:', filterTag);
+                    const allWriting = document.querySelectorAll('.writing-item');
+                    
+                    allWriting.forEach((item, index) => {
+                        const writingTag = item.querySelector('.writing-tag');
+                        const tagText = writingTag ? writingTag.textContent.trim() : 'no tag';
+                        console.log('Item', index, 'has tag:', tagText);
+                        
+                        if (writingTag && writingTag.textContent.trim() === filterTag) {
+                            console.log('Showing item', index);
+                            item.style.display = 'block';
+                        } else {
+                            console.log('Hiding item', index);
+                            item.style.display = 'none';
+                        }
+                    });
+                }
+                
+                function setActiveState(clickedTag) {
+                    // Remove active from all tags
+                    const allTags = document.querySelectorAll('.writing-tag');
+                    allTags.forEach(tag => tag.classList.remove('active'));
+                    
+                    // Add active to clicked tag
+                    clickedTag.classList.add('active');
+                }
+                
+                function clearActiveStates() {
+                    const allTags = document.querySelectorAll('.writing-tag');
+                    allTags.forEach(tag => tag.classList.remove('active'));
+                }
+                
+                // Initialize - show all writing
                 showAllWriting();
             });
         </script>
@@ -115,7 +130,7 @@
                         <div class="flex items-center">
                             <span class="writing-title font-semibold" style="font-family: 'ABC ROM', sans-serif; display: flex; align-items: center;">
                                 The Closer I Looked, the More I Saw God
-                                <span style="color: #20B2AA; font-size: 0.6em; margin-left: 0.5em;">●</span>
+                                <span class="writing-tag" style="font-size: 0.55rem; color: #20B2AA; border: 1px solid #20B2AA; padding: 0.1rem 0.25rem; margin-left: 0.4rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Magdalena Baywatch</span>
                             </span>
                         </div>
                         <div class="project-year text-xs">Aug '25</div>
@@ -124,7 +139,7 @@
                         <div class="flex items-center">
                             <span class="writing-title font-semibold" style="font-family: 'ABC ROM', sans-serif; display: flex; align-items: center;">
                                 In the Dark, We Sing
-                                <span style="color: #dc2626; font-size: 0.6em; margin-left: 0.5em;">●</span>
+                                <span class="writing-tag" style="font-size: 0.55rem; color: #dc2626; border: 1px solid #dc2626; padding: 0.1rem 0.25rem; margin-left: 0.4rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Field Notes</span>
                             </span>
                         </div>
                         <div class="project-year text-xs">Aug '25</div>
@@ -133,7 +148,7 @@
                         <div class="flex items-center">
                             <span class="writing-title font-semibold" style="font-family: 'ABC ROM', sans-serif; display: flex; align-items: center;">
                                 Laughing with Gelli Haha
-                                <span style="color: #20B2AA; font-size: 0.6em; margin-left: 0.5em;">●</span>
+                                <span class="writing-tag" style="font-size: 0.55rem; color: #20B2AA; border: 1px solid #20B2AA; padding: 0.1rem 0.25rem; margin-left: 0.4rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Magdalena Baywatch</span>
                             </span>
                         </div>
                         <div class="project-year text-xs">Aug '25</div>
@@ -142,7 +157,7 @@
                         <div class="flex items-center">
                             <span class="writing-title font-semibold" style="font-family: 'ABC ROM', sans-serif; display: flex; align-items: center;">
                                 It's Survivor, Big Brother, then RuPaul's Drag Race
-                                <span style="color: #dc2626; font-size: 0.6em; margin-left: 0.5em;">●</span>
+                                <span class="writing-tag" style="font-size: 0.55rem; color: #dc2626; border: 1px solid #dc2626; padding: 0.1rem 0.25rem; margin-left: 0.4rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Field Notes</span>
                             </span>
                         </div>
                         <div class="project-year text-xs">Aug '25</div>
