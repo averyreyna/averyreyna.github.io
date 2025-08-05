@@ -79,8 +79,7 @@
             document.addEventListener('DOMContentLoaded', function() {
                 console.log('Writing page loaded');
                 let currentFilter = null;
-                
-                // Get all writing tags and add click handlers
+
                 const tags = document.querySelectorAll('.writing-tag');
                 console.log('Found tags:', tags.length);
                 
@@ -93,14 +92,12 @@
                         const tagText = this.textContent.trim();
                         console.log('Clicked tag:', tagText);
                         
-                        // If clicking the same tag, clear filter
                         if (currentFilter === tagText) {
                             console.log('Clearing filter');
                             currentFilter = null;
                             showAllWriting();
                             clearActiveStates();
                         } else {
-                            // Apply new filter
                             console.log('Applying filter:', tagText);
                             currentFilter = tagText;
                             filterWriting(tagText);
@@ -111,14 +108,12 @@
                 
                 function showAllWriting() {
                     console.log('Showing all writing');
-                    // Show all writing items
                     const allWriting = document.querySelectorAll('.writing-item');
                     console.log('Found writing items:', allWriting.length);
                     allWriting.forEach(item => {
                         item.style.display = 'block';
                     });
                     
-                    // Show all year sections
                     const yearSections = document.querySelectorAll('.flex.flex-col.gap-6 > div');
                     yearSections.forEach(section => {
                         section.style.display = 'block';
@@ -145,11 +140,8 @@
                 }
                 
                 function setActiveState(clickedTag) {
-                    // Remove active from all tags
                     const allTags = document.querySelectorAll('.writing-tag');
                     allTags.forEach(tag => tag.classList.remove('active'));
-                    
-                    // Add active to clicked tag
                     clickedTag.classList.add('active');
                 }
                 
@@ -158,7 +150,6 @@
                     allTags.forEach(tag => tag.classList.remove('active'));
                 }
                 
-                // Transform writing to compact layout (like projects page)
                 function transformWritingLayout() {
                     const writingItems = document.querySelectorAll('.writing-item');
                     writingItems.forEach(item => {
@@ -169,14 +160,11 @@
                             const yearDiv = contentDiv.querySelector('.project-year');
                             
                             if (titleDiv && descDiv && yearDiv) {
-                                // Add flex-1 class and restructure
                                 contentDiv.classList.add('flex-1');
                                 
-                                // Create wrapper for title and date
                                 const titleWrapper = document.createElement('div');
                                 titleWrapper.className = 'flex items-center justify-between';
                                 
-                                // Move title and year into wrapper
                                 contentDiv.insertBefore(titleWrapper, descDiv);
                                 titleWrapper.appendChild(titleDiv);
                                 titleWrapper.appendChild(yearDiv);
@@ -185,9 +173,7 @@
                     });
                 }
                 
-                // Create mobile tags for writing
                 function createMobileTags() {
-                    // Remove existing mobile tags first
                     document.querySelectorAll('.mobile-tag').forEach(tag => tag.remove());
                     
                     if (window.innerWidth <= 768) {
@@ -204,7 +190,6 @@
                                 mobileTag.style.borderColor = originalTag.style.borderColor;
                                 yearDiv.appendChild(mobileTag);
                                 
-                                // Add click handler for mobile tag
                                 mobileTag.addEventListener('click', function(e) {
                                     e.preventDefault();
                                     e.stopPropagation();
@@ -229,7 +214,6 @@
                 transformWritingLayout();
                 createMobileTags();
                 
-                // Recreate mobile tags on resize
                 window.addEventListener('resize', createMobileTags);
             });
         </script>
@@ -243,25 +227,7 @@
                             <div class="font-semibold project-title">The Closer I Looked, the More I Saw God</div>
                             <div class="flex flex-col items-end">
                                 <div class="project-year text-xs">Aug '25</div>
-                                <span class="writing-tag project-tag" style="font-size: 0.55rem; color: #20B2AA; border: 1px solid #20B2AA; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Magdalena Baywatch</span>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="" class="block writing-item">
-                        <div class="flex items-center justify-between">
-                            <div class="font-semibold project-title">In the Dark, We Sing</div>
-                            <div class="flex flex-col items-end">
-                                <div class="project-year text-xs">Aug '25</div>
-                                <span class="writing-tag project-tag" style="font-size: 0.55rem; color: #dc2626; border: 1px solid #dc2626; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Field Notes</span>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="" class="block writing-item">
-                        <div class="flex items-center justify-between">
-                            <div class="font-semibold project-title">Laughing with Gelli Haha</div>
-                            <div class="flex flex-col items-end">
-                                <div class="project-year text-xs">Aug '25</div>
-                                <span class="writing-tag project-tag" style="font-size: 0.55rem; color: #20B2AA; border: 1px solid #20B2AA; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Magdalena Baywatch</span>
+                                <span class="writing-tag project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Magdalena Baywatch</span>
                             </div>
                         </div>
                     </a>
@@ -270,7 +236,25 @@
                             <div class="font-semibold project-title">It's Survivor, Big Brother, then RuPaul's Drag Race</div>
                             <div class="flex flex-col items-end">
                                 <div class="project-year text-xs">Aug '25</div>
-                                <span class="writing-tag project-tag" style="font-size: 0.55rem; color: #dc2626; border: 1px solid #dc2626; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Field Notes</span>
+                                <span class="writing-tag project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Field Notes</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="" class="block writing-item">
+                        <div class="flex items-center justify-between">
+                            <div class="font-semibold project-title">Laughing with Gelli Haha</div>
+                            <div class="flex flex-col items-end">
+                                <div class="project-year text-xs">Aug '25</div>
+                                <span class="writing-tag project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Magdalena Baywatch</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="" class="block writing-item">
+                        <div class="flex items-center justify-between">
+                            <div class="font-semibold project-title">Even in the Dark, We Sing</div>
+                            <div class="flex flex-col items-end">
+                                <div class="project-year text-xs">Aug '25</div>
+                                <span class="writing-tag project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Field Notes</span>
                             </div>
                         </div>
                     </a>
@@ -294,7 +278,5 @@
             </div>
         </div>
     </footer>
-
-
 </body>
 </html>
