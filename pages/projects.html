@@ -20,17 +20,80 @@
       margin-top: -0.5rem !important;
     }
     @media (max-width: 768px) {
-      .project-title {
-        display: block !important;
+      .mobile-full-width {
+        max-width: 100vw !important;
+        padding: 0 1rem !important;
+        text-align: left !important;
+      }
+      
+      /* Hide images and desktop tags */
+      .project-image {
+        display: none !important;
       }
       .project-tag {
         display: none !important;
       }
+      
+      /* Project container */
+      .project-link {
+        margin-bottom: 1.5rem !important;
+        padding: 0 !important;
+      }
+      
+      /* Use CSS Grid to completely control layout */
+      .project-link .flex.flex-row {
+        display: grid !important;
+        grid-template-areas: 
+          "title"
+          "desc" 
+          "meta" !important;
+        gap: 0.4rem !important;
+        justify-items: start !important;
+        text-align: left !important;
+      }
+      
+      /* Content container */
+      .project-link .flex-1 {
+        display: contents !important;
+      }
+      
+      /* Title/Year wrapper */
+      .project-link .flex.items-center.justify-between {
+        display: contents !important;
+      }
+      
+      /* Title - goes to title area */
+      .project-title {
+        grid-area: title !important;
+        font-size: 1rem !important;
+        font-weight: 600 !important;
+        margin: 0 !important;
+      }
+      
+      /* Description - goes to desc area */
+      .project-desc {
+        grid-area: desc !important;
+        font-size: 0.85rem !important;
+        line-height: 1.4 !important;
+        margin: 0 !important;
+        width: calc(100vw - 2rem) !important;
+        max-width: none !important;
+        word-wrap: break-word !important;
+        text-align: left !important;
+      }
+      
+      /* Date/tag - goes to meta area */
       .project-year {
+        grid-area: meta !important;
+        font-size: 0.75rem !important;
+        color: #888 !important;
+        margin: 0 !important;
         display: flex !important;
         align-items: center !important;
         gap: 0.5rem !important;
       }
+      
+      /* Mobile tags */
       .mobile-tag {
         font-size: 0.5rem !important;
         padding: 0.1rem 0.3rem !important;
@@ -45,6 +108,10 @@
       .mobile-tag:hover {
         opacity: 0.8 !important;
       }
+      
+      .project-year-section {
+        gap: 0 !important;
+      }
     }
     @media (min-width: 769px) {
       .mobile-tag {
@@ -54,8 +121,6 @@
   </style>
 </head>
 <body class="bg-white min-h-screen font-diatype">
-
-
   <nav class="w-full max-w-2xl mx-auto flex flex-row items-center justify-start py-4 px-4 mb-2">
     <ul class="flex flex-row gap-1">
       <li><a href="/index.html" class="nav-link">About</a></li>
@@ -64,7 +129,7 @@
       <li><a href="/pages/writing.html" class="nav-link">Writing</a></li>
     </ul>
   </nav>
-  <main class="w-full max-w-2xl mx-auto px-4 pb-8" style="margin-top: 0; text-align: left;">
+  <main class="w-full max-w-2xl mx-auto px-4 pb-8 mobile-full-width" style="margin-top: 0; text-align: left;">
     <div class="flex items-center justify-between mb-4">
       <h1 class="text-2xl font-bold font-diatype">Projects</h1>
       <button id="clear-filter" class="text-xs px-2 py-1 border border-gray-300 rounded transition-all hover:opacity-80" style="display: none;">Clear</button>
@@ -211,34 +276,47 @@
         }
         
         function transformProjectsLayout() {
-          const projectLinks = document.querySelectorAll('.project-link');
-          projectLinks.forEach(link => {
-            const contentDiv = link.querySelector('div > div:not(.flex-1)');
-            if (contentDiv && !contentDiv.classList.contains('flex-1')) {
-              const titleDiv = contentDiv.querySelector('.project-title');
-              const descDiv = contentDiv.querySelector('.project-desc');
-              const yearDiv = contentDiv.querySelector('.project-year');
+          // Only transform on desktop
+          if (window.innerWidth > 768) {
+            const projectLinks = document.querySelectorAll('.project-link');
+            projectLinks.forEach(link => {
+              if (link.dataset.transformed) return;
               
-              if (titleDiv && descDiv && yearDiv) {
-                contentDiv.classList.add('flex-1');
+              const contentDiv = link.querySelector('div > div:not(.flex-1)');
+              if (contentDiv && !contentDiv.classList.contains('flex-1')) {
+                const titleDiv = contentDiv.querySelector('.project-title');
+                const descDiv = contentDiv.querySelector('.project-desc');
+                const yearDiv = contentDiv.querySelector('.project-year');
                 
-                const titleWrapper = document.createElement('div');
-                titleWrapper.className = 'flex items-center justify-between';
-                
-                // Move title and year into wrapper
-                contentDiv.insertBefore(titleWrapper, descDiv);
-                titleWrapper.appendChild(titleDiv);
-                titleWrapper.appendChild(yearDiv);
+                if (titleDiv && descDiv && yearDiv) {
+                  contentDiv.classList.add('flex-1');
+                  
+                  const titleWrapper = document.createElement('div');
+                  titleWrapper.className = 'flex items-center justify-between';
+                  
+                  contentDiv.insertBefore(titleWrapper, descDiv);
+                  titleWrapper.appendChild(titleDiv);
+                  titleWrapper.appendChild(yearDiv);
+                  
+                  link.dataset.transformed = 'true';
+                }
               }
-            }
-          });
+            });
+          }
         }
         
         showAllProjects();
         transformProjectsLayout();
         createMobileTags();
         
-        window.addEventListener('resize', createMobileTags);
+        window.addEventListener('resize', function() {
+          // Reset transformation flags on resize
+          document.querySelectorAll('.project-link').forEach(link => {
+            delete link.dataset.transformed;
+          });
+          createMobileTags();
+          transformProjectsLayout();
+        });
       });
     </script>
     <div class="flex flex-col gap-6">
@@ -247,7 +325,7 @@
         <div class="flex flex-col gap-3 project-year-section">
           <a href="" target="_blank" class="block project-link">
             <div class="flex flex-row gap-5 items-center justify-center">
-              <img src="/assets/prototypes/perceptor.gif" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
+              <img src="/assets/projects/prototypes/perceptor.gif" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
                 <div class="flex items-center justify-between">
                   <div class="font-semibold project-title">Perceptor</div>
@@ -277,7 +355,7 @@
           </a>
           <a href="https://www.instagram.com/p/DKvfqtFouqF/?utm_source=ig_web_copy_link" target="_blank" class="block project-link">
             <div class="flex flex-row gap-5 items-center justify-center">
-              <img src="/assets/prototypes/rerank_2.gif" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
+              <img src="/assets/projects/prototypes/rerank_2.gif" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
                 <div class="flex items-center justify-between">
                   <div class="font-semibold project-title">Rerank</div>
@@ -292,7 +370,7 @@
           </a>
           <a href="https://www.instagram.com/p/DKvfqtFouqF/?utm_source=ig_web_copy_link" target="_blank" class="block project-link">
             <div class="flex flex-row gap-5 items-center justify-center">
-              <img src="/assets/prototypes/scrutinize.gif" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
+              <img src="/assets/projects/prototypes/scrutinize.gif" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
                 <div class="flex items-center justify-between">
                   <div class="font-semibold project-title">Scrutinize</div>
@@ -307,7 +385,7 @@
           </a>
           <a href="https://www.instagram.com/p/DKvAULfvXVg/?utm_source=ig_web_copy_link" target="_blank" class="block project-link">
             <div class="flex flex-row gap-5 items-center justify-center">
-              <img src="/assets/prototypes/specter.gif" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
+              <img src="/assets/projects/prototypes/specter.gif" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
                 <div class="flex items-center justify-between">
                   <div class="font-semibold project-title">Specter</div>
@@ -322,7 +400,7 @@
           </a>
           <a href="" target="_blank" class="block project-link">
             <div class="flex flex-row gap-5 items-center justify-center">
-              <img src="/assets/industry/metrics_dashboard.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
+              <img src="/assets/projects/industry/metrics_dashboard.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
                 <div class="flex items-center justify-between">
                   <div class="font-semibold project-title">Metrics Dashboard</div>
@@ -337,7 +415,7 @@
           </a>
           <a href="https://www.instagram.com/p/DKGRo-yozpb/?utm_source=ig_web_copy_link" target="_blank" class="block project-link">
             <div class="flex flex-row gap-5 items-center justify-center">
-              <img src="/assets/prototypes/meta_measure.gif" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
+              <img src="/assets/projects/prototypes/meta_measure.gif" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
                 <div class="flex items-center justify-between">
                   <div class="font-semibold project-title">Meta Measure</div>
@@ -357,7 +435,7 @@
         <div class="flex flex-col gap-3 project-year-section">
           <a href="" target="_blank" class="block project-link">
             <div class="flex flex-row gap-5 items-center justify-center">
-              <img src="/assets/industry/ilm_portal.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
+              <img src="/assets/projects/industry/ilm_portal.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
                 <div class="flex items-center justify-between">
                   <div class="font-semibold project-title">ILM Portal</div>
@@ -372,7 +450,7 @@
           </a>
           <a href="" class="block project-link">
             <div class="flex flex-row gap-5 items-center justify-center">
-              <img src="/assets/research/help_supporters.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
+              <img src="/assets/projects/research/help_supporters.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
                 <div class="flex items-center justify-between">
                   <div class="font-semibold project-title">Help Supporters</div>
@@ -387,7 +465,7 @@
           </a>
           <a href="" target="_blank" class="block project-link">
             <div class="flex flex-row gap-5 items-center justify-center">
-              <img src="/assets/industry/file_upload_tool.gif" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
+              <img src="/assets/projects/industry/file_upload_tool.gif" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
                 <div class="flex items-center justify-between">
                   <div class="font-semibold project-title">File Upload Tool</div>
@@ -402,7 +480,7 @@
           </a>
           <a href="" target="_blank" class="block project-link">
             <div class="flex flex-row gap-5 items-center justify-center">
-              <img src="/assets/industry/penetration_tests.gif" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
+              <img src="/assets/projects/industry/penetration_tests.gif" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
                 <div class="flex items-center justify-between">
                   <div class="font-semibold project-title">Penetration Tests</div>
@@ -422,7 +500,7 @@
         <div class="flex flex-col gap-3 project-year-section">
           <a href="" class="block project-link">
             <div class="flex flex-row gap-5 items-center justify-center">
-              <img src="/assets/research/spacenav.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
+              <img src="/assets/projects/research/spacenav.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
                 <div class="flex items-center justify-between">
                   <div class="font-semibold project-title">Spatial Interactions</div>
@@ -435,21 +513,6 @@
               </div>
             </div>
           </a>
-          <a href="" class="block project-link">
-            <div class="flex flex-row gap-5 items-center justify-center">
-              <img src="/assets/research/instability_data_viz.gif" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
-              <div class="flex-1">
-                <div class="flex items-center justify-between">
-                  <div class="font-semibold project-title">Political Instability</div>
-                  <div class="flex flex-col items-center">
-                    <div class="project-year text-xs">May '23</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Research</span>
-                  </div>
-                </div>
-                <div class="project-desc">Building interactive charts, graphs, and maps to visualize leadership turnover data and regional risk assessment outputs from CoupCast</div>
-              </div>
-            </div>
-          </a>
         </div>
       </div>
       <div>
@@ -457,7 +520,7 @@
         <div class="flex flex-col gap-3 project-year-section">
           <a href="https://www.newamerica.org/digital-impact-governance-initiative/reports/digital-transformation-opportunities-and-challenges-in-the-lower-mekong-region/" target="_blank" class="block project-link">
             <div class="flex flex-row gap-5 items-center justify-center">
-              <img src="/assets/reports/digital_transformation.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
+              <img src="/assets/projects/reports/digital_transformation.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
                 <div class="flex items-center justify-between">
                   <div class="font-semibold project-title">Digital Transformation</div>
@@ -472,7 +535,7 @@
           </a>
           <a href="https://www.newamerica.org/digital-impact-governance-initiative/reports/reconceptualizing-public-procurement/" target="_blank" class="block project-link">
             <div class="flex flex-row gap-5 items-center justify-center">
-              <img src="/assets/reports/public_procurement.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
+              <img src="/assets/projects/reports/public_procurement.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
                 <div class="flex items-center justify-between">
                   <div class="font-semibold project-title">Public Procurement</div>
@@ -485,9 +548,24 @@
               </div>
             </div>
           </a>
+          <a href="" class="block project-link">
+            <div class="flex flex-row gap-5 items-center justify-center">
+              <img src="/assets/projects/research/instability_data_viz.gif" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
+              <div class="flex-1">
+                <div class="flex items-center justify-between">
+                  <div class="font-semibold project-title">Applied Machine Learning</div>
+                  <div class="flex flex-col items-center">
+                    <div class="project-year text-xs">July '22</div>
+                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Research</span>
+                  </div>
+                </div>
+                <div class="project-desc">Building interactive charts, graphs, and maps to visualize leadership turnover data and regional risk assessment outputs from CoupCast</div>
+              </div>
+            </div>
+          </a>
           <a href="" target="_blank" class="block project-link">
             <div class="flex flex-row gap-5 items-center justify-center">
-              <img src="/assets/research/textrank_and_lexrank.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
+              <img src="/assets/projects/research/textrank_and_lexrank.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
                 <div class="flex items-center justify-between">
                   <div class="font-semibold project-title">TextRank and LexRank</div>
@@ -496,22 +574,7 @@
                     <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Research</span>
                   </div>
                 </div>
-                <div class="project-desc">Identifying clusters of similarities with topological data analysis algorithms on ACS block group demographic data from Mecklenburg Counry</div>
-              </div>
-            </div>
-          </a>
-          <a href="https://link.springer.com/chapter/10.1007/978-3-030-95519-9_11" target="_blank" class="block project-link">
-            <div class="flex flex-row gap-5 items-center justify-center">
-              <img src="/assets/research/mappering_coi.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
-              <div class="flex-1">
-                <div class="flex items-center justify-between">
-                  <div class="font-semibold project-title">Mappering COI</div>
-                  <div class="flex flex-col items-center">
-                    <div class="project-year text-xs">Jan '22</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Research</span>
-                  </div>
-                </div>
-                <div class="project-desc">Identifying clusters of similarities with topological data analysis algorithms on ACS block group demographic data from Mecklenburg Counry</div>
+                <div class="project-desc">Asessing the perceived utility of text summarization models on the annotation process of textual data</div>
               </div>
             </div>
           </a>
@@ -522,10 +585,10 @@
         <div class="flex flex-col gap-3 project-year-section">
           <a href="" target="_blank" class="block project-link">
             <div class="flex flex-row gap-5 items-center justify-center">
-              <img src="/assets/research/igdd.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
+              <img src="/assets/projects/research/igdd.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
                 <div class="flex items-center justify-between">
-                  <div class="font-semibold project-title">Instagram Data Donation</div>
+                  <div class="font-semibold project-title">Adolescent Online Safety</div>
                   <div class="flex flex-col items-center">
                     <div class="project-year text-xs">Oct '21</div>
                     <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Research</span>
@@ -537,7 +600,7 @@
           </a>
           <a href="https://www.cfr.org/backgrounder/marriage-equality-global-comparisons" target="_blank" class="block project-link">
             <div class="flex flex-row gap-5 items-center justify-center">
-              <img src="/assets/articles/marriage_equality.gif" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
+              <img src="/assets/projects/articles/marriage_equality.gif" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
                 <div class="flex items-center justify-between">
                   <div class="font-semibold project-title">Marriage Equality</div>
@@ -552,7 +615,7 @@
           </a>
           <a href="https://www.cfr.org/backgrounder/how-us-patrols-its-borders" target="_blank" class="block project-link">
             <div class="flex flex-row gap-5 items-center justify-center">
-              <img src="/assets/articles/border_security.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
+              <img src="/assets/projects/articles/border_security.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
                 <div class="flex items-center justify-between">
                   <div class="font-semibold project-title">Border Security</div>
@@ -567,7 +630,7 @@
           </a>
           <a href="https://www.cfr.org/backgrounder/us-vice-president-and-foreign-policy" target="_blank" class="block project-link">
             <div class="flex flex-row gap-5 items-center justify-center">
-              <img src="/assets/articles/vp.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
+              <img src="/assets/projects/articles/vp.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
                 <div class="flex items-center justify-between">
                   <div class="font-semibold project-title">Foreign Policy</div>
@@ -582,7 +645,7 @@
           </a>
           <a href="https://www.cfr.org/in-brief/fukushima-disaster-didnt-scare-world-nuclear-power" target="_blank" class="block project-link">
             <div class="flex flex-row gap-5 items-center justify-center">
-              <img src="/assets/articles/nuclear_energy.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
+              <img src="/assets/projects/articles/nuclear_energy.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
                 <div class="flex items-center justify-between">
                   <div class="font-semibold project-title">Nuclear Energy</div>
