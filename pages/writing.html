@@ -73,43 +73,51 @@
         </ul>
     </nav>
     <main class="w-full max-w-2xl mx-auto px-4 pb-8" style="margin-top: 0; text-align: left;">
-        <h1 class="text-2xl font-bold mb-4 font-diatype">Writing</h1>
+        <div class="flex items-center justify-between mb-4">
+            <h1 class="text-2xl font-bold font-diatype">Writing</h1>
+            <button id="clear-filter" class="text-xs px-2 py-1 border border-gray-300 rounded transition-all hover:opacity-80" style="display: none;">Clear</button>
+        </div>
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                console.log('Writing page loaded');
                 let currentFilter = null;
+                const clearButton = document.getElementById('clear-filter');
 
-                const tags = document.querySelectorAll('.writing-tag');
-                console.log('Found tags:', tags.length);
+                const tags = document.querySelectorAll('.project-tag');
                 
-                tags.forEach((tag, index) => {
-                    console.log('Tag', index, ':', tag.textContent.trim());
+                tags.forEach(tag => {
                     tag.addEventListener('click', function(e) {
                         e.preventDefault();
                         e.stopPropagation();
                         
                         const tagText = this.textContent.trim();
-                        console.log('Clicked tag:', tagText);
                         
                         if (currentFilter === tagText) {
-                            console.log('Clearing filter');
                             currentFilter = null;
                             showAllWriting();
                             clearActiveStates();
+                            resetClearButtonColor();
+                            clearButton.style.display = 'none';
                         } else {
-                            console.log('Applying filter:', tagText);
                             currentFilter = tagText;
                             filterWriting(tagText);
                             setActiveState(this);
+                            updateClearButtonColor(this);
+                            clearButton.style.display = 'inline-block';
                         }
                     });
                 });
                 
+                clearButton.addEventListener('click', function() {
+                    currentFilter = null;
+                    showAllWriting();
+                    clearActiveStates();
+                    resetClearButtonColor();
+                    clearButton.style.display = 'none';
+                });
+                
                 function showAllWriting() {
-                    console.log('Showing all writing');
                     const allWriting = document.querySelectorAll('.writing-item');
-                    console.log('Found writing items:', allWriting.length);
                     allWriting.forEach(item => {
                         item.style.display = 'block';
                     });
@@ -121,33 +129,53 @@
                 }
                 
                 function filterWriting(filterTag) {
-                    console.log('Filtering by:', filterTag);
                     const allWriting = document.querySelectorAll('.writing-item');
                     
-                    allWriting.forEach((item, index) => {
-                        const writingTag = item.querySelector('.writing-tag');
-                        const tagText = writingTag ? writingTag.textContent.trim() : 'no tag';
-                        console.log('Item', index, 'has tag:', tagText);
-                        
+                    allWriting.forEach(item => {
+                        const writingTag = item.querySelector('.project-tag');
                         if (writingTag && writingTag.textContent.trim() === filterTag) {
-                            console.log('Showing item', index);
                             item.style.display = 'block';
                         } else {
-                            console.log('Hiding item', index);
                             item.style.display = 'none';
+                        }
+                    });
+                    
+                    const yearSections = document.querySelectorAll('.flex.flex-col.gap-6 > div');
+                    yearSections.forEach(section => {
+                        const visibleWriting = section.querySelectorAll('.writing-item[style*="block"]:not([style*="none"])');
+                        const hiddenWriting = section.querySelectorAll('.writing-item[style*="none"]');
+                        const totalWriting = section.querySelectorAll('.writing-item');
+                        
+                        if (totalWriting.length > 0 && hiddenWriting.length === totalWriting.length) {
+                            section.style.display = 'none';
+                        } else {
+                            section.style.display = 'block';
                         }
                     });
                 }
                 
                 function setActiveState(clickedTag) {
-                    const allTags = document.querySelectorAll('.writing-tag');
+                    const allTags = document.querySelectorAll('.project-tag');
                     allTags.forEach(tag => tag.classList.remove('active'));
                     clickedTag.classList.add('active');
                 }
                 
                 function clearActiveStates() {
-                    const allTags = document.querySelectorAll('.writing-tag');
+                    const allTags = document.querySelectorAll('.project-tag');
                     allTags.forEach(tag => tag.classList.remove('active'));
+                }
+                
+                function updateClearButtonColor(activeTag) {
+                    const color = activeTag.style.color;
+                    clearButton.style.color = color;
+                    clearButton.style.borderColor = color;
+                    clearButton.style.backgroundColor = 'transparent';
+                }
+                
+                function resetClearButtonColor() {
+                    clearButton.style.color = '';
+                    clearButton.style.borderColor = '';
+                    clearButton.style.backgroundColor = '';
                 }
                 
                 function transformWritingLayout() {
