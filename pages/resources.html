@@ -15,14 +15,19 @@
     </style>
 </head>
 <body class="bg-white min-h-screen font-diatype">
-    <nav class="w-full max-w-2xl mx-auto flex flex-row items-center justify-start py-4 px-4 mb-2">
-        <ul class="flex flex-row gap-1">
-            <li><a href="/index.html" class="nav-link">About</a></li>
-            <li><a href="/pages/cv.html" class="nav-link">CV</a></li>
-            <li><a href="/pages/projects.html" class="nav-link">Projects</a></li>
-            <li><a href="/pages/resources.html" class="nav-link nav-link-active">Resources</a></li>
-            <li><a href="/pages/writing.html" class="nav-link">Writing</a></li>
-        </ul>
+    <nav class="w-full max-w-2xl mx-auto flex flex-row items-center justify-end py-4 px-4 mb-2">
+        <button id="menu-toggle" class="hamburger-menu" aria-label="Toggle menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+        <div id="menu-dropdown" class="menu-dropdown hidden">
+            <a href="/index.html" class="menu-item">Home</a>
+            <a href="/pages/cv.html" class="menu-item">CV</a>
+            <a href="/pages/projects.html" class="menu-item">Projects</a>
+            <a href="/pages/resources.html" class="menu-item nav-link-active">Resources</a>
+            <a href="/pages/writing.html" class="menu-item">Writing</a>
+        </div>
     </nav>
 
     <main class="w-full max-w-2xl mx-auto px-4 pb-8" style="margin-top: 0; text-align: left;">
@@ -94,5 +99,24 @@
             </div>
         </div>
     </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hamburger menu functionality
+            const menuToggle = document.getElementById('menu-toggle');
+            const menuDropdown = document.getElementById('menu-dropdown');
+            
+            menuToggle.addEventListener('click', function() {
+                menuDropdown.classList.toggle('hidden');
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!menuToggle.contains(event.target) && !menuDropdown.contains(event.target)) {
+                    menuDropdown.classList.add('hidden');
+                }
+            });
+        });
+    </script>
 </body>
 </html>

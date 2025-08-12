@@ -129,10 +129,7 @@ body::-webkit-scrollbar {
 }
 
 body a {
-    text-decoration: underline !important;
-    text-decoration-thickness: 2px !important;
-    text-decoration-color: #d1d5db !important;
-    text-underline-offset: 3px !important;
+    text-decoration: none !important;
     color: inherit;
 }
 
@@ -173,7 +170,7 @@ body a {
 nav {
     font-family: 'ABC ROM', sans-serif;
     border-bottom: none !important;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0;
 }
 nav ul {
     list-style-type: none;
@@ -183,15 +180,86 @@ nav ul {
 nav a {
     color: #222;
     text-decoration: none;
-    margin-right: 1.25rem;
-    transition: text-decoration 0.2s;
+    font-size: 1rem;
+    font-weight: 400;
+    transition: color 0.2s;
 }
 nav a:hover {
-    text-decoration: underline;
+    color: #666;
+}
+
+/* Hamburger Menu Styles */
+.hamburger-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    gap: 2px;
+}
+
+.hamburger-line {
+    width: 16px;
+    height: 1.5px;
+    background-color: #222;
+    transition: all 0.3s ease;
+}
+
+.hamburger-menu:hover .hamburger-line {
+    background-color: #666;
+}
+
+.menu-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    min-width: 120px;
+    z-index: 1000;
+    margin-top: 8px;
+}
+
+.menu-dropdown.hidden {
+    display: none;
+}
+
+.menu-item {
+    display: block;
+    padding: 12px 16px;
+    color: #222;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 400;
+    border-bottom: 1px solid #f3f4f6;
+    transition: background-color 0.2s;
+}
+
+.menu-item:last-child {
+    border-bottom: none;
+}
+
+.menu-item:hover {
+    background-color: #f9fafb;
+    color: #222;
+}
+
+.menu-item.nav-link-active {
+    font-weight: 700;
+}
+
+nav {
+    position: relative;
 }
 
 main {
-    margin-top: 32px;
+    margin-top: 0;
     margin-left: 0;
     max-width: 700px;
     padding: 0 1.5rem;
