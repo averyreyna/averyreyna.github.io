@@ -10,24 +10,26 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="bg-white min-h-screen font-diatype">
-    <nav class="w-full max-w-2xl mx-auto flex flex-row items-center justify-end py-4 px-4 mb-0">
-        <button id="menu-toggle" class="hamburger-menu" aria-label="Toggle menu">
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-        </button>
-        <div id="menu-dropdown" class="menu-dropdown hidden">
-            <a href="#" class="menu-item nav-link-active">About</a>
-            <a href="/pages/cv.html" class="menu-item">CV</a>
-            <a href="/pages/projects.html" class="menu-item">Projects</a>
-            <a href="/pages/resources.html" class="menu-item">Resources</a>
-            <a href="/pages/writing.html" class="menu-item">Writing</a>
-        </div>
-    </nav>
-    <main class="w-full max-w-2xl mx-auto px-4 pb-8" style="margin-top: -2rem; text-align: left;">
+    <main class="w-full max-w-2xl mx-auto px-4 pb-8 pt-4" style="text-align: left;">
         <div class="mb-8 clearfix">
             <img src="/assets/files/me/avery_reyna.png" class="hidden md:block w-[150px] h-[180px] object-cover shadow-sm float-left mr-5 mb-2" alt="Avery Reyna" />
-            <h1 class="text-2xl font-bold mb-1 main-heading-semi-mono">Hello! I'm Avery Reyna.</h1>
+            <div class="flex flex-row items-center justify-between mb-1">
+                <h1 class="text-2xl font-bold main-heading-semi-mono">Hello! I'm Avery Reyna.</h1>
+                <nav class="relative">
+                    <button id="menu-toggle" class="hamburger-menu" aria-label="Toggle menu">
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                    </button>
+                    <div id="menu-dropdown" class="menu-dropdown hidden">
+                        <a href="#" class="menu-item nav-link-active">About</a>
+                        <a href="/pages/cv.html" class="menu-item">CV</a>
+                        <a href="/pages/projects.html" class="menu-item">Projects</a>
+                        <a href="/pages/resources.html" class="menu-item">Resources</a>
+                        <a href="/pages/writing.html" class="menu-item">Writing</a>
+                    </div>
+                </nav>
+            </div>
             <p class="text-base text-gray-800 leading-snug">
                 I'm a Software Engineer at <a href="https://capitalone.com" target="_blank" rel="noopener">Capital One</a>, 
                 building metric visualization tools for a platform that monitors data quality across the enterprise. 

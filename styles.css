@@ -129,7 +129,6 @@ body::-webkit-scrollbar {
 }
 
 body a {
-    text-decoration: none !important;
     color: inherit;
 }
 
@@ -157,13 +156,16 @@ body a {
   content: none !important;
 }
 
+/* Body text links with grey underlines */
+body a {
+    text-decoration: underline !important;
+    text-decoration-color: #9ca3af !important;
+    transition: text-decoration-color 0.2s ease;
+}
+
 @media (min-width: 768px) {
-    body a {
-        transition: text-decoration-color 0.2s ease;
-    }
-    
     body a:hover {
-        text-decoration-color: #9ca3af !important;
+        text-decoration-color: #6b7280 !important;
     }
 }
 
@@ -224,11 +226,12 @@ nav a:hover {
 
 .menu-dropdown {
     position: absolute;
-    top: calc(100% - 4px);
+    top: calc(100% - 1px);
     right: 0;
     background: white;
     border: 1px solid #e5e7eb;
-    border-radius: 8px;
+    border-radius: 0 0 8px 8px;
+    border-top: none;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     min-width: 100px;
     z-index: 1000;
@@ -244,7 +247,7 @@ nav a:hover {
     display: block;
     padding: 8px 16px;
     color: #222;
-    text-decoration: none;
+    text-decoration: none !important;
     font-size: 0.9rem;
     font-weight: 400;
     border-bottom: none;
