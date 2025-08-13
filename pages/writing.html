@@ -64,23 +64,27 @@
     </style>
 </head>
 <body class="bg-white min-h-screen font-diatype">
-    <nav class="w-full max-w-2xl mx-auto flex flex-row items-center justify-end py-4 px-4 mb-2">
-        <button id="menu-toggle" class="hamburger-menu" aria-label="Toggle menu">
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-        </button>
-        <div id="menu-dropdown" class="menu-dropdown hidden">
-            <a href="/index.html" class="menu-item">About</a>
-            <a href="/pages/cv.html" class="menu-item">CV</a>
-            <a href="/pages/projects.html" class="menu-item">Projects</a>
-            <a href="/pages/resources.html" class="menu-item">Resources</a>
-            <a href="/pages/writing.html" class="menu-item nav-link-active">Writing</a>
+    <main class="w-full max-w-2xl mx-auto px-4 pb-8 pt-4" style="text-align: left;">
+        <div class="flex flex-row items-center justify-between mb-4">
+            <h1 class="text-2xl font-bold main-heading-semi-mono" style="line-height: 1; word-break: break-word;">
+                Writing
+            </h1>
+            <nav class="relative">
+                <button id="menu-toggle" class="hamburger-menu" aria-label="Toggle menu">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+                <div id="menu-dropdown" class="menu-dropdown hidden">
+                    <a href="/index.html" class="menu-item">About</a>
+                    <a href="/pages/cv.html" class="menu-item">CV</a>
+                    <a href="/pages/projects.html" class="menu-item">Projects</a>
+                    <a href="/pages/resources.html" class="menu-item">Resources</a>
+                    <a href="/pages/writing.html" class="menu-item nav-link-active">Writing</a>
+                </div>
+            </nav>
         </div>
-    </nav>
-    <main class="w-full max-w-2xl mx-auto px-4 pb-8" style="margin-top: 0; text-align: left;">
-        <div class="flex items-center justify-between mb-4">
-            <h1 class="text-2xl font-bold font-diatype">Writing</h1>
+        <div class="flex items-center justify-end mb-4">
             <button id="clear-filter" class="text-xs px-2 py-1 border border-gray-300 rounded transition-all hover:opacity-80" style="display: none;">Clear</button>
         </div>
 

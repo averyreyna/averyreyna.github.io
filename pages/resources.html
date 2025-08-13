@@ -15,25 +15,26 @@
     </style>
 </head>
 <body class="bg-white min-h-screen font-diatype">
-    <nav class="w-full max-w-2xl mx-auto flex flex-row items-start justify-end pt-6 pb-2 px-4 mb-2">
-        <button id="menu-toggle" class="hamburger-menu" aria-label="Toggle menu">
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-        </button>
-        <div id="menu-dropdown" class="menu-dropdown hidden">
-            <a href="/index.html" class="menu-item">About</a>
-            <a href="/pages/cv.html" class="menu-item">CV</a>
-            <a href="/pages/projects.html" class="menu-item">Projects</a>
-            <a href="/pages/resources.html" class="menu-item nav-link-active">Resources</a>
-            <a href="/pages/writing.html" class="menu-item">Writing</a>
+    <main class="w-full max-w-2xl mx-auto px-4 pb-8 pt-4" style="text-align: left;">
+        <div class="flex flex-row items-center justify-between mb-4">
+            <h1 class="text-2xl font-bold main-heading-semi-mono" style="line-height: 1; word-break: break-word;">
+                Resources
+            </h1>
+            <nav class="relative">
+                <button id="menu-toggle" class="hamburger-menu" aria-label="Toggle menu">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+                <div id="menu-dropdown" class="menu-dropdown hidden">
+                    <a href="/index.html" class="menu-item">About</a>
+                    <a href="/pages/cv.html" class="menu-item">CV</a>
+                    <a href="/pages/projects.html" class="menu-item">Projects</a>
+                    <a href="/pages/resources.html" class="menu-item nav-link-active">Resources</a>
+                    <a href="/pages/writing.html" class="menu-item">Writing</a>
+                </div>
+            </nav>
         </div>
-    </nav>
-
-    <main class="w-full max-w-2xl mx-auto px-4 pb-8" style="margin-top: 0; text-align: left;">
-        <h1 class="text-2xl font-bold mb-4 main-heading-semi-mono" style="line-height: 1; word-break: break-word;">
-            Resources
-        </h1>
         <div class="research-heading">
             <span class="section-heading-semi-mono">Applications</span>
             <span class="research-heading-line"></span>
@@ -60,7 +61,7 @@
         </div>
         <div class="flex flex-col gap-4 mb-8">
             <div class="block">
-                <div class="font-semibold text-gray-900 mb-0.5 leading-tight">Research Experience for Undergraduates (REU)</div>
+                <div class="font-semibold text-gray-900 mb-0.5 leading-tight">REU</div>
                 <div class="text-xs text-gray-500 mb-2">2021</div>
                 <div class="flex flex-col gap-1 mt-0.5">
                     <a href="/assets/files/applications/reu/cv.pdf" class="resource-link flex items-center justify-between text-gray-500 text-xs hover:text-gray-700 transition-colors" target="_blank" rel="noopener">
