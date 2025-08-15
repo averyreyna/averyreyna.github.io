@@ -186,6 +186,11 @@ nav a {
     font-weight: 400;
     transition: color 0.2s;
 }
+
+/* Remove underline from name link in header */
+h1 a {
+    text-decoration: none !important;
+}
 nav a:hover {
     color: #666;
 }

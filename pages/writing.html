@@ -9,17 +9,15 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <style>
+        .project-tag {
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .project-tag:hover {
+            opacity: 0.8;
+        }
         .project-desc {
             margin-top: -0.5rem !important;
-        }
-        .project-image {
-            width: 160px;
-            height: 100px;
-            object-fit: cover;
-            filter: grayscale(1);
-            transition: filter 0.3s ease;
-            border-radius: 4px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
         @media (max-width: 768px) {
             .mobile-full-width {
@@ -28,40 +26,37 @@
                 text-align: left !important;
             }
             
-            /* Hide images on mobile */
             .project-image {
                 display: none !important;
             }
+            .project-tag {
+                display: none !important;
+            }
             
-            /* Project container */
             .project-link {
                 margin-bottom: 1.5rem !important;
                 padding: 0 !important;
             }
             
-            /* Use CSS Grid to completely control layout */
             .project-link .flex.flex-row {
                 display: grid !important;
                 grid-template-areas: 
                     "title"
                     "desc" 
                     "meta" !important;
-                gap: 0.4rem !important;
+                gap: 0.15rem !important;
                 justify-items: start !important;
                 text-align: left !important;
             }
             
-            /* Content container */
             .project-link .flex-1 {
                 display: contents !important;
             }
             
-            /* Title/Year wrapper */
             .project-link .flex.items-center.justify-between {
                 display: contents !important;
             }
             
-            /* Title - goes to title area */
             .project-title {
                 grid-area: title !important;
                 font-size: 1rem !important;
@@ -69,11 +64,10 @@
                 margin: 0 !important;
             }
             
-            /* Description - goes to desc area */
             .project-desc {
                 grid-area: desc !important;
                 font-size: 0.85rem !important;
-                line-height: 1.4 !important;
+                line-height: 1 !important;
                 margin: 0 !important;
                 width: calc(100vw - 2rem) !important;
                 max-width: none !important;
@@ -81,7 +75,6 @@
                 text-align: left !important;
             }
             
-            /* Date/tag - goes to meta area */
             .project-year {
                 grid-area: meta !important;
                 font-size: 0.75rem !important;
@@ -89,11 +82,31 @@
                 margin: 0 !important;
                 display: flex !important;
                 align-items: center !important;
-                gap: 0.5rem !important;
+                gap: 0.15rem !important;
+            }
+            
+            .mobile-tag {
+                font-size: 0.45rem !important;
+                padding: 0.05rem 0.2rem !important;
+                border-radius: 0.15rem !important;
+                font-weight: 500 !important;
+                border: 0.5px solid !important;
+                display: inline-flex !important;
+                align-items: center !important;
+                cursor: pointer !important;
+                transition: all 0.2s ease !important;
+            }
+            .mobile-tag:hover {
+                opacity: 0.8 !important;
             }
             
             .project-year-section {
                 gap: 0 !important;
+            }
+        }
+        @media (min-width: 769px) {
+            .mobile-tag {
+                display: none !important;
             }
         }
     </style>
@@ -102,7 +115,7 @@
     <main class="w-full max-w-2xl mx-auto px-4 pb-8 pt-4" style="text-align: left;">
         <div class="flex flex-row items-center justify-between mb-4">
             <h1 class="text-2xl font-bold main-heading-semi-mono" style="line-height: 1; word-break: break-word;">
-                Avery Reyna
+                <a href="/" class="text-inherit hover:text-inherit" style="text-decoration: none;">Avery Reyna</a>
             </h1>
             <nav class="relative">
                 <button id="menu-toggle" class="hamburger-menu" aria-label="Toggle menu">
@@ -112,7 +125,7 @@
                 </button>
                 <div id="menu-dropdown" class="menu-dropdown hidden">
                     <a href="/index.html" class="menu-item">About</a>
-                    <a href="/pages/cv.html" class="menu-item">CV</a>
+                    <a href="/pages/cv.html" class="menu-item">Curriculum Vitae</a>
                     <a href="/pages/projects.html" class="menu-item">Projects</a>
                     <a href="/pages/resources.html" class="menu-item">Resources</a>
                     <a href="/pages/writing.html" class="menu-item nav-link-active">Writing</a>
@@ -128,7 +141,212 @@
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                // Hamburger menu functionality
+                let currentFilter = null;
+                const clearButtons = document.querySelectorAll('.clear-filter-btn');
+                
+                const tags = document.querySelectorAll('.project-tag');
+                tags.forEach(tag => {
+                    tag.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        const tagText = this.textContent.trim();
+                        
+                        if (currentFilter === tagText) {
+                            currentFilter = null;
+                            showAllProjects();
+                            clearActiveStates();
+                            resetClearButtonColor();
+                            hideAllClearButtons();
+                        } else {
+                            currentFilter = tagText;
+                            filterProjects(tagText);
+                            setActiveState(this);
+                            updateClearButtonColor(this);
+                            showClearButtonInVisibleSections();
+                        }
+                    });
+                });
+                
+                clearButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        currentFilter = null;
+                        showAllProjects();
+                        clearActiveStates();
+                        resetClearButtonColor();
+                        hideAllClearButtons();
+                    });
+                });
+                
+                function showAllProjects() {
+                    const allProjects = document.querySelectorAll('.project-link');
+                    allProjects.forEach(project => {
+                        project.style.display = 'block';
+                    });
+                    
+                    const yearSections = document.querySelectorAll('.flex.flex-col.gap-6 > div');
+                    yearSections.forEach(section => {
+                        section.style.display = 'block';
+                    });
+                }
+                
+                function filterProjects(filterTag) {
+                    const allProjects = document.querySelectorAll('.project-link');
+                    
+                    allProjects.forEach(project => {
+                        const projectTag = project.querySelector('.project-tag');
+                        if (projectTag && projectTag.textContent.trim() === filterTag) {
+                            project.style.display = 'block';
+                        } else {
+                            project.style.display = 'none';
+                        }
+                    });
+                    
+                    const yearSections = document.querySelectorAll('.flex.flex-col.gap-6 > div');
+                    yearSections.forEach(section => {
+                        const visibleProjects = section.querySelectorAll('.project-link[style*="block"]:not([style*="none"])');
+                        const hiddenProjects = section.querySelectorAll('.project-link[style*="none"]');
+                        const totalProjects = section.querySelectorAll('.project-link');
+                        
+                        if (totalProjects.length > 0 && hiddenProjects.length === totalProjects.length) {
+                            section.style.display = 'none';
+                        } else {
+                            section.style.display = 'block';
+                        }
+                    });
+                }
+                
+                function setActiveState(clickedTag) {
+                    const allTags = document.querySelectorAll('.project-tag');
+                    allTags.forEach(tag => tag.classList.remove('active'));
+                    clickedTag.classList.add('active');
+                }
+                
+                function clearActiveStates() {
+                    const allTags = document.querySelectorAll('.project-tag');
+                    allTags.forEach(tag => tag.classList.remove('active'));
+                }
+                
+                function updateClearButtonColor(activeTag) {
+                    const color = activeTag.style.color;
+                    clearButtons.forEach(button => {
+                        button.style.color = color;
+                        button.style.borderColor = color;
+                        button.style.backgroundColor = 'transparent';
+                    });
+                }
+                
+                function resetClearButtonColor() {
+                    clearButtons.forEach(button => {
+                        button.style.color = '';
+                        button.style.borderColor = '';
+                        button.style.backgroundColor = '';
+                    });
+                }
+                
+                function hideAllClearButtons() {
+                    clearButtons.forEach(button => {
+                        button.style.display = 'none';
+                    });
+                }
+                
+                function showClearButtonInVisibleSections() {
+                    hideAllClearButtons();
+                    const yearSections = document.querySelectorAll('.flex.flex-col.gap-6 > div');
+                    
+                    for (let section of yearSections) {
+                        if (section.style.display !== 'none') {
+                            const clearButton = section.querySelector('.clear-filter-btn');
+                            if (clearButton) {
+                                clearButton.style.display = 'inline-block';
+                                break;
+                            }
+                        }
+                    }
+                }
+                
+                function createMobileTags() {
+                    document.querySelectorAll('.mobile-tag').forEach(tag => tag.remove());
+                    
+                    if (window.innerWidth <= 768) {
+                        const projectLinks = document.querySelectorAll('.project-link');
+                        projectLinks.forEach(link => {
+                            const originalTag = link.querySelector('.project-tag');
+                            const yearDiv = link.querySelector('.project-year');
+                            
+                            if (originalTag && yearDiv) {
+                                const mobileTag = originalTag.cloneNode(true);
+                                mobileTag.classList.remove('project-tag');
+                                mobileTag.classList.add('mobile-tag');
+                                mobileTag.style.color = originalTag.style.color;
+                                mobileTag.style.borderColor = originalTag.style.borderColor;
+                                yearDiv.appendChild(mobileTag);
+                                
+                                mobileTag.addEventListener('click', function(e) {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    const tagText = this.textContent.trim();
+                                    
+                                    if (currentFilter === tagText) {
+                                        currentFilter = null;
+                                        showAllProjects();
+                                        clearActiveStates();
+                                        resetClearButtonColor();
+                                        clearButton.style.display = 'none';
+                                    } else {
+                                        currentFilter = tagText;
+                                        filterProjects(tagText);
+                                        setActiveState(originalTag);
+                                        updateClearButtonColor(originalTag);
+                                        clearButton.style.display = 'inline-block';
+                                    }
+                                });
+                            }
+                        });
+                    }
+                }
+                
+                function transformProjectsLayout() {
+                    if (window.innerWidth > 768) {
+                        const projectLinks = document.querySelectorAll('.project-link');
+                        projectLinks.forEach(link => {
+                            if (link.dataset.transformed) return;
+                            
+                            const contentDiv = link.querySelector('div > div:not(.flex-1)');
+                            if (contentDiv && !contentDiv.classList.contains('flex-1')) {
+                                const titleDiv = contentDiv.querySelector('.project-title');
+                                const descDiv = contentDiv.querySelector('.project-desc');
+                                const yearDiv = contentDiv.querySelector('.project-year');
+                                
+                                if (titleDiv && descDiv && yearDiv) {
+                                    contentDiv.classList.add('flex-1');
+                                    
+                                    const titleWrapper = document.createElement('div');
+                                    titleWrapper.className = 'flex items-center justify-between';
+                                    
+                                    contentDiv.insertBefore(titleWrapper, descDiv);
+                                    titleWrapper.appendChild(titleDiv);
+                                    titleWrapper.appendChild(yearDiv);
+                                    
+                                    link.dataset.transformed = 'true';
+                                }
+                            }
+                        });
+                    }
+                }
+                
+                showAllProjects();
+                transformProjectsLayout();
+                createMobileTags();
+                
+                window.addEventListener('resize', function() {
+                    document.querySelectorAll('.project-link').forEach(link => {
+                        delete link.dataset.transformed;
+                    });
+                    createMobileTags();
+                    transformProjectsLayout();
+                });
+                
                 const menuToggle = document.getElementById('menu-toggle');
                 const menuDropdown = document.getElementById('menu-dropdown');
                 
@@ -136,7 +354,6 @@
                     menuDropdown.classList.toggle('hidden');
                 });
                 
-                // Close menu when clicking outside
                 document.addEventListener('click', function(event) {
                     if (!menuToggle.contains(event.target) && !menuDropdown.contains(event.target)) {
                         menuDropdown.classList.add('hidden');
@@ -147,29 +364,23 @@
         
         <div class="flex flex-col gap-6">
             <div>
-                <div class="font-diatype font-bold text-xl mb-6">2025</div>
-                <div class="flex flex-col gap-3 writing-year-section">
+                <div class="flex items-center justify-between mb-6">
+                    <div class="font-diatype font-bold text-xl project-year-heading">2025</div>
+                    <button class="clear-filter-btn border rounded transition-all hover:opacity-80" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; border-radius: 0.2rem; font-weight: 500; display: none;">Clear</button>
+                </div>
+                <div class="flex flex-col gap-3 project-year-section">
                     <a href="" class="block project-link">
                         <div class="flex flex-row gap-5 items-center justify-center">
                             <img src="/assets/projects/writing/closer_god.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
                             <div class="flex-1">
                                 <div class="flex items-center justify-between">
-                                    <div class="font-semibold project-title">The Closer I Looked, the More I Saw God</div>
-                                    <div class="project-year text-xs">Aug '25</div>
+                                    <div class="font-semibold project-title">The Closer I Looked, the More I Saw Jesus</div>
+                                    <div class="flex flex-col items-end">
+                                        <div class="project-year text-xs">Aug '25</div>
+                                        <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Sonic Rescue</span>
+                                    </div>
                                 </div>
-                                <div class="project-desc">Exploring the intersection of faith and perception through personal narrative and reflection</div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="" class="block project-link">
-                        <div class="flex flex-row gap-5 items-center justify-center">
-                            <img src="/assets/projects/writing/survivor.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
-                            <div class="flex-1">
-                                <div class="flex items-center justify-between">
-                                    <div class="font-semibold project-title">It's Survivor, Big Brother, then RuPaul's Drag Race</div>
-                                    <div class="project-year text-xs">Aug '25</div>
-                                </div>
-                                <div class="project-desc">Observations on reality television consumption patterns and cultural significance</div>
+                                <div class="project-desc">A deep dive in snoa's discography and using music as a medium to explore Christian faith</div>
                             </div>
                         </div>
                     </a>
@@ -179,9 +390,12 @@
                             <div class="flex-1">
                                 <div class="flex items-center justify-between">
                                     <div class="font-semibold project-title">Laughing with Gelli Haha</div>
-                                    <div class="project-year text-xs">Aug '25</div>
+                                    <div class="flex flex-col items-end">
+                                        <div class="project-year text-xs">Aug '25</div>
+                                        <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Sonic Rescue</span>
+                                    </div>
                                 </div>
-                                <div class="project-desc">A humorous exploration of connection and communication through shared laughter</div>
+                                <div class="project-desc">Exploring Gelli Haha;s debut record and why music can still be unexpected in the age of internet</div>
                             </div>
                         </div>
                     </a>
@@ -191,9 +405,12 @@
                             <div class="flex-1">
                                 <div class="flex items-center justify-between">
                                     <div class="font-semibold project-title">Even in the Dark, We Sing</div>
-                                    <div class="project-year text-xs">Aug '25</div>
+                                    <div class="flex flex-col items-end">
+                                        <div class="project-year text-xs">Aug '25</div>
+                                        <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Field Notes</span>
+                                    </div>
                                 </div>
-                                <div class="project-desc">Reflections on resilience and hope in challenging circumstances</div>
+                                <div class="project-desc">Some ramblings on childhood negativity, current events, and positive outlooks</div>
                             </div>
                         </div>
                     </a>

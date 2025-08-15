@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avery Reyna | CV</title>
+    <title>Avery Reyna | Curriculum Vitae</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="stylesheet" href="/styles.css">
@@ -15,7 +15,7 @@
     <main class="w-full max-w-2xl mx-auto px-4 pb-8 pt-4" style="text-align: left;">
         <div class="flex flex-row items-center justify-between mb-4">
             <h1 class="text-2xl font-bold main-heading-semi-mono" style="line-height: 1; word-break: break-word;">
-                Avery Reyna
+                <a href="/" class="text-inherit hover:text-inherit" style="text-decoration: none;">Avery Reyna</a>
             </h1>
             <nav class="relative">
                 <button id="menu-toggle" class="hamburger-menu" aria-label="Toggle menu">
@@ -25,7 +25,7 @@
                 </button>
                 <div id="menu-dropdown" class="menu-dropdown hidden">
                     <a href="/index.html" class="menu-item">About</a>
-                    <a href="/pages/cv.html" class="menu-item nav-link-active">CV</a>
+                    <a href="/pages/cv.html" class="menu-item nav-link-active">Curriculum Vitae</a>
                     <a href="/pages/projects.html" class="menu-item">Projects</a>
                     <a href="/pages/resources.html" class="menu-item">Resources</a>
                     <a href="/pages/writing.html" class="menu-item">Writing</a>
@@ -33,9 +33,9 @@
             </nav>
         </div>
         <div class="professional-summary flex flex-col">
-            <div class="text-base text-gray-600 font-medium">Engineer and Researcher</div>
+            <div class="text-base text-gray-600 font-medium">Curriculum Vitae</div>
             <div class="text-xs text-gray-500" style="line-height: 1; word-break: break-word;">
-                I want to build tools that revolutionize the way people create software.
+                My professional journey
             </div>
         </div>
 
@@ -390,11 +390,11 @@
         </div>
         <div class="space-y-1 mb-6">
             <div class="py-1 flex flex-col gap-0.25">
-                <span class="font-semibold text-gray-900 mb-0.5 leading-tight" style="margin-bottom:0.1rem;">Leah Glass</span>
-                <span class="text-xs text-gray-500">Staff UX Researcher</span>
-                <span class="text-xs text-gray-700">ServiceNow</span>
+                <span class="font-semibold text-gray-900 mb-0.5 leading-tight" style="margin-bottom:0.1rem;">Jim Thatcher</span>
+                <span class="text-xs text-gray-500">Assistant Professor</span>
+                <span class="text-xs text-gray-700">Oregon State University</span>
                 <span class="flex flex-row flex-wrap gap-2 mt-0.5">
-                    <a href="mailto:leah.e.glass@gmail.com" class="publication-link text-gray-500 text-xs">Email</a>
+                    <a href="mailto:jim.thatcher@oregonstate.edu" class="publication-link text-gray-500 text-xs">Email</a>
                 </span>
             </div>
             <div class="py-1 flex flex-col gap-0.25">
@@ -406,11 +406,11 @@
                 </span>
             </div>
             <div class="py-1 flex flex-col gap-0.25">
-                <span class="font-semibold text-gray-900 mb-0.5 leading-tight" style="margin-bottom:0.1rem;">Jim Thatcher</span>
-                <span class="text-xs text-gray-500">Assistant Professor</span>
-                <span class="text-xs text-gray-700">Oregon State University</span>
+                <span class="font-semibold text-gray-900 mb-0.5 leading-tight" style="margin-bottom:0.1rem;">Leah Glass</span>
+                <span class="text-xs text-gray-500">Staff UX Researcher</span>
+                <span class="text-xs text-gray-700">ServiceNow</span>
                 <span class="flex flex-row flex-wrap gap-2 mt-0.5">
-                    <a href="mailto:jim.thatcher@oregonstate.edu" class="publication-link text-gray-500 text-xs">Email</a>
+                    <a href="mailto:leah.e.glass@gmail.com" class="publication-link text-gray-500 text-xs">Email</a>
                 </span>
             </div>
         </div>
@@ -434,10 +434,8 @@
             </div>
         </div>
     </footer>
-    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Hamburger menu functionality
             const menuToggle = document.getElementById('menu-toggle');
             const menuDropdown = document.getElementById('menu-dropdown');
             
@@ -445,7 +443,6 @@
                 menuDropdown.classList.toggle('hidden');
             });
             
-            // Close menu when clicking outside
             document.addEventListener('click', function(event) {
                 if (!menuToggle.contains(event.target) && !menuDropdown.contains(event.target)) {
                     menuDropdown.classList.add('hidden');
