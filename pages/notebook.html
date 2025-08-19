@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avery Reyna | Notebook</title>
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <style>
+    .notebook-tag {
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .notebook-tag:hover {
+      opacity: 0.8;
+    }
+    .notebook-desc {
+      margin-top: -0.5rem !important;
+    }
+    @media (max-width: 768px) {
+      .mobile-full-width {
+        max-width: 100vw !important;
+        padding: 0 1rem !important;
+        text-align: left !important;
+      }
+      
+      .notebook-image {
+        display: none !important;
+      }
+      .notebook-tag {
+        display: none !important;
+      }
+      
+      .notebook-link {
+        margin-bottom: 1.5rem !important;
+        padding: 0 !important;
+      }
+      
+      .notebook-link .flex.flex-row {
+        display: grid !important;
+        grid-template-areas: 
+          "title"
+          "desc" 
+          "meta" !important;
+        gap: 0.15rem !important;
+        justify-items: start !important;
+        text-align: left !important;
+      }
+      
+      .notebook-link .flex-1 {
+        display: contents !important;
+      }
+      
+      .notebook-link .flex.items-center.justify-between {
+        display: contents !important;
+      }
+      
+      .notebook-title {
+        grid-area: title !important;
+        font-size: 1rem !important;
+        font-weight: 600 !important;
+        margin: 0 !important;
+      }
+      
+      .notebook-desc {
+        grid-area: desc !important;
+        font-size: 0.85rem !important;
+        line-height: 1 !important;
+        margin: 0 !important;
+        width: calc(100vw - 2rem) !important;
+        max-width: none !important;
+        word-wrap: break-word !important;
+        text-align: left !important;
+      }
+      
+      .notebook-year {
+        grid-area: meta !important;
+        font-size: 0.75rem !important;
+        color: #888 !important;
+        margin: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 0.15rem !important;
+      }
+      
+      .mobile-tag {
+        font-size: 0.45rem !important;
+        padding: 0.05rem 0.2rem !important;
+        border-radius: 0.15rem !important;
+        font-weight: 500 !important;
+        border: 0.5px solid !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        cursor: pointer !important;
+        transition: all 0.2s ease !important;
+      }
+      .mobile-tag:hover {
+        opacity: 0.8 !important;
+      }
+      
+      .notebook-year-section {
+        gap: 0 !important;
+      }
+    }
+    @media (min-width: 769px) {
+      .mobile-tag {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-white min-h-screen font-diatype">
+  <main class="w-full max-w-2xl mx-auto px-4 pb-8 pt-4" style="text-align: left;">
+    <div class="flex flex-row items-center justify-between mb-4">
+            <h1 class="text-2xl font-bold main-heading-semi-mono" style="line-height: 1; word-break: break-word;">
+                <a href="/" class="text-inherit hover:text-inherit" style="text-decoration: none;">Avery Reyna</a>
+            </h1>
+      <nav class="relative">
+        <button id="menu-toggle" class="hamburger-menu" aria-label="Toggle menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+        <div id="menu-dropdown" class="menu-dropdown hidden">
+          <a href="/index.html" class="menu-item">About</a>
+          <a href="/pages/cv.html" class="menu-item">CV</a>
+          <a href="/pages/notebook.html" class="menu-item nav-link-active">Notebook</a>
+          <a href="/pages/projects.html" class="menu-item">Projects</a>
+          <a href="/pages/resources.html" class="menu-item">Resources</a>
+          <a href="/pages/writing.html" class="menu-item">Writing</a>
+        </div>
+      </nav>
+    </div>
+    <div class="professional-summary flex flex-col mb-6">
+        <div class="text-base text-gray-600 font-medium">Notebook</div>
+        <div class="text-xs text-gray-500" style="line-height: 1; word-break: break-word;">
+            Personal exploration of ideas, documenting findings, and sharing interests
+        </div>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        let currentFilter = null;
+        const clearButtons = document.querySelectorAll('.clear-filter-btn');
+        
+        const tags = document.querySelectorAll('.notebook-tag');
+        tags.forEach(tag => {
+          tag.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const tagText = this.textContent.trim();
+            
+            if (currentFilter === tagText) {
+              currentFilter = null;
+              showAllNotebooks();
+              clearActiveStates();
+              resetClearButtonColor();
+              hideAllClearButtons();
+            } else {
+              currentFilter = tagText;
+              filterNotebooks(tagText);
+              setActiveState(this);
+              updateClearButtonColor(this);
+              showClearButtonInVisibleSections();
+            }
+          });
+        });
+        
+        clearButtons.forEach(button => {
+          button.addEventListener('click', function() {
+            currentFilter = null;
+            showAllNotebooks();
+            clearActiveStates();
+            resetClearButtonColor();
+            hideAllClearButtons();
+          });
+        });
+        
+        function showAllNotebooks() {
+          const allNotebooks = document.querySelectorAll('.notebook-link');
+          allNotebooks.forEach(notebook => {
+            notebook.style.display = 'block';
+          });
+          
+          const yearSections = document.querySelectorAll('.flex.flex-col.gap-6 > div');
+          yearSections.forEach(section => {
+            section.style.display = 'block';
+          });
+        }
+        
+        function filterNotebooks(filterTag) {
+          const allNotebooks = document.querySelectorAll('.notebook-link');
+          
+          allNotebooks.forEach(notebook => {
+            const notebookTag = notebook.querySelector('.notebook-tag');
+            if (notebookTag && notebookTag.textContent.trim() === filterTag) {
+              notebook.style.display = 'block';
+            } else {
+              notebook.style.display = 'none';
+            }
+          });
+          
+          const yearSections = document.querySelectorAll('.flex.flex-col.gap-6 > div');
+          yearSections.forEach(section => {
+            const visibleNotebooks = section.querySelectorAll('.notebook-link[style*="block"]:not([style*="none"])');
+            const hiddenNotebooks = section.querySelectorAll('.notebook-link[style*="none"]');
+            const totalNotebooks = section.querySelectorAll('.notebook-link');
+            
+            if (totalNotebooks.length > 0 && hiddenNotebooks.length === totalNotebooks.length) {
+              section.style.display = 'none';
+            } else {
+              section.style.display = 'block';
+            }
+          });
+        }
+        
+        function setActiveState(clickedTag) {
+          const allTags = document.querySelectorAll('.notebook-tag');
+          allTags.forEach(tag => tag.classList.remove('active'));
+          clickedTag.classList.add('active');
+        }
+        
+        function clearActiveStates() {
+          const allTags = document.querySelectorAll('.notebook-tag');
+          allTags.forEach(tag => tag.classList.remove('active'));
+        }
+        
+        function updateClearButtonColor(activeTag) {
+          const color = activeTag.style.color;
+          clearButtons.forEach(button => {
+            button.style.color = color;
+            button.style.borderColor = color;
+            button.style.backgroundColor = 'transparent';
+          });
+        }
+        
+        function resetClearButtonColor() {
+          clearButtons.forEach(button => {
+            button.style.color = '';
+            button.style.borderColor = '';
+            button.style.backgroundColor = '';
+          });
+        }
+        
+        function hideAllClearButtons() {
+          clearButtons.forEach(button => {
+            button.style.display = 'none';
+          });
+        }
+        
+        function showClearButtonInVisibleSections() {
+          hideAllClearButtons();
+          const yearSections = document.querySelectorAll('.flex.flex-col.gap-6 > div');
+          
+          for (let section of yearSections) {
+            if (section.style.display !== 'none') {
+              const clearButton = section.querySelector('.clear-filter-btn');
+              if (clearButton) {
+                clearButton.style.display = 'inline-block';
+                break;
+              }
+            }
+          }
+        }
+        
+        function createMobileTags() {
+          document.querySelectorAll('.mobile-tag').forEach(tag => tag.remove());
+          
+          if (window.innerWidth <= 768) {
+            const notebookLinks = document.querySelectorAll('.notebook-link');
+            notebookLinks.forEach(link => {
+              const originalTag = link.querySelector('.notebook-tag');
+              const yearDiv = link.querySelector('.notebook-year');
+              
+              if (originalTag && yearDiv) {
+                const mobileTag = originalTag.cloneNode(true);
+                mobileTag.classList.remove('notebook-tag');
+                mobileTag.classList.add('mobile-tag');
+                mobileTag.style.color = originalTag.style.color;
+                mobileTag.style.borderColor = originalTag.style.borderColor;
+                yearDiv.appendChild(mobileTag);
+                
+                mobileTag.addEventListener('click', function(e) {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  const tagText = this.textContent.trim();
+                  
+                  if (currentFilter === tagText) {
+                    currentFilter = null;
+                    showAllNotebooks();
+                    clearActiveStates();
+                    resetClearButtonColor();
+                    clearButton.style.display = 'none';
+                  } else {
+                    currentFilter = tagText;
+                    filterNotebooks(tagText);
+                    setActiveState(originalTag);
+                    updateClearButtonColor(originalTag);
+                    clearButton.style.display = 'inline-block';
+                  }
+                });
+              }
+            });
+          }
+        }
+        
+        function transformNotebooksLayout() {
+          if (window.innerWidth > 768) {
+            const notebookLinks = document.querySelectorAll('.notebook-link');
+            notebookLinks.forEach(link => {
+              if (link.dataset.transformed) return;
+              
+              const contentDiv = link.querySelector('div > div:not(.flex-1)');
+              if (contentDiv && !contentDiv.classList.contains('flex-1')) {
+                const titleDiv = contentDiv.querySelector('.notebook-title');
+                const descDiv = contentDiv.querySelector('.notebook-desc');
+                const yearDiv = contentDiv.querySelector('.notebook-year');
+                
+                if (titleDiv && descDiv && yearDiv) {
+                  contentDiv.classList.add('flex-1');
+                  
+                  const titleWrapper = document.createElement('div');
+                  titleWrapper.className = 'flex items-center justify-between';
+                  
+                  contentDiv.insertBefore(titleWrapper, descDiv);
+                  titleWrapper.appendChild(titleDiv);
+                  titleWrapper.appendChild(yearDiv);
+                  
+                  link.dataset.transformed = 'true';
+                }
+              }
+            });
+          }
+        }
+        
+        showAllNotebooks();
+        transformNotebooksLayout();
+        createMobileTags();
+        
+        window.addEventListener('resize', function() {
+          document.querySelectorAll('.notebook-link').forEach(link => {
+            delete link.dataset.transformed;
+          });
+          createMobileTags();
+          transformNotebooksLayout();
+        });
+        
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuDropdown = document.getElementById('menu-dropdown');
+        
+        menuToggle.addEventListener('click', function() {
+          menuDropdown.classList.toggle('hidden');
+        });
+        
+        document.addEventListener('click', function(event) {
+          if (!menuToggle.contains(event.target) && !menuDropdown.contains(event.target)) {
+            menuDropdown.classList.add('hidden');
+          }
+        });
+      });
+    </script>
+    <div class="flex flex-col gap-6">
+      <div>
+        <div class="flex items-center justify-between mb-6">
+          <div class="font-diatype font-bold text-xl notebook-year-heading">2025</div>
+          <button class="clear-filter-btn border rounded transition-all hover:opacity-80" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; border-radius: 0.2rem; font-weight: 500; display: none;">Clear</button>
+        </div>
+        <div class="flex flex-col gap-3 notebook-year-section">
+          <a href="#" class="block notebook-link">
+            <div class="flex flex-row gap-5 items-center justify-center">
+              <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjUwIiB5PSI1NSIgZmlsbD0iIzlDQTNBRiIgZm9udC1zaXplPSIxMiIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5JbWFnZTwvdGV4dD4KPC9zdmc+" class="notebook-image w-20 h-20 object-cover rounded filter grayscale" style="filter: grayscale(1); width: 5rem; height: 5rem;" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
+              <div class="flex-1">
+                <div class="flex items-center justify-between">
+                  <div class="font-semibold notebook-title">Reflections on Building Better AI Interactions</div>
+                  <div class="flex flex-col items-center">
+                    <div class="notebook-year text-xs">Sep '25</div>
+                    <span class="notebook-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Research</span>
+                  </div>
+                </div>
+                <div class="notebook-desc">This is a placeholder for your first research notebook entry. Replace this with your actual research findings and insights.</div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <div class="footer-content">
+        <div class="flex flex-row items-center justify-between">
+            <div class="text-gray-500 font-diatype md:block hidden" style="font-size: 0.75rem; margin-left: 0;">
+                <span>© 2025 Avery Reyna — source code available <a href="https://github.com/averyreyna/averyreyna.github.io" target="_blank" rel="noopener" class="text-gray-600 hover:text-gray-800 underline">here</a></span>
+            </div>
+            <div class="flex flex-wrap gap-3 text-sm text-gray-700 md:order-last order-first">
+                <a href="/cv.pdf" class="md:hover:text-gray-800 transition-colors" target="_blank" rel="noopener"><i class="fa-regular fa-file-pdf"></i></a>
+                <a href="mailto:avery@reyna.com" class="md:hover:text-gray-800 transition-colors"><i class="fa-regular fa-envelope"></i></a>
+                <a href="https://github.com/averyreyna" class="md:hover:text-gray-800 transition-colors" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
+                <a href="https://instagram.com/averyreyna" class="md:hover:text-gray-800 transition-colors" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://linkedin.com/in/averyreyna" class="md:hover:text-gray-800 transition-colors" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+            <div class="text-gray-500 font-diatype md:hidden block" style="font-size: 0.75rem; margin-left: 0;">
+                <span>© 2025 Avery Reyna — source code available <a href="https://github.com/averyreyna/averyreyna.github.io" target="_blank" rel="noopener" class="text-gray-600 hover:text-gray-800 underline">here</a></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
