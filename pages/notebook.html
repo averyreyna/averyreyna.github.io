@@ -9,14 +9,14 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
   <style>
-    .notebook-tag {
+    .project-tag {
       cursor: pointer;
       transition: all 0.2s ease;
     }
-    .notebook-tag:hover {
+    .project-tag:hover {
       opacity: 0.8;
     }
-    .notebook-desc {
+    .project-desc {
       margin-top: -0.5rem !important;
     }
     @media (max-width: 768px) {
@@ -26,19 +26,19 @@
         text-align: left !important;
       }
       
-      .notebook-image {
+      .project-image {
         display: none !important;
       }
-      .notebook-tag {
+      .project-tag {
         display: none !important;
       }
       
-      .notebook-link {
+      .project-link {
         margin-bottom: 1.5rem !important;
         padding: 0 !important;
       }
       
-      .notebook-link .flex.flex-row {
+      .project-link .flex.flex-row {
         display: grid !important;
         grid-template-areas: 
           "title"
@@ -49,22 +49,22 @@
         text-align: left !important;
       }
       
-      .notebook-link .flex-1 {
+      .project-link .flex-1 {
         display: contents !important;
       }
       
-      .notebook-link .flex.items-center.justify-between {
+      .project-link .flex.items-center.justify-between {
         display: contents !important;
       }
       
-      .notebook-title {
+      .project-title {
         grid-area: title !important;
         font-size: 1rem !important;
         font-weight: 600 !important;
         margin: 0 !important;
       }
       
-      .notebook-desc {
+      .project-desc {
         grid-area: desc !important;
         font-size: 0.85rem !important;
         line-height: 1 !important;
@@ -75,7 +75,7 @@
         text-align: left !important;
       }
       
-      .notebook-year {
+      .project-year {
         grid-area: meta !important;
         font-size: 0.75rem !important;
         color: #888 !important;
@@ -100,7 +100,7 @@
         opacity: 0.8 !important;
       }
       
-      .notebook-year-section {
+      .project-year-section {
         gap: 0 !important;
       }
     }
@@ -145,7 +145,7 @@
         let currentFilter = null;
         const clearButtons = document.querySelectorAll('.clear-filter-btn');
         
-        const tags = document.querySelectorAll('.notebook-tag');
+        const tags = document.querySelectorAll('.project-tag');
         tags.forEach(tag => {
           tag.addEventListener('click', function(e) {
             e.preventDefault();
@@ -155,13 +155,13 @@
             
             if (currentFilter === tagText) {
               currentFilter = null;
-              showAllNotebooks();
+              showAllProjects();
               clearActiveStates();
               resetClearButtonColor();
               hideAllClearButtons();
             } else {
               currentFilter = tagText;
-              filterNotebooks(tagText);
+              filterProjects(tagText);
               setActiveState(this);
               updateClearButtonColor(this);
               showClearButtonInVisibleSections();
@@ -172,17 +172,17 @@
         clearButtons.forEach(button => {
           button.addEventListener('click', function() {
             currentFilter = null;
-            showAllNotebooks();
+            showAllProjects();
             clearActiveStates();
             resetClearButtonColor();
             hideAllClearButtons();
           });
         });
         
-        function showAllNotebooks() {
-          const allNotebooks = document.querySelectorAll('.notebook-link');
-          allNotebooks.forEach(notebook => {
-            notebook.style.display = 'block';
+        function showAllProjects() {
+          const allProjects = document.querySelectorAll('.project-link');
+          allProjects.forEach(project => {
+            project.style.display = 'block';
           });
           
           const yearSections = document.querySelectorAll('.flex.flex-col.gap-6 > div');
@@ -191,25 +191,25 @@
           });
         }
         
-        function filterNotebooks(filterTag) {
-          const allNotebooks = document.querySelectorAll('.notebook-link');
+        function filterProjects(filterTag) {
+          const allProjects = document.querySelectorAll('.project-link');
           
-          allNotebooks.forEach(notebook => {
-            const notebookTag = notebook.querySelector('.notebook-tag');
-            if (notebookTag && notebookTag.textContent.trim() === filterTag) {
-              notebook.style.display = 'block';
+          allProjects.forEach(project => {
+            const projectTag = project.querySelector('.project-tag');
+            if (projectTag && projectTag.textContent.trim() === filterTag) {
+              project.style.display = 'block';
             } else {
-              notebook.style.display = 'none';
+              project.style.display = 'none';
             }
           });
           
           const yearSections = document.querySelectorAll('.flex.flex-col.gap-6 > div');
           yearSections.forEach(section => {
-            const visibleNotebooks = section.querySelectorAll('.notebook-link[style*="block"]:not([style*="none"])');
-            const hiddenNotebooks = section.querySelectorAll('.notebook-link[style*="none"]');
-            const totalNotebooks = section.querySelectorAll('.notebook-link');
+            const visibleProjects = section.querySelectorAll('.project-link[style*="block"]:not([style*="none"])');
+            const hiddenProjects = section.querySelectorAll('.project-link[style*="none"])');
+            const totalProjects = section.querySelectorAll('.project-link');
             
-            if (totalNotebooks.length > 0 && hiddenNotebooks.length === totalNotebooks.length) {
+            if (totalProjects.length > 0 && hiddenProjects.length === totalProjects.length) {
               section.style.display = 'none';
             } else {
               section.style.display = 'block';
@@ -218,13 +218,13 @@
         }
         
         function setActiveState(clickedTag) {
-          const allTags = document.querySelectorAll('.notebook-tag');
+          const allTags = document.querySelectorAll('.project-tag');
           allTags.forEach(tag => tag.classList.remove('active'));
           clickedTag.classList.add('active');
         }
         
         function clearActiveStates() {
-          const allTags = document.querySelectorAll('.notebook-tag');
+          const allTags = document.querySelectorAll('.project-tag');
           allTags.forEach(tag => tag.classList.remove('active'));
         }
         
@@ -270,14 +270,14 @@
           document.querySelectorAll('.mobile-tag').forEach(tag => tag.remove());
           
           if (window.innerWidth <= 768) {
-            const notebookLinks = document.querySelectorAll('.notebook-link');
-            notebookLinks.forEach(link => {
-              const originalTag = link.querySelector('.notebook-tag');
-              const yearDiv = link.querySelector('.notebook-year');
+            const projectLinks = document.querySelectorAll('.project-link');
+            projectLinks.forEach(link => {
+              const originalTag = link.querySelector('.project-tag');
+              const yearDiv = link.querySelector('.project-year');
               
               if (originalTag && yearDiv) {
                 const mobileTag = originalTag.cloneNode(true);
-                mobileTag.classList.remove('notebook-tag');
+                mobileTag.classList.remove('project-tag');
                 mobileTag.classList.add('mobile-tag');
                 mobileTag.style.color = originalTag.style.color;
                 mobileTag.style.borderColor = originalTag.style.borderColor;
@@ -290,13 +290,13 @@
                   
                   if (currentFilter === tagText) {
                     currentFilter = null;
-                    showAllNotebooks();
+                    showAllProjects();
                     clearActiveStates();
                     resetClearButtonColor();
                     clearButton.style.display = 'none';
                   } else {
                     currentFilter = tagText;
-                    filterNotebooks(tagText);
+                    filterProjects(tagText);
                     setActiveState(originalTag);
                     updateClearButtonColor(originalTag);
                     clearButton.style.display = 'inline-block';
@@ -307,17 +307,17 @@
           }
         }
         
-        function transformNotebooksLayout() {
+        function transformProjectsLayout() {
           if (window.innerWidth > 768) {
-            const notebookLinks = document.querySelectorAll('.notebook-link');
-            notebookLinks.forEach(link => {
+            const projectLinks = document.querySelectorAll('.project-link');
+            projectLinks.forEach(link => {
               if (link.dataset.transformed) return;
               
               const contentDiv = link.querySelector('div > div:not(.flex-1)');
               if (contentDiv && !contentDiv.classList.contains('flex-1')) {
-                const titleDiv = contentDiv.querySelector('.notebook-title');
-                const descDiv = contentDiv.querySelector('.notebook-desc');
-                const yearDiv = contentDiv.querySelector('.notebook-year');
+                const titleDiv = contentDiv.querySelector('.project-title');
+                const descDiv = contentDiv.querySelector('.project-desc');
+                const yearDiv = contentDiv.querySelector('.project-year');
                 
                 if (titleDiv && descDiv && yearDiv) {
                   contentDiv.classList.add('flex-1');
@@ -336,16 +336,16 @@
           }
         }
         
-        showAllNotebooks();
-        transformNotebooksLayout();
+        showAllProjects();
+        transformProjectsLayout();
         createMobileTags();
         
         window.addEventListener('resize', function() {
-          document.querySelectorAll('.notebook-link').forEach(link => {
+          document.querySelectorAll('.project-link').forEach(link => {
             delete link.dataset.transformed;
           });
           createMobileTags();
-          transformNotebooksLayout();
+          transformProjectsLayout();
         });
         
         const menuToggle = document.getElementById('menu-toggle');
@@ -365,22 +365,22 @@
     <div class="flex flex-col gap-6">
       <div>
         <div class="flex items-center justify-between mb-6">
-          <div class="font-diatype font-bold text-xl notebook-year-heading">2025</div>
+          <div class="font-diatype font-bold text-xl project-year-heading">2025</div>
           <button class="clear-filter-btn border rounded transition-all hover:opacity-80" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; border-radius: 0.2rem; font-weight: 500; display: none;">Clear</button>
         </div>
-        <div class="flex flex-col gap-3 notebook-year-section">
-          <a href="#" class="block notebook-link">
+        <div class="flex flex-col gap-3 project-year-section">
+          <a href="#" class="block project-link">
             <div class="flex flex-row gap-5 items-center justify-center">
-              <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjUwIiB5PSI1NSIgZmlsbD0iIzlDQTNBRiIgZm9udC1zaXplPSIxMiIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5JbWFnZTwvdGV4dD4KPC9zdmc+" class="notebook-image w-20 h-20 object-cover rounded filter grayscale" style="filter: grayscale(1); width: 5rem; height: 5rem;" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
+              <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjUwIiB5PSI1NSIgZmlsbD0iIzlDQTNBRiIgZm9udC1zaXplPSIxMiIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5JbWFnZTwvdGV4dD4KPC9zdmc+" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
                 <div class="flex items-center justify-between">
-                  <div class="font-semibold notebook-title">Reflections on Building Better AI Interactions</div>
+                  <div class="font-semibold project-title">On Building Better AI Interactions</div>
                   <div class="flex flex-col items-center">
-                    <div class="notebook-year text-xs">Sep '25</div>
-                    <span class="notebook-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Research</span>
+                    <div class="project-year text-xs">Sep '25</div>
+                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Research</span>
                   </div>
                 </div>
-                <div class="notebook-desc">This is a placeholder for your first research notebook entry. Replace this with your actual research findings and insights.</div>
+                <div class="project-desc">Reflecting upon six months of building LLM applications that are not limited to I/O interactions</div>
               </div>
             </div>
           </a>
