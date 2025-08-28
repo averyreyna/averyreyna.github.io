@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Avery Reyna | Projects</title>
-  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="icon" type="image/png" href="/website.png">
   <link rel="stylesheet" href="/styles.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
@@ -41,9 +41,10 @@
       .project-link .flex.flex-row {
         display: grid !important;
         grid-template-areas: 
-          "title"
+          "title-row"
           "desc" 
           "meta" !important;
+        grid-template-columns: 1fr !important;
         gap: 0.15rem !important;
         justify-items: start !important;
         text-align: left !important;
@@ -54,14 +55,17 @@
       }
       
       .project-link .flex.items-center.justify-between {
-        display: contents !important;
+        grid-area: title-row !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
       }
       
       .project-title {
-        grid-area: title !important;
         font-size: 1rem !important;
         font-weight: 600 !important;
         margin: 0 !important;
+        margin-right: 0.5rem !important;
       }
       
       .project-desc {
@@ -76,11 +80,24 @@
       }
       
       .project-year {
+        display: none !important;
+      }
+      
+      .mobile-year-container {
         grid-area: meta !important;
         font-size: 0.75rem !important;
         color: #888 !important;
         margin: 0 !important;
         display: flex !important;
+        align-items: center !important;
+        gap: 0.15rem !important;
+      }
+      
+      .mobile-year-container .project-year {
+        display: flex !important;
+        font-size: 0.75rem !important;
+        color: #888 !important;
+        margin: 0 !important;
         align-items: center !important;
         gap: 0.15rem !important;
       }
@@ -95,6 +112,7 @@
         align-items: center !important;
         cursor: pointer !important;
         transition: all 0.2s ease !important;
+        margin: 0 !important;
       }
       .mobile-tag:hover {
         opacity: 0.8 !important;
@@ -102,6 +120,23 @@
       
       .project-year-section {
         gap: 0 !important;
+      }
+      
+      .clear-filter-btn {
+        font-size: 0.45rem !important;
+        padding: 0.05rem 0.2rem !important;
+        border-radius: 0.15rem !important;
+        font-weight: 500 !important;
+        border: 0.5px solid !important;
+        display: none !important;
+        align-items: center !important;
+        transition: all 0.2s ease !important;
+        min-width: auto !important;
+        height: auto !important;
+      }
+      
+      .flex.flex-col.gap-6 {
+        gap: 2rem !important;
       }
     }
     @media (min-width: 769px) {
@@ -259,7 +294,7 @@
             if (section.style.display !== 'none') {
               const clearButton = section.querySelector('.clear-filter-btn');
               if (clearButton) {
-                clearButton.style.display = 'inline-block';
+                clearButton.style.setProperty('display', 'inline-flex', 'important');
                 break;
               }
             }
@@ -268,20 +303,24 @@
         
         function createMobileTags() {
           document.querySelectorAll('.mobile-tag').forEach(tag => tag.remove());
+          document.querySelectorAll('.mobile-year-container').forEach(container => container.remove());
           
           if (window.innerWidth <= 768) {
             const projectLinks = document.querySelectorAll('.project-link');
             projectLinks.forEach(link => {
               const originalTag = link.querySelector('.project-tag');
-              const yearDiv = link.querySelector('.project-year');
+              const titleContainer = link.querySelector('.flex.items-center.justify-between');
+              const yearElement = link.querySelector('.project-year');
+              const flexRow = link.querySelector('.flex.flex-row');
               
-              if (originalTag && yearDiv) {
+              if (originalTag && titleContainer) {
+                // Create mobile tag next to title
                 const mobileTag = originalTag.cloneNode(true);
                 mobileTag.classList.remove('project-tag');
                 mobileTag.classList.add('mobile-tag');
                 mobileTag.style.color = originalTag.style.color;
                 mobileTag.style.borderColor = originalTag.style.borderColor;
-                yearDiv.appendChild(mobileTag);
+                titleContainer.appendChild(mobileTag);
                 
                 mobileTag.addEventListener('click', function(e) {
                   e.preventDefault();
@@ -293,15 +332,23 @@
                     showAllProjects();
                     clearActiveStates();
                     resetClearButtonColor();
-                    clearButton.style.display = 'none';
+                    hideAllClearButtons();
                   } else {
                     currentFilter = tagText;
                     filterProjects(tagText);
                     setActiveState(originalTag);
                     updateClearButtonColor(originalTag);
-                    clearButton.style.display = 'inline-block';
+                    showClearButtonInVisibleSections();
                   }
                 });
+              }
+              
+              if (yearElement && flexRow) {
+                // Create mobile year container at the bottom
+                const mobileYearContainer = document.createElement('div');
+                mobileYearContainer.classList.add('mobile-year-container');
+                mobileYearContainer.appendChild(yearElement.cloneNode(true));
+                flexRow.appendChild(mobileYearContainer);
               }
             });
           }
@@ -603,7 +650,7 @@
               </div>
             </div>
           </a>
-          <a href="" class="block project-link">
+          <a href="/assets/files/presentations/applied_machine_learning.pdf" class="block project-link">
             <div class="flex flex-row gap-5 items-center justify-center">
               <img src="/assets/projects/research/applied_machine_learning.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
@@ -618,7 +665,7 @@
               </div>
             </div>
           </a>
-          <a href="" target="_blank" class="block project-link">
+          <a href="/assets/files/presentations/textrank_and_lexrank.pdf" target="_blank" class="block project-link">
             <div class="flex flex-row gap-5 items-center justify-center">
               <img src="/assets/projects/research/textrank_and_lexrank.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
@@ -641,7 +688,7 @@
           <button class="clear-filter-btn border rounded transition-all hover:opacity-80" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; border-radius: 0.2rem; font-weight: 500; display: none;">Clear</button>
         </div>
         <div class="flex flex-col gap-3 project-year-section">
-          <a href="" target="_blank" class="block project-link">
+          <a href="/assets/files/presentations/student_research_week_21.pdf" target="_blank" class="block project-link">
             <div class="flex flex-row gap-5 items-center justify-center">
               <img src="/assets/projects/research/adolescent_online_safety.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
@@ -712,7 +759,7 @@
                     <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Article</span>
                   </div>
                 </div>
-                <div class="project-desc">Before the Fukushima meltdown, officials saw nuclear energy as a way for Japan to achieve some degree of energy independence.</div>
+                <div class="project-desc">Before the Fukushima meltdown, officials saw nuclear energy as a way for Japan to achieve some degree of energy independence</div>
               </div>
             </div>
           </a>
