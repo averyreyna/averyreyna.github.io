@@ -195,52 +195,38 @@ nav a:hover {
     color: #666;
 }
 
-/* Hamburger Menu Styles */
-.hamburger-menu {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-end;
-    width: 120px;
-    height: 32px;
-    background: white;
-    border: none;
-    border-radius: 8px;
+/* Menu Button Styles */
+.menu-button {
+    font-family: 'ABC ROM', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #6b7280;
+    background: transparent;
+    border: 1px solid #6b7280;
+    border-radius: 0.2rem;
+    padding: 6px 12px;
     cursor: pointer;
-    padding: 0 8px;
-    gap: 3px;
-    transition: none;
-}
-
-.hamburger-menu:hover {
-    background: white;
-}
-
-.hamburger-line {
-    width: 14px;
-    height: 2px;
-    background-color: #495057;
-    border-radius: 1px;
     transition: all 0.2s ease;
 }
 
-.hamburger-menu:hover .hamburger-line {
-    background-color: #343a40;
+.menu-button:hover {
+    opacity: 0.8;
 }
 
 .menu-dropdown {
     position: absolute;
-    top: calc(100% - 1px);
+    top: calc(100% + 4px);
     right: 0;
     background: white;
-    border: none;
-    border-radius: 8px;
+    border: 1px solid #6b7280;
+    border-radius: 0.2rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    width: 120px;
+    min-width: 120px;
     z-index: 1000;
-    padding: 4px 0;
+    padding: 6px 0;
     max-height: 80vh;
     overflow-y: auto;
+    display: block;
 }
 
 .menu-dropdown.hidden {
@@ -728,6 +714,13 @@ p, li {
   color: #6b7280;
   margin-right: 0.5rem;
   font-weight: 500;
+}
+
+header {
+  background-color: #f8f9fa;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  padding: 0.75rem 0;
 }
 
 footer {
