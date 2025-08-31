@@ -2,38 +2,296 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avery Reyna</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="icon" type="image/png" href="/website.png">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-white min-h-screen flex flex-col items-center justify-center font-oracle">
-    <main class="flex flex-col items-start justify-center w-full max-w-xl px-4">
-        <h1 class="text-3xl md:text-4xl font-otto text-gray-900">Avery Reyna</h1>
-        <p class="italic text-gray-500 mb-3">[ay-VUR-ee ray-NUH]</p>
-        <p class="text-gray-700 mb-4">
-            I'm a Software Engineer at <a href="" target="_blank">Capital One</a> building visualization tools for monitoring data quality across the enterprise. I graduated from the <a href="https://www.ucf.edu/" target="_blank">University of Central Florida</a>, where I researched coup politics through computational analysis with <a href="https://www.jonathanmpowell.com/" target="_blank">Jonathan Powell</a> and improved machine learning algorithms that detect online risk for adolescents with <a href="https://stirlab.org/" target="_blank">Pamela Wisniewski</a>. I've worked with teams at <a href="https://actblue.com/" target="_blank">ActBlue</a>, <a href="https://www.columbia.edu/" target="_blank">Columbia University</a>, <a href="https://www.swingleft.org/" target="_blank">Swing Left</a>, and the <a href="https://www.washington.edu/" target="_blank">University of Washington</a>. In my free time, I contribute to open source projects for <a href="https://mlcommons.org/" target="_blank">MLCommons</a> and rejoined the <a href="https://jonathanmpowell.com/coupcast/" target="_blank">CoupCast</a> project, now under the maintenance of the <a href="https://www.uky.edu/" target="_blank">University of Kentucky</a>.
-        </p>
-        <div class="flex flex-row space-x-4 text-2xl mb-1">
-            <a href="https://www.are.na/avery-reyna/channels" target="_blank" class="text-gray-700 md:hover:text-black" aria-label="Arena">
-                <i class="fa-solid fa-th"></i>
-            </a>
-            <a href="mailto:avery.reyna16@gmail.com" target="_blank"class="text-gray-700 md:hover:text-black" aria-label="Email">
-                <i class="fa-solid fa-envelope"></i>
-            </a>
-            <a href="https://github.com/averyreyna" target="_blank" class="text-gray-700 md:hover:text-black" aria-label="GitHub">
-                <i class="fa-brands fa-github"></i>
-            </a>
-            <a href="https://scholar.google.com/citations?user=WecCIHwAAAAJ&hl=en" target="_blank" class="text-gray-700 md:hover:text-black" aria-label="Google Scholar">
-                <i class="fa-solid fa-graduation-cap"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/avery-reyna/" target="_blank" class="text-gray-700 md:hover:text-black" aria-label="LinkedIn">
-                <i class="fa-brands fa-linkedin"></i>
-            </a>
+<body class="bg-white min-h-screen font-diatype">
+    <header class="bg-gray-50 w-full border-b border-gray-100">
+        <div class="max-w-2xl mx-auto px-4 py-2">
+            <div class="flex flex-row items-center justify-between">
+                <h1 class="text-2xl font-bold main-heading-semi-mono" style="line-height: 1; word-break: break-word;">
+                    <a href="/" class="text-inherit hover:text-inherit" style="text-decoration: none;">Avery Reyna</a>
+                </h1>
+                <nav class="relative">
+                    <button id="menu-toggle" class="menu-button" aria-label="Toggle menu">
+                        Menu
+                    </button>
+                    <div id="menu-dropdown" class="menu-dropdown hidden">
+                        <a href="/" class="menu-item nav-link-active">About</a>
+                        <a href="/pages/cv.html" class="menu-item">CV</a>
+                        <a href="/pages/projects.html" class="menu-item">Projects</a>
+                        <a href="/pages/resources.html" class="menu-item">Resources</a>
+                    </div>
+                </nav>
+            </div>
         </div>
-        <p class="text-xs text-gray-400 mt-8">This website is currently under construction—check back later!</p>
+    </header>
+    <main class="w-full max-w-2xl mx-auto px-4 pb-8 pt-4" style="text-align: left;">
+        
+        <div class="mb-8 clearfix">
+            <img src="/assets/files/me/avery_reyna.png" class="w-[120px] h-[144px] md:w-[150px] md:h-[180px] object-cover shadow-sm float-left mr-4 md:mr-5 mb-2 rounded-sm" alt="Avery Reyna" />
+            <p class="text-base text-gray-800 leading-snug">
+                I'm a Software Engineer at <a href="https://capitalone.com" target="_blank" rel="noopener">Capital One</a>, 
+                building metric visualization tools for a platform that monitors data quality across the enterprise. 
+                Before that, I received my BS at the <a href="https://www.ucf.edu/" target="_blank" rel="noopener">University of Central Florida</a> 
+                with minors in Cultural Anthropology, Political Science, and Sociology. 
+                I was able to collaborate with <a href="https://amydonley.com/" target="_blank" rel="noopener">Amy Donley</a>, 
+                <a href="https://stirlab.org/" target="_blank" rel="noopener">Pamela Wisniewski</a>, 
+                and <a href="https://jonathanmpowell.com/" target="_blank" rel="noopener">Jonathan Powell</a> 
+                researching applied sociology, human-computer interaction, and computational social science. 
+                While doing research, I worked at places like the <a href="https://thehubproject.com/" target="_blank" rel="noopener">Progressive Turnout Project</a>, 
+                the <a href="https://www.cfr.org/" target="_blank" rel="noopener">Council on Foreign Relations</a>, 
+                <a href="https://newamerica.org/" target="_blank" rel="noopener">New America</a>, 
+                and <a href="https://actblue.com/" target="_blank" rel="noopener">ActBlue</a>. 
+                Outside of work, I am studying agentic coding workflows with the <a href="https://hci.ucsd.edu/" target="_blank" rel="noopener">Foundation Interface Lab</a> at <a href="https://ucsd.edu/" target="_blank" rel="noopener">UC San Diego</a> 
+                and rejoining the <a href="https://jonathanmpowell.com/coupcast/" target="_blank" rel="noopener">CoupCast</a> project, now under the <a href="https://uky.edu/" target="_blank" rel="noopener">University of Kentucky</a>. 
+                In my free time, I'm documenting my thoughts with <a href="avery-reyna.writeas.com" target="_blank" rel="noopener">Semantic Distance</a>, 
+                writing about music under <a href="https://complexvectorspace.substack.com/" target="_blank" rel="noopener">Magdalena Baywatch</a>, 
+                and building prototypes as <a href="https://instagram.com/selfadjointoperator" target="_blank" rel="noopener">Self Adjoint Operator</a>.
+            </p>
+        </div>
+        
+        <div class="research-heading">
+            <span class="section-heading-semi-mono">Announcements</span>
+            <span class="research-heading-line"></span>
+        </div>
+        <div class="mb-8">
+            <div id="announcements-container" class="space-y-1">
+                <div class="announcement-item py-2" data-index="0">
+                    <div style="font-family: 'ABC ROM', sans-serif; font-weight: 700; font-size: 1rem; margin: 0; line-height: 1;">
+                        October 2024
+                    </div>
+                    <div style="font-size: 0.82rem; color: #444; margin-bottom: 0; opacity: 0.7; margin: 0 !important; padding: 0 !important; line-height: 1; word-break: break-word; margin-top: 0.15rem !important;">
+                        Started my second TDP rotation at Capital One staying within Cyber Tech, but working in detection and mitigation instead of identity and access management. I'll be developing the team's self service platform.
+                    </div>
+                </div>
+                <div class="announcement-item py-2" data-index="1">
+                    <div style="font-family: 'ABC ROM', sans-serif; font-weight: 700; font-size: 1rem; margin: 0; line-height: 1;">
+                        March 2024
+                    </div>
+                    <div style="font-size: 0.82rem; color: #444; margin-bottom: 0; opacity: 0.7; margin: 0 !important; padding: 0 !important; line-height: 1; word-break: break-word; margin-top: 0.15rem !important;">
+                        Second project I was a part of at the CEAL Lab, <i>Help Supporters</i>, was accepted to CHI '24! We explored the design space of assistive technologies to support face-to-face help between blind and sighted strangers.
+                    </div>
+                </div>
+                <div class="announcement-item py-2" data-index="2">
+                    <div style="font-family: 'ABC ROM', sans-serif; font-weight: 700; font-size: 1rem; margin: 0; line-height: 1;">
+                        February 2024
+                    </div>
+                    <div style="font-size: 0.82rem; color: #444; margin-bottom: 0; opacity: 0.7; margin: 0 !important; padding: 0 !important; line-height: 1; word-break: break-word; margin-top: 0.15rem !important;">
+                        Graduated from CODA and started my first TDP rotation within Cyber Tech! I'll be building authorization plugins for the company's access portal. I will be working on full stack features, with some design systems.
+                    </div>
+                </div>
+                <div class="announcement-item py-2" data-index="3" style="display: none;">
+                    <div style="font-family: 'ABC ROM', sans-serif; font-weight: 700; font-size: 1rem; margin: 0; line-height: 1;">
+                        August 2023
+                    </div>
+                    <div style="font-size: 0.82rem; color: #444; margin-bottom: 0; opacity: 0.7; margin: 0 !important; padding: 0 !important; line-height: 1; word-break: break-word; margin-top: 0.15rem !important;">
+                        Got accepted to ASSETS '23 with the work I did at Brian Smith's CEAL Lab! Read the paper in October. I also joined Capital One after graduating, becoming a Software Engineer in six months through CODA.
+                    </div>
+                </div>
+                <div class="announcement-item py-2" data-index="4" style="display: none;">
+                    <div style="font-family: 'ABC ROM', sans-serif; font-weight: 700; font-size: 1rem; margin: 0; line-height: 1;">
+                        March 2023
+                    </div>
+                    <div style="font-size: 0.82rem; color: #444; margin-bottom: 0; opacity: 0.7; margin: 0 !important; padding: 0 !important; line-height: 1; word-break: break-word; margin-top: 0.15rem !important;">
+                        My second article was accepted for publication in The Loop! Within it, I discuss the already present threats AI causes society, but even through these hardships, these technologies can be used for good.
+                    </div>
+                </div>
+                <div class="announcement-item py-2" data-index="5" style="display: none;">
+                    <div style="font-family: 'ABC ROM', sans-serif; font-weight: 700; font-size: 1rem; margin: 0; line-height: 1;">
+                        October 2022
+                    </div>
+                    <div style="font-size: 0.82rem; color: #444; margin-bottom: 0; opacity: 0.7; margin: 0 !important; padding: 0 !important; line-height: 1; word-break: break-word; margin-top: 0.15rem !important;">
+                        My article discussing the limits of quantititve social science was accepted into The Loop! The piece examines interdisciplinary research methods and how well it captures the complexity of human dynamics.
+                    </div>
+                </div>
+                <div class="announcement-item py-2" data-index="6" style="display: none;">
+                    <div style="font-family: 'ABC ROM', sans-serif; font-weight: 700; font-size: 1rem; margin: 0; line-height: 1;">
+                        June 2022
+                    </div>
+                    <div style="font-size: 0.82rem; color: #444; margin-bottom: 0; opacity: 0.7; margin: 0 !important; padding: 0 !important; line-height: 1; word-break: break-word; margin-top: 0.15rem !important;">
+                        Excited to announce that I'll be spending the summer in New York as part of the XR Access REU! I'll be working with the CEAL Lab under Brian Smith's mentorship building assistive technologies prototypes.
+                    </div>
+                </div>
+                <div class="announcement-item py-2" data-index="7" style="display: none;">
+                    <div style="font-family: 'ABC ROM', sans-serif; font-weight: 700; font-size: 1rem; margin: 0; line-height: 1;">
+                        June 2021
+                    </div>
+                    <div style="font-size: 0.82rem; color: #444; margin-bottom: 0; opacity: 0.7; margin: 0 !important; padding: 0 !important; line-height: 1; word-break: break-word; margin-top: 0.15rem !important;">
+                        Thrilled to join the University of Washington Tacoma as part of the Spatial Models and Electoral Distrciting REU! I'll be working with Jim and Courtney Thatcher on finding new ways to identify communities of interest.
+                    </div>
+                </div>
+                <div class="announcement-item py-2" data-index="7" style="display: none;">
+                    <div style="font-family: 'ABC ROM', sans-serif; font-weight: 700; font-size: 1rem; margin: 0; line-height: 1;">
+                        May 2021
+                    </div>
+                    <div style="font-size: 0.82rem; color: #444; margin-bottom: 0; opacity: 0.7; margin: 0 !important; padding: 0 !important; line-height: 1; word-break: break-word; margin-top: 0.15rem !important;">
+                        My in-brief on COVID-19 vaccination efforts in Latin America was published in the Council on Foreign Relations! Shout out to Lindsay Maizland and Will Merrow for help with research and data visualizations.
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-center items-center gap-3 mt-4">
+                <button id="prev-btn" class="text-gray-400 hover:text-gray-600 transition-colors text-xs disabled:opacity-30 disabled:cursor-not-allowed" disabled>
+                    ← newer
+                </button>
+                <span id="page-indicator" class="text-xs text-gray-500">1 / 3</span>
+                <button id="next-btn" class="text-gray-400 hover:text-gray-600 transition-colors text-xs">
+                    older →
+                </button>
+            </div>
+        </div>
+        
+        <div class="research-heading">
+            <span class="section-heading-semi-mono">Research Interests</span>
+            <span class="research-heading-line"></span>
+        </div>
+        <div class="mb-8">
+            <p class="text-base text-gray-800 leading-snug mb-4">
+                I'm broadly interested in researching the intersections between <span style="color: #397556;">artificial intelligence (●)</span>, <span style="color: #345f77;">human-computer interaction (●)</span>, and <span style="color: #6e4d8d;">software engineering (●)</span>. Within these intersections, I want to build tools that catalyze the process of creation, both leisurely and professionally. Below is a snapshot of my current interests:
+            </p>
+            <div class="flex flex-col gap-6">
+                <div>
+                    <div style="font-family: 'ABC ROM', sans-serif; font-weight: 700; font-size: 1rem; margin: 0; line-height: 1;">
+                        Experienced Developer-AI Interaction <span style="color: #397556;">●</span> <span style="color: #6e4d8d;">●</span>
+                    </div>
+                    <div style="font-size: 0.82rem; color: #444; margin-bottom: 0; opacity: 0.7; margin: 0 !important; padding: 0 !important; line-height: 1; word-break: break-word; margin-top: 0.15rem !important;">
+                        How do you build AI coding agents that better cater to experienced developers?
+                    </div>
+                </div>
+                <div>
+                    <div style="font-family: 'ABC ROM', sans-serif; font-weight: 700; font-size: 1rem; margin: 0; line-height: 1;">
+                        Beginner Programmer Learning Tools <span style="color: #345f77;">●</span> <span style="color: #6e4d8d;">●</span>
+                    </div>
+                    <div style="font-size: 0.82rem; color: #444; margin-bottom: 0; opacity: 0.7; margin: 0 !important; padding: 0 !important; line-height: 1; word-break: break-word; margin-top: 0.15rem !important;">
+                        How can AI better assist beginner programmers in their learning process without sacrificing their agency?
+                    </div>
+                </div>
+                <div>
+                    <div style="font-family: 'ABC ROM', sans-serif; font-weight: 700; font-size: 1rem; margin: 0; line-height: 1;">
+                        Interactive AI Writing Assistants <span style="color: #397556;">●</span> <span style="color: #345f77;">●</span>
+                    </div>
+                    <div style="font-size: 0.82rem; color: #444; margin-bottom: 0; opacity: 0.7; margin: 0 !important; padding: 0 !important; line-height: 1; word-break: break-word; margin-top: 0.15rem !important;">
+                        Can AI aid in the writing process without taking control over the user's voice?
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="research-heading">
+            <span class="section-heading-semi-mono">Recent Publications</span>
+            <span class="research-heading-line"></span>
+        </div>
+        <div class="space-y-1 mb-8">
+            <div class="py-1 flex flex-col gap-0.25">
+                <span class="font-semibold text-gray-900 mb-0.5 leading-tight" style="margin-bottom:0.1rem;">Help Supporters: Exploring the Design Space of Assistive Technologies to Support Face-to-Face Help Between Blind and Sighted Strangers</span>
+                <span class="text-xs text-gray-500">CHI '24</span>
+                <span class="text-xs text-gray-700">Yuanyang Teng, Connor Courtien, David Rios, Yves Tseng, Jacqueline Gibson, Maryam Aziz, <b>Avery Reyna</b>, Rajan Vaish, Brian Smith</span>
+                <span class="flex flex-row flex-wrap gap-2 mt-0.5">
+                    <a href="https://dl.acm.org/doi/10.1145/3613904.3642816" class="publication-link text-gray-500 text-xs" target="_blank" rel="noopener">ACM DL Page</a>
+                    <a href="/assets/files/papers/help_supporters.pdf" class="publication-link text-gray-500 text-xs" target="_blank" rel="noopener">Paper</a>
+                </span>
+            </div>
+            <div class="py-1 flex flex-col gap-0.25">
+                <span class="font-semibold text-gray-900 mb-0.5 leading-tight" style="margin-bottom:0.1rem;">Understanding Blind and Low Vision Users' Attitudes Towards Spatial Interactions in Desktop Screen Readers</span>
+                <span class="text-xs text-gray-500">ASSETS '23</span>
+                <span class="text-xs text-gray-700">Arnavi Chheda-Kothary, David Rios, Kynnedy Simone Smith, <b>Avery Reyna</b>, Cecilia Zhang, Brian Smith</span>
+                <span class="flex flex-row flex-wrap gap-2 mt-0.5">
+                    <a href="https://dl.acm.org/doi/10.1145/3597638.3608412" class="publication-link text-gray-500 text-xs" target="_blank" rel="noopener">ACM DL Page</a>
+                    <a href="/assets/files/papers/spatial_interactions.pdf" class="publication-link text-gray-500 text-xs" target="_blank" rel="noopener">Paper</a>
+                    <a href="https://ceal.cs.columbia.edu/webnext" class="publication-link text-gray-500 text-xs" target="_blank" rel="noopener">Project</a>
+                </span>
+            </div>
+            <div class="py-1 flex flex-col gap-0.25">
+                <span class="font-semibold text-gray-900 mb-0.5 leading-tight" style="margin-bottom:0.1rem;">The Threat of Artificial Intelligence Is Not Just Real, It's Here</span>
+                <span class="text-xs text-gray-500">The Loop</span>
+                <span class="text-xs text-gray-700"><b>Avery Reyna</b></span>
+                <span class="flex flex-row flex-wrap gap-2 mt-0.5">
+                    <a href="#" class="publication-link text-gray-500 text-xs" target="_blank" rel="noopener">Article</a>
+                </span>
+            </div>
+        </div>
     </main>
+    <footer>
+        <div class="footer-content">
+            <div class="flex flex-row items-center justify-between">
+                <div class="text-gray-500 font-diatype md:block hidden" style="font-size: 0.75rem; margin-left: 0;">
+                    <span>© 2025 Avery Reyna — source code available <a href="https://github.com/averyreyna/averyreyna.github.io" target="_blank" rel="noopener" class="text-gray-600 hover:text-gray-800 underline">here</a></span>
+                </div>
+                <div class="flex flex-wrap gap-3 text-sm text-gray-700 md:order-last order-first">
+                    <a href="/assets/files/cv/avery_reyna_cv.pdf" class="md:hover:text-gray-800 transition-colors" target="_blank" rel="noopener"><i class="fa-regular fa-file-pdf"></i></a>
+                    <a href="mailto:avery@reyna.com" class="md:hover:text-gray-800 transition-colors"><i class="fa-regular fa-envelope"></i></a>
+                    <a href="https://github.com/averyreyna" class="md:hover:text-gray-800 transition-colors" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://instagram.com/averyreyna" class="md:hover:text-gray-800 transition-colors" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://linkedin.com/in/averyreyna" class="md:hover:text-gray-800 transition-colors" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+                <div class="text-gray-500 font-diatype md:hidden block" style="font-size: 0.75rem; margin-left: 0;">
+                    <span>© 2025 Avery Reyna — source code available <a href="https://github.com/averyreyna/averyreyna.github.io" target="_blank" rel="noopener" class="text-gray-600 hover:text-gray-800 underline">here</a></span>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menu-toggle');
+            const menuDropdown = document.getElementById('menu-dropdown');
+            
+            menuToggle.addEventListener('click', function() {
+                menuDropdown.classList.toggle('hidden');
+            });
+            
+            document.addEventListener('click', function(event) {
+                if (!menuToggle.contains(event.target) && !menuDropdown.contains(event.target)) {
+                    menuDropdown.classList.add('hidden');
+                }
+            });
+            
+            const items = document.querySelectorAll('.announcement-item');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const pageIndicator = document.getElementById('page-indicator');
+            
+            const itemsPerPage = 3;
+            const totalPages = Math.ceil(items.length / itemsPerPage);
+            let currentPage = 1;
+            
+            function showPage(page) {
+                items.forEach((item, index) => {
+                    const startIndex = (page - 1) * itemsPerPage;
+                    const endIndex = startIndex + itemsPerPage;
+                    
+                    if (index >= startIndex && index < endIndex) {
+                        item.style.display = '';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+                
+                prevBtn.disabled = page === 1;
+                nextBtn.disabled = page === totalPages;
+                pageIndicator.textContent = `${page} / ${totalPages}`;
+            }
+            
+            prevBtn.addEventListener('click', function() {
+                if (currentPage > 1) {
+                    currentPage--;
+                    showPage(currentPage);
+                }
+            });
+            
+            nextBtn.addEventListener('click', function() {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    showPage(currentPage);
+                }
+            });
+            
+            showPage(currentPage);
+        });
+    </script>
 </body>
 </html>
