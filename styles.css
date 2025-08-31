@@ -1,50 +1,814 @@
-@font-face {
-    font-family: 'ABCOtto';
-    src: url('/fonts/ABC Otto/ABCOtto-Regular-Trial.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
+html {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
-@font-face {
-    font-family: 'ABCOracle';
-    src: url('/fonts/ABC Oracle/ABCOracle-Regular-Trial.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
+html::-webkit-scrollbar {
+    display: none;
 }
 
 body {
-    font-family: 'ABCOracle', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    font-family: 'ABC ROM', sans-serif;
+    background: #fff;
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
 }
 
-.font-otto {
-    font-family: 'ABCOtto', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+body::-webkit-scrollbar {
+    display: none;
 }
 
-.font-oracle {
-    font-family: 'ABCOracle', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+* {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+    display: none;
+}
+
+
+
+/* ABC ROM Font Family */
+@font-face {
+    font-family: 'ABC ROM';
+    src: url('assets/ABC ROM/ABCROM-Regular-Trial.woff2') format('woff2'),
+         url('assets/ABC ROM/ABCROM-Regular-Trial.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ABC ROM';
+    src: url('assets/ABC ROM/ABCROM-RegularItalic-Trial.woff2') format('woff2'),
+         url('assets/ABC ROM/ABCROM-RegularItalic-Trial.woff') format('woff');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ABC ROM';
+    src: url('assets/ABC ROM/ABCROM-Medium-Trial.woff2') format('woff2'),
+         url('assets/ABC ROM/ABCROM-Medium-Trial.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ABC ROM';
+    src: url('assets/ABC ROM/ABCROM-MediumItalic-Trial.woff2') format('woff2'),
+         url('assets/ABC ROM/ABCROM-MediumItalic-Trial.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ABC ROM';
+    src: url('assets/ABC ROM/ABCROM-Bold-Trial.woff2') format('woff2'),
+         url('assets/ABC ROM/ABCROM-Bold-Trial.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ABC ROM';
+    src: url('assets/ABC ROM/ABCROM-BoldItalic-Trial.woff2') format('woff2'),
+         url('assets/ABC ROM/ABCROM-BoldItalic-Trial.woff') format('woff');
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ABC ROM';
+    src: url('assets/ABC ROM/ABCROM-Heavy-Trial.woff2') format('woff2'),
+         url('assets/ABC ROM/ABCROM-Heavy-Trial.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ABC ROM';
+    src: url('assets/ABC ROM/ABCROM-HeavyItalic-Trial.woff2') format('woff2'),
+         url('assets/ABC ROM/ABCROM-HeavyItalic-Trial.woff') format('woff');
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ABC ROM';
+    src: url('assets/ABC ROM/ABCROM-Black-Trial.woff2') format('woff2'),
+         url('assets/ABC ROM/ABCROM-Black-Trial.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ABC ROM';
+    src: url('assets/ABC ROM/ABCROM-BlackItalic-Trial.woff2') format('woff2'),
+         url('assets/ABC ROM/ABCROM-BlackItalic-Trial.woff') format('woff');
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+.font-diatype {
+    font-family: 'ABC ROM', sans-serif;
 }
 
 body a {
-    text-decoration: underline !important;
-    text-decoration-thickness: 2px !important;
-    text-decoration-color: #d1d5db !important;
-    text-underline-offset: 3px !important;
     color: inherit;
 }
 
+.publication-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.12rem;
+    transition: color 0.2s ease;
+    text-decoration: none !important;
+}
+
+.publication-link:hover {
+    color: #374151 !important;
+}
+
+.publication-link::after {
+    content: "→";
+    font-size: 0.75rem;
+    opacity: 1;
+    margin-left: 0.12rem;
+    transition: color 0.2s ease;
+}
+
+.publication-link.no-arrow::after {
+  content: none !important;
+}
+
+/* Body text links with grey underlines */
+body a {
+    text-decoration: underline !important;
+    text-decoration-color: #9ca3af !important;
+    transition: text-decoration-color 0.2s ease;
+}
+
 @media (min-width: 768px) {
-    body a {
-        transition: text-decoration-color 0.2s ease;
-    }
-    
     body a:hover {
-        text-decoration-color: #9ca3af !important;
+        text-decoration-color: #6b7280 !important;
     }
 }
 
-html, body {
+nav {
+    font-family: 'ABC ROM', sans-serif;
+    border-bottom: none !important;
+    margin-bottom: 0;
+}
+nav ul {
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+nav a {
+    color: #222;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 400;
+    transition: color 0.2s;
+}
+
+/* Remove underline from name link in header */
+h1 a {
+    text-decoration: none !important;
+}
+nav a:hover {
+    color: #666;
+}
+
+/* Menu Button Styles */
+.menu-button {
+    font-family: 'ABC ROM', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #6b7280;
+    background: transparent;
+    border: 1px solid #6b7280;
+    border-radius: 0.2rem;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.menu-button:hover {
+    opacity: 0.8;
+}
+
+.menu-dropdown {
+    position: absolute;
+    top: calc(100% + 4px);
+    right: 0;
+    background: white;
+    border: 1px solid #6b7280;
+    border-radius: 0.2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    min-width: 120px;
+    z-index: 1000;
+    padding: 6px 0;
+    max-height: 80vh;
+    overflow-y: auto;
+    display: block;
+}
+
+.menu-dropdown.hidden {
+    display: none;
+}
+
+.menu-item {
+    display: block;
+    padding: 8px 16px;
+    color: #222;
+    text-decoration: none !important;
+    font-size: 0.9rem;
+    font-weight: 400;
+    border-bottom: none;
+    transition: background-color 0.2s;
+    line-height: 1.2;
+}
+
+.menu-item:last-child {
+    border-bottom: none;
+}
+
+.menu-item:hover {
+    color: #222;
+}
+
+.menu-item.nav-link-active {
+    font-weight: 600;
+}
+
+.menu-item.nav-link-active {
+    font-weight: 700;
+}
+
+nav {
+    position: relative;
+}
+
+main {
+    margin-top: 0;
+    margin-left: 0;
+    max-width: 700px;
+    padding: 0 1.5rem;
+    text-align: left;
+}
+
+h1 {
+    font-family: 'ABC ROM', sans-serif;
+    font-weight: bold;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+ul {
+    list-style-type: disc;
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #e5e7eb;
+    margin-bottom: 1rem;
+}
+
+p, li {
+    font-size: 1rem;
+    color: #222;
+}
+
+.text-orange-700 {
+    color: #b45309;
+}
+
+.text-blue-600 {
+    color: #2563eb;
+}
+
+.text-xs {
+    font-size: 0.85rem;
+}
+
+.font-bold {
+    font-weight: bold;
+}
+
+.font-semibold {
+    font-weight: 600;
+}
+
+.nav-link, .nav-link:visited, .nav-link:active, .nav-link:focus {
+  text-decoration: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.nav-link-active {
+  font-weight: 700;
+}
+
+.research-heading {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+.research-heading-text {
+  font-size: 1.125rem;
+  font-weight: 600;
+  font-family: 'ABC ROM', sans-serif;
+}
+
+/* ABC Oracle heading styles */
+.main-heading-semi-mono {
+  font-family: 'ABC ROM', sans-serif;
+  font-weight: 700;
+}
+
+.section-heading-semi-mono {
+  font-family: 'ABC ROM', sans-serif;
+  font-weight: 700;
+  font-size: 1.125rem;
+}
+.research-heading-line {
+  flex: 1;
+  height: 1px;
+  background: #d1d5db;
+  border: none;
+}
+
+.projects-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+  justify-items: center;
+  background: none;
+  border: none;
+  padding: 2rem 0;
+}
+
+@media (max-width: 900px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+  }
+}
+
+.project-card {
+  margin: 0;
+  background: none;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  transition: none;
+}
+
+.project-image {
+  width: 160px;
+  height: 100px;
+  object-fit: cover;
+  background: #e5e7eb;
+  filter: grayscale(1);
+  margin-bottom: 0.3rem;
+  aspect-ratio: unset;
+  transition: filter 0.3s ease;
+  image-rendering: auto;
+  transform: scale(1);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 768px) {
+  .project-card:hover .project-image {
+    filter: grayscale(0);
+  }
+}
+
+.project-info {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  line-height: 1.1;
+}
+
+.project-title {
+  font-family: 'ABC ROM', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin: 0;
+  line-height: 1;
+}
+
+.project-desc {
+  font-size: 0.78rem;
+  color: #444;
+  margin-bottom: 0;
+  opacity: 0.7;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1;
+  width: 300px;
+  max-width: 300px;
+  word-break: break-word;
+  margin-top: 0.15rem !important;
+}
+
+@media (max-width: 768px) {
+  .project-desc {
+    width: 205px;
+    max-width: 205px;
+    font-size: 0.6rem;
+  }
+  
+  .project-image {
+    filter: grayscale(0) !important;
+    width: 130px !important;
+    height: 81px !important;
+    flex-shrink: 0;
+  }
+  
+  .project-link .flex.flex-row {
+    align-items: flex-start !important;
+  }
+  
+  .project-year-section {
+    gap: 1.5rem !important;
+  }
+}
+
+.project-year {
+  font-size: 0.76rem;
+  color: #aaa;
+  margin-top: 0.15rem !important;
+  font-family: 'ABC ROM', sans-serif;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1;
+}
+
+.project-link,
+.project-link:visited,
+.project-link:hover,
+.project-link:active,
+.project-link:focus {
+  text-decoration: none !important;
+}
+
+.experience-item {
+    position: relative;
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin: -8px -12px;
+}
+
+.experience-content {
+    position: relative;
+    flex: 1;
+}
+
+
+
+@media (max-width: 768px) {
+    .section-heading-semi-mono {
+        font-size: 1rem; 
+    }
+    
+    .main-heading-semi-mono {
+        font-size: 1.5rem; 
+    }
+    
+    .text-2xl {
+        font-size: 1.5rem !important; 
+    }
+    
+    .research-heading {
+        margin-bottom: 0.75rem;
+    }
+    
+    .education-activities,
+    .education-minors {
+        display: none !important;
+    }
+    
+    .experience-item {
+        gap: 0.25rem !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .experience-item {
+        padding: 6px 8px;
+        margin: -6px -8px;
+    }
+}
+
+#bottom-quote-section {
+    font-size: 0.92rem;
+    font-family: 'ABC ROM', sans-serif;
+    color: #6b7280;
+    font-weight: 400;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.75rem;
+}
+#bottom-quote-text {
+    color: #6b7280;
+    font-size: 0.92rem;
+    font-family: 'ABC ROM', sans-serif;
+    letter-spacing: 0.01em;
+    font-weight: 400;
+}
+#bottom-quote-btn {
+    color: #6b7280;
+    background: transparent;
+    border: none;
+    text-decoration: underline;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: color 0.2s;
+    pointer-events: auto;
+    font-family: 'ABC ROM', sans-serif;
+    font-weight: 400;
+    padding: 0;
+}
+#bottom-quote-btn:hover {
+    color: #374151;
+}
+@media (max-width: 700px) {
+    #bottom-quote-section > div {
+        font-size: 0.95rem;
+        gap: 0.75rem;
+    }
+    #bottom-quote-text {
+        font-size: 0.95rem;
+    }
+    #bottom-quote-btn {
+        font-size: 0.95rem;
+    }
+}
+
+.quote-btn-no-underline {
+    text-decoration: none !important;
+    color: #6b7280;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: color 0.2s;
+    font-family: 'ABC ROM', sans-serif;
+    font-weight: 400;
+    padding: 0;
+}
+.quote-btn-no-underline:hover {
+    color: #222;
+    text-decoration: none !important;
+}
+
+.experience-item { position: relative; }
+
+@media (min-width: 1200px) {
+  #project-filter-bar { 
+    display: flex !important; 
+  }
+}
+
+.filter-tag {
+  font-size: 0.78rem;
+  padding: 0.18rem 0.7rem;
+  border-radius: 0.35rem;
+  background: #f3f4f6;
+  color: #374151;
+  border: none;
+  cursor: pointer;
+  margin: 0.15rem 0.25rem 0.15rem 0;
+  transition: background-color 0.2s ease;
+  position: relative;
+}
+
+.filter-tag:hover {
+  background: #e5e7eb;
+}
+
+.filter-tag.active {
+  background: #d1d5db;
+  color: #1f2937;
+}
+
+/* Desktop styles for filter tags */
+@media (min-width: 769px) {
+  .filter-tag .filter-dot {
+    margin-left: 0.6em;
+  }
+}
+
+/* Mobile styles for filter tags */
+@media (max-width: 768px) {
+  .filter-tag {
+    padding: 0.4rem;
+    border-radius: 0.35rem;
+    min-width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.15rem 0.25rem 0.15rem 0;
+    transition: all 0.3s ease;
+    white-space: nowrap;
     overflow: hidden;
-    position: fixed;
+  }
+  
+  .filter-tag .filter-text {
+    display: none;
+  }
+  
+  .filter-tag .filter-dot {
+    font-size: 1.4em;
+    margin: 0;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     height: 100%;
+  }
+  
+  
+  /* Hide tooltips on mobile */
+  .filter-tooltip {
+    display: none;
+  }
+  
+  /* Clear button mobile styles */
+  #clear-filter {
+    padding: 0.4rem 0.8rem;
+    height: 2rem;
+    font-size: 0.78rem;
+    background: #e5e7eb;
+    color: #374151;
+  }
+  
+  #clear-filter:hover {
+    background: #d1d5db;
+  }
+}
+
+.filter-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-bottom: 1.5rem;
+  align-items: center;
+}
+
+.filter-label {
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin-right: 0.5rem;
+  font-weight: 500;
+}
+
+header {
+  background-color: #f8f9fa;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  padding: 0.75rem 0;
+}
+
+footer {
+  background-color: #f8f9fa;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  padding: 2rem 0;
+  margin-top: auto;
+}
+
+.footer-content {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Mobile footer layout */
+@media (max-width: 768px) {
+  .footer-content > .flex {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .footer-content .text-gray-500 {
+    text-align: left;
+    white-space: nowrap;
+  }
+  
+  /* Keep icons in horizontal row */
+  .footer-content .flex.flex-wrap {
+    flex-direction: row;
+  }
+}
+
+.project-link[style*='display: none'] { 
+  display: none !important; 
+}
+
+.project-link {
+  text-decoration: none !important;
+}
+
+/* Removed duplicate project-image styles - using the main definition above */
+
+.project-title {
+  font-size: 1.05rem;
+}
+
+.project-desc {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .references-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem !important;
+  }
+  
+  .reference-item .font-semibold {
+    font-size: 0.7rem !important;
+  }
+  
+  .reference-item .text-xs {
+    font-size: 0.6rem !important;
+  }
+}
+
+.article-container {
+    margin-top: 0;
+}
+
+.article-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    line-height: 1.2;
+}
+
+.article-meta {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-bottom: 2rem;
+    line-height: 1;
+}
+
+.article-content p {
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
 }
