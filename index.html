@@ -48,9 +48,9 @@
                 <a href="https://newamerica.org/" target="_blank" rel="noopener">New America</a>, 
                 and <a href="https://actblue.com/" target="_blank" rel="noopener">ActBlue</a>. 
                 Outside of work, I am studying agentic coding workflows with the <a href="https://hci.ucsd.edu/" target="_blank" rel="noopener">Foundation Interface Lab</a> at <a href="https://ucsd.edu/" target="_blank" rel="noopener">UC San Diego</a> 
-                and rejoining the <a href="" target="_blank" rel="noopener">CoupCast</a> project now under the <a href="https://uky.edu/" target="_blank" rel="noopener">University of Kentucky</a>. 
-                In my free time, I'm documenting my thoughts with <a href="" target="_blank" rel="noopener">Semantic Distance</a>, 
-                writing about music under <a href="" target="_blank" rel="noopener">Magdalena Baywatch</a>, 
+                and rejoining the <a href="https://jonathanmpowell.com/coupcast/" target="_blank" rel="noopener">CoupCast</a> project, now under the <a href="https://uky.edu/" target="_blank" rel="noopener">University of Kentucky</a>. 
+                In my free time, I'm documenting my thoughts with <a href="avery-reyna.writeas.com" target="_blank" rel="noopener">Semantic Distance</a>, 
+                writing about music under <a href="https://complexvectorspace.substack.com/" target="_blank" rel="noopener">Magdalena Baywatch</a>, 
                 and building prototypes as <a href="https://instagram.com/selfadjointoperator" target="_blank" rel="noopener">Self Adjoint Operator</a>.
             </p>
         </div>
@@ -222,7 +222,7 @@
                     <span>© 2025 Avery Reyna — source code available <a href="https://github.com/averyreyna/averyreyna.github.io" target="_blank" rel="noopener" class="text-gray-600 hover:text-gray-800 underline">here</a></span>
                 </div>
                 <div class="flex flex-wrap gap-3 text-sm text-gray-700 md:order-last order-first">
-                    <a href="/cv.pdf" class="md:hover:text-gray-800 transition-colors" target="_blank" rel="noopener"><i class="fa-regular fa-file-pdf"></i></a>
+                    <a href="/assets/files/cv/avery_reyna_cv.pdf" class="md:hover:text-gray-800 transition-colors" target="_blank" rel="noopener"><i class="fa-regular fa-file-pdf"></i></a>
                     <a href="mailto:avery@reyna.com" class="md:hover:text-gray-800 transition-colors"><i class="fa-regular fa-envelope"></i></a>
                     <a href="https://github.com/averyreyna" class="md:hover:text-gray-800 transition-colors" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
                     <a href="https://instagram.com/averyreyna" class="md:hover:text-gray-800 transition-colors" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
@@ -237,7 +237,6 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Hamburger menu functionality
             const menuToggle = document.getElementById('menu-toggle');
             const menuDropdown = document.getElementById('menu-dropdown');
             
@@ -245,14 +244,12 @@
                 menuDropdown.classList.toggle('hidden');
             });
             
-            // Close menu when clicking outside
             document.addEventListener('click', function(event) {
                 if (!menuToggle.contains(event.target) && !menuDropdown.contains(event.target)) {
                     menuDropdown.classList.add('hidden');
                 }
             });
             
-            // Announcements pagination
             const items = document.querySelectorAll('.announcement-item');
             const prevBtn = document.getElementById('prev-btn');
             const nextBtn = document.getElementById('next-btn');
