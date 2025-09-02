@@ -8,137 +8,13 @@
   <link rel="stylesheet" href="/styles.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-  <style>
-    .project-tag {
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    .project-tag:hover {
-      opacity: 0.8;
-    }
-    .project-desc {
-      margin-top: -0.5rem !important;
-    }
-    
-    @media (max-width: 768px) {
-      /* Ensure proper container width */
-      .max-w-2xl {
-        max-width: 100% !important;
-        padding: 0 1rem !important;
-      }
-      
-      .project-image {
-        width: 100px !important;
-        height: 62px !important;
-        flex-shrink: 0 !important;
-        filter: none !important;
-      }
-      
-      .project-image:hover {
-        filter: none !important;
-      }
-      
-      .project-title {
-        font-size: 0.75rem !important;
-        line-height: 1.1 !important;
-      }
-      
-      .project-desc {
-        font-size: 0.6rem !important;
-        line-height: 1.2 !important;
-        width: 180px !important;
-        max-width: 180px !important;
-        word-wrap: break-word !important;
-        overflow-wrap: break-word !important;
-      }
-      
-      .project-year {
-        font-size: 0.55rem !important;
-      }
-      
-      .project-tag {
-        font-size: 0.35rem !important;
-        padding: 0.05rem 0.1rem !important;
-        white-space: nowrap !important;
-        margin-top: 0.15rem !important;
-        align-self: flex-start !important;
-      }
-      
-      .font-diatype.font-bold.text-xl {
-        font-size: 0.9rem !important;
-      }
-      
-      .clear-filter-btn {
-        font-size: 0.35rem !important;
-        padding: 0.05rem 0.1rem !important;
-      }
-      
-      .flex.flex-row.gap-5 {
-        gap: 0.75rem !important;
-        align-items: flex-start !important;
-      }
-      
-      .flex-1 {
-        min-width: 0 !important;
-        overflow: hidden !important;
-      }
-      
-      /* Hide the desktop flex-col container on mobile */
-      .flex.flex-col.items-center {
-        display: none !important;
-      }
-      
-      /* Show mobile date and tag elements */
-      .mobile-date {
-        display: block !important;
-        font-size: 0.55rem !important;
-        color: #aaa !important;
-        margin-top: 0.25rem !important;
-      }
-      
-      /* Create a container for date and tag on mobile */
-      .project-year.text-xs {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: flex-end !important;
-        font-size: 0.55rem !important;
-        color: #aaa !important;
-        margin-top: 0.25rem !important;
-        gap: 0.05rem !important;
-      }
-      
-      .mobile-tag {
-        display: inline-flex !important;
-        margin-top: 0 !important;
-        margin-left: 0 !important;
-        font-size: 0.45rem !important;
-        color: #6b7280 !important;
-        border: 1px solid #6b7280 !important;
-        padding: 0.05rem 0.15rem !important;
-        border-radius: 0.15rem !important;
-        font-weight: 500 !important;
-        align-items: center !important;
-        width: fit-content !important;
-        line-height: 1 !important;
-      }
-      
-      .project-desc {
-        margin-top: 0.1rem !important;
-      }
-      
-    }
-    
-    .mobile-date, .mobile-tag {
-      display: none;
-    }
-  </style>
 </head>
 <body class="bg-white min-h-screen font-diatype">
   <header class="bg-gray-50 w-full border-b border-gray-100">
     <div class="max-w-2xl mx-auto px-4 py-2">
       <div class="flex flex-row items-center justify-between">
-        <h1 class="text-2xl font-bold main-heading-semi-mono" style="line-height: 1; word-break: break-word;">
-          <a href="/" class="text-inherit hover:text-inherit" style="text-decoration: none;">Avery Reyna</a>
+        <h1 class="text-2xl font-bold main-heading-semi-mono">
+          <a href="/" class="text-inherit hover:text-inherit header-link">Avery Reyna</a>
         </h1>
         <nav class="relative">
           <button id="menu-toggle" class="menu-button" aria-label="Toggle menu">
@@ -154,20 +30,18 @@
       </div>
     </div>
   </header>
-  <main class="w-full max-w-2xl mx-auto px-4 pb-8 pt-8" style="text-align: left;">
+  <main class="w-full max-w-2xl mx-auto px-4 pb-8 pt-4 main-container">
     <div class="professional-summary flex flex-col mb-6">
         <div class="text-base text-gray-600 font-medium">Projects</div>
-        <div class="text-xs text-gray-500" style="line-height: 1; word-break: break-word;">
+        <div class="text-xs text-gray-500 professional-summary-text">
             A collection of research, industry work, prototypes, reports, and articles across several disciplines.
         </div>
     </div>
-
-    <script src="/js/projects.js"></script>
     <div class="flex flex-col gap-6">
       <div>
         <div class="flex items-center justify-between mb-6">
           <div class="font-diatype font-bold text-xl project-year-heading">2025</div>
-          <button class="clear-filter-btn border rounded transition-all hover:opacity-80" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; border-radius: 0.2rem; font-weight: 500; display: none;">Clear</button>
+          <button class="clear-filter-btn border rounded transition-all hover:opacity-80">Clear</button>
         </div>
         <div class="flex flex-col gap-3 project-year-section">
           <!-- <a href="" target="_blank" class="block project-link">
@@ -178,7 +52,7 @@
                   <div class="font-semibold project-title">Palestra</div>
                   <div class="flex flex-col items-center">
                     <div class="project-year text-xs">Aug '25</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Prototype</span>
+                    <span class="project-tag-inline">Prototype</span>
                   </div>
                 </div>
                 <div class="project-desc">Answering in-context questions about AI-generated, psuedo-enterprise codebases</div>
@@ -193,14 +67,14 @@
                   <div class="font-semibold project-title">Perceptor</div>
                   <div class="flex flex-col items-center">
                     <div class="project-year text-xs">Aug '25</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Prototype</span>
+                    <span class="project-tag-inline">Prototype</span>
                   </div>
                 </div>
                 <div class="project-desc">Interactive CLI coding assistant that guides you through the process of developing software, regardless of engineering experience or skill level</div>
               </div>
             </div>
           </a> -->
-          <!-- <a href="https://www.instagram.com/p/DKvfqtFouqF/?utm_source=ig_web_copy_link" target="_blank" class="block project-link">
+          <a href="" target="_blank" class="block project-link">
             <div class="flex flex-row gap-5 items-center">
               <img src="/assets/projects/prototypes/rerank_2.gif" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
@@ -208,13 +82,13 @@
                   <div class="font-semibold project-title">Rerank</div>
                   <div class="flex flex-col items-center">
                     <div class="project-year text-xs">Aug '25</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Prototype</span>
+                    <span class="project-tag-inline">Prototype</span>
                   </div>
                 </div>
                 <div class="project-desc">Revisiting an experiment on utilizing text summarization models for annotating textual data</div>
               </div>
             </div>
-          </a> -->
+          </a>
           <a href="https://www.instagram.com/p/DKvfqtFouqF/?utm_source=ig_web_copy_link" target="_blank" class="block project-link">
             <div class="flex flex-row gap-5 items-center">
               <img src="/assets/projects/prototypes/scrutinize.gif" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
@@ -223,7 +97,7 @@
                   <div class="font-semibold project-title">Scrutinize</div>
                   <div class="flex flex-col items-center">
                     <div class="project-year text-xs">Jun '25</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Prototype</span>
+                    <span class="project-tag-inline">Prototype</span>
                   </div>
                 </div>
                 <div class="project-desc">Editing DeepSeek's essays with interactive human-centered annotation</div>
@@ -239,7 +113,7 @@
                   <div class="font-semibold project-title">Specter</div>
                   <div class="flex flex-col items-center">
                     <div class="project-year text-xs">Jun '25</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Prototype</span>
+                    <span class="project-tag-inline">Prototype</span>
                   </div>
                 </div>
                 <div class="project-desc">Ephemeral Deepseek-based AI assistant made for the writing process</div>
@@ -255,7 +129,7 @@
                   <div class="font-semibold project-title">Metrics Dashboard</div>
                   <div class="flex flex-col items-center">
                     <div class="project-year text-xs">May '25</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Industry</span>
+                    <span class="project-tag-inline">Industry</span>
                   </div>
                 </div>
                 <div class="project-desc">Building a customizable in-house heartbeat monitoring solution to replace Grafana dashboards</div>
@@ -271,7 +145,7 @@
                   <div class="font-semibold project-title">Meta Measure</div>
                   <div class="flex flex-col items-center">
                     <div class="project-year text-xs">May '25</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Prototype</span>
+                    <span class="project-tag-inline">Prototype</span>
                   </div>
                 </div>
                 <div class="project-desc">Evaluating Claude Sonnet 3.7's ability to assess research ideas from across all disciplines</div>
@@ -284,7 +158,7 @@
       <div>
         <div class="flex items-center justify-between mb-6">
           <div class="font-diatype font-bold text-xl project-year-heading">2024</div>
-          <button class="clear-filter-btn border rounded transition-all hover:opacity-80" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; border-radius: 0.2rem; font-weight: 500; display: none;">Clear</button>
+          <button class="clear-filter-btn border rounded transition-all hover:opacity-80">Clear</button>
         </div>
         <div class="flex flex-col gap-3 project-year-section">
           <a href="/nda.html" class="block project-link">
@@ -295,7 +169,7 @@
                   <div class="font-semibold project-title">ILM Portal</div>
                   <div class="flex flex-col items-center">
                     <div class="project-year text-xs">Aug '24</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Industry</span>
+                    <span class="project-tag-inline">Industry</span>
                   </div>
                 </div>
                 <div class="project-desc">Building a one-stop shopping store portal to reduce friction with internal projects for future Capital One employees</div>
@@ -311,7 +185,7 @@
                   <div class="font-semibold project-title">Help Supporters</div>
                   <div class="flex flex-col items-center">
                     <div class="project-year text-xs">Aug '24</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Research</span>
+                    <span class="project-tag-inline">Research</span>
                   </div>
                 </div>
                 <div class="project-desc">Exploring the design space of assistive technologies to better exploratory face-to-face support between BLV and sighted parties</div>
@@ -327,7 +201,7 @@
                   <div class="font-semibold project-title">File Upload Tool</div>
                   <div class="flex flex-col items-center">
                     <div class="project-year text-xs">Apr '24</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Industry</span>
+                    <span class="project-tag-inline">Industry</span>
                   </div>
                 </div>
                 <div class="project-desc">Revamped the frontend of a plugin that validates native application content for data analytics teams</div>
@@ -343,7 +217,7 @@
                   <div class="font-semibold project-title">Penetration Tests</div>
                   <div class="flex flex-col items-center">
                     <div class="project-year text-xs">Feb '24</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Industry</span>
+                    <span class="project-tag-inline">Industry</span>
                   </div>
                 </div>
                 <div class="project-desc">Rendering editable spreadsheets from imported Excel files into a platform for Security Engineers</div>
@@ -356,7 +230,7 @@
       <div>
         <div class="flex items-center justify-between mb-6">
           <div class="font-diatype font-bold text-xl project-year-heading">2023</div>
-          <button class="clear-filter-btn border rounded transition-all hover:opacity-80" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; border-radius: 0.2rem; font-weight: 500; display: none;">Clear</button>
+          <button class="clear-filter-btn border rounded transition-all hover:opacity-80">Clear</button>
         </div>
         <div class="flex flex-col gap-3 project-year-section">
           <a href="" class="block project-link">
@@ -367,7 +241,7 @@
                   <div class="font-semibold project-title">Spatial Interactions</div>
                   <div class="flex flex-col items-center">
                     <div class="project-year text-xs">Oct '23</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Research</span>
+                    <span class="project-tag-inline">Research</span>
                   </div>
                 </div>
                 <div class="project-desc">Presenting a formative study conducted with a desktop screen reader that utilizes spatial directional input and audio output</div>
@@ -380,7 +254,7 @@
       <div>
         <div class="flex items-center justify-between mb-6">
           <div class="font-diatype font-bold text-xl project-year-heading">2022</div>
-          <button class="clear-filter-btn border rounded transition-all hover:opacity-80" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; border-radius: 0.2rem; font-weight: 500; display: none;">Clear</button>
+          <button class="clear-filter-btn border rounded transition-all hover:opacity-80">Clear</button>
         </div>
         <div class="flex flex-col gap-3 project-year-section">
           <a href="https://www.newamerica.org/digital-impact-governance-initiative/reports/digital-transformation-opportunities-and-challenges-in-the-lower-mekong-region/" target="_blank" class="block project-link">
@@ -391,7 +265,7 @@
                   <div class="font-semibold project-title">Digital Transformation</div>
                   <div class="flex flex-col items-center">
                     <div class="project-year text-xs">Nov '22</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Report</span>
+                    <span class="project-tag-inline">Report</span>
                   </div>
                 </div>
                 <div class="project-desc">Filling the gap on the use of digital solutions to address challenges in the Lower Mekong region</div>
@@ -407,7 +281,7 @@
                   <div class="font-semibold project-title">Public Procurement</div>
                   <div class="flex flex-col items-center">
                     <div class="project-year text-xs">Oct '22</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Report</span>
+                    <span class="project-tag-inline">Report</span>
                   </div>
                 </div>
                 <div class="project-desc">The COVID-19 pandemic magnified challenges, highlighting the need for transformative change in the way governments manage digital solutions</div>
@@ -423,7 +297,7 @@
                   <div class="font-semibold project-title">Applied Machine Learning</div>
                   <div class="flex flex-col items-center">
                     <div class="project-year text-xs">July '22</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Research</span>
+                    <span class="project-tag-inline">Research</span>
                   </div>
                 </div>
                 <div class="project-desc">CoupCast is a machine learning-based early warning forecasting system for estimating the risk of illegal leadership turnover each month</div>
@@ -439,7 +313,7 @@
                   <div class="font-semibold project-title">TextRank and LexRank</div>
                   <div class="flex flex-col items-center">
                     <div class="project-year text-xs">Mar '22</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Research</span>
+                    <span class="project-tag-inline">Research</span>
                   </div>
                 </div>
                 <div class="project-desc">Asessing the perceived utility of text summarization models on the annotation process of textual data</div>
@@ -452,7 +326,7 @@
       <div>
         <div class="flex items-center justify-between mb-6">
           <div class="font-diatype font-bold text-xl project-year-heading">2021</div>
-          <button class="clear-filter-btn border rounded transition-all hover:opacity-80" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; border-radius: 0.2rem; font-weight: 500; display: none;">Clear</button>
+          <button class="clear-filter-btn border rounded transition-all hover:opacity-80">Clear</button>
         </div>
         <div class="flex flex-col gap-3 project-year-section">
           <a href="/assets/files/presentations/student_research_week_21.pdf" target="_blank" class="block project-link">
@@ -463,7 +337,7 @@
                   <div class="font-semibold project-title">Adolescent Online Safety</div>
                   <div class="flex flex-col items-center">
                     <div class="project-year text-xs">Oct '21</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Research</span>
+                    <span class="project-tag-inline">Research</span>
                   </div>
                 </div>
                 <div class="project-desc">While risk detection models are not new, most are based on public datasets, which can be unrepresentative of actual adolescent experiences</div>
@@ -479,7 +353,7 @@
                   <div class="font-semibold project-title">Marriage Equality</div>
                   <div class="flex flex-col items-center">
                     <div class="project-year text-xs">Jun '21</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Article</span>
+                    <span class="project-tag-inline">Article</span>
                   </div>
                 </div>
                 <div class="project-desc">Debate continues between advocates of legal equality and individuals and institutions that object to marriage equality on the basis of religious belief</div>
@@ -495,7 +369,7 @@
                   <div class="font-semibold project-title">Border Security</div>
                   <div class="flex flex-col items-center">
                     <div class="project-year text-xs">Apr '21</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Article</span>
+                    <span class="project-tag-inline">Article</span>
                   </div>
                 </div>
                 <div class="project-desc">U.S. Customs and Border Protection, along with a few agencies, regulates trade and travel at U.S. ports of entry and across the country's border</div>
@@ -511,7 +385,7 @@
                   <div class="font-semibold project-title">Foreign Policy</div>
                   <div class="flex flex-col items-center">
                     <div class="project-year text-xs">Mar '21</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Article</span>
+                    <span class="project-tag-inline">Article</span>
                   </div>
                 </div>
                 <div class="project-desc">Early American leaders considered the office an appendage of Congress, and chairing the Senate and breaking the occasional tie vote was all most vice presidents were asked to do</div>
@@ -527,7 +401,7 @@
                   <div class="font-semibold project-title">Nuclear Energy</div>
                   <div class="flex flex-col items-center">
                     <div class="project-year text-xs">Mar '21</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Article</span>
+                    <span class="project-tag-inline">Article</span>
                   </div>
                 </div>
                 <div class="project-desc">Before the Fukushima meltdown, officials saw nuclear energy as a way for Japan to achieve some degree of energy independence</div>
@@ -542,7 +416,7 @@
   <footer>
     <div class="footer-content">
       <div class="flex flex-row items-center justify-between">
-        <div class="text-gray-500 font-diatype md:block hidden" style="font-size: 0.75rem; margin-left: 0;">
+        <div class="text-gray-500 font-diatype md:block hidden footer-copyright">
           <span>© 2025 Avery Reyna</span>
         </div>
         <div class="flex flex-wrap gap-3 text-sm text-gray-700 md:order-last order-first">
@@ -559,5 +433,6 @@
       </div>
     </div>
   </footer>
+  <script src="/js/projects.js"></script>
 </body>
 </html>
