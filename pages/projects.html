@@ -31,6 +31,11 @@
         width: 100px !important;
         height: 62px !important;
         flex-shrink: 0 !important;
+        filter: none !important;
+      }
+      
+      .project-image:hover {
+        filter: none !important;
       }
       
       .project-title {
@@ -76,8 +81,6 @@
       .flex-1 {
         min-width: 0 !important;
         overflow: hidden !important;
-        display: flex !important;
-        flex-direction: column !important;
       }
       
       /* Hide the desktop flex-col container on mobile */
@@ -93,18 +96,20 @@
         margin-top: 0.25rem !important;
       }
       
-      /* Show desktop date on mobile below description */
+      /* Create a container for date and tag on mobile */
       .project-year.text-xs {
-        display: block !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-end !important;
         font-size: 0.55rem !important;
         color: #aaa !important;
         margin-top: 0.25rem !important;
-        order: 2 !important;
+        gap: 0.05rem !important;
       }
       
       .mobile-tag {
         display: inline-flex !important;
-        margin-top: 0.1rem !important;
+        margin-top: 0 !important;
         margin-left: 0 !important;
         font-size: 0.45rem !important;
         color: #6b7280 !important;
@@ -114,17 +119,15 @@
         font-weight: 500 !important;
         align-items: center !important;
         width: fit-content !important;
-        order: 3 !important;
+        line-height: 1 !important;
       }
       
-      /* Add spacing between title and description */
       .project-desc {
-        margin-top: 0.25rem !important;
+        margin-top: 0.1rem !important;
       }
       
     }
     
-    /* Hide mobile elements on desktop by default */
     .mobile-date, .mobile-tag {
       display: none;
     }
@@ -151,7 +154,7 @@
       </div>
     </div>
   </header>
-  <main class="w-full max-w-2xl mx-auto px-4 pb-8 pt-4" style="text-align: left;">
+  <main class="w-full max-w-2xl mx-auto px-4 pb-8 pt-8" style="text-align: left;">
     <div class="professional-summary flex flex-col mb-6">
         <div class="text-base text-gray-600 font-medium">Projects</div>
         <div class="text-xs text-gray-500" style="line-height: 1; word-break: break-word;">
