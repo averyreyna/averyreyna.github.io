@@ -461,28 +461,6 @@ p, li {
   margin-top: 0.15rem !important;
 }
 
-@media (max-width: 768px) {
-  .project-desc {
-    width: 205px;
-    max-width: 205px;
-    font-size: 0.6rem;
-  }
-  
-  .project-image {
-    filter: grayscale(0) !important;
-    width: 130px !important;
-    height: 81px !important;
-    flex-shrink: 0;
-  }
-  
-  .project-link .flex.flex-row {
-    align-items: flex-start !important;
-  }
-  
-  .project-year-section {
-    gap: 1.5rem !important;
-  }
-}
 
 .project-year {
   font-size: 0.76rem;
