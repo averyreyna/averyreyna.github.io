@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
   let currentFilter = null;
   const clearButtons = document.querySelectorAll('.clear-filter-btn');
   
-  const tags = document.querySelectorAll('.project-tag');
+  const tags = document.querySelectorAll('.project-tag-inline');
   tags.forEach(tag => {
     tag.addEventListener('click', function(e) {
       e.preventDefault();
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const allProjects = document.querySelectorAll('.project-link');
     
     allProjects.forEach(project => {
-      const projectTag = project.querySelector('.project-tag');
+      const projectTag = project.querySelector('.project-tag-inline');
       if (projectTag && projectTag.textContent.trim() === filterTag) {
         project.style.display = 'block';
       } else {
@@ -75,13 +75,13 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   function setActiveState(clickedTag) {
-    const allTags = document.querySelectorAll('.project-tag');
+    const allTags = document.querySelectorAll('.project-tag-inline');
     allTags.forEach(tag => tag.classList.remove('active'));
     clickedTag.classList.add('active');
   }
   
   function clearActiveStates() {
-    const allTags = document.querySelectorAll('.project-tag');
+    const allTags = document.querySelectorAll('.project-tag-inline');
     allTags.forEach(tag => tag.classList.remove('active'));
   }
   

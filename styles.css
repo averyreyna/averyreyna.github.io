@@ -731,22 +731,23 @@ footer {
   .project-desc {
     width: 180px;
     max-width: 180px;
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     line-height: 1.1;
   }
   
   .project-title {
-    font-size: 0.82rem;
+    font-size: 0.75rem;
     line-height: 1.1;
   }
   
   .project-year {
-    font-size: 0.65rem;
+    font-size: 0.55rem;
+    margin-top: 0.25rem !important;
   }
   
   .project-tag-inline {
-    font-size: 0.5rem;
-    padding: 0.08rem 0.2rem;
+    font-size: 0.45rem;
+    padding: 0.06rem 0.18rem;
   }
   
   /* Adjust main container padding for mobile */
@@ -833,6 +834,11 @@ footer {
   
   .professional-summary .text-xs {
     font-size: 0.8rem;
+  }
+  
+  /* Fix project year heading size on mobile */
+  .project-year-heading {
+    font-size: 1rem !important;
   }
 }
 

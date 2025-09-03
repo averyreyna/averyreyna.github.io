@@ -27,14 +27,20 @@ document.addEventListener('DOMContentLoaded', function() {
     
     let currentCompanyIndex = Math.floor(Math.random() * companies.length);
     const companyNameElement = document.getElementById('company-name');
-    const cycleButton = document.getElementById('cycle-company-btn');
+    const cycleIcon = document.getElementById('cycle-company-icon');
     
-    if (cycleButton && companyNameElement) {
-        companyNameElement.textContent = companies[currentCompanyIndex];
+    if (companyNameElement && cycleIcon) {
+        updateCompanyDisplay();
         
-        cycleButton.addEventListener('click', function() {
+        cycleIcon.addEventListener('click', function() {
             currentCompanyIndex = (currentCompanyIndex + 1) % companies.length;
-            companyNameElement.textContent = companies[currentCompanyIndex];
+            updateCompanyDisplay();
         });
+    }
+    
+    function updateCompanyDisplay() {
+        if (companyNameElement) {
+            companyNameElement.textContent = companies[currentCompanyIndex];
+        }
     }
 });
