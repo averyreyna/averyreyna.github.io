@@ -16,23 +16,31 @@ document.addEventListener('DOMContentLoaded', function() {
         'Prince Mohammad Bin Fahd Program',
         'UNA-Orlando',
         'Progressive Turnout Project',
+        'Main Street One',
         'BallotReady',
         'The COVID-19 Tracking Project',
         'Council on Foreign Relations',
         'The Hub Project',
         'Swing Left',
         'New America',
-        'ActBlue'
+        'ActBlue',
+        'KRC Research'
     ];
     
     let currentCompanyIndex = Math.floor(Math.random() * companies.length);
     const companyNameElement = document.getElementById('company-name');
-    const cycleIcon = document.getElementById('cycle-company-icon');
+    const prevIcon = document.getElementById('prev-company');
+    const nextIcon = document.getElementById('next-company');
     
-    if (companyNameElement && cycleIcon) {
+    if (companyNameElement && prevIcon && nextIcon) {
         updateCompanyDisplay();
         
-        cycleIcon.addEventListener('click', function() {
+        prevIcon.addEventListener('click', function() {
+            currentCompanyIndex = (currentCompanyIndex - 1 + companies.length) % companies.length;
+            updateCompanyDisplay();
+        });
+        
+        nextIcon.addEventListener('click', function() {
             currentCompanyIndex = (currentCompanyIndex + 1) % companies.length;
             updateCompanyDisplay();
         });
