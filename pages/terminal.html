@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terminal - Avery Reyna</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #3c4043;
+            color: #e8eaed;
+            font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', 'Source Code Pro', monospace;
+            font-size: 13px;
+            line-height: 1.4;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .terminal-container {
+            width: 90%;
+            max-width: 1000px;
+            height: 80vh;
+            background-color: #3c4043;
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .terminal-header {
+            background-color: #2d3134;
+            padding: 8px 16px;
+            border-bottom: 1px solid #5f6368;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot-red { background-color: #ff5f57; }
+        .dot-yellow { background-color: #ffbd2e; }
+        .dot-green { background-color: #28ca42; }
+
+        .terminal-title {
+            margin-left: 12px;
+            color: #9aa0a6;
+            font-size: 12px;
+        }
+
+        .terminal-content {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            background-color: #3c4043;
+        }
+
+        .terminal-line {
+            margin-bottom: 4px;
+            word-wrap: break-word;
+        }
+
+        .prompt {
+            color: #81c995;
+        }
+
+        .username {
+            color: #81c995;
+        }
+
+        .at-symbol {
+            color: #e8eaed;
+        }
+
+        .hostname {
+            color: #81c995;
+        }
+
+        .path {
+            color: #9aa0a6;
+        }
+
+        .cursor {
+            background-color: #e8eaed;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .input-line {
+            display: flex;
+            align-items: center;
+        }
+
+        .terminal-input {
+            background: transparent;
+            border: none;
+            color: #e8eaed;
+            font-family: inherit;
+            font-size: inherit;
+            outline: none;
+            flex: 1;
+            margin-left: 4px;
+        }
+
+        .command-output {
+            color: #e8eaed;
+            margin: 8px 0;
+            white-space: pre-wrap;
+        }
+
+        .error-text {
+            color: #f28b82;
+        }
+
+        .success-text {
+            color: #81c995;
+        }
+
+        .info-text {
+            color: #8ab4f8;
+        }
+
+        .highlight {
+            color: #fdd663;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="terminal-container">
+        <div class="terminal-header">
+            <div class="terminal-dot dot-red"></div>
+            <div class="terminal-dot dot-yellow"></div>
+            <div class="terminal-dot dot-green"></div>
+            <div class="terminal-title">Terminal</div>
+        </div>
+        <div class="terminal-content" id="terminal-content">
+            <div class="terminal-line">
+                <span class="success-text">Welcome to Avery's Interactive Terminal!</span>
+            </div>
+            <div class="terminal-line">
+                <span class="info-text">Type 'help' to see available commands or 'start' to begin the adventure.</span>
+            </div>
+            <div class="terminal-line">
+                <span class="info-text">Learn about my experiences before high school through interactive commands!</span>
+            </div>
+            <div class="terminal-line"></div>
+            <div class="input-line">
+                <span class="prompt">
+                    <span class="username">averyreyna</span><span class="at-symbol">@</span><span class="hostname">MacBook-Pro-55</span> <span class="path">[~/adventure]</span>
+                </span>
+                <span class="prompt"> ❯ </span>
+                <input type="text" class="terminal-input" id="terminal-input" autocomplete="off" spellcheck="false">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const terminalContent = document.getElementById('terminal-content');
+        const terminalInput = document.getElementById('terminal-input');
+        
+        let gameState = {
+            started: false,
+            currentScene: 'intro',
+            visitedScenes: new Set()
+        };
+
+        const scenes = {
+            intro: {
+                text: `You're about to explore Avery's life before high school...
+                
+Available paths:
+• 'elementary' - Discover elementary school adventures
+• 'middle' - Explore middle school experiences  
+• 'family' - Learn about family background
+• 'hobbies' - Uncover childhood interests
+• 'sports' - Athletic pursuits and activities
+
+What would you like to explore first?`,
+                commands: ['elementary', 'middle', 'family', 'hobbies', 'sports']
+            },
+            elementary: {
+                text: `📚 Elementary School Years (2005-2011)
+
+During elementary school, I was that kid who always had their hand up in class. I loved learning about everything - from dinosaurs to space to how things worked. I remember being fascinated by the school library and would check out way too many books at once.
+
+I also discovered my love for helping others during these years. I'd often help classmates with their homework and was chosen as a peer tutor in 4th grade.
+
+Commands:
+• 'library' - More about my library adventures
+• 'tutoring' - Learn about early teaching experiences
+• 'back' - Return to main menu`,
+                commands: ['library', 'tutoring', 'back']
+            },
+            middle: {
+                text: `🎓 Middle School Adventures (2011-2014)
+
+Middle school was where I really started to find my voice. I joined the debate team in 7th grade and discovered I had a passion for research and argumentation. This is also when I first got interested in technology - I remember being amazed by the computer lab and wanting to understand how websites worked.
+
+I was also part of the student government and helped organize school events. Looking back, this was probably where my interest in civic engagement first started.
+
+Commands:
+• 'debate' - Hear about debate team experiences
+• 'tech' - Early technology interests
+• 'government' - Student government stories
+• 'back' - Return to main menu`,
+                commands: ['debate', 'tech', 'government', 'back']
+            },
+            family: {
+                text: `👨‍👩‍👧‍👦 Family Background
+
+I grew up in a family that valued education, curiosity, and helping others. My parents always encouraged me to ask questions and explore my interests, no matter how random they seemed.
+
+Family dinners were often filled with discussions about current events, which probably sparked my early interest in politics and social issues. We'd debate everything from local news to global events - in a friendly way, of course!
+
+Commands:
+• 'discussions' - More about family debates
+• 'values' - Family values that shaped me
+• 'back' - Return to main menu`,
+                commands: ['discussions', 'values', 'back']
+            },
+            hobbies: {
+                text: `🎨 Childhood Hobbies & Interests
+
+I was a pretty curious kid with diverse interests:
+
+• Reading - I devoured books, especially sci-fi and fantasy
+• Building things - Legos, model planes, you name it
+• Drawing and sketching - Loved creating characters and stories
+• Collecting - Everything from rocks to trading cards
+• Puzzles - The more challenging, the better
+
+These hobbies taught me patience, creativity, and problem-solving skills that I still use today.
+
+Commands:
+• 'reading' - My favorite childhood books
+• 'building' - Construction projects and creations
+• 'back' - Return to main menu`,
+                commands: ['reading', 'building', 'back']
+            },
+            sports: {
+                text: `⚽ Sports & Physical Activities
+
+While I wasn't the most athletic kid, I participated in several sports and activities:
+
+• Soccer - Played for 3 years, learned teamwork
+• Swimming - Summer league swimmer, loved the individual challenge
+• Track & Field - Discovered I was decent at long-distance running
+• Martial Arts - Took karate for 2 years, learned discipline
+
+Sports taught me perseverance, how to handle both winning and losing, and the importance of consistent practice.
+
+Commands:
+• 'soccer' - Team sports experiences
+• 'individual' - Swimming and track stories
+• 'back' - Return to main menu`,
+                commands: ['soccer', 'individual', 'back']
+            }
+        };
+
+        const detailScenes = {
+            library: "I practically lived in the elementary school library! I'd check out the maximum number of books allowed (which was 5) every week. The librarian, Mrs. Johnson, knew me by name and would save interesting new books for me. I read everything from the Magic Tree House series to beginner science books about space and dinosaurs.",
+            
+            tutoring: "Being a peer tutor in 4th grade was my first real teaching experience. I helped younger students with reading and math, and I loved seeing that 'lightbulb moment' when they finally understood a concept. This experience probably planted the seeds for my later interest in education and helping others learn.",
+            
+            debate: "Joining the debate team was transformative! I learned how to research topics thoroughly, construct logical arguments, and think on my feet. We debated everything from school uniforms to environmental policies. I wasn't always the best speaker, but I was definitely the most prepared with research.",
+            
+            tech: "My first real exposure to technology was in the middle school computer lab. We had these old Windows XP machines, and I was fascinated by how you could create websites with HTML. I spent hours after school learning basic coding and creating terrible-looking but functional websites about my favorite books and games.",
+            
+            government: "Student government taught me about leadership and organizing people around common goals. I helped plan school dances, fundraisers, and spirit weeks. It was my first taste of civic engagement and showed me how collective action could create positive change in a community.",
+            
+            discussions: "Our family dinner conversations were like mini-debate sessions! We'd discuss everything from local school board elections to international news. My parents encouraged me to form my own opinions and defend them with facts. These discussions definitely shaped my analytical thinking and interest in current events.",
+            
+            values: "My family emphasized curiosity, empathy, and service to others. We volunteered together at local food banks and community events. They taught me that with privilege comes responsibility to help others, and that learning should be a lifelong pursuit.",
+            
+            reading: "I was obsessed with series like Harry Potter, Percy Jackson, and anything by Isaac Asimov. I loved stories that combined adventure with learning about different worlds, whether magical or scientific. These books probably influenced my later interest in research and exploration.",
+            
+            building: "I loved construction toys! I'd spend hours building elaborate Lego cities, complete with working mechanisms. I also built model airplanes and rockets. These activities taught me patience, attention to detail, and basic engineering principles.",
+            
+            soccer: "Playing soccer taught me about teamwork and communication. I wasn't the most skilled player, but I was reliable and always showed up to practice. I learned that success often comes from consistent effort rather than natural talent.",
+            
+            individual: "Swimming and track were where I really thrived. I loved the individual challenge and the ability to measure improvement through times and distances. These sports taught me self-discipline and the value of setting and working toward personal goals."
+        };
+
+        function addLine(content, className = '') {
+            const line = document.createElement('div');
+            line.className = `terminal-line ${className}`;
+            line.innerHTML = content;
+            terminalContent.insertBefore(line, terminalContent.lastElementChild);
+            terminalContent.scrollTop = terminalContent.scrollHeight;
+        }
+
+        function showPrompt() {
+            const inputLine = terminalContent.lastElementChild;
+            inputLine.style.display = 'flex';
+            terminalInput.focus();
+        }
+
+        function hidePrompt() {
+            const inputLine = terminalContent.lastElementChild;
+            inputLine.style.display = 'none';
+        }
+
+        function processCommand(command) {
+            const cmd = command.toLowerCase().trim();
+            
+            // Add the command to terminal history
+            addLine(`<span class="prompt"><span class="username">averyreyna</span><span class="at-symbol">@</span><span class="hostname">MacBook-Pro-55</span> <span class="path">[~/adventure]</span> ❯ </span>${command}`);
+            
+            if (cmd === 'help') {
+                addLine(`<span class="info-text">Available commands:</span>
+• <span class="highlight">start</span> - Begin the adventure
+• <span class="highlight">help</span> - Show this help message
+• <span class="highlight">clear</span> - Clear the terminal
+• <span class="highlight">exit</span> - Return to main website
+
+Once you start the adventure, you'll get context-specific commands!`, 'command-output');
+            }
+            else if (cmd === 'start') {
+                gameState.started = true;
+                gameState.currentScene = 'intro';
+                addLine(`<span class="success-text">${scenes.intro.text}</span>`, 'command-output');
+            }
+            else if (cmd === 'clear') {
+                terminalContent.innerHTML = `
+                    <div class="input-line">
+                        <span class="prompt">
+                            <span class="username">averyreyna</span><span class="at-symbol">@</span><span class="hostname">MacBook-Pro-55</span> <span class="path">[~/adventure]</span>
+                        </span>
+                        <span class="prompt"> ❯ </span>
+                        <input type="text" class="terminal-input" id="terminal-input" autocomplete="off" spellcheck="false">
+                    </div>
+                `;
+                // Re-get the input element after clearing
+                const newInput = document.getElementById('terminal-input');
+                newInput.addEventListener('keypress', handleInput);
+                newInput.focus();
+                return;
+            }
+            else if (cmd === 'exit') {
+                window.location.href = '/';
+                return;
+            }
+            else if (cmd === 'back') {
+                gameState.currentScene = 'intro';
+                addLine(`<span class="success-text">${scenes.intro.text}</span>`, 'command-output');
+            }
+            else if (gameState.started) {
+                if (scenes[cmd]) {
+                    gameState.currentScene = cmd;
+                    gameState.visitedScenes.add(cmd);
+                    addLine(`<span class="success-text">${scenes[cmd].text}</span>`, 'command-output');
+                }
+                else if (detailScenes[cmd]) {
+                    addLine(`<span class="info-text">${detailScenes[cmd]}</span>`, 'command-output');
+                    addLine(`<span class="highlight">Type 'back' to return to the previous menu.</span>`, 'command-output');
+                }
+                else {
+                    const currentScene = scenes[gameState.currentScene];
+                    if (currentScene && currentScene.commands.includes(cmd)) {
+                        // This shouldn't happen, but just in case
+                        addLine(`<span class="error-text">Command recognized but not implemented: ${cmd}</span>`, 'command-output');
+                    } else {
+                        addLine(`<span class="error-text">Command not found: ${cmd}</span>`, 'command-output');
+                        if (currentScene) {
+                            addLine(`<span class="info-text">Available commands: ${currentScene.commands.join(', ')}</span>`, 'command-output');
+                        }
+                    }
+                }
+            }
+            else {
+                addLine(`<span class="error-text">Command not found: ${cmd}</span>`, 'command-output');
+                addLine(`<span class="info-text">Type 'help' for available commands or 'start' to begin the adventure.</span>`, 'command-output');
+            }
+        }
+
+        function handleInput(event) {
+            if (event.key === 'Enter') {
+                const command = terminalInput.value;
+                terminalInput.value = '';
+                
+                if (command.trim()) {
+                    processCommand(command);
+                }
+                
+                // Always show prompt after processing command
+                setTimeout(showPrompt, 100);
+            }
+        }
+
+        // Initialize
+        terminalInput.addEventListener('keypress', handleInput);
+        terminalInput.focus();
+    </script>
+</body>
+</html>
