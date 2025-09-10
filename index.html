@@ -13,21 +13,21 @@
     <header class="bg-gray-50 w-full border-b border-gray-100">
         <div class="max-w-2xl mx-auto px-4 py-2">
             <div class="flex flex-row items-center justify-between">
-                <h1 class="text-2xl font-bold main-heading-semi-mono header-link flex items-center gap-2">
+                <h1 class="text-2xl font-bold main-heading-semi-mono header-link">
                     <a href="/" class="text-inherit hover:text-inherit header-link">Avery Reyna</a>
-                    <a href="/terminal.html" class="text-gray-600 hover:text-gray-800 transition-colors duration-200 flex items-center" aria-label="Terminal">
-                        <i class="fas fa-terminal" style="font-size: 0.5rem;"></i>
-                    </a>
                 </h1>
                 <nav class="relative">
-                    <button id="menu-toggle" class="menu-button" aria-label="Toggle menu">
-                        Menu
-                    </button>
-                    <div id="menu-dropdown" class="menu-dropdown hidden">
-                        <a href="/" class="menu-item nav-link-active">About</a>
-                        <a href="/pages/cv" class="menu-item">CV</a>
-                        <a href="/pages/projects" class="menu-item">Projects</a>
-                        <a href="/pages/resources" class="menu-item">Resources</a>
+                    <div class="nav-selector bg-white border border-gray-300 rounded-lg px-3 py-1.5 cursor-pointer flex items-center justify-between" id="nav-toggle">
+                        <span class="text-xs text-gray-600 font-medium">Page: <span class="text-gray-600">About</span></span>
+                        <svg class="w-3 h-3 text-gray-500 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
+                    <div id="nav-dropdown" class="nav-dropdown hidden absolute right-0 mt-1 bg-white border border-gray-300 rounded-lg shadow-lg py-1 z-10" style="width: 100%;">
+                        <a href="/" class="nav-item block px-3 py-1.5 text-xs text-gray-600 hover:bg-gray-50 nav-link-active no-underline">About</a>
+                        <a href="/pages/cv" class="nav-item block px-3 py-1.5 text-xs text-gray-600 hover:bg-gray-50 no-underline">CV</a>
+                        <a href="/pages/projects" class="nav-item block px-3 py-1.5 text-xs text-gray-600 hover:bg-gray-50 no-underline">Projects</a>
+                        <a href="/pages/resources" class="nav-item block px-3 py-1.5 text-xs text-gray-600 hover:bg-gray-50 no-underline">Resources</a>
                     </div>
                 </nav>
             </div>
@@ -44,16 +44,15 @@
                 I was able to collaborate with <a href="https://amydonley.com/" target="_blank" rel="noopener">Amy Donley</a>, 
                 <a href="https://stirlab.org/" target="_blank" rel="noopener">Pamela Wisniewski</a>, 
                 and <a href="https://jonathanmpowell.com/" target="_blank" rel="noopener">Jonathan Powell</a> 
-                studying applied sociology, human-computer interaction, and computational social science, respectively. 
-                In between classes and research, I worked at places like the <img src="/assets/logos/cfr.png" alt="CFR" class="inline-block w-3.5 h-3.5 mx-1" style="text-decoration: none; vertical-align: -0.1em;"><a href="https://www.cfr.org/" target="_blank" rel="noopener">Council on Foreign Relations</a>, 
-                <img src="/assets/logos/the_hub_project.png" alt="The Hub Project" class="inline-block w-3.5 h-3.5 mx-1" style="text-decoration: none; vertical-align: -0.1em;"><a href="https://thehubproject.com/" target="_blank" rel="noopener">The Hub Project</a>, 
-                <img src="/assets/logos/swing_left.png" alt="Swing Left" class="inline-block w-3.5 h-3.5 mx-1" style="text-decoration: none; vertical-align: -0.1em;"><a href="https://newamerica.org/" target="_blank" rel="noopener">Swing Left</a>, 
-                <img src="/assets/logos/new_america.png" alt="New America" class="inline-block w-3.5 h-3.5 mx-1" style="text-decoration: none; vertical-align: -0.1em;"><a href="https://actblue.com/" target="_blank" rel="noopener">New America</a>,
-                and <img src="/assets/logos/actblue.png" alt="ActBlue" class="inline-block w-3.5 h-3.5 mx-1" style="text-decoration: none; vertical-align: -0.1em;"><a href="https://actblue.com/" target="_blank" rel="noopener">ActBlue</a>. 
+                studying applied sociology, human-computer interaction, and computational social science. 
+                I worked at various companies such as the <a href="https://www.cfr.org/" target="_blank" rel="noopener">Council on Foreign Relations</a>, 
+                <a href="https://thehubproject.com/" target="_blank" rel="noopener">The Hub Project</a>, 
+                <a href="https://newamerica.org/" target="_blank" rel="noopener">Swing Left</a>, 
+                <a href="https://actblue.com/" target="_blank" rel="noopener">New America</a>,
+                and <a href="https://actblue.com/" target="_blank" rel="noopener">ActBlue</a>. In between research and internships, I spent my summers completing <a>REUs</a> at the <a href="https://www.utc.edu/" target="_blank" rel="noopener">University of Tacoma</a> collboarating with <a href="https://jimthatcher.com/" target="_blank" rel="noopener">Jim Thatcher</a> and <a href="https://briansmith.org/" target="_blank" rel="noopener">Columbia University</a> in <a>Brian Smith's</a> <a href="https://ceal-lab.com/" target="_blank" rel="noopener">CEAL Lab</a>.
                 Outside of work, I am studying agentic coding workflows of experienced developers with the <a href="https://hci.ucsd.edu/" target="_blank" rel="noopener">Foundation Interface Lab</a> at <a href="https://ucsd.edu/" target="_blank" rel="noopener">UC San Diego</a> 
                 and rejoining <a href="https://jonathanmpowell.com/coupcast/" target="_blank" rel="noopener">CoupCast</a> to improve machine learning performance, now under the maintenance of the <a href="https://uky.edu/" target="_blank" rel="noopener">University of Kentucky</a>. 
-                In my free time, I'm documenting my thoughts with <a href="avery-reyna.writeas.com" target="_blank" rel="noopener">Semantic Distance</a>, 
-                writing about music under <a href="https://complexvectorspace.substack.com/" target="_blank" rel="noopener">Magdalena Baywatch</a>, 
+                In my free time, I'm documenting my thoughts with <a href="avery-reyna.writeas.com" target="_blank" rel="noopener">Semantic Distance</a>
                 and building prototypes as <a href="https://instagram.com/selfadjointoperator" target="_blank" rel="noopener">Self Adjoint Operator</a>.
             </p>
         </div>
@@ -247,6 +246,7 @@
                     <a href="https://scholar.google.com/citations?user=YOUR_USER_ID" class="md:hover:text-gray-800 transition-colors" target="_blank" rel="noopener"><i class="fa-solid fa-graduation-cap"></i></a>
                     <a href="https://instagram.com/averyreyna" class="md:hover:text-gray-800 transition-colors" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
                     <a href="https://linkedin.com/in/averyreyna" class="md:hover:text-gray-800 transition-colors" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="/pages/terminal.html" class="md:hover:text-gray-800 transition-colors hidden md:inline-block" target="_blank" rel="noopener" aria-label="Terminal"><i class="fas fa-terminal"></i></a>
                 </div>
                 <div class="text-gray-500 font-diatype md:hidden block" style="font-size: 0.75rem; margin-left: 0;">
                     <span>© 2025 Avery Reyna</span>

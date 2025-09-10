@@ -1,4 +1,11 @@
 /* ===== RESET & BASE STYLES ===== */
+.no-underline {
+    text-decoration: none !important;
+}
+
+.nav-item {
+    text-decoration: none !important;
+}
 html {
     scrollbar-width: none;
     -ms-overflow-style: none;
