@@ -1,14 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const menuToggle = document.getElementById('menu-toggle');
-    const menuDropdown = document.getElementById('menu-dropdown');
+    const navToggle = document.getElementById('nav-toggle');
+    const navDropdown = document.getElementById('nav-dropdown');
     
-    menuToggle.addEventListener('click', function() {
-        menuDropdown.classList.toggle('hidden');
+    navToggle.addEventListener('click', function() {
+        navDropdown.classList.toggle('hidden');
     });
     
     document.addEventListener('click', function(event) {
-        if (!menuToggle.contains(event.target) && !menuDropdown.contains(event.target)) {
-            menuDropdown.classList.add('hidden');
+        if (!navToggle.contains(event.target) && !navDropdown.contains(event.target)) {
+            navDropdown.classList.add('hidden');
         }
     });
     
