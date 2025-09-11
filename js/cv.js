@@ -1,16 +1,187 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const menuToggle = document.getElementById('menu-toggle');
-    const menuDropdown = document.getElementById('menu-dropdown');
+    const navToggle = document.getElementById('nav-toggle');
+    const navDropdown = document.getElementById('nav-dropdown');
     
-    menuToggle.addEventListener('click', function() {
-        menuDropdown.classList.toggle('hidden');
+    navToggle.addEventListener('click', function() {
+        navDropdown.classList.toggle('hidden');
     });
     
     document.addEventListener('click', function(event) {
-        if (!menuToggle.contains(event.target) && !menuDropdown.contains(event.target)) {
-            menuDropdown.classList.add('hidden');
+        if (!navToggle.contains(event.target) && !navDropdown.contains(event.target)) {
+            navDropdown.classList.add('hidden');
         }
     });
+
+    // Load talks from JSON
+    async function loadTalks() {
+        try {
+            const response = await fetch('/data/talks.json');
+            const talks = await response.json();
+            
+            const container = document.getElementById('talks-container');
+            
+            // Create talk items with exact same styling
+            talks.forEach((talk) => {
+                const talkDiv = document.createElement('div');
+                talkDiv.className = 'py-1 flex flex-col gap-0.25';
+                
+                // Generate links HTML
+                const linksHtml = talk.links.map(link => 
+                    `<a href="${link.url}" class="publication-link text-gray-500 text-xs" target="_blank" rel="noopener">${link.text}</a>`
+                ).join('');
+                
+                talkDiv.innerHTML = `
+                    <span class="font-semibold text-gray-900 mb-0.5 leading-tight" style="margin-bottom:0.1rem;">${talk.title}</span>
+                    <span class="text-xs text-gray-500">${talk.venue}</span>
+                    <span class="text-xs text-gray-700">${talk.authors}</span>
+                    <span class="flex flex-row flex-wrap gap-2 mt-0.5">
+                        ${linksHtml}
+                    </span>
+                `;
+                
+                container.appendChild(talkDiv);
+            });
+            
+        } catch (error) {
+            console.error('Error loading talks:', error);
+        }
+    }
+    
+    // Load talks when page loads
+    loadTalks();
+
+    // Load papers from JSON
+    async function loadPapers() {
+        try {
+            const response = await fetch('/data/papers.json');
+            const papers = await response.json();
+            
+            const container = document.getElementById('papers-container');
+            
+            // Create paper items with exact same styling
+            papers.forEach((paper) => {
+                const paperDiv = document.createElement('div');
+                paperDiv.className = 'py-1 flex flex-col gap-0.25';
+                
+                // Generate links HTML
+                const linksHtml = paper.links.map(link => 
+                    `<a href="${link.url}" class="publication-link text-gray-500 text-xs" target="_blank" rel="noopener">${link.text}</a>`
+                ).join('');
+                
+                paperDiv.innerHTML = `
+                    <span class="font-semibold text-gray-900 mb-0.5 leading-tight" style="margin-bottom:0.1rem;">${paper.title}</span>
+                    <span class="text-xs text-gray-500">${paper.venue}</span>
+                    <span class="text-xs text-gray-700">${paper.authors}</span>
+                    <span class="flex flex-row flex-wrap gap-2 mt-0.5">
+                        ${linksHtml}
+                    </span>
+                `;
+                
+                container.appendChild(paperDiv);
+            });
+            
+        } catch (error) {
+            console.error('Error loading papers:', error);
+        }
+    }
+    
+    // Load papers when page loads
+    loadPapers();
+
+    // Load presentations from JSON
+    async function loadPresentations() {
+        try {
+            const response = await fetch('/data/presentations.json');
+            const presentations = await response.json();
+            
+            const container = document.getElementById('presentations-container');
+            
+            // Create presentation items with exact same styling
+            presentations.forEach((presentation) => {
+                const presentationDiv = document.createElement('div');
+                presentationDiv.className = 'py-1 flex flex-col gap-0.25';
+                
+                // Generate links HTML
+                const linksHtml = presentation.links.map(link => 
+                    `<a href="${link.url}" class="publication-link text-gray-500 text-xs" target="_blank" rel="noopener">${link.text}</a>`
+                ).join('');
+                
+                presentationDiv.innerHTML = `
+                    <span class="font-semibold text-gray-900 mb-0.5 leading-tight" style="margin-bottom:0.1rem;">${presentation.title}</span>
+                    <span class="text-xs text-gray-500">${presentation.venue}</span>
+                    <span class="text-xs text-gray-700">${presentation.authors}</span>
+                    <span class="flex flex-row flex-wrap gap-2 mt-0.5">
+                        ${linksHtml}
+                    </span>
+                `;
+                
+                container.appendChild(presentationDiv);
+            });
+            
+        } catch (error) {
+            console.error('Error loading presentations:', error);
+        }
+    }
+    
+    // Load presentations when page loads
+    loadPresentations();
+
+    // Load articles from JSON
+    async function loadArticles() {
+        try {
+            const response = await fetch('/data/articles.json');
+            const articles = await response.json();
+            
+            const container = document.getElementById('articles-container');
+            
+            articles.forEach(article => {
+                const articleDiv = document.createElement('div');
+                articleDiv.className = 'py-1 flex flex-col gap-0.25';
+                
+                // Title
+                const titleSpan = document.createElement('span');
+                titleSpan.className = 'font-semibold text-gray-900 mb-0.5 leading-tight';
+                titleSpan.style.marginBottom = '0.1rem';
+                titleSpan.textContent = article.title;
+                
+                // Venue
+                const venueSpan = document.createElement('span');
+                venueSpan.className = 'text-xs text-gray-500';
+                venueSpan.textContent = article.venue;
+                
+                // Authors
+                const authorsSpan = document.createElement('span');
+                authorsSpan.className = 'text-xs text-gray-700';
+                authorsSpan.innerHTML = article.authors;
+                
+                // Links
+                const linksSpan = document.createElement('span');
+                linksSpan.className = 'flex flex-row flex-wrap gap-2 mt-0.5';
+                
+                article.links.forEach(link => {
+                    const linkElement = document.createElement('a');
+                    linkElement.href = link.url;
+                    linkElement.className = 'publication-link text-gray-500 text-xs';
+                    linkElement.target = '_blank';
+                    linkElement.rel = 'noopener';
+                    linkElement.textContent = link.text;
+                    linksSpan.appendChild(linkElement);
+                });
+                
+                articleDiv.appendChild(titleSpan);
+                articleDiv.appendChild(venueSpan);
+                articleDiv.appendChild(authorsSpan);
+                articleDiv.appendChild(linksSpan);
+                
+                container.appendChild(articleDiv);
+            });
+        } catch (error) {
+            console.error('Error loading articles:', error);
+        }
+    }
+
+    // Load articles when page loads
+    loadArticles();
 
     // Companies hover effect with cursor following
     const companiesTrigger = document.querySelector('.companies-hover-trigger');

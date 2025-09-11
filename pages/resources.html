@@ -17,14 +17,17 @@
                     <a href="/" class="text-inherit hover:text-inherit header-link">Avery Reyna</a>
                 </h1>
                 <nav class="relative">
-                    <button id="menu-toggle" class="menu-button" aria-label="Toggle menu">
-                        Menu
-                    </button>
-                    <div id="menu-dropdown" class="menu-dropdown hidden">
-                        <a href="/" class="menu-item">About</a>
-                        <a href="/pages/cv" class="menu-item">CV</a>
-                        <a href="/pages/projects" class="menu-item">Projects</a>
-                        <a href="/pages/resources" class="menu-item nav-link-active">Resources</a>
+                    <div class="nav-selector bg-white border border-gray-300 rounded-lg px-3 py-1.5 cursor-pointer flex items-center justify-between" id="nav-toggle">
+                        <span class="text-xs text-gray-600 font-medium"><span class="text-gray-600">Resources</span></span>
+                        <svg class="w-3 h-3 text-gray-500 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
+                    <div id="nav-dropdown" class="nav-dropdown hidden absolute right-0 mt-1 bg-white border border-gray-300 rounded-lg shadow-lg py-1 z-10">
+                        <a href="/" class="nav-item block px-3 py-1.5 text-xs text-gray-600 hover:bg-gray-50 no-underline">About</a>
+                        <a href="/pages/cv" class="nav-item block px-3 py-1.5 text-xs text-gray-600 hover:bg-gray-50 no-underline">CV</a>
+                        <a href="/pages/projects" class="nav-item block px-3 py-1.5 text-xs text-gray-600 hover:bg-gray-50 no-underline">Projects</a>
+                        <a href="/pages/resources" class="nav-item block px-3 py-1.5 text-xs text-gray-600 hover:bg-gray-50 nav-link-active no-underline">Resources</a>
                     </div>
                 </nav>
             </div>

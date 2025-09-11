@@ -17,14 +17,17 @@
                     <a href="/" class="text-inherit hover:text-inherit header-link">Avery Reyna</a>
                 </h1>
                 <nav class="relative">
-                    <button id="menu-toggle" class="menu-button" aria-label="Toggle menu">
-                        Menu
-                    </button>
-                    <div id="menu-dropdown" class="menu-dropdown hidden">
-                        <a href="/" class="menu-item">About</a>
-                        <a href="/pages/cv" class="menu-item nav-link-active">CV</a>
-                        <a href="/pages/projects" class="menu-item">Projects</a>
-                        <a href="/pages/resources" class="menu-item">Resources</a>
+                    <div class="nav-selector bg-white border border-gray-300 rounded-lg px-3 py-1.5 cursor-pointer flex items-center justify-between" id="nav-toggle">
+                        <span class="text-xs text-gray-600 font-medium"><span class="text-gray-600">CV</span></span>
+                        <svg class="w-3 h-3 text-gray-500 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
+                    <div id="nav-dropdown" class="nav-dropdown hidden absolute right-0 mt-1 bg-white border border-gray-300 rounded-lg shadow-lg py-1 z-10" style="width: 100%;">
+                        <a href="/" class="nav-item block px-3 py-1.5 text-xs text-gray-600 hover:bg-gray-50 no-underline">About</a>
+                        <a href="/pages/cv" class="nav-item block px-3 py-1.5 text-xs text-gray-600 hover:bg-gray-50 nav-link-active no-underline">CV</a>
+                        <a href="/pages/projects" class="nav-item block px-3 py-1.5 text-xs text-gray-600 hover:bg-gray-50 no-underline">Projects</a>
+                        <a href="/pages/resources" class="nav-item block px-3 py-1.5 text-xs text-gray-600 hover:bg-gray-50 no-underline">Resources</a>
                     </div>
                 </nav>
             </div>
@@ -194,135 +197,29 @@
             <span class="section-heading-semi-mono">Papers</span>
             <span class="research-heading-line"></span>
         </div>
-        <div class="space-y-1">
-            <div class="py-1 flex flex-col gap-0.25">
-                <span class="font-semibold text-gray-900 mb-0.5 leading-tight" style="margin-bottom:0.1rem;">Help Supporters: Exploring the Design Space of Assistive Technologies to Support Face-to-Face Help Between Blind and Sighted Strangers</span>
-                <span class="text-xs text-gray-500">CHI '24</span>
-                <span class="text-xs text-gray-700">Yuanyang Teng, Connor Courtien, David Rios, Yves Tseng, Jacqueline Gibson, Maryam Aziz, <b>Avery Reyna</b>, Rajan Vaish, Brian Smith</span>
-                <span class="flex flex-row flex-wrap gap-2 mt-0.5">
-                    <a href="https://dl.acm.org/doi/10.1145/3613904.3642816" class="publication-link text-gray-500 text-xs" target="_blank" rel="noopener">ACM DL Page</a>
-                    <a href="https://doi.org/10.1145/3613904.3642816" class="publication-link text-gray-500 text-xs" target="_blank" rel="noopener">Paper</a>
-                </span>
-            </div>
-            <div class="py-1 flex flex-col gap-0.25">
-                <span class="font-semibold text-gray-900 mb-0.5 leading-tight" style="margin-bottom:0.1rem;">Understanding Blind and Low Vision Users' Attitudes Towards Spatial Interactions in Desktop Screen Readers</span>
-                <span class="text-xs text-gray-500">ASSETS '23</span>
-                <span class="text-xs text-gray-700">Arnavi Chheda-Kothary, David Rios, Kynnedy Simone Smith, <b>Avery Reyna</b>, Cecilia Zhang, Brian Smith</span>
-                <span class="flex flex-row flex-wrap gap-2 mt-0.5">
-                    <a href="https://dl.acm.org/doi/10.1145/3597638.3608412" class="publication-link text-gray-500 text-xs" target="_blank" rel="noopener">ACM DL Page</a>
-                    <a href="/assets/files/papers/spatial_interactions.pdf" class="publication-link text-gray-500 text-xs" target="_blank" rel="noopener">Paper</a>
-                    <a href="https://doi.org/10.1145/3613904.3642816" class="publication-link text-gray-500 text-xs" target="_blank" rel="noopener">Project</a>
-                </span>
-            </div>
+        <div id="papers-container" class="space-y-1">
+            <!-- Papers will be loaded dynamically from JSON -->
         </div>
         <div class="research-heading">
             <span class="section-heading-semi-mono">Articles</span>
             <span class="research-heading-line"></span>
         </div>
-        <div class="space-y-1">
-            <div class="py-1 flex flex-col gap-0.25">
-                <span class="font-semibold text-gray-900 mb-0.5 leading-tight" style="margin-bottom:0.1rem;">The Threat of Artificial Intelligence Is Not Just Real, It's Here</span>
-                <span class="text-xs text-gray-500">The Loop</span>
-                <span class="text-xs text-gray-700"><b>Avery Reyna</b></span>
-                <span class="flex flex-row flex-wrap gap-2 mt-0.5">
-                    <a href="https://theloop.ecpr.eu/the-threat-of-artificial-intelligence-is-not-just-real-its-here/" class="publication-link text-gray-500 text-xs" target="_blank" rel="noopener">Article</a>
-                </span>
-            </div>
-            <div class="py-1 flex flex-col gap-0.25">
-                <span class="font-semibold text-gray-900 mb-0.5 leading-tight" style="margin-bottom:0.1rem;">Interdisciplinary Social Science and the Limits of Quantitative Research</span>
-                <span class="text-xs text-gray-500">The Loop</span>
-                <span class="text-xs text-gray-700"><b>Avery Reyna</b></span>
-                <span class="flex flex-row flex-wrap gap-2 mt-0.5">
-                    <a href="https://theloop.ecpr.eu/interdisciplinary-social-science-and-the-limits-of-quantitative-research/" class="publication-link text-gray-500 text-xs" target="_blank" rel="noopener">Article</a>
-                </span>
-            </div>
-            <div class="py-1 flex flex-col gap-0.25">
-                <span class="font-semibold text-gray-900 mb-0.5 leading-tight" style="margin-bottom:0.1rem;">Anti-Coup Strategies Should Address Civilian Coup Allies</span>
-                <span class="text-xs text-gray-500">Just Security</span>
-                <span class="text-xs text-gray-700">Salah Ben Hammou, <b>Avery Reyna</b></span>
-                <span class="flex flex-row flex-wrap gap-2 mt-0.5">
-                    <a href="https://www.justsecurity.org/82471/anti-coup-strategies-should-address-civilian-coup-allies/" class="publication-link text-gray-500 text-xs" target="_blank" rel="noopener">Article</a>
-                </span>
-            </div>
-            <div class="py-1 flex flex-col gap-0.25">
-                <span class="font-semibold text-gray-900 mb-0.5 leading-tight" style="margin-bottom:0.1rem;">Reflecting on Coup Risk in Mali</span>
-                <span class="text-xs text-gray-500">Political Violence at a Glance</span>
-                <span class="text-xs text-gray-700"><b>Avery Reyna</b>, Salah Ben Hammou</span>
-                <span class="flex flex-row flex-wrap gap-2 mt-0.5">
-                    <a href="https://igcc.ucsd.edu/blog/reflecting-on-coup-risk-in-mali/" target="_blank" rel="noopener" class="publication-link text-gray-500 text-xs">Article</a>
-                </span>
-            </div>
-            <div class="py-1 flex flex-col gap-0.25">
-                <span class="font-semibold text-gray-900 mb-0.5 leading-tight" style="margin-bottom:0.1rem;">Integrated Data in the United States: A Look at New York's Workforce Portal</span>
-                <span class="text-xs text-gray-500">New America</span>
-                <span class="text-xs text-gray-700"><b>Avery Reyna</b></span>
-                <span class="flex flex-row flex-wrap gap-2 mt-0.5">
-                    <a href="https://www.newamerica.org/digital-impact-governance-initiative/blog/integrated-data-in-the-united-states-a-look-at-new-yorks-workforce-portal/" target="_blank" rel="noopener" class="publication-link text-gray-500 text-xs" target="_blank" rel="noopener">Article</a>
-                </span>
-            </div>
-            <div class="py-1 flex flex-col gap-0.25">
-                <span class="font-semibold text-gray-900 mb-0.5 leading-tight" style="margin-bottom:0.1rem;">Latin America's Vaccination Efforts: What to Know</span>
-                <span class="text-xs text-gray-500">Council on Foreign Relations</span>
-                <span class="text-xs text-gray-700"><b>Avery Reyna</b></span>
-                <span class="flex flex-row flex-wrap gap-2 mt-0.5">
-                    <a href="https://www.cfr.org/in-brief/latin-americas-vaccination-efforts-what-know" target="_blank" rel="noopener" class="publication-link text-gray-500 text-xs">Article</a>
-                </span>
-            </div>
+        <div id="articles-container" class="space-y-1">
+            <!-- Articles will be loaded dynamically from JSON -->
         </div>
         <div class="research-heading">
             <span class="section-heading-semi-mono">Talks</span>
             <span class="research-heading-line"></span>
         </div>
-        <div class="space-y-1">
-            <div class="py-1 flex flex-col gap-0.25">
-                <span class="font-semibold text-gray-900 mb-0.5 leading-tight" style="margin-bottom:0.1rem;">Cartographic Limits and Interdisciplinary Science: Maps and Mathematics in Pursuit of Social Justice</span>
-                <span class="text-xs text-gray-500">NACIS '22</span>
-                <span class="text-xs text-gray-700">Alexis Wood, <b>Avery Reyna</b>, Aya Konishi, David Retchless, Jim Thatcher</span>
-                <span class="flex flex-row flex-wrap gap-2 mt-0.5">
-                    <a href="#" class="publication-link text-gray-500 text-xs" target="_blank" rel="noopener">Talk</a>
-                    <a href="/assets/files/presentations/cartographic_limits.pdf" class="publication-link text-gray-500 text-xs" target="_blank" rel="noopener">Slides</a>
-                </span>
-            </div>
-        </div>
-        <div class="space-y-1">
-            <div class="py-1 flex flex-col gap-0.25">
-                <span class="font-semibold text-gray-900 mb-0.5 leading-tight" style="margin-bottom:0.1rem;">Legacies of Instability: Military Coups and Regime Consolidation in the Modern World</span>
-                <span class="text-xs text-gray-500">ISA South '22</span>
-                <span class="text-xs text-gray-700"><b>Avery Reyna</b>, Jonathan Powell</span>
-                <span class="flex flex-row flex-wrap gap-2 mt-0.5">
-                    <a href="/pages/talk_not_available.html" class="publication-link text-gray-500 text-xs" target="_blank" rel="noopener">Talk</a>
-                </span>
-            </div>
+        <div id="talks-container" class="space-y-1">
+            <!-- Talks will be loaded dynamically from JSON -->
         </div>
         <div class="research-heading">
             <span class="section-heading-semi-mono">Presentations</span>
             <span class="research-heading-line"></span>
         </div>
-        <div class="space-y-1">
-            <div class="py-1 flex flex-col gap-0.25">
-                <span class="font-semibold text-gray-900 mb-0.5 leading-tight" style="margin-bottom:0.1rem;">Applied Machine Learning to Detect Risk of Illegal Leadership Turnover</span>
-                <span class="text-xs text-gray-500">Summer Undergraduate Research Poster Showcase '22</span>
-                <span class="text-xs text-gray-700"><b>Avery Reyna</b>, Jonathan Powell</span>
-                <span class="flex flex-row flex-wrap gap-2 mt-0.5">
-                    <a href="/assets/files/presentations/summer_undergraduate_research_poster_showcase_22.pdf" class="publication-link text-gray-500 text-xs" target="_blank" rel="noopener">Presentation</a>
-                </span>
-            </div>
-            <div class="py-1 flex flex-col gap-0.25">
-                <span class="font-semibold text-gray-900 mb-0.5 leading-tight" style="margin-bottom:0.1rem;">Comparative Analysis between TextRank and LexRank: Testing Perceived Utility of Text Summarization Models for Data Annotators</span>
-                <span class="text-xs text-gray-500">Student Research Week '22</span>
-                <span class="text-xs text-gray-700"><b>Avery Reyna</b>, Ashwaq Soubai, Pamela Wisniewski</span>
-                <span class="flex flex-row flex-wrap gap-2 mt-0.5">
-                    <a href="/assets/files/presentations/student_research_week_22.pdf" class="publication-link text-gray-500 text-xs" target="_blank" rel="noopener">Presentation</a>
-                </span>
-            </div>
-            <div class="py-1 flex flex-col gap-0.25">
-                <span class="font-semibold text-gray-900 mb-0.5 leading-tight" style="margin-bottom:0.1rem;">Adolescent Online Safety: Expanding the Knowledge Base and Developing Machine Learning Algorithms</span>
-                <span class="text-xs text-gray-500">Student Research Week '21</span>
-                <span class="text-xs text-gray-700">Carlson Sharpless, Pallavi Dacre, Komila Khamidova, <b>Avery Reyna</b>, Abdulrahman Sumaih, Christian Lozano, Afsaneh Razi, Ashwaq Soubai, Pamela Wisniewski</span>
-                <span class="flex flex-row flex-wrap gap-2 mt-0.5">
-                    <a href="/assets/files/presentations/student_research_week_21.pdf" class="publication-link text-gray-500 text-xs" target="_blank" rel="noopener">Presentation</a>
-                </span>
-            </div>
+        <div id="presentations-container" class="space-y-1">
+            <!-- Presentations will be loaded dynamically from JSON -->
         </div>
         <div class="research-heading">
             <span class="section-heading-semi-mono">Awards & Honors</span>
