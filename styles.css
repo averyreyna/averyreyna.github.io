@@ -745,8 +745,8 @@ footer {
   .project-image {
     width: 110px;
     height: 69px;
-    filter: none; /* Remove grayscale on mobile */
-    flex-shrink: 0; /* Prevent image from shrinking */
+    filter: none;
+    flex-shrink: 0;
   }
   
   .project-desc {

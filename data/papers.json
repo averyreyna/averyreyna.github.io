@@ -2,7 +2,7 @@
   {
     "title": "Help Supporters: Exploring the Design Space of Assistive Technologies to Support Face-to-Face Help Between Blind and Sighted Strangers",
     "venue": "CHI '24",
-    "authors": "Yuanyang Teng, Connor Courtien, David Rios, Yves Tseng, Jacqueline Gibson, Maryam Aziz, <b>Avery Reyna</b>, Rajan Vaish, Brian Smith",
+    "authors": "Yuanyang Teng, Connor Courtien, David Rios, Yves Tseng, Jacqueline Gibson, Maryam Aziz, <b>Avery Reyna</b>, Rajan Vaish, and Brian Smith",
     "links": [
       {
         "text": "ACM DL Page",
@@ -10,14 +10,14 @@
       },
       {
         "text": "Paper",
-        "url": "https://doi.org/10.1145/3613904.3642816"
+        "url": "/assets/files/papers/help_supporters.pdf"
       }
     ]
   },
   {
     "title": "Understanding Blind and Low Vision Users' Attitudes Towards Spatial Interactions in Desktop Screen Readers",
     "venue": "ASSETS '23",
-    "authors": "Arnavi Chheda-Kothary, David Rios, Kynnedy Simone Smith, <b>Avery Reyna</b>, Cecilia Zhang, Brian Smith",
+    "authors": "Arnavi Chheda-Kothary, David Rios, Kynnedy Simone Smith, <b>Avery Reyna</b>, Cecilia Zhang, and Brian Smith",
     "links": [
       {
         "text": "ACM DL Page",
@@ -29,7 +29,7 @@
       },
       {
         "text": "Project",
-        "url": "https://doi.org/10.1145/3613904.3642816"
+        "url": "https://github.com/ceal-lab/spatial-interactions"
       }
     ]
   }
