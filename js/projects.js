@@ -88,9 +88,9 @@ document.addEventListener('DOMContentLoaded', function() {
   function updateClearButtonColor(activeTag) {
     const color = activeTag.style.color;
     clearButtons.forEach(button => {
-      button.style.color = color;
-      button.style.borderColor = color;
-      button.style.backgroundColor = 'transparent';
+      button.style.color = '';
+      button.style.borderColor = '';
+      button.style.backgroundColor = '';
     });
   }
   
