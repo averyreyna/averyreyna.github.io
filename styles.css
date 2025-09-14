@@ -473,6 +473,15 @@ footer {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
+/* Industry project images blur effect */
+.project-link.industry-project .project-image {
+  filter: grayscale(1) blur(2px);
+}
+
+.project-link.industry-project .project-image:hover {
+  filter: grayscale(0) blur(2px);
+}
+
 .project-info {
   padding: 0;
   display: flex;
