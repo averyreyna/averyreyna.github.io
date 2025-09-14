@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load announcements from JSON
     async function loadAnnouncements() {
         try {
-            const response = await fetch('/data/announements.json');
+            const response = await fetch('/data/announcements.json');
             const announcements = await response.json();
             
             const container = document.getElementById('announcements-container');
