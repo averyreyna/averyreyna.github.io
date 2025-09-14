@@ -8,758 +8,346 @@
   <link rel="stylesheet" href="/styles.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-  <style>
-    .project-tag {
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    .project-tag:hover {
-      opacity: 0.8;
-    }
-    .project-desc {
-      margin-top: -0.5rem !important;
-    }
-    @media (max-width: 768px) {
-      .mobile-full-width {
-        max-width: 100vw !important;
-        padding: 0 1rem !important;
-        text-align: left !important;
-      }
-      
-      .project-image {
-        display: none !important;
-      }
-      .project-tag {
-        display: none !important;
-      }
-      
-      .project-link {
-        margin-bottom: 1.5rem !important;
-        padding: 0 !important;
-      }
-      
-      .project-link .flex.flex-row {
-        display: grid !important;
-        grid-template-areas: 
-          "title-row"
-          "desc" 
-          "meta" !important;
-        grid-template-columns: 1fr !important;
-        gap: 0.15rem !important;
-        justify-items: start !important;
-        text-align: left !important;
-      }
-      
-      .project-link .flex-1 {
-        display: contents !important;
-      }
-      
-      .project-link .flex.items-center.justify-between {
-        grid-area: title-row !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: flex-start !important;
-      }
-      
-      .project-title {
-        font-size: 1rem !important;
-        font-weight: 600 !important;
-        margin: 0 !important;
-        margin-right: 0.5rem !important;
-      }
-      
-      .project-desc {
-        grid-area: desc !important;
-        font-size: 0.85rem !important;
-        line-height: 1 !important;
-        margin: 0 !important;
-        width: calc(100vw - 2rem) !important;
-        max-width: none !important;
-        word-wrap: break-word !important;
-        text-align: left !important;
-      }
-      
-      .project-year {
-        display: none !important;
-      }
-      
-      .mobile-year-container {
-        grid-area: meta !important;
-        font-size: 0.75rem !important;
-        color: #888 !important;
-        margin: 0 !important;
-        display: flex !important;
-        align-items: center !important;
-        gap: 0.15rem !important;
-      }
-      
-      .mobile-year-container .project-year {
-        display: flex !important;
-        font-size: 0.75rem !important;
-        color: #888 !important;
-        margin: 0 !important;
-        align-items: center !important;
-        gap: 0.15rem !important;
-      }
-      
-      .mobile-tag {
-        font-size: 0.45rem !important;
-        padding: 0.05rem 0.2rem !important;
-        border-radius: 0.15rem !important;
-        font-weight: 500 !important;
-        border: 0.5px solid !important;
-        display: inline-flex !important;
-        align-items: center !important;
-        cursor: pointer !important;
-        transition: all 0.2s ease !important;
-        margin: 0 !important;
-      }
-      .mobile-tag:hover {
-        opacity: 0.8 !important;
-      }
-      
-      .project-year-section {
-        gap: 0 !important;
-      }
-      
-      .clear-filter-btn {
-        font-size: 0.45rem !important;
-        padding: 0.05rem 0.2rem !important;
-        border-radius: 0.15rem !important;
-        font-weight: 500 !important;
-        border: 0.5px solid !important;
-        display: none !important;
-        align-items: center !important;
-        transition: all 0.2s ease !important;
-        min-width: auto !important;
-        height: auto !important;
-      }
-      
-      .flex.flex-col.gap-6 {
-        gap: 2rem !important;
-      }
-    }
-    @media (min-width: 769px) {
-      .mobile-tag {
-        display: none !important;
-      }
-    }
-  </style>
 </head>
 <body class="bg-white min-h-screen font-diatype">
-  <header class="bg-gray-50 w-full border-b border-gray-100">
+  <header class="w-full">
     <div class="max-w-2xl mx-auto px-4 py-2">
       <div class="flex flex-row items-center justify-between">
-        <h1 class="text-2xl font-bold main-heading-semi-mono" style="line-height: 1; word-break: break-word;">
-          <a href="/" class="text-inherit hover:text-inherit" style="text-decoration: none;">Avery Reyna</a>
+        <h1 class="text-2xl font-bold main-heading-semi-mono flex items-center gap-1">
+          <a href="/" class="text-inherit hover:text-inherit header-link">Avery Reyna</a>
+          <img src="/assets/files/me/animated_avery_reyna.png" alt="Avery Reyna" class="w-8 h-8 rounded-full object-cover">
         </h1>
         <nav class="relative">
-          <button id="menu-toggle" class="menu-button" aria-label="Toggle menu">
-            Menu
-          </button>
-          <div id="menu-dropdown" class="menu-dropdown hidden">
-            <a href="/" class="menu-item">About</a>
-            <a href="/pages/cv.html" class="menu-item">CV</a>
-            <a href="/pages/projects.html" class="menu-item nav-link-active">Projects</a>
-            <a href="/pages/resources.html" class="menu-item">Resources</a>
-        </div>
+          <div class="nav-selector bg-white border border-gray-300 rounded-lg px-3 py-1.5 cursor-pointer flex items-center justify-between" id="nav-toggle">
+            <span class="text-xs text-gray-600 font-medium"><span class="text-gray-600">Projects</span></span>
+            <span class="nav-arrow text-gray-500 ml-1.5 text-xs transition-transform duration-200 ease-in-out flex items-center justify-center" style="transform: rotate(0deg); width: 12px;">></span>
+          </div>
+          <div id="nav-dropdown" class="nav-dropdown hidden absolute right-0 mt-1 bg-white border border-gray-300 rounded-lg shadow-lg py-1 z-10" style="width: 100%;">
+            <a href="/" class="nav-item block px-3 py-1.5 text-xs text-gray-600 no-underline">About</a>
+            <a href="/cv" class="nav-item block px-3 py-1.5 text-xs text-gray-600 no-underline">CV</a>
+            <a href="/projects" class="nav-item block px-3 py-1.5 text-xs text-gray-600 nav-link-active no-underline">Projects</a>
+            <a href="/resources" class="nav-item block px-3 py-1.5 text-xs text-gray-600 no-underline">Resources</a>
+          </div>
         </nav>
       </div>
     </div>
   </header>
-  <main class="w-full max-w-2xl mx-auto px-4 pb-8 pt-4" style="text-align: left;">
+  <main class="w-full max-w-2xl mx-auto px-4 pb-8 pt-4 main-container">
     <div class="professional-summary flex flex-col mb-6">
         <div class="text-base text-gray-600 font-medium">Projects</div>
-        <div class="text-xs text-gray-500" style="line-height: 1; word-break: break-word;">
-            A collection of research, industry work, prototypes, reports, and articles across several disciplines.
+        <div class="text-xs text-gray-500 professional-summary-text">
+            A collection of work in articles, industry, prototypes, reports, and research across several disciplines
         </div>
     </div>
-
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        let currentFilter = null;
-        const clearButtons = document.querySelectorAll('.clear-filter-btn');
-        
-        const tags = document.querySelectorAll('.project-tag');
-        tags.forEach(tag => {
-          tag.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            const tagText = this.textContent.trim();
-            
-            if (currentFilter === tagText) {
-              currentFilter = null;
-              showAllProjects();
-              clearActiveStates();
-              resetClearButtonColor();
-              hideAllClearButtons();
-            } else {
-              currentFilter = tagText;
-              filterProjects(tagText);
-              setActiveState(this);
-              updateClearButtonColor(this);
-              showClearButtonInVisibleSections();
-            }
-          });
-        });
-        
-        clearButtons.forEach(button => {
-          button.addEventListener('click', function() {
-            currentFilter = null;
-            showAllProjects();
-            clearActiveStates();
-            resetClearButtonColor();
-            hideAllClearButtons();
-          });
-        });
-        
-        function showAllProjects() {
-          const allProjects = document.querySelectorAll('.project-link');
-          allProjects.forEach(project => {
-            project.style.display = 'block';
-          });
-          
-          const yearSections = document.querySelectorAll('.flex.flex-col.gap-6 > div');
-          yearSections.forEach(section => {
-            section.style.display = 'block';
-          });
-        }
-        
-        function filterProjects(filterTag) {
-          const allProjects = document.querySelectorAll('.project-link');
-          
-          allProjects.forEach(project => {
-            const projectTag = project.querySelector('.project-tag');
-            if (projectTag && projectTag.textContent.trim() === filterTag) {
-              project.style.display = 'block';
-            } else {
-              project.style.display = 'none';
-            }
-          });
-          
-          const yearSections = document.querySelectorAll('.flex.flex-col.gap-6 > div');
-          yearSections.forEach(section => {
-            const visibleProjects = section.querySelectorAll('.project-link[style*="block"]:not([style*="none"])');
-            const hiddenProjects = section.querySelectorAll('.project-link[style*="none"]');
-            const totalProjects = section.querySelectorAll('.project-link');
-            
-            if (totalProjects.length > 0 && hiddenProjects.length === totalProjects.length) {
-              section.style.display = 'none';
-            } else {
-              section.style.display = 'block';
-            }
-          });
-        }
-        
-        function setActiveState(clickedTag) {
-          const allTags = document.querySelectorAll('.project-tag');
-          allTags.forEach(tag => tag.classList.remove('active'));
-          clickedTag.classList.add('active');
-        }
-        
-        function clearActiveStates() {
-          const allTags = document.querySelectorAll('.project-tag');
-          allTags.forEach(tag => tag.classList.remove('active'));
-        }
-        
-        function updateClearButtonColor(activeTag) {
-          const color = activeTag.style.color;
-          clearButtons.forEach(button => {
-            button.style.color = color;
-            button.style.borderColor = color;
-            button.style.backgroundColor = 'transparent';
-          });
-        }
-        
-        function resetClearButtonColor() {
-          clearButtons.forEach(button => {
-            button.style.color = '';
-            button.style.borderColor = '';
-            button.style.backgroundColor = '';
-          });
-        }
-        
-        function hideAllClearButtons() {
-          clearButtons.forEach(button => {
-            button.style.display = 'none';
-          });
-        }
-        
-        function showClearButtonInVisibleSections() {
-          hideAllClearButtons();
-          const yearSections = document.querySelectorAll('.flex.flex-col.gap-6 > div');
-          
-          for (let section of yearSections) {
-            if (section.style.display !== 'none') {
-              const clearButton = section.querySelector('.clear-filter-btn');
-              if (clearButton) {
-                clearButton.style.setProperty('display', 'inline-flex', 'important');
-                break;
-              }
-            }
-          }
-        }
-        
-        function createMobileTags() {
-          document.querySelectorAll('.mobile-tag').forEach(tag => tag.remove());
-          document.querySelectorAll('.mobile-year-container').forEach(container => container.remove());
-          
-          if (window.innerWidth <= 768) {
-            const projectLinks = document.querySelectorAll('.project-link');
-            projectLinks.forEach(link => {
-              const originalTag = link.querySelector('.project-tag');
-              const titleContainer = link.querySelector('.flex.items-center.justify-between');
-              const yearElement = link.querySelector('.project-year');
-              const flexRow = link.querySelector('.flex.flex-row');
-              
-              if (originalTag && titleContainer) {
-                // Create mobile tag next to title
-                const mobileTag = originalTag.cloneNode(true);
-                mobileTag.classList.remove('project-tag');
-                mobileTag.classList.add('mobile-tag');
-                mobileTag.style.color = originalTag.style.color;
-                mobileTag.style.borderColor = originalTag.style.borderColor;
-                titleContainer.appendChild(mobileTag);
-                
-                mobileTag.addEventListener('click', function(e) {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  const tagText = this.textContent.trim();
-                  
-                  if (currentFilter === tagText) {
-                    currentFilter = null;
-                    showAllProjects();
-                    clearActiveStates();
-                    resetClearButtonColor();
-                    hideAllClearButtons();
-                  } else {
-                    currentFilter = tagText;
-                    filterProjects(tagText);
-                    setActiveState(originalTag);
-                    updateClearButtonColor(originalTag);
-                    showClearButtonInVisibleSections();
-                  }
-                });
-              }
-              
-              if (yearElement && flexRow) {
-                // Create mobile year container at the bottom
-                const mobileYearContainer = document.createElement('div');
-                mobileYearContainer.classList.add('mobile-year-container');
-                mobileYearContainer.appendChild(yearElement.cloneNode(true));
-                flexRow.appendChild(mobileYearContainer);
-              }
-            });
-          }
-        }
-        
-        function transformProjectsLayout() {
-          if (window.innerWidth > 768) {
-            const projectLinks = document.querySelectorAll('.project-link');
-            projectLinks.forEach(link => {
-              if (link.dataset.transformed) return;
-              
-              const contentDiv = link.querySelector('div > div:not(.flex-1)');
-              if (contentDiv && !contentDiv.classList.contains('flex-1')) {
-                const titleDiv = contentDiv.querySelector('.project-title');
-                const descDiv = contentDiv.querySelector('.project-desc');
-                const yearDiv = contentDiv.querySelector('.project-year');
-                
-                if (titleDiv && descDiv && yearDiv) {
-                  contentDiv.classList.add('flex-1');
-                  
-                  const titleWrapper = document.createElement('div');
-                  titleWrapper.className = 'flex items-center justify-between';
-                  
-                  contentDiv.insertBefore(titleWrapper, descDiv);
-                  titleWrapper.appendChild(titleDiv);
-                  titleWrapper.appendChild(yearDiv);
-                  
-                  link.dataset.transformed = 'true';
-                }
-              }
-            });
-          }
-        }
-        
-        showAllProjects();
-        transformProjectsLayout();
-        createMobileTags();
-        
-        window.addEventListener('resize', function() {
-          document.querySelectorAll('.project-link').forEach(link => {
-            delete link.dataset.transformed;
-          });
-          createMobileTags();
-          transformProjectsLayout();
-        });
-        
-        const menuToggle = document.getElementById('menu-toggle');
-        const menuDropdown = document.getElementById('menu-dropdown');
-        
-        menuToggle.addEventListener('click', function() {
-          menuDropdown.classList.toggle('hidden');
-        });
-        
-        document.addEventListener('click', function(event) {
-          if (!menuToggle.contains(event.target) && !menuDropdown.contains(event.target)) {
-            menuDropdown.classList.add('hidden');
-          }
-        });
-      });
-    </script>
     <div class="flex flex-col gap-6">
       <div>
-        <div class="flex items-center justify-between mb-6">
+        <div class="flex items-baseline justify-between mb-6">
           <div class="font-diatype font-bold text-xl project-year-heading">2025</div>
-          <button class="clear-filter-btn border rounded transition-all hover:opacity-80" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; border-radius: 0.2rem; font-weight: 500; display: none;">Clear</button>
+          <button class="clear-filter-btn border rounded transition-all hover:opacity-80">Clear</button>
         </div>
         <div class="flex flex-col gap-3 project-year-section">
-          <!-- <a href="" target="_blank" class="block project-link">
-            <div class="flex flex-row gap-5 items-center justify-center">
-              <img src="" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
+          <a href="" target="_blank" class="block project-link">
+            <div class="flex flex-row gap-5 items-center">
+              <img src="/assets/projects/prototypes/palestra.gif" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
-                <div class="flex items-center justify-between">
-                  <div class="font-semibold project-title">Palestra</div>
-                  <div class="flex flex-col items-center">
-                    <div class="project-year text-xs">Aug '25</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Prototype</span>
-                  </div>
+                <div class="font-semibold project-title flex items-center">
+                  Palestra
+                  <span class="project-tag-inline">Prototype</span>
                 </div>
-                <div class="project-desc">Answering in-context questions about AI-generated, psuedo-enterprise codebases</div>
+                <div class="project-desc">Answering in-context questions about AI-generated, psuedo-enterprise codebases as practice for all levels of developers</div>
+                <div class="project-year text-xs">Aug '25</div>
               </div>
             </div>
-          </a> -->
-          <!-- <a href="" target="_blank" class="block project-link">
-            <div class="flex flex-row gap-5 items-center justify-center">
-              <img src="/assets/projects/prototypes/perceptor.gif" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
-              <div class="flex-1">
-                <div class="flex items-center justify-between">
-                  <div class="font-semibold project-title">Perceptor</div>
-                  <div class="flex flex-col items-center">
-                    <div class="project-year text-xs">Aug '25</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Prototype</span>
-                  </div>
-                </div>
-                <div class="project-desc">Interactive CLI coding assistant that guides you through the process of developing software, regardless of engineering experience or skill level</div>
-              </div>
-            </div>
-          </a> -->
-          <!-- <a href="https://www.instagram.com/p/DKvfqtFouqF/?utm_source=ig_web_copy_link" target="_blank" class="block project-link">
-            <div class="flex flex-row gap-5 items-center justify-center">
+          </a>
+          <a href="" target="_blank" class="block project-link">
+            <div class="flex flex-row gap-5 items-center">
               <img src="/assets/projects/prototypes/rerank_2.gif" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
-                <div class="flex items-center justify-between">
-                  <div class="font-semibold project-title">Rerank</div>
-                  <div class="flex flex-col items-center">
-                    <div class="project-year text-xs">Aug '25</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Prototype</span>
-                  </div>
+                <div class="font-semibold project-title flex items-center">
+                  Rerank
+                  <span class="project-tag-inline">Prototype</span>
                 </div>
-                <div class="project-desc">Revisiting an experiment on utilizing text summarization models for annotating textual data</div>
+                <div class="project-desc">Revisiting an experiment from undergrad that utilizes text summarization models for annotating large amounts of textual data</div>
+                <div class="project-year text-xs">Sep '25</div>
               </div>
             </div>
-          </a> -->
+          </a>
+          <a href="" target="_blank" class="block project-link">
+            <div class="flex flex-row gap-5 items-center">
+              <img src="/assets/projects/prototypes/perceptor.gif" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
+              <div class="flex-1">
+                <div class="font-semibold project-title flex items-center">
+                  Perceptor
+                  <span class="project-tag-inline">Prototype</span>
+                </div>
+                <div class="project-desc">Interactive CLI coding assistant that guides you through the process of developing software regardless of your experience level</div>
+                <div class="project-year text-xs">Sep '25</div>
+              </div>
+            </div>
+          </a>
           <a href="https://www.instagram.com/p/DKvfqtFouqF/?utm_source=ig_web_copy_link" target="_blank" class="block project-link">
-            <div class="flex flex-row gap-5 items-center justify-center">
+            <div class="flex flex-row gap-5 items-center">
               <img src="/assets/projects/prototypes/scrutinize.gif" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
-                <div class="flex items-center justify-between">
-                  <div class="font-semibold project-title">Scrutinize</div>
-                  <div class="flex flex-col items-center">
-                    <div class="project-year text-xs">Jun '25</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Prototype</span>
-                  </div>
+                <div class="font-semibold project-title flex items-center">
+                  Scrutinize
+                  <span class="project-tag-inline">Prototype</span>
                 </div>
                 <div class="project-desc">Editing DeepSeek's essays with interactive human-centered annotation</div>
+                <div class="project-year text-xs">Jun '25</div>
               </div>
             </div>
           </a>
           <a href="https://www.instagram.com/p/DKvAULfvXVg/?utm_source=ig_web_copy_link" target="_blank" class="block project-link">
-            <div class="flex flex-row gap-5 items-center justify-center">
+            <div class="flex flex-row gap-5 items-center">
               <img src="/assets/projects/prototypes/specter.gif" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
-                <div class="flex items-center justify-between">
-                  <div class="font-semibold project-title">Specter</div>
-                  <div class="flex flex-col items-center">
-                    <div class="project-year text-xs">Jun '25</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Prototype</span>
-                  </div>
+                <div class="font-semibold project-title flex items-center">
+                  Specter
+                  <span class="project-tag-inline">Prototype</span>
                 </div>
                 <div class="project-desc">Ephemeral Deepseek-based AI assistant made for the writing process</div>
+                <div class="project-year text-xs">Jun '25</div>
               </div>
             </div>
           </a>
-          <a href="/nda.html" class="block project-link">
-            <div class="flex flex-row gap-5 items-center justify-center">
-              <img src="/assets/projects/industry/metrics_dashboard.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
+          <a href="/nda" class="block project-link industry-project">
+            <div class="flex flex-row gap-5 items-center">
+              <img src="/assets/projects/industry/metrics_dashboard.png" class="project-image" onmouseover="this.style.filter='grayscale(0) blur(1px)';" onmouseout="this.style.filter='grayscale(1) blur(1px)';">
               <div class="flex-1">
-                <div class="flex items-center justify-between">
-                  <div class="font-semibold project-title">Metrics Dashboard</div>
-                  <div class="flex flex-col items-center">
-                    <div class="project-year text-xs">May '25</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Industry</span>
-                  </div>
+                <div class="font-semibold project-title flex items-center">
+                  Metrics Dashboard
+                  <span class="project-tag-inline">Industry</span>
                 </div>
-                <div class="project-desc">Building a customizable in-house heartbeat monitoring solution to replace Grafana dashboards</div>
+                <div class="project-desc">Building an in-house heartbeat monitoring solution to replace admin Grafana dashboards displaying cyber logs of vital enterprise assets</div>
+                <div class="project-year text-xs">May '25</div>
               </div>
             </div>
           </a>
           <a href="https://www.instagram.com/p/DKGRo-yozpb/?utm_source=ig_web_copy_link" target="_blank" class="block project-link">
-            <div class="flex flex-row gap-5 items-center justify-center">
+            <div class="flex flex-row gap-5 items-center">
               <img src="/assets/projects/prototypes/meta_measure.gif" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
-                <div class="flex items-center justify-between">
-                  <div class="font-semibold project-title">Meta Measure</div>
-                  <div class="flex flex-col items-center">
-                    <div class="project-year text-xs">May '25</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Prototype</span>
-                  </div>
+                <div class="font-semibold project-title flex items-center">
+                  Meta Measure
+                  <span class="project-tag-inline">Prototype</span>
                 </div>
-                <div class="project-desc">Evaluating Claude Sonnet 3.7's ability to assess research ideas from across all disciplines</div>
+                <div class="project-desc">Evaluating Claude Sonnet 3.7's ability to assess research ideas from across all disciplines to uncover potential biases</div>
+                <div class="project-year text-xs">May '25</div>
               </div>
             </div>
           </a>
         </div>
       </div>
       <div>
-        <div class="flex items-center justify-between mb-6">
+        <div class="flex items-baseline justify-between mb-6">
           <div class="font-diatype font-bold text-xl project-year-heading">2024</div>
-          <button class="clear-filter-btn border rounded transition-all hover:opacity-80" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; border-radius: 0.2rem; font-weight: 500; display: none;">Clear</button>
+          <button class="clear-filter-btn border rounded transition-all hover:opacity-80">Clear</button>
         </div>
         <div class="flex flex-col gap-3 project-year-section">
-          <a href="/nda.html" class="block project-link">
-            <div class="flex flex-row gap-5 items-center justify-center">
-              <img src="/assets/projects/industry/ilm_portal.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
+          <a href="/nda" class="block project-link industry-project">
+            <div class="flex flex-row gap-5 items-center">
+              <img src="/assets/projects/industry/ilm_portal.png" class="project-image" onmouseover="this.style.filter='grayscale(0) blur(1px)';" onmouseout="this.style.filter='grayscale(1) blur(1px)';">
               <div class="flex-1">
-                <div class="flex items-center justify-between">
-                  <div class="font-semibold project-title">ILM Portal</div>
-                  <div class="flex flex-col items-center">
-                    <div class="project-year text-xs">Aug '24</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Industry</span>
-                  </div>
+                <div class="font-semibold project-title flex items-center">
+                  ILM Portal
+                  <span class="project-tag-inline">Industry</span>
                 </div>
-                <div class="project-desc">Designing a identity lifecycle management portal to house custom authorization plugins for teams across Cyber Tech and decouple from SailPoint</div>
+                <div class="project-desc">Designing an identity lifecycle portal for custom authorization plugins across Cyber Tech teams and to decouple from SailPoint</div>
+                <div class="project-year text-xs">Aug '24</div>
               </div>
             </div>
           </a>
           <a href="" class="block project-link">
-            <div class="flex flex-row gap-5 items-center justify-center">
+            <div class="flex flex-row gap-5 items-center">
               <img src="/assets/projects/research/help_supporters.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
-                <div class="flex items-center justify-between">
-                  <div class="font-semibold project-title">Help Supporters</div>
-                  <div class="flex flex-col items-center">
-                    <div class="project-year text-xs">May '24</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Research</span>
-                  </div>
+                <div class="font-semibold project-title flex items-center">
+                  Help Supporters
+                  <span class="project-tag-inline">Research</span>
                 </div>
-                <div class="project-desc">Exploring the design space of assistive technologies to better exploratory face-to-face support between BLV and sighted parties</div>
+                <div class="project-desc">Exploring the design space of assistive technologies to improve face-to-face support between BLV and sighted individuals</div>
+                <div class="project-year text-xs">Aug '24</div>
               </div>
             </div>
           </a>
-          <a href="/nda.html" class="block project-link">
-            <div class="flex flex-row gap-5 items-center justify-center">
-              <img src="/assets/projects/industry/file_upload_tool.gif" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
+          <a href="/nda" class="block project-link industry-project">
+            <div class="flex flex-row gap-5 items-center">
+              <img src="/assets/projects/industry/file_upload_tool.gif" class="project-image" onmouseover="this.style.filter='grayscale(0) blur(1px)';" onmouseout="this.style.filter='grayscale(1) blur(1px)';">
               <div class="flex-1">
-                <div class="flex items-center justify-between">
-                  <div class="font-semibold project-title">File Upload Tool</div>
-                  <div class="flex flex-col items-center">
-                    <div class="project-year text-xs">Apr '24</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Industry</span>
-                  </div>
+                <div class="font-semibold project-title flex items-center">
+                  File Upload Tool
+                  <span class="project-tag-inline">Industry</span>
                 </div>
-                <div class="project-desc">Revamped the frontend of a plugin that validates native application content for data analytics teams</div>
+                <div class="project-desc">Revamped the frontend of an custom authorization plugin that validates native application content for a data analytics team</div>
+                <div class="project-year text-xs">Apr '24</div>
               </div>
             </div>
           </a>
-          <a href="/nda.html" class="block project-link">
-            <div class="flex flex-row gap-5 items-center justify-center">
-              <img src="/assets/projects/industry/penetration_tests.gif" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
+          <a href="/nda" class="block project-link industry-project">
+            <div class="flex flex-row gap-5 items-center">
+              <img src="/assets/projects/industry/penetration_tests.gif" class="project-image" onmouseover="this.style.filter='grayscale(0) blur(1px)';" onmouseout="this.style.filter='grayscale(1) blur(1px)';">
               <div class="flex-1">
-                <div class="flex items-center justify-between">
-                  <div class="font-semibold project-title">Penetration Tests</div>
-                  <div class="flex flex-col items-center">
-                    <div class="project-year text-xs">Feb '24</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Industry</span>
-                  </div>
+                <div class="font-semibold project-title flex items-center">
+                  Penetration Tests
+                  <span class="project-tag-inline">Industry</span>
                 </div>
-                <div class="project-desc">Rendering editable spreadsheets from imported Excel files into a platform for Security Engineers</div>
+                <div class="project-desc">Rendering editable spreadsheets from imported Excel files for a remediation platform used by Security Engineers</div>
+                <div class="project-year text-xs">Feb '24</div>
               </div>
             </div>
           </a>
         </div>
       </div>
       <div>
-        <div class="flex items-center justify-between mb-6">
+        <div class="flex items-baseline justify-between mb-6">
           <div class="font-diatype font-bold text-xl project-year-heading">2023</div>
-          <button class="clear-filter-btn border rounded transition-all hover:opacity-80" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; border-radius: 0.2rem; font-weight: 500; display: none;">Clear</button>
+          <button class="clear-filter-btn border rounded transition-all hover:opacity-80">Clear</button>
         </div>
         <div class="flex flex-col gap-3 project-year-section">
           <a href="" class="block project-link">
-            <div class="flex flex-row gap-5 items-center justify-center">
+            <div class="flex flex-row gap-5 items-center">
               <img src="/assets/projects/research/spatial_interactions.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
-                <div class="flex items-center justify-between">
-                  <div class="font-semibold project-title">Spatial Interactions</div>
-                  <div class="flex flex-col items-center">
-                    <div class="project-year text-xs">Oct '23</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Research</span>
-                  </div>
+                <div class="font-semibold project-title flex items-center">
+                  Spatial Interactions
+                  <span class="project-tag-inline">Research</span>
                 </div>
-                <div class="project-desc">Presenting a formative study conducted with a desktop screen reader that utilizes spatial directional input and audio output</div>
+                <div class="project-desc">A formative study of a custom desktop screen reader that incorporates spatial interactions via spatial audio and arrow key navigation</div>
+                <div class="project-year text-xs">Oct '23</div>
               </div>
             </div>
           </a>
         </div>
       </div>
       <div>
-        <div class="flex items-center justify-between mb-6">
+        <div class="flex items-baseline justify-between mb-6">
           <div class="font-diatype font-bold text-xl project-year-heading">2022</div>
-          <button class="clear-filter-btn border rounded transition-all hover:opacity-80" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; border-radius: 0.2rem; font-weight: 500; display: none;">Clear</button>
+          <button class="clear-filter-btn border rounded transition-all hover:opacity-80">Clear</button>
         </div>
         <div class="flex flex-col gap-3 project-year-section">
           <a href="https://www.newamerica.org/digital-impact-governance-initiative/reports/digital-transformation-opportunities-and-challenges-in-the-lower-mekong-region/" target="_blank" class="block project-link">
-            <div class="flex flex-row gap-5 items-center justify-center">
+            <div class="flex flex-row gap-5 items-center">
               <img src="/assets/projects/reports/digital_transformation.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
-                <div class="flex items-center justify-between">
-                  <div class="font-semibold project-title">Digital Transformation</div>
-                  <div class="flex flex-col items-center">
-                    <div class="project-year text-xs">Nov '22</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Report</span>
-                  </div>
+                <div class="font-semibold project-title flex items-center">
+                  Digital Transformation
+                  <span class="project-tag-inline">Report</span>
                 </div>
-                <div class="project-desc">Filling the gap on the use of digital solutions to address challenges in the Lower Mekong region</div>
+                <div class="project-desc">Filling the gap on the use of digital solutions to address challenges in the Lower Mekong region, such as geopolitical influences</div>
+                <div class="project-year text-xs">Nov '22</div>
               </div>
             </div>
           </a>
           <a href="https://www.newamerica.org/digital-impact-governance-initiative/reports/reconceptualizing-public-procurement/" target="_blank" class="block project-link">
-            <div class="flex flex-row gap-5 items-center justify-center">
+            <div class="flex flex-row gap-5 items-center">
               <img src="/assets/projects/reports/public_procurement.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
-                <div class="flex items-center justify-between">
-                  <div class="font-semibold project-title">Public Procurement</div>
-                  <div class="flex flex-col items-center">
-                    <div class="project-year text-xs">Oct '22</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Report</span>
-                  </div>
+                <div class="font-semibold project-title flex items-center">
+                  Public Procurement
+                  <span class="project-tag-inline">Report</span>
                 </div>
-                <div class="project-desc">The COVID-19 pandemic magnified challenges, highlighting the need for transformative change in the way governments manage digital solutions</div>
+                <div class="project-desc">The COVID-19 pandemic magnified challenges, highlighting the need for change in the way governments manage digital solutions</div>
+                <div class="project-year text-xs">Oct '22</div>
               </div>
             </div>
           </a>
           <a href="/assets/files/presentations/summer_undergraduate_research_poster_showcase_22.pdf" class="block project-link">
-            <div class="flex flex-row gap-5 items-center justify-center">
+            <div class="flex flex-row gap-5 items-center">
               <img src="/assets/projects/research/applied_machine_learning.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
-                <div class="flex items-center justify-between">
-                  <div class="font-semibold project-title">Applied Machine Learning</div>
-                  <div class="flex flex-col items-center">
-                    <div class="project-year text-xs">July '22</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Research</span>
-                  </div>
+                <div class="font-semibold project-title flex items-center">
+                  Applied Machine Learning
+                  <span class="project-tag-inline">Research</span>
                 </div>
-                <div class="project-desc">CoupCast is a machine learning-based early warning forecasting system for estimating the risk of illegal leadership turnover each month</div>
+                <div class="project-desc">CoupCast is a machine learning early warning system for estimating monthly illegal leadership turnover risk</div>
+                <div class="project-year text-xs">July '22</div>
               </div>
             </div>
           </a>
           <a href="/assets/files/presentations/textrank_and_lexrank.pdf" target="_blank" class="block project-link">
-            <div class="flex flex-row gap-5 items-center justify-center">
+            <div class="flex flex-row gap-5 items-center">
               <img src="/assets/projects/research/textrank_and_lexrank.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
-                <div class="flex items-center justify-between">
-                  <div class="font-semibold project-title">TextRank and LexRank</div>
-                  <div class="flex flex-col items-center">
-                    <div class="project-year text-xs">Mar '22</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Research</span>
-                  </div>
+                <div class="font-semibold project-title flex items-center">
+                  TextRank and LexRank
+                  <span class="project-tag-inline">Research</span>
                 </div>
-                <div class="project-desc">Asessing the perceived utility of text summarization models on the annotation process of textual data</div>
+                <div class="project-desc">Assessing the perceived utility of text summarization models on the annotation process of textual data</div>
+                <div class="project-year text-xs">Mar '22</div>
               </div>
             </div>
           </a>
         </div>
       </div>
       <div>
-        <div class="flex items-center justify-between mb-6">
+        <div class="flex items-baseline justify-between mb-6">
           <div class="font-diatype font-bold text-xl project-year-heading">2021</div>
-          <button class="clear-filter-btn border rounded transition-all hover:opacity-80" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; border-radius: 0.2rem; font-weight: 500; display: none;">Clear</button>
+          <button class="clear-filter-btn border rounded transition-all hover:opacity-80">Clear</button>
         </div>
         <div class="flex flex-col gap-3 project-year-section">
           <a href="/assets/files/presentations/student_research_week_21.pdf" target="_blank" class="block project-link">
-            <div class="flex flex-row gap-5 items-center justify-center">
+            <div class="flex flex-row gap-5 items-center">
               <img src="/assets/projects/research/adolescent_online_safety.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
-                <div class="flex items-center justify-between">
-                  <div class="font-semibold project-title">Adolescent Online Safety</div>
-                  <div class="flex flex-col items-center">
-                    <div class="project-year text-xs">Oct '21</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Research</span>
-                  </div>
+                <div class="font-semibold project-title flex items-center">
+                  Adolescent Online Safety
+                  <span class="project-tag-inline">Research</span>
                 </div>
-                <div class="project-desc">While risk detection models are not new, most are based on public datasets, which can be unrepresentative of actual adolescent experiences</div>
+                <div class="project-desc">Risk detection models aren't new, but most rely on public datasets unrepresentative of adolescent experiences</div>
+                <div class="project-year text-xs">Oct '21</div>
               </div>
             </div>
           </a>
           <a href="https://www.cfr.org/backgrounder/marriage-equality-global-comparisons" target="_blank" class="block project-link">
-            <div class="flex flex-row gap-5 items-center justify-center">
+            <div class="flex flex-row gap-5 items-center">
               <img src="/assets/projects/articles/marriage_equality.gif" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
-                <div class="flex items-center justify-between">
-                  <div class="font-semibold project-title">Marriage Equality</div>
-                  <div class="flex flex-col items-center">
-                    <div class="project-year text-xs">Jun '21</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Article</span>
-                  </div>
+                <div class="font-semibold project-title flex items-center">
+                  Marriage Equality
+                  <span class="project-tag-inline">Article</span>
                 </div>
-                <div class="project-desc">Debate continues between advocates of legal equality and individuals and institutions that object to marriage equality on the basis of religious belief</div>
+                <div class="project-desc">Debate continues between legal equality advocates and those objecting to marriage equality on religious grounds</div>
+                <div class="project-year text-xs">Jun '21</div>
               </div>
             </div>
           </a>
           <a href="https://www.cfr.org/backgrounder/how-us-patrols-its-borders" target="_blank" class="block project-link">
-            <div class="flex flex-row gap-5 items-center justify-center">
+            <div class="flex flex-row gap-5 items-center">
               <img src="/assets/projects/articles/border_security.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
-                <div class="flex items-center justify-between">
-                  <div class="font-semibold project-title">Border Security</div>
-                  <div class="flex flex-col items-center">
-                    <div class="project-year text-xs">Apr '21</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Article</span>
-                  </div>
+                <div class="font-semibold project-title flex items-center">
+                  Border Security
+                  <span class="project-tag-inline">Article</span>
                 </div>
-                <div class="project-desc">U.S. Customs and Border Protection, along with a few agencies, regulates trade and travel at U.S. ports of entry and across the country's border</div>
+                <div class="project-desc">U.S. Customs and Border Protection and other agencies regulate trade and travel at ports of entry and borders</div>
+                <div class="project-year text-xs">Apr '21</div>
               </div>
             </div>
           </a>
           <a href="https://www.cfr.org/backgrounder/us-vice-president-and-foreign-policy" target="_blank" class="block project-link">
-            <div class="flex flex-row gap-5 items-center justify-center">
+            <div class="flex flex-row gap-5 items-center">
               <img src="/assets/projects/articles/vp.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
-                <div class="flex items-center justify-between">
-                  <div class="font-semibold project-title">Foreign Policy</div>
-                  <div class="flex flex-col items-center">
-                    <div class="project-year text-xs">Mar '21</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Article</span>
-                  </div>
+                <div class="font-semibold project-title flex items-center">
+                  Foreign Policy
+                  <span class="project-tag-inline">Article</span>
                 </div>
-                <div class="project-desc">Early American leaders considered the office an appendage of Congress, and chairing the Senate and breaking the occasional tie vote was all most vice presidents were asked to do</div>
+                <div class="project-desc">Early leaders considered the office a Congressional appendage, with vice presidents mainly chairing the Senate and breaking ties</div>
+                <div class="project-year text-xs">Mar '21</div>
               </div>
             </div>
           </a>
           <a href="https://www.cfr.org/in-brief/fukushima-disaster-didnt-scare-world-nuclear-power" target="_blank" class="block project-link">
-            <div class="flex flex-row gap-5 items-center justify-center">
+            <div class="flex flex-row gap-5 items-center">
               <img src="/assets/projects/articles/nuclear_energy.png" class="project-image" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
-                <div class="flex items-center justify-between">
-                  <div class="font-semibold project-title">Nuclear Energy</div>
-                  <div class="flex flex-col items-center">
-                    <div class="project-year text-xs">Mar '21</div>
-                    <span class="project-tag" style="font-size: 0.55rem; color: #6b7280; border: 1px solid #6b7280; padding: 0.1rem 0.25rem; margin-top: 0.2rem; border-radius: 0.2rem; font-weight: 500; display: inline-flex; align-items: center;">Article</span>
-                  </div>
+                <div class="font-semibold project-title flex items-center">
+                  Nuclear Energy
+                  <span class="project-tag-inline">Article</span>
                 </div>
-                <div class="project-desc">Before the Fukushima meltdown, officials saw nuclear energy as a way for Japan to achieve some degree of energy independence</div>
+                <div class="project-desc">Before Fukushima, officials saw nuclear energy as a path to Japan's energy independence</div>
+                <div class="project-year text-xs">Mar '21</div>
               </div>
             </div>
           </a>
@@ -770,21 +358,20 @@
   <footer>
     <div class="footer-content">
       <div class="flex flex-row items-center justify-between">
-        <div class="text-gray-500 font-diatype md:block hidden" style="font-size: 0.75rem; margin-left: 0;">
-          <span>© 2025 Avery Reyna — source code available <a href="https://github.com/averyreyna/averyreyna.github.io" target="_blank" rel="noopener" class="text-gray-600 hover:text-gray-800 underline">here</a></span>
+        <div class="text-gray-500 font-diatype" style="font-size: 0.75rem;">
+          <span>© 2025 Avery Reyna</span>
         </div>
-        <div class="flex flex-wrap gap-3 text-sm text-gray-700 md:order-last order-first">
+        <div class="flex flex-wrap gap-3 text-sm text-gray-700">
           <a href="/assets/files/cv/avery_reyna_cv.pdf" class="md:hover:text-gray-800 transition-colors" target="_blank" rel="noopener"><i class="fa-regular fa-file-pdf"></i></a>
           <a href="mailto:avery@reyna.com" class="md:hover:text-gray-800 transition-colors"><i class="fa-regular fa-envelope"></i></a>
           <a href="https://github.com/averyreyna" class="md:hover:text-gray-800 transition-colors" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
+          <a href="https://scholar.google.com/citations?user=WecCIHwAAAAJ&hl=en" class="md:hover:text-gray-800 transition-colors" target="_blank" rel="noopener"><i class="fa-solid fa-graduation-cap"></i></a>
           <a href="https://instagram.com/averyreyna" class="md:hover:text-gray-800 transition-colors" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
           <a href="https://linkedin.com/in/averyreyna" class="md:hover:text-gray-800 transition-colors" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i></a>
-        </div>
-        <div class="text-gray-500 font-diatype md:hidden block" style="font-size: 0.75rem; margin-left: 0;">
-          <span>© 2025 Avery Reyna — source code available <a href="https://github.com/averyreyna/averyreyna.github.io" target="_blank" rel="noopener" class="text-gray-600 hover:text-gray-800 underline">here</a></span>
         </div>
       </div>
     </div>
   </footer>
+  <script src="/js/projects.js"></script>
 </body>
 </html>

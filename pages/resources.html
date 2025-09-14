@@ -8,38 +8,35 @@
     <link rel="icon" type="image/png" href="/website.png">
     <link rel="stylesheet" href="/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        .resource-link {
-            text-decoration: none !important;
-        }
-    </style>
 </head>
 <body class="bg-white min-h-screen font-diatype">
-    <header class="bg-gray-50 w-full border-b border-gray-100">
+    <header class="w-full">
         <div class="max-w-2xl mx-auto px-4 py-2">
             <div class="flex flex-row items-center justify-between">
-                <h1 class="text-2xl font-bold main-heading-semi-mono" style="line-height: 1; word-break: break-word;">
-                    <a href="/" class="text-inherit hover:text-inherit" style="text-decoration: none;">Avery Reyna</a>
+                <h1 class="text-2xl font-bold main-heading-semi-mono flex items-center gap-1">
+                    <a href="/" class="text-inherit hover:text-inherit header-link">Avery Reyna</a>
+                    <img src="/assets/files/me/animated_avery_reyna.png" alt="Avery Reyna" class="w-8 h-8 rounded-full object-cover">
                 </h1>
                 <nav class="relative">
-                    <button id="menu-toggle" class="menu-button" aria-label="Toggle menu">
-                        Menu
-                    </button>
-                    <div id="menu-dropdown" class="menu-dropdown hidden">
-                        <a href="/" class="menu-item">About</a>
-                        <a href="/pages/cv.html" class="menu-item">CV</a>
-                        <a href="/pages/projects.html" class="menu-item">Projects</a>
-                        <a href="/pages/resources.html" class="menu-item nav-link-active">Resources</a>
+                    <div class="nav-selector bg-white border border-gray-300 rounded-lg px-3 py-1.5 cursor-pointer flex items-center justify-between" id="nav-toggle">
+                        <span class="text-xs text-gray-600 font-medium"><span class="text-gray-600">Resources</span></span>
+                        <span class="nav-arrow text-gray-500 ml-1.5 text-xs transition-transform duration-200 ease-in-out flex items-center justify-center" style="transform: rotate(0deg); width: 12px;">></span>
+                    </div>
+                    <div id="nav-dropdown" class="nav-dropdown hidden absolute right-0 mt-1 bg-white border border-gray-300 rounded-lg shadow-lg py-1 z-10">
+                        <a href="/" class="nav-item block px-3 py-1.5 text-xs text-gray-600 no-underline">About</a>
+                        <a href="/cv" class="nav-item block px-3 py-1.5 text-xs text-gray-600 no-underline">CV</a>
+                        <a href="/projects" class="nav-item block px-3 py-1.5 text-xs text-gray-600 no-underline">Projects</a>
+                        <a href="/resources" class="nav-item block px-3 py-1.5 text-xs text-gray-600 nav-link-active no-underline">Resources</a>
                     </div>
                 </nav>
             </div>
         </div>
     </header>
-    <main class="w-full max-w-2xl mx-auto px-4 pb-8 pt-4" style="text-align: left;">
+    <main class="w-full max-w-2xl mx-auto px-4 pb-8 pt-4 main-container">
         <div class="professional-summary flex flex-col mb-6">
             <div class="text-base text-gray-600 font-medium">Resources</div>
-            <div class="text-xs text-gray-500" style="line-height: 1; word-break: break-word;">
-                Materials for various programs I applied to within my academic and professional journey
+            <div class="text-xs text-gray-500 professional-summary-text">
+                Application materials for various programs I applied to within my academic and professional journey
             </div>
         </div>
         <div class="research-heading">
@@ -47,6 +44,42 @@
             <span class="research-heading-line"></span>
         </div>
         <div class="flex flex-col gap-4 mb-8">
+            <div class="block">
+                <div class="font-semibold text-gray-900 mb-0.5 leading-tight">Industry Applications</div>
+                <div class="text-xs text-gray-500 mb-2">2023 — 2024</div>
+                <div class="flex flex-col gap-1 mt-0.5">
+                    <a href="/assets/files/resources/undergraduate/industry/avery_reyna_tdp_resume.pdf" class="resource-link flex items-center justify-between text-gray-500 text-xs hover:text-gray-700 transition-colors" target="_blank" rel="noopener">
+                        <span>Technology Development Program</span>
+                        <span>→</span>
+                    </a>
+                    <a href="/assets/files/resources/undergraduate/industry/avery_reyna_coda_resume.pdf" class="resource-link flex items-center justify-between text-gray-500 text-xs hover:text-gray-700 transition-colors" target="_blank" rel="noopener">
+                        <span>Capital One Developer Academy</span>
+                        <span>→</span>
+                    </a>
+                </div>
+            </div>
+            <div class="block">
+                <div class="font-semibold text-gray-900 mb-0.5 leading-tight">Internship Applications</div>
+                <div class="text-xs text-gray-500 mb-2">2021 — 2023</div>
+                <div class="flex flex-col gap-1 mt-0.5">
+                    <a href="/assets/files/resources/undergraduate/internships/actblue_cover_letter.pdf" class="resource-link flex items-center justify-between text-gray-500 text-xs hover:text-gray-700 transition-colors" target="_blank" rel="noopener">
+                        <span>ActBlue</span>
+                        <span>→</span>
+                    </a>
+                    <a href="/assets/files/resources/undergraduate/internships/krc_research_cover_letter.pdf" class="resource-link flex items-center justify-between text-gray-500 text-xs hover:text-gray-700 transition-colors" target="_blank" rel="noopener">
+                        <span>KRC Research</span>
+                        <span>→</span>
+                    </a>
+                    <a href="/assets/files/resources/undergraduate/internships/new_america_cover_letter.pdf" class="resource-link flex items-center justify-between text-gray-500 text-xs hover:text-gray-700 transition-colors" target="_blank" rel="noopener">
+                        <span>New America</span>
+                        <span>→</span>
+                    </a>
+                    <a href="/assets/files/resources/undergraduate/internships/the_hub_project_cover_letter.pdf" class="resource-link flex items-center justify-between text-gray-500 text-xs hover:text-gray-700 transition-colors" target="_blank" rel="noopener">
+                        <span>The Hub Project</span>
+                        <span>→</span>
+                    </a>
+                </div>
+            </div>
             <div class="block">
                 <div class="font-semibold text-gray-900 mb-0.5 leading-tight">REU Applications</div>
                 <div class="text-xs text-gray-500 mb-2">2021</div>
@@ -65,65 +98,25 @@
                     </a>
                 </div>
             </div>
-            <div class="block">
-                <div class="font-semibold text-gray-900 mb-0.5 leading-tight">Internship Applications</div>
-                <div class="text-xs text-gray-500 mb-2">2021 — 2023</div>
-                <div class="flex flex-col gap-1 mt-0.5">
-                    <a href="/assets/files/resources/actblue_cover_letter.pdf" class="resource-link flex items-center justify-between text-gray-500 text-xs hover:text-gray-700 transition-colors" target="_blank" rel="noopener">
-                        <span>ActBlue</span>
-                        <span>→</span>
-                    </a>
-                    <a href="/assets/files/resources/krc_research_cover_letter.pdf" class="resource-link flex items-center justify-between text-gray-500 text-xs hover:text-gray-700 transition-colors" target="_blank" rel="noopener">
-                        <span>KRC Research</span>
-                        <span>→</span>
-                    </a>
-                    <a href="/assets/files/resources/new_america_cover_letter.pdf" class="resource-link flex items-center justify-between text-gray-500 text-xs hover:text-gray-700 transition-colors" target="_blank" rel="noopener">
-                        <span>New America</span>
-                        <span>→</span>
-                    </a>
-                    <a href="/assets/files/resources/the_hub_project_cover_letter.pdf" class="resource-link flex items-center justify-between text-gray-500 text-xs hover:text-gray-700 transition-colors" target="_blank" rel="noopener">
-                        <span>The Hub Project</span>
-                        <span>→</span>
-                    </a>
-                </div>
-            </div>
         </div>
     </main>
     <footer>
         <div class="footer-content">
             <div class="flex flex-row items-center justify-between">
-                <div class="text-gray-500 font-diatype md:block hidden" style="font-size: 0.75rem; margin-left: 0;">
-                    <span>© 2025 Avery Reyna — source code available <a href="https://github.com/averyreyna/averyreyna.github.io" target="_blank" rel="noopener" class="text-gray-600 hover:text-gray-800 underline">here</a></span>
+                <div class="text-gray-500 font-diatype" style="font-size: 0.75rem;">
+                    <span>© 2025 Avery Reyna</span>
                 </div>
-                <div class="flex flex-wrap gap-3 text-sm text-gray-700 md:order-last order-first">
+                <div class="flex flex-wrap gap-3 text-sm text-gray-700">
                     <a href="/assets/files/cv/avery_reyna_cv.pdf" class="md:hover:text-gray-800 transition-colors" target="_blank" rel="noopener"><i class="fa-regular fa-file-pdf"></i></a>
                     <a href="mailto:avery@reyna.com" class="md:hover:text-gray-800 transition-colors"><i class="fa-regular fa-envelope"></i></a>
                     <a href="https://github.com/averyreyna" class="md:hover:text-gray-800 transition-colors" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://scholar.google.com/citations?user=WecCIHwAAAAJ&hl=en" class="md:hover:text-gray-800 transition-colors" target="_blank" rel="noopener"><i class="fa-solid fa-graduation-cap"></i></a>
                     <a href="https://instagram.com/averyreyna" class="md:hover:text-gray-800 transition-colors" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
                     <a href="https://linkedin.com/in/averyreyna" class="md:hover:text-gray-800 transition-colors" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i></a>
-                </div>
-                <div class="text-gray-500 font-diatype md:hidden block" style="font-size: 0.75rem; margin-left: 0;">
-                    <span>© 2025 Avery Reyna — source code available <a href="https://github.com/averyreyna/averyreyna.github.io" target="_blank" rel="noopener" class="text-gray-600 hover:text-gray-800 underline">here</a></span>
                 </div>
             </div>
         </div>
     </footer>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuToggle = document.getElementById('menu-toggle');
-            const menuDropdown = document.getElementById('menu-dropdown');
-            
-            menuToggle.addEventListener('click', function() {
-                menuDropdown.classList.toggle('hidden');
-            });
-            
-            document.addEventListener('click', function(event) {
-                if (!menuToggle.contains(event.target) && !menuDropdown.contains(event.target)) {
-                    menuDropdown.classList.add('hidden');
-                }
-            });
-        });
-    </script>
+    <script src="../js/resources.js"></script>
 </body>
 </html>
