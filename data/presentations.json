@@ -1,0 +1,35 @@
+[
+  {
+    "title": "Applied Machine Learning to Detect Risk of Illegal Leadership Turnover",
+    "venue": "Summer Undergraduate Research Poster Showcase '22",
+    "authors": "<b>Avery Reyna</b>, Jonathan Powell",
+    "links": [
+      {
+        "text": "Presentation",
+        "url": "/assets/files/presentations/summer_undergraduate_research_poster_showcase_22.pdf"
+      }
+    ]
+  },
+  {
+    "title": "Comparative Analysis between TextRank and LexRank: Testing Perceived Utility of Text Summarization Models for Data Annotators",
+    "venue": "Student Research Week '22",
+    "authors": "<b>Avery Reyna</b>, Ashwaq Soubai, Pamela Wisniewski",
+    "links": [
+      {
+        "text": "Presentation",
+        "url": "/assets/files/presentations/student_research_week_22.pdf"
+      }
+    ]
+  },
+  {
+    "title": "Adolescent Online Safety: Expanding the Knowledge Base and Developing Machine Learning Algorithms",
+    "venue": "Student Research Week '21",
+    "authors": "Carlson Sharpless, Pallavi Dacre, Komila Khamidova, <b>Avery Reyna</b>, Abdulrahman Sumaih, Christian Lozano, Afsaneh Razi, Ashwaq Soubai, Pamela Wisniewski",
+    "links": [
+      {
+        "text": "Presentation",
+        "url": "/assets/files/presentations/student_research_week_21.pdf"
+      }
+    ]
+  }
+]
