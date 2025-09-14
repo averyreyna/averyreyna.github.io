@@ -475,11 +475,11 @@ footer {
 
 /* Industry project images blur effect */
 .project-link.industry-project .project-image {
-  filter: grayscale(1) blur(2px);
+  filter: grayscale(1) blur(1px);
 }
 
 .project-link.industry-project .project-image:hover {
-  filter: grayscale(0) blur(2px);
+  filter: grayscale(0) blur(1px);
 }
 
 .project-info {
@@ -771,20 +771,20 @@ footer {
     max-width: 100%;
     font-size: 0.65rem;
     line-height: 1.1;
-    margin: 0.1rem 0 0.08rem 0;
+    margin: 0.1rem 0 0 0;
   }
-  
+
   .project-title {
     font-size: 0.75rem !important;
     line-height: 1.1 !important;
     margin: 0 !important;
   }
-  
+
   .project-year {
     font-size: 0.55rem !important;
     color: #aaa !important;
     line-height: 1.1;
-    margin: 0.08rem 0 0 0 !important;
+    margin: -0.01rem 0 0 0 !important;
   }
   
   .project-tag-inline {
