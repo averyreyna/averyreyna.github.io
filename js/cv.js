@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Generate links HTML
                 const linksHtml = talk.links.map(link => 
-                    `<a href="${link.url}" class="publication-link text-gray-500 text-xs" target="_blank" rel="noopener">${getIconForLinkType(link.text)}${link.text}</a>`
+                    `<a href="${link.url}" class="paper-link text-gray-500 text-xs" target="_blank" rel="noopener">${getIconForLinkType(link.text)}${link.text}</a>`
                 ).join('');
                 
                 talkDiv.innerHTML = `
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Generate links HTML
                 const linksHtml = paper.links.map(link => 
-                    `<a href="${link.url}" class="publication-link text-gray-500 text-xs" target="_blank" rel="noopener">${getIconForLinkType(link.text)}${link.text}</a>`
+                    `<a href="${link.url}" class="paper-link text-gray-500 text-xs" target="_blank" rel="noopener">${getIconForLinkType(link.text)}${link.text}</a>`
                 ).join('');
                 
                 paperDiv.innerHTML = `
@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Generate links HTML
                 const linksHtml = presentation.links.map(link => 
-                    `<a href="${link.url}" class="publication-link text-gray-500 text-xs" target="_blank" rel="noopener">${getIconForLinkType(link.text)}${link.text}</a>`
+                    `<a href="${link.url}" class="paper-link text-gray-500 text-xs" target="_blank" rel="noopener">${getIconForLinkType(link.text)}${link.text}</a>`
                 ).join('');
                 
                 presentationDiv.innerHTML = `
@@ -227,7 +227,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 article.links.forEach(link => {
                     const linkElement = document.createElement('a');
                     linkElement.href = link.url;
-                    linkElement.className = 'publication-link text-gray-500 text-xs';
+                    linkElement.className = 'paper-link text-gray-500 text-xs';
                     linkElement.target = '_blank';
                     linkElement.rel = 'noopener';
                     linkElement.innerHTML = getIconForLinkType(link.text) + link.text;
