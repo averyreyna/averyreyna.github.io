@@ -184,9 +184,9 @@ h1 a {
     text-decoration: none !important;
     background: #f8f9fa;
     border: 1px solid #e5e7eb;
-    border-radius: 3px;
+    border-radius: 12px;
     padding: 1px 4px;
-    font-size: 0.7rem !important;
+    font-size: 0.65rem !important;
     color: #6b7280 !important;
 }
 
