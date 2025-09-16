@@ -1,6 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
   let currentFilter = null;
   const clearButtons = document.querySelectorAll('.clear-filter-btn');
+  let imageObserver;
+  let scrollTimeout;
+  
+  initLazyLoading();
   
   const tags = document.querySelectorAll('.project-tag-inline');
   tags.forEach(tag => {
@@ -46,6 +50,8 @@ document.addEventListener('DOMContentLoaded', function() {
     yearSections.forEach(section => {
       section.style.display = 'block';
     });
+    
+    reobserveImages();
   }
   
   function filterProjects(filterTag) {
@@ -72,6 +78,8 @@ document.addEventListener('DOMContentLoaded', function() {
         section.style.display = 'block';
       }
     });
+    
+    reobserveImages();
   }
   
   function setActiveState(clickedTag) {
@@ -135,7 +143,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const isHidden = navDropdown.classList.contains('hidden');
     navDropdown.classList.toggle('hidden');
     
-    // Rotate arrow: > (0deg) when closed, v (90deg) when open
     if (isHidden) {
       navArrow.style.transform = 'rotate(90deg)';
     } else {
@@ -149,4 +156,94 @@ document.addEventListener('DOMContentLoaded', function() {
       navArrow.style.transform = 'rotate(0deg)';
     }
   });
+  
+  function initLazyLoading() {
+    if ('IntersectionObserver' in window) {
+      imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            loadImage(img);
+            observer.unobserve(img);
+          }
+        });
+      }, {
+        rootMargin: '50px 0px',
+        threshold: 0.1
+      });
+      
+      const lazyImages = document.querySelectorAll('.lazy-load');
+      lazyImages.forEach(img => imageObserver.observe(img));
+    } else {
+      const lazyImages = document.querySelectorAll('.lazy-load');
+      lazyImages.forEach(img => loadImage(img));
+    }
+    
+    preloadCriticalImages();
+  }
+  
+  function loadImage(img) {
+    const src = img.getAttribute('data-src');
+    if (!src) return;
+    
+    const imageLoader = new Image();
+    imageLoader.onload = function() {
+      img.src = src;
+      img.classList.remove('lazy-load');
+      img.classList.add('loaded');
+    };
+    imageLoader.onerror = function() {
+      img.classList.remove('lazy-load');
+      img.classList.add('loaded');
+    };
+    imageLoader.src = src;
+  }
+  
+  function preloadCriticalImages() {
+    const criticalImages = document.querySelectorAll('.lazy-load');
+    const imagesToPreload = Array.from(criticalImages).slice(0, 3);
+    
+    imagesToPreload.forEach(img => {
+      const src = img.getAttribute('data-src');
+      if (src) {
+        const imageLoader = new Image();
+        imageLoader.onload = function() {
+          img.src = src;
+          img.classList.remove('lazy-load');
+          img.classList.add('loaded');
+        };
+        imageLoader.src = src;
+      }
+    });
+  }
+  
+  function handleScroll() {
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+      if (imageObserver) {
+        const lazyImages = document.querySelectorAll('.lazy-load');
+        lazyImages.forEach(img => {
+          if (!img.src) {
+            imageObserver.observe(img);
+          }
+        });
+      }
+    }, 100);
+  }
+  
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  
+  function reobserveImages() {
+    if (imageObserver) {
+      const currentImages = document.querySelectorAll('.lazy-load');
+      currentImages.forEach(img => imageObserver.unobserve(img));
+      
+      const visibleImages = document.querySelectorAll('.project-link[style*="block"]:not([style*="none"]) .lazy-load');
+      visibleImages.forEach(img => {
+        if (!img.src) {
+          imageObserver.observe(img);
+        }
+      });
+    }
+  }
 });
