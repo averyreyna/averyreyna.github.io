@@ -1,4 +1,4 @@
-/* ===== RESET & BASE STYLES ===== */
+/* reset & base styles */
 .no-underline {
     text-decoration: none !important;
 }
@@ -39,7 +39,7 @@ body::-webkit-scrollbar {
     display: none;
 }
 
-/* ===== FONT DEFINITIONS ===== */
+/* font definitions */
 @font-face {
     font-family: 'ABC ROM';
     src: url('assets/ABC ROM/ABCROM-Regular-Trial.woff2') format('woff2'),
@@ -134,7 +134,7 @@ body::-webkit-scrollbar {
     font-family: 'ABC ROM', sans-serif;
 }
 
-/* ===== GENERAL TYPOGRAPHY & LINKS ===== */
+/* general typography & links */
 body a {
     color: inherit;
     text-decoration: underline !important;
@@ -269,7 +269,7 @@ p, li {
     font-weight: 600;
 }
 
-/* ===== NAVIGATION ===== */
+/* navigation */
 nav {
     font-family: 'ABC ROM', sans-serif;
     border-bottom: none !important;
@@ -370,7 +370,7 @@ nav a:hover {
     font-weight: 700;
 }
 
-/* ===== LAYOUT ===== */
+/* layout */
 header {
   background-color: #fff;
   width: 100vw;
@@ -409,7 +409,7 @@ footer {
     margin-left: 0;
 }
 
-/* ===== HEADINGS & SECTIONS ===== */
+/* headings & sections */
 .research-heading {
   display: flex;
   align-items: center;
@@ -453,7 +453,7 @@ footer {
     word-break: break-word;
 }
 
-/* ===== PROJECTS PAGE ===== */
+/* projects page */
 .projects-container {
   max-width: 900px;
   margin: 0 auto;
@@ -503,7 +503,7 @@ footer {
   will-change: opacity;
 }
 
-/* Loading state for lazy-loaded images */
+/* loading state for lazy-loaded images */
 .project-image.lazy-load {
   opacity: 0;
   background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
@@ -511,14 +511,14 @@ footer {
   animation: loading-shimmer 1.5s infinite;
 }
 
-/* Loaded state */
+/* loaded state */
 .project-image.loaded {
   opacity: 1;
   background: #e5e7eb;
   animation: none;
 }
 
-/* Shimmer animation for loading state */
+/* shimmer animation for loading state */
 @keyframes loading-shimmer {
   0% {
     background-position: -200% 0;
@@ -528,7 +528,7 @@ footer {
   }
 }
 
-/* Industry project images blur effect */
+/* industry project images blur effect */
 .project-link.industry-project .project-image {
   filter: grayscale(1) blur(1px);
 }
@@ -629,7 +629,7 @@ footer {
 }
 
 
-/* ===== EXPERIENCE & CV ===== */
+/* experience & cv */
 .experience-item {
     position: relative;
     border-radius: 8px;
@@ -642,7 +642,7 @@ footer {
     flex: 1;
 }
 
-/* ===== FILTER SYSTEM ===== */
+/* filter system */
 .filter-container {
   display: flex;
   flex-wrap: wrap;
@@ -681,7 +681,7 @@ footer {
 }
 
 
-/* ===== BOTTOM QUOTE SECTION ===== */
+/* bottom quote section */
 #bottom-quote-section {
     font-size: 0.92rem;
     font-family: 'ABC ROM', sans-serif;
@@ -737,7 +737,7 @@ footer {
     text-decoration: none !important;
 }
 
-/* ===== ARTICLE STYLES ===== */
+/* article styles */
 .article-container {
     margin-top: 0;
 }
@@ -761,7 +761,7 @@ footer {
     margin-bottom: 1.5rem;
 }
 
-/* ===== PAGE-SPECIFIC STYLES ===== */
+/* page-specific styles */
 .logo-inline {
     text-decoration: none;
     vertical-align: -0.1em;
@@ -811,9 +811,9 @@ footer {
     margin-bottom: 0.1rem;
 }
 
-/* ===== MOBILE RESPONSIVE STYLES ===== */
+/* mobile responsive styles */
 @media (max-width: 768px) {
-  /* Projects page mobile layout */
+  /* projects page mobile layout */
   .project-image {
     width: 110px;
     height: 69px;
@@ -850,7 +850,7 @@ footer {
     border: 1px solid #d0d0d0;
   }
   
-  /* Adjust main container padding for mobile */
+  /* adjust main container padding for mobile */
   main {
     padding: 0 1rem;
   }
@@ -860,7 +860,7 @@ footer {
     padding-right: 1rem;
   }
   
-  /* Filter tags mobile styling */
+  /* filter tags mobile styling */
   .filter-tag {
     width: 2rem;
     height: 2rem;
@@ -907,23 +907,23 @@ footer {
     display: block;
   }
   
-  /* Compact spacing for mobile */
+  /* compact spacing for mobile */
   .project-year-section {
     gap: 0.6rem;
   }
   
-  /* Ensure consistent flex layout */
+  /* ensure consistent flex layout */
   .project-link .flex.flex-row {
     gap: 0.75rem;
   }
   
-  /* Right column content adjustments */
+  /* right column content adjustments */
   .project-link .flex-1 {
     min-width: 0; /* Allow flex item to shrink */
     overflow: hidden;
   }
   
-  /* Header adjustments for mobile */
+  /* header adjustments for mobile */
   .professional-summary {
     margin-bottom: 1rem;
   }
@@ -936,13 +936,13 @@ footer {
     font-size: 0.8rem;
   }
   
-  /* Fix project year heading size on mobile */
+  /* fix project year heading size on mobile */
   .project-year-heading {
     font-size: 1rem !important;
   }
 }
 
-/* ===== NDA PAGE ===== */
+/* nda page */
 .nda-body {
     position: relative;
 }
@@ -954,7 +954,7 @@ footer {
     transform: translate(-50%, -50%);
 }
 
-/* Companies hover effect */
+/* companies hover effect */
 .companies-hover-trigger:hover .companies-detail {
     display: block;
 }
@@ -963,7 +963,7 @@ footer {
     display: block;
 }
 
-/* XR Access hover effect */
+/* xr access hover effect */
 .xr-access-hover-trigger:hover .xr-access-detail {
     display: block;
 }
@@ -972,7 +972,7 @@ footer {
     display: block;
 }
 
-/* UW Tacoma hover effect */
+/* uw tacoma hover effect */
 .uw-tacoma-hover-trigger:hover .uw-tacoma-detail {
     display: block;
 }
