@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize lazy loading for profile image
+    initLazyLoading();
+    
     const navToggle = document.getElementById('nav-toggle');
     const navDropdown = document.getElementById('nav-dropdown');
     const navArrow = document.querySelector('.nav-arrow');
@@ -102,4 +105,46 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Load announcements when page loads
     loadAnnouncements();
+    
+    // Lazy loading functions for profile image
+    function initLazyLoading() {
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        loadImage(img);
+                        observer.unobserve(img);
+                    }
+                });
+            }, {
+                rootMargin: '50px 0px',
+                threshold: 0.1
+            });
+            
+            const lazyImages = document.querySelectorAll('.lazy-load');
+            lazyImages.forEach(img => imageObserver.observe(img));
+        } else {
+            // Fallback for browsers without IntersectionObserver
+            const lazyImages = document.querySelectorAll('.lazy-load');
+            lazyImages.forEach(img => loadImage(img));
+        }
+    }
+    
+    function loadImage(img) {
+        const src = img.getAttribute('data-src');
+        if (!src) return;
+        
+        const imageLoader = new Image();
+        imageLoader.onload = function() {
+            img.src = src;
+            img.classList.remove('lazy-load');
+            img.classList.add('loaded');
+        };
+        imageLoader.onerror = function() {
+            img.classList.remove('lazy-load');
+            img.classList.add('loaded');
+        };
+        imageLoader.src = src;
+    }
 });
