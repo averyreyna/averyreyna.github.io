@@ -528,6 +528,29 @@ footer {
   }
 }
 
+/* profile image loading states */
+.profile-image {
+  opacity: 0;
+  background: #e5e7eb;
+  transition: opacity 0.3s ease;
+  will-change: opacity;
+}
+
+/* loading state for lazy-loaded profile image */
+.profile-image.lazy-load {
+  opacity: 0;
+  background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
+  background-size: 200% 100%;
+  animation: loading-shimmer 1.5s infinite;
+}
+
+/* loaded state */
+.profile-image.loaded {
+  opacity: 1;
+  background: #e5e7eb;
+  animation: none;
+}
+
 /* industry project images blur effect */
 .project-link.industry-project .project-image {
   filter: grayscale(1) blur(1px);
