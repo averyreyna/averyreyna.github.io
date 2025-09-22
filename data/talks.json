@@ -5,12 +5,12 @@
     "authors": "Alexis Wood, <b>Avery Reyna</b>, Aya Konishi, David Retchless, and Jim Thatcher",
     "links": [
       {
-        "text": "Talk",
-        "url": "https://www.youtube.com/watch?v=Og9azEDcG4k"
-      },
-      {
         "text": "Slides",
         "url": "/assets/files/presentations/cartographic_limits.pdf"
+      },
+      {
+        "text": "Talk",
+        "url": "https://www.youtube.com/watch?v=Og9azEDcG4k"
       }
     ]
   },
