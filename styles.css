@@ -1001,6 +1001,11 @@ footer {
   .project-year-heading {
     font-size: 1rem !important;
   }
+  
+  /* industry projects mobile styling - keep color but maintain blur */
+  .project-link.industry-project .project-image {
+    filter: blur(1px) !important;
+  }
 }
 
 /* nda page */
