@@ -391,8 +391,8 @@ header {
 main {
     margin-top: 0;
     margin-left: 0;
-    max-width: 700px;
-    padding: 0 1.5rem;
+    max-width: 672px;
+    padding: 0 1rem;
     text-align: left;
 }
 
@@ -409,9 +409,9 @@ footer {
 }
 
 .footer-content {
-  max-width: 700px;
+  max-width: 672px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 1rem;
 }
 
 .footer-copyright {
