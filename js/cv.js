@@ -418,4 +418,33 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // Companies toggle functionality
+    const companiesToggle = document.getElementById('companies-toggle');
+    const companiesList = document.getElementById('companies-list');
+    
+    if (companiesToggle && companiesList) {
+        const arrowSpan = companiesToggle.querySelector('span');
+        
+        companiesToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            const isHidden = companiesList.style.display === 'none' || companiesList.style.display === '';
+            
+            if (isHidden) {
+                companiesList.style.display = 'block';
+                companiesToggle.classList.add('active');
+                companiesToggle.setAttribute('aria-label', 'Hide companies');
+                if (arrowSpan) {
+                    arrowSpan.style.transform = 'rotate(90deg)';
+                }
+            } else {
+                companiesList.style.display = 'none';
+                companiesToggle.classList.remove('active');
+                companiesToggle.setAttribute('aria-label', 'Show companies');
+                if (arrowSpan) {
+                    arrowSpan.style.transform = 'rotate(0deg)';
+                }
+            }
+        });
+    }
 });
