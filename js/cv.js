@@ -102,9 +102,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
 
                 // Generate links HTML
-                const linksHtml = paper.links.map(link => 
-                    `<a href="${link.url}" class="paper-link text-gray-500 text-xs" target="_blank" rel="noopener">${getIconForLinkType(link.text)}${link.text}</a>`
-                ).join('');
+                const linksHtml = paper.links.map(link => {
+                    if (link.italic) {
+                        return `<span class="text-gray-500 text-xs italic">${link.text}</span>`;
+                    } else {
+                        return `<a href="${link.url}" class="paper-link text-gray-500 text-xs" target="_blank" rel="noopener">${getIconForLinkType(link.text)}${link.text}</a>`;
+                    }
+                }).join('');
                 
                 paperDiv.innerHTML = `
                     <span class="font-semibold text-gray-900 mb-0.5 leading-tight" style="margin-bottom:0.1rem;">${paper.title}</span>
