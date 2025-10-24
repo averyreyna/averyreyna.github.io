@@ -110,8 +110,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 }).join('');
                 
+                // Apply blur filter to "Don't Vibe, Plan" paper title
+                const titleStyle = paper.title.includes("Don't Vibe, Plan") 
+                    ? 'style="margin-bottom:0.1rem; filter: blur(3.5px);"' 
+                    : 'style="margin-bottom:0.1rem;"';
+                
                 paperDiv.innerHTML = `
-                    <span class="font-semibold text-gray-900 mb-0.5 leading-tight" style="margin-bottom:0.1rem;">${paper.title}</span>
+                    <span class="font-semibold text-gray-900 mb-0.5 leading-tight" ${titleStyle}>${paper.title}</span>
                     <span class="text-xs text-gray-500">${paper.venue}</span>
                     <span class="text-xs text-gray-700">${paper.authors}</span>
                     <span class="flex flex-row flex-wrap gap-2 mt-0.5">
