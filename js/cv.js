@@ -258,6 +258,30 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load articles when page loads
     loadArticles();
 
+    // CV description toggle functionality
+    const cvDescToggles = document.querySelectorAll('.cv-desc-toggle');
+    
+    cvDescToggles.forEach(toggle => {
+        toggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            const wrapper = this.closest('.cv-desc-wrapper');
+            const desc = wrapper.querySelector('.cv-desc');
+            
+            if (desc.classList.contains('cv-desc-hidden')) {
+                // Show description
+                desc.classList.remove('cv-desc-hidden');
+                desc.classList.add('cv-desc-visible');
+                this.textContent = 'hide description';
+            } else {
+                // Hide description
+                desc.classList.remove('cv-desc-visible');
+                desc.classList.add('cv-desc-hidden');
+                this.textContent = 'view description';
+            }
+        });
+    });
+
+
     // Companies hover effect with cursor following
     const companiesTrigger = document.querySelector('.companies-hover-trigger');
     const companiesDetail = document.querySelector('.companies-detail');
