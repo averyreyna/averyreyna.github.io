@@ -424,7 +424,7 @@ footer {
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   margin-bottom: 0.5rem;
 }
 
@@ -686,6 +686,15 @@ footer {
 .experience-content {
     position: relative;
     flex: 1;
+}
+
+.cv-entry-spacing {
+    display: flex;
+    flex-direction: column;
+}
+
+.cv-entry-spacing > * + * {
+    margin-top: 0.15rem;
 }
 
 /* filter system */

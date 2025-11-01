@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Create talk items with exact same styling
             talks.forEach((talk) => {
                 const talkDiv = document.createElement('div');
-                talkDiv.className = 'py-1 flex flex-col gap-0.25';
+                talkDiv.className = 'experience-item flex flex-col gap-0.25';
                 
                 // Function to get icon for link type (matching index.html styling)
                 function getIconForLinkType(linkText) {
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Create paper items with exact same styling
             papers.forEach((paper) => {
                 const paperDiv = document.createElement('div');
-                paperDiv.className = 'py-1 flex flex-col gap-0.25';
+                paperDiv.className = 'experience-item flex flex-col gap-0.25';
                 
                 // Function to get icon for link type (matching index.html styling)
                 function getIconForLinkType(linkText) {
@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Create presentation items with exact same styling
             presentations.forEach((presentation) => {
                 const presentationDiv = document.createElement('div');
-                presentationDiv.className = 'py-1 flex flex-col gap-0.25';
+                presentationDiv.className = 'experience-item flex flex-col gap-0.25';
                 
                 // Function to get icon for link type (matching index.html styling)
                 function getIconForLinkType(linkText) {
@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             articles.forEach(article => {
                 const articleDiv = document.createElement('div');
-                articleDiv.className = 'py-1 flex flex-col gap-0.25';
+                articleDiv.className = 'experience-item flex flex-col gap-0.25';
                 
                 // Title
                 const titleSpan = document.createElement('span');
