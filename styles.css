@@ -424,7 +424,7 @@ footer {
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   margin-bottom: 0.5rem;
 }
 
@@ -686,6 +686,15 @@ footer {
 .experience-content {
     position: relative;
     flex: 1;
+}
+
+.cv-entry-spacing {
+    display: flex;
+    flex-direction: column;
+}
+
+.cv-entry-spacing > * + * {
+    margin-top: 0.15rem;
 }
 
 /* filter system */
@@ -1097,3 +1106,46 @@ footer {
     transition: all 0.2s ease;
     overflow: hidden;
 }
+
+/* CV description truncation for mobile */
+.cv-desc {
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    font-size: 0.65rem !important;
+    color: #6b7280 !important;
+    opacity: 1 !important;
+}
+
+/* CV description toggle functionality */
+.cv-desc-wrapper {
+    margin-top: -0.2rem !important;
+    margin-bottom: 0 !important;
+    padding: 0 !important;
+    display: block;
+    line-height: 1;
+}
+
+.cv-desc-hidden {
+    display: none;
+}
+
+.cv-desc-visible {
+    display: block;
+}
+
+.cv-desc-toggle {
+    cursor: pointer;
+    transition: color 0.2s ease;
+    text-decoration: none !important;
+    font-size: 0.65rem !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: inline-block;
+    line-height: 1;
+}
+
+@media (min-width: 768px) {
+    .cv-desc-toggle:hover {
+        color: #374151 !important;
+    }
+}
+
