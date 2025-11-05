@@ -271,12 +271,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Show description
                 desc.classList.remove('cv-desc-hidden');
                 desc.classList.add('cv-desc-visible');
-                this.textContent = 'hide description';
+                this.textContent = 'Hide Description';
             } else {
                 // Hide description
                 desc.classList.remove('cv-desc-visible');
                 desc.classList.add('cv-desc-hidden');
-                this.textContent = 'view description';
+                this.textContent = 'View Description';
             }
         });
     });
