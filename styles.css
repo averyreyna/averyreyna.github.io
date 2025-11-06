@@ -116,8 +116,8 @@ body::-webkit-scrollbar {
 /* ABC Diatype Semi-Mono - for headings with grey lines */
 @font-face {
     font-family: 'ABC Diatype Semi-Mono';
-    src: url('assets/files/fonts/ABC Diatype/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-Regular-Trial.woff2') format('woff2'),
-         url('assets/files/fonts/ABC Diatype/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-Regular-Trial.woff') format('woff');
+    src: url('assets/files/fonts/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-Regular-Trial.woff2') format('woff2'),
+         url('assets/files/fonts/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-Regular-Trial.woff') format('woff');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -125,8 +125,8 @@ body::-webkit-scrollbar {
 
 @font-face {
     font-family: 'ABC Diatype Semi-Mono';
-    src: url('assets/files/fonts/ABC Diatype/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-RegularItalic-Trial.woff2') format('woff2'),
-         url('assets/files/fonts/ABC Diatype/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-RegularItalic-Trial.woff') format('woff');
+    src: url('assets/files/fonts/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-RegularItalic-Trial.woff2') format('woff2'),
+         url('assets/files/fonts/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-RegularItalic-Trial.woff') format('woff');
     font-weight: 400;
     font-style: italic;
     font-display: swap;
@@ -134,8 +134,8 @@ body::-webkit-scrollbar {
 
 @font-face {
     font-family: 'ABC Diatype Semi-Mono';
-    src: url('assets/files/fonts/ABC Diatype/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-Medium-Trial.woff2') format('woff2'),
-         url('assets/files/fonts/ABC Diatype/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-Medium-Trial.woff') format('woff');
+    src: url('assets/files/fonts/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-Medium-Trial.woff2') format('woff2'),
+         url('assets/files/fonts/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-Medium-Trial.woff') format('woff');
     font-weight: 500;
     font-style: normal;
     font-display: swap;
@@ -143,8 +143,8 @@ body::-webkit-scrollbar {
 
 @font-face {
     font-family: 'ABC Diatype Semi-Mono';
-    src: url('assets/files/fonts/ABC Diatype/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-MediumItalic-Trial.woff2') format('woff2'),
-         url('assets/files/fonts/ABC Diatype/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-MediumItalic-Trial.woff') format('woff');
+    src: url('assets/files/fonts/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-MediumItalic-Trial.woff2') format('woff2'),
+         url('assets/files/fonts/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-MediumItalic-Trial.woff') format('woff');
     font-weight: 500;
     font-style: italic;
     font-display: swap;
@@ -152,8 +152,8 @@ body::-webkit-scrollbar {
 
 @font-face {
     font-family: 'ABC Diatype Semi-Mono';
-    src: url('assets/files/fonts/ABC Diatype/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-Bold-Trial.woff2') format('woff2'),
-         url('assets/files/fonts/ABC Diatype/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-Bold-Trial.woff') format('woff');
+    src: url('assets/files/fonts/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-Bold-Trial.woff2') format('woff2'),
+         url('assets/files/fonts/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-Bold-Trial.woff') format('woff');
     font-weight: 600;
     font-style: normal;
     font-display: swap;
@@ -161,8 +161,8 @@ body::-webkit-scrollbar {
 
 @font-face {
     font-family: 'ABC Diatype Semi-Mono';
-    src: url('assets/files/fonts/ABC Diatype/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-BoldItalic-Trial.woff2') format('woff2'),
-         url('assets/files/fonts/ABC Diatype/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-BoldItalic-Trial.woff') format('woff');
+    src: url('assets/files/fonts/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-BoldItalic-Trial.woff2') format('woff2'),
+         url('assets/files/fonts/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-BoldItalic-Trial.woff') format('woff');
     font-weight: 600;
     font-style: italic;
     font-display: swap;
@@ -170,8 +170,8 @@ body::-webkit-scrollbar {
 
 @font-face {
     font-family: 'ABC Diatype Semi-Mono';
-    src: url('assets/files/fonts/ABC Diatype/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-Heavy-Trial.woff2') format('woff2'),
-         url('assets/files/fonts/ABC Diatype/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-Heavy-Trial.woff') format('woff');
+    src: url('assets/files/fonts/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-Heavy-Trial.woff2') format('woff2'),
+         url('assets/files/fonts/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-Heavy-Trial.woff') format('woff');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
@@ -179,8 +179,8 @@ body::-webkit-scrollbar {
 
 @font-face {
     font-family: 'ABC Diatype Semi-Mono';
-    src: url('assets/files/fonts/ABC Diatype/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-HeavyItalic-Trial.woff2') format('woff2'),
-         url('assets/files/fonts/ABC Diatype/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-HeavyItalic-Trial.woff') format('woff');
+    src: url('assets/files/fonts/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-HeavyItalic-Trial.woff2') format('woff2'),
+         url('assets/files/fonts/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-HeavyItalic-Trial.woff') format('woff');
     font-weight: 700;
     font-style: italic;
     font-display: swap;
@@ -517,11 +517,12 @@ footer {
 .professional-summary-text {
     line-height: 1;
     word-break: break-word;
+    margin-top: -0.25rem;
 }
 
 /* Page titles at top with descriptions */
 .professional-summary .text-base.font-medium {
-    font-family: 'ABC Diatype Semi-Mono', sans-serif;
+    font-family: 'ABC Diatype', sans-serif;
 }
 
 /* projects page */
@@ -906,7 +907,7 @@ footer {
     padding: 0 !important;
     line-height: 1;
     word-break: break-word;
-    margin-top: 0.15rem !important;
+    margin-top: 0.05rem !important;
 }
 
 .research-interest-title {
