@@ -35,23 +35,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 const talkDiv = document.createElement('div');
                 talkDiv.className = 'experience-item flex flex-col gap-0.25';
                 
-                // Function to get icon for link type (matching index.html styling)
-                function getIconForLinkType(linkText) {
-                    const text = linkText.toLowerCase();
-                    const iconStyle = 'style="font-size: 0.5rem; display: inline-block; vertical-align: baseline; line-height: 1; transform: translateY(-0.05em);"';
-                    if (text.includes('paper')) return `<i class="fa-solid fa-file-text mr-0.5" ${iconStyle}></i>`;
-                    if (text.includes('acm dl')) return `<i class="fa-solid fa-globe mr-0.5" ${iconStyle}></i>`;
-                    if (text.includes('project')) return `<i class="fa-solid fa-rocket mr-0.5" ${iconStyle}></i>`;
-                    if (text.includes('article')) return `<i class="fa-solid fa-pen-to-square mr-0.5" ${iconStyle}></i>`;
-                    if (text.includes('talk')) return `<i class="fa-solid fa-microphone mr-0.5" ${iconStyle}></i>`;
-                    if (text.includes('slides')) return `<i class="fa-solid fa-file-powerpoint mr-0.5" ${iconStyle}></i>`;
-                    if (text.includes('presentation')) return `<i class="fa-solid fa-images mr-0.5" ${iconStyle}></i>`;
-                    return `<i class="fa-solid fa-link mr-0.5" ${iconStyle}></i>`; // default icon
-                }
-
                 // Generate links HTML
                 const linksHtml = talk.links.map(link => 
-                    `<a href="${link.url}" class="paper-link text-gray-500 text-xs" target="_blank" rel="noopener">${getIconForLinkType(link.text)}${link.text}</a>`
+                    `<a href="${link.url}" class="paper-link text-gray-500 text-xs" target="_blank" rel="noopener">${link.text}</a>`
                 ).join('');
                 
                 talkDiv.innerHTML = `
@@ -87,26 +73,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 const paperDiv = document.createElement('div');
                 paperDiv.className = 'experience-item flex flex-col gap-0.25';
                 
-                // Function to get icon for link type (matching index.html styling)
-                function getIconForLinkType(linkText) {
-                    const text = linkText.toLowerCase();
-                    const iconStyle = 'style="font-size: 0.5rem; display: inline-block; vertical-align: baseline; line-height: 1; transform: translateY(-0.05em);"';
-                    if (text.includes('paper')) return `<i class="fa-solid fa-file-text mr-0.5" ${iconStyle}></i>`;
-                    if (text.includes('acm dl')) return `<i class="fa-solid fa-globe mr-0.5" ${iconStyle}></i>`;
-                    if (text.includes('project')) return `<i class="fa-solid fa-rocket mr-0.5" ${iconStyle}></i>`;
-                    if (text.includes('article')) return `<i class="fa-solid fa-pen-to-square mr-0.5" ${iconStyle}></i>`;
-                    if (text.includes('talk')) return `<i class="fa-solid fa-microphone mr-0.5" ${iconStyle}></i>`;
-                    if (text.includes('slides')) return `<i class="fa-solid fa-file-powerpoint mr-0.5" ${iconStyle}></i>`;
-                    if (text.includes('presentation')) return `<i class="fa-solid fa-images mr-0.5" ${iconStyle}></i>`;
-                    return `<i class="fa-solid fa-link mr-0.5" ${iconStyle}></i>`; // default icon
-                }
-
                 // Generate links HTML
                 const linksHtml = paper.links.map(link => {
                     if (link.italic) {
                         return `<span class="text-gray-500 text-xs italic">${link.text}</span>`;
                     } else {
-                        return `<a href="${link.url}" class="paper-link text-gray-500 text-xs" target="_blank" rel="noopener">${getIconForLinkType(link.text)}${link.text}</a>`;
+                        return `<a href="${link.url}" class="paper-link text-gray-500 text-xs" target="_blank" rel="noopener">${link.text}</a>`;
                     }
                 }).join('');
                 
@@ -148,23 +120,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 const presentationDiv = document.createElement('div');
                 presentationDiv.className = 'experience-item flex flex-col gap-0.25';
                 
-                // Function to get icon for link type (matching index.html styling)
-                function getIconForLinkType(linkText) {
-                    const text = linkText.toLowerCase();
-                    const iconStyle = 'style="font-size: 0.5rem; display: inline-block; vertical-align: baseline; line-height: 1; transform: translateY(-0.05em);"';
-                    if (text.includes('paper')) return `<i class="fa-solid fa-file-text mr-0.5" ${iconStyle}></i>`;
-                    if (text.includes('acm dl')) return `<i class="fa-solid fa-globe mr-0.5" ${iconStyle}></i>`;
-                    if (text.includes('project')) return `<i class="fa-solid fa-rocket mr-0.5" ${iconStyle}></i>`;
-                    if (text.includes('article')) return `<i class="fa-solid fa-pen-to-square mr-0.5" ${iconStyle}></i>`;
-                    if (text.includes('talk')) return `<i class="fa-solid fa-microphone mr-0.5" ${iconStyle}></i>`;
-                    if (text.includes('slides')) return `<i class="fa-solid fa-file-powerpoint mr-0.5" ${iconStyle}></i>`;
-                    if (text.includes('presentation')) return `<i class="fa-solid fa-images mr-0.5" ${iconStyle}></i>`;
-                    return `<i class="fa-solid fa-link mr-0.5" ${iconStyle}></i>`; // default icon
-                }
-
                 // Generate links HTML
                 const linksHtml = presentation.links.map(link => 
-                    `<a href="${link.url}" class="paper-link text-gray-500 text-xs" target="_blank" rel="noopener">${getIconForLinkType(link.text)}${link.text}</a>`
+                    `<a href="${link.url}" class="paper-link text-gray-500 text-xs" target="_blank" rel="noopener">${link.text}</a>`
                 ).join('');
                 
                 presentationDiv.innerHTML = `
@@ -219,27 +177,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 const linksSpan = document.createElement('span');
                 linksSpan.className = 'flex flex-row flex-wrap gap-2 mt-0.5';
                 
-                // Function to get icon for link type (matching index.html styling)
-                function getIconForLinkType(linkText) {
-                    const text = linkText.toLowerCase();
-                    const iconStyle = 'style="font-size: 0.5rem; display: inline-block; vertical-align: baseline; line-height: 1; transform: translateY(-0.05em);"';
-                    if (text.includes('paper')) return `<i class="fa-solid fa-file-text mr-0.5" ${iconStyle}></i>`;
-                    if (text.includes('acm dl')) return `<i class="fa-solid fa-globe mr-0.5" ${iconStyle}></i>`;
-                    if (text.includes('project')) return `<i class="fa-solid fa-rocket mr-0.5" ${iconStyle}></i>`;
-                    if (text.includes('article')) return `<i class="fa-solid fa-pen-to-square mr-0.5" ${iconStyle}></i>`;
-                    if (text.includes('talk')) return `<i class="fa-solid fa-microphone mr-0.5" ${iconStyle}></i>`;
-                    if (text.includes('slides')) return `<i class="fa-solid fa-file-powerpoint mr-0.5" ${iconStyle}></i>`;
-                    if (text.includes('presentation')) return `<i class="fa-solid fa-images mr-0.5" ${iconStyle}></i>`;
-                    return `<i class="fa-solid fa-link mr-0.5" ${iconStyle}></i>`; // default icon
-                }
-
                 article.links.forEach(link => {
                     const linkElement = document.createElement('a');
                     linkElement.href = link.url;
                     linkElement.className = 'paper-link text-gray-500 text-xs';
                     linkElement.target = '_blank';
                     linkElement.rel = 'noopener';
-                    linkElement.innerHTML = getIconForLinkType(link.text) + link.text;
+                    linkElement.textContent = link.text;
                     linksSpan.appendChild(linkElement);
                 });
                 
