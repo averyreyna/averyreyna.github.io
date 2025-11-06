@@ -18,7 +18,7 @@ html::-webkit-scrollbar {
 body {
     scrollbar-width: none;
     -ms-overflow-style: none;
-    font-family: 'ABC ROM', sans-serif;
+    font-family: 'ABC Diatype', sans-serif;
     background: #fff;
     min-height: 100vh;
     margin: 0;
@@ -40,98 +40,154 @@ body::-webkit-scrollbar {
 }
 
 /* font definitions */
+/* ABC Diatype Regular - for body text and general content */
 @font-face {
-    font-family: 'ABC ROM';
-    src: url('assets/ABC ROM/ABCROM-Regular-Trial.woff2') format('woff2'),
-         url('assets/ABC ROM/ABCROM-Regular-Trial.woff') format('woff');
+    font-family: 'ABC Diatype';
+    src: url('assets/files/fonts/ABC Diatype/ABCDiatype-Regular-Trial.woff2') format('woff2'),
+         url('assets/files/fonts/ABC Diatype/ABCDiatype-Regular-Trial.woff') format('woff');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'ABC ROM';
-    src: url('assets/ABC ROM/ABCROM-RegularItalic-Trial.woff2') format('woff2'),
-         url('assets/ABC ROM/ABCROM-RegularItalic-Trial.woff') format('woff');
+    font-family: 'ABC Diatype';
+    src: url('assets/files/fonts/ABC Diatype/ABCDiatype-RegularItalic-Trial.woff2') format('woff2'),
+         url('assets/files/fonts/ABC Diatype/ABCDiatype-RegularItalic-Trial.woff') format('woff');
     font-weight: 400;
     font-style: italic;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'ABC ROM';
-    src: url('assets/ABC ROM/ABCROM-Medium-Trial.woff2') format('woff2'),
-         url('assets/ABC ROM/ABCROM-Medium-Trial.woff') format('woff');
+    font-family: 'ABC Diatype';
+    src: url('assets/files/fonts/ABC Diatype/ABCDiatype-Medium-Trial.woff2') format('woff2'),
+         url('assets/files/fonts/ABC Diatype/ABCDiatype-Medium-Trial.woff') format('woff');
     font-weight: 500;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'ABC ROM';
-    src: url('assets/ABC ROM/ABCROM-MediumItalic-Trial.woff2') format('woff2'),
-         url('assets/ABC ROM/ABCROM-MediumItalic-Trial.woff') format('woff');
+    font-family: 'ABC Diatype';
+    src: url('assets/files/fonts/ABC Diatype/ABCDiatype-MediumItalic-Trial.woff2') format('woff2'),
+         url('assets/files/fonts/ABC Diatype/ABCDiatype-MediumItalic-Trial.woff') format('woff');
     font-weight: 500;
     font-style: italic;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'ABC ROM';
-    src: url('assets/ABC ROM/ABCROM-Bold-Trial.woff2') format('woff2'),
-         url('assets/ABC ROM/ABCROM-Bold-Trial.woff') format('woff');
+    font-family: 'ABC Diatype';
+    src: url('assets/files/fonts/ABC Diatype/ABCDiatype-Bold-Trial.woff2') format('woff2'),
+         url('assets/files/fonts/ABC Diatype/ABCDiatype-Bold-Trial.woff') format('woff');
     font-weight: 600;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'ABC ROM';
-    src: url('assets/ABC ROM/ABCROM-BoldItalic-Trial.woff2') format('woff2'),
-         url('assets/ABC ROM/ABCROM-BoldItalic-Trial.woff') format('woff');
+    font-family: 'ABC Diatype';
+    src: url('assets/files/fonts/ABC Diatype/ABCDiatype-BoldItalic-Trial.woff2') format('woff2'),
+         url('assets/files/fonts/ABC Diatype/ABCDiatype-BoldItalic-Trial.woff') format('woff');
     font-weight: 600;
     font-style: italic;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'ABC ROM';
-    src: url('assets/ABC ROM/ABCROM-Heavy-Trial.woff2') format('woff2'),
-         url('assets/ABC ROM/ABCROM-Heavy-Trial.woff') format('woff');
+    font-family: 'ABC Diatype';
+    src: url('assets/files/fonts/ABC Diatype/ABCDiatype-Heavy-Trial.woff2') format('woff2'),
+         url('assets/files/fonts/ABC Diatype/ABCDiatype-Heavy-Trial.woff') format('woff');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'ABC ROM';
-    src: url('assets/ABC ROM/ABCROM-HeavyItalic-Trial.woff2') format('woff2'),
-         url('assets/ABC ROM/ABCROM-HeavyItalic-Trial.woff') format('woff');
+    font-family: 'ABC Diatype';
+    src: url('assets/files/fonts/ABC Diatype/ABCDiatype-HeavyItalic-Trial.woff2') format('woff2'),
+         url('assets/files/fonts/ABC Diatype/ABCDiatype-HeavyItalic-Trial.woff') format('woff');
     font-weight: 700;
     font-style: italic;
     font-display: swap;
 }
 
+/* ABC Diatype Semi-Mono - for headings with grey lines */
 @font-face {
-    font-family: 'ABC ROM';
-    src: url('assets/ABC ROM/ABCROM-Black-Trial.woff2') format('woff2'),
-         url('assets/ABC ROM/ABCROM-Black-Trial.woff') format('woff');
-    font-weight: 900;
+    font-family: 'ABC Diatype Semi-Mono';
+    src: url('assets/files/fonts/ABC Diatype/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-Regular-Trial.woff2') format('woff2'),
+         url('assets/files/fonts/ABC Diatype/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-Regular-Trial.woff') format('woff');
+    font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'ABC ROM';
-    src: url('assets/ABC ROM/ABCROM-BlackItalic-Trial.woff2') format('woff2'),
-         url('assets/ABC ROM/ABCROM-BlackItalic-Trial.woff') format('woff');
-    font-weight: 900;
+    font-family: 'ABC Diatype Semi-Mono';
+    src: url('assets/files/fonts/ABC Diatype/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-RegularItalic-Trial.woff2') format('woff2'),
+         url('assets/files/fonts/ABC Diatype/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-RegularItalic-Trial.woff') format('woff');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ABC Diatype Semi-Mono';
+    src: url('assets/files/fonts/ABC Diatype/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-Medium-Trial.woff2') format('woff2'),
+         url('assets/files/fonts/ABC Diatype/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-Medium-Trial.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ABC Diatype Semi-Mono';
+    src: url('assets/files/fonts/ABC Diatype/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-MediumItalic-Trial.woff2') format('woff2'),
+         url('assets/files/fonts/ABC Diatype/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-MediumItalic-Trial.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ABC Diatype Semi-Mono';
+    src: url('assets/files/fonts/ABC Diatype/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-Bold-Trial.woff2') format('woff2'),
+         url('assets/files/fonts/ABC Diatype/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-Bold-Trial.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ABC Diatype Semi-Mono';
+    src: url('assets/files/fonts/ABC Diatype/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-BoldItalic-Trial.woff2') format('woff2'),
+         url('assets/files/fonts/ABC Diatype/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-BoldItalic-Trial.woff') format('woff');
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ABC Diatype Semi-Mono';
+    src: url('assets/files/fonts/ABC Diatype/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-Heavy-Trial.woff2') format('woff2'),
+         url('assets/files/fonts/ABC Diatype/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-Heavy-Trial.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ABC Diatype Semi-Mono';
+    src: url('assets/files/fonts/ABC Diatype/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-HeavyItalic-Trial.woff2') format('woff2'),
+         url('assets/files/fonts/ABC Diatype/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-HeavyItalic-Trial.woff') format('woff');
+    font-weight: 700;
     font-style: italic;
     font-display: swap;
 }
 
 .font-diatype {
-    font-family: 'ABC ROM', sans-serif;
+    font-family: 'ABC Diatype', sans-serif;
 }
 
 /* general typography & links */
@@ -223,7 +279,7 @@ h1 a {
 }
 
 h1 {
-    font-family: 'ABC ROM', sans-serif;
+    font-family: 'ABC Diatype', sans-serif;
     font-weight: bold;
     font-size: 2rem;
     margin-bottom: 0.5rem;
@@ -275,7 +331,7 @@ p, li {
 
 /* navigation */
 nav {
-    font-family: 'ABC ROM', sans-serif;
+    font-family: 'ABC Diatype', sans-serif;
     border-bottom: none !important;
     margin-bottom: 0;
     position: relative;
@@ -316,7 +372,7 @@ nav a {
 }
 
 .menu-button {
-    font-family: 'ABC ROM', sans-serif;
+    font-family: 'ABC Diatype', sans-serif;
     font-size: 0.9rem;
     font-weight: 500;
     color: #6b7280;
@@ -431,7 +487,7 @@ footer {
 .research-heading-text {
   font-size: 1.125rem;
   font-weight: 600;
-  font-family: 'ABC ROM', sans-serif;
+  font-family: 'ABC Diatype Semi-Mono', sans-serif;
 }
 
 .research-heading-line {
@@ -442,12 +498,12 @@ footer {
 }
 
 .main-heading-semi-mono {
-  font-family: 'ABC ROM', sans-serif;
+  font-family: 'ABC Diatype Semi-Mono', sans-serif;
   font-weight: 700;
 }
 
 .section-heading-semi-mono {
-  font-family: 'ABC ROM', sans-serif;
+  font-family: 'ABC Diatype Semi-Mono', sans-serif;
   font-weight: 700;
   font-size: 1.125rem;
 }
@@ -461,6 +517,11 @@ footer {
 .professional-summary-text {
     line-height: 1;
     word-break: break-word;
+}
+
+/* Page titles at top with descriptions */
+.professional-summary .text-base.font-medium {
+    font-family: 'ABC Diatype Semi-Mono', sans-serif;
 }
 
 /* projects page */
@@ -581,7 +642,7 @@ footer {
 }
 
 .project-title {
-  font-family: 'ABC ROM', sans-serif;
+  font-family: 'ABC Diatype', sans-serif;
   font-weight: 700;
   font-size: 0.95rem;
   margin: 0;
@@ -603,7 +664,7 @@ footer {
 .project-year {
   font-size: 0.76rem;
   color: #aaa;
-  font-family: 'ABC ROM', sans-serif;
+  font-family: 'ABC Diatype', sans-serif;
   margin: 0.05rem 0 0 0;
   padding: 0;
   line-height: 1;
@@ -741,7 +802,7 @@ footer {
 /* bottom quote section */
 #bottom-quote-section {
     font-size: 0.92rem;
-    font-family: 'ABC ROM', sans-serif;
+    font-family: 'ABC Diatype', sans-serif;
     color: #6b7280;
     font-weight: 400;
     margin-top: 2rem;
@@ -754,7 +815,7 @@ footer {
 #bottom-quote-text {
     color: #6b7280;
     font-size: 0.92rem;
-    font-family: 'ABC ROM', sans-serif;
+    font-family: 'ABC Diatype', sans-serif;
     letter-spacing: 0.01em;
     font-weight: 400;
 }
@@ -768,7 +829,7 @@ footer {
     cursor: pointer;
     transition: color 0.2s;
     pointer-events: auto;
-    font-family: 'ABC ROM', sans-serif;
+    font-family: 'ABC Diatype', sans-serif;
     font-weight: 400;
     padding: 0;
 }
@@ -786,7 +847,7 @@ footer {
     border: none;
     cursor: pointer;
     transition: color 0.2s;
-    font-family: 'ABC ROM', sans-serif;
+    font-family: 'ABC Diatype', sans-serif;
     font-weight: 400;
     padding: 0;
 }
@@ -829,7 +890,7 @@ footer {
 }
 
 .announcement-title {
-    font-family: 'ABC ROM', sans-serif;
+    font-family: 'ABC Diatype', sans-serif;
     font-weight: 700;
     font-size: 1rem;
     margin: 0;
@@ -849,7 +910,7 @@ footer {
 }
 
 .research-interest-title {
-    font-family: 'ABC ROM', sans-serif;
+    font-family: 'ABC Diatype', sans-serif;
     font-weight: 700;
     font-size: 1rem;
     margin: 0;
