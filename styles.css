@@ -526,6 +526,16 @@ footer {
 }
 
 /* projects page */
+.project-year-heading {
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.project-year-heading .section-heading-semi-mono {
+  font-size: 1.125rem;
+}
+
 .projects-container {
   max-width: 900px;
   margin: 0 auto;
@@ -1069,7 +1079,7 @@ footer {
   }
   
   /* fix project year heading size on mobile */
-  .project-year-heading {
+  .project-year-heading .section-heading-semi-mono {
     font-size: 1rem !important;
   }
   
