@@ -1,62 +1,70 @@
 document.addEventListener('DOMContentLoaded', function() {
   let currentFilter = null;
-  const clearButtons = document.querySelectorAll('.clear-filter-btn');
+  const filterInputs = document.querySelectorAll('.project-filter');
   let imageObserver;
   let scrollTimeout;
-  
+
   initLazyLoading();
-  
+
   const tags = document.querySelectorAll('.project-tag-inline');
   tags.forEach(tag => {
     tag.addEventListener('click', function(e) {
       e.preventDefault();
       e.stopPropagation();
-      
+
       const tagText = this.textContent.trim();
-      
+
       if (currentFilter === tagText) {
-        currentFilter = null;
-        showAllProjects();
-        clearActiveStates();
-        resetClearButtonColor();
-        hideAllClearButtons();
+        resetFilters();
       } else {
-        currentFilter = tagText;
-        filterProjects(tagText);
-        setActiveState(this);
-        updateClearButtonColor(this);
-        showClearButtonInVisibleSections();
+        applyFilter(tagText);
       }
     });
   });
-  
-  clearButtons.forEach(button => {
-    button.addEventListener('click', function() {
-      currentFilter = null;
-      showAllProjects();
-      clearActiveStates();
-      resetClearButtonColor();
-      hideAllClearButtons();
+
+  filterInputs.forEach(input => {
+    input.addEventListener('change', function() {
+      if (this.checked) {
+        filterInputs.forEach(other => {
+          if (other !== this) {
+            other.checked = false;
+          }
+        });
+        applyFilter(this.dataset.filter?.trim());
+      } else {
+        resetFilters();
+      }
     });
   });
-  
+
+  function applyFilter(filterTag) {
+    if (!filterTag) return;
+
+    currentFilter = filterTag;
+    filterProjects(filterTag);
+    setActiveState(filterTag);
+    updateFilterInputs(filterTag);
+  }
+
+  function resetFilters() {
+    currentFilter = null;
+    showAllProjects();
+    clearActiveStates();
+    resetFilterInputs();
+  }
+
   function showAllProjects() {
     const allProjects = document.querySelectorAll('.project-link');
     allProjects.forEach(project => {
       project.style.display = 'block';
     });
-    
-    const yearSections = document.querySelectorAll('.flex.flex-col.gap-6 > div');
-    yearSections.forEach(section => {
-      section.style.display = 'block';
-    });
-    
+
     reobserveImages();
   }
-  
+
   function filterProjects(filterTag) {
     const allProjects = document.querySelectorAll('.project-link');
-    
+
     allProjects.forEach(project => {
       const projectTag = project.querySelector('.project-tag-inline');
       if (projectTag && projectTag.textContent.trim() === filterTag) {
@@ -65,74 +73,38 @@ document.addEventListener('DOMContentLoaded', function() {
         project.style.display = 'none';
       }
     });
-    
-    const yearSections = document.querySelectorAll('.flex.flex-col.gap-6 > div');
-    yearSections.forEach(section => {
-      const visibleProjects = section.querySelectorAll('.project-link[style*="block"]:not([style*="none"])');
-      const hiddenProjects = section.querySelectorAll('.project-link[style*="none"]');
-      const totalProjects = section.querySelectorAll('.project-link');
-      
-      if (totalProjects.length > 0 && hiddenProjects.length === totalProjects.length) {
-        section.style.display = 'none';
-      } else {
-        section.style.display = 'block';
-      }
-    });
-    
+
     reobserveImages();
   }
-  
-  function setActiveState(clickedTag) {
+
+  function setActiveState(filterTag) {
     const allTags = document.querySelectorAll('.project-tag-inline');
-    allTags.forEach(tag => tag.classList.remove('active'));
-    clickedTag.classList.add('active');
+    allTags.forEach(tag => {
+      if (tag.textContent.trim() === filterTag) {
+        tag.classList.add('active');
+      } else {
+        tag.classList.remove('active');
+      }
+    });
   }
-  
+
   function clearActiveStates() {
     const allTags = document.querySelectorAll('.project-tag-inline');
     allTags.forEach(tag => tag.classList.remove('active'));
   }
-  
-  function updateClearButtonColor(activeTag) {
-    const color = activeTag.style.color;
-    clearButtons.forEach(button => {
-      button.style.color = '';
-      button.style.borderColor = '';
-      button.style.backgroundColor = '';
+
+  function updateFilterInputs(filterTag) {
+    filterInputs.forEach(input => {
+      input.checked = input.dataset.filter?.trim() === filterTag;
     });
   }
-  
-  function resetClearButtonColor() {
-    clearButtons.forEach(button => {
-      button.style.color = '';
-      button.style.borderColor = '';
-      button.style.backgroundColor = '';
+
+  function resetFilterInputs() {
+    filterInputs.forEach(input => {
+      input.checked = false;
     });
   }
-  
-  function hideAllClearButtons() {
-    clearButtons.forEach(button => {
-      button.style.display = 'none';
-    });
-  }
-  
-  function showClearButtonInVisibleSections() {
-    hideAllClearButtons();
-    const yearSections = document.querySelectorAll('.flex.flex-col.gap-6 > div');
-    
-    for (let section of yearSections) {
-      if (section.style.display !== 'none') {
-        const clearButton = section.querySelector('.clear-filter-btn');
-        if (clearButton) {
-          clearButton.style.setProperty('display', 'inline-flex', 'important');
-          break;
-        }
-      }
-    }
-  }
-  
-  
-  
+
   showAllProjects();
   
   const navToggle = document.getElementById('nav-toggle');

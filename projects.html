@@ -39,17 +39,32 @@
             An archive of work in articles, industry, prototypes, reports, and research across several disciplines
         </div>
     </div>
-    <div class="flex flex-col gap-6">
-      <div>
-        <div class="flex items-center gap-3 mb-6">
-          <div class="research-heading project-year-heading flex-1">
-            <span class="section-heading-semi-mono">2025</span>
-            <span class="research-heading-line"></span>
-          </div>
-          <button class="clear-filter-btn border rounded transition-all hover:opacity-80">Clear</button>
-        </div>
-        <div class="flex flex-col gap-3 project-year-section">
-          <a href="https://www.instagram.com/reel/DOT9EuXD7UZ/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" class="block project-link">
+    <div class="project-filter-panel flex flex-col gap-2 mb-6">
+      <div class="flex flex-nowrap items-center gap-3 overflow-x-auto whitespace-nowrap pb-1">
+        <label class="filter-option inline-flex items-center gap-1.5 text-[0.55rem] sm:text-xs text-gray-700 font-medium section-heading-semi-mono">
+          <input type="checkbox" class="project-filter accent-black" data-filter="Article">
+          <span>Article</span>
+        </label>
+        <label class="filter-option inline-flex items-center gap-1.5 text-[0.55rem] sm:text-xs text-gray-700 font-medium section-heading-semi-mono">
+          <input type="checkbox" class="project-filter accent-black" data-filter="Industry">
+          <span>Industry</span>
+        </label>
+        <label class="filter-option inline-flex items-center gap-1.5 text-[0.55rem] sm:text-xs text-gray-700 font-medium section-heading-semi-mono">
+          <input type="checkbox" class="project-filter accent-black" data-filter="Prototype">
+          <span>Prototype</span>
+        </label>
+        <label class="filter-option inline-flex items-center gap-1.5 text-[0.55rem] sm:text-xs text-gray-700 font-medium section-heading-semi-mono">
+          <input type="checkbox" class="project-filter accent-black" data-filter="Report">
+          <span>Report</span>
+        </label>
+        <label class="filter-option inline-flex items-center gap-1.5 text-[0.55rem] sm:text-xs text-gray-700 font-medium section-heading-semi-mono">
+          <input type="checkbox" class="project-filter accent-black" data-filter="Research">
+          <span>Research</span>
+        </label>
+      </div>
+    </div>
+    <div class="flex flex-col gap-3 project-list">
+      <a href="https://www.instagram.com/reel/DOT9EuXD7UZ/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" class="block project-link">
             <div class="flex flex-row gap-5 items-center">
               <img data-src="/assets/projects/prototypes/palestra.gif" class="project-image lazy-load" loading="lazy" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
@@ -61,8 +76,8 @@
                 <div class="project-year text-xs">Sep '25</div>
               </div>
             </div>
-          </a>
-          <a href="https://www.instagram.com/p/DOKLyKbj-n4/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" class="block project-link">
+      </a>
+      <a href="https://www.instagram.com/p/DOKLyKbj-n4/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" class="block project-link">
             <div class="flex flex-row gap-5 items-center">
               <img data-src="/assets/projects/prototypes/rerank.gif" class="project-image lazy-load" loading="lazy" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
@@ -74,8 +89,8 @@
                 <div class="project-year text-xs">Sep '25</div>
               </div>
             </div>
-          </a>
-          <a href="https://www.instagram.com/p/DOJZOb9DjZc/?utm_source=ig_web_copy_link" target="_blank" rel="noopener" class="block project-link">
+      </a>
+      <a href="https://www.instagram.com/p/DOJZOb9DjZc/?utm_source=ig_web_copy_link" target="_blank" rel="noopener" class="block project-link">
             <div class="flex flex-row gap-5 items-center">
               <img data-src="/assets/projects/prototypes/perceptor.gif" class="project-image lazy-load" loading="lazy" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
@@ -87,8 +102,8 @@
                 <div class="project-year text-xs">Sep '25</div>
               </div>
             </div>
-          </a>
-          <a href="https://www.instagram.com/p/DKvfqtFouqF/?utm_source=ig_web_copy_link" target="_blank" class="block project-link">
+      </a>
+      <a href="https://www.instagram.com/p/DKvfqtFouqF/?utm_source=ig_web_copy_link" target="_blank" class="block project-link">
             <div class="flex flex-row gap-5 items-center">
               <img data-src="/assets/projects/prototypes/scrutinize.gif" class="project-image lazy-load" loading="lazy" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
@@ -100,8 +115,8 @@
                 <div class="project-year text-xs">Jun '25</div>
               </div>
             </div>
-          </a>
-          <a href="https://www.instagram.com/p/DKvAULfvXVg/?utm_source=ig_web_copy_link" target="_blank" class="block project-link">
+      </a>
+      <a href="https://www.instagram.com/p/DKvAULfvXVg/?utm_source=ig_web_copy_link" target="_blank" class="block project-link">
             <div class="flex flex-row gap-5 items-center">
               <img data-src="/assets/projects/prototypes/specter.gif" class="project-image lazy-load" loading="lazy" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
@@ -113,8 +128,8 @@
                 <div class="project-year text-xs">Jun '25</div>
               </div>
             </div>
-          </a>
-          <a href="/project_unavailable" class="block project-link industry-project">
+      </a>
+      <a href="/project_unavailable" class="block project-link industry-project">
             <div class="flex flex-row gap-5 items-center">
               <img data-src="/assets/projects/industry/admin_metrics_dashboard.png" class="project-image lazy-load" loading="lazy" onmouseover="this.style.filter='grayscale(0) blur(1px)';" onmouseout="this.style.filter='grayscale(1) blur(1px)';">
               <div class="flex-1">
@@ -126,8 +141,8 @@
                 <div class="project-year text-xs">May '25</div>
               </div>
             </div>
-          </a>
-          <a href="https://www.instagram.com/p/DKGRo-yozpb/?utm_source=ig_web_copy_link" target="_blank" class="block project-link">
+      </a>
+      <a href="https://www.instagram.com/p/DKGRo-yozpb/?utm_source=ig_web_copy_link" target="_blank" class="block project-link">
             <div class="flex flex-row gap-5 items-center">
               <img data-src="/assets/projects/prototypes/meta_measure.gif" class="project-image lazy-load" loading="lazy" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
@@ -139,19 +154,8 @@
                 <div class="project-year text-xs">May '25</div>
               </div>
             </div>
-          </a>
-        </div>
-      </div>
-      <div>
-        <div class="flex items-center gap-3 mb-6">
-          <div class="research-heading project-year-heading flex-1">
-            <span class="section-heading-semi-mono">2024</span>
-            <span class="research-heading-line"></span>
-          </div>
-          <button class="clear-filter-btn border rounded transition-all hover:opacity-80">Clear</button>
-        </div>
-        <div class="flex flex-col gap-3 project-year-section">
-          <a href="/project_unavailable" class="block project-link industry-project">
+      </a>
+      <a href="/project_unavailable" class="block project-link industry-project">
             <div class="flex flex-row gap-5 items-center">
               <img data-src="/assets/projects/industry/ilm_portal.png" class="project-image lazy-load" loading="lazy" onmouseover="this.style.filter='grayscale(0) blur(1px)';" onmouseout="this.style.filter='grayscale(1) blur(1px)';">
               <div class="flex-1">
@@ -163,8 +167,8 @@
                 <div class="project-year text-xs">Aug '24</div>
               </div>
             </div>
-          </a>
-          <a href="https://dl.acm.org/doi/10.1145/3613904.3642816" target="_blank" rel="noopener" class="block project-link">
+      </a>
+      <a href="https://dl.acm.org/doi/10.1145/3613904.3642816" target="_blank" rel="noopener" class="block project-link">
             <div class="flex flex-row gap-5 items-center">
               <img data-src="/assets/projects/research/help_supporters.png" class="project-image lazy-load" loading="lazy" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
@@ -176,8 +180,8 @@
                 <div class="project-year text-xs">Aug '24</div>
               </div>
             </div>
-          </a>
-          <a href="/project_unavailable" class="block project-link industry-project">
+      </a>
+      <a href="/project_unavailable" class="block project-link industry-project">
             <div class="flex flex-row gap-5 items-center">
               <img data-src="/assets/projects/industry/file_upload_tool.gif" class="project-image lazy-load" loading="lazy" onmouseover="this.style.filter='grayscale(0) blur(1px)';" onmouseout="this.style.filter='grayscale(1) blur(1px)';">
               <div class="flex-1">
@@ -189,8 +193,8 @@
                 <div class="project-year text-xs">Apr '24</div>
               </div>
             </div>
-          </a>
-          <a href="/project_unavailable" class="block project-link industry-project">
+      </a>
+      <a href="/project_unavailable" class="block project-link industry-project">
             <div class="flex flex-row gap-5 items-center">
               <img data-src="/assets/projects/industry/penetration_tests.gif" class="project-image lazy-load" loading="lazy" onmouseover="this.style.filter='grayscale(0) blur(1px)';" onmouseout="this.style.filter='grayscale(1) blur(1px)';">
               <div class="flex-1">
@@ -202,19 +206,8 @@
                 <div class="project-year text-xs">Feb '24</div>
               </div>
             </div>
-          </a>
-        </div>
-      </div>
-      <div>
-        <div class="flex items-center gap-3 mb-6">
-          <div class="research-heading project-year-heading flex-1">
-            <span class="section-heading-semi-mono">2023</span>
-            <span class="research-heading-line"></span>
-          </div>
-          <button class="clear-filter-btn border rounded transition-all hover:opacity-80">Clear</button>
-        </div>
-        <div class="flex flex-col gap-3 project-year-section">
-          <a href="https://ceal.cs.columbia.edu/webnext" target="_blank" rel="noopener" class="block project-link">
+      </a>
+      <a href="https://ceal.cs.columbia.edu/webnext" target="_blank" rel="noopener" class="block project-link">
             <div class="flex flex-row gap-5 items-center">
               <img data-src="/assets/projects/research/spatial_interactions.png" class="project-image lazy-load" loading="lazy" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
@@ -226,19 +219,8 @@
                 <div class="project-year text-xs">Oct '23</div>
               </div>
             </div>
-          </a>
-        </div>
-      </div>
-      <div>
-        <div class="flex items-center gap-3 mb-6">
-          <div class="research-heading project-year-heading flex-1">
-            <span class="section-heading-semi-mono">2022</span>
-            <span class="research-heading-line"></span>
-          </div>
-          <button class="clear-filter-btn border rounded transition-all hover:opacity-80">Clear</button>
-        </div>
-        <div class="flex flex-col gap-3 project-year-section">
-          <a href="https://www.newamerica.org/digital-impact-governance-initiative/reports/digital-transformation-opportunities-and-challenges-in-the-lower-mekong-region" target="_blank" rel="noopener" class="block project-link">
+      </a>
+      <a href="https://www.newamerica.org/digital-impact-governance-initiative/reports/digital-transformation-opportunities-and-challenges-in-the-lower-mekong-region" target="_blank" rel="noopener" class="block project-link">
             <div class="flex flex-row gap-5 items-center">
               <img data-src="/assets/projects/reports/digital_transformation.png" class="project-image lazy-load" loading="lazy" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
@@ -250,8 +232,8 @@
                 <div class="project-year text-xs">Nov '22</div>
               </div>
             </div>
-          </a>
-          <a href="https://www.newamerica.org/digital-impact-governance-initiative/reports/reconceptualizing-public-procurement" target="_blank" rel="noopener" class="block project-link">
+      </a>
+      <a href="https://www.newamerica.org/digital-impact-governance-initiative/reports/reconceptualizing-public-procurement" target="_blank" rel="noopener" class="block project-link">
             <div class="flex flex-row gap-5 items-center">
               <img data-src="/assets/projects/reports/public_procurement.png" class="project-image lazy-load" loading="lazy" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
@@ -263,8 +245,8 @@
                 <div class="project-year text-xs">Oct '22</div>
               </div>
             </div>
-          </a>
-          <a href="/assets/files/presentations/summer_undergraduate_research_poster_showcase_22.pdf" target="_blank" rel="noopener" class="block project-link">
+      </a>
+      <a href="/assets/files/presentations/summer_undergraduate_research_poster_showcase_22.pdf" target="_blank" rel="noopener" class="block project-link">
             <div class="flex flex-row gap-5 items-center">
               <img data-src="/assets/projects/research/applied_machine_learning.png" class="project-image lazy-load" loading="lazy" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
@@ -276,8 +258,8 @@
                 <div class="project-year text-xs">July '22</div>
               </div>
             </div>
-          </a>
-          <a href="https://www.newamerica.org/digital-impact-governance-initiative/blog/what-is-digital-public-infrastructure-a-top-10-reading-guide" target="_blank" rel="noopener" class="block project-link">
+      </a>
+      <a href="https://www.newamerica.org/digital-impact-governance-initiative/blog/what-is-digital-public-infrastructure-a-top-10-reading-guide" target="_blank" rel="noopener" class="block project-link">
             <div class="flex flex-row gap-5 items-center">
               <img data-src="/assets/projects/articles/dpi.png" class="project-image lazy-load" loading="lazy" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
@@ -289,8 +271,8 @@
                 <div class="project-year text-xs">July '22</div>
               </div>
             </div>
-          </a>
-          <a href="/assets/files/presentations/textrank_and_lexrank.pdf" target="_blank" rel="noopener" class="block project-link">
+      </a>
+      <a href="/assets/files/presentations/textrank_and_lexrank.pdf" target="_blank" rel="noopener" class="block project-link">
             <div class="flex flex-row gap-5 items-center">
               <img data-src="/assets/projects/research/textrank_and_lexrank.png" class="project-image lazy-load" loading="lazy" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
@@ -302,19 +284,8 @@
                 <div class="project-year text-xs">Mar '22</div>
               </div>
             </div>
-          </a>
-        </div>
-      </div>
-      <div>
-        <div class="flex items-center gap-3 mb-6">
-          <div class="research-heading project-year-heading flex-1">
-            <span class="section-heading-semi-mono">2021</span>
-            <span class="research-heading-line"></span>
-          </div>
-          <button class="clear-filter-btn border rounded transition-all hover:opacity-80">Clear</button>
-        </div>
-        <div class="flex flex-col gap-3 project-year-section">
-          <a href="https://www.cfr.org/backgrounder/marriage-equality-global-comparisons" target="_blank" rel="noopener" class="block project-link">
+      </a>
+      <a href="https://www.cfr.org/backgrounder/marriage-equality-global-comparisons" target="_blank" rel="noopener" class="block project-link">
             <div class="flex flex-row gap-5 items-center">
               <img data-src="/assets/projects/articles/marriage_equality.gif" class="project-image lazy-load" loading="lazy" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
@@ -326,8 +297,8 @@
                 <div class="project-year text-xs">Jun '21</div>
               </div>
             </div>
-          </a>
-          <a href="https://www.cfr.org/backgrounder/how-us-patrols-its-borders" target="_blank" rel="noopener" class="block project-link">
+      </a>
+      <a href="https://www.cfr.org/backgrounder/how-us-patrols-its-borders" target="_blank" rel="noopener" class="block project-link">
             <div class="flex flex-row gap-5 items-center">
               <img data-src="/assets/projects/articles/border_security.png" class="project-image lazy-load" loading="lazy" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
@@ -339,8 +310,8 @@
                 <div class="project-year text-xs">Apr '21</div>
               </div>
             </div>
-          </a>
-          <a href="/assets/files/presentations/student_research_week_21.pdf" target="_blank" rel="noopener" class="block project-link">
+      </a>
+      <a href="/assets/files/presentations/student_research_week_21.pdf" target="_blank" rel="noopener" class="block project-link">
             <div class="flex flex-row gap-5 items-center">
               <img data-src="/assets/projects/research/adolescent_online_safety.png" class="project-image lazy-load" loading="lazy" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
@@ -352,8 +323,8 @@
                 <div class="project-year text-xs">Mar '21</div>
               </div>
             </div>
-          </a>
-          <a href="https://www.cfr.org/backgrounder/us-vice-president-and-foreign-policy" target="_blank" rel="noopener" class="block project-link">
+      </a>
+      <a href="https://www.cfr.org/backgrounder/us-vice-president-and-foreign-policy" target="_blank" rel="noopener" class="block project-link">
             <div class="flex flex-row gap-5 items-center">
               <img data-src="/assets/projects/articles/vp.png" class="project-image lazy-load" loading="lazy" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
@@ -365,8 +336,8 @@
                 <div class="project-year text-xs">Mar '21</div>
               </div>
             </div>
-          </a>
-          <a href="https://www.cfr.org/in-brief/fukushima-disaster-didnt-scare-world-nuclear-power" target="_blank" rel="noopener" class="block project-link">
+      </a>
+      <a href="https://www.cfr.org/in-brief/fukushima-disaster-didnt-scare-world-nuclear-power" target="_blank" rel="noopener" class="block project-link">
             <div class="flex flex-row gap-5 items-center">
               <img data-src="/assets/projects/articles/nuclear_energy.png" class="project-image lazy-load" loading="lazy" onmouseover="this.style.filter='grayscale(0)';" onmouseout="this.style.filter='grayscale(1)';">
               <div class="flex-1">
@@ -378,9 +349,7 @@
                 <div class="project-year text-xs">Mar '21</div>
               </div>
             </div>
-          </a>
-        </div>
-      </div>
+      </a>
     </div>
   </main>
   <footer>
