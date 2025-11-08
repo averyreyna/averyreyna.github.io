@@ -6,22 +6,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   initLazyLoading();
 
-  const tags = document.querySelectorAll('.project-tag-inline');
-  tags.forEach(tag => {
-    tag.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-
-      const tagText = this.textContent.trim();
-
-      if (currentFilter === tagText) {
-        resetFilters();
-      } else {
-        applyFilter(tagText);
-      }
-    });
-  });
-
   filterInputs.forEach(input => {
     input.addEventListener('change', function() {
       if (this.checked) {
