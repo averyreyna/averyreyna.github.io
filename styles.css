@@ -705,28 +705,21 @@ footer {
 }
 
 .project-tag-inline {
-    font-size: 0.45rem;
-    color: #888;
-    background-color: #f5f5f5;
-    border: 1px solid #e5e5e5;
-    padding: 0.1rem 0.3rem;
-    margin-left: 0.4rem;
-    border-radius: 0.25rem;
-    font-weight: 500;
+    font-size: 0.6rem;
+    color: #6b7280;
+    padding: 0;
+    margin-left: auto;
+    font-weight: 400;
     display: inline-flex;
     align-items: center;
+    justify-content: flex-end;
     white-space: nowrap;
     flex-shrink: 0;
     vertical-align: middle;
     cursor: default;
     transition: none;
-}
-
-.project-tag-inline:hover {
-    opacity: 1;
-    background-color: #f5f5f5;
-    border-color: #e5e5e5;
-    color: #888;
+    background: none;
+    border: none;
 }
 
 
@@ -960,20 +953,14 @@ footer {
   }
   
   .project-tag-inline {
-    font-size: 0.4rem;
-    padding: 0.1rem 0.3rem;
-    margin-left: 0.3rem;
-    background-color: #e8e8e8;
-    border: 1px solid #d0d0d0;
+    font-size: 0.5rem;
+    margin-left: auto;
+    padding: 0;
+    background: none;
+    border: none;
+    color: #6b7280;
     cursor: default;
     transition: none;
-  }
-  
-  .project-tag-inline:hover {
-    opacity: 1;
-    background-color: #e8e8e8;
-    border-color: #d0d0d0;
-    color: #888;
   }
   
   /* adjust main container padding for mobile */
