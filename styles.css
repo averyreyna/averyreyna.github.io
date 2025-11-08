@@ -751,7 +751,28 @@ footer {
 }
 
 .cv-entry-spacing > * + * {
-    margin-top: 0.15rem;
+    margin-top: 0.05rem;
+}
+
+.education-detail-group {
+    row-gap: 0 !important;
+}
+
+.education-minors,
+.education-honors {
+    font-size: 0.78rem !important;
+    line-height: 1.05 !important;
+    display: block;
+    margin-top: 0 !important;
+}
+
+.education-honors {
+    font-style: italic;
+    font-size: 0.72rem !important;
+}
+
+.education-minors + .education-honors {
+    margin-top: 0.05rem !important;
 }
 
 /* filter system */
