@@ -722,6 +722,14 @@ footer {
     border: none;
 }
 
+.project-tag-inline.align-left {
+    margin-left: 0 !important;
+    justify-content: flex-start;
+    align-self: flex-start;
+    white-space: normal;
+    margin-top: -0.2rem;
+}
+
 
 
 /* experience & cv */
