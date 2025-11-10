@@ -1,0 +1,27 @@
+[
+  {
+    "organization": "UC San Diego",
+    "role": "Researcher",
+    "dates": "Jun 2025 — Present",
+    "description": "Studied the agentic coding workflows of experienced developers in the Foundation Interface Lab under Haijun Xia."
+  },
+  {
+    "organization": "University of Central Florida",
+    "role": "Researcher",
+    "dates": "Jan 2021 — May 2023",
+    "description": "Started my research career in the applied sociology field with my professor Amy Donley, eventually leading the UMOR project after a year of collaboration. Joined the Socio-Technical Interaction Research Lab under Pamela Wisniewski shortly after to help with the IGDD project, which then turned into MOSafely. Later worked with Jonathan Powell to maintain CoupCast and wrote some articles with Salah Ben Hammou, his PhD student at the time."
+  },
+  {
+    "organization": "XR Access",
+    "role": "REU Participant",
+    "dates": "Jun 2022 — Aug 2022",
+    "description": "Placed in the Computer-Enabled Abilities Laboratory under Brian Smith to build prototypes that integrate spatial interactions into desktop screen readers and support face-to-face help between sighted and blind strangers exploring physical spaces."
+  },
+  {
+    "organization": "University of Washington Tacoma",
+    "role": "REU Participant",
+    "dates": "Jun 2021 — Aug 2021",
+    "description": "Applied TDA algorithms on ACS datasets from Mecklenburg County to identify communities of interest. Collaborated with Jim Thatcher and Courtney Thatcher from the University of Puget Sound."
+  }
+]
+
