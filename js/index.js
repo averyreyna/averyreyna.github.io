@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize lazy loading for profile image
     initLazyLoading();
     
     const navToggle = document.getElementById('nav-toggle');
@@ -10,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const isHidden = navDropdown.classList.contains('hidden');
         navDropdown.classList.toggle('hidden');
         
-        // Rotate arrow: > (0deg) when closed, v (90deg) when open
         if (isHidden) {
             navArrow.style.transform = 'rotate(90deg)';
         } else {
@@ -25,7 +23,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Load announcements from JSON
     async function loadAnnouncements() {
         try {
             const response = await fetch('/data/announcements.json');
@@ -33,7 +30,6 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const container = document.getElementById('announcements-container');
             
-            // Create announcement items with exact same styling
             announcements.forEach((announcement, index) => {
                 const announcementDiv = document.createElement('div');
                 announcementDiv.className = 'announcement-item py-2';
@@ -51,7 +47,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 container.appendChild(announcementDiv);
             });
             
-            // Initialize pagination after loading announcements
             initializePagination();
             
         } catch (error) {
@@ -103,10 +98,8 @@ document.addEventListener('DOMContentLoaded', function() {
         showPage(currentPage);
     }
     
-    // Load announcements when page loads
     loadAnnouncements();
     
-    // Lazy loading functions for profile image
     function initLazyLoading() {
         if ('IntersectionObserver' in window) {
             const imageObserver = new IntersectionObserver((entries, observer) => {
@@ -125,7 +118,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const lazyImages = document.querySelectorAll('.lazy-load');
             lazyImages.forEach(img => imageObserver.observe(img));
         } else {
-            // Fallback for browsers without IntersectionObserver
             const lazyImages = document.querySelectorAll('.lazy-load');
             lazyImages.forEach(img => loadImage(img));
         }

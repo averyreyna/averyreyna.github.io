@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const isHidden = navDropdown.classList.contains('hidden');
         navDropdown.classList.toggle('hidden');
         
-        // Rotate arrow: > (0deg) when closed, v (90deg) when open
         if (isHidden) {
             navArrow.style.transform = 'rotate(90deg)';
         } else {

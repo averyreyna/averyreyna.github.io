@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
   let currentFilter = null;
   const filterInputs = document.querySelectorAll('.project-filter');
+  const projectsContainer = document.getElementById('projects-container');
   let imageObserver;
   let scrollTimeout;
-
-  initLazyLoading();
+  let projectsData = [];
 
   filterInputs.forEach(input => {
     input.addEventListener('change', function() {
@@ -20,6 +20,108 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   });
+
+  loadProjects();
+
+  function loadProjects() {
+    if (!projectsContainer) return;
+
+    fetch('/data/projects.json')
+      .then(response => response.json())
+      .then(data => {
+        projectsData = Array.isArray(data) ? data : [];
+        renderProjects(projectsData);
+        initLazyLoading();
+        resetFilters();
+      })
+      .catch(error => {
+        console.error('Error loading projects:', error);
+      });
+  }
+
+  function renderProjects(projects) {
+    projectsContainer.innerHTML = '';
+
+    projects.forEach(project => {
+      const projectElement = createProjectElement(project);
+      projectsContainer.appendChild(projectElement);
+    });
+  }
+
+  function createProjectElement(project) {
+    const projectLink = document.createElement('a');
+    projectLink.className = 'block project-link';
+    projectLink.href = project.link || '#';
+
+    if (project.openInNewTab) {
+      projectLink.target = '_blank';
+      projectLink.rel = 'noopener';
+    }
+
+    const isIndustryUnavailable = project.category === 'Industry' && project.unavailable;
+    if (isIndustryUnavailable) {
+      projectLink.classList.add('industry-project');
+    }
+
+    const layout = document.createElement('div');
+    layout.className = 'flex flex-row gap-5 items-center';
+
+    const image = document.createElement('img');
+    image.className = 'project-image lazy-load';
+    image.setAttribute('data-src', project.image || '');
+    image.setAttribute('loading', 'lazy');
+    image.setAttribute('alt', project.title || 'Project image');
+    applyImageHover(image, isIndustryUnavailable);
+
+    const content = document.createElement('div');
+    content.className = 'flex-1';
+
+    const titleRow = document.createElement('div');
+    titleRow.className = 'font-semibold project-title flex items-center';
+    titleRow.textContent = project.title || '';
+
+    const tag = document.createElement('span');
+    tag.className = 'project-tag-inline';
+    tag.textContent = project.category || '';
+    titleRow.appendChild(tag);
+
+    const description = document.createElement('div');
+    description.className = 'project-desc';
+    description.textContent = project.description || '';
+
+    const year = document.createElement('div');
+    year.className = 'project-year text-xs';
+    year.textContent = project.date || '';
+
+    content.appendChild(titleRow);
+    content.appendChild(description);
+    content.appendChild(year);
+
+    layout.appendChild(image);
+    layout.appendChild(content);
+    projectLink.appendChild(layout);
+
+    return projectLink;
+  }
+
+  function applyImageHover(image, isIndustryUnavailable) {
+    if (isIndustryUnavailable) {
+      image.addEventListener('mouseover', () => {
+        image.style.filter = 'grayscale(0) blur(1px)';
+      });
+      image.addEventListener('mouseout', () => {
+        image.style.filter = 'grayscale(1) blur(1px)';
+      });
+      return;
+    }
+
+    image.addEventListener('mouseover', () => {
+      image.style.filter = 'grayscale(0)';
+    });
+    image.addEventListener('mouseout', () => {
+      image.style.filter = 'grayscale(1)';
+    });
+  }
 
   function applyFilter(filterTag) {
     if (!filterTag) return;
@@ -39,6 +141,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function showAllProjects() {
     const allProjects = document.querySelectorAll('.project-link');
+    if (!allProjects.length) return;
+
     allProjects.forEach(project => {
       project.style.display = 'block';
     });
@@ -48,6 +152,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function filterProjects(filterTag) {
     const allProjects = document.querySelectorAll('.project-link');
+    if (!allProjects.length) return;
 
     allProjects.forEach(project => {
       const projectTag = project.querySelector('.project-tag-inline');
@@ -88,8 +193,6 @@ document.addEventListener('DOMContentLoaded', function() {
       input.checked = false;
     });
   }
-
-  showAllProjects();
   
   const navToggle = document.getElementById('nav-toggle');
   const navDropdown = document.getElementById('nav-dropdown');
@@ -114,6 +217,10 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   
   function initLazyLoading() {
+    if (imageObserver && typeof imageObserver.disconnect === 'function') {
+      imageObserver.disconnect();
+    }
+
     if ('IntersectionObserver' in window) {
       imageObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {

@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const isHidden = navDropdown.classList.contains('hidden');
         navDropdown.classList.toggle('hidden');
         
-        // Rotate arrow: > (0deg) when closed, v (90deg) when open
         if (isHidden) {
             navArrow.style.transform = 'rotate(90deg)';
         } else {
@@ -22,7 +21,375 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Load talks from JSON
+    async function fetchJsonData(path) {
+        const response = await fetch(path);
+        if (!response.ok) {
+            throw new Error(`Failed to fetch ${path}: ${response.status}`);
+        }
+        return response.json();
+    }
+
+    function createExperienceEntry({ header, subheader, meta, description }) {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'experience-item';
+
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'experience-content flex flex-col gap-0.25';
+
+        const headerDiv = document.createElement('div');
+        headerDiv.className = 'experience-header';
+
+        const headerSpan = document.createElement('span');
+        headerSpan.className = 'font-semibold text-gray-900 leading-tight';
+        headerSpan.textContent = header;
+
+        headerDiv.appendChild(headerSpan);
+        contentDiv.appendChild(headerDiv);
+
+        if (subheader || meta) {
+            const metaDiv = document.createElement('div');
+            metaDiv.className = 'flex flex-row items-start justify-between gap-2';
+            metaDiv.style.marginTop = '-0.15rem';
+
+            if (subheader) {
+                const subheaderSpan = document.createElement('span');
+                subheaderSpan.className = 'block text-xs text-gray-700';
+                subheaderSpan.textContent = subheader;
+                metaDiv.appendChild(subheaderSpan);
+            } else {
+                const subheaderPlaceholder = document.createElement('span');
+                subheaderPlaceholder.className = 'block text-xs text-gray-700';
+                subheaderPlaceholder.innerHTML = '&nbsp;';
+                metaDiv.appendChild(subheaderPlaceholder);
+            }
+
+            if (meta) {
+                const metaSpan = document.createElement('span');
+                metaSpan.className = 'block text-xs text-gray-500 whitespace-nowrap';
+                metaSpan.textContent = meta;
+                metaDiv.appendChild(metaSpan);
+            } else {
+                const metaPlaceholder = document.createElement('span');
+                metaPlaceholder.className = 'block text-xs text-gray-500 whitespace-nowrap';
+                metaPlaceholder.innerHTML = '&nbsp;';
+                metaDiv.appendChild(metaPlaceholder);
+            }
+
+            contentDiv.appendChild(metaDiv);
+        }
+
+        if (description) {
+            const descWrapper = document.createElement('div');
+            descWrapper.className = 'cv-desc-wrapper';
+
+            const toggleLink = document.createElement('a');
+            toggleLink.href = '#';
+            toggleLink.className = 'cv-desc-toggle text-xs text-gray-500';
+            toggleLink.textContent = 'View Description';
+
+            const descParagraph = document.createElement('p');
+            descParagraph.className = 'announcement-desc cv-desc cv-desc-hidden';
+            descParagraph.style.marginTop = '0.1rem';
+            descParagraph.style.lineHeight = '1';
+            descParagraph.textContent = description;
+
+            toggleLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (descParagraph.classList.contains('cv-desc-hidden')) {
+                    descParagraph.classList.remove('cv-desc-hidden');
+                    descParagraph.classList.add('cv-desc-visible');
+                    toggleLink.textContent = 'Hide Description';
+                } else {
+                    descParagraph.classList.remove('cv-desc-visible');
+                    descParagraph.classList.add('cv-desc-hidden');
+                    toggleLink.textContent = 'View Description';
+                }
+            });
+
+            descWrapper.appendChild(toggleLink);
+            descWrapper.appendChild(descParagraph);
+            contentDiv.appendChild(descWrapper);
+        }
+
+        itemDiv.appendChild(contentDiv);
+        return itemDiv;
+    }
+
+    async function loadEducation() {
+        try {
+            const educationData = await fetchJsonData('/data/education.json');
+            const container = document.getElementById('education-container');
+
+            educationData.forEach(entry => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'experience-item';
+
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'experience-content flex flex-col gap-0.25';
+
+                const headerDiv = document.createElement('div');
+                headerDiv.className = 'experience-header';
+
+                const headerSpan = document.createElement('span');
+                headerSpan.className = 'font-semibold text-gray-900 leading-tight';
+                headerSpan.textContent = entry.institution;
+
+                headerDiv.appendChild(headerSpan);
+                contentDiv.appendChild(headerDiv);
+
+                const metaDiv = document.createElement('div');
+                metaDiv.className = 'flex flex-row items-start justify-between gap-2';
+                metaDiv.style.marginTop = '-0.15rem';
+
+                const degreeSpan = document.createElement('span');
+                degreeSpan.className = 'block text-xs text-gray-700';
+                degreeSpan.textContent = entry.degree;
+
+                const datesSpan = document.createElement('span');
+                datesSpan.className = 'block text-xs text-gray-500 whitespace-nowrap';
+                datesSpan.textContent = entry.dates;
+
+                metaDiv.appendChild(degreeSpan);
+                metaDiv.appendChild(datesSpan);
+                contentDiv.appendChild(metaDiv);
+
+                if (Array.isArray(entry.details) && entry.details.length > 0) {
+                    const detailsDiv = document.createElement('div');
+                    detailsDiv.className = 'flex flex-col gap-0.5 education-detail-group';
+
+                    entry.details.forEach((detail, index) => {
+                        const detailSpan = document.createElement('span');
+                        detailSpan.className = 'block text-gray-500 text-xs';
+                        if (index === 0) {
+                            detailSpan.classList.add('education-minors');
+                        } else if (index === 1) {
+                            detailSpan.classList.add('education-honors');
+                        }
+                        detailSpan.textContent = detail;
+                        detailsDiv.appendChild(detailSpan);
+                    });
+
+                    contentDiv.appendChild(detailsDiv);
+                }
+
+                itemDiv.appendChild(contentDiv);
+                container.appendChild(itemDiv);
+            });
+        } catch (error) {
+            console.error('Error loading education:', error);
+        }
+    }
+
+    async function loadWorkExperience() {
+        try {
+            const workExperience = await fetchJsonData('/data/work_experience.json');
+            const container = document.getElementById('work-experience-container');
+
+            workExperience.forEach(entry => {
+                const item = createExperienceEntry({
+                    header: entry.organization,
+                    subheader: entry.role,
+                    meta: entry.dates,
+                    description: entry.description
+                });
+                container.appendChild(item);
+            });
+        } catch (error) {
+            console.error('Error loading work experience:', error);
+        }
+    }
+
+    async function loadResearchExperience() {
+        try {
+            const researchExperience = await fetchJsonData('/data/research_experience.json');
+            const container = document.getElementById('research-experience-container');
+
+            researchExperience.forEach(entry => {
+                const item = createExperienceEntry({
+                    header: entry.organization,
+                    subheader: entry.role,
+                    meta: entry.dates,
+                    description: entry.description
+                });
+                container.appendChild(item);
+            });
+        } catch (error) {
+            console.error('Error loading research experience:', error);
+        }
+    }
+
+    async function loadTeachingExperience() {
+        try {
+            const teachingExperience = await fetchJsonData('/data/teaching_experience.json');
+            const container = document.getElementById('teaching-experience-container');
+
+            teachingExperience.forEach(entry => {
+                const item = createExperienceEntry({
+                    header: entry.organization,
+                    subheader: entry.role,
+                    meta: entry.dates,
+                    description: entry.description
+                });
+                container.appendChild(item);
+            });
+        } catch (error) {
+            console.error('Error loading teaching experience:', error);
+        }
+    }
+
+    async function loadAwards() {
+        try {
+            const awards = await fetchJsonData('/data/awards.json');
+            const container = document.getElementById('awards-container');
+
+            awards.forEach(entry => {
+                const item = createExperienceEntry({
+                    header: entry.title,
+                    subheader: entry.organization,
+                    meta: entry.year
+                });
+                container.appendChild(item);
+            });
+        } catch (error) {
+            console.error('Error loading awards:', error);
+        }
+    }
+
+    async function loadVolunteering() {
+        try {
+            const volunteering = await fetchJsonData('/data/volunteering.json');
+            const container = document.getElementById('volunteering-container');
+
+            volunteering.forEach(entry => {
+                const item = createExperienceEntry({
+                    header: entry.organization,
+                    subheader: entry.role,
+                    meta: entry.dates,
+                    description: entry.description
+                });
+                container.appendChild(item);
+            });
+        } catch (error) {
+            console.error('Error loading volunteering:', error);
+        }
+    }
+
+    async function loadMedia() {
+        try {
+            const mediaItems = await fetchJsonData('/data/media.json');
+            const container = document.getElementById('media-container');
+
+            mediaItems.forEach(entry => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'experience-item';
+
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'experience-content flex flex-col gap-0.25';
+
+                const headerDiv = document.createElement('div');
+                headerDiv.className = 'experience-header';
+
+                const headerSpan = document.createElement('span');
+                headerSpan.className = 'font-semibold text-gray-900 leading-tight';
+                headerSpan.textContent = entry.title;
+
+                headerDiv.appendChild(headerSpan);
+                contentDiv.appendChild(headerDiv);
+
+                if (entry.series) {
+                    const seriesDiv = document.createElement('div');
+                    seriesDiv.className = 'flex flex-row items-start justify-between gap-2';
+                    seriesDiv.style.marginTop = '-0.15rem';
+
+                    const seriesSpan = document.createElement('span');
+                    seriesSpan.className = 'block text-xs text-gray-700';
+                    seriesSpan.textContent = entry.series;
+                    seriesDiv.appendChild(seriesSpan);
+
+                    contentDiv.appendChild(seriesDiv);
+                }
+
+                if (Array.isArray(entry.links) && entry.links.length > 0) {
+                    const linksSpan = document.createElement('span');
+                    linksSpan.className = 'flex flex-row flex-wrap gap-2 mt-0.5';
+
+                    entry.links.forEach(link => {
+                        const linkElement = document.createElement('a');
+                        linkElement.href = link.url;
+                        linkElement.className = 'paper-link text-gray-500 text-xs';
+                        linkElement.target = '_blank';
+                        linkElement.rel = 'noopener';
+                        linkElement.textContent = link.text;
+                        linksSpan.appendChild(linkElement);
+                    });
+
+                    contentDiv.appendChild(linksSpan);
+                }
+
+                itemDiv.appendChild(contentDiv);
+                container.appendChild(itemDiv);
+            });
+        } catch (error) {
+            console.error('Error loading media:', error);
+        }
+    }
+
+    async function loadReferences() {
+        try {
+            const references = await fetchJsonData('/data/references.json');
+            const container = document.getElementById('references-container');
+
+            references.forEach(entry => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'experience-item flex flex-col gap-0.25';
+
+                const nameSpan = document.createElement('span');
+                nameSpan.className = 'font-semibold text-gray-900 mb-0.5 leading-tight';
+                nameSpan.style.marginBottom = '0.1rem';
+                nameSpan.textContent = entry.name;
+
+                const titleSpan = document.createElement('span');
+                titleSpan.className = 'text-xs text-gray-500';
+                titleSpan.style.marginTop = '-0.15rem';
+                titleSpan.style.display = 'block';
+                titleSpan.textContent = entry.title;
+
+                const affiliationSpan = document.createElement('span');
+                affiliationSpan.className = 'text-xs text-gray-700';
+                affiliationSpan.textContent = entry.affiliation;
+
+                const linksSpan = document.createElement('span');
+                linksSpan.className = 'flex flex-row flex-wrap gap-2 mt-0.5';
+
+                if (entry.email) {
+                    const emailLink = document.createElement('a');
+                    emailLink.href = `mailto:${entry.email}`;
+                    emailLink.className = 'paper-link text-gray-500 text-xs';
+                    emailLink.textContent = 'Email';
+                    linksSpan.appendChild(emailLink);
+                }
+
+                itemDiv.appendChild(nameSpan);
+                itemDiv.appendChild(titleSpan);
+                itemDiv.appendChild(affiliationSpan);
+                itemDiv.appendChild(linksSpan);
+
+                container.appendChild(itemDiv);
+            });
+        } catch (error) {
+            console.error('Error loading references:', error);
+        }
+    }
+
+    loadEducation();
+    loadWorkExperience();
+    loadResearchExperience();
+    loadTeachingExperience();
+    loadAwards();
+    loadVolunteering();
+    loadMedia();
+    loadReferences();
+
     async function loadTalks() {
         try {
             const response = await fetch('/data/talks.json');
@@ -30,12 +397,10 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const container = document.getElementById('talks-container');
             
-            // Create talk items with exact same styling
             talks.forEach((talk) => {
                 const talkDiv = document.createElement('div');
                 talkDiv.className = 'experience-item flex flex-col gap-0.25';
-                
-                // Generate links HTML
+
                 const linksHtml = talk.links.map(link => 
                     `<a href="${link.url}" class="paper-link text-gray-500 text-xs" target="_blank" rel="noopener">${link.text}</a>`
                 ).join('');
@@ -57,10 +422,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Load talks when page loads
     loadTalks();
 
-    // Load papers from JSON
     async function loadPapers() {
         try {
             const response = await fetch('/data/papers.json');
@@ -68,12 +431,10 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const container = document.getElementById('papers-container');
             
-            // Create paper items with exact same styling
             papers.forEach((paper) => {
                 const paperDiv = document.createElement('div');
                 paperDiv.className = 'experience-item flex flex-col gap-0.25';
-                
-                // Generate links HTML
+
                 const linksHtml = paper.links.map(link => {
                     if (link.italic) {
                         return `<span class="text-gray-500 text-xs italic">${link.text}</span>`;
@@ -82,7 +443,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 }).join('');
                 
-                // Apply blur filter to "Don't Vibe, Plan" paper title
                 const titleStyle = paper.title.includes("Don't Vibe, Plan") 
                     ? 'style="margin-bottom:0.1rem; filter: blur(3.5px);"' 
                     : 'style="margin-bottom:0.1rem;"';
@@ -104,10 +464,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Load papers when page loads
     loadPapers();
 
-    // Load presentations from JSON
     async function loadPresentations() {
         try {
             const response = await fetch('/data/presentations.json');
@@ -115,12 +473,10 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const container = document.getElementById('presentations-container');
             
-            // Create presentation items with exact same styling
             presentations.forEach((presentation) => {
                 const presentationDiv = document.createElement('div');
                 presentationDiv.className = 'experience-item flex flex-col gap-0.25';
-                
-                // Generate links HTML
+
                 const linksHtml = presentation.links.map(link => 
                     `<a href="${link.url}" class="paper-link text-gray-500 text-xs" target="_blank" rel="noopener">${link.text}</a>`
                 ).join('');
@@ -142,10 +498,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Load presentations when page loads
     loadPresentations();
 
-    // Load articles from JSON
     async function loadArticles() {
         try {
             const response = await fetch('/data/articles.json');
@@ -157,23 +511,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 const articleDiv = document.createElement('div');
                 articleDiv.className = 'experience-item flex flex-col gap-0.25';
                 
-                // Title
                 const titleSpan = document.createElement('span');
                 titleSpan.className = 'font-semibold text-gray-900 mb-0.5 leading-tight';
                 titleSpan.style.marginBottom = '0.1rem';
                 titleSpan.textContent = article.title;
                 
-                // Venue
                 const venueSpan = document.createElement('span');
                 venueSpan.className = 'text-xs text-gray-500';
                 venueSpan.textContent = article.venue;
                 
-                // Authors
                 const authorsSpan = document.createElement('span');
                 authorsSpan.className = 'text-xs text-gray-700';
                 authorsSpan.innerHTML = article.authors;
                 
-                // Links
                 const linksSpan = document.createElement('span');
                 linksSpan.className = 'flex flex-row flex-wrap gap-2 mt-0.5';
                 
@@ -199,10 +549,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Load articles when page loads
     loadArticles();
 
-    // CV description toggle functionality
     const cvDescToggles = document.querySelectorAll('.cv-desc-toggle');
     
     cvDescToggles.forEach(toggle => {
@@ -212,12 +560,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const desc = wrapper.querySelector('.cv-desc');
             
             if (desc.classList.contains('cv-desc-hidden')) {
-                // Show description
                 desc.classList.remove('cv-desc-hidden');
                 desc.classList.add('cv-desc-visible');
                 this.textContent = 'Hide Description';
             } else {
-                // Hide description
                 desc.classList.remove('cv-desc-visible');
                 desc.classList.add('cv-desc-hidden');
                 this.textContent = 'View Description';
@@ -226,19 +572,16 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 
-    // Companies hover effect with cursor following
     const companiesTrigger = document.querySelector('.companies-hover-trigger');
     const companiesDetail = document.querySelector('.companies-detail');
     
     if (companiesTrigger && companiesDetail) {
         let isTouch = false;
         
-        // Detect touch devices
         companiesTrigger.addEventListener('touchstart', function() {
             isTouch = true;
         });
         
-        // Desktop hover behavior with cursor following
         companiesTrigger.addEventListener('mouseenter', function() {
             if (!isTouch) {
                 companiesDetail.classList.add('show');
@@ -248,8 +591,8 @@ document.addEventListener('DOMContentLoaded', function() {
         companiesTrigger.addEventListener('mousemove', function(e) {
             if (!isTouch && companiesDetail.classList.contains('show')) {
                 const rect = companiesTrigger.getBoundingClientRect();
-                const x = e.clientX - rect.left + 15; // 15px offset to the right
-                const y = e.clientY - rect.top - 10; // 10px offset above cursor
+                const x = e.clientX - rect.left + 15;
+                const y = e.clientY - rect.top - 10;
                 
                 companiesDetail.style.left = x + 'px';
                 companiesDetail.style.top = y + 'px';
@@ -262,7 +605,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // Mobile tap behavior
         companiesTrigger.addEventListener('click', function(e) {
             if (isTouch) {
                 e.preventDefault();
@@ -270,7 +612,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     companiesDetail.classList.remove('show');
                 } else {
                     companiesDetail.classList.add('show');
-                    // Position at a fixed location for mobile
                     companiesDetail.style.left = '100%';
                     companiesDetail.style.top = '-50px';
                     companiesDetail.style.marginLeft = '10px';
@@ -278,7 +619,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // Close on outside tap for mobile
         document.addEventListener('click', function(e) {
             if (isTouch && !companiesTrigger.contains(e.target) && companiesDetail.classList.contains('show')) {
                 companiesDetail.classList.remove('show');
@@ -286,7 +626,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // XR Access hover effect with cursor following
     const xrAccessTrigger = document.querySelector('.xr-access-hover-trigger');
     const xrAccessDetail = document.querySelector('.xr-access-detail');
     
@@ -341,7 +680,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // UW Tacoma hover effect with cursor following
     const uwTacomaTrigger = document.querySelector('.uw-tacoma-hover-trigger');
     const uwTacomaDetail = document.querySelector('.uw-tacoma-detail');
     
@@ -396,7 +734,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Companies toggle functionality
     const companiesToggle = document.getElementById('companies-toggle');
     const companiesList = document.getElementById('companies-list');
     
