@@ -55,8 +55,15 @@ document.addEventListener('DOMContentLoaded', function() {
       projectsByCategory[category].push(project);
     });
 
-    // Sort categories alphabetically
-    const sortedCategories = Object.keys(projectsByCategory).sort();
+    // Sort categories by latest project date (newest first)
+    const sortedCategories = Object.keys(projectsByCategory).sort((a, b) => {
+      // Find the latest project date in each category
+      const datesA = projectsByCategory[a].map(p => parseDate(p.date || '')).filter(d => d > 0);
+      const datesB = projectsByCategory[b].map(p => parseDate(p.date || '')).filter(d => d > 0);
+      const latestDateA = datesA.length > 0 ? Math.max(...datesA) : 0;
+      const latestDateB = datesB.length > 0 ? Math.max(...datesB) : 0;
+      return latestDateB - latestDateA; // Reverse chronological (newest first)
+    });
 
     // Render each category section
     sortedCategories.forEach(category => {
