@@ -13,8 +13,9 @@
   <header class="w-full">
     <div class="max-w-2xl mx-auto px-4 py-2">
       <div class="flex flex-row items-center justify-between">
-        <h1 class="text-2xl font-bold main-heading-semi-mono flex items-center">
+        <h1 class="text-2xl font-bold main-heading-semi-mono flex items-center gap-2">
           <a href="/" class="text-inherit hover:text-inherit header-link">Avery Reyna</a>
+          <img src="/website.png" alt="" class="h-3 w-3 object-contain" style="vertical-align: middle;">
         </h1>
         <nav class="relative">
           <div class="nav-selector bg-white border border-gray-300 rounded-lg px-3 py-1.5 cursor-pointer flex items-center justify-between" id="nav-toggle">
@@ -38,35 +39,8 @@
             An archive of work in articles, industry, prototypes, reports, and research across several disciplines
         </div>
     </div>
-    <div class="research-heading">
-      <span class="section-heading-semi-mono">Filters</span>
-      <span class="research-heading-line"></span>
-    </div>
-    <div class="flex flex-nowrap items-center gap-3 overflow-x-auto whitespace-nowrap pb-1 mb-6">
-        <label class="filter-option inline-flex items-center gap-1.5 text-[0.55rem] sm:text-xs text-gray-700 font-medium section-heading-semi-mono">
-          <input type="checkbox" class="project-filter accent-black" data-filter="Article">
-          <span>Article</span>
-        </label>
-        <label class="filter-option inline-flex items-center gap-1.5 text-[0.55rem] sm:text-xs text-gray-700 font-medium section-heading-semi-mono">
-          <input type="checkbox" class="project-filter accent-black" data-filter="Industry">
-          <span>Industry</span>
-        </label>
-        <label class="filter-option inline-flex items-center gap-1.5 text-[0.55rem] sm:text-xs text-gray-700 font-medium section-heading-semi-mono">
-          <input type="checkbox" class="project-filter accent-black" data-filter="Prototype">
-          <span>Prototype</span>
-        </label>
-        <label class="filter-option inline-flex items-center gap-1.5 text-[0.55rem] sm:text-xs text-gray-700 font-medium section-heading-semi-mono">
-          <input type="checkbox" class="project-filter accent-black" data-filter="Report">
-          <span>Report</span>
-        </label>
-        <label class="filter-option inline-flex items-center gap-1.5 text-[0.55rem] sm:text-xs text-gray-700 font-medium section-heading-semi-mono">
-          <input type="checkbox" class="project-filter accent-black" data-filter="Research">
-          <span>Research</span>
-        </label>
-      </div>
-    </div>
-    <div class="flex flex-col gap-3 project-list" id="projects-container">
-      <!-- projects will be rendered dynamically -->
+    <div id="projects-container">
+      <!-- projects will be rendered dynamically by category -->
     </div>
   </main>
   <footer>

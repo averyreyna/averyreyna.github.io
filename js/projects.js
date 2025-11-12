@@ -1,27 +1,30 @@
 document.addEventListener('DOMContentLoaded', function() {
-  let currentFilter = null;
-  const filterInputs = document.querySelectorAll('.project-filter');
   const projectsContainer = document.getElementById('projects-container');
   let imageObserver;
   let scrollTimeout;
   let projectsData = [];
 
-  filterInputs.forEach(input => {
-    input.addEventListener('change', function() {
-      if (this.checked) {
-        filterInputs.forEach(other => {
-          if (other !== this) {
-            other.checked = false;
-          }
-        });
-        applyFilter(this.dataset.filter?.trim());
-      } else {
-        resetFilters();
-      }
-    });
-  });
-
   loadProjects();
+
+  function parseDate(dateString) {
+    // Parse date strings like "Sep '25", "May '25", "Apr '24", "Mar '21"
+    if (!dateString) return 0;
+    
+    const monthMap = {
+      'Jan': 1, 'Feb': 2, 'Mar': 3, 'Apr': 4, 'May': 5, 'Jun': 6,
+      'Jul': 7, 'Aug': 8, 'Sep': 9, 'Oct': 10, 'Nov': 11, 'Dec': 12
+    };
+    
+    const parts = dateString.trim().split(/\s+/);
+    if (parts.length < 2) return 0;
+    
+    const month = monthMap[parts[0]] || 0;
+    const yearMatch = parts[1].match(/'(\d{2})/);
+    if (!yearMatch) return 0;
+    
+    const year = parseInt('20' + yearMatch[1], 10);
+    return year * 100 + month; // Returns YYYYMM format for easy comparison
+  }
 
   function loadProjects() {
     if (!projectsContainer) return;
@@ -32,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
         projectsData = Array.isArray(data) ? data : [];
         renderProjects(projectsData);
         initLazyLoading();
-        resetFilters();
+        initializeScrollControls();
       })
       .catch(error => {
         console.error('Error loading projects:', error);
@@ -42,15 +45,140 @@ document.addEventListener('DOMContentLoaded', function() {
   function renderProjects(projects) {
     projectsContainer.innerHTML = '';
 
+    // Group projects by category
+    const projectsByCategory = {};
+    projects.forEach(project => {
+      const category = project.category || 'Other';
+      if (!projectsByCategory[category]) {
+        projectsByCategory[category] = [];
+      }
+      projectsByCategory[category].push(project);
+    });
+
+    // Sort categories alphabetically
+    const sortedCategories = Object.keys(projectsByCategory).sort();
+
+    // Render each category section
+    sortedCategories.forEach(category => {
+      // Sort projects within category by date (reverse chronological - newest first)
+      const categoryProjects = projectsByCategory[category].sort((a, b) => {
+        const dateA = parseDate(a.date || '');
+        const dateB = parseDate(b.date || '');
+        return dateB - dateA; // Reverse chronological (newest first)
+      });
+
+      const categorySection = createCategorySection(category, categoryProjects);
+      projectsContainer.appendChild(categorySection);
+    });
+  }
+
+  function createCategorySection(category, projects) {
+    const section = document.createElement('div');
+    section.className = 'project-category-section mb-8';
+
+    // Category heading
+    const heading = document.createElement('div');
+    heading.className = 'research-heading mb-4';
+    const headingText = document.createElement('span');
+    headingText.className = 'section-heading-semi-mono';
+    headingText.textContent = category;
+    heading.appendChild(headingText);
+    section.appendChild(heading);
+
+    // Scrollable container wrapper
+    const scrollWrapper = document.createElement('div');
+    scrollWrapper.className = 'project-scroll-wrapper relative';
+
+    // Scrollable container
+    const scrollContainer = document.createElement('div');
+    scrollContainer.className = 'project-scroll-container';
+    scrollContainer.setAttribute('data-category', category);
+
+    // Navigation arrows
+    const prevBtn = document.createElement('button');
+    prevBtn.className = 'project-scroll-btn project-scroll-btn-prev';
+    prevBtn.innerHTML = '←';
+    prevBtn.setAttribute('aria-label', 'Scroll left');
+    prevBtn.addEventListener('click', () => scrollCategory(category, -1));
+
+    const nextBtn = document.createElement('button');
+    nextBtn.className = 'project-scroll-btn project-scroll-btn-next';
+    nextBtn.innerHTML = '→';
+    nextBtn.setAttribute('aria-label', 'Scroll right');
+    nextBtn.addEventListener('click', () => scrollCategory(category, 1));
+
+    // Render projects
     projects.forEach(project => {
       const projectElement = createProjectElement(project);
-      projectsContainer.appendChild(projectElement);
+      scrollContainer.appendChild(projectElement);
+    });
+
+    scrollWrapper.appendChild(prevBtn);
+    scrollWrapper.appendChild(scrollContainer);
+    scrollWrapper.appendChild(nextBtn);
+    section.appendChild(scrollWrapper);
+
+    return section;
+  }
+
+  function scrollCategory(category, direction) {
+    const container = document.querySelector(`.project-scroll-container[data-category="${category}"]`);
+    if (!container) return;
+
+    const scrollAmount = 300; // pixels to scroll
+    const currentScroll = container.scrollLeft;
+    const newScroll = currentScroll + (scrollAmount * direction);
+    
+    container.scrollTo({
+      left: newScroll,
+      behavior: 'smooth'
+    });
+
+    // Update arrow states after scroll
+    setTimeout(() => updateScrollButtons(category), 100);
+  }
+
+  function updateScrollButtons(category) {
+    const container = document.querySelector(`.project-scroll-container[data-category="${category}"]`);
+    if (!container) return;
+
+    const prevBtn = container.parentElement.querySelector('.project-scroll-btn-prev');
+    const nextBtn = container.parentElement.querySelector('.project-scroll-btn-next');
+
+    const hasOverflow = container.scrollWidth > container.clientWidth;
+    const isAtStart = container.scrollLeft <= 0;
+    const isAtEnd = container.scrollLeft >= container.scrollWidth - container.clientWidth - 10;
+
+    if (prevBtn) {
+      prevBtn.disabled = !hasOverflow || isAtStart;
+      prevBtn.classList.toggle('disabled', !hasOverflow || isAtStart);
+    }
+    if (nextBtn) {
+      nextBtn.disabled = !hasOverflow || isAtEnd;
+      nextBtn.classList.toggle('disabled', !hasOverflow || isAtEnd);
+    }
+  }
+
+  function initializeScrollControls() {
+    const containers = document.querySelectorAll('.project-scroll-container');
+    containers.forEach(container => {
+      const category = container.getAttribute('data-category');
+      
+      // Update buttons on scroll
+      container.addEventListener('scroll', () => {
+        updateScrollButtons(category);
+      });
+
+      // Initial button state - delay to ensure layout has settled
+      setTimeout(() => {
+        updateScrollButtons(category);
+      }, 100);
     });
   }
 
   function createProjectElement(project) {
     const projectLink = document.createElement('a');
-    projectLink.className = 'block project-link';
+    projectLink.className = 'project-link project-card-item';
     projectLink.href = project.link || '#';
 
     if (project.openInNewTab) {
@@ -64,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     const layout = document.createElement('div');
-    layout.className = 'flex flex-row gap-5 items-center';
+    layout.className = 'project-card-layout';
 
     const image = document.createElement('img');
     image.className = 'project-image lazy-load';
@@ -74,16 +202,21 @@ document.addEventListener('DOMContentLoaded', function() {
     applyImageHover(image, isIndustryUnavailable);
 
     const content = document.createElement('div');
-    content.className = 'flex-1';
+    content.className = 'project-card-content';
 
     const titleRow = document.createElement('div');
-    titleRow.className = 'font-semibold project-title flex items-center';
-    titleRow.textContent = project.title || '';
-
-    const tag = document.createElement('span');
-    tag.className = 'project-tag-inline';
-    tag.textContent = project.category || '';
-    titleRow.appendChild(tag);
+    titleRow.className = 'font-semibold project-title';
+    
+    const titleText = document.createTextNode(project.title || '');
+    titleRow.appendChild(titleText);
+    
+    // Add "New!" badge for Palestra project
+    if (project.title === 'Palestra') {
+      const newBadge = document.createElement('span');
+      newBadge.className = 'project-new-badge';
+      newBadge.textContent = 'New!';
+      titleRow.appendChild(newBadge);
+    }
 
     const description = document.createElement('div');
     description.className = 'project-desc';
@@ -122,99 +255,30 @@ document.addEventListener('DOMContentLoaded', function() {
       image.style.filter = 'grayscale(1)';
     });
   }
-
-  function applyFilter(filterTag) {
-    if (!filterTag) return;
-
-    currentFilter = filterTag;
-    filterProjects(filterTag);
-    setActiveState(filterTag);
-    updateFilterInputs(filterTag);
-  }
-
-  function resetFilters() {
-    currentFilter = null;
-    showAllProjects();
-    clearActiveStates();
-    resetFilterInputs();
-  }
-
-  function showAllProjects() {
-    const allProjects = document.querySelectorAll('.project-link');
-    if (!allProjects.length) return;
-
-    allProjects.forEach(project => {
-      project.style.display = 'block';
-    });
-
-    reobserveImages();
-  }
-
-  function filterProjects(filterTag) {
-    const allProjects = document.querySelectorAll('.project-link');
-    if (!allProjects.length) return;
-
-    allProjects.forEach(project => {
-      const projectTag = project.querySelector('.project-tag-inline');
-      if (projectTag && projectTag.textContent.trim() === filterTag) {
-        project.style.display = 'block';
-      } else {
-        project.style.display = 'none';
-      }
-    });
-
-    reobserveImages();
-  }
-
-  function setActiveState(filterTag) {
-    const allTags = document.querySelectorAll('.project-tag-inline');
-    allTags.forEach(tag => {
-      if (tag.textContent.trim() === filterTag) {
-        tag.classList.add('active');
-      } else {
-        tag.classList.remove('active');
-      }
-    });
-  }
-
-  function clearActiveStates() {
-    const allTags = document.querySelectorAll('.project-tag-inline');
-    allTags.forEach(tag => tag.classList.remove('active'));
-  }
-
-  function updateFilterInputs(filterTag) {
-    filterInputs.forEach(input => {
-      input.checked = input.dataset.filter?.trim() === filterTag;
-    });
-  }
-
-  function resetFilterInputs() {
-    filterInputs.forEach(input => {
-      input.checked = false;
-    });
-  }
   
   const navToggle = document.getElementById('nav-toggle');
   const navDropdown = document.getElementById('nav-dropdown');
   const navArrow = document.querySelector('.nav-arrow');
   
-  navToggle.addEventListener('click', function() {
-    const isHidden = navDropdown.classList.contains('hidden');
-    navDropdown.classList.toggle('hidden');
+  if (navToggle && navDropdown && navArrow) {
+    navToggle.addEventListener('click', function() {
+      const isHidden = navDropdown.classList.contains('hidden');
+      navDropdown.classList.toggle('hidden');
+      
+      if (isHidden) {
+        navArrow.style.transform = 'rotate(90deg)';
+      } else {
+        navArrow.style.transform = 'rotate(0deg)';
+      }
+    });
     
-    if (isHidden) {
-      navArrow.style.transform = 'rotate(90deg)';
-    } else {
-      navArrow.style.transform = 'rotate(0deg)';
-    }
-  });
-  
-  document.addEventListener('click', function(event) {
-    if (!navToggle.contains(event.target) && !navDropdown.contains(event.target)) {
-      navDropdown.classList.add('hidden');
-      navArrow.style.transform = 'rotate(0deg)';
-    }
-  });
+    document.addEventListener('click', function(event) {
+      if (!navToggle.contains(event.target) && !navDropdown.contains(event.target)) {
+        navDropdown.classList.add('hidden');
+        navArrow.style.transform = 'rotate(0deg)';
+      }
+    });
+  }
   
   function initLazyLoading() {
     if (imageObserver && typeof imageObserver.disconnect === 'function') {
@@ -295,18 +359,4 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   window.addEventListener('scroll', handleScroll, { passive: true });
-  
-  function reobserveImages() {
-    if (imageObserver) {
-      const currentImages = document.querySelectorAll('.lazy-load');
-      currentImages.forEach(img => imageObserver.unobserve(img));
-      
-      const visibleImages = document.querySelectorAll('.project-link[style*="block"]:not([style*="none"]) .lazy-load');
-      visibleImages.forEach(img => {
-        if (!img.src) {
-          imageObserver.observe(img);
-        }
-      });
-    }
-  }
 });
