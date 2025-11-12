@@ -74,11 +74,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function createCategorySection(category, projects) {
     const section = document.createElement('div');
-    section.className = 'project-category-section mb-8';
+    section.className = 'project-category-section mb-2';
 
     // Category heading
     const heading = document.createElement('div');
-    heading.className = 'research-heading mb-4';
+    heading.className = 'research-heading mb-1';
     const headingText = document.createElement('span');
     headingText.className = 'section-heading-semi-mono';
     headingText.textContent = category;
