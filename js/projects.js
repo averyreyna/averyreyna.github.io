@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', function() {
   loadProjects();
 
   function parseDate(dateString) {
-    // Parse date strings like "Sep '25", "May '25", "Apr '24", "Mar '21"
     if (!dateString) return 0;
     
     const monthMap = {
@@ -23,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!yearMatch) return 0;
     
     const year = parseInt('20' + yearMatch[1], 10);
-    return year * 100 + month; // Returns YYYYMM format for easy comparison
+    return year * 100 + month;
   }
 
   function loadProjects() {
@@ -45,7 +44,6 @@ document.addEventListener('DOMContentLoaded', function() {
   function renderProjects(projects) {
     projectsContainer.innerHTML = '';
 
-    // Group projects by category
     const projectsByCategory = {};
     projects.forEach(project => {
       const category = project.category || 'Other';
@@ -55,23 +53,19 @@ document.addEventListener('DOMContentLoaded', function() {
       projectsByCategory[category].push(project);
     });
 
-    // Sort categories by latest project date (newest first)
     const sortedCategories = Object.keys(projectsByCategory).sort((a, b) => {
-      // Find the latest project date in each category
       const datesA = projectsByCategory[a].map(p => parseDate(p.date || '')).filter(d => d > 0);
       const datesB = projectsByCategory[b].map(p => parseDate(p.date || '')).filter(d => d > 0);
       const latestDateA = datesA.length > 0 ? Math.max(...datesA) : 0;
       const latestDateB = datesB.length > 0 ? Math.max(...datesB) : 0;
-      return latestDateB - latestDateA; // Reverse chronological (newest first)
+      return latestDateB - latestDateA;
     });
 
-    // Render each category section
     sortedCategories.forEach(category => {
-      // Sort projects within category by date (reverse chronological - newest first)
       const categoryProjects = projectsByCategory[category].sort((a, b) => {
         const dateA = parseDate(a.date || '');
         const dateB = parseDate(b.date || '');
-        return dateB - dateA; // Reverse chronological (newest first)
+        return dateB - dateA;
       });
 
       const categorySection = createCategorySection(category, categoryProjects);
@@ -83,25 +77,29 @@ document.addEventListener('DOMContentLoaded', function() {
     const section = document.createElement('div');
     section.className = 'project-category-section mb-2';
 
-    // Category heading
     const heading = document.createElement('div');
     heading.className = 'research-heading mb-1';
     const headingText = document.createElement('span');
     headingText.className = 'section-heading-semi-mono';
     headingText.textContent = category;
+    
+    if (category === 'Report' || category === 'Article') {
+      const olderWorkBadge = document.createElement('span');
+      olderWorkBadge.className = 'project-older-work-badge';
+      olderWorkBadge.textContent = 'Older Work';
+      headingText.appendChild(olderWorkBadge);
+    }
+    
     heading.appendChild(headingText);
     section.appendChild(heading);
 
-    // Scrollable container wrapper
     const scrollWrapper = document.createElement('div');
     scrollWrapper.className = 'project-scroll-wrapper relative';
 
-    // Scrollable container
     const scrollContainer = document.createElement('div');
     scrollContainer.className = 'project-scroll-container';
     scrollContainer.setAttribute('data-category', category);
 
-    // Navigation arrows
     const prevBtn = document.createElement('button');
     prevBtn.className = 'project-scroll-btn project-scroll-btn-prev';
     prevBtn.innerHTML = '←';
@@ -114,7 +112,6 @@ document.addEventListener('DOMContentLoaded', function() {
     nextBtn.setAttribute('aria-label', 'Scroll right');
     nextBtn.addEventListener('click', () => scrollCategory(category, 1));
 
-    // Render projects
     projects.forEach(project => {
       const projectElement = createProjectElement(project);
       scrollContainer.appendChild(projectElement);
@@ -132,7 +129,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const container = document.querySelector(`.project-scroll-container[data-category="${category}"]`);
     if (!container) return;
 
-    const scrollAmount = 300; // pixels to scroll
+    const scrollAmount = 300;
     const currentScroll = container.scrollLeft;
     const newScroll = currentScroll + (scrollAmount * direction);
     
@@ -141,7 +138,6 @@ document.addEventListener('DOMContentLoaded', function() {
       behavior: 'smooth'
     });
 
-    // Update arrow states after scroll
     setTimeout(() => updateScrollButtons(category), 100);
   }
 
@@ -171,12 +167,10 @@ document.addEventListener('DOMContentLoaded', function() {
     containers.forEach(container => {
       const category = container.getAttribute('data-category');
       
-      // Update buttons on scroll
       container.addEventListener('scroll', () => {
         updateScrollButtons(category);
       });
 
-      // Initial button state - delay to ensure layout has settled
       setTimeout(() => {
         updateScrollButtons(category);
       }, 100);
@@ -217,11 +211,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const titleText = document.createTextNode(project.title || '');
     titleRow.appendChild(titleText);
     
-    // Add "New!" badge for Palestra project
     if (project.title === 'Palestra') {
       const newBadge = document.createElement('span');
       newBadge.className = 'project-new-badge';
-      newBadge.textContent = 'New!';
+      newBadge.textContent = 'New';
       titleRow.appendChild(newBadge);
     }
 

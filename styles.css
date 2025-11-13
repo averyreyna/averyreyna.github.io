@@ -831,6 +831,21 @@ footer {
   top: 0.05em;
 }
 
+.project-older-work-badge {
+  display: inline-block;
+  background: transparent;
+  color: #ea580c;
+  font-size: 0.5rem;
+  font-weight: 600;
+  padding: 0;
+  padding-left: 0.15rem;
+  line-height: 1;
+  font-family: 'ABC Diatype', sans-serif;
+  vertical-align: super;
+  position: relative;
+  top: 0.05em;
+}
+
 .project-card-layout .project-desc {
   font-size: 0.68rem;
   line-height: 1.15;
@@ -913,6 +928,10 @@ footer {
   }
 
   .project-new-badge {
+    font-size: 0.45rem;
+  }
+
+  .project-older-work-badge {
     font-size: 0.45rem;
   }
 
