@@ -485,6 +485,16 @@ footer {
   position: relative;
 }
 
+/* Add extra spacing for first research heading on projects, cv, and resources pages */
+.professional-summary + .research-heading {
+  margin-top: 1.5rem;
+}
+
+/* For projects page - first category heading */
+#projects-container > .project-category-section:first-child > .research-heading {
+  margin-top: 1.5rem;
+}
+
 .research-heading::before {
   content: '';
   width: 0.75rem;
