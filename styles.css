@@ -825,11 +825,13 @@ footer {
   font-size: 0.68rem;
   line-height: 1.15;
   margin: 0;
+  margin-bottom: -0.08rem;
 }
 
 .project-card-layout .project-year {
   font-size: 0.62rem;
   margin: 0;
+  margin-top: -0.12rem;
 }
 
 .project-scroll-btn {
@@ -906,10 +908,12 @@ footer {
 
   .project-card-layout .project-desc {
     font-size: 0.58rem;
+    margin-bottom: -0.08rem;
   }
 
   .project-card-layout .project-year {
     font-size: 0.54rem;
+    margin-top: -0.12rem;
   }
 
   .project-scroll-container {
