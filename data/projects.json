@@ -11,7 +11,7 @@
   {
     "title": "Rerank",
     "category": "Prototype",
-    "description": "Revisiting an experiment from undergrad that utilizes text summarization models for annotating large amounts of conversational data",
+    "description": "Revisiting an experiment from undergrad that utilizes text summarization models for annotating conversational data",
     "date": "Sep '25",
     "link": "https://www.instagram.com/p/DOKLyKbj-n4/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
     "image": "/assets/projects/prototypes/rerank.gif",
@@ -85,7 +85,7 @@
   {
     "title": "File Upload Tool",
     "category": "Industry",
-    "description": "Upgraded the frontend of a custom authorization plugin that validates native application content for the IAM data analytics team",
+    "description": "Upgraded the frontend of a custom authorization plugin that validates native application content for IAM data analytics",
     "date": "Apr '24",
     "link": "/project_unavailable",
     "image": "/assets/projects/industry/file_upload_tool.gif",
