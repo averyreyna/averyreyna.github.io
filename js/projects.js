@@ -34,7 +34,6 @@ document.addEventListener('DOMContentLoaded', function() {
         projectsData = Array.isArray(data) ? data : [];
         renderProjects(projectsData);
         initLazyLoading();
-        initializeScrollControls();
       })
       .catch(error => {
         console.error('Error loading projects:', error);
@@ -44,142 +43,29 @@ document.addEventListener('DOMContentLoaded', function() {
   function renderProjects(projects) {
     projectsContainer.innerHTML = '';
 
-    const projectsByCategory = {};
-    projects.forEach(project => {
-      const category = project.category || 'Other';
-      if (!projectsByCategory[category]) {
-        projectsByCategory[category] = [];
-      }
-      projectsByCategory[category].push(project);
+    // Sort all projects by date (newest first), ignoring categories
+    const sortedProjects = [...projects].sort((a, b) => {
+      const dateA = parseDate(a.date || '');
+      const dateB = parseDate(b.date || '');
+      return dateB - dateA;
     });
 
-    const sortedCategories = Object.keys(projectsByCategory).sort((a, b) => {
-      const datesA = projectsByCategory[a].map(p => parseDate(p.date || '')).filter(d => d > 0);
-      const datesB = projectsByCategory[b].map(p => parseDate(p.date || '')).filter(d => d > 0);
-      const latestDateA = datesA.length > 0 ? Math.max(...datesA) : 0;
-      const latestDateB = datesB.length > 0 ? Math.max(...datesB) : 0;
-      return latestDateB - latestDateA;
-    });
+    // Create a single grid container for all projects
+    const gridContainer = document.createElement('div');
+    gridContainer.className = 'projects-grid';
 
-    sortedCategories.forEach(category => {
-      const categoryProjects = projectsByCategory[category].sort((a, b) => {
-        const dateA = parseDate(a.date || '');
-        const dateB = parseDate(b.date || '');
-        return dateB - dateA;
-      });
-
-      const categorySection = createCategorySection(category, categoryProjects);
-      projectsContainer.appendChild(categorySection);
-    });
-  }
-
-  function createCategorySection(category, projects) {
-    const section = document.createElement('div');
-    section.className = 'project-category-section mb-2';
-
-    const heading = document.createElement('div');
-    heading.className = 'research-heading mb-1';
-    const headingText = document.createElement('span');
-    headingText.className = 'section-heading-semi-mono';
-    headingText.textContent = category;
-    
-    if (category === 'Report' || category === 'Article') {
-      const olderWorkBadge = document.createElement('span');
-      olderWorkBadge.className = 'project-older-work-badge';
-      olderWorkBadge.textContent = 'Older Work';
-      headingText.appendChild(olderWorkBadge);
-    }
-    
-    heading.appendChild(headingText);
-    section.appendChild(heading);
-
-    const scrollWrapper = document.createElement('div');
-    scrollWrapper.className = 'project-scroll-wrapper relative';
-
-    const scrollContainer = document.createElement('div');
-    scrollContainer.className = 'project-scroll-container';
-    scrollContainer.setAttribute('data-category', category);
-
-    const prevBtn = document.createElement('button');
-    prevBtn.className = 'project-scroll-btn project-scroll-btn-prev';
-    prevBtn.innerHTML = '←';
-    prevBtn.setAttribute('aria-label', 'Scroll left');
-    prevBtn.addEventListener('click', () => scrollCategory(category, -1));
-
-    const nextBtn = document.createElement('button');
-    nextBtn.className = 'project-scroll-btn project-scroll-btn-next';
-    nextBtn.innerHTML = '→';
-    nextBtn.setAttribute('aria-label', 'Scroll right');
-    nextBtn.addEventListener('click', () => scrollCategory(category, 1));
-
-    projects.forEach(project => {
+    sortedProjects.forEach(project => {
       const projectElement = createProjectElement(project);
-      scrollContainer.appendChild(projectElement);
+      gridContainer.appendChild(projectElement);
     });
 
-    scrollWrapper.appendChild(prevBtn);
-    scrollWrapper.appendChild(scrollContainer);
-    scrollWrapper.appendChild(nextBtn);
-    section.appendChild(scrollWrapper);
-
-    return section;
+    projectsContainer.appendChild(gridContainer);
   }
 
-  function scrollCategory(category, direction) {
-    const container = document.querySelector(`.project-scroll-container[data-category="${category}"]`);
-    if (!container) return;
-
-    const scrollAmount = 300;
-    const currentScroll = container.scrollLeft;
-    const newScroll = currentScroll + (scrollAmount * direction);
-    
-    container.scrollTo({
-      left: newScroll,
-      behavior: 'smooth'
-    });
-
-    setTimeout(() => updateScrollButtons(category), 100);
-  }
-
-  function updateScrollButtons(category) {
-    const container = document.querySelector(`.project-scroll-container[data-category="${category}"]`);
-    if (!container) return;
-
-    const prevBtn = container.parentElement.querySelector('.project-scroll-btn-prev');
-    const nextBtn = container.parentElement.querySelector('.project-scroll-btn-next');
-
-    const hasOverflow = container.scrollWidth > container.clientWidth;
-    const isAtStart = container.scrollLeft <= 0;
-    const isAtEnd = container.scrollLeft >= container.scrollWidth - container.clientWidth - 10;
-
-    if (prevBtn) {
-      prevBtn.disabled = !hasOverflow || isAtStart;
-      prevBtn.classList.toggle('disabled', !hasOverflow || isAtStart);
-    }
-    if (nextBtn) {
-      nextBtn.disabled = !hasOverflow || isAtEnd;
-      nextBtn.classList.toggle('disabled', !hasOverflow || isAtEnd);
-    }
-  }
-
-  function initializeScrollControls() {
-    const containers = document.querySelectorAll('.project-scroll-container');
-    containers.forEach(container => {
-      const category = container.getAttribute('data-category');
-      
-      container.addEventListener('scroll', () => {
-        updateScrollButtons(category);
-      });
-
-      setTimeout(() => {
-        updateScrollButtons(category);
-      }, 100);
-    });
-  }
 
   function createProjectElement(project) {
     const projectLink = document.createElement('a');
-    projectLink.className = 'project-link project-card-item';
+    projectLink.className = 'project-link';
     projectLink.href = project.link || '#';
 
     if (project.openInNewTab) {
@@ -210,25 +96,28 @@ document.addEventListener('DOMContentLoaded', function() {
     
     const titleText = document.createTextNode(project.title || '');
     titleRow.appendChild(titleText);
-    
-    if (project.title === 'Palestra') {
-      const newBadge = document.createElement('span');
-      newBadge.className = 'project-new-badge';
-      newBadge.textContent = 'New';
-      titleRow.appendChild(newBadge);
-    }
 
     const description = document.createElement('div');
     description.className = 'project-desc';
     description.textContent = project.description || '';
 
-    const year = document.createElement('div');
+    const dateRow = document.createElement('div');
+    dateRow.className = 'project-date-row';
+    
+    const year = document.createElement('span');
     year.className = 'project-year text-xs';
     year.textContent = project.date || '';
+    
+    const category = document.createElement('span');
+    category.className = 'project-category text-xs';
+    category.textContent = project.category || '';
+    
+    dateRow.appendChild(year);
+    dateRow.appendChild(category);
 
     content.appendChild(titleRow);
     content.appendChild(description);
-    content.appendChild(year);
+    content.appendChild(dateRow);
 
     layout.appendChild(image);
     layout.appendChild(content);
@@ -238,22 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function applyImageHover(image, isIndustryUnavailable) {
-    if (isIndustryUnavailable) {
-      image.addEventListener('mouseover', () => {
-        image.style.filter = 'grayscale(0) blur(1px)';
-      });
-      image.addEventListener('mouseout', () => {
-        image.style.filter = 'grayscale(1) blur(1px)';
-      });
-      return;
-    }
-
-    image.addEventListener('mouseover', () => {
-      image.style.filter = 'grayscale(0)';
-    });
-    image.addEventListener('mouseout', () => {
-      image.style.filter = 'grayscale(1)';
-    });
+    // No hover effects needed - images display in full color
   }
   
   const navToggle = document.getElementById('nav-toggle');

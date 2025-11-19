@@ -18,7 +18,7 @@ html::-webkit-scrollbar {
 body {
     scrollbar-width: none;
     -ms-overflow-style: none;
-    font-family: 'ABC Diatype', sans-serif;
+    font-family: 'Planet', sans-serif;
     background: #fff;
     min-height: 100vh;
     margin: 0;
@@ -40,154 +40,88 @@ body::-webkit-scrollbar {
 }
 
 /* font definitions */
-/* ABC Diatype Regular - for body text and general content */
 @font-face {
-    font-family: 'ABC Diatype';
-    src: url('assets/files/fonts/ABC Diatype/ABCDiatype-Regular-Trial.woff2') format('woff2'),
-         url('assets/files/fonts/ABC Diatype/ABCDiatype-Regular-Trial.woff') format('woff');
+    font-family: 'Planet';
+    src: url('/assets/files/fonts/Planet/Planet/PlanetDEMO-Light.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Planet';
+    src: url('/assets/files/fonts/Planet/Planet/PlanetDEMO-LightItalic.otf') format('opentype');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Planet';
+    src: url('/assets/files/fonts/Planet/Planet/PlanetDEMO-Regular.otf') format('opentype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'ABC Diatype';
-    src: url('assets/files/fonts/ABC Diatype/ABCDiatype-RegularItalic-Trial.woff2') format('woff2'),
-         url('assets/files/fonts/ABC Diatype/ABCDiatype-RegularItalic-Trial.woff') format('woff');
+    font-family: 'Planet';
+    src: url('/assets/files/fonts/Planet/Planet/PlanetDEMO-RegularItalic.otf') format('opentype');
     font-weight: 400;
     font-style: italic;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'ABC Diatype';
-    src: url('assets/files/fonts/ABC Diatype/ABCDiatype-Medium-Trial.woff2') format('woff2'),
-         url('assets/files/fonts/ABC Diatype/ABCDiatype-Medium-Trial.woff') format('woff');
+    font-family: 'Planet';
+    src: url('/assets/files/fonts/Planet/Planet/PlanetDEMO-Medium.otf') format('opentype');
     font-weight: 500;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'ABC Diatype';
-    src: url('assets/files/fonts/ABC Diatype/ABCDiatype-MediumItalic-Trial.woff2') format('woff2'),
-         url('assets/files/fonts/ABC Diatype/ABCDiatype-MediumItalic-Trial.woff') format('woff');
+    font-family: 'Planet';
+    src: url('/assets/files/fonts/Planet/Planet/PlanetDEMO-MediumItalic.otf') format('opentype');
     font-weight: 500;
     font-style: italic;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'ABC Diatype';
-    src: url('assets/files/fonts/ABC Diatype/ABCDiatype-Bold-Trial.woff2') format('woff2'),
-         url('assets/files/fonts/ABC Diatype/ABCDiatype-Bold-Trial.woff') format('woff');
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'ABC Diatype';
-    src: url('assets/files/fonts/ABC Diatype/ABCDiatype-BoldItalic-Trial.woff2') format('woff2'),
-         url('assets/files/fonts/ABC Diatype/ABCDiatype-BoldItalic-Trial.woff') format('woff');
-    font-weight: 600;
-    font-style: italic;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'ABC Diatype';
-    src: url('assets/files/fonts/ABC Diatype/ABCDiatype-Heavy-Trial.woff2') format('woff2'),
-         url('assets/files/fonts/ABC Diatype/ABCDiatype-Heavy-Trial.woff') format('woff');
+    font-family: 'Planet';
+    src: url('/assets/files/fonts/Planet/Planet/PlanetDEMO-Bold.otf') format('opentype');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'ABC Diatype';
-    src: url('assets/files/fonts/ABC Diatype/ABCDiatype-HeavyItalic-Trial.woff2') format('woff2'),
-         url('assets/files/fonts/ABC Diatype/ABCDiatype-HeavyItalic-Trial.woff') format('woff');
+    font-family: 'Planet';
+    src: url('/assets/files/fonts/Planet/Planet/PlanetDEMO-BoldItalic.otf') format('opentype');
     font-weight: 700;
     font-style: italic;
     font-display: swap;
 }
 
-/* ABC Diatype Semi-Mono - for headings with grey lines */
 @font-face {
-    font-family: 'ABC Diatype Semi-Mono';
-    src: url('assets/files/fonts/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-Regular-Trial.woff2') format('woff2'),
-         url('assets/files/fonts/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-Regular-Trial.woff') format('woff');
-    font-weight: 400;
+    font-family: 'Planet';
+    src: url('/assets/files/fonts/Planet/Planet/PlanetDEMO-Dark.otf') format('opentype');
+    font-weight: 800;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'ABC Diatype Semi-Mono';
-    src: url('assets/files/fonts/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-RegularItalic-Trial.woff2') format('woff2'),
-         url('assets/files/fonts/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-RegularItalic-Trial.woff') format('woff');
-    font-weight: 400;
-    font-style: italic;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'ABC Diatype Semi-Mono';
-    src: url('assets/files/fonts/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-Medium-Trial.woff2') format('woff2'),
-         url('assets/files/fonts/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-Medium-Trial.woff') format('woff');
-    font-weight: 500;
+    font-family: 'Planet';
+    src: url('/assets/files/fonts/Planet/Planet/PlanetDEMO-Black.otf') format('opentype');
+    font-weight: 900;
     font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'ABC Diatype Semi-Mono';
-    src: url('assets/files/fonts/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-MediumItalic-Trial.woff2') format('woff2'),
-         url('assets/files/fonts/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-MediumItalic-Trial.woff') format('woff');
-    font-weight: 500;
-    font-style: italic;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'ABC Diatype Semi-Mono';
-    src: url('assets/files/fonts/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-Bold-Trial.woff2') format('woff2'),
-         url('assets/files/fonts/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-Bold-Trial.woff') format('woff');
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'ABC Diatype Semi-Mono';
-    src: url('assets/files/fonts/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-BoldItalic-Trial.woff2') format('woff2'),
-         url('assets/files/fonts/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-BoldItalic-Trial.woff') format('woff');
-    font-weight: 600;
-    font-style: italic;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'ABC Diatype Semi-Mono';
-    src: url('assets/files/fonts/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-Heavy-Trial.woff2') format('woff2'),
-         url('assets/files/fonts/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-Heavy-Trial.woff') format('woff');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'ABC Diatype Semi-Mono';
-    src: url('assets/files/fonts/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-HeavyItalic-Trial.woff2') format('woff2'),
-         url('assets/files/fonts/ABC Diatype Semi-Mono/ABCDiatypeSemi-Mono-HeavyItalic-Trial.woff') format('woff');
-    font-weight: 700;
-    font-style: italic;
     font-display: swap;
 }
 
 .font-diatype {
-    font-family: 'ABC Diatype', sans-serif;
+    font-family: 'Planet', sans-serif;
 }
 
 /* general typography & links */
@@ -279,7 +213,7 @@ h1 a {
 }
 
 h1 {
-    font-family: 'ABC Diatype', sans-serif;
+    font-family: 'Planet', sans-serif;
     font-weight: bold;
     font-size: 2rem;
     margin-bottom: 0.5rem;
@@ -331,7 +265,7 @@ p, li {
 
 /* navigation */
 nav {
-    font-family: 'ABC Diatype', sans-serif;
+    font-family: 'Planet', sans-serif;
     border-bottom: none !important;
     margin-bottom: 0;
     position: relative;
@@ -372,7 +306,7 @@ nav a {
 }
 
 .menu-button {
-    font-family: 'ABC Diatype', sans-serif;
+    font-family: 'Planet', sans-serif;
     font-size: 0.9rem;
     font-weight: 500;
     color: #6b7280;
@@ -447,7 +381,7 @@ header {
 main {
     margin-top: 0;
     margin-left: 0;
-    max-width: 672px;
+    max-width: 1000px;
     padding: 0 1rem;
     text-align: left;
 }
@@ -465,7 +399,7 @@ footer {
 }
 
 .footer-content {
-  max-width: 672px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 0 1rem;
 }
@@ -510,7 +444,7 @@ footer {
 .research-heading-text {
   font-size: 1.15rem;
   font-weight: 600;
-  font-family: 'ABC Diatype Semi-Mono', sans-serif;
+  font-family: 'Planet', sans-serif;
   color: #0f172a;
   letter-spacing: 0.015em;
 }
@@ -525,12 +459,12 @@ footer {
 }
 
 .main-heading-semi-mono {
-  font-family: 'ABC Diatype Semi-Mono', sans-serif;
+  font-family: 'Planet', sans-serif;
   font-weight: 700;
 }
 
 .section-heading-semi-mono {
-  font-family: 'ABC Diatype Semi-Mono', sans-serif;
+  font-family: 'Planet', sans-serif;
   font-weight: 700;
   font-size: 1.125rem;
 }
@@ -549,7 +483,7 @@ footer {
 
 /* Page titles at top with descriptions */
 .professional-summary .text-base.font-medium {
-    font-family: 'ABC Diatype', sans-serif;
+    font-family: 'Planet', sans-serif;
 }
 
 /* projects page */
@@ -571,14 +505,14 @@ footer {
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 2rem;
-  max-width: 900px;
-  margin: 0 auto;
-  justify-items: center;
+  max-width: 100%;
+  margin: 0;
+  justify-items: start;
   background: none;
   border: none;
-  padding: 2rem 0;
+  padding: 1.5rem 0;
 }
 
 .project-card {
@@ -599,10 +533,9 @@ footer {
   height: 100px;
   object-fit: cover;
   background: #e5e7eb;
-  filter: grayscale(1);
   margin-bottom: 0.3rem;
   aspect-ratio: unset;
-  transition: filter 0.3s ease, opacity 0.3s ease;
+  transition: opacity 0.3s ease;
   image-rendering: auto;
   transform: scale(1);
   backface-visibility: hidden;
@@ -662,13 +595,7 @@ footer {
 
 /* industry project images blur effect */
 .project-link.industry-project .project-image {
-  filter: grayscale(1) blur(1px);
-}
-
-@media (min-width: 768px) {
-    .project-link.industry-project .project-image:hover {
-        filter: grayscale(0) blur(1px);
-    }
+  filter: blur(1px);
 }
 
 .project-info {
@@ -680,7 +607,7 @@ footer {
 }
 
 .project-title {
-  font-family: 'ABC Diatype', sans-serif;
+  font-family: 'Planet', sans-serif;
   font-weight: 700;
   font-size: 0.95rem;
   margin: 0;
@@ -702,7 +629,7 @@ footer {
 .project-year {
   font-size: 0.76rem;
   color: #aaa;
-  font-family: 'ABC Diatype', sans-serif;
+  font-family: 'Planet', sans-serif;
   margin: 0.05rem 0 0 0;
   padding: 0;
   line-height: 1;
@@ -714,6 +641,8 @@ footer {
 .project-link:active,
 .project-link:focus {
   text-decoration: none !important;
+  width: 100%;
+  max-width: 100%;
 }
 
 .project-link[style*='display: none'] { 
@@ -825,7 +754,7 @@ footer {
   padding: 0;
   padding-left: 0.15rem;
   line-height: 1;
-  font-family: 'ABC Diatype', sans-serif;
+  font-family: 'Planet', sans-serif;
   vertical-align: super;
   position: relative;
   top: 0.05em;
@@ -840,7 +769,7 @@ footer {
   padding: 0;
   padding-left: 0.15rem;
   line-height: 1;
-  font-family: 'ABC Diatype', sans-serif;
+  font-family: 'Planet', sans-serif;
   vertical-align: super;
   position: relative;
   top: 0.05em;
@@ -853,10 +782,27 @@ footer {
   margin-bottom: -0.08rem;
 }
 
+.project-date-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  margin-top: -0.12rem;
+  width: 100%;
+}
+
 .project-card-layout .project-year {
   font-size: 0.62rem;
   margin: 0;
-  margin-top: -0.12rem;
+}
+
+.project-card-layout .project-category {
+  font-size: 0.62rem;
+  color: #aaa;
+  font-family: 'Planet', sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
 }
 
 .project-scroll-btn {
@@ -876,7 +822,7 @@ footer {
   align-items: center;
   justify-content: center;
   transition: color 0.2s ease, opacity 0.2s ease, background 0.2s ease;
-  font-family: 'ABC Diatype', sans-serif;
+  font-family: 'Planet', sans-serif;
   width: 32px;
   height: 32px;
   border-radius: 4px;
@@ -914,8 +860,10 @@ footer {
 }
 
 @media (max-width: 768px) {
-  .project-card-item {
-    width: 130px;
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 1rem 0;
   }
 
   .project-card-layout .project-image {
@@ -940,17 +888,18 @@ footer {
     margin-bottom: -0.08rem;
   }
 
-  .project-card-layout .project-year {
-    font-size: 0.54rem;
+  .project-date-row {
     margin-top: -0.12rem;
   }
 
-  .project-scroll-container {
-    gap: 0.6rem;
+  .project-card-layout .project-year {
+    font-size: 0.54rem;
+    margin: 0;
   }
 
-  .project-scroll-btn {
-    display: none !important;
+  .project-card-layout .project-category {
+    font-size: 0.54rem;
+    color: #aaa;
   }
 }
 
@@ -1043,7 +992,7 @@ footer {
 /* bottom quote section */
 #bottom-quote-section {
     font-size: 0.92rem;
-    font-family: 'ABC Diatype', sans-serif;
+    font-family: 'Planet', sans-serif;
     color: #6b7280;
     font-weight: 400;
     margin-top: 2rem;
@@ -1056,7 +1005,7 @@ footer {
 #bottom-quote-text {
     color: #6b7280;
     font-size: 0.92rem;
-    font-family: 'ABC Diatype', sans-serif;
+    font-family: 'Planet', sans-serif;
     letter-spacing: 0.01em;
     font-weight: 400;
 }
@@ -1070,7 +1019,7 @@ footer {
     cursor: pointer;
     transition: color 0.2s;
     pointer-events: auto;
-    font-family: 'ABC Diatype', sans-serif;
+    font-family: 'Planet', sans-serif;
     font-weight: 400;
     padding: 0;
 }
@@ -1088,7 +1037,7 @@ footer {
     border: none;
     cursor: pointer;
     transition: color 0.2s;
-    font-family: 'ABC Diatype', sans-serif;
+    font-family: 'Planet', sans-serif;
     font-weight: 400;
     padding: 0;
 }
@@ -1131,7 +1080,7 @@ footer {
 }
 
 .announcement-title {
-    font-family: 'ABC Diatype', sans-serif;
+    font-family: 'Planet', sans-serif;
     font-weight: 700;
     font-size: 1rem;
     margin: 0;
@@ -1151,7 +1100,7 @@ footer {
 }
 
 .research-interest-title {
-    font-family: 'ABC Diatype', sans-serif;
+    font-family: 'Planet', sans-serif;
     font-weight: 700;
     font-size: 1rem;
     margin: 0;
