@@ -95,7 +95,7 @@
   {
     "title": "Penetration Test Checklists",
     "category": "Industry",
-    "description": "Rendering editable spreadsheets of simulated cyberattacks from imported Excel files for a remediation platform used by Security Engineers",
+    "description": "Rendering editable spreadsheets of simulated cyberattacks from imported Excel files for a security remediation platform",
     "date": "Feb '24",
     "link": "/project_unavailable",
     "image": "/assets/projects/industry/penetration_tests.gif",
@@ -105,7 +105,7 @@
   {
     "title": "Spatial Interactions",
     "category": "Research",
-    "description": "A formative study of a custom desktop screen reader that incorporates spatial interactions via spatial audio and arrow key navigation",
+    "description": "A formative study of a custom desktop screen reader that incorporates spatial interactions via spatial audio",
     "date": "Oct '23",
     "link": "https://ceal.cs.columbia.edu/webnext",
     "image": "/assets/projects/research/spatial_interactions.png",
@@ -168,7 +168,7 @@
   {
     "title": "How the U.S. Patrols Borders",
     "category": "Article",
-    "description": "U.S. Customs and Border Protection and other agencies regulate trade and travel at ports of entry and borders to ensure security and compliance",
+    "description": "U.S. Customs and Border Protection and other agencies regulate trade and travel at ports of entry and borders to ensure security",
     "date": "Apr '21",
     "link": "https://www.cfr.org/backgrounder/how-us-patrols-its-borders",
     "image": "/assets/projects/articles/border_security.png",
@@ -177,7 +177,7 @@
   {
     "title": "Adolescent Online Safety",
     "category": "Research",
-    "description": "Risk detection models aren't new, but most rely on public datasets unrepresentative of adolescent experiences in the age of the internet",
+    "description": "Risk detection models aren't new, but most rely on public datasets unrepresentative of adolescent experiences in the internet age",
     "date": "Mar '21",
     "link": "/assets/files/presentations/student_research_week_21.pdf",
     "image": "/assets/projects/research/adolescent_online_safety.png",
