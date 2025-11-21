@@ -70,12 +70,12 @@
                 <!-- announcements will be loaded dynamically from json -->
             </div>
             <div class="flex justify-center items-center gap-3 mt-4">
-                <button id="prev-btn" class="text-gray-400 hover:text-gray-600 disabled:hover:text-gray-400 transition-colors text-xs disabled:opacity-30 disabled:cursor-not-allowed" disabled>
-                    ← newer
+                <button id="prev-btn" class="flex items-center gap-1 leading-none text-gray-400 hover:text-gray-600 disabled:hover:text-gray-400 transition-colors text-xs disabled:opacity-30 disabled:cursor-not-allowed" disabled>
+                    <span class="inline-flex items-center">←</span> <span>newer</span>
                 </button>
-                <span id="page-indicator" class="text-xs text-gray-500">1 / 3</span>
-                <button id="next-btn" class="text-gray-400 hover:text-gray-600 disabled:hover:text-gray-400 transition-colors text-xs disabled:opacity-30 disabled:cursor-not-allowed">
-                    older →
+                <span id="page-indicator" class="text-xs text-gray-500"></span>
+                <button id="next-btn" class="flex items-center gap-1 leading-none text-gray-400 hover:text-gray-600 disabled:hover:text-gray-400 transition-colors text-xs disabled:opacity-30 disabled:cursor-not-allowed">
+                    <span>older</span> <span class="inline-flex items-center">→</span>
                 </button>
             </div>
         </div>
