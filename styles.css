@@ -928,8 +928,7 @@ footer {
     row-gap: 0 !important;
 }
 
-.education-minors,
-.education-honors {
+.education-minors {
     font-size: 0.78rem !important;
     line-height: 1.05 !important;
     display: block;
@@ -938,7 +937,10 @@ footer {
 
 .education-honors {
     font-style: italic;
-    font-size: 0.72rem !important;
+    font-size: 0.60rem !important;
+    line-height: 1.05 !important;
+    display: block;
+    margin-top: 0 !important;
 }
 
 .education-minors + .education-honors {
