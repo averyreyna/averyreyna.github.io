@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return response.json();
     }
 
-    function createExperienceEntry({ header, subheader, meta, description }) {
+    function createExperienceEntry({ header, subheader, meta, description, location }) {
         const itemDiv = document.createElement('div');
         itemDiv.className = 'experience-item';
 
@@ -37,16 +37,57 @@ document.addEventListener('DOMContentLoaded', function() {
         contentDiv.className = 'experience-content flex flex-col gap-0.25';
 
         const headerDiv = document.createElement('div');
-        headerDiv.className = 'experience-header';
+        headerDiv.className = 'experience-header flex flex-row items-center justify-between gap-2';
 
+        const headerContainer = document.createElement('div');
+        headerContainer.className = 'flex items-center gap-1.5';
+        
         const headerSpan = document.createElement('span');
-        headerSpan.className = 'font-semibold text-gray-900 leading-tight';
+        if (description) {
+            headerSpan.className = 'font-semibold text-gray-900 leading-tight cv-header-clickable';
+            headerSpan.style.cursor = 'pointer';
+            headerSpan.style.textDecoration = 'underline';
+            headerSpan.style.textDecorationColor = 'transparent';
+            headerSpan.style.transition = 'text-decoration-color 0.2s ease';
+        } else {
+            headerSpan.className = 'font-semibold text-gray-900 leading-tight';
+        }
         headerSpan.textContent = header;
 
-        headerDiv.appendChild(headerSpan);
+        headerContainer.appendChild(headerSpan);
+
+        // Add info icon if description exists
+        if (description) {
+            const infoIcon = document.createElement('i');
+            infoIcon.className = 'fa-solid fa-circle-info cv-info-icon';
+            infoIcon.style.fontSize = '0.65rem';
+            infoIcon.style.color = '#9ca3af';
+            infoIcon.style.cursor = 'pointer';
+            infoIcon.style.transition = 'color 0.2s ease';
+            headerContainer.appendChild(infoIcon);
+
+            // Store description data for modal
+            const openModal = () => {
+                openDescriptionModal(header, subheader, meta, description, location);
+            };
+
+            headerSpan.addEventListener('click', openModal);
+            infoIcon.addEventListener('click', openModal);
+        }
+
+        headerDiv.appendChild(headerContainer);
+
+        // Add dates (meta) on the right side of the header
+        if (meta) {
+            const metaSpan = document.createElement('span');
+            metaSpan.className = 'block text-xs text-gray-500 whitespace-nowrap';
+            metaSpan.textContent = meta;
+            headerDiv.appendChild(metaSpan);
+        }
+
         contentDiv.appendChild(headerDiv);
 
-        if (subheader || meta) {
+        if (subheader || location) {
             const metaDiv = document.createElement('div');
             metaDiv.className = 'flex flex-row items-start justify-between gap-2';
             metaDiv.style.marginTop = '-0.15rem';
@@ -63,56 +104,167 @@ document.addEventListener('DOMContentLoaded', function() {
                 metaDiv.appendChild(subheaderPlaceholder);
             }
 
-            if (meta) {
-                const metaSpan = document.createElement('span');
-                metaSpan.className = 'block text-xs text-gray-500 whitespace-nowrap';
-                metaSpan.textContent = meta;
-                metaDiv.appendChild(metaSpan);
+            if (location) {
+                const locationSpan = document.createElement('span');
+                locationSpan.className = 'block text-xs text-gray-500 whitespace-nowrap';
+                locationSpan.textContent = location;
+                metaDiv.appendChild(locationSpan);
             } else {
-                const metaPlaceholder = document.createElement('span');
-                metaPlaceholder.className = 'block text-xs text-gray-500 whitespace-nowrap';
-                metaPlaceholder.innerHTML = '&nbsp;';
-                metaDiv.appendChild(metaPlaceholder);
+                const locationPlaceholder = document.createElement('span');
+                locationPlaceholder.className = 'block text-xs text-gray-500 whitespace-nowrap';
+                locationPlaceholder.innerHTML = '&nbsp;';
+                metaDiv.appendChild(locationPlaceholder);
             }
 
             contentDiv.appendChild(metaDiv);
         }
 
-        if (description) {
-            const descWrapper = document.createElement('div');
-            descWrapper.className = 'cv-desc-wrapper';
-
-            const toggleLink = document.createElement('a');
-            toggleLink.href = '#';
-            toggleLink.className = 'cv-desc-toggle text-xs text-gray-500';
-            toggleLink.textContent = 'View Description';
-
-            const descParagraph = document.createElement('p');
-            descParagraph.className = 'announcement-desc cv-desc cv-desc-hidden';
-            descParagraph.style.marginTop = '0.1rem';
-            descParagraph.style.lineHeight = '1';
-            descParagraph.textContent = description;
-
-            toggleLink.addEventListener('click', function(e) {
-                e.preventDefault();
-                if (descParagraph.classList.contains('cv-desc-hidden')) {
-                    descParagraph.classList.remove('cv-desc-hidden');
-                    descParagraph.classList.add('cv-desc-visible');
-                    toggleLink.textContent = 'Hide Description';
-                } else {
-                    descParagraph.classList.remove('cv-desc-visible');
-                    descParagraph.classList.add('cv-desc-hidden');
-                    toggleLink.textContent = 'View Description';
-                }
-            });
-
-            descWrapper.appendChild(toggleLink);
-            descWrapper.appendChild(descParagraph);
-            contentDiv.appendChild(descWrapper);
-        }
-
         itemDiv.appendChild(contentDiv);
         return itemDiv;
+    }
+
+    function highlightKeywords(text) {
+        // First, handle **bold** markers
+        let html = text.replace(/\*\*(.*?)\*\*/g, '<span class="cv-readme-keyword">$1</span>');
+        
+        // Then highlight capitalized words that look like names/organizations/technologies
+        // Match words that start with capital letter and are followed by more capitals or are part of a compound
+        html = html.replace(/\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)\b/g, (match, word) => {
+            // Skip if already wrapped in a keyword span
+            if (match.includes('<span')) return match;
+            // Skip common words
+            const commonWords = ['The', 'This', 'That', 'These', 'Those', 'I', 'We', 'You', 'They', 'My', 'Our', 'Your', 'Their', 'A', 'An', 'And', 'Or', 'But', 'For', 'With', 'From', 'To', 'In', 'On', 'At', 'By', 'Of', 'As', 'Is', 'Are', 'Was', 'Were', 'Been', 'Be', 'Have', 'Has', 'Had', 'Do', 'Does', 'Did', 'Will', 'Would', 'Could', 'Should', 'May', 'Might', 'Must', 'Can'];
+            if (commonWords.includes(word)) return match;
+            // Skip if it's a single letter
+            if (word.length <= 1) return match;
+            // Highlight if it looks like a name/organization (multiple capitalized words or single long capitalized word)
+            if (word.split(' ').length > 1 || word.length > 4) {
+                return `<span class="cv-readme-keyword">${word}</span>`;
+            }
+            return match;
+        });
+        
+        return html;
+    }
+
+    function openDescriptionModal(header, subheader, meta, description, location) {
+        // Create modal overlay
+        const modalOverlay = document.createElement('div');
+        modalOverlay.className = 'cv-modal-overlay';
+        modalOverlay.id = 'cv-modal-overlay';
+
+        // Create modal container
+        const modalContainer = document.createElement('div');
+        modalContainer.className = 'cv-modal-container';
+
+        // Create modal content
+        const modalContent = document.createElement('div');
+        modalContent.className = 'cv-modal-content';
+
+        // Create close button
+        const closeButton = document.createElement('button');
+        closeButton.className = 'cv-modal-close';
+        closeButton.innerHTML = '<i class="fa-solid fa-times"></i>';
+        closeButton.setAttribute('aria-label', 'Close modal');
+
+        // Create readme-style content
+        const readmeContent = document.createElement('div');
+        readmeContent.className = 'cv-readme-content';
+
+        // Title
+        const title = document.createElement('h1');
+        title.className = 'cv-readme-title';
+        title.textContent = header;
+        readmeContent.appendChild(title);
+
+        // Meta information
+        const metaInfo = document.createElement('div');
+        metaInfo.className = 'cv-readme-meta';
+
+        if (subheader) {
+            const role = document.createElement('p');
+            role.className = 'cv-readme-role';
+            role.textContent = subheader;
+            metaInfo.appendChild(role);
+        }
+
+        if (meta) {
+            const dates = document.createElement('p');
+            dates.className = 'cv-readme-dates';
+            dates.textContent = meta;
+            metaInfo.appendChild(dates);
+        }
+
+        if (location) {
+            const loc = document.createElement('p');
+            loc.className = 'cv-readme-location';
+            loc.textContent = location;
+            metaInfo.appendChild(loc);
+        }
+
+        readmeContent.appendChild(metaInfo);
+
+        // Description
+        const descSection = document.createElement('div');
+        descSection.className = 'cv-readme-description';
+
+        // Split description by newlines and create paragraphs
+        // If no newlines, treat as single paragraph
+        if (description.includes('\n')) {
+            const descLines = description.split('\n').filter(line => line.trim());
+            descLines.forEach(line => {
+                const paragraph = document.createElement('p');
+                paragraph.className = 'cv-readme-text';
+                paragraph.innerHTML = highlightKeywords(line.trim());
+                descSection.appendChild(paragraph);
+            });
+        } else {
+            const paragraph = document.createElement('p');
+            paragraph.className = 'cv-readme-text';
+            paragraph.innerHTML = highlightKeywords(description.trim());
+            descSection.appendChild(paragraph);
+        }
+
+        readmeContent.appendChild(descSection);
+
+        // Assemble modal
+        modalContent.appendChild(closeButton);
+        modalContent.appendChild(readmeContent);
+        modalContainer.appendChild(modalContent);
+        modalOverlay.appendChild(modalContainer);
+
+        // Add to body
+        document.body.appendChild(modalOverlay);
+
+        // Prevent body scroll when modal is open
+        document.body.style.overflow = 'hidden';
+
+        // Close handlers
+        const closeModal = () => {
+            modalOverlay.remove();
+            document.body.style.overflow = '';
+        };
+
+        closeButton.addEventListener('click', closeModal);
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                closeModal();
+            }
+        });
+
+        // Close on Escape key
+        const handleEscape = (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+                document.removeEventListener('keydown', handleEscape);
+            }
+        };
+        document.addEventListener('keydown', handleEscape);
+
+        // Animate in
+        setTimeout(() => {
+            modalOverlay.classList.add('cv-modal-active');
+        }, 10);
     }
 
     async function loadEducation() {
@@ -190,6 +342,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     header: entry.organization,
                     subheader: entry.role,
                     meta: entry.dates,
+                    location: entry.location,
                     description: entry.description
                 });
                 container.appendChild(item);
@@ -209,6 +362,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     header: entry.organization,
                     subheader: entry.role,
                     meta: entry.dates,
+                    location: entry.location,
                     description: entry.description
                 });
                 container.appendChild(item);
@@ -228,6 +382,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     header: entry.organization,
                     subheader: entry.role,
                     meta: entry.dates,
+                    location: entry.location,
                     description: entry.description
                 });
                 container.appendChild(item);
@@ -265,6 +420,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     header: entry.organization,
                     subheader: entry.role,
                     meta: entry.dates,
+                    location: entry.location,
                     description: entry.description
                 });
                 container.appendChild(item);
@@ -550,26 +706,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     loadArticles();
-
-    const cvDescToggles = document.querySelectorAll('.cv-desc-toggle');
-    
-    cvDescToggles.forEach(toggle => {
-        toggle.addEventListener('click', function(e) {
-            e.preventDefault();
-            const wrapper = this.closest('.cv-desc-wrapper');
-            const desc = wrapper.querySelector('.cv-desc');
-            
-            if (desc.classList.contains('cv-desc-hidden')) {
-                desc.classList.remove('cv-desc-hidden');
-                desc.classList.add('cv-desc-visible');
-                this.textContent = 'Hide Description';
-            } else {
-                desc.classList.remove('cv-desc-visible');
-                desc.classList.add('cv-desc-hidden');
-                this.textContent = 'View Description';
-            }
-        });
-    });
 
 
     const companiesTrigger = document.querySelector('.companies-hover-trigger');
