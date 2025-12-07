@@ -913,26 +913,66 @@ footer {
 .experience-content {
     position: relative;
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.05rem;
+}
+
+.experience-content > * {
+    line-height: 1;
+    margin: 0;
+}
+
+.experience-content > span,
+.experience-content > div {
+    line-height: 1;
+    margin: 0;
+}
+
+.experience-content .text-xs {
+    line-height: 1;
+    margin: 0;
+    display: block;
+}
+
+.experience-content .flex {
+    margin: 0;
+}
+
+.experience-header {
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+}
+
+.experience-header span {
+    display: block;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
 }
 
 .cv-entry-spacing {
     display: flex;
     flex-direction: column;
+    gap: 0.05rem;
 }
 
 .cv-entry-spacing > * + * {
-    margin-top: 0.05rem;
+    margin-top: 0;
 }
 
 .education-detail-group {
-    row-gap: 0 !important;
+    display: flex;
+    flex-direction: column;
+    gap: 0.05rem;
 }
 
 .education-minors {
     font-size: 12px !important;
     line-height: 1.05 !important;
     display: block;
-    margin-top: 0 !important;
+    margin: 0 !important;
 }
 
 .education-honors {
@@ -940,11 +980,7 @@ footer {
     font-size: 12px !important;
     line-height: 1.05 !important;
     display: block;
-    margin-top: 0 !important;
-}
-
-.education-minors + .education-honors {
-    margin-top: 0.05rem !important;
+    margin: 0 !important;
 }
 
 /* filter system */
@@ -1534,7 +1570,9 @@ footer {
 
 /* CV description content */
 .cv-description-content {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    gap: 0.05rem;
 }
 
 .cv-description-content.hidden {

@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
         itemDiv.className = 'experience-item';
 
         const contentDiv = document.createElement('div');
-        contentDiv.className = 'experience-content flex flex-col gap-0.25';
+        contentDiv.className = 'experience-content';
 
         // Company/org header
         const headerDiv = document.createElement('div');
@@ -50,7 +50,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (subheader || meta) {
             const positionDatesDiv = document.createElement('div');
             positionDatesDiv.className = 'flex flex-row items-start justify-between gap-2';
-            positionDatesDiv.style.marginTop = '-0.25rem';
 
             if (subheader) {
                 const subheaderSpan = document.createElement('span');
@@ -78,7 +77,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (description || location) {
             const aboutLocationDiv = document.createElement('div');
             aboutLocationDiv.className = 'flex flex-row items-center justify-between gap-2';
-            aboutLocationDiv.style.marginTop = '-0.15rem';
 
             // About section with dropdown (if description exists)
             let aboutContainer = null;
@@ -106,28 +104,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Description container (hidden by default)
                 descriptionDiv = document.createElement('div');
                 descriptionDiv.className = 'cv-description-content hidden';
-                descriptionDiv.style.marginTop = '0.05rem';
-                descriptionDiv.style.marginBottom = '0';
 
                 // Handle newlines in description
                 if (description.includes('\n')) {
                     const descLines = description.split('\n').filter(line => line.trim());
+                    descriptionDiv.style.display = 'flex';
+                    descriptionDiv.style.flexDirection = 'column';
+                    descriptionDiv.style.gap = '0.05rem';
                     descLines.forEach(line => {
                         const paragraph = document.createElement('div');
                         paragraph.className = 'text-xs text-gray-700';
                         paragraph.style.lineHeight = '1';
-                        paragraph.style.marginBottom = '0';
-                        paragraph.style.marginTop = '0';
-                        paragraph.textContent = line.trim();
+                        paragraph.style.margin = '0';
+                        paragraph.innerHTML = italicizeCompanies(line.trim());
                         descriptionDiv.appendChild(paragraph);
                     });
                 } else {
                     const descriptionText = document.createElement('div');
                     descriptionText.className = 'text-xs text-gray-700';
                     descriptionText.style.lineHeight = '1';
-                    descriptionText.style.marginTop = '0';
-                    descriptionText.style.marginBottom = '0';
-                    descriptionText.textContent = description.trim();
+                    descriptionText.style.margin = '0';
+                    descriptionText.innerHTML = italicizeCompanies(description.trim());
                     descriptionDiv.appendChild(descriptionText);
                 }
 
@@ -169,6 +166,36 @@ document.addEventListener('DOMContentLoaded', function() {
 
         itemDiv.appendChild(contentDiv);
         return itemDiv;
+    }
+
+    function italicizeCompanies(text) {
+        const companies = [
+            'PMBF Program',
+            'UNA-Orlando',
+            'BallotReady',
+            'The COVID-19 Tracking Project',
+            'Council on Foreign Relations',
+            'the Hub Project',
+            'Swing Left',
+            'New America',
+            'ActBlue',
+            'KRC Research',
+            'ActBlue Technical Services',
+            'Technical Services'
+        ];
+        
+        let processedText = text;
+        // Process longer company names first to avoid partial matches
+        companies.sort((a, b) => b.length - a.length);
+        companies.forEach(company => {
+            // Escape special regex characters in company name
+            const escapedCompany = company.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            // Replace company name with italicized version, case-insensitive
+            const regex = new RegExp(`\\b${escapedCompany}\\b`, 'gi');
+            processedText = processedText.replace(regex, `<em>${company}</em>`);
+        });
+        
+        return processedText;
     }
 
     function highlightKeywords(text) {
@@ -263,13 +290,15 @@ document.addEventListener('DOMContentLoaded', function() {
             descLines.forEach(line => {
                 const paragraph = document.createElement('p');
                 paragraph.className = 'cv-readme-text';
-                paragraph.innerHTML = highlightKeywords(line.trim());
+                let processedLine = italicizeCompanies(line.trim());
+                paragraph.innerHTML = highlightKeywords(processedLine);
                 descSection.appendChild(paragraph);
             });
         } else {
             const paragraph = document.createElement('p');
             paragraph.className = 'cv-readme-text';
-            paragraph.innerHTML = highlightKeywords(description.trim());
+            let processedDescription = italicizeCompanies(description.trim());
+            paragraph.innerHTML = highlightKeywords(processedDescription);
             descSection.appendChild(paragraph);
         }
 
@@ -325,7 +354,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 itemDiv.className = 'experience-item';
 
                 const contentDiv = document.createElement('div');
-                contentDiv.className = 'experience-content flex flex-col gap-0.25';
+                contentDiv.className = 'experience-content';
 
                 const headerDiv = document.createElement('div');
                 headerDiv.className = 'experience-header';
@@ -339,7 +368,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 const metaDiv = document.createElement('div');
                 metaDiv.className = 'flex flex-row items-start justify-between gap-2';
-                metaDiv.style.marginTop = '-0.25rem';
 
                 const degreeSpan = document.createElement('span');
                 degreeSpan.className = 'block text-xs text-gray-700';
@@ -357,7 +385,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Create a container for details and location on the same line
                     const detailsLocationDiv = document.createElement('div');
                     detailsLocationDiv.className = 'flex flex-row items-start justify-between gap-2';
-                    detailsLocationDiv.style.marginTop = '-0.15rem';
 
                     // Details/accolades on the left
                     if (Array.isArray(entry.details) && entry.details.length > 0) {
@@ -516,7 +543,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 itemDiv.className = 'experience-item';
 
                 const contentDiv = document.createElement('div');
-                contentDiv.className = 'experience-content flex flex-col gap-0.25';
+                contentDiv.className = 'experience-content';
 
                 const headerDiv = document.createElement('div');
                 headerDiv.className = 'experience-header';
@@ -531,7 +558,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (entry.series) {
                     const seriesDiv = document.createElement('div');
                     seriesDiv.className = 'flex flex-row items-start justify-between gap-2';
-                    seriesDiv.style.marginTop = '-0.25rem';
 
                     const seriesSpan = document.createElement('span');
                     seriesSpan.className = 'block text-xs text-gray-700';
@@ -543,7 +569,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 if (Array.isArray(entry.links) && entry.links.length > 0) {
                     const linksSpan = document.createElement('span');
-                    linksSpan.className = 'flex flex-row flex-wrap gap-2 mt-0.5';
+                    linksSpan.className = 'flex flex-row flex-wrap gap-2';
 
                     entry.links.forEach(link => {
                         const linkElement = document.createElement('a');
@@ -573,17 +599,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
             references.forEach(entry => {
                 const itemDiv = document.createElement('div');
-                itemDiv.className = 'experience-item flex flex-col gap-0.25';
+                itemDiv.className = 'experience-item';
+
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'experience-content';
+
+                const headerDiv = document.createElement('div');
+                headerDiv.className = 'experience-header';
 
                 const nameSpan = document.createElement('span');
-                nameSpan.className = 'font-semibold text-gray-900 mb-0.5 leading-tight';
-                nameSpan.style.marginBottom = '0.1rem';
+                nameSpan.className = 'font-semibold text-gray-900 leading-tight';
                 nameSpan.textContent = entry.name;
+
+                headerDiv.appendChild(nameSpan);
+                contentDiv.appendChild(headerDiv);
 
                 const titleSpan = document.createElement('span');
                 titleSpan.className = 'text-xs text-gray-500';
-                titleSpan.style.marginTop = '-0.25rem';
-                titleSpan.style.display = 'block';
                 titleSpan.textContent = entry.title;
 
                 const affiliationSpan = document.createElement('span');
@@ -591,7 +623,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 affiliationSpan.textContent = entry.affiliation;
 
                 const linksSpan = document.createElement('span');
-                linksSpan.className = 'flex flex-row flex-wrap gap-2 mt-0.5';
+                linksSpan.className = 'flex flex-row flex-wrap gap-2';
 
                 if (entry.email) {
                     const emailLink = document.createElement('a');
@@ -601,10 +633,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     linksSpan.appendChild(emailLink);
                 }
 
-                itemDiv.appendChild(nameSpan);
-                itemDiv.appendChild(titleSpan);
-                itemDiv.appendChild(affiliationSpan);
-                itemDiv.appendChild(linksSpan);
+                contentDiv.appendChild(titleSpan);
+                contentDiv.appendChild(affiliationSpan);
+                contentDiv.appendChild(linksSpan);
+                itemDiv.appendChild(contentDiv);
 
                 container.appendChild(itemDiv);
             });
@@ -631,20 +663,27 @@ document.addEventListener('DOMContentLoaded', function() {
             
             talks.forEach((talk) => {
                 const talkDiv = document.createElement('div');
-                talkDiv.className = 'experience-item flex flex-col gap-0.25';
+                talkDiv.className = 'experience-item';
+
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'experience-content';
 
                 const linksHtml = talk.links.map(link => 
                     `<a href="${link.url}" class="paper-link text-gray-500 text-xs" target="_blank" rel="noopener">${link.text}</a>`
                 ).join('');
                 
-                talkDiv.innerHTML = `
-                    <span class="font-semibold text-gray-900 mb-0.5 leading-tight" style="margin-bottom:0.1rem;">${talk.title}</span>
-                    <span class="text-xs text-gray-500" style="margin-top:-0.25rem;">${talk.venue}</span>
+                contentDiv.innerHTML = `
+                    <div class="experience-header">
+                        <span class="font-semibold text-gray-900 leading-tight">${talk.title}</span>
+                    </div>
+                    <span class="text-xs text-gray-500">${talk.venue}</span>
                     <span class="text-xs text-gray-700">${talk.authors}</span>
-                    <span class="flex flex-row flex-wrap gap-2 mt-0.5">
+                    <span class="flex flex-row flex-wrap gap-2">
                         ${linksHtml}
                     </span>
                 `;
+                
+                talkDiv.appendChild(contentDiv);
                 
                 container.appendChild(talkDiv);
             });
@@ -665,7 +704,10 @@ document.addEventListener('DOMContentLoaded', function() {
             
             papers.forEach((paper) => {
                 const paperDiv = document.createElement('div');
-                paperDiv.className = 'experience-item flex flex-col gap-0.25';
+                paperDiv.className = 'experience-item';
+
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'experience-content';
 
                 const linksHtml = paper.links.map(link => {
                     if (link.italic) {
@@ -676,17 +718,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 }).join('');
                 
                 const titleStyle = paper.title.includes("Don't Vibe, Plan") 
-                    ? 'style="margin-bottom:0.1rem; filter: blur(3.5px);"' 
-                    : 'style="margin-bottom:0.1rem;"';
+                    ? 'style="filter: blur(3.5px);"' 
+                    : '';
                 
-                paperDiv.innerHTML = `
-                    <span class="font-semibold text-gray-900 mb-0.5 leading-tight" ${titleStyle}>${paper.title}</span>
-                    <span class="text-xs text-gray-500" style="margin-top:-0.25rem;">${paper.venue}</span>
+                contentDiv.innerHTML = `
+                    <div class="experience-header">
+                        <span class="font-semibold text-gray-900 leading-tight" ${titleStyle}>${paper.title}</span>
+                    </div>
+                    <span class="text-xs text-gray-500">${paper.venue}</span>
                     <span class="text-xs text-gray-700">${paper.authors}</span>
-                    <span class="flex flex-row flex-wrap gap-2 mt-0.5">
+                    <span class="flex flex-row flex-wrap gap-2">
                         ${linksHtml}
                     </span>
                 `;
+                
+                paperDiv.appendChild(contentDiv);
                 
                 container.appendChild(paperDiv);
             });
@@ -707,20 +753,27 @@ document.addEventListener('DOMContentLoaded', function() {
             
             presentations.forEach((presentation) => {
                 const presentationDiv = document.createElement('div');
-                presentationDiv.className = 'experience-item flex flex-col gap-0.25';
+                presentationDiv.className = 'experience-item';
+
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'experience-content';
 
                 const linksHtml = presentation.links.map(link => 
                     `<a href="${link.url}" class="paper-link text-gray-500 text-xs" target="_blank" rel="noopener">${link.text}</a>`
                 ).join('');
                 
-                presentationDiv.innerHTML = `
-                    <span class="font-semibold text-gray-900 mb-0.5 leading-tight" style="margin-bottom:0.1rem;">${presentation.title}</span>
-                    <span class="text-xs text-gray-500" style="margin-top:-0.25rem;">${presentation.venue}</span>
+                contentDiv.innerHTML = `
+                    <div class="experience-header">
+                        <span class="font-semibold text-gray-900 leading-tight">${presentation.title}</span>
+                    </div>
+                    <span class="text-xs text-gray-500">${presentation.venue}</span>
                     <span class="text-xs text-gray-700">${presentation.authors}</span>
-                    <span class="flex flex-row flex-wrap gap-2 mt-0.5">
+                    <span class="flex flex-row flex-wrap gap-2">
                         ${linksHtml}
                     </span>
                 `;
+                
+                presentationDiv.appendChild(contentDiv);
                 
                 container.appendChild(presentationDiv);
             });
@@ -734,31 +787,52 @@ document.addEventListener('DOMContentLoaded', function() {
 
     async function loadArticles() {
         try {
-            const response = await fetch('/data/articles.json');
+            const response = await fetch('/data/public_scholarship.json');
             const articles = await response.json();
             
             const container = document.getElementById('articles-container');
             
             articles.forEach(article => {
                 const articleDiv = document.createElement('div');
-                articleDiv.className = 'experience-item flex flex-col gap-0.25';
+                articleDiv.className = 'experience-item';
+                
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'experience-content';
+                
+                const headerDiv = document.createElement('div');
+                headerDiv.className = 'experience-header';
                 
                 const titleSpan = document.createElement('span');
-                titleSpan.className = 'font-semibold text-gray-900 mb-0.5 leading-tight';
-                titleSpan.style.marginBottom = '0.1rem';
+                titleSpan.className = 'font-semibold text-gray-900 leading-tight';
                 titleSpan.textContent = article.title;
                 
+                headerDiv.appendChild(titleSpan);
+                contentDiv.appendChild(headerDiv);
+                
+                // Venue and year on same line (like awards)
+                const venueYearDiv = document.createElement('div');
+                venueYearDiv.className = 'flex flex-row items-start justify-between gap-2';
+                
                 const venueSpan = document.createElement('span');
-                venueSpan.className = 'text-xs text-gray-500';
-                venueSpan.style.marginTop = '-0.25rem';
+                venueSpan.className = 'block text-xs text-gray-700';
                 venueSpan.textContent = article.venue;
+                venueYearDiv.appendChild(venueSpan);
+                
+                if (article.year) {
+                    const yearSpan = document.createElement('span');
+                    yearSpan.className = 'block text-xs text-gray-500 whitespace-nowrap';
+                    yearSpan.textContent = article.year;
+                    venueYearDiv.appendChild(yearSpan);
+                }
+                
+                contentDiv.appendChild(venueYearDiv);
                 
                 const authorsSpan = document.createElement('span');
                 authorsSpan.className = 'text-xs text-gray-700';
                 authorsSpan.innerHTML = article.authors;
                 
                 const linksSpan = document.createElement('span');
-                linksSpan.className = 'flex flex-row flex-wrap gap-2 mt-0.5';
+                linksSpan.className = 'flex flex-row flex-wrap gap-2';
                 
                 article.links.forEach(link => {
                     const linkElement = document.createElement('a');
@@ -770,10 +844,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     linksSpan.appendChild(linkElement);
                 });
                 
-                articleDiv.appendChild(titleSpan);
-                articleDiv.appendChild(venueSpan);
-                articleDiv.appendChild(authorsSpan);
-                articleDiv.appendChild(linksSpan);
+                contentDiv.appendChild(authorsSpan);
+                contentDiv.appendChild(linksSpan);
+                articleDiv.appendChild(contentDiv);
                 
                 container.appendChild(articleDiv);
             });
