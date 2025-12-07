@@ -929,7 +929,7 @@ footer {
 }
 
 .education-minors {
-    font-size: 0.78rem !important;
+    font-size: 12px !important;
     line-height: 1.05 !important;
     display: block;
     margin-top: 0 !important;
@@ -937,7 +937,7 @@ footer {
 
 .education-honors {
     font-style: italic;
-    font-size: 0.60rem !important;
+    font-size: 12px !important;
     line-height: 1.05 !important;
     display: block;
     margin-top: 0 !important;
@@ -1530,6 +1530,25 @@ footer {
     line-height: 1;
     display: inline-flex;
     align-items: center;
+}
+
+/* CV description content */
+.cv-description-content {
+    display: block;
+}
+
+.cv-description-content.hidden {
+    display: none;
+}
+
+/* CV description arrow */
+.cv-description-arrow {
+    font-size: 0.65rem !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    vertical-align: middle;
 }
 
 /* pagination alignment */

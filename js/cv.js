@@ -36,87 +36,135 @@ document.addEventListener('DOMContentLoaded', function() {
         const contentDiv = document.createElement('div');
         contentDiv.className = 'experience-content flex flex-col gap-0.25';
 
+        // Company/org header
         const headerDiv = document.createElement('div');
-        headerDiv.className = 'experience-header flex flex-row items-center justify-between gap-2';
-
-        const headerContainer = document.createElement('div');
-        headerContainer.className = 'flex items-center gap-1.5';
+        headerDiv.className = 'experience-header';
         
         const headerSpan = document.createElement('span');
-        if (description) {
-            headerSpan.className = 'font-semibold text-gray-900 leading-tight cv-header-clickable';
-            headerSpan.style.cursor = 'pointer';
-            headerSpan.style.textDecoration = 'underline';
-            headerSpan.style.textDecorationColor = 'transparent';
-            headerSpan.style.transition = 'text-decoration-color 0.2s ease';
-        } else {
-            headerSpan.className = 'font-semibold text-gray-900 leading-tight';
-        }
+        headerSpan.className = 'font-semibold text-gray-900 leading-tight';
         headerSpan.textContent = header;
-
-        headerContainer.appendChild(headerSpan);
-
-        // Add info icon if description exists
-        if (description) {
-            const infoIcon = document.createElement('i');
-            infoIcon.className = 'fa-solid fa-circle-info cv-info-icon';
-            infoIcon.style.fontSize = '0.65rem';
-            infoIcon.style.color = '#9ca3af';
-            infoIcon.style.cursor = 'pointer';
-            infoIcon.style.transition = 'color 0.2s ease';
-            headerContainer.appendChild(infoIcon);
-
-            // Store description data for modal
-            const openModal = () => {
-                openDescriptionModal(header, subheader, meta, description, location);
-            };
-
-            headerSpan.addEventListener('click', openModal);
-            infoIcon.addEventListener('click', openModal);
-        }
-
-        headerDiv.appendChild(headerContainer);
-
-        // Add dates (meta) on the right side of the header
-        if (meta) {
-            const metaSpan = document.createElement('span');
-            metaSpan.className = 'block text-xs text-gray-500 whitespace-nowrap';
-            metaSpan.textContent = meta;
-            headerDiv.appendChild(metaSpan);
-        }
-
+        headerDiv.appendChild(headerSpan);
         contentDiv.appendChild(headerDiv);
 
-        if (subheader || location) {
-            const metaDiv = document.createElement('div');
-            metaDiv.className = 'flex flex-row items-start justify-between gap-2';
-            metaDiv.style.marginTop = '-0.15rem';
+        // Position and dates on same line
+        if (subheader || meta) {
+            const positionDatesDiv = document.createElement('div');
+            positionDatesDiv.className = 'flex flex-row items-start justify-between gap-2';
+            positionDatesDiv.style.marginTop = '-0.25rem';
 
             if (subheader) {
                 const subheaderSpan = document.createElement('span');
                 subheaderSpan.className = 'block text-xs text-gray-700';
                 subheaderSpan.textContent = subheader;
-                metaDiv.appendChild(subheaderSpan);
+                positionDatesDiv.appendChild(subheaderSpan);
             } else {
                 const subheaderPlaceholder = document.createElement('span');
                 subheaderPlaceholder.className = 'block text-xs text-gray-700';
                 subheaderPlaceholder.innerHTML = '&nbsp;';
-                metaDiv.appendChild(subheaderPlaceholder);
+                positionDatesDiv.appendChild(subheaderPlaceholder);
             }
 
+            if (meta) {
+                const metaSpan = document.createElement('span');
+                metaSpan.className = 'block text-xs text-gray-500 whitespace-nowrap';
+                metaSpan.textContent = meta;
+                positionDatesDiv.appendChild(metaSpan);
+            }
+
+            contentDiv.appendChild(positionDatesDiv);
+        }
+
+        // About > location with dropdown
+        if (description || location) {
+            const aboutLocationDiv = document.createElement('div');
+            aboutLocationDiv.className = 'flex flex-row items-center justify-between gap-2';
+            aboutLocationDiv.style.marginTop = '-0.15rem';
+
+            // About section with dropdown (if description exists)
+            let aboutContainer = null;
+            let aboutArrow = null;
+            let descriptionDiv = null;
+
+            if (description) {
+                aboutContainer = document.createElement('div');
+                aboutContainer.className = 'flex flex-row items-center';
+                aboutContainer.style.cursor = 'pointer';
+                aboutContainer.style.gap = '0.25rem';
+
+                const aboutText = document.createElement('span');
+                aboutText.className = 'text-xs text-gray-600';
+                aboutText.textContent = 'Description';
+
+                aboutArrow = document.createElement('span');
+                aboutArrow.className = 'cv-description-arrow text-gray-500 transition-transform duration-200 ease-in-out';
+                aboutArrow.style.transform = 'rotate(0deg)';
+                aboutArrow.textContent = '>';
+
+                aboutContainer.appendChild(aboutText);
+                aboutContainer.appendChild(aboutArrow);
+
+                // Description container (hidden by default)
+                descriptionDiv = document.createElement('div');
+                descriptionDiv.className = 'cv-description-content hidden';
+                descriptionDiv.style.marginTop = '0.05rem';
+                descriptionDiv.style.marginBottom = '0';
+
+                // Handle newlines in description
+                if (description.includes('\n')) {
+                    const descLines = description.split('\n').filter(line => line.trim());
+                    descLines.forEach(line => {
+                        const paragraph = document.createElement('div');
+                        paragraph.className = 'text-xs text-gray-700';
+                        paragraph.style.lineHeight = '1';
+                        paragraph.style.marginBottom = '0';
+                        paragraph.style.marginTop = '0';
+                        paragraph.textContent = line.trim();
+                        descriptionDiv.appendChild(paragraph);
+                    });
+                } else {
+                    const descriptionText = document.createElement('div');
+                    descriptionText.className = 'text-xs text-gray-700';
+                    descriptionText.style.lineHeight = '1';
+                    descriptionText.style.marginTop = '0';
+                    descriptionText.style.marginBottom = '0';
+                    descriptionText.textContent = description.trim();
+                    descriptionDiv.appendChild(descriptionText);
+                }
+
+                // Toggle description on click
+                aboutContainer.addEventListener('click', function() {
+                    const isHidden = descriptionDiv.classList.contains('hidden');
+                    if (isHidden) {
+                        descriptionDiv.classList.remove('hidden');
+                        aboutArrow.style.transform = 'rotate(90deg)';
+                    } else {
+                        descriptionDiv.classList.add('hidden');
+                        aboutArrow.style.transform = 'rotate(0deg)';
+                    }
+                });
+
+                aboutLocationDiv.appendChild(aboutContainer);
+            }
+
+            // Location
             if (location) {
                 const locationSpan = document.createElement('span');
                 locationSpan.className = 'block text-xs text-gray-500 whitespace-nowrap';
                 locationSpan.textContent = location;
-                metaDiv.appendChild(locationSpan);
+                aboutLocationDiv.appendChild(locationSpan);
             } else {
-                const locationPlaceholder = document.createElement('span');
-                locationPlaceholder.className = 'block text-xs text-gray-500 whitespace-nowrap';
-                locationPlaceholder.innerHTML = '&nbsp;';
-                metaDiv.appendChild(locationPlaceholder);
+                // If no location, add empty placeholder
+                const emptySpan = document.createElement('span');
+                emptySpan.innerHTML = '&nbsp;';
+                aboutLocationDiv.appendChild(emptySpan);
             }
 
-            contentDiv.appendChild(metaDiv);
+            contentDiv.appendChild(aboutLocationDiv);
+
+            // Add description div if it exists
+            if (descriptionDiv) {
+                contentDiv.appendChild(descriptionDiv);
+            }
         }
 
         itemDiv.appendChild(contentDiv);
@@ -291,7 +339,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 const metaDiv = document.createElement('div');
                 metaDiv.className = 'flex flex-row items-start justify-between gap-2';
-                metaDiv.style.marginTop = '-0.15rem';
+                metaDiv.style.marginTop = '-0.25rem';
 
                 const degreeSpan = document.createElement('span');
                 degreeSpan.className = 'block text-xs text-gray-700';
@@ -305,23 +353,51 @@ document.addEventListener('DOMContentLoaded', function() {
                 metaDiv.appendChild(datesSpan);
                 contentDiv.appendChild(metaDiv);
 
-                if (Array.isArray(entry.details) && entry.details.length > 0) {
-                    const detailsDiv = document.createElement('div');
-                    detailsDiv.className = 'flex flex-col gap-0.5 education-detail-group';
+                if (Array.isArray(entry.details) && entry.details.length > 0 || entry.location) {
+                    // Create a container for details and location on the same line
+                    const detailsLocationDiv = document.createElement('div');
+                    detailsLocationDiv.className = 'flex flex-row items-start justify-between gap-2';
+                    detailsLocationDiv.style.marginTop = '-0.15rem';
 
-                    entry.details.forEach((detail, index) => {
-                        const detailSpan = document.createElement('span');
-                        detailSpan.className = 'block text-gray-500 text-xs';
-                        if (index === 0) {
-                            detailSpan.classList.add('education-minors');
-                        } else if (index === 1) {
-                            detailSpan.classList.add('education-honors');
-                        }
-                        detailSpan.textContent = detail;
-                        detailsDiv.appendChild(detailSpan);
-                    });
+                    // Details/accolades on the left
+                    if (Array.isArray(entry.details) && entry.details.length > 0) {
+                        const detailsContainer = document.createElement('div');
+                        detailsContainer.className = 'flex flex-col gap-0.5 education-detail-group';
 
-                    contentDiv.appendChild(detailsDiv);
+                        entry.details.forEach((detail, index) => {
+                            const detailSpan = document.createElement('span');
+                            detailSpan.className = 'block text-gray-500 text-xs';
+                            if (index === 0) {
+                                detailSpan.classList.add('education-minors');
+                            } else if (index === 1) {
+                                detailSpan.classList.add('education-honors');
+                            }
+                            detailSpan.textContent = detail;
+                            detailsContainer.appendChild(detailSpan);
+                        });
+
+                        detailsLocationDiv.appendChild(detailsContainer);
+                    } else {
+                        // Empty placeholder if no details
+                        const emptySpan = document.createElement('span');
+                        emptySpan.innerHTML = '&nbsp;';
+                        detailsLocationDiv.appendChild(emptySpan);
+                    }
+
+                    // Location on the right
+                    if (entry.location) {
+                        const locationSpan = document.createElement('span');
+                        locationSpan.className = 'block text-xs text-gray-500 whitespace-nowrap';
+                        locationSpan.textContent = entry.location;
+                        detailsLocationDiv.appendChild(locationSpan);
+                    } else {
+                        // Empty placeholder if no location
+                        const emptySpan = document.createElement('span');
+                        emptySpan.innerHTML = '&nbsp;';
+                        detailsLocationDiv.appendChild(emptySpan);
+                    }
+
+                    contentDiv.appendChild(detailsLocationDiv);
                 }
 
                 itemDiv.appendChild(contentDiv);
@@ -455,7 +531,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (entry.series) {
                     const seriesDiv = document.createElement('div');
                     seriesDiv.className = 'flex flex-row items-start justify-between gap-2';
-                    seriesDiv.style.marginTop = '-0.15rem';
+                    seriesDiv.style.marginTop = '-0.25rem';
 
                     const seriesSpan = document.createElement('span');
                     seriesSpan.className = 'block text-xs text-gray-700';
@@ -506,7 +582,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 const titleSpan = document.createElement('span');
                 titleSpan.className = 'text-xs text-gray-500';
-                titleSpan.style.marginTop = '-0.15rem';
+                titleSpan.style.marginTop = '-0.25rem';
                 titleSpan.style.display = 'block';
                 titleSpan.textContent = entry.title;
 
@@ -563,7 +639,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 talkDiv.innerHTML = `
                     <span class="font-semibold text-gray-900 mb-0.5 leading-tight" style="margin-bottom:0.1rem;">${talk.title}</span>
-                    <span class="text-xs text-gray-500">${talk.venue}</span>
+                    <span class="text-xs text-gray-500" style="margin-top:-0.25rem;">${talk.venue}</span>
                     <span class="text-xs text-gray-700">${talk.authors}</span>
                     <span class="flex flex-row flex-wrap gap-2 mt-0.5">
                         ${linksHtml}
@@ -605,7 +681,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 paperDiv.innerHTML = `
                     <span class="font-semibold text-gray-900 mb-0.5 leading-tight" ${titleStyle}>${paper.title}</span>
-                    <span class="text-xs text-gray-500">${paper.venue}</span>
+                    <span class="text-xs text-gray-500" style="margin-top:-0.25rem;">${paper.venue}</span>
                     <span class="text-xs text-gray-700">${paper.authors}</span>
                     <span class="flex flex-row flex-wrap gap-2 mt-0.5">
                         ${linksHtml}
@@ -639,7 +715,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 presentationDiv.innerHTML = `
                     <span class="font-semibold text-gray-900 mb-0.5 leading-tight" style="margin-bottom:0.1rem;">${presentation.title}</span>
-                    <span class="text-xs text-gray-500">${presentation.venue}</span>
+                    <span class="text-xs text-gray-500" style="margin-top:-0.25rem;">${presentation.venue}</span>
                     <span class="text-xs text-gray-700">${presentation.authors}</span>
                     <span class="flex flex-row flex-wrap gap-2 mt-0.5">
                         ${linksHtml}
@@ -674,6 +750,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 const venueSpan = document.createElement('span');
                 venueSpan.className = 'text-xs text-gray-500';
+                venueSpan.style.marginTop = '-0.25rem';
                 venueSpan.textContent = article.venue;
                 
                 const authorsSpan = document.createElement('span');
