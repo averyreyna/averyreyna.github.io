@@ -45,28 +45,33 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Create subsections container
                 const subsectionsContainer = document.createElement('div');
-                subsectionsContainer.className = 'flex flex-col gap-4';
+                subsectionsContainer.className = 'cv-entry-spacing';
                 
                 // Add margin bottom based on section
                 if (sectionIndex === resourcesData.length - 1) {
-                    subsectionsContainer.classList.add('mb-8');
+                    subsectionsContainer.classList.add('mb-4');
                 } else {
                     subsectionsContainer.classList.add('mb-4');
                 }
                 
-                section.subsections.forEach((subsection) => {
+                section.subsections.forEach((subsection, subsectionIndex) => {
                     const subsectionDiv = document.createElement('div');
                     subsectionDiv.className = 'block';
+                    // Add spacing between subsections to match CV entry spacing
+                    // Each subsection gets a small margin-bottom except the last one
+                    if (subsectionIndex < section.subsections.length - 1) {
+                        subsectionDiv.style.marginBottom = '0.25rem';
+                    }
                     
                     // Title
                     const titleDiv = document.createElement('div');
-                    titleDiv.className = 'font-semibold text-gray-900 mb-0.5 leading-tight';
+                    titleDiv.className = 'font-semibold text-gray-900 leading-tight';
                     titleDiv.textContent = subsection.title;
                     subsectionDiv.appendChild(titleDiv);
                     
                     // Date
                     const dateDiv = document.createElement('div');
-                    dateDiv.className = 'text-xs text-gray-500 mb-2';
+                    dateDiv.className = 'text-xs text-gray-500';
                     dateDiv.textContent = subsection.date;
                     subsectionDiv.appendChild(dateDiv);
                     
@@ -93,7 +98,8 @@ document.addEventListener('DOMContentLoaded', function() {
                             resourceLink.appendChild(arrowSpan);
                             
                             const resourceWrapper = document.createElement('div');
-                            resourceWrapper.className = 'flex flex-col gap-1 mt-0.5';
+                            resourceWrapper.className = 'flex flex-col';
+                            resourceWrapper.style.gap = '0.05rem';
                             resourceWrapper.appendChild(resourceLink);
                             
                             subsectionDiv.appendChild(resourceWrapper);
@@ -101,7 +107,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     } else {
                         // All resources in one wrapper (matching original structure for other subsections)
                         const resourcesWrapper = document.createElement('div');
-                        resourcesWrapper.className = 'flex flex-col gap-1 mt-0.5';
+                        resourcesWrapper.className = 'flex flex-col';
+                        resourcesWrapper.style.gap = '0.05rem';
                         
                         subsection.resources.forEach((resource) => {
                             const resourceLink = document.createElement('a');

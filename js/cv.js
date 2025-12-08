@@ -381,34 +381,66 @@ document.addEventListener('DOMContentLoaded', function() {
                 metaDiv.appendChild(datesSpan);
                 contentDiv.appendChild(metaDiv);
 
+                // Description and location row (matching other entries)
                 if (Array.isArray(entry.details) && entry.details.length > 0 || entry.location) {
-                    // Create a container for details and location on the same line
-                    const detailsLocationDiv = document.createElement('div');
-                    detailsLocationDiv.className = 'flex flex-row items-start justify-between gap-2';
+                    const aboutLocationDiv = document.createElement('div');
+                    aboutLocationDiv.className = 'flex flex-row items-center justify-between gap-2';
 
-                    // Details/accolades on the left
+                    // Description section with dropdown (if details exist)
+                    let aboutContainer = null;
+                    let aboutArrow = null;
+                    let descriptionDiv = null;
+
                     if (Array.isArray(entry.details) && entry.details.length > 0) {
-                        const detailsContainer = document.createElement('div');
-                        detailsContainer.className = 'flex flex-col gap-0.5 education-detail-group';
+                        // Combine details into a single description string
+                        const descriptionText = entry.details.join(', ');
 
-                        entry.details.forEach((detail, index) => {
-                            const detailSpan = document.createElement('span');
-                            detailSpan.className = 'block text-gray-500 text-xs';
-                            if (index === 0) {
-                                detailSpan.classList.add('education-minors');
-                            } else if (index === 1) {
-                                detailSpan.classList.add('education-honors');
+                        aboutContainer = document.createElement('div');
+                        aboutContainer.className = 'flex flex-row items-center';
+                        aboutContainer.style.cursor = 'pointer';
+                        aboutContainer.style.gap = '0.25rem';
+
+                        const aboutText = document.createElement('span');
+                        aboutText.className = 'text-xs text-gray-600';
+                        aboutText.textContent = 'Description';
+
+                        aboutArrow = document.createElement('span');
+                        aboutArrow.className = 'cv-description-arrow text-gray-500 transition-transform duration-200 ease-in-out';
+                        aboutArrow.style.transform = 'rotate(0deg)';
+                        aboutArrow.textContent = '>';
+
+                        aboutContainer.appendChild(aboutText);
+                        aboutContainer.appendChild(aboutArrow);
+
+                        // Description container (hidden by default)
+                        descriptionDiv = document.createElement('div');
+                        descriptionDiv.className = 'cv-description-content hidden';
+
+                        const descriptionTextDiv = document.createElement('div');
+                        descriptionTextDiv.className = 'text-xs text-gray-700';
+                        descriptionTextDiv.style.lineHeight = '1';
+                        descriptionTextDiv.style.margin = '0';
+                        descriptionTextDiv.textContent = descriptionText;
+                        descriptionDiv.appendChild(descriptionTextDiv);
+
+                        // Toggle description on click
+                        aboutContainer.addEventListener('click', function() {
+                            const isHidden = descriptionDiv.classList.contains('hidden');
+                            if (isHidden) {
+                                descriptionDiv.classList.remove('hidden');
+                                aboutArrow.style.transform = 'rotate(90deg)';
+                            } else {
+                                descriptionDiv.classList.add('hidden');
+                                aboutArrow.style.transform = 'rotate(0deg)';
                             }
-                            detailSpan.textContent = detail;
-                            detailsContainer.appendChild(detailSpan);
                         });
 
-                        detailsLocationDiv.appendChild(detailsContainer);
+                        aboutLocationDiv.appendChild(aboutContainer);
                     } else {
                         // Empty placeholder if no details
                         const emptySpan = document.createElement('span');
                         emptySpan.innerHTML = '&nbsp;';
-                        detailsLocationDiv.appendChild(emptySpan);
+                        aboutLocationDiv.appendChild(emptySpan);
                     }
 
                     // Location on the right
@@ -416,15 +448,20 @@ document.addEventListener('DOMContentLoaded', function() {
                         const locationSpan = document.createElement('span');
                         locationSpan.className = 'block text-xs text-gray-500 whitespace-nowrap';
                         locationSpan.textContent = entry.location;
-                        detailsLocationDiv.appendChild(locationSpan);
+                        aboutLocationDiv.appendChild(locationSpan);
                     } else {
                         // Empty placeholder if no location
                         const emptySpan = document.createElement('span');
                         emptySpan.innerHTML = '&nbsp;';
-                        detailsLocationDiv.appendChild(emptySpan);
+                        aboutLocationDiv.appendChild(emptySpan);
                     }
 
-                    contentDiv.appendChild(detailsLocationDiv);
+                    contentDiv.appendChild(aboutLocationDiv);
+
+                    // Add description div if it exists
+                    if (descriptionDiv) {
+                        contentDiv.appendChild(descriptionDiv);
+                    }
                 }
 
                 itemDiv.appendChild(contentDiv);

@@ -4,28 +4,28 @@
     "role": "Independent Researcher",
     "dates": "Jun 2025 — Present",
     "location": "La Jolla, CA (Remote)",
-    "description": "Studied the agentic coding workflows of experienced developers in the Foundation Interface Lab under Haijun Xia."
+    "description": "Studied the agentic coding workflows of experienced developers in the <em>Foundation Interface Lab</em> under Haijun Xia."
   },
   {
     "organization": "University of Central Florida",
     "role": "Undergraduate Researcher",
     "dates": "Jan 2021 — May 2023",
     "location": "Orlando, FL",
-    "description": "Started my research career in the applied sociology field with Amy Donley, eventually leading the UMOR project after a year of collaboration. Joined the Socio-Technical Interaction Research Lab under Pamela Wisniewski shortly after to help with the IGDD project, which then turned into MOSafely. Later worked with Jonathan Powell to maintain CoupCast and wrote some articles with Salah Ben Hammou, his PhD student at the time."
+    "description": "Started my research career in the applied sociology field with Amy Donley building maps for drug policy white papers in the <em>ISBS</em>. Joined the <em>STIR Lab</em> under Pamela Wisniewski shortly after to help with the IGDD project, which then turned into MOSafely. Finally, worked with Jonathan Powell to maintain <em>CoupCast</em> and wrote some articles with Salah Ben Hammou, his PhD student."
   },
   {
     "organization": "XR Access",
     "role": "REU Participant",
     "dates": "Jun 2022 — Aug 2022",
     "location": "New York, NY",
-    "description": "Placed in the Computer-Enabled Abilities Laboratory under Brian Smith to build prototypes that integrate spatial interactions into desktop screen readers and support face-to-face help between sighted and blind strangers exploring physical spaces."
+    "description": "As part of <em>Making Augmented and Virtual Reality Accessible</em>, I built assistive technology prototypes for blind and low vision users in the <em>CEAL Lab</em> under Brian Smith."
   },
   {
     "organization": "University of Washington Tacoma",
     "role": "REU Participant",
     "dates": "Jun 2021 — Aug 2021",
     "location": "Tacoma, WA",
-    "description": "Applied TDA algorithms on ACS datasets from Mecklenburg County to identify communities of interest. Collaborated with Jim Thatcher and Courtney Thatcher from the University of Puget Sound."
+    "description": "In <em>Spatial Models and Electoral Distrciting</em>, I applied TDA algorithms on ACS datasets from Mecklenburg County to identify communities of interest and collaborated with Jim Thatcher and Courtney Thatcher from the University of Puget Sound."
   }
 ]
 

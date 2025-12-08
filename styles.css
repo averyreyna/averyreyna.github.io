@@ -171,6 +171,7 @@ h1 a {
 .paper-link {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.08rem;
     transition: all 0.2s ease;
     text-decoration: none !important;
@@ -426,6 +427,11 @@ footer {
 
 /* For projects page - first category heading */
 #projects-container > .project-category-section:first-child > .research-heading {
+  margin-top: 1.5rem;
+}
+
+/* For resources page - first heading */
+#resources-container > .research-heading:first-child {
   margin-top: 1.5rem;
 }
 
