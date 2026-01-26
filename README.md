@@ -1,3 +1,3 @@
-# averyreyna.github.io
+# avryryn.io
 
 My always-changing personal website.
