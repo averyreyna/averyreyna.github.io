@@ -754,13 +754,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 }).join('');
                 
-                const titleStyle = paper.title.includes("Don't Vibe, Plan") 
-                    ? 'style="filter: blur(3.5px);"' 
-                    : '';
-                
                 contentDiv.innerHTML = `
                     <div class="experience-header">
-                        <span class="font-semibold text-gray-900 leading-tight" ${titleStyle}>${paper.title}</span>
+                        <span class="font-semibold text-gray-900 leading-tight">${paper.title}</span>
                     </div>
                     <span class="text-xs text-gray-500">${paper.venue}</span>
                     <span class="text-xs text-gray-700">${paper.authors}</span>

@@ -1,9 +1,27 @@
 [
   {
+    "title": "Developers Don't Vibe",
+    "category": "Research",
+    "description": "Two-part, mixed-methods study aiming to understand the agentic coding workflows of experienced developers in 2025",
+    "date": "Dec 2025",
+    "link": "https://arxiv.org/abs/2512.14012",
+    "image": "/assets/projects/research/don't_vibe.png",
+    "openInNewTab": true
+  },
+  {
+    "title": "Metrics Playground",
+    "category": "Industry",
+    "description": "Teaching Cyber D&M how to integrate agents into their programming workflows via a PDQM QA feature I built primarily with GitHub Copilot",
+    "date": "Dec 2025",
+    "link": "/project_unavailable",
+    "image": "/assets/projects/industry/metrics_playground.gif",
+    "openInNewTab": true
+  },
+  {
     "title": "Palestra",
     "category": "Prototype",
     "description": "Answering in-context questions about AI-generated, psuedo-enterprise codebases as practice for all levels of developers",
-    "date": "Sep '25",
+    "date": "Sep 2025",
     "link": "https://www.instagram.com/reel/DOT9EuXD7UZ/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
     "image": "/assets/projects/prototypes/palestra.gif",
     "openInNewTab": true
@@ -12,7 +30,7 @@
     "title": "Rerank",
     "category": "Prototype",
     "description": "Revisiting an experiment from undergrad that utilizes text summarization models for annotating conversational data",
-    "date": "Sep '25",
+    "date": "Sep 2025",
     "link": "https://www.instagram.com/p/DOKLyKbj-n4/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
     "image": "/assets/projects/prototypes/rerank.gif",
     "openInNewTab": true
@@ -21,7 +39,7 @@
     "title": "Perceptor",
     "category": "Prototype",
     "description": "Interactive CLI coding assistant that guides you through the process of developing software regardless of your experience level",
-    "date": "Sep '25",
+    "date": "Sep 2025",
     "link": "https://www.instagram.com/p/DOJZOb9DjZc/?utm_source=ig_web_copy_link",
     "image": "/assets/projects/prototypes/perceptor.gif",
     "openInNewTab": true
@@ -30,7 +48,7 @@
     "title": "Scrutinize",
     "category": "Prototype",
     "description": "Editing DeepSeek's essays with interactive human-centered annotation",
-    "date": "Jun '25",
+    "date": "Jun 2025",
     "link": "https://www.instagram.com/p/DKvfqtFouqF/?utm_source=ig_web_copy_link",
     "image": "/assets/projects/prototypes/scrutinize.gif",
     "openInNewTab": true
@@ -39,7 +57,7 @@
     "title": "Specter",
     "category": "Prototype",
     "description": "Ephemeral Deepseek-based AI assistant made for the writing process",
-    "date": "Jun '25",
+    "date": "Jun 2025",
     "link": "https://www.instagram.com/p/DKvAULfvXVg/?utm_source=ig_web_copy_link",
     "image": "/assets/projects/prototypes/specter.gif",
     "openInNewTab": true
@@ -48,7 +66,7 @@
     "title": "Admin Metrics Dashboard",
     "category": "Industry",
     "description": "Established an in-house heartbeat monitoring solution to replace internal Grafana dashboards displaying cyber logs of vital enterprise assets",
-    "date": "May '25",
+    "date": "May 2025",
     "link": "/project_unavailable",
     "image": "/assets/projects/industry/admin_metrics_dashboard.png",
     "openInNewTab": false,
@@ -58,7 +76,7 @@
     "title": "Meta Measure",
     "category": "Prototype",
     "description": "Evaluating Claude Sonnet 3.7's ability to assess research ideas from across all disciplines to uncover potential biases",
-    "date": "May '25",
+    "date": "May 2025",
     "link": "https://www.instagram.com/p/DKGRo-yozpb/?utm_source=ig_web_copy_link",
     "image": "/assets/projects/prototypes/meta_measure.gif",
     "openInNewTab": true
@@ -67,7 +85,7 @@
     "title": "ILM Portal",
     "category": "Industry",
     "description": "Designing an identity lifecycle portal for custom authorization plugins across Cyber Tech teams and to decouple from SailPoint",
-    "date": "Aug '24",
+    "date": "Aug 2024",
     "link": "/project_unavailable",
     "image": "/assets/projects/industry/ilm_portal.png",
     "openInNewTab": false,
@@ -77,7 +95,7 @@
     "title": "Help Supporters",
     "category": "Research",
     "description": "Exploring the design space of assistive technologies to improve face-to-face support between BLV and sighted individuals",
-    "date": "Aug '24",
+    "date": "Aug 2024",
     "link": "https://dl.acm.org/doi/10.1145/3613904.3642816",
     "image": "/assets/projects/research/help_supporters.png",
     "openInNewTab": true
@@ -86,7 +104,7 @@
     "title": "File Upload Tool",
     "category": "Industry",
     "description": "Upgraded the frontend of a custom authorization plugin that validates native application content for IAM data analytics",
-    "date": "Apr '24",
+    "date": "Apr 2024",
     "link": "/project_unavailable",
     "image": "/assets/projects/industry/file_upload_tool.gif",
     "openInNewTab": false,
@@ -96,7 +114,7 @@
     "title": "Penetration Test Checklists",
     "category": "Industry",
     "description": "Rendering editable spreadsheets of simulated cyberattacks from imported Excel files for a security remediation platform",
-    "date": "Feb '24",
+    "date": "Feb 2024",
     "link": "/project_unavailable",
     "image": "/assets/projects/industry/penetration_tests.gif",
     "openInNewTab": false,
@@ -106,7 +124,7 @@
     "title": "Spatial Interactions",
     "category": "Research",
     "description": "A formative study of a custom desktop screen reader that incorporates spatial interactions via spatial audio",
-    "date": "Oct '23",
+    "date": "Oct 2023",
     "link": "https://ceal.cs.columbia.edu/webnext",
     "image": "/assets/projects/research/spatial_interactions.png",
     "openInNewTab": true
@@ -115,7 +133,7 @@
     "title": "Digital Transformation",
     "category": "Report",
     "description": "Filling the gap on the use of digital solutions to address challenges in the Lower Mekong region, such as geopolitical influences",
-    "date": "Nov '22",
+    "date": "Nov 2022",
     "link": "https://www.newamerica.org/digital-impact-governance-initiative/reports/digital-transformation-opportunities-and-challenges-in-the-lower-mekong-region",
     "image": "/assets/projects/reports/digital_transformation.png",
     "openInNewTab": true
@@ -124,7 +142,7 @@
     "title": "Public Procurement",
     "category": "Report",
     "description": "The COVID-19 pandemic magnified challenges, highlighting the need for change in the way governments manage digital solutions",
-    "date": "Oct '22",
+    "date": "Oct 2022",
     "link": "https://www.newamerica.org/digital-impact-governance-initiative/reports/reconceptualizing-public-procurement",
     "image": "/assets/projects/reports/public_procurement.png",
     "openInNewTab": true
@@ -133,7 +151,7 @@
     "title": "Applied Machine Learning",
     "category": "Research",
     "description": "CoupCast is a machine learning early warning system for estimating monthly illegal leadership turnover risk all over the globe",
-    "date": "Jul '22",
+    "date": "Jul 2022",
     "link": "/assets/files/presentations/summer_undergraduate_research_poster_showcase_22.pdf",
     "image": "/assets/projects/research/applied_machine_learning.png",
     "openInNewTab": true
@@ -142,7 +160,7 @@
     "title": "Digital Public Infrastructure",
     "category": "Article",
     "description": "A list of resources that provide background and recommendations on how to strengthen DPI through digital public goods",
-    "date": "Jul '22",
+    "date": "Jul 2022",
     "link": "https://www.newamerica.org/digital-impact-governance-initiative/blog/what-is-digital-public-infrastructure-a-top-10-reading-guide",
     "image": "/assets/projects/articles/dpi.png",
     "openInNewTab": true
@@ -151,7 +169,7 @@
     "title": "TextRank and LexRank",
     "category": "Research",
     "description": "Assessing the perceived utility of text summarization models to quicken the annotation process of large textual datasets",
-    "date": "Mar '22",
+    "date": "Mar 2022",
     "link": "/assets/files/presentations/textrank_and_lexrank.pdf",
     "image": "/assets/projects/research/textrank_and_lexrank.png",
     "openInNewTab": true
@@ -160,7 +178,7 @@
     "title": "Marriage Equality",
     "category": "Article",
     "description": "Debate continues between legal equality advocates and those objecting to marriage equality on the grounds of religious beliefs",
-    "date": "Jun '21",
+    "date": "Jun 2021",
     "link": "https://www.cfr.org/backgrounder/marriage-equality-global-comparisons",
     "image": "/assets/projects/articles/marriage_equality.gif",
     "openInNewTab": true
@@ -169,7 +187,7 @@
     "title": "How the U.S. Patrols Borders",
     "category": "Article",
     "description": "U.S. Customs and Border Protection and other agencies regulate trade and travel at ports of entry and borders to ensure security",
-    "date": "Apr '21",
+    "date": "Apr 2021",
     "link": "https://www.cfr.org/backgrounder/how-us-patrols-its-borders",
     "image": "/assets/projects/articles/border_security.png",
     "openInNewTab": true
@@ -178,7 +196,7 @@
     "title": "Adolescent Online Safety",
     "category": "Research",
     "description": "Risk detection models aren't new, but most rely on public datasets unrepresentative of adolescent experiences in the internet age",
-    "date": "Mar '21",
+    "date": "Mar 2021",
     "link": "/assets/files/presentations/student_research_week_21.pdf",
     "image": "/assets/projects/research/adolescent_online_safety.png",
     "openInNewTab": true
@@ -187,7 +205,7 @@
     "title": "The VP and Foreign Policy",
     "category": "Article",
     "description": "Early leaders considered the office a Congressional appendage, with vice presidents mainly chairing the Senate and breaking ties",
-    "date": "Mar '21",
+    "date": "Mar 2021",
     "link": "https://www.cfr.org/backgrounder/us-vice-president-and-foreign-policy",
     "image": "/assets/projects/articles/vp.png",
     "openInNewTab": true
@@ -196,7 +214,7 @@
     "title": "Nuclear Power",
     "category": "Article",
     "description": "Before Fukushima, officials saw nuclear energy as a path to Japan's energy independence and a path to fighting off climate change",
-    "date": "Mar '21",
+    "date": "Mar 2021",
     "link": "https://www.cfr.org/in-brief/fukushima-disaster-didnt-scare-world-nuclear-power",
     "image": "/assets/projects/articles/nuclear_energy.png",
     "openInNewTab": true

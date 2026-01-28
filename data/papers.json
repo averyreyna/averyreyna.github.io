@@ -1,13 +1,24 @@
 [
   {
-    "title": "Don't Vibe, Plan: How Professional Software Developers Use AI Agents in 2025",
-    "venue": "arXiv (Submitted to OOPSLA '26)",
+    "title": "Professional Software Developers Don’t Vibe, They Control: AI Agent Use for Coding in 2025",
+    "venue": "Preprint",
     "authors": "Ruanqianqian (Lisa) Huang, <b>Avery Reyna</b>, Sorin Lerner, Haijun Xia, and Brian Hempel",
     "links": [
       {
-        "text": "Coming Soon",
-        "url": "",
-        "italic": true
+        "text": "arXiv",
+        "url": "https://arxiv.org/abs/2512.14012"
+      },
+      {
+        "text": "Forbes",
+        "url": "https://www.forbes.com/sites/joetoscano1/2026/01/20/developers-use-ai-coding-tools-to-get-started-not-finish-the-job/"
+      },
+      {
+        "text": "Hacker News",
+        "url": "https://news.ycombinator.com/item?id=46437391"
+      },
+      {
+        "text": "Paper",
+        "url": "https://arxiv.org/pdf/2512.14012"
       }
     ]
   },

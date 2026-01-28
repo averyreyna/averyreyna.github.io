@@ -104,16 +104,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const dateRow = document.createElement('div');
     dateRow.className = 'project-date-row';
     
-    const year = document.createElement('span');
-    year.className = 'project-year text-xs';
-    year.textContent = project.date || '';
-    
     const category = document.createElement('span');
     category.className = 'project-category text-xs';
     category.textContent = project.category || '';
     
-    dateRow.appendChild(year);
+    const year = document.createElement('span');
+    year.className = 'project-year text-xs';
+    year.textContent = project.date || '';
+    
     dateRow.appendChild(category);
+    dateRow.appendChild(year);
 
     content.appendChild(titleRow);
     content.appendChild(description);

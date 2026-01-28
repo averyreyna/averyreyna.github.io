@@ -100,6 +100,66 @@ document.addEventListener('DOMContentLoaded', function() {
     
     loadAnnouncements();
     
+    async function loadRecentPublications() {
+        try {
+            const response = await fetch('/data/papers.json');
+            const papers = await response.json();
+            
+            // Filter to only conference papers
+            const conferencePapers = papers.filter(paper => {
+                const venue = paper.venue.toLowerCase();
+                return venue !== 'preprint' && !venue.includes('preprint') && !venue.includes('arxiv');
+            });
+            
+            // If we have 3+ conference papers, use only those. Otherwise, take first 3 papers total (maintaining chronological order)
+            let recentPapers;
+            if (conferencePapers.length >= 3) {
+                recentPapers = conferencePapers.slice(0, 3);
+            } else {
+                // Take first 3 papers from original array (already in most-recent-first order)
+                recentPapers = papers.slice(0, 3);
+            }
+            
+            const container = document.getElementById('recent-publications-container');
+            
+            recentPapers.forEach((paper) => {
+                const paperDiv = document.createElement('div');
+                paperDiv.className = 'experience-item';
+
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'experience-content';
+
+                const linksHtml = paper.links.map(link => {
+                    if (link.italic) {
+                        return `<span class="text-gray-500 text-xs italic">${link.text}</span>`;
+                    } else {
+                        return `<a href="${link.url}" class="paper-link text-gray-500 text-xs" target="_blank" rel="noopener">${link.text}</a>`;
+                    }
+                }).join('');
+                
+                contentDiv.innerHTML = `
+                    <div class="experience-header">
+                        <span class="font-semibold text-gray-900 leading-tight">${paper.title}</span>
+                    </div>
+                    <span class="text-xs text-gray-500">${paper.venue}</span>
+                    <span class="text-xs text-gray-700">${paper.authors}</span>
+                    <span class="flex flex-row flex-wrap gap-2">
+                        ${linksHtml}
+                    </span>
+                `;
+                
+                paperDiv.appendChild(contentDiv);
+                
+                container.appendChild(paperDiv);
+            });
+            
+        } catch (error) {
+            console.error('Error loading recent publications:', error);
+        }
+    }
+    
+    loadRecentPublications();
+    
     function initLazyLoading() {
         if ('IntersectionObserver' in window) {
             const imageObserver = new IntersectionObserver((entries, observer) => {
