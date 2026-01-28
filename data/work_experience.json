@@ -2,21 +2,21 @@
   {
     "organization": "Capital One",
     "role": "Software Engineer",
-    "dates": "Aug 2023 — Present",
+    "dates": "Aug 2023 - Present",
     "location": "McLean, VA",
     "description": "Became an enterprise-ready developer in six months as part of the CODA 13 cohort. Graduated into TDP after completing my Dojo project in Cyber Intel building a MERN stack feature for a security remediation platform. Spent my first rotation in Cyber IAM wearing many hats (frontend, design, infrastructure, etc.) maintaining custom authorization plugins, and ended up finishing the program in Cyber D&M as a full stack engineer for our self-service platform."
   },
   {
     "organization": "Various Companies",
     "role": "Various Internships",
-    "dates": "Jan 2020 — Aug 2023",
+    "dates": "Jan 2020 - Aug 2023",
     "location": "Various Locations (Remote)",
     "description": "Including: PMBF Program, UNA-Orlando, BallotReady, The COVID-19 Tracking Project, Council on Foreign Relations, the Hub Project, Swing Left, New America, ActBlue, KRC Research, and ActBlue Technical Services."
   },
   {
     "organization": "Progressive Turnout Project",
     "role": "Field Representative",
-    "dates": "Jun 2020 — Dec 2020",
+    "dates": "Jun 2020 - Dec 2020",
     "location": "Orlando, FL",
     "description": "Called low-propensity voters, handwrote outreach letters, and tried my best to get Democratic candidates down the ballot elected across Florida, Georgia, and Texas."
   }
