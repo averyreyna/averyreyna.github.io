@@ -1,5 +1,14 @@
 [
   {
+    "title": "Form",
+    "category": "Experiment",
+    "description": "Malleable application for note-taking powered by Meridian ODIs and in-app feature generation with executable and testable code snippets",
+    "date": "Feb 2026",
+    "link": "",
+    "image": "/assets/projects/experiments/form-demo-2.gif",
+    "openInNewTab": true
+  },
+  {
     "title": "Developers Don't Vibe",
     "category": "Research",
     "description": "Two-part, mixed-methods study aiming to understand the agentic coding workflows of experienced developers in 2025",
