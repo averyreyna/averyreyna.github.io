@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function() {
   const projectsContainer = document.getElementById('projects-container');
   let imageObserver;
   let scrollTimeout;
-  let projectsData = [];
 
   loadProjects();
 
@@ -18,10 +17,19 @@ document.addEventListener('DOMContentLoaded', function() {
     if (parts.length < 2) return 0;
     
     const month = monthMap[parts[0]] || 0;
-    const yearMatch = parts[1].match(/'(\d{2})/);
-    if (!yearMatch) return 0;
+
+    // Handle full year (2025) or abbreviated ('25)
+    let year = 0;
+    const fullYearMatch = parts[1].match(/^(\d{4})$/);
+    const shortYearMatch = parts[1].match(/'(\d{2})/);
+    if (fullYearMatch) {
+      year = parseInt(fullYearMatch[1], 10);
+    } else if (shortYearMatch) {
+      year = parseInt('20' + shortYearMatch[1], 10);
+    } else {
+      return 0;
+    }
     
-    const year = parseInt('20' + yearMatch[1], 10);
     return year * 100 + month;
   }
 
@@ -31,8 +39,8 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch('/data/projects.json')
       .then(response => response.json())
       .then(data => {
-        projectsData = Array.isArray(data) ? data : [];
-        renderProjects(projectsData);
+        const projects = Array.isArray(data) ? data : [];
+        renderProjects(projects);
         initLazyLoading();
       })
       .catch(error => {
@@ -50,16 +58,59 @@ document.addEventListener('DOMContentLoaded', function() {
       return dateB - dateA;
     });
 
+    // Split projects: Oct 2023 (202310) and before are "undergraduate"
+    const cutoff = 202310;
+    const recentProjects = sortedProjects.filter(p => parseDate(p.date || '') > cutoff);
+    const undergradProjects = sortedProjects.filter(p => parseDate(p.date || '') <= cutoff);
+
     // Create a single grid container for all projects
     const gridContainer = document.createElement('div');
     gridContainer.className = 'projects-grid';
 
-    sortedProjects.forEach(project => {
+    recentProjects.forEach(project => {
       const projectElement = createProjectElement(project);
       gridContainer.appendChild(projectElement);
     });
 
+    // Add the toggle button as the last item in the recent projects grid
+    if (undergradProjects.length > 0) {
+      const toggleCard = document.createElement('div');
+      toggleCard.className = 'undergrad-toggle-card';
+      const toggleText = document.createElement('span');
+      toggleText.textContent = 'View Undergraduate Work';
+      toggleCard.appendChild(toggleText);
+
+      toggleCard.addEventListener('click', function() {
+        const undergradContainer = document.getElementById('undergrad-projects-grid');
+        if (undergradContainer.style.display === 'none') {
+          undergradContainer.style.display = '';
+          toggleText.textContent = 'Hide Undergraduate Work';
+        } else {
+          undergradContainer.style.display = 'none';
+          toggleText.textContent = 'View Undergraduate Work';
+        }
+      });
+
+      gridContainer.appendChild(toggleCard);
+    }
+
     projectsContainer.appendChild(gridContainer);
+
+    // Create a separate hidden grid for undergraduate projects
+    if (undergradProjects.length > 0) {
+      const undergradGrid = document.createElement('div');
+      undergradGrid.id = 'undergrad-projects-grid';
+      undergradGrid.className = 'projects-grid';
+      undergradGrid.style.display = 'none';
+      undergradGrid.style.paddingTop = '0';
+
+      undergradProjects.forEach(project => {
+        const projectElement = createProjectElement(project);
+        undergradGrid.appendChild(projectElement);
+      });
+
+      projectsContainer.appendChild(undergradGrid);
+    }
   }
 
 
@@ -86,7 +137,6 @@ document.addEventListener('DOMContentLoaded', function() {
     image.setAttribute('data-src', project.image || '');
     image.setAttribute('loading', 'lazy');
     image.setAttribute('alt', project.title || 'Project image');
-    applyImageHover(image, isIndustryUnavailable);
 
     const content = document.createElement('div');
     content.className = 'project-card-content';
@@ -126,10 +176,6 @@ document.addEventListener('DOMContentLoaded', function() {
     return projectLink;
   }
 
-  function applyImageHover(image, isIndustryUnavailable) {
-    // No hover effects needed - images display in full color
-  }
-  
   const navToggle = document.getElementById('nav-toggle');
   const navDropdown = document.getElementById('nav-dropdown');
   const navArrow = document.querySelector('.nav-arrow');
@@ -140,16 +186,16 @@ document.addEventListener('DOMContentLoaded', function() {
       navDropdown.classList.toggle('hidden');
       
       if (isHidden) {
-        navArrow.style.transform = 'rotate(90deg)';
+        navArrow.textContent = '−';
       } else {
-        navArrow.style.transform = 'rotate(0deg)';
+        navArrow.textContent = '+';
       }
     });
     
     document.addEventListener('click', function(event) {
       if (!navToggle.contains(event.target) && !navDropdown.contains(event.target)) {
         navDropdown.classList.add('hidden');
-        navArrow.style.transform = 'rotate(0deg)';
+        navArrow.textContent = '+';
       }
     });
   }

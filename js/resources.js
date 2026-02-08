@@ -8,16 +8,16 @@ document.addEventListener('DOMContentLoaded', function() {
         navDropdown.classList.toggle('hidden');
         
         if (isHidden) {
-            navArrow.style.transform = 'rotate(90deg)';
+            navArrow.textContent = '−';
         } else {
-            navArrow.style.transform = 'rotate(0deg)';
+            navArrow.textContent = '+';
         }
     });
     
     document.addEventListener('click', function(event) {
         if (!navToggle.contains(event.target) && !navDropdown.contains(event.target)) {
             navDropdown.classList.add('hidden');
-            navArrow.style.transform = 'rotate(0deg)';
+            navArrow.textContent = '+';
         }
     });
 

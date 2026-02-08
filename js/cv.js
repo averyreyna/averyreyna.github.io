@@ -8,16 +8,16 @@ document.addEventListener('DOMContentLoaded', function() {
         navDropdown.classList.toggle('hidden');
         
         if (isHidden) {
-            navArrow.style.transform = 'rotate(90deg)';
+            navArrow.textContent = '−';
         } else {
-            navArrow.style.transform = 'rotate(0deg)';
+            navArrow.textContent = '+';
         }
     });
     
     document.addEventListener('click', function(event) {
         if (!navToggle.contains(event.target) && !navDropdown.contains(event.target)) {
             navDropdown.classList.add('hidden');
-            navArrow.style.transform = 'rotate(0deg)';
+            navArrow.textContent = '+';
         }
     });
 
@@ -80,26 +80,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // About section with dropdown (if description exists)
             let aboutContainer = null;
-            let aboutArrow = null;
             let descriptionDiv = null;
 
             if (description) {
                 aboutContainer = document.createElement('div');
                 aboutContainer.className = 'flex flex-row items-center';
                 aboutContainer.style.cursor = 'pointer';
-                aboutContainer.style.gap = '0.25rem';
 
                 const aboutText = document.createElement('span');
-                aboutText.className = 'text-xs text-gray-600';
-                aboutText.textContent = 'Description';
-
-                aboutArrow = document.createElement('span');
-                aboutArrow.className = 'cv-description-arrow text-gray-500 transition-transform duration-200 ease-in-out';
-                aboutArrow.style.transform = 'rotate(0deg)';
-                aboutArrow.textContent = '>';
+                aboutText.className = 'paper-link';
+                aboutText.textContent = 'View Details';
 
                 aboutContainer.appendChild(aboutText);
-                aboutContainer.appendChild(aboutArrow);
 
                 // Description container (hidden by default)
                 descriptionDiv = document.createElement('div');
@@ -133,10 +125,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     const isHidden = descriptionDiv.classList.contains('hidden');
                     if (isHidden) {
                         descriptionDiv.classList.remove('hidden');
-                        aboutArrow.style.transform = 'rotate(90deg)';
+                        aboutText.textContent = 'Hide Details';
                     } else {
                         descriptionDiv.classList.add('hidden');
-                        aboutArrow.style.transform = 'rotate(0deg)';
+                        aboutText.textContent = 'View Details';
                     }
                 });
 
@@ -198,152 +190,6 @@ document.addEventListener('DOMContentLoaded', function() {
         return processedText;
     }
 
-    function highlightKeywords(text) {
-        // First, handle **bold** markers
-        let html = text.replace(/\*\*(.*?)\*\*/g, '<span class="cv-readme-keyword">$1</span>');
-        
-        // Then highlight capitalized words that look like names/organizations/technologies
-        // Match words that start with capital letter and are followed by more capitals or are part of a compound
-        html = html.replace(/\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)\b/g, (match, word) => {
-            // Skip if already wrapped in a keyword span
-            if (match.includes('<span')) return match;
-            // Skip common words
-            const commonWords = ['The', 'This', 'That', 'These', 'Those', 'I', 'We', 'You', 'They', 'My', 'Our', 'Your', 'Their', 'A', 'An', 'And', 'Or', 'But', 'For', 'With', 'From', 'To', 'In', 'On', 'At', 'By', 'Of', 'As', 'Is', 'Are', 'Was', 'Were', 'Been', 'Be', 'Have', 'Has', 'Had', 'Do', 'Does', 'Did', 'Will', 'Would', 'Could', 'Should', 'May', 'Might', 'Must', 'Can'];
-            if (commonWords.includes(word)) return match;
-            // Skip if it's a single letter
-            if (word.length <= 1) return match;
-            // Highlight if it looks like a name/organization (multiple capitalized words or single long capitalized word)
-            if (word.split(' ').length > 1 || word.length > 4) {
-                return `<span class="cv-readme-keyword">${word}</span>`;
-            }
-            return match;
-        });
-        
-        return html;
-    }
-
-    function openDescriptionModal(header, subheader, meta, description, location) {
-        // Create modal overlay
-        const modalOverlay = document.createElement('div');
-        modalOverlay.className = 'cv-modal-overlay';
-        modalOverlay.id = 'cv-modal-overlay';
-
-        // Create modal container
-        const modalContainer = document.createElement('div');
-        modalContainer.className = 'cv-modal-container';
-
-        // Create modal content
-        const modalContent = document.createElement('div');
-        modalContent.className = 'cv-modal-content';
-
-        // Create close button
-        const closeButton = document.createElement('button');
-        closeButton.className = 'cv-modal-close';
-        closeButton.innerHTML = '<i class="fa-solid fa-times"></i>';
-        closeButton.setAttribute('aria-label', 'Close modal');
-
-        // Create readme-style content
-        const readmeContent = document.createElement('div');
-        readmeContent.className = 'cv-readme-content';
-
-        // Title
-        const title = document.createElement('h1');
-        title.className = 'cv-readme-title';
-        title.textContent = header;
-        readmeContent.appendChild(title);
-
-        // Meta information
-        const metaInfo = document.createElement('div');
-        metaInfo.className = 'cv-readme-meta';
-
-        if (subheader) {
-            const role = document.createElement('p');
-            role.className = 'cv-readme-role';
-            role.textContent = subheader;
-            metaInfo.appendChild(role);
-        }
-
-        if (meta) {
-            const dates = document.createElement('p');
-            dates.className = 'cv-readme-dates';
-            dates.textContent = meta;
-            metaInfo.appendChild(dates);
-        }
-
-        if (location) {
-            const loc = document.createElement('p');
-            loc.className = 'cv-readme-location';
-            loc.textContent = location;
-            metaInfo.appendChild(loc);
-        }
-
-        readmeContent.appendChild(metaInfo);
-
-        // Description
-        const descSection = document.createElement('div');
-        descSection.className = 'cv-readme-description';
-
-        // Split description by newlines and create paragraphs
-        // If no newlines, treat as single paragraph
-        if (description.includes('\n')) {
-            const descLines = description.split('\n').filter(line => line.trim());
-            descLines.forEach(line => {
-                const paragraph = document.createElement('p');
-                paragraph.className = 'cv-readme-text';
-                let processedLine = italicizeCompanies(line.trim());
-                paragraph.innerHTML = highlightKeywords(processedLine);
-                descSection.appendChild(paragraph);
-            });
-        } else {
-            const paragraph = document.createElement('p');
-            paragraph.className = 'cv-readme-text';
-            let processedDescription = italicizeCompanies(description.trim());
-            paragraph.innerHTML = highlightKeywords(processedDescription);
-            descSection.appendChild(paragraph);
-        }
-
-        readmeContent.appendChild(descSection);
-
-        // Assemble modal
-        modalContent.appendChild(closeButton);
-        modalContent.appendChild(readmeContent);
-        modalContainer.appendChild(modalContent);
-        modalOverlay.appendChild(modalContainer);
-
-        // Add to body
-        document.body.appendChild(modalOverlay);
-
-        // Prevent body scroll when modal is open
-        document.body.style.overflow = 'hidden';
-
-        // Close handlers
-        const closeModal = () => {
-            modalOverlay.remove();
-            document.body.style.overflow = '';
-        };
-
-        closeButton.addEventListener('click', closeModal);
-        modalOverlay.addEventListener('click', (e) => {
-            if (e.target === modalOverlay) {
-                closeModal();
-            }
-        });
-
-        // Close on Escape key
-        const handleEscape = (e) => {
-            if (e.key === 'Escape') {
-                closeModal();
-                document.removeEventListener('keydown', handleEscape);
-            }
-        };
-        document.addEventListener('keydown', handleEscape);
-
-        // Animate in
-        setTimeout(() => {
-            modalOverlay.classList.add('cv-modal-active');
-        }, 10);
-    }
-
     async function loadEducation() {
         try {
             const educationData = await fetchJsonData('/data/education.json');
@@ -388,7 +234,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     // Description section with dropdown (if details exist)
                     let aboutContainer = null;
-                    let aboutArrow = null;
                     let descriptionDiv = null;
 
                     if (Array.isArray(entry.details) && entry.details.length > 0) {
@@ -398,19 +243,12 @@ document.addEventListener('DOMContentLoaded', function() {
                         aboutContainer = document.createElement('div');
                         aboutContainer.className = 'flex flex-row items-center';
                         aboutContainer.style.cursor = 'pointer';
-                        aboutContainer.style.gap = '0.25rem';
 
                         const aboutText = document.createElement('span');
-                        aboutText.className = 'text-xs text-gray-600';
-                        aboutText.textContent = 'Description';
-
-                        aboutArrow = document.createElement('span');
-                        aboutArrow.className = 'cv-description-arrow text-gray-500 transition-transform duration-200 ease-in-out';
-                        aboutArrow.style.transform = 'rotate(0deg)';
-                        aboutArrow.textContent = '>';
+                        aboutText.className = 'paper-link';
+                        aboutText.textContent = 'View Details';
 
                         aboutContainer.appendChild(aboutText);
-                        aboutContainer.appendChild(aboutArrow);
 
                         // Description container (hidden by default)
                         descriptionDiv = document.createElement('div');
@@ -428,10 +266,10 @@ document.addEventListener('DOMContentLoaded', function() {
                             const isHidden = descriptionDiv.classList.contains('hidden');
                             if (isHidden) {
                                 descriptionDiv.classList.remove('hidden');
-                                aboutArrow.style.transform = 'rotate(90deg)';
+                                aboutText.textContent = 'Hide Details';
                             } else {
                                 descriptionDiv.classList.add('hidden');
-                                aboutArrow.style.transform = 'rotate(0deg)';
+                                aboutText.textContent = 'View Details';
                             }
                         });
 
