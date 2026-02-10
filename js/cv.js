@@ -29,6 +29,33 @@ document.addEventListener('DOMContentLoaded', function() {
         return response.json();
     }
 
+    const UNDERGRAD_YEARS = [2018, 2019, 2020, 2021, 2022, 2023];
+
+    function isUndergradEntry(datesOrYear, venue) {
+        if (datesOrYear && /^\d{4}$/.test(String(datesOrYear).trim())) {
+            return UNDERGRAD_YEARS.includes(parseInt(datesOrYear, 10));
+        }
+        if (datesOrYear && typeof datesOrYear === 'string') {
+            const years = datesOrYear.match(/\b(19|20)\d{2}\b/g);
+            if (years) {
+                return years.some(y => UNDERGRAD_YEARS.includes(parseInt(y, 10)));
+            }
+        }
+        if (venue && typeof venue === 'string') {
+            const m = venue.match(/'(\d{2})\b/);
+            if (m) {
+                const fullYear = 2000 + parseInt(m[1], 10);
+                return UNDERGRAD_YEARS.includes(fullYear);
+            }
+        }
+        return false;
+    }
+
+    function addUndergradTagToItem(itemDiv) {
+        const header = itemDiv.querySelector('.experience-header');
+        if (header) header.classList.add('has-undergrad-tag');
+    }
+
     function createExperienceEntry({ header, subheader, meta, description, location }) {
         const itemDiv = document.createElement('div');
         itemDiv.className = 'experience-item';
@@ -559,7 +586,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 `;
                 
                 talkDiv.appendChild(contentDiv);
-                
+                if (isUndergradEntry(null, talk.venue)) addUndergradTagToItem(talkDiv);
+
                 container.appendChild(talkDiv);
             });
             
@@ -604,7 +632,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 `;
                 
                 paperDiv.appendChild(contentDiv);
-                
+                if (isUndergradEntry(null, paper.venue)) addUndergradTagToItem(paperDiv);
+
                 container.appendChild(paperDiv);
             });
             
@@ -645,7 +674,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 `;
                 
                 presentationDiv.appendChild(contentDiv);
-                
+                if (isUndergradEntry(null, presentation.venue)) addUndergradTagToItem(presentationDiv);
+
                 container.appendChild(presentationDiv);
             });
             
@@ -718,7 +748,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 contentDiv.appendChild(authorsSpan);
                 contentDiv.appendChild(linksSpan);
                 articleDiv.appendChild(contentDiv);
-                
+                if (isUndergradEntry(article.year)) addUndergradTagToItem(articleDiv);
+
                 container.appendChild(articleDiv);
             });
         } catch (error) {

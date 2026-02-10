@@ -63,7 +63,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const recentProjects = sortedProjects.filter(p => parseDate(p.date || '') > cutoff);
     const undergradProjects = sortedProjects.filter(p => parseDate(p.date || '') <= cutoff);
 
-    // Create a single grid container for all projects
+    // Single grid container — undergrad projects insert chronologically (after last recent)
+    // so the most recent undergrad appears next to Penetration Test Checklists when shown
     const gridContainer = document.createElement('div');
     gridContainer.className = 'projects-grid';
 
@@ -72,7 +73,9 @@ document.addEventListener('DOMContentLoaded', function() {
       gridContainer.appendChild(projectElement);
     });
 
-    // Add the toggle button as the last item in the recent projects grid
+    // Pre-build undergrad project elements for insertion
+    const undergradElements = undergradProjects.map(p => createProjectElement(p));
+
     if (undergradProjects.length > 0) {
       const toggleCard = document.createElement('div');
       toggleCard.className = 'undergrad-toggle-card';
@@ -81,13 +84,16 @@ document.addEventListener('DOMContentLoaded', function() {
       toggleCard.appendChild(toggleText);
 
       toggleCard.addEventListener('click', function() {
-        const undergradContainer = document.getElementById('undergrad-projects-grid');
-        if (undergradContainer.style.display === 'none') {
-          undergradContainer.style.display = '';
+        const undergradShown = undergradElements[0]?.parentNode === gridContainer;
+        if (!undergradShown) {
           toggleText.textContent = 'Hide Undergraduate Work';
+          // Insert undergrad projects after last recent (before toggle), so most recent undergrad
+          // appears next to Penetration Test Checklists
+          undergradElements.forEach(el => gridContainer.insertBefore(el, toggleCard));
+          initLazyLoading();
         } else {
-          undergradContainer.style.display = 'none';
           toggleText.textContent = 'View Undergraduate Work';
+          undergradElements.forEach(el => el.remove());
         }
       });
 
@@ -95,22 +101,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     projectsContainer.appendChild(gridContainer);
-
-    // Create a separate hidden grid for undergraduate projects
-    if (undergradProjects.length > 0) {
-      const undergradGrid = document.createElement('div');
-      undergradGrid.id = 'undergrad-projects-grid';
-      undergradGrid.className = 'projects-grid';
-      undergradGrid.style.display = 'none';
-      undergradGrid.style.paddingTop = '0';
-
-      undergradProjects.forEach(project => {
-        const projectElement = createProjectElement(project);
-        undergradGrid.appendChild(projectElement);
-      });
-
-      projectsContainer.appendChild(undergradGrid);
-    }
   }
 
 
