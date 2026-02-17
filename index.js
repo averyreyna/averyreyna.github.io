@@ -461,22 +461,9 @@ document.addEventListener('DOMContentLoaded', function() {
     async function loadResources() {
         try {
             const response = await fetch('/data/resources.json');
-            const resourcesData = await response.json();
-            const flatResources = [];
-            resourcesData.forEach((section) => {
-                section.subsections.forEach((subsection) => {
-                    subsection.resources.forEach((resource) => {
-                        flatResources.push({
-                            name: resource.name,
-                            url: resource.url,
-                            date: subsection.date,
-                            resourceType: subsection.title
-                        });
-                    });
-                });
-            });
+            const resources = await response.json();
             const container = document.getElementById('resources-container');
-            flatResources.forEach((resource) => {
+            resources.forEach((resource) => {
                 const link = document.createElement('a');
                 link.href = resource.url;
                 link.className = 'resource-box';
@@ -484,13 +471,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 link.rel = 'noopener';
                 const yearSpan = document.createElement('span');
                 yearSpan.className = 'resource-box-year';
-                yearSpan.textContent = resource.date;
+                yearSpan.textContent = resource.year;
                 const nameSpan = document.createElement('span');
                 nameSpan.className = 'resource-box-name';
                 nameSpan.textContent = resource.name;
                 const typeSpan = document.createElement('span');
                 typeSpan.className = 'resource-box-type';
-                typeSpan.textContent = resource.resourceType;
+                typeSpan.textContent = resource.title;
                 link.appendChild(yearSpan);
                 link.appendChild(nameSpan);
                 link.appendChild(typeSpan);
