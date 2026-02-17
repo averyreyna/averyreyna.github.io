@@ -508,18 +508,14 @@ document.addEventListener('DOMContentLoaded', function() {
             const teaching = await response.json();
             const container = document.getElementById('teaching-container');
             teaching.forEach((entry) => {
-                const semesterCell = document.createElement('span');
-                semesterCell.className = 'teaching-cell teaching-semester';
-                semesterCell.textContent = entry.semester;
-                const positionCell = document.createElement('span');
-                positionCell.className = 'teaching-cell teaching-position';
-                positionCell.textContent = entry.position;
-                const courseCell = document.createElement('span');
-                courseCell.className = 'teaching-cell teaching-course';
-                courseCell.textContent = entry.course;
-                container.appendChild(semesterCell);
-                container.appendChild(positionCell);
-                container.appendChild(courseCell);
+                const item = createExperienceEntry({
+                    header: entry.course,
+                    subheader: entry.position,
+                    meta: entry.semester,
+                    location: null,
+                    description: null
+                });
+                container.appendChild(item);
             });
         } catch (error) {
             console.error('Error loading teaching:', error);
