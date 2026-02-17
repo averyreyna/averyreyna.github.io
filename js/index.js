@@ -1,28 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     initLazyLoading();
     
-    const navToggle = document.getElementById('nav-toggle');
-    const navDropdown = document.getElementById('nav-dropdown');
-    const navArrow = document.querySelector('.nav-arrow');
-    
-    navToggle.addEventListener('click', function() {
-        const isHidden = navDropdown.classList.contains('hidden');
-        navDropdown.classList.toggle('hidden');
-        
-        if (isHidden) {
-            navArrow.textContent = '−';
-        } else {
-            navArrow.textContent = '+';
-        }
-    });
-    
-    document.addEventListener('click', function(event) {
-        if (!navToggle.contains(event.target) && !navDropdown.contains(event.target)) {
-            navDropdown.classList.add('hidden');
-            navArrow.textContent = '+';
-        }
-    });
-    
     async function loadAnnouncements() {
         try {
             const response = await fetch('/data/announcements.json');
@@ -36,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 announcementDiv.setAttribute('data-index', index);
                 
                 announcementDiv.innerHTML = `
-                    <h3 class="announcement-title">
+                    <h3 class="announcement-title announcement-date">
                         ${announcement.title}
                     </h3>
                     <p class="announcement-desc">
@@ -159,6 +137,50 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     loadRecentPublications();
+    
+    async function loadResources() {
+        try {
+            const response = await fetch('/data/resources.json');
+            const resourcesData = await response.json();
+            const flatResources = [];
+            resourcesData.forEach((section) => {
+                section.subsections.forEach((subsection) => {
+                    subsection.resources.forEach((resource) => {
+                        flatResources.push({
+                            name: resource.name,
+                            url: resource.url,
+                            date: subsection.date,
+                            resourceType: subsection.title
+                        });
+                    });
+                });
+            });
+            const container = document.getElementById('resources-container');
+            flatResources.forEach((resource) => {
+                const link = document.createElement('a');
+                link.href = resource.url;
+                link.className = 'resource-box';
+                link.target = '_blank';
+                link.rel = 'noopener';
+                const yearSpan = document.createElement('span');
+                yearSpan.className = 'resource-box-year';
+                yearSpan.textContent = resource.date;
+                const nameSpan = document.createElement('span');
+                nameSpan.className = 'resource-box-name';
+                nameSpan.textContent = resource.name;
+                const typeSpan = document.createElement('span');
+                typeSpan.className = 'resource-box-type';
+                typeSpan.textContent = resource.resourceType;
+                link.appendChild(yearSpan);
+                link.appendChild(nameSpan);
+                link.appendChild(typeSpan);
+                container.appendChild(link);
+            });
+        } catch (error) {
+            console.error('Error loading resources:', error);
+        }
+    }
+    loadResources();
     
     function initLazyLoading() {
         if ('IntersectionObserver' in window) {
