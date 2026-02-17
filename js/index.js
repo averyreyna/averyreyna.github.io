@@ -136,13 +136,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     async function loadExperience() {
         try {
-            const [workExperience, researchExperience] = await Promise.all([
-                fetch('/data/work_experience.json').then(r => r.ok ? r.json() : Promise.reject(new Error('work_experience'))),
-                fetch('/data/research_experience.json').then(r => r.ok ? r.json() : Promise.reject(new Error('research_experience')))
-            ]);
-            const combined = [...workExperience, ...researchExperience];
+            const response = await fetch('/data/experience.json');
+            const experience = await response.json();
             const container = document.getElementById('experience-container');
-            combined.forEach(entry => {
+            experience.forEach(entry => {
                 const item = createExperienceEntry({
                     header: entry.organization,
                     subheader: entry.role,
@@ -159,7 +156,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function initializeExperiencePagination() {
-        const items = document.querySelectorAll('.experience-entry-item');
+        const experienceContainer = document.getElementById('experience-container');
+        const items = experienceContainer.querySelectorAll('.experience-entry-item');
         const prevBtn = document.getElementById('experience-prev-btn');
         const nextBtn = document.getElementById('experience-next-btn');
         const pageIndicator = document.getElementById('experience-page-indicator');
@@ -276,9 +274,129 @@ document.addEventListener('DOMContentLoaded', function() {
         
         showPage(currentPage);
     }
+
+    async function loadAwards() {
+        try {
+            const response = await fetch('/data/awards.json');
+            const awards = await response.json();
+            const container = document.getElementById('awards-container');
+            awards.forEach((award) => {
+                const item = createExperienceEntry({
+                    header: award.title,
+                    subheader: award.organization,
+                    meta: award.year,
+                    location: null,
+                    description: null
+                });
+                container.appendChild(item);
+            });
+        } catch (error) {
+            console.error('Error loading awards:', error);
+        }
+    }
     
     loadAnnouncements();
+    loadAwards();
     loadExperience();
+
+    async function loadPublicScholarship() {
+        try {
+            const response = await fetch('/data/public_scholarship.json');
+            const articles = await response.json();
+            const container = document.getElementById('public-scholarship-container');
+            articles.forEach((article) => {
+                const articleDiv = document.createElement('div');
+                articleDiv.className = 'experience-item';
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'experience-content';
+                const linksHtml = article.links.map(link => {
+                    if (link.italic) {
+                        return `<span class="text-gray-500 text-xs italic">${link.text}</span>`;
+                    }
+                    return `<a href="${link.url}" class="paper-link text-gray-500 text-xs" target="_blank" rel="noopener">${link.text}</a>`;
+                }).join('');
+                contentDiv.innerHTML = `
+                    <div class="experience-header">
+                        <span class="font-semibold text-gray-900 leading-tight">${article.title}</span>
+                    </div>
+                    <span class="text-xs text-gray-500">${article.venue}</span>
+                    <span class="text-xs text-gray-700">${article.authors}</span>
+                    <span class="flex flex-row flex-wrap gap-2">
+                        ${linksHtml}
+                    </span>
+                `;
+                articleDiv.appendChild(contentDiv);
+                container.appendChild(articleDiv);
+            });
+        } catch (error) {
+            console.error('Error loading public scholarship:', error);
+        }
+    }
+    loadPublicScholarship();
+
+    async function loadMedia() {
+        try {
+            const response = await fetch('/data/media.json');
+            const items = await response.json();
+            const container = document.getElementById('media-container');
+            items.forEach((item) => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'experience-item';
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'experience-content';
+                const linksHtml = item.links.map(link =>
+                    `<a href="${link.url}" class="paper-link text-gray-500 text-xs" target="_blank" rel="noopener">${link.text}</a>`
+                ).join('');
+                contentDiv.innerHTML = `
+                    <div class="experience-header">
+                        <span class="font-semibold text-gray-900 leading-tight">${item.title}</span>
+                    </div>
+                    ${item.series ? `<span class="text-xs text-gray-500">${item.series}</span>` : ''}
+                    <span class="flex flex-row flex-wrap gap-2">
+                        ${linksHtml}
+                    </span>
+                `;
+                itemDiv.appendChild(contentDiv);
+                container.appendChild(itemDiv);
+            });
+        } catch (error) {
+            console.error('Error loading media:', error);
+        }
+    }
+
+    async function loadPresentations() {
+        try {
+            const response = await fetch('/data/presentations.json');
+            const presentations = await response.json();
+            const container = document.getElementById('presentations-container');
+            presentations.forEach((presentation) => {
+                const presDiv = document.createElement('div');
+                presDiv.className = 'experience-item';
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'experience-content';
+                const linksHtml = presentation.links.map(link =>
+                    `<a href="${link.url}" class="paper-link text-gray-500 text-xs" target="_blank" rel="noopener">${link.text}</a>`
+                ).join('');
+                contentDiv.innerHTML = `
+                    <div class="experience-header">
+                        <span class="font-semibold text-gray-900 leading-tight">${presentation.title}</span>
+                    </div>
+                    <span class="text-xs text-gray-500">${presentation.venue}</span>
+                    <span class="text-xs text-gray-700">${presentation.authors}</span>
+                    <span class="flex flex-row flex-wrap gap-2">
+                        ${linksHtml}
+                    </span>
+                `;
+                presDiv.appendChild(contentDiv);
+                container.appendChild(presDiv);
+            });
+        } catch (error) {
+            console.error('Error loading presentations:', error);
+        }
+    }
+
+    loadMedia();
+    loadPresentations();
     
     async function loadRecentPublications() {
         try {
@@ -383,6 +501,52 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     loadResources();
+
+    async function loadTeaching() {
+        try {
+            const response = await fetch('/data/teaching.json');
+            const teaching = await response.json();
+            const container = document.getElementById('teaching-container');
+            teaching.forEach((entry) => {
+                const semesterCell = document.createElement('span');
+                semesterCell.className = 'teaching-cell teaching-semester';
+                semesterCell.textContent = entry.semester;
+                const positionCell = document.createElement('span');
+                positionCell.className = 'teaching-cell teaching-position';
+                positionCell.textContent = entry.position;
+                const courseCell = document.createElement('span');
+                courseCell.className = 'teaching-cell teaching-course';
+                courseCell.textContent = entry.course;
+                container.appendChild(semesterCell);
+                container.appendChild(positionCell);
+                container.appendChild(courseCell);
+            });
+        } catch (error) {
+            console.error('Error loading teaching:', error);
+        }
+    }
+    loadTeaching();
+
+    async function loadVolunteering() {
+        try {
+            const response = await fetch('/data/volunteering.json');
+            const volunteering = await response.json();
+            const container = document.getElementById('volunteering-container');
+            volunteering.forEach((entry) => {
+                const item = createExperienceEntry({
+                    header: entry.organization,
+                    subheader: entry.role,
+                    meta: entry.dates,
+                    location: entry.location,
+                    description: entry.description
+                });
+                container.appendChild(item);
+            });
+        } catch (error) {
+            console.error('Error loading volunteering:', error);
+        }
+    }
+    loadVolunteering();
     
     function initLazyLoading() {
         if ('IntersectionObserver' in window) {

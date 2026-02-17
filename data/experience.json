@@ -1,7 +1,7 @@
 [
   {
     "organization": "University of Kentucky",
-    "role": "Research Engineer",
+    "role": "Independent Researcher",
     "dates": "Jan 2026 - Present",
     "location": "Lexington, KY (Remote)",
     "description": "Placing a placeholder description here for now."
@@ -12,6 +12,20 @@
     "dates": "Jun 2025 - Present",
     "location": "La Jolla, CA (Remote)",
     "description": "Studied the agentic coding workflows of experienced developers in the <em>Foundation Interface Lab</em> under Haijun Xia."
+  },
+  {
+    "organization": "Self Adjoint Operator",
+    "role": "Software Designer",
+    "dates": "Jan 2025 - Present",
+    "location": "Various Locations",
+    "description": "Placing a placeholder description here for now."
+  },
+  {
+    "organization": "Capital One",
+    "role": "Software Engineer",
+    "dates": "Aug 2023 - Apr 2026",
+    "location": "McLean, VA",
+    "description": "Became an enterprise-ready developer in six months as part of the CODA 13 cohort. Graduated into TDP after completing my Dojo project in Cyber Intel building a MERN stack feature for a security remediation platform. Spent my first rotation in Cyber IAM wearing many hats (frontend, design, infrastructure, etc.) maintaining custom authorization plugins, and ended up finishing the program in Cyber D&M as a full stack engineer for our self-service platform."
   },
   {
     "organization": "University of Central Florida",
@@ -33,6 +47,19 @@
     "dates": "Jun 2021 - Aug 2021",
     "location": "Tacoma, WA",
     "description": "In <em>Spatial Models and Electoral Distrciting</em>, I applied TDA algorithms on ACS datasets from Mecklenburg County to identify communities of interest and collaborated with Jim Thatcher and Courtney Thatcher from the University of Puget Sound."
+  },
+  {
+    "organization": "Progressive Turnout Project",
+    "role": "Field Representative",
+    "dates": "Jun 2020 - Dec 2020",
+    "location": "Orlando, FL",
+    "description": "Called low-propensity voters, handwrote outreach letters, and tried my best to get Democratic candidates down the ballot elected across Florida, Georgia, and Texas."
+  },
+  {
+    "organization": "Various Companies",
+    "role": "Various Internships",
+    "dates": "Jan 2020 - Aug 2023",
+    "location": "Various Locations",
+    "description": "Including: PMBF Program, UNA-Orlando, BallotReady, The COVID-19 Tracking Project, Council on Foreign Relations, the Hub Project, Swing Left, New America, ActBlue, KRC Research, and ActBlue Technical Services."
   }
 ]
-
