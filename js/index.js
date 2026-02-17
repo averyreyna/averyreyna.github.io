@@ -1,6 +1,207 @@
 document.addEventListener('DOMContentLoaded', function() {
     initLazyLoading();
     
+    function italicizeCompanies(text) {
+        const companies = [
+            'PMBF Program',
+            'UNA-Orlando',
+            'BallotReady',
+            'The COVID-19 Tracking Project',
+            'Council on Foreign Relations',
+            'the Hub Project',
+            'Swing Left',
+            'New America',
+            'ActBlue',
+            'KRC Research',
+            'ActBlue Technical Services',
+            'Technical Services'
+        ];
+        let processedText = text;
+        companies.sort((a, b) => b.length - a.length);
+        companies.forEach(company => {
+            const escapedCompany = company.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            const regex = new RegExp(`\\b${escapedCompany}\\b`, 'gi');
+            processedText = processedText.replace(regex, `<em>${company}</em>`);
+        });
+        return processedText;
+    }
+
+    function createExperienceEntry({ header, subheader, meta, description, location }) {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'experience-item experience-entry-item';
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'experience-content';
+
+        const headerDiv = document.createElement('div');
+        headerDiv.className = 'experience-header';
+        const headerSpan = document.createElement('span');
+        headerSpan.className = 'font-semibold text-gray-900 leading-tight';
+        headerSpan.textContent = header;
+        headerDiv.appendChild(headerSpan);
+        contentDiv.appendChild(headerDiv);
+
+        if (subheader || meta) {
+            const positionDatesDiv = document.createElement('div');
+            positionDatesDiv.className = 'flex flex-row items-start justify-between gap-2';
+            if (subheader) {
+                const subheaderSpan = document.createElement('span');
+                subheaderSpan.className = 'block text-xs text-gray-700';
+                subheaderSpan.textContent = subheader;
+                positionDatesDiv.appendChild(subheaderSpan);
+            } else {
+                const subheaderPlaceholder = document.createElement('span');
+                subheaderPlaceholder.className = 'block text-xs text-gray-700';
+                subheaderPlaceholder.innerHTML = '&nbsp;';
+                positionDatesDiv.appendChild(subheaderPlaceholder);
+            }
+            if (meta) {
+                const metaSpan = document.createElement('span');
+                metaSpan.className = 'block text-xs text-gray-500 whitespace-nowrap';
+                metaSpan.textContent = meta;
+                positionDatesDiv.appendChild(metaSpan);
+            }
+            contentDiv.appendChild(positionDatesDiv);
+        }
+
+        if (description || location) {
+            const aboutLocationDiv = document.createElement('div');
+            aboutLocationDiv.className = 'flex flex-row items-center justify-between gap-2';
+            let descriptionDiv = null;
+
+            if (description) {
+                const aboutContainer = document.createElement('div');
+                aboutContainer.className = 'flex flex-row items-center';
+                aboutContainer.style.cursor = 'pointer';
+                const aboutText = document.createElement('span');
+                aboutText.className = 'paper-link';
+                aboutText.textContent = 'View';
+                aboutContainer.appendChild(aboutText);
+
+                descriptionDiv = document.createElement('div');
+                descriptionDiv.className = 'cv-description-content hidden';
+                if (description.includes('\n')) {
+                    const descLines = description.split('\n').filter(line => line.trim());
+                    descriptionDiv.style.display = 'flex';
+                    descriptionDiv.style.flexDirection = 'column';
+                    descriptionDiv.style.gap = '0.05rem';
+                    descLines.forEach(line => {
+                        const paragraph = document.createElement('div');
+                        paragraph.className = 'text-xs text-gray-700';
+                        paragraph.style.lineHeight = '1';
+                        paragraph.style.margin = '0';
+                        paragraph.innerHTML = italicizeCompanies(line.trim());
+                        descriptionDiv.appendChild(paragraph);
+                    });
+                } else {
+                    const descriptionText = document.createElement('div');
+                    descriptionText.className = 'text-xs text-gray-700';
+                    descriptionText.style.lineHeight = '1';
+                    descriptionText.style.margin = '0';
+                    descriptionText.innerHTML = italicizeCompanies(description.trim());
+                    descriptionDiv.appendChild(descriptionText);
+                }
+
+                aboutContainer.addEventListener('click', function() {
+                    const isHidden = descriptionDiv.classList.contains('hidden');
+                    if (isHidden) {
+                        descriptionDiv.classList.remove('hidden');
+                        aboutText.textContent = 'Hide';
+                    } else {
+                        descriptionDiv.classList.add('hidden');
+                        aboutText.textContent = 'View';
+                    }
+                });
+                aboutLocationDiv.appendChild(aboutContainer);
+            }
+
+            if (location) {
+                const locationSpan = document.createElement('span');
+                locationSpan.className = 'block text-xs text-gray-500 whitespace-nowrap';
+                locationSpan.textContent = location;
+                aboutLocationDiv.appendChild(locationSpan);
+            } else {
+                const emptySpan = document.createElement('span');
+                emptySpan.innerHTML = '&nbsp;';
+                aboutLocationDiv.appendChild(emptySpan);
+            }
+            contentDiv.appendChild(aboutLocationDiv);
+            if (descriptionDiv) {
+                contentDiv.appendChild(descriptionDiv);
+            }
+        }
+
+        itemDiv.appendChild(contentDiv);
+        return itemDiv;
+    }
+
+    async function loadExperience() {
+        try {
+            const [workExperience, researchExperience] = await Promise.all([
+                fetch('/data/work_experience.json').then(r => r.ok ? r.json() : Promise.reject(new Error('work_experience'))),
+                fetch('/data/research_experience.json').then(r => r.ok ? r.json() : Promise.reject(new Error('research_experience')))
+            ]);
+            const combined = [...workExperience, ...researchExperience];
+            const container = document.getElementById('experience-container');
+            combined.forEach(entry => {
+                const item = createExperienceEntry({
+                    header: entry.organization,
+                    subheader: entry.role,
+                    meta: entry.dates,
+                    location: entry.location,
+                    description: entry.description
+                });
+                container.appendChild(item);
+            });
+            initializeExperiencePagination();
+        } catch (error) {
+            console.error('Error loading experience:', error);
+        }
+    }
+
+    function initializeExperiencePagination() {
+        const items = document.querySelectorAll('.experience-entry-item');
+        const prevBtn = document.getElementById('experience-prev-btn');
+        const nextBtn = document.getElementById('experience-next-btn');
+        const pageIndicator = document.getElementById('experience-page-indicator');
+
+        const itemsPerPage = 3;
+        const totalPages = Math.max(1, Math.ceil(items.length / itemsPerPage));
+        let currentPage = 1;
+
+        function showPage(page) {
+            items.forEach((item, index) => {
+                const startIndex = (page - 1) * itemsPerPage;
+                const endIndex = startIndex + itemsPerPage;
+
+                if (index >= startIndex && index < endIndex) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            prevBtn.disabled = page === 1;
+            nextBtn.disabled = page === totalPages;
+            pageIndicator.textContent = `${page} / ${totalPages}`;
+        }
+
+        prevBtn.addEventListener('click', function() {
+            if (currentPage > 1) {
+                currentPage--;
+                showPage(currentPage);
+            }
+        });
+
+        nextBtn.addEventListener('click', function() {
+            if (currentPage < totalPages) {
+                currentPage++;
+                showPage(currentPage);
+            }
+        });
+
+        showPage(currentPage);
+    }
+
     async function loadAnnouncements() {
         try {
             const response = await fetch('/data/announcements.json');
@@ -77,6 +278,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     loadAnnouncements();
+    loadExperience();
     
     async function loadRecentPublications() {
         try {
