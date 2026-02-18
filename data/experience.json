@@ -4,62 +4,62 @@
     "role": "Independent Researcher",
     "dates": "Jan 2026 - Present",
     "location": "Lexington, KY (Remote)",
-    "description": "Placing a placeholder description here for now."
+    "description": "Overseeing a new forecasting project."
   },
   {
     "organization": "UC San Diego",
     "role": "Independent Researcher",
     "dates": "Jun 2025 - Present",
     "location": "La Jolla, CA (Remote)",
-    "description": "Studied the agentic coding workflows of experienced developers in the <em>Foundation Interface Lab</em> under Haijun Xia."
+    "description": "Studied agentic workflows of experienced developers."
   },
   {
     "organization": "Self Adjoint Operator",
     "role": "Software Designer",
     "dates": "Jan 2025 - Present",
     "location": "Various Locations",
-    "description": "Placing a placeholder description here for now."
+    "description": "Protoyping with GenAI/LLMs"
   },
   {
     "organization": "Capital One",
     "role": "Software Engineer",
-    "dates": "Aug 2023 - Apr 2026",
+    "dates": "Aug 2023 - Present",
     "location": "McLean, VA",
-    "description": "Became an enterprise-ready developer in six months as part of the CODA 13 cohort. Graduated into TDP after completing my Dojo project in Cyber Intel building a MERN stack feature for a security remediation platform. Spent my first rotation in Cyber IAM wearing many hats (frontend, design, infrastructure, etc.) maintaining custom authorization plugins, and ended up finishing the program in Cyber D&M as a full stack engineer for our self-service platform."
-  },
-  {
-    "organization": "University of Central Florida",
-    "role": "Undergraduate Researcher",
-    "dates": "Jan 2021 - May 2023",
-    "location": "Orlando, FL",
-    "description": "Started my research career in the applied sociology field with Amy Donley building maps for drug policy white papers in the <em>ISBS</em>. Joined the <em>STIR Lab</em> under Pamela Wisniewski shortly after to help with the IGDD project, which then turned into MOSafely. Finally, worked with Jonathan Powell to maintain <em>CoupCast</em> and wrote some articles with Salah Ben Hammou, his PhD student."
-  },
-  {
-    "organization": "XR Access",
-    "role": "REU Participant",
-    "dates": "Jun 2022 - Aug 2022",
-    "location": "New York, NY",
-    "description": "As part of <em>Making Augmented and Virtual Reality Accessible</em>, I built assistive technology prototypes for blind and low vision users in the <em>CEAL Lab</em> under Brian Smith."
-  },
-  {
-    "organization": "University of Washington Tacoma",
-    "role": "REU Participant",
-    "dates": "Jun 2021 - Aug 2021",
-    "location": "Tacoma, WA",
-    "description": "In <em>Spatial Models and Electoral Distrciting</em>, I applied TDA algorithms on ACS datasets from Mecklenburg County to identify communities of interest and collaborated with Jim Thatcher and Courtney Thatcher from the University of Puget Sound."
-  },
-  {
-    "organization": "Progressive Turnout Project",
-    "role": "Field Representative",
-    "dates": "Jun 2020 - Dec 2020",
-    "location": "Orlando, FL",
-    "description": "Called low-propensity voters, handwrote outreach letters, and tried my best to get Democratic candidates down the ballot elected across Florida, Georgia, and Texas."
+    "description": "CODA 13 graduate; TDP in Cyber IAM and D&M."
   },
   {
     "organization": "Various Companies",
     "role": "Various Internships",
     "dates": "Jan 2020 - Aug 2023",
     "location": "Various Locations",
-    "description": "Including: PMBF Program, UNA-Orlando, BallotReady, The COVID-19 Tracking Project, Council on Foreign Relations, the Hub Project, Swing Left, New America, ActBlue, KRC Research, and ActBlue Technical Services."
+    "description": "Internships across policy, tech, and research."
+  },
+  {
+    "organization": "University of Central Florida",
+    "role": "Undergraduate Researcher",
+    "dates": "Jan 2021 - May 2023",
+    "location": "Orlando, FL",
+    "description": "Applied sociology, HCI, and CSS research."
+  },
+  {
+    "organization": "XR Access",
+    "role": "REU Participant",
+    "dates": "Jun 2022 - Aug 2022",
+    "location": "New York, NY",
+    "description": "Assistive tech prototypes for BLV users."
+  },
+  {
+    "organization": "University of Washington Tacoma",
+    "role": "REU Participant",
+    "dates": "Jun 2021 - Aug 2021",
+    "location": "Tacoma, WA",
+    "description": "TDA on ACS data for communities of interest."
+  },
+  {
+    "organization": "Progressive Turnout Project",
+    "role": "Field Representative",
+    "dates": "Jun 2020 - Dec 2020",
+    "location": "Orlando, FL",
+    "description": "Voter outreach for down-ballot Democrats."
   }
 ]
