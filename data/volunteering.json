@@ -1,17 +1,1 @@
-[
-  {
-    "organization": "Knight Hacks",
-    "role": "Director of UX Research",
-    "dates": "Aug 2022 - May 2023",
-    "location": "Orlando, FL",
-    "description": "Founded the 10-person team to help establish a design system, conduct interviews with club members, and overall improve our annual hackathon experience. Previously organized technical workshops for students on-campus and wrote Go and React code as a backend turned frontend engineer on the development team."
-  },
-  {
-    "organization": "UCF Office of Undergraduate Research",
-    "role": "Student Leader",
-    "dates": "Aug 2021 - May 2022",
-    "location": "Orlando, FL",
-    "description": "Served on the Student Undergraduate Research Council supporting students who were interested in research by tabling at on-campus events, speaking on panels, and running peer mentoring sessions."
-  }
-]
-
+[{"organization":"Knight Hacks","role":"Director of UX Research","dates":"Aug 2022 - May 2023","location":"Orlando, FL","description":"Founded UX research team; design system and hackathon."},{"organization":"UCF Office of Undergraduate Research","role":"Student Leader","dates":"Aug 2021 - May 2022","location":"Orlando, FL","description":"Research council: tabling, panels, peer mentoring."}]
