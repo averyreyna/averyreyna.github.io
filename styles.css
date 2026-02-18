@@ -291,6 +291,22 @@ footer {
   padding: 0 1rem;
 }
 
+.footer-text {
+  font-size: 0.65rem;
+}
+
+.footer-text--small {
+  font-size: 0.55rem;
+}
+
+.footer-icons {
+  font-size: 0.7rem;
+}
+
+.footer-icons a {
+  font-size: inherit;
+}
+
 /* headings & sections */
 .research-heading {
   display: flex;
