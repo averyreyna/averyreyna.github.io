@@ -1,11 +1,4 @@
 /* reset & base styles */
-.no-underline {
-    text-decoration: none !important;
-}
-
-.nav-item {
-    text-decoration: none !important;
-}
 html {
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -18,7 +11,7 @@ html::-webkit-scrollbar {
 body {
     scrollbar-width: none;
     -ms-overflow-style: none;
-    font-family: 'Planet', sans-serif;
+    font-family: 'ABC Favorit Condensed', sans-serif;
     background: #fff;
     min-height: 100vh;
     margin: 0;
@@ -104,8 +97,53 @@ body::-webkit-scrollbar {
     font-display: swap;
 }
 
+/* ABC Favorit Mono - headings */
+@font-face {
+    font-family: 'ABC Favorit Mono';
+    src: url('/assets/files/fonts/ABC%20Favorit%20Mono/ABCFavoritMono-Regular-Trial.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ABC Favorit Mono';
+    src: url('/assets/files/fonts/ABC%20Favorit%20Mono/ABCFavoritMono-Bold-Trial.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ABC Favorit Condensed - body */
+@font-face {
+    font-family: 'ABC Favorit Condensed';
+    src: url('/assets/files/fonts/ABC%20Favorit%20Condensed/ABCFavoritCondensed-Regular-Trial.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ABC Favorit Condensed';
+    src: url('/assets/files/fonts/ABC%20Favorit%20Condensed/ABCFavoritCondensed-Bold-Trial.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
 .font-diatype {
-    font-family: 'Planet', sans-serif;
+    font-family: 'ABC Favorit Condensed', sans-serif;
+}
+
+/* ABC Favorit OpenType alternates (see https://abcdinamo.com/typefaces/favorit)
+   ss01: alternate a (single-storey) | ss02: alternate G | ss03: alternate R
+   ss04: alternate y | ss05: alternate & | ss06: alternate ? | onum: oldstyle figures */
+body,
+.font-diatype,
+.main-heading-semi-mono,
+.section-heading-semi-mono,
+.announcement-title {
+    font-feature-settings: "ss01" 1, "ss02" 1, "ss03" 1, "ss04" 1, "ss05" 1, "ss06" 1, "onum" 1;
 }
 
 /* general typography & links */
@@ -172,16 +210,8 @@ h1 a {
     content: none;
 }
 
-.resource-link {
-    text-decoration: none !important;
-}
-
-.nav-link-active {
-  font-weight: 700;
-}
-
 h1 {
-    font-family: 'Planet', sans-serif;
+    font-family: 'ABC Favorit Mono', monospace;
     font-weight: bold;
     font-size: 2rem;
     margin-bottom: 0.5rem;
@@ -223,48 +253,6 @@ p, li {
     font-weight: 600;
 }
 
-/* navigation */
-nav {
-    font-family: 'Planet', sans-serif;
-    border-bottom: none !important;
-    margin-bottom: 0;
-    position: relative;
-}
-
-nav ul {
-    list-style-type: none;
-    margin-left: 0;
-    padding-left: 0;
-}
-
-nav a {
-    color: #222;
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: 400;
-    transition: color 0.2s;
-}
-
-@media (min-width: 768px) {
-    nav a:hover {
-        color: #666;
-    }
-}
-
-.nav-selector {
-    position: relative;
-}
-
-.nav-dropdown {
-    position: absolute;
-    z-index: 9999;
-    background: white;
-    border: 1px solid #d1d5db;
-    border-radius: 0.5rem;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    min-width: 120px;
-}
-
 /* layout */
 header {
   background-color: #fff;
@@ -283,6 +271,10 @@ main {
 
 .main-container {
     text-align: left;
+}
+
+.main-container p {
+    text-align: justify;
 }
 
 footer {
@@ -307,25 +299,17 @@ footer {
   margin-top: 0.5rem;
   margin-bottom: 0.25rem;
   position: relative;
-}
-
-/* Add extra spacing for first research heading on cv and resources pages */
-.professional-summary + .research-heading {
-  margin-top: 1.5rem;
-}
-
-/* For resources page - first heading */
-#resources-container > .research-heading:first-child {
-  margin-top: 1.5rem;
+  width: 100%;
 }
 
 .research-heading::before {
-  content: '—';
-  color: #737373;
-  flex-shrink: 0;
-  line-height: 1;
-  display: inline-block;
-  vertical-align: middle;
+  content: '';
+  flex-grow: 1;
+  flex-shrink: 1;
+  min-width: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #737373);
+  align-self: center;
 }
 
 .research-heading .section-heading-semi-mono {
@@ -338,12 +322,12 @@ footer {
 }
 
 .main-heading-semi-mono {
-  font-family: 'Planet', sans-serif;
+  font-family: 'ABC Favorit Mono', monospace;
   font-weight: 700;
 }
 
 .section-heading-semi-mono {
-  font-family: 'Planet', sans-serif;
+  font-family: 'ABC Favorit Mono', monospace;
   font-weight: 700;
   font-size: 1.125rem;
 }
@@ -354,15 +338,14 @@ footer {
     text-decoration: none;
 }
 
-.professional-summary-text {
-    line-height: 1;
-    word-break: break-word;
-    margin-top: -0.25rem;
+.header-favicon {
+    display: flex;
+    align-items: center;
 }
 
-/* Page titles at top with descriptions */
-.professional-summary .text-base.font-medium {
-    font-family: 'Planet', sans-serif;
+.header-favicon img {
+    filter: grayscale(1);
+    opacity: 0.7;
 }
 
 /* profile image loading states */
@@ -450,11 +433,15 @@ footer {
 
 /* page-specific styles */
 .announcement-title {
-    font-family: 'Planet', sans-serif;
+    font-family: 'ABC Favorit Mono', monospace;
     font-weight: 700;
     font-size: 1rem;
     margin: 0;
     line-height: 1;
+}
+
+.announcement-date {
+    font-family: 'ABC Favorit Condensed', sans-serif;
 }
 
 .announcement-desc {
@@ -480,108 +467,9 @@ footer {
     padding-left: 1rem;
     padding-right: 1rem;
   }
-  
-  /* header adjustments for mobile */
-  .professional-summary {
-    margin-bottom: 1rem;
-  }
-  
-  .professional-summary .text-base {
-    font-size: 0.95rem;
-  }
-  
-  .professional-summary .text-xs {
-    font-size: 0.8rem;
-  }
 }
 
-/* companies hover effect */
-@media (min-width: 768px) {
-    .companies-hover-trigger:hover .companies-detail {
-        display: block;
-    }
-}
-
-.companies-detail.show {
-    display: block;
-}
-
-/* xr access hover effect */
-@media (min-width: 768px) {
-    .xr-access-hover-trigger:hover .xr-access-detail {
-        display: block;
-    }
-}
-
-.xr-access-detail.show {
-    display: block;
-}
-
-/* uw tacoma hover effect */
-@media (min-width: 768px) {
-    .uw-tacoma-hover-trigger:hover .uw-tacoma-detail {
-        display: block;
-    }
-}
-
-.uw-tacoma-detail.show {
-    display: block;
-}
-
-/* companies toggle button */
-.companies-toggle {
-    cursor: pointer;
-    transition: all 0.2s ease;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* When companies-toggle is combined with project-tag-inline, use tag styling */
-.companies-toggle.project-tag-inline {
-    padding: 0.05rem 0.2rem !important;
-    border: 1px solid #e5e5e5 !important;
-    background-color: #f5f5f5 !important;
-    color: #888 !important;
-    border-radius: 0.25rem !important;
-    font-size: 0.35rem !important;
-    font-weight: 500 !important;
-    min-width: auto !important;
-    height: auto !important;
-}
-
-@media (min-width: 768px) {
-    .companies-toggle.project-tag-inline:hover {
-        background-color: #f5f5f5 !important;
-        border-color: #e5e5e5 !important;
-        color: #888 !important;
-        opacity: 0.8;
-    }
-}
-
-.companies-toggle i {
-    transition: transform 0.2s ease;
-    display: inline-block;
-}
-
-.companies-toggle.active i {
-    transform: rotate(180deg);
-}
-
-.companies-list {
-    transition: all 0.2s ease;
-    overflow: hidden;
-}
-
-/* CV link icon styling */
-.cv-link-icon {
-    font-size: 0.65rem !important;
-    line-height: 1;
-    display: inline-flex;
-    align-items: center;
-}
-
-/* CV description content */
+/* expandable description content (experience section) */
 .cv-description-content {
     display: flex;
     flex-direction: column;
@@ -590,16 +478,6 @@ footer {
 
 .cv-description-content.hidden {
     display: none;
-}
-
-/* CV description arrow */
-.cv-description-arrow {
-    font-size: 0.65rem !important;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 1;
-    vertical-align: middle;
 }
 
 /* pagination alignment */
@@ -665,3 +543,85 @@ footer {
     transform: translateX(-50%);
   }
 }
+
+/* resources section - boxes same size as industry images, scrollable */
+.resources-scroll-wrapper {
+  overflow-x: auto;
+  overflow-y: hidden;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+
+.resources-scroll-wrapper::-webkit-scrollbar {
+  height: 6px;
+}
+
+.resources-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+  width: max-content;
+}
+
+.resource-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 130px;
+  height: 130px;
+  border-radius: 0.125rem;
+  border: 1px solid #737373;
+  padding: 0.5rem;
+  font-size: 0.75rem;
+  text-decoration: none;
+  color: #374151;
+  transition: color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.resource-box:hover {
+  color: #111827;
+}
+
+.resource-box,
+.resource-box * {
+  text-decoration: none !important;
+}
+
+.resource-box-year {
+  position: absolute;
+  top: 0.35rem;
+  left: 0.35rem;
+  font-size: 0.65rem;
+  color: #737373;
+  text-decoration: none;
+}
+
+.resource-box-name {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.2;
+  text-decoration: none;
+}
+
+.resource-box-type {
+  position: absolute;
+  bottom: 0.35rem;
+  right: 0.35rem;
+  font-size: 0.65rem;
+  color: #737373;
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .resource-box {
+    width: 100px;
+    height: 100px;
+    font-size: 0.7rem;
+  }
+}
+
