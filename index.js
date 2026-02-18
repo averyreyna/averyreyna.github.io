@@ -190,9 +190,33 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Error loading awards:', error);
         }
     }
+
+    async function loadEducation() {
+        try {
+            const response = await fetch('/data/education.json');
+            const education = await response.json();
+            const container = document.getElementById('education-container');
+            education.forEach((entry) => {
+                const description = entry.details && entry.details.length
+                    ? entry.details.join(', ')
+                    : null;
+                const item = createExperienceEntry({
+                    header: entry.institution,
+                    subheader: entry.degree,
+                    meta: entry.dates,
+                    location: entry.location,
+                    description: description
+                });
+                container.appendChild(item);
+            });
+        } catch (error) {
+            console.error('Error loading education:', error);
+        }
+    }
     
     loadAnnouncements();
     loadAwards();
+    loadEducation();
     loadExperience();
 
     async function loadPublicScholarship() {
@@ -395,12 +419,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 talkDiv.className = 'experience-item';
                 const contentDiv = document.createElement('div');
                 contentDiv.className = 'experience-content';
+                const linksHtml = talk.links ? talk.links.map(link =>
+                    `<a href="${link.url}" class="paper-link text-gray-500 text-xs" target="_blank" rel="noopener">${link.text}</a>`
+                ).join('') : '';
                 contentDiv.innerHTML = `
                     <div class="experience-header">
                         <span class="font-semibold text-gray-900 leading-tight">${talk.title}</span>
                     </div>
                     <span class="text-xs text-gray-500">${talk.venue}</span>
                     <span class="text-xs text-gray-700">${talk.authors}</span>
+                    ${linksHtml ? `<span class="flex flex-row flex-wrap gap-2">${linksHtml}</span>` : ''}
                 `;
                 talkDiv.appendChild(contentDiv);
                 container.appendChild(talkDiv);
