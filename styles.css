@@ -1,11 +1,4 @@
 /* reset & base styles */
-.no-underline {
-    text-decoration: none !important;
-}
-
-.nav-item {
-    text-decoration: none !important;
-}
 html {
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -217,14 +210,6 @@ h1 a {
     content: none;
 }
 
-.resource-link {
-    text-decoration: none !important;
-}
-
-.nav-link-active {
-  font-weight: 700;
-}
-
 h1 {
     font-family: 'ABC Favorit Mono', monospace;
     font-weight: bold;
@@ -266,34 +251,6 @@ p, li {
 
 .font-semibold {
     font-weight: 600;
-}
-
-/* navigation */
-nav {
-    font-family: 'Planet', sans-serif;
-    border-bottom: none !important;
-    margin-bottom: 0;
-    position: relative;
-}
-
-nav ul {
-    list-style-type: none;
-    margin-left: 0;
-    padding-left: 0;
-}
-
-nav a {
-    color: #222;
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: 400;
-    transition: color 0.2s;
-}
-
-@media (min-width: 768px) {
-    nav a:hover {
-        color: #666;
-    }
 }
 
 /* layout */
@@ -525,17 +482,14 @@ footer {
 
 /* pagination alignment */
 #prev-btn,
-#next-btn,
-#experience-prev-btn,
-#experience-next-btn {
+#next-btn {
     display: inline-flex;
     align-items: center;
     line-height: 1;
     vertical-align: middle;
 }
 
-#page-indicator,
-#experience-page-indicator {
+#page-indicator {
     display: inline-flex;
     align-items: center;
     line-height: 1;
