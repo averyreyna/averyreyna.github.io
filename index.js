@@ -385,6 +385,32 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     loadResources();
 
+    async function loadTalks() {
+        try {
+            const response = await fetch('/data/talks.json');
+            const talks = await response.json();
+            const container = document.getElementById('talks-container');
+            talks.forEach((talk) => {
+                const talkDiv = document.createElement('div');
+                talkDiv.className = 'experience-item';
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'experience-content';
+                contentDiv.innerHTML = `
+                    <div class="experience-header">
+                        <span class="font-semibold text-gray-900 leading-tight">${talk.title}</span>
+                    </div>
+                    <span class="text-xs text-gray-500">${talk.venue}</span>
+                    <span class="text-xs text-gray-700">${talk.authors}</span>
+                `;
+                talkDiv.appendChild(contentDiv);
+                container.appendChild(talkDiv);
+            });
+        } catch (error) {
+            console.error('Error loading talks:', error);
+        }
+    }
+    loadTalks();
+
     async function loadTeaching() {
         try {
             const response = await fetch('/data/teaching.json');
