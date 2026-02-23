@@ -1,14 +1,49 @@
 document.addEventListener('DOMContentLoaded', function() {
     initLazyLoading();
 
+    function stripHtml(str) {
+        const div = document.createElement('div');
+        div.innerHTML = str;
+        return div.textContent || div.innerText || '';
+    }
+
+    function buildLinksHtml(links, supportItalic) {
+        if (!links || !links.length) return '';
+        return links.map(link => {
+            if (supportItalic && link.italic) {
+                return `<span class="text-gray-500 text-xs italic">${link.text}</span>`;
+            }
+            return `<a href="${link.url}" class="paper-link text-gray-500 text-xs" target="_blank" rel="noopener">${link.text}</a>`;
+        }).join('');
+    }
+
+    function createArticleStyleEntry({ title, venue, series, authors, links, linksSupportItalic }) {
+        const entryDiv = document.createElement('div');
+        entryDiv.className = 'entry-item';
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'entry-content';
+        const linksHtml = buildLinksHtml(links, linksSupportItalic);
+        contentDiv.innerHTML = `
+                    <div class="entry-header">
+                        <span class="font-semibold text-gray-900 leading-tight">${title}</span>
+                    </div>
+                    ${venue ? `<span class="text-xs text-gray-500">${venue}</span>` : ''}
+                    ${series ? `<span class="text-xs text-gray-500">${series}</span>` : ''}
+                    ${authors ? `<span class="text-xs text-gray-700">${authors}</span>` : ''}
+                    ${linksHtml ? `<span class="flex flex-row flex-wrap gap-2">${linksHtml}</span>` : ''}
+                `;
+        entryDiv.appendChild(contentDiv);
+        return entryDiv;
+    }
+
     function createExperienceEntry({ header, subheader, meta, description, location }) {
         const itemDiv = document.createElement('div');
-        itemDiv.className = 'experience-item';
+        itemDiv.className = 'entry-item';
         const contentDiv = document.createElement('div');
-        contentDiv.className = 'experience-content';
+        contentDiv.className = 'entry-content';
 
         const headerDiv = document.createElement('div');
-        headerDiv.className = 'experience-header';
+        headerDiv.className = 'entry-header';
         const headerSpan = document.createElement('span');
         headerSpan.className = 'font-semibold text-gray-900 leading-tight';
         headerSpan.textContent = header;
@@ -43,11 +78,6 @@ document.addEventListener('DOMContentLoaded', function() {
             aboutLocationDiv.className = 'flex flex-row items-center justify-between gap-2';
 
             if (description) {
-                const stripHtml = (str) => {
-                    const div = document.createElement('div');
-                    div.innerHTML = str;
-                    return div.textContent || div.innerText || '';
-                };
                 const summarySpan = document.createElement('span');
                 summarySpan.className = 'block text-xs text-gray-700';
                 summarySpan.textContent = stripHtml(description.trim());
@@ -100,9 +130,7 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             const response = await fetch('/data/announcements.json');
             const announcements = await response.json();
-            
             const container = document.getElementById('announcements-container');
-            
             announcements.forEach((announcement, index) => {
                 const announcementDiv = document.createElement('div');
                 announcementDiv.className = 'announcement-item py-2';
@@ -225,28 +253,14 @@ document.addEventListener('DOMContentLoaded', function() {
             const articles = await response.json();
             const container = document.getElementById('public-scholarship-container');
             articles.forEach((article) => {
-                const articleDiv = document.createElement('div');
-                articleDiv.className = 'experience-item';
-                const contentDiv = document.createElement('div');
-                contentDiv.className = 'experience-content';
-                const linksHtml = article.links.map(link => {
-                    if (link.italic) {
-                        return `<span class="text-gray-500 text-xs italic">${link.text}</span>`;
-                    }
-                    return `<a href="${link.url}" class="paper-link text-gray-500 text-xs" target="_blank" rel="noopener">${link.text}</a>`;
-                }).join('');
-                contentDiv.innerHTML = `
-                    <div class="experience-header">
-                        <span class="font-semibold text-gray-900 leading-tight">${article.title}</span>
-                    </div>
-                    <span class="text-xs text-gray-500">${article.venue}</span>
-                    <span class="text-xs text-gray-700">${article.authors}</span>
-                    <span class="flex flex-row flex-wrap gap-2">
-                        ${linksHtml}
-                    </span>
-                `;
-                articleDiv.appendChild(contentDiv);
-                container.appendChild(articleDiv);
+                const entry = createArticleStyleEntry({
+                    title: article.title,
+                    venue: article.venue,
+                    authors: article.authors,
+                    links: article.links,
+                    linksSupportItalic: true
+                });
+                container.appendChild(entry);
             });
         } catch (error) {
             console.error('Error loading public scholarship:', error);
@@ -260,24 +274,13 @@ document.addEventListener('DOMContentLoaded', function() {
             const items = await response.json();
             const container = document.getElementById('media-container');
             items.forEach((item) => {
-                const itemDiv = document.createElement('div');
-                itemDiv.className = 'experience-item';
-                const contentDiv = document.createElement('div');
-                contentDiv.className = 'experience-content';
-                const linksHtml = item.links.map(link =>
-                    `<a href="${link.url}" class="paper-link text-gray-500 text-xs" target="_blank" rel="noopener">${link.text}</a>`
-                ).join('');
-                contentDiv.innerHTML = `
-                    <div class="experience-header">
-                        <span class="font-semibold text-gray-900 leading-tight">${item.title}</span>
-                    </div>
-                    ${item.series ? `<span class="text-xs text-gray-500">${item.series}</span>` : ''}
-                    <span class="flex flex-row flex-wrap gap-2">
-                        ${linksHtml}
-                    </span>
-                `;
-                itemDiv.appendChild(contentDiv);
-                container.appendChild(itemDiv);
+                const entry = createArticleStyleEntry({
+                    title: item.title,
+                    series: item.series || null,
+                    links: item.links,
+                    linksSupportItalic: false
+                });
+                container.appendChild(entry);
             });
         } catch (error) {
             console.error('Error loading media:', error);
@@ -290,25 +293,14 @@ document.addEventListener('DOMContentLoaded', function() {
             const presentations = await response.json();
             const container = document.getElementById('presentations-container');
             presentations.forEach((presentation) => {
-                const presDiv = document.createElement('div');
-                presDiv.className = 'experience-item';
-                const contentDiv = document.createElement('div');
-                contentDiv.className = 'experience-content';
-                const linksHtml = presentation.links.map(link =>
-                    `<a href="${link.url}" class="paper-link text-gray-500 text-xs" target="_blank" rel="noopener">${link.text}</a>`
-                ).join('');
-                contentDiv.innerHTML = `
-                    <div class="experience-header">
-                        <span class="font-semibold text-gray-900 leading-tight">${presentation.title}</span>
-                    </div>
-                    <span class="text-xs text-gray-500">${presentation.venue}</span>
-                    <span class="text-xs text-gray-700">${presentation.authors}</span>
-                    <span class="flex flex-row flex-wrap gap-2">
-                        ${linksHtml}
-                    </span>
-                `;
-                presDiv.appendChild(contentDiv);
-                container.appendChild(presDiv);
+                const entry = createArticleStyleEntry({
+                    title: presentation.title,
+                    venue: presentation.venue,
+                    authors: presentation.authors,
+                    links: presentation.links,
+                    linksSupportItalic: false
+                });
+                container.appendChild(entry);
             });
         } catch (error) {
             console.error('Error loading presentations:', error);
@@ -322,55 +314,26 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             const response = await fetch('/data/papers.json');
             const papers = await response.json();
-            
-            // Filter to only conference papers
+            // prefer conference papers; if fewer than 3, use first 3 from full list
             const conferencePapers = papers.filter(paper => {
                 const venue = paper.venue.toLowerCase();
                 return venue !== 'preprint' && !venue.includes('preprint') && !venue.includes('arxiv');
             });
-            
-            // If we have 3+ conference papers, use only those. Otherwise, take first 3 papers total (maintaining chronological order)
-            let recentPapers;
-            if (conferencePapers.length >= 3) {
-                recentPapers = conferencePapers.slice(0, 3);
-            } else {
-                // Take first 3 papers from original array (already in most-recent-first order)
-                recentPapers = papers.slice(0, 3);
-            }
-            
+            const recentPapers = conferencePapers.length >= 3
+                ? conferencePapers.slice(0, 3)
+                : papers.slice(0, 3);
+
             const container = document.getElementById('recent-publications-container');
-            
             recentPapers.forEach((paper) => {
-                const paperDiv = document.createElement('div');
-                paperDiv.className = 'experience-item';
-
-                const contentDiv = document.createElement('div');
-                contentDiv.className = 'experience-content';
-
-                const linksHtml = paper.links.map(link => {
-                    if (link.italic) {
-                        return `<span class="text-gray-500 text-xs italic">${link.text}</span>`;
-                    } else {
-                        return `<a href="${link.url}" class="paper-link text-gray-500 text-xs" target="_blank" rel="noopener">${link.text}</a>`;
-                    }
-                }).join('');
-                
-                contentDiv.innerHTML = `
-                    <div class="experience-header">
-                        <span class="font-semibold text-gray-900 leading-tight">${paper.title}</span>
-                    </div>
-                    <span class="text-xs text-gray-500">${paper.venue}</span>
-                    <span class="text-xs text-gray-700">${paper.authors}</span>
-                    <span class="flex flex-row flex-wrap gap-2">
-                        ${linksHtml}
-                    </span>
-                `;
-                
-                paperDiv.appendChild(contentDiv);
-                
-                container.appendChild(paperDiv);
+                const entry = createArticleStyleEntry({
+                    title: paper.title,
+                    venue: paper.venue,
+                    authors: paper.authors,
+                    links: paper.links,
+                    linksSupportItalic: true
+                });
+                container.appendChild(entry);
             });
-            
         } catch (error) {
             console.error('Error loading recent publications:', error);
         }
@@ -415,23 +378,14 @@ document.addEventListener('DOMContentLoaded', function() {
             const talks = await response.json();
             const container = document.getElementById('talks-container');
             talks.forEach((talk) => {
-                const talkDiv = document.createElement('div');
-                talkDiv.className = 'experience-item';
-                const contentDiv = document.createElement('div');
-                contentDiv.className = 'experience-content';
-                const linksHtml = talk.links ? talk.links.map(link =>
-                    `<a href="${link.url}" class="paper-link text-gray-500 text-xs" target="_blank" rel="noopener">${link.text}</a>`
-                ).join('') : '';
-                contentDiv.innerHTML = `
-                    <div class="experience-header">
-                        <span class="font-semibold text-gray-900 leading-tight">${talk.title}</span>
-                    </div>
-                    <span class="text-xs text-gray-500">${talk.venue}</span>
-                    <span class="text-xs text-gray-700">${talk.authors}</span>
-                    ${linksHtml ? `<span class="flex flex-row flex-wrap gap-2">${linksHtml}</span>` : ''}
-                `;
-                talkDiv.appendChild(contentDiv);
-                container.appendChild(talkDiv);
+                const entry = createArticleStyleEntry({
+                    title: talk.title,
+                    venue: talk.venue,
+                    authors: talk.authors,
+                    links: talk.links || [],
+                    linksSupportItalic: false
+                });
+                container.appendChild(entry);
             });
         } catch (error) {
             console.error('Error loading talks:', error);
@@ -482,6 +436,7 @@ document.addEventListener('DOMContentLoaded', function() {
     loadVolunteering();
     
     function initLazyLoading() {
+        const lazyImages = document.querySelectorAll('.lazy-load');
         if ('IntersectionObserver' in window) {
             const imageObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
@@ -495,11 +450,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 rootMargin: '50px 0px',
                 threshold: 0.1
             });
-            
-            const lazyImages = document.querySelectorAll('.lazy-load');
             lazyImages.forEach(img => imageObserver.observe(img));
         } else {
-            const lazyImages = document.querySelectorAll('.lazy-load');
             lazyImages.forEach(img => loadImage(img));
         }
     }

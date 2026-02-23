@@ -1,4 +1,4 @@
-/* reset & base styles */
+/* reset and base styles */
 html {
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -97,7 +97,7 @@ body::-webkit-scrollbar {
     font-display: swap;
 }
 
-/* ABC Favorit Mono - headings */
+/* abc favorit mono - headings */
 @font-face {
     font-family: 'ABC Favorit Mono';
     src: url('/assets/files/fonts/ABC%20Favorit%20Mono/ABCFavoritMono-Regular-Trial.woff2') format('woff2');
@@ -114,7 +114,7 @@ body::-webkit-scrollbar {
     font-display: swap;
 }
 
-/* ABC Favorit Condensed - body */
+/* abc favorit condensed - body */
 @font-face {
     font-family: 'ABC Favorit Condensed';
     src: url('/assets/files/fonts/ABC%20Favorit%20Condensed/ABCFavoritCondensed-Regular-Trial.woff') format('woff');
@@ -135,8 +135,8 @@ body::-webkit-scrollbar {
     font-family: 'ABC Favorit Condensed', sans-serif;
 }
 
-/* ABC Favorit OpenType alternates (see https://abcdinamo.com/typefaces/favorit)
-   ss01: alternate a (single-storey) | ss02: alternate G | ss03: alternate R
+/* abc favorit opentype alternates (see https://abcdinamo.com/typefaces/favorit)
+   ss01: alternate a (single-storey) | ss02: alternate g | ss03: alternate r
    ss04: alternate y | ss05: alternate & | ss06: alternate ? | onum: oldstyle figures */
 body,
 .font-diatype,
@@ -308,7 +308,7 @@ footer {
 }
 
 /* headings & sections */
-.research-heading {
+.section-heading {
   display: flex;
   align-items: center;
   gap: 0.65rem;
@@ -318,7 +318,7 @@ footer {
   width: 100%;
 }
 
-.research-heading::before {
+.section-heading::before {
   content: '';
   flex-grow: 1;
   flex-shrink: 1;
@@ -328,12 +328,12 @@ footer {
   align-self: center;
 }
 
-.research-heading .section-heading-semi-mono {
+.section-heading .section-heading-semi-mono {
   color: #0f172a;
   letter-spacing: 0.015em;
 }
 
-.research-heading-line {
+.section-heading-line {
   display: none;
 }
 
@@ -346,12 +346,6 @@ footer {
   font-family: 'ABC Favorit Mono', monospace;
   font-weight: 700;
   font-size: 1.125rem;
-}
-
-.header-link {
-    line-height: 1;
-    word-break: break-word;
-    text-decoration: none;
 }
 
 .header-favicon {
@@ -372,7 +366,6 @@ footer {
   will-change: opacity;
 }
 
-/* loading state for lazy-loaded profile image */
 .profile-image.lazy-load {
   opacity: 0;
   background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
@@ -380,7 +373,6 @@ footer {
   animation: loading-shimmer 1.5s infinite;
 }
 
-/* loaded state */
 .profile-image.loaded {
   opacity: 1;
   background: #e5e7eb;
@@ -388,14 +380,14 @@ footer {
 }
 
 /* experience & cv */
-.experience-item {
+.entry-item {
     position: relative;
     border-radius: 8px;
     padding: 8px 12px;
     margin: -8px -12px;
 }
 
-.experience-content {
+.entry-content {
     position: relative;
     flex: 1;
     display: flex;
@@ -403,34 +395,34 @@ footer {
     gap: 0.05rem;
 }
 
-.experience-content > * {
+.entry-content > * {
     line-height: 1;
     margin: 0;
 }
 
-.experience-content > span,
-.experience-content > div {
+.entry-content > span,
+.entry-content > div {
     line-height: 1;
     margin: 0;
 }
 
-.experience-content .text-xs {
+.entry-content .text-xs {
     line-height: 1;
     margin: 0;
     display: block;
 }
 
-.experience-content .flex {
+.entry-content .flex {
     margin: 0;
 }
 
-.experience-header {
+.entry-header {
     margin: 0;
     padding: 0;
     line-height: 1;
 }
 
-.experience-header span {
+.entry-header span {
     display: block;
     line-height: 1;
     margin: 0;
@@ -474,7 +466,6 @@ footer {
 
 /* mobile responsive styles */
 @media (max-width: 768px) {
-  /* adjust main container padding for mobile */
   main {
     padding: 0 1rem;
   }
@@ -485,7 +476,7 @@ footer {
   }
 }
 
-/* expandable description content (experience section) */
+/* expandable description content - experience section */
 .cv-description-content {
     display: flex;
     flex-direction: column;
@@ -512,7 +503,7 @@ footer {
     vertical-align: middle;
 }
 
-/* appendix carousel - single row of 5, auto-scrolls slowly */
+/* appendix carousel - single row, auto-scrolls slowly */
 .appendix-carousel-wrapper {
   max-width: 100%;
   border-radius: 0.125rem;
