@@ -38,6 +38,10 @@
       {
         "text": "Paper",
         "url": "/assets/files/papers/help_supporters.pdf"
+      },
+      {
+        "text": "Project",
+        "url": "https://help-supporters.vercel.app"
       }
     ]
   },
