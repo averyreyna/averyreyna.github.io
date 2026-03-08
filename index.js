@@ -372,6 +372,40 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     loadResources();
 
+    const DC_LAT = 38.9072;
+    const DC_LON = -77.0369;
+    const WEATHER_API = `https://api.open-meteo.com/v1/forecast?latitude=${DC_LAT}&longitude=${DC_LON}&current=temperature_2m,weather_code&temperature_unit=fahrenheit`;
+
+    function weatherCodeToWord(code) {
+        if (code === 0) return 'clear';
+        if (code === 1) return 'clear';
+        if (code === 2) return 'cloudy';
+        if (code === 3) return 'overcast';
+        if (code === 45 || code === 48) return 'foggy';
+        if (code >= 51 && code <= 67) return 'drizzly';
+        if (code >= 71 && code <= 77) return 'snowy';
+        if (code >= 80 && code <= 82) return 'rainy';
+        if (code >= 85 && code <= 86) return 'snowy';
+        if (code >= 95 && code <= 99) return 'stormy';
+        return 'cloudy';
+    }
+
+    async function loadWeather() {
+        const el = document.getElementById('weather-text');
+        if (!el) return;
+        try {
+            const response = await fetch(WEATHER_API);
+            const data = await response.json();
+            const temp = Math.round(data.current?.temperature_2m ?? 0);
+            const unit = data.current_units?.temperature_2m ?? '°F';
+            const word = weatherCodeToWord(data.current?.weather_code ?? 0);
+            el.textContent = `In DC, it's ${temp}${unit} and ${word}`;
+        } catch (err) {
+            el.textContent = 'In DC, —';
+        }
+    }
+    loadWeather();
+
     async function loadTalks() {
         try {
             const response = await fetch('/data/talks.json');
