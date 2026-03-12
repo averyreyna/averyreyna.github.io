@@ -1,14 +1,14 @@
 [
   {
     "organization": "University of Kentucky",
-    "role": "Independent Researcher",
+    "role": "Research Collaborator",
     "dates": "Jan 2026 - Present",
     "location": "Lexington, KY (Remote)",
     "description": "Technical Lead on CoupCats project"
   },
   {
     "organization": "UC San Diego",
-    "role": "Independent Researcher",
+    "role": "Research Collaborator",
     "dates": "Jun 2025 - Present",
     "location": "La Jolla, CA (Remote)",
     "description": "Studying GenUI/AI co-programming"
@@ -26,6 +26,13 @@
     "dates": "Aug 2023 - Apr 2026",
     "location": "McLean, VA",
     "description": "Dojo in Cyber Intel; TDP in Cyber IAM and D&M"
+  },
+  {
+    "organization": "MLCommons",
+    "role": "Research Collaborator",
+    "dates": "Jun 2024 - May 2025",
+    "location": "San Francisco, CA (Remote)",
+    "description": "AI Risk and Croissant working groups"
   },
   {
     "organization": "Various Companies",
