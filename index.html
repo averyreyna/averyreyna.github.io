@@ -12,15 +12,21 @@
 <body class="bg-white min-h-screen font-diatype">
     <header class="w-full">
         <div class="max-w-[800px] mx-auto px-4 py-2 flex items-center justify-between gap-3">
-            <div id="weather-widget" class="weather-widget" aria-live="polite">
-                <span id="weather-text">In DC, —</span>
-            </div>
+            <nav class="view-switcher" role="tablist" aria-label="View">
+                <button type="button" class="view-switcher__btn view-switcher__btn--active" role="tab" aria-label="Long-form view" aria-selected="true" aria-controls="view-longform" id="tab-longform" data-view="longform">
+                    <i class="fa-solid fa-align-left" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="view-switcher__btn" role="tab" aria-label="Block view" aria-selected="false" aria-controls="view-blocks" id="tab-blocks" data-view="blocks">
+                    <i class="fa-solid fa-th-large" aria-hidden="true"></i>
+                </button>
+            </nav>
             <h1 class="text-2xl font-bold main-heading-semi-mono">
                 avery reyna
             </h1>
         </div>
     </header>
     <main class="w-full max-w-[800px] mx-auto px-4 pb-8 pt-4 main-container">
+        <div id="view-longform" class="view-panel" aria-hidden="false">
         <div class="mb-8">
             <img data-src="/assets/files/me/avery_reyna_v2_catalyst.png" class="profile-image lazy-load w-[120px] h-[120px] md:w-[160px] md:h-[160px] object-cover rounded-sm mx-auto block mb-4" style="box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);" alt="Avery Reyna" />
             <p class="text-base text-gray-800 leading-snug text-justify">
@@ -238,6 +244,10 @@
         <div class="mb-8">
             <div id="volunteering-container" class="cv-entry-spacing text-justify">
             </div>
+        </div>
+        </div>
+        <div id="view-blocks" class="view-panel view-panel--hidden" aria-hidden="true">
+            <div id="block-grid" class="block-view__grid"></div>
         </div>
     </main>
     <footer>
