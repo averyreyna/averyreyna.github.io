@@ -1,0 +1,56 @@
+[
+  {
+    "id": "research",
+    "span": 2,
+    "title": "Research",
+    "meta": "Foundation Interface Lab, UC San Diego",
+    "description": "Studying AI-assisted programming via generative UIs with Bryan Min; previously agentic coding workflows with Brian Hempel.",
+    "url": "https://hci.ucsd.edu",
+    "linkLabel": "Lab"
+  },
+  {
+    "id": "design",
+    "span": 1,
+    "title": "Design",
+    "meta": "Self Adjoint Operator",
+    "description": "AI design studio. Prototypes that augment creative capabilities via GenAI and LLMs.",
+    "url": "https://selfadjointoperator.io",
+    "linkLabel": "Studio"
+  },
+  {
+    "id": "writing",
+    "span": 1,
+    "title": "Writing",
+    "meta": "Semantic Distance",
+    "description": "Blogging and public scholarship on tech, society, and research.",
+    "url": "https://semanticdistance.io",
+    "linkLabel": "Blog"
+  },
+  {
+    "id": "education",
+    "span": 3,
+    "title": "Education",
+    "meta": "UCF · UWT · Columbia",
+    "description": "BS Social Sciences, minors in Cultural Anthropology, Political Science, Sociology. REUs at UW Tacoma and CEAL Lab.",
+    "url": null,
+    "linkLabel": null
+  },
+  {
+    "id": "recent-work",
+    "span": 4,
+    "title": "Recent work",
+    "meta": "2024–2026",
+    "description": "Agentic coding paper (arXiv); CHI '24 Help Supporters; ASSETS '23; TDP at Capital One in Cyber IAM and D&M; design tools and internal platforms.",
+    "url": "https://arxiv.org/abs/2512.14012",
+    "linkLabel": "Agentic coding paper"
+  },
+  {
+    "id": "contact",
+    "span": 1,
+    "title": "Get in touch",
+    "meta": null,
+    "description": "CV, email, GitHub, Scholar, Instagram, LinkedIn.",
+    "url": "mailto:avery.reyna16@gmail.com",
+    "linkLabel": "Email"
+  }
+]

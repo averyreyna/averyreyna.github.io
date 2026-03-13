@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     initLazyLoading();
+    initViewSwitcher();
 
     function stripHtml(str) {
         const div = document.createElement('div');
@@ -372,40 +373,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     loadResources();
 
-    const DC_LAT = 38.9072;
-    const DC_LON = -77.0369;
-    const WEATHER_API = `https://api.open-meteo.com/v1/forecast?latitude=${DC_LAT}&longitude=${DC_LON}&current=temperature_2m,weather_code&temperature_unit=fahrenheit`;
-
-    function weatherCodeToWord(code) {
-        if (code === 0) return 'clear';
-        if (code === 1) return 'clear';
-        if (code === 2) return 'cloudy';
-        if (code === 3) return 'overcast';
-        if (code === 45 || code === 48) return 'foggy';
-        if (code >= 51 && code <= 67) return 'drizzly';
-        if (code >= 71 && code <= 77) return 'snowy';
-        if (code >= 80 && code <= 82) return 'rainy';
-        if (code >= 85 && code <= 86) return 'snowy';
-        if (code >= 95 && code <= 99) return 'stormy';
-        return 'cloudy';
-    }
-
-    async function loadWeather() {
-        const el = document.getElementById('weather-text');
-        if (!el) return;
-        try {
-            const response = await fetch(WEATHER_API);
-            const data = await response.json();
-            const temp = Math.round(data.current?.temperature_2m ?? 0);
-            const unit = data.current_units?.temperature_2m ?? '°F';
-            const word = weatherCodeToWord(data.current?.weather_code ?? 0);
-            el.textContent = `In DC, it's ${temp}${unit} and ${word}`;
-        } catch (err) {
-            el.textContent = 'In DC, —';
-        }
-    }
-    loadWeather();
-
     async function loadTalks() {
         try {
             const response = await fetch('/data/talks.json');
@@ -505,5 +472,144 @@ document.addEventListener('DOMContentLoaded', function() {
             img.classList.add('loaded');
         };
         imageLoader.src = src;
+    }
+
+    let blockViewLoaded = false;
+
+    function spanCycle(index, pattern) {
+        return pattern[index % pattern.length];
+    }
+
+    async function loadBlockView() {
+        const grid = document.getElementById('block-grid');
+        if (!grid || blockViewLoaded) return;
+        try {
+            const [curatedRes, experienceRes, papersRes, mediaRes, awardsRes] = await Promise.all([
+                fetch('/data/block_view.json'),
+                fetch('/data/experience.json').then(function(r) { return r; }).catch(function() { return null; }),
+                fetch('/data/papers.json').then(function(r) { return r; }).catch(function() { return null; }),
+                fetch('/data/media.json').then(function(r) { return r; }).catch(function() { return null; }),
+                fetch('/data/awards.json').then(function(r) { return r; }).catch(function() { return null; })
+            ]);
+            const curated = await curatedRes.json();
+            const experience = experienceRes && experienceRes.ok ? await experienceRes.json() : [];
+            const papers = papersRes && papersRes.ok ? await papersRes.json() : [];
+            const media = mediaRes && mediaRes.ok ? await mediaRes.json() : [];
+            const awards = awardsRes && awardsRes.ok ? await awardsRes.json() : [];
+
+            const experienceSpanPattern = [1, 2, 1, 3, 2, 1, 2, 1];
+            const papersSpanPattern = [2, 1, 2, 3, 1, 2];
+            const awardsSpanPattern = [1, 2, 1, 1];
+
+            const blocks = curated.slice();
+
+            experience.forEach(function(entry, i) {
+                blocks.push({
+                    title: entry.organization,
+                    meta: [entry.role, entry.dates].filter(Boolean).join(' · '),
+                    description: entry.description || null,
+                    url: null,
+                    linkLabel: null,
+                    span: spanCycle(i, experienceSpanPattern)
+                });
+            });
+
+            papers.forEach(function(paper, i) {
+                const firstLink = paper.links && paper.links[0];
+                blocks.push({
+                    title: paper.title,
+                    meta: paper.venue || null,
+                    description: paper.authors ? stripHtml(paper.authors) : null,
+                    url: firstLink ? firstLink.url : null,
+                    linkLabel: firstLink ? firstLink.text : null,
+                    span: spanCycle(i, papersSpanPattern)
+                });
+            });
+
+            media.forEach(function(item, i) {
+                const firstLink = item.links && item.links[0];
+                blocks.push({
+                    title: item.title,
+                    meta: item.series || null,
+                    description: null,
+                    url: firstLink ? firstLink.url : null,
+                    linkLabel: firstLink ? firstLink.text : null,
+                    span: i % 3 === 0 ? 2 : 1
+                });
+            });
+
+            awards.forEach(function(award, i) {
+                blocks.push({
+                    title: award.title,
+                    meta: [award.organization, award.year].filter(Boolean).join(' · '),
+                    description: null,
+                    url: null,
+                    linkLabel: null,
+                    span: spanCycle(i, awardsSpanPattern)
+                });
+            });
+
+            grid.innerHTML = '';
+            blocks.forEach(function(block) {
+                const span = Math.min(Math.max(block.span || 1, 1), 5);
+                const item = document.createElement('article');
+                item.className = 'block-view__item block-view__span-' + span;
+                if (block.id) item.id = 'block-' + block.id;
+                let html = '<h3 class="block-view__title">' + escapeHtml(block.title) + '</h3>';
+                if (block.meta) html += '<p class="block-view__meta">' + escapeHtml(block.meta) + '</p>';
+                if (block.description) html += '<p class="block-view__description">' + escapeHtml(block.description) + '</p>';
+                if (block.url && block.linkLabel) html += '<a href="' + escapeHtml(block.url) + '" class="block-view__link" target="_blank" rel="noopener">' + escapeHtml(block.linkLabel) + ' →</a>';
+                if (block.url && !block.linkLabel) html += '<a href="' + escapeHtml(block.url) + '" class="block-view__link" target="_blank" rel="noopener">Link →</a>';
+                item.innerHTML = html;
+                if (block.url && !block.linkLabel && !block.description) {
+                    const link = item.querySelector('.block-view__link');
+                    if (link) link.style.marginTop = 'auto';
+                }
+                grid.appendChild(item);
+            });
+            blockViewLoaded = true;
+        } catch (err) {
+            console.error('Error loading block view:', err);
+        }
+    }
+
+    function escapeHtml(str) {
+        if (!str) return '';
+        const div = document.createElement('div');
+        div.textContent = str;
+        return div.innerHTML;
+    }
+
+    function showView(viewName) {
+        const longform = document.getElementById('view-longform');
+        const blocks = document.getElementById('view-blocks');
+        const tabLongform = document.getElementById('tab-longform');
+        const tabBlocks = document.getElementById('tab-blocks');
+        if (!longform || !blocks || !tabLongform || !tabBlocks) return;
+        const isBlocks = viewName === 'blocks';
+        longform.classList.toggle('view-panel--hidden', isBlocks);
+        longform.setAttribute('aria-hidden', isBlocks);
+        blocks.classList.toggle('view-panel--hidden', !isBlocks);
+        blocks.setAttribute('aria-hidden', !isBlocks);
+        tabLongform.setAttribute('aria-selected', !isBlocks);
+        tabLongform.classList.toggle('view-switcher__btn--active', !isBlocks);
+        tabBlocks.setAttribute('aria-selected', isBlocks);
+        tabBlocks.classList.toggle('view-switcher__btn--active', isBlocks);
+        if (isBlocks) {
+            loadBlockView();
+            location.hash = 'blocks';
+        } else {
+            if (location.hash === '#blocks') location.hash = '';
+        }
+    }
+
+    function initViewSwitcher() {
+        if (location.hash === '#blocks') showView('blocks');
+        document.querySelectorAll('.view-switcher__btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                const view = btn.getAttribute('data-view');
+                if (view) showView(view);
+            });
+        });
     }
 });
