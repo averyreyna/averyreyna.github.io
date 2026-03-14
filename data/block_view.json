@@ -1,56 +1,100 @@
 [
   {
     "id": "research",
-    "span": 2,
-    "title": "Research",
-    "meta": "Foundation Interface Lab, UC San Diego",
-    "description": "AI-assisted programming: generative UIs with Bryan Min; agentic coding with Brian Hempel.",
+    "span": 3,
+    "title": "Foundation Interface Lab",
+    "meta": "Haijun Xia · UCSD",
+    "description": "Studied agentic coding workflows and visualizations of AI-generated user interfaces, designed annotated prompt figures with React, and wrote a GraphQL scraper for survey recruitment",
     "url": "https://hci.ucsd.edu",
     "linkLabel": "Lab"
   },
   {
     "id": "design",
-    "span": 1,
-    "title": "Design",
-    "meta": "Self Adjoint Operator",
-    "description": "Prototypes that augment creative work via GenAI and LLMs.",
+    "span": 2,
+    "title": "Self Adjoint Operator",
+    "meta": "AI Design Studio",
+    "description": "Developing prototypes for augmented creative abilities via GenAI and LLMs",
     "url": "https://selfadjointoperator.io",
     "linkLabel": "Studio"
   },
   {
-    "id": "writing",
-    "span": 1,
-    "title": "Writing",
-    "meta": "Semantic Distance",
-    "description": "Blog and public scholarship on tech, society, and research.",
-    "url": "https://semanticdistance.io",
-    "linkLabel": "Blog"
-  },
-  {
     "id": "education",
     "span": 3,
-    "title": "Education",
-    "meta": "UCF · UWT · Columbia",
-    "description": "BS Social Sciences; minors in Cultural Anthropology, Political Science, Sociology. REUs at UW Tacoma and CEAL Lab.",
+    "title": "University of Central Florida",
+    "meta": "Cultural Anthropology, Political Science, and Sociology",
+    "description": "Took additional classes in computer science, research design, and security studies",
     "url": null,
     "linkLabel": null
   },
   {
-    "id": "recent-work",
-    "span": 4,
-    "title": "Recent work",
-    "meta": "2024–2026",
-    "description": "Selected projects and publications appear in the blocks below.",
+    "id": "ceal",
+    "span": 1,
+    "title": "Computer-Enabled Abilities Lab",
+    "meta": "Brian Smith · Columbia",
+    "description": "Built the first iteration of WebNExt (SpaceNav) for ASSETS '23 and designed the Volunteer Platform mobile app views for Help Supporters (CHI '24)",
+    "url": "https://ceal.cs.columbia.edu/",
+    "linkLabel": "Lab"
+  },
+  {
+    "id": "convoy",
+    "span": 6,
+    "title": "Convoy",
+    "meta": "Pyodide · React Flow · TypeScript",
+    "description": "Node-based data wrangling environment equipped with Python runners in the browser",
     "url": null,
     "linkLabel": null
+  },
+  {
+    "id": "project-meta",
+    "span": 2,
+    "title": "Envisiage",
+    "meta": "Monaco Editor · Sonnet 4.5 · Svelte",
+    "description": "In-line AI IDE assistant with draggable comments",
+    "url": "https://selfadjointoperator.io",
+    "linkLabel": "Project"
+  },
+  {
+    "id": "project-meta",
+    "span": 2,
+    "title": "Daydream",
+    "meta": "Monaco Editor · Sonnet 4.5 · Svelte",
+    "description": "AI-generated Mermaid diagrams from inputted code",
+    "url": "https://selfadjointoperator.io",
+    "linkLabel": "Project"
+  },
+  {
+    "id": "experience-capone",
+    "span": 3,
+    "title": "All Access",
+    "meta": "Angular · AngularJS · AWS · Java",
+    "description": "Maintained custom authorization plugins for the company's access portal touching UX design, frontend development, and backend infrastructure",
+    "url": null,
+    "linkLabel": null
+  },
+  {
+    "id": "experience-capone",
+    "span": 3,
+    "title": "PDQM",
+    "meta": "AWS · Python · React · TypeScript",
+    "description": "Engineered full stack visualization tools that display data quality metrics of enterprise assets across lines of business—also taught Cyber D&M engineers about agentic software development",
+    "url": null,
+    "linkLabel": null
+  },
+  {
+    "id": "research",
+    "span": 3,
+    "title": "Socio-Technical Interaction Research Lab",
+    "meta": "Pamela Wisniewski · UCF",
+    "description": "Co-led the Instagram Data Donation project as a full stack engineer and UX researcher",
+    "url": "https://hci.ucsd.edu",
+    "linkLabel": "Lab"
   },
   {
     "id": "contact",
     "span": 1,
     "title": "Get in touch",
-    "meta": null,
-    "description": "CV, email, GitHub, Scholar, Instagram, LinkedIn.",
-    "url": "mailto:avery.reyna16@gmail.com",
-    "linkLabel": "Email"
+    "meta": "Have an idea? Reach out",
+    "url": "https://selfadjointoperator.io",
+    "linkLabel": "Contact"
   }
 ]

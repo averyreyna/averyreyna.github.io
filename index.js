@@ -476,81 +476,28 @@ document.addEventListener('DOMContentLoaded', function() {
         imageLoader.src = src;
     }
 
-    function spanCycle(index, pattern) {
-        return pattern[index % pattern.length];
-    }
-
     async function loadBlockView() {
         const grid = document.getElementById('block-grid');
         if (!grid || blockViewLoaded) return;
         try {
-            const [curatedRes, experienceRes, papersRes, mediaRes] = await Promise.all([
-                fetch('/data/block_view.json'),
-                fetch('/data/experience.json').then(function(r) { return r; }).catch(function() { return null; }),
-                fetch('/data/papers.json').then(function(r) { return r; }).catch(function() { return null; }),
-                fetch('/data/media.json').then(function(r) { return r; }).catch(function() { return null; })
-            ]);
-            const curated = await curatedRes.json();
-            const experience = experienceRes && experienceRes.ok ? await experienceRes.json() : [];
-            const papers = papersRes && papersRes.ok ? await papersRes.json() : [];
-            const media = mediaRes && mediaRes.ok ? await mediaRes.json() : [];
-
-            const experienceSpanPattern = [1, 2, 1, 3, 2, 1, 2, 1];
-            const papersSpanPattern = [2, 1, 2, 3, 1, 2];
-
-            const blocks = curated.slice();
-
-            experience.forEach(function(entry, i) {
-                blocks.push({
-                    title: entry.organization,
-                    meta: [entry.role, entry.dates].filter(Boolean).join(' · '),
-                    description: entry.description || null,
-                    url: null,
-                    linkLabel: null,
-                    span: spanCycle(i, experienceSpanPattern)
-                });
-            });
-
-            papers.forEach(function(paper, i) {
-                const firstLink = paper.links && paper.links[0];
-                blocks.push({
-                    title: paper.title,
-                    meta: paper.venue || null,
-                    description: paper.authors ? stripHtml(paper.authors) : null,
-                    url: firstLink ? firstLink.url : null,
-                    linkLabel: firstLink ? firstLink.text : null,
-                    span: spanCycle(i, papersSpanPattern)
-                });
-            });
-
-            media.forEach(function(item, i) {
-                const firstLink = item.links && item.links[0];
-                blocks.push({
-                    title: item.title,
-                    meta: item.series || null,
-                    description: null,
-                    url: firstLink ? firstLink.url : null,
-                    linkLabel: firstLink ? firstLink.text : null,
-                    span: i % 3 === 0 ? 2 : 1
-                });
-            });
-
+            const res = await fetch('/data/block_view.json');
+            const blocks = await res.json();
             grid.innerHTML = '';
             blocks.forEach(function(block) {
-                const span = Math.min(Math.max(block.span || 1, 1), 5);
+                const span = Math.min(Math.max(block.span || 1, 1), 6);
                 const item = document.createElement('article');
                 item.className = 'block-view__item block-view__span-' + span;
                 if (block.id) item.id = 'block-' + block.id;
-                let html = '<h3 class="block-view__title">' + escapeHtml(block.title) + '</h3>';
+                const linkUrl = block.url || (block.links && block.links.length && block.links[0].url) || null;
+                if (linkUrl) item.classList.add('block-view__item--linked');
+                let html = '';
+                if (linkUrl) {
+                    html += '<a href="' + escapeHtml(linkUrl) + '" class="block-view__icon-link" target="_blank" rel="noopener" aria-label="Open link"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>';
+                }
+                html += '<h3 class="block-view__title">' + escapeHtml(block.title) + '</h3>';
                 if (block.meta) html += '<p class="block-view__meta">' + escapeHtml(block.meta) + '</p>';
                 if (block.description) html += '<p class="block-view__description">' + escapeHtml(block.description) + '</p>';
-                if (block.url && block.linkLabel) html += '<a href="' + escapeHtml(block.url) + '" class="block-view__link" target="_blank" rel="noopener">' + escapeHtml(block.linkLabel) + ' →</a>';
-                if (block.url && !block.linkLabel) html += '<a href="' + escapeHtml(block.url) + '" class="block-view__link" target="_blank" rel="noopener">Link →</a>';
                 item.innerHTML = html;
-                if (block.url && !block.linkLabel && !block.description) {
-                    const link = item.querySelector('.block-view__link');
-                    if (link) link.style.marginTop = 'auto';
-                }
                 grid.appendChild(item);
             });
             blockViewLoaded = true;
@@ -566,57 +513,235 @@ document.addEventListener('DOMContentLoaded', function() {
         return div.innerHTML;
     }
 
-    async function loadArchiveView() {
-        const grid = document.getElementById('archive-grid');
-        if (!grid || archiveViewLoaded) return;
-        try {
-            const res = await fetch('/data/archive_view.json');
-            const entries = await res.json();
-            grid.innerHTML = '';
-            entries.forEach(function(entry) {
-                const tagPills = [];
-                if (entry.location) tagPills.push(entry.location);
-                if (entry.year) tagPills.push(entry.year);
-                if (entry.tags && entry.tags.length) tagPills.push.apply(tagPills, entry.tags);
-                const tagsHtml = tagPills.map(function(t) {
-                    return '<span class="archive-view__tag">' + escapeHtml(t) + '</span>';
-                }).join('');
-                const content = '<div class="archive-view__img-wrap"><img class="archive-view__img profile-image lazy-load" data-src="' + escapeHtml(entry.image) + '" alt="" /></div><div class="archive-view__content"><h3 class="archive-view__title">' + escapeHtml(entry.title) + '</h3>' + (entry.excerpt ? '<p class="archive-view__excerpt">' + escapeHtml(entry.excerpt) + '</p>' : '') + '<div class="archive-view__tags">' + tagsHtml + '</div></div>';
-                let item;
-                if (entry.url) {
-                    item = document.createElement('a');
-                    item.href = entry.url;
-                    item.target = '_blank';
-                    item.rel = 'noopener';
-                    item.className = 'archive-view__item';
-                } else {
-                    item = document.createElement('div');
-                    item.className = 'archive-view__item';
-                }
-                if (entry.id) item.id = 'archive-' + entry.id;
-                item.innerHTML = content;
-                const img = item.querySelector('img');
-                if (img) img.alt = entry.title || '';
-                grid.appendChild(item);
-            });
-            archiveViewLoaded = true;
-            var lazyInArchive = grid.querySelectorAll('.lazy-load');
-            if (lazyInArchive.length && 'IntersectionObserver' in window) {
-                var archiveObserver = new IntersectionObserver(function(entries, observer) {
-                    entries.forEach(function(entry) {
-                        if (entry.isIntersecting) {
-                            loadImage(entry.target);
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                }, { rootMargin: '50px 0px', threshold: 0.1 });
-                lazyInArchive.forEach(function(img) { archiveObserver.observe(img); });
-            } else if (lazyInArchive.length) {
-                lazyInArchive.forEach(function(img) { loadImage(img); });
-            }
-        } catch (err) {
-            console.error('Error loading archive view:', err);
+    var weatherCodeToDesc = {
+        0: 'clear sky',
+        1: 'mainly clear',
+        2: 'partly cloudy',
+        3: 'overcast',
+        45: 'foggy',
+        48: 'rime fog',
+        51: 'light drizzle',
+        53: 'drizzle',
+        55: 'dense drizzle',
+        61: 'slight rain',
+        63: 'moderate rain',
+        65: 'heavy rain',
+        71: 'slight snow',
+        73: 'moderate snow',
+        75: 'heavy snow',
+        77: 'snow grains',
+        80: 'slight rain showers',
+        81: 'moderate rain showers',
+        82: 'violent rain showers',
+        85: 'slight snow showers',
+        86: 'heavy snow showers',
+        95: 'thunderstorm',
+        96: 'thunderstorm with slight hail',
+        99: 'thunderstorm with heavy hail'
+    };
+
+    function formatArchiveTime(isoString) {
+        if (!isoString) return '--:--:-- --';
+        var part = isoString.split('T')[1];
+        if (!part) return '--:--:-- --';
+        var segments = part.split(':');
+        var h = parseInt(segments[0], 10) || 0;
+        var m = parseInt(segments[1], 10) || 0;
+        var s = parseInt(segments[2], 10) || 0;
+        var ampm = h >= 12 ? 'PM' : 'AM';
+        h = h % 12 || 12;
+        var pad = function(n) { return (n < 10 ? '0' : '') + n; };
+        return pad(h) + ':' + pad(m) + ':' + pad(s) + ' ' + ampm;
+    }
+
+    function renderArchiveEntryCard(block) {
+        const card = document.createElement('article');
+        card.className = 'archive-entry-card';
+        if (block.id) card.id = 'archive-entry-' + block.id;
+        const linkUrl = block.url || (block.links && block.links && block.links.length && block.links[0].url) || null;
+        if (linkUrl) {
+            card.classList.add('archive-entry-card--linked');
         }
+        const imageWrap = document.createElement('div');
+        imageWrap.className = 'archive-entry-card__image-wrap';
+        if (block.image) {
+            const img = document.createElement('img');
+            img.src = block.image;
+            img.alt = '';
+            img.loading = 'lazy';
+            imageWrap.appendChild(img);
+        } else {
+            const placeholder = document.createElement('div');
+            placeholder.className = 'archive-entry-card__image-placeholder';
+            placeholder.setAttribute('aria-hidden', 'true');
+            imageWrap.appendChild(placeholder);
+        }
+        const body = document.createElement('div');
+        body.className = 'archive-entry-card__body';
+        if (linkUrl) {
+            const titleLink = document.createElement('a');
+            titleLink.href = linkUrl;
+            titleLink.target = '_blank';
+            titleLink.rel = 'noopener';
+            titleLink.textContent = block.title || '';
+            titleLink.className = 'archive-entry-card__title';
+            body.appendChild(titleLink);
+        } else {
+            const titleEl = document.createElement('h3');
+            titleEl.className = 'archive-entry-card__title';
+            titleEl.textContent = block.title || '';
+            body.appendChild(titleEl);
+        }
+        const description = block.excerpt != null ? block.excerpt : block.description;
+        if (description) {
+            const desc = document.createElement('p');
+            desc.className = 'archive-entry-card__description';
+            desc.textContent = description;
+            body.appendChild(desc);
+        }
+        const tagsParts = [block.location, block.year].filter(Boolean);
+        if (block.tags && block.tags.length) tagsParts.push(block.tags.join(' · '));
+        if (tagsParts.length) {
+            const tags = document.createElement('p');
+            tags.className = 'archive-entry-card__tags';
+            tags.textContent = tagsParts.join(' · ');
+            body.appendChild(tags);
+        }
+        card.appendChild(imageWrap);
+        card.appendChild(body);
+        return card;
+    }
+
+    var archiveBlocks = [];
+    var archiveFilterState = { location: new Set(), year: new Set(), tags: new Set() };
+
+    function getTagsFromBlock(block) {
+        if (block.tags && Array.isArray(block.tags)) return block.tags;
+        if (!block.meta) return [];
+        return block.meta.split(/\s*·\s*/).map(function(s) { return s.trim(); }).filter(Boolean);
+    }
+
+    function applyArchiveFilters(blocks) {
+        var location = archiveFilterState.location;
+        var year = archiveFilterState.year;
+        var tags = archiveFilterState.tags;
+        return blocks.filter(function(block) {
+            if (location.size && !location.has(block.location)) return false;
+            var blockYear = block.year != null ? String(block.year) : null;
+            if (year.size && (!blockYear || !year.has(blockYear))) return false;
+            if (tags.size) {
+                var blockTags = getTagsFromBlock(block);
+                var hasTag = blockTags.some(function(t) { return tags.has(t); });
+                if (!hasTag) return false;
+            }
+            return true;
+        });
+    }
+
+    function renderArchiveEntries(blocks) {
+        var container = document.getElementById('archive-entries');
+        if (!container) return;
+        container.innerHTML = '';
+        blocks.forEach(function(block) {
+            container.appendChild(renderArchiveEntryCard(block));
+        });
+    }
+
+    function buildArchiveFilterUI(blocks) {
+        var locations = {};
+        var years = {};
+        var tagSet = {};
+        blocks.forEach(function(block) {
+            if (block.location != null && block.location !== '') locations[block.location] = true;
+            if (block.year != null && block.year !== '') years[String(block.year)] = true;
+            getTagsFromBlock(block).forEach(function(tag) { tagSet[tag] = true; });
+        });
+        var locationLabels = Object.keys(locations).sort();
+        var yearLabels = Object.keys(years).sort();
+        var tagLabels = Object.keys(tagSet).sort();
+
+        function makeFilterButton(groupKey, value, label, container) {
+            var btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'archive-filter__btn';
+            btn.textContent = label;
+            btn.setAttribute('data-filter-group', groupKey);
+            btn.setAttribute('data-filter-value', value);
+            btn.addEventListener('click', function() {
+                var set = archiveFilterState[groupKey];
+                if (set.has(value)) set.delete(value);
+                else set.add(value);
+                btn.classList.toggle('archive-filter__btn--selected', set.has(value));
+                renderArchiveEntries(applyArchiveFilters(archiveBlocks));
+            });
+            container.appendChild(btn);
+        }
+
+        var locationContainer = document.getElementById('archive-filter-location-buttons');
+        var yearsContainer = document.getElementById('archive-filter-years-buttons');
+        var tagsContainer = document.getElementById('archive-filter-tags-buttons');
+        if (locationContainer) {
+            locationContainer.innerHTML = '';
+            locationLabels.forEach(function(l) { makeFilterButton('location', l, l, locationContainer); });
+        }
+        if (yearsContainer) {
+            yearsContainer.innerHTML = '';
+            yearLabels.sort(function(a, b) { return Number(b) - Number(a); });
+            yearLabels.forEach(function(y) { makeFilterButton('year', y, y, yearsContainer); });
+        }
+        if (tagsContainer) {
+            tagsContainer.innerHTML = '';
+            tagLabels.forEach(function(t) { makeFilterButton('tags', t, t, tagsContainer); });
+            document.getElementById('archive-filter-tags').style.display = tagLabels.length ? '' : 'none';
+        }
+    }
+
+    async function loadArchiveEntries() {
+        var container = document.getElementById('archive-entries');
+        if (!container) return;
+        try {
+            var res = await fetch('/data/archive_view.json');
+            archiveBlocks = await res.json();
+            buildArchiveFilterUI(archiveBlocks);
+            renderArchiveEntries(applyArchiveFilters(archiveBlocks));
+        } catch (err) {
+            console.error('Error loading archive entries:', err);
+        }
+    }
+
+    function initArchiveView() {
+        if (archiveViewLoaded) return;
+        archiveViewLoaded = true;
+        loadArchiveEntries();
+
+        var placeEl = document.getElementById('archive-location-place');
+        var timeEl = document.getElementById('archive-location-time');
+        var weatherEl = document.getElementById('archive-location-weather');
+        var tempEl = document.getElementById('archive-location-temp');
+        if (!placeEl || !timeEl || !weatherEl || !tempEl) return;
+
+        placeEl.textContent = 'Washington, D.C.';
+
+        var dcLat = 38.9072;
+        var dcLon = -77.0369;
+        var url = 'https://api.open-meteo.com/v1/forecast?latitude=' + dcLat + '&longitude=' + dcLon + '&current=temperature_2m,weather_code&temperature_unit=fahrenheit&timezone=America/New_York';
+
+        fetch(url)
+            .then(function(res) { return res.json(); })
+            .then(function(data) {
+                var cur = data.current;
+                if (!cur) return;
+                if (cur.time) timeEl.textContent = formatArchiveTime(cur.time);
+                if (typeof cur.temperature_2m === 'number') tempEl.textContent = cur.temperature_2m.toFixed(2) + '°F';
+                var code = cur.weather_code;
+                weatherEl.textContent = weatherCodeToDesc[code] != null ? weatherCodeToDesc[code] : 'conditions ' + code;
+            })
+            .catch(function(err) {
+                console.error('Archive view weather:', err);
+                timeEl.textContent = '--:--:-- --';
+                weatherEl.textContent = 'unavailable';
+                tempEl.textContent = '--°F';
+            });
     }
 
     function showView(viewName) {
@@ -650,7 +775,7 @@ document.addEventListener('DOMContentLoaded', function() {
             loadBlockView();
             location.hash = 'blocks';
         } else if (isArchive) {
-            loadArchiveView();
+            initArchiveView();
             location.hash = 'archive';
         } else {
             if (location.hash === '#blocks' || location.hash === '#archive') location.hash = '';
