@@ -1,0 +1,172 @@
+[
+  {
+    "id": "research",
+    "title": "Research",
+    "excerpt": "AI-assisted programming: generative UIs with Bryan Min; agentic coding with Brian Hempel.",
+    "image": "/assets/files/me/avery_reyna_v2_catalyst.png",
+    "url": "https://hci.ucsd.edu",
+    "location": "UC San Diego",
+    "year": "2025",
+    "tags": ["AI", "Research"]
+  },
+  {
+    "id": "design",
+    "title": "Design",
+    "excerpt": "Prototypes that augment creative work via GenAI and LLMs. Self Adjoint Operator.",
+    "image": "/assets/projects/design/meta_measure.gif",
+    "url": "https://selfadjointoperator.io",
+    "location": "Personal Project",
+    "year": "2025",
+    "tags": ["Design", "AI"]
+  },
+  {
+    "id": "writing",
+    "title": "Writing",
+    "excerpt": "Blog and public scholarship on tech, society, and research.",
+    "image": "/assets/projects/design/palestra.gif",
+    "url": "https://semanticdistance.io",
+    "location": "Personal Project",
+    "year": "2025",
+    "tags": ["Writing"]
+  },
+  {
+    "id": "education",
+    "title": "Education",
+    "excerpt": "BS Social Sciences; minors in Cultural Anthropology, Political Science, Sociology. REUs at UW Tacoma and CEAL Lab.",
+    "image": "/assets/projects/appendix/public_procurement.png",
+    "url": null,
+    "location": "UCF",
+    "year": "2024",
+    "tags": ["Education"]
+  },
+  {
+    "id": "perceptor",
+    "title": "Perceptor",
+    "excerpt": "Design studio work: creative tools and interfaces.",
+    "image": "/assets/projects/design/perceptor.gif",
+    "url": "https://selfadjointoperator.io",
+    "location": "Personal Project",
+    "year": "2025",
+    "tags": ["Design", "AI"]
+  },
+  {
+    "id": "scrutinize",
+    "title": "Scrutinize",
+    "excerpt": "GenAI-augmented prototype from Self Adjoint Operator.",
+    "image": "/assets/projects/design/scrutinize.gif",
+    "url": "https://selfadjointoperator.io",
+    "location": "Personal Project",
+    "year": "2025",
+    "tags": ["Design"]
+  },
+  {
+    "id": "specter",
+    "title": "Specter",
+    "excerpt": "Creative prototype exploring generative interfaces.",
+    "image": "/assets/projects/design/specter.gif",
+    "url": "https://selfadjointoperator.io",
+    "location": "Personal Project",
+    "year": "2025",
+    "tags": ["Design", "AI"]
+  },
+  {
+    "id": "metrics-playground",
+    "title": "Metrics Playground",
+    "excerpt": "Internal tooling for metrics exploration and dashboards.",
+    "image": "/assets/projects/industry/metrics_playground.gif",
+    "url": null,
+    "location": "Capital One",
+    "year": "2024",
+    "tags": ["Fullstack"]
+  },
+  {
+    "id": "admin-metrics",
+    "title": "Admin Metrics Dashboard",
+    "excerpt": "Dashboard for admin metrics and data quality management.",
+    "image": "/assets/projects/industry/admin_metrics_dashboard.png",
+    "url": null,
+    "location": "Capital One",
+    "year": "2024",
+    "tags": ["Fullstack"]
+  },
+  {
+    "id": "ilm-portal",
+    "title": "ILM Portal",
+    "excerpt": "Internal access portal features and IAM workflows.",
+    "image": "/assets/projects/industry/ilm_portal.png",
+    "url": null,
+    "location": "Capital One",
+    "year": "2024",
+    "tags": ["Fullstack"]
+  },
+  {
+    "id": "file-upload-tool",
+    "title": "File Upload Tool",
+    "excerpt": "Internal file upload and processing tool.",
+    "image": "/assets/projects/industry/file_upload_tool.gif",
+    "url": null,
+    "location": "Capital One",
+    "year": "2024",
+    "tags": ["Fullstack"]
+  },
+  {
+    "id": "penetration-tests",
+    "title": "Penetration Test Checklists",
+    "excerpt": "Security tooling and checklist workflows.",
+    "image": "/assets/projects/industry/penetration_tests.gif",
+    "url": null,
+    "location": "Capital One",
+    "year": "2024",
+    "tags": ["Security"]
+  },
+  {
+    "id": "idle-vp",
+    "title": "Idle VP",
+    "excerpt": "Undergraduate research and data visualization.",
+    "image": "/assets/projects/appendix/idle_vp.png",
+    "url": null,
+    "location": "UCF",
+    "year": "2023",
+    "tags": ["Research"]
+  },
+  {
+    "id": "energy-generation",
+    "title": "Energy Generation",
+    "excerpt": "Data visualization project on nuclear power.",
+    "image": "/assets/projects/appendix/energy_generation.png",
+    "url": null,
+    "location": "UCF",
+    "year": "2023",
+    "tags": ["Research"]
+  },
+  {
+    "id": "marriage-equality",
+    "title": "Marriage Equality Comparisons",
+    "excerpt": "Comparative data visualization and public scholarship.",
+    "image": "/assets/projects/appendix/marriage_equality_comparisons.gif",
+    "url": null,
+    "location": "UCF",
+    "year": "2023",
+    "tags": ["Research", "Writing"]
+  },
+  {
+    "id": "social-media-by-country",
+    "title": "Social Media by Country",
+    "excerpt": "Cross-country social media usage visualization.",
+    "image": "/assets/projects/appendix/social_media_by_country.png",
+    "url": null,
+    "location": "UCF",
+    "year": "2023",
+    "tags": ["Research"]
+  },
+  {
+    "id": "contact",
+    "title": "Get in touch",
+    "excerpt": "CV, email, GitHub, Scholar, Instagram, LinkedIn.",
+    "image": "/assets/files/me/avery_reyna_v2_catalyst.png",
+    "url": "mailto:avery.reyna16@gmail.com",
+    "location": null,
+    "year": null,
+    "tags": []
+  }
+]

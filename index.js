@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
+    let blockViewLoaded = false;
+    let archiveViewLoaded = false;
     initLazyLoading();
     initViewSwitcher();
 
@@ -474,8 +476,6 @@ document.addEventListener('DOMContentLoaded', function() {
         imageLoader.src = src;
     }
 
-    let blockViewLoaded = false;
-
     function spanCycle(index, pattern) {
         return pattern[index % pattern.length];
     }
@@ -484,22 +484,19 @@ document.addEventListener('DOMContentLoaded', function() {
         const grid = document.getElementById('block-grid');
         if (!grid || blockViewLoaded) return;
         try {
-            const [curatedRes, experienceRes, papersRes, mediaRes, awardsRes] = await Promise.all([
+            const [curatedRes, experienceRes, papersRes, mediaRes] = await Promise.all([
                 fetch('/data/block_view.json'),
                 fetch('/data/experience.json').then(function(r) { return r; }).catch(function() { return null; }),
                 fetch('/data/papers.json').then(function(r) { return r; }).catch(function() { return null; }),
-                fetch('/data/media.json').then(function(r) { return r; }).catch(function() { return null; }),
-                fetch('/data/awards.json').then(function(r) { return r; }).catch(function() { return null; })
+                fetch('/data/media.json').then(function(r) { return r; }).catch(function() { return null; })
             ]);
             const curated = await curatedRes.json();
             const experience = experienceRes && experienceRes.ok ? await experienceRes.json() : [];
             const papers = papersRes && papersRes.ok ? await papersRes.json() : [];
             const media = mediaRes && mediaRes.ok ? await mediaRes.json() : [];
-            const awards = awardsRes && awardsRes.ok ? await awardsRes.json() : [];
 
             const experienceSpanPattern = [1, 2, 1, 3, 2, 1, 2, 1];
             const papersSpanPattern = [2, 1, 2, 3, 1, 2];
-            const awardsSpanPattern = [1, 2, 1, 1];
 
             const blocks = curated.slice();
 
@@ -538,17 +535,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             });
 
-            awards.forEach(function(award, i) {
-                blocks.push({
-                    title: award.title,
-                    meta: [award.organization, award.year].filter(Boolean).join(' · '),
-                    description: null,
-                    url: null,
-                    linkLabel: null,
-                    span: spanCycle(i, awardsSpanPattern)
-                });
-            });
-
             grid.innerHTML = '';
             blocks.forEach(function(block) {
                 const span = Math.min(Math.max(block.span || 1, 1), 5);
@@ -580,31 +566,100 @@ document.addEventListener('DOMContentLoaded', function() {
         return div.innerHTML;
     }
 
+    async function loadArchiveView() {
+        const grid = document.getElementById('archive-grid');
+        if (!grid || archiveViewLoaded) return;
+        try {
+            const res = await fetch('/data/archive_view.json');
+            const entries = await res.json();
+            grid.innerHTML = '';
+            entries.forEach(function(entry) {
+                const tagPills = [];
+                if (entry.location) tagPills.push(entry.location);
+                if (entry.year) tagPills.push(entry.year);
+                if (entry.tags && entry.tags.length) tagPills.push.apply(tagPills, entry.tags);
+                const tagsHtml = tagPills.map(function(t) {
+                    return '<span class="archive-view__tag">' + escapeHtml(t) + '</span>';
+                }).join('');
+                const content = '<div class="archive-view__img-wrap"><img class="archive-view__img profile-image lazy-load" data-src="' + escapeHtml(entry.image) + '" alt="" /></div><div class="archive-view__content"><h3 class="archive-view__title">' + escapeHtml(entry.title) + '</h3>' + (entry.excerpt ? '<p class="archive-view__excerpt">' + escapeHtml(entry.excerpt) + '</p>' : '') + '<div class="archive-view__tags">' + tagsHtml + '</div></div>';
+                let item;
+                if (entry.url) {
+                    item = document.createElement('a');
+                    item.href = entry.url;
+                    item.target = '_blank';
+                    item.rel = 'noopener';
+                    item.className = 'archive-view__item';
+                } else {
+                    item = document.createElement('div');
+                    item.className = 'archive-view__item';
+                }
+                if (entry.id) item.id = 'archive-' + entry.id;
+                item.innerHTML = content;
+                const img = item.querySelector('img');
+                if (img) img.alt = entry.title || '';
+                grid.appendChild(item);
+            });
+            archiveViewLoaded = true;
+            var lazyInArchive = grid.querySelectorAll('.lazy-load');
+            if (lazyInArchive.length && 'IntersectionObserver' in window) {
+                var archiveObserver = new IntersectionObserver(function(entries, observer) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            loadImage(entry.target);
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { rootMargin: '50px 0px', threshold: 0.1 });
+                lazyInArchive.forEach(function(img) { archiveObserver.observe(img); });
+            } else if (lazyInArchive.length) {
+                lazyInArchive.forEach(function(img) { loadImage(img); });
+            }
+        } catch (err) {
+            console.error('Error loading archive view:', err);
+        }
+    }
+
     function showView(viewName) {
         const longform = document.getElementById('view-longform');
         const blocks = document.getElementById('view-blocks');
+        const archive = document.getElementById('view-archive');
         const tabLongform = document.getElementById('tab-longform');
         const tabBlocks = document.getElementById('tab-blocks');
+        const tabArchive = document.getElementById('tab-archive');
         if (!longform || !blocks || !tabLongform || !tabBlocks) return;
+        const isLongform = viewName === 'longform';
         const isBlocks = viewName === 'blocks';
-        longform.classList.toggle('view-panel--hidden', isBlocks);
-        longform.setAttribute('aria-hidden', isBlocks);
+        const isArchive = viewName === 'archive';
+        longform.classList.toggle('view-panel--hidden', !isLongform);
+        longform.setAttribute('aria-hidden', !isLongform);
         blocks.classList.toggle('view-panel--hidden', !isBlocks);
         blocks.setAttribute('aria-hidden', !isBlocks);
-        tabLongform.setAttribute('aria-selected', !isBlocks);
-        tabLongform.classList.toggle('view-switcher__btn--active', !isBlocks);
+        if (archive) {
+            archive.classList.toggle('view-panel--hidden', !isArchive);
+            archive.setAttribute('aria-hidden', !isArchive);
+        }
+        tabLongform.setAttribute('aria-selected', isLongform);
+        tabLongform.classList.toggle('view-switcher__btn--active', isLongform);
         tabBlocks.setAttribute('aria-selected', isBlocks);
         tabBlocks.classList.toggle('view-switcher__btn--active', isBlocks);
+        if (tabArchive) {
+            tabArchive.setAttribute('aria-selected', isArchive);
+            tabArchive.classList.toggle('view-switcher__btn--active', isArchive);
+        }
         if (isBlocks) {
             loadBlockView();
             location.hash = 'blocks';
+        } else if (isArchive) {
+            loadArchiveView();
+            location.hash = 'archive';
         } else {
-            if (location.hash === '#blocks') location.hash = '';
+            if (location.hash === '#blocks' || location.hash === '#archive') location.hash = '';
         }
     }
 
     function initViewSwitcher() {
         if (location.hash === '#blocks') showView('blocks');
+        else if (location.hash === '#archive') showView('archive');
         document.querySelectorAll('.view-switcher__btn').forEach(function(btn) {
             btn.addEventListener('click', function() {
                 const view = btn.getAttribute('data-view');

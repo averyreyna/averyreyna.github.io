@@ -4,7 +4,7 @@
     "span": 2,
     "title": "Research",
     "meta": "Foundation Interface Lab, UC San Diego",
-    "description": "Studying AI-assisted programming via generative UIs with Bryan Min; previously agentic coding workflows with Brian Hempel.",
+    "description": "AI-assisted programming: generative UIs with Bryan Min; agentic coding with Brian Hempel.",
     "url": "https://hci.ucsd.edu",
     "linkLabel": "Lab"
   },
@@ -13,7 +13,7 @@
     "span": 1,
     "title": "Design",
     "meta": "Self Adjoint Operator",
-    "description": "AI design studio. Prototypes that augment creative capabilities via GenAI and LLMs.",
+    "description": "Prototypes that augment creative work via GenAI and LLMs.",
     "url": "https://selfadjointoperator.io",
     "linkLabel": "Studio"
   },
@@ -22,7 +22,7 @@
     "span": 1,
     "title": "Writing",
     "meta": "Semantic Distance",
-    "description": "Blogging and public scholarship on tech, society, and research.",
+    "description": "Blog and public scholarship on tech, society, and research.",
     "url": "https://semanticdistance.io",
     "linkLabel": "Blog"
   },
@@ -31,7 +31,7 @@
     "span": 3,
     "title": "Education",
     "meta": "UCF · UWT · Columbia",
-    "description": "BS Social Sciences, minors in Cultural Anthropology, Political Science, Sociology. REUs at UW Tacoma and CEAL Lab.",
+    "description": "BS Social Sciences; minors in Cultural Anthropology, Political Science, Sociology. REUs at UW Tacoma and CEAL Lab.",
     "url": null,
     "linkLabel": null
   },
@@ -40,9 +40,9 @@
     "span": 4,
     "title": "Recent work",
     "meta": "2024–2026",
-    "description": "Agentic coding paper (arXiv); CHI '24 Help Supporters; ASSETS '23; TDP at Capital One in Cyber IAM and D&M; design tools and internal platforms.",
-    "url": "https://arxiv.org/abs/2512.14012",
-    "linkLabel": "Agentic coding paper"
+    "description": "Selected projects and publications appear in the blocks below.",
+    "url": null,
+    "linkLabel": null
   },
   {
     "id": "contact",
