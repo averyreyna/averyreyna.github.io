@@ -253,7 +253,30 @@
             <div id="block-grid" class="block-view__grid"></div>
         </div>
         <div id="view-archive" class="view-panel view-panel--hidden" aria-hidden="true">
-            <div id="archive-grid" class="archive-view__grid"></div>
+            <div id="archive-location-card" class="archive-location-card">
+                <div class="archive-location-card__gradient" aria-hidden="true"></div>
+                <div class="archive-location-card__overlay">
+                    <p class="archive-location-card__text">In <span id="archive-location-place">Washington, D.C.</span>, it's <span id="archive-location-time">--:--:-- --</span> with <span id="archive-location-weather">--</span> and <span id="archive-location-temp">--°F</span>. Gradient generated with these values.</p>
+                </div>
+            </div>
+            <div class="archive-content">
+                <aside id="archive-filter" class="archive-filter" aria-label="Project archive filters">
+                    <h2 class="archive-filter__heading">PROJECT ARCHIVE</h2>
+                    <div id="archive-filter-location" class="archive-filter__group">
+                        <span class="archive-filter__label">Location</span>
+                        <div id="archive-filter-location-buttons" class="archive-filter__buttons"></div>
+                    </div>
+                    <div id="archive-filter-years" class="archive-filter__group">
+                        <span class="archive-filter__label">Years</span>
+                        <div id="archive-filter-years-buttons" class="archive-filter__buttons"></div>
+                    </div>
+                    <div id="archive-filter-tags" class="archive-filter__group">
+                        <span class="archive-filter__label">Tags</span>
+                        <div id="archive-filter-tags-buttons" class="archive-filter__buttons"></div>
+                    </div>
+                </aside>
+                <div id="archive-entries" class="archive-entries"></div>
+            </div>
         </div>
     </main>
     <footer>
