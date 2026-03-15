@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     let blockViewLoaded = false;
-    let archiveViewLoaded = false;
     initLazyLoading();
     initViewSwitcher();
+    initBioLocation();
 
     function stripHtml(str) {
         const div = document.createElement('div');
@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     async function loadExperience() {
         try {
-            const response = await fetch('/data/experience.json');
+            const response = await fetch('/data/list_view/experience.json');
             const experience = await response.json();
             const container = document.getElementById('experience-container');
             experience.forEach(entry => {
@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     async function loadAnnouncements() {
         try {
-            const response = await fetch('/data/announcements.json');
+            const response = await fetch('/data/list_view/announcements.json');
             const announcements = await response.json();
             const container = document.getElementById('announcements-container');
             announcements.forEach((announcement, index) => {
@@ -204,7 +204,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     async function loadAwards() {
         try {
-            const response = await fetch('/data/awards.json');
+            const response = await fetch('/data/list_view/awards.json');
             const awards = await response.json();
             const container = document.getElementById('awards-container');
             awards.forEach((award) => {
@@ -224,7 +224,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     async function loadEducation() {
         try {
-            const response = await fetch('/data/education.json');
+            const response = await fetch('/data/list_view/education.json');
             const education = await response.json();
             const container = document.getElementById('education-container');
             education.forEach((entry) => {
@@ -252,7 +252,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     async function loadPublicScholarship() {
         try {
-            const response = await fetch('/data/public_scholarship.json');
+            const response = await fetch('/data/list_view/public_scholarship.json');
             const articles = await response.json();
             const container = document.getElementById('public-scholarship-container');
             articles.forEach((article) => {
@@ -273,7 +273,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     async function loadMedia() {
         try {
-            const response = await fetch('/data/media.json');
+            const response = await fetch('/data/list_view/media.json');
             const items = await response.json();
             const container = document.getElementById('media-container');
             items.forEach((item) => {
@@ -292,7 +292,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     async function loadPresentations() {
         try {
-            const response = await fetch('/data/presentations.json');
+            const response = await fetch('/data/list_view/presentations.json');
             const presentations = await response.json();
             const container = document.getElementById('presentations-container');
             presentations.forEach((presentation) => {
@@ -315,7 +315,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     async function loadRecentPublications() {
         try {
-            const response = await fetch('/data/papers.json');
+            const response = await fetch('/data/list_view/papers.json');
             const papers = await response.json();
             // prefer conference papers; if fewer than 3, use first 3 from full list
             const conferencePapers = papers.filter(paper => {
@@ -346,7 +346,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     async function loadResources() {
         try {
-            const response = await fetch('/data/resources.json');
+            const response = await fetch('/data/list_view/resources.json');
             const resources = await response.json();
             const container = document.getElementById('resources-container');
             resources.forEach((resource) => {
@@ -377,7 +377,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     async function loadTalks() {
         try {
-            const response = await fetch('/data/talks.json');
+            const response = await fetch('/data/list_view/talks.json');
             const talks = await response.json();
             const container = document.getElementById('talks-container');
             talks.forEach((talk) => {
@@ -398,7 +398,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     async function loadTeaching() {
         try {
-            const response = await fetch('/data/teaching.json');
+            const response = await fetch('/data/list_view/teaching.json');
             const teaching = await response.json();
             const container = document.getElementById('teaching-container');
             teaching.forEach((entry) => {
@@ -419,7 +419,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     async function loadVolunteering() {
         try {
-            const response = await fetch('/data/volunteering.json');
+            const response = await fetch('/data/list_view/volunteering.json');
             const volunteering = await response.json();
             const container = document.getElementById('volunteering-container');
             volunteering.forEach((entry) => {
@@ -540,251 +540,68 @@ document.addEventListener('DOMContentLoaded', function() {
         99: 'thunderstorm with heavy hail'
     };
 
-    function formatArchiveTime(isoString) {
-        if (!isoString) return '--:--:-- --';
+    function formatBioTime(isoString) {
+        if (!isoString) return '--';
         var part = isoString.split('T')[1];
-        if (!part) return '--:--:-- --';
+        if (!part) return '--';
         var segments = part.split(':');
         var h = parseInt(segments[0], 10) || 0;
         var m = parseInt(segments[1], 10) || 0;
-        var s = parseInt(segments[2], 10) || 0;
         var ampm = h >= 12 ? 'PM' : 'AM';
         h = h % 12 || 12;
         var pad = function(n) { return (n < 10 ? '0' : '') + n; };
-        return pad(h) + ':' + pad(m) + ':' + pad(s) + ' ' + ampm;
+        return pad(h) + ':' + pad(m) + ' ' + ampm;
     }
 
-    function renderArchiveEntryCard(block) {
-        const card = document.createElement('article');
-        card.className = 'archive-entry-card';
-        if (block.id) card.id = 'archive-entry-' + block.id;
-        const linkUrl = block.url || (block.links && block.links && block.links.length && block.links[0].url) || null;
-        if (linkUrl) {
-            card.classList.add('archive-entry-card--linked');
-        }
-        const imageWrap = document.createElement('div');
-        imageWrap.className = 'archive-entry-card__image-wrap';
-        if (block.image) {
-            const img = document.createElement('img');
-            img.src = block.image;
-            img.alt = '';
-            img.loading = 'lazy';
-            imageWrap.appendChild(img);
-        } else {
-            const placeholder = document.createElement('div');
-            placeholder.className = 'archive-entry-card__image-placeholder';
-            placeholder.setAttribute('aria-hidden', 'true');
-            imageWrap.appendChild(placeholder);
-        }
-        const body = document.createElement('div');
-        body.className = 'archive-entry-card__body';
-        if (linkUrl) {
-            const titleLink = document.createElement('a');
-            titleLink.href = linkUrl;
-            titleLink.target = '_blank';
-            titleLink.rel = 'noopener';
-            titleLink.textContent = block.title || '';
-            titleLink.className = 'archive-entry-card__title';
-            body.appendChild(titleLink);
-        } else {
-            const titleEl = document.createElement('h3');
-            titleEl.className = 'archive-entry-card__title';
-            titleEl.textContent = block.title || '';
-            body.appendChild(titleEl);
-        }
-        const description = block.excerpt != null ? block.excerpt : block.description;
-        if (description) {
-            const desc = document.createElement('p');
-            desc.className = 'archive-entry-card__description';
-            desc.textContent = description;
-            body.appendChild(desc);
-        }
-        const tagsParts = [block.location, block.year].filter(Boolean);
-        if (block.tags && block.tags.length) tagsParts.push(block.tags.join(' · '));
-        if (tagsParts.length) {
-            const tags = document.createElement('p');
-            tags.className = 'archive-entry-card__tags';
-            tags.textContent = tagsParts.join(' · ');
-            body.appendChild(tags);
-        }
-        card.appendChild(imageWrap);
-        card.appendChild(body);
-        return card;
-    }
-
-    var archiveBlocks = [];
-    var archiveFilterState = { location: new Set(), year: new Set(), tags: new Set() };
-
-    function getTagsFromBlock(block) {
-        if (block.tags && Array.isArray(block.tags)) return block.tags;
-        if (!block.meta) return [];
-        return block.meta.split(/\s*·\s*/).map(function(s) { return s.trim(); }).filter(Boolean);
-    }
-
-    function applyArchiveFilters(blocks) {
-        var location = archiveFilterState.location;
-        var year = archiveFilterState.year;
-        var tags = archiveFilterState.tags;
-        return blocks.filter(function(block) {
-            if (location.size && !location.has(block.location)) return false;
-            var blockYear = block.year != null ? String(block.year) : null;
-            if (year.size && (!blockYear || !year.has(blockYear))) return false;
-            if (tags.size) {
-                var blockTags = getTagsFromBlock(block);
-                var hasTag = blockTags.some(function(t) { return tags.has(t); });
-                if (!hasTag) return false;
-            }
-            return true;
-        });
-    }
-
-    function renderArchiveEntries(blocks) {
-        var container = document.getElementById('archive-entries');
-        if (!container) return;
-        container.innerHTML = '';
-        blocks.forEach(function(block) {
-            container.appendChild(renderArchiveEntryCard(block));
-        });
-    }
-
-    function buildArchiveFilterUI(blocks) {
-        var locations = {};
-        var years = {};
-        var tagSet = {};
-        blocks.forEach(function(block) {
-            if (block.location != null && block.location !== '') locations[block.location] = true;
-            if (block.year != null && block.year !== '') years[String(block.year)] = true;
-            getTagsFromBlock(block).forEach(function(tag) { tagSet[tag] = true; });
-        });
-        var locationLabels = Object.keys(locations).sort();
-        var yearLabels = Object.keys(years).sort();
-        var tagLabels = Object.keys(tagSet).sort();
-
-        function makeFilterButton(groupKey, value, label, container) {
-            var btn = document.createElement('button');
-            btn.type = 'button';
-            btn.className = 'archive-filter__btn';
-            btn.textContent = label;
-            btn.setAttribute('data-filter-group', groupKey);
-            btn.setAttribute('data-filter-value', value);
-            btn.addEventListener('click', function() {
-                var set = archiveFilterState[groupKey];
-                if (set.has(value)) set.delete(value);
-                else set.add(value);
-                btn.classList.toggle('archive-filter__btn--selected', set.has(value));
-                renderArchiveEntries(applyArchiveFilters(archiveBlocks));
-            });
-            container.appendChild(btn);
-        }
-
-        var locationContainer = document.getElementById('archive-filter-location-buttons');
-        var yearsContainer = document.getElementById('archive-filter-years-buttons');
-        var tagsContainer = document.getElementById('archive-filter-tags-buttons');
-        if (locationContainer) {
-            locationContainer.innerHTML = '';
-            locationLabels.forEach(function(l) { makeFilterButton('location', l, l, locationContainer); });
-        }
-        if (yearsContainer) {
-            yearsContainer.innerHTML = '';
-            yearLabels.sort(function(a, b) { return Number(b) - Number(a); });
-            yearLabels.forEach(function(y) { makeFilterButton('year', y, y, yearsContainer); });
-        }
-        if (tagsContainer) {
-            tagsContainer.innerHTML = '';
-            tagLabels.forEach(function(t) { makeFilterButton('tags', t, t, tagsContainer); });
-            document.getElementById('archive-filter-tags').style.display = tagLabels.length ? '' : 'none';
-        }
-    }
-
-    async function loadArchiveEntries() {
-        var container = document.getElementById('archive-entries');
-        if (!container) return;
-        try {
-            var res = await fetch('/data/archive_view.json');
-            archiveBlocks = await res.json();
-            buildArchiveFilterUI(archiveBlocks);
-            renderArchiveEntries(applyArchiveFilters(archiveBlocks));
-        } catch (err) {
-            console.error('Error loading archive entries:', err);
-        }
-    }
-
-    function initArchiveView() {
-        if (archiveViewLoaded) return;
-        archiveViewLoaded = true;
-        loadArchiveEntries();
-
-        var placeEl = document.getElementById('archive-location-place');
-        var timeEl = document.getElementById('archive-location-time');
-        var weatherEl = document.getElementById('archive-location-weather');
-        var tempEl = document.getElementById('archive-location-temp');
-        if (!placeEl || !timeEl || !weatherEl || !tempEl) return;
-
-        placeEl.textContent = 'Washington, D.C.';
-
+    function initBioLocation() {
+        var timeEl = document.getElementById('bio-time');
+        var weatherEl = document.getElementById('bio-weather');
+        if (!timeEl || !weatherEl) return;
         var dcLat = 38.9072;
         var dcLon = -77.0369;
         var url = 'https://api.open-meteo.com/v1/forecast?latitude=' + dcLat + '&longitude=' + dcLon + '&current=temperature_2m,weather_code&temperature_unit=fahrenheit&timezone=America/New_York';
-
         fetch(url)
             .then(function(res) { return res.json(); })
             .then(function(data) {
                 var cur = data.current;
                 if (!cur) return;
-                if (cur.time) timeEl.textContent = formatArchiveTime(cur.time);
-                if (typeof cur.temperature_2m === 'number') tempEl.textContent = cur.temperature_2m.toFixed(2) + '°F';
+                if (cur.time) timeEl.textContent = formatBioTime(cur.time);
                 var code = cur.weather_code;
                 weatherEl.textContent = weatherCodeToDesc[code] != null ? weatherCodeToDesc[code] : 'conditions ' + code;
             })
             .catch(function(err) {
-                console.error('Archive view weather:', err);
-                timeEl.textContent = '--:--:-- --';
+                console.error('Bio location weather:', err);
+                timeEl.textContent = '--';
                 weatherEl.textContent = 'unavailable';
-                tempEl.textContent = '--°F';
             });
     }
 
     function showView(viewName) {
         const longform = document.getElementById('view-longform');
         const blocks = document.getElementById('view-blocks');
-        const archive = document.getElementById('view-archive');
         const tabLongform = document.getElementById('tab-longform');
         const tabBlocks = document.getElementById('tab-blocks');
-        const tabArchive = document.getElementById('tab-archive');
         if (!longform || !blocks || !tabLongform || !tabBlocks) return;
         const isLongform = viewName === 'longform';
         const isBlocks = viewName === 'blocks';
-        const isArchive = viewName === 'archive';
         longform.classList.toggle('view-panel--hidden', !isLongform);
         longform.setAttribute('aria-hidden', !isLongform);
         blocks.classList.toggle('view-panel--hidden', !isBlocks);
         blocks.setAttribute('aria-hidden', !isBlocks);
-        if (archive) {
-            archive.classList.toggle('view-panel--hidden', !isArchive);
-            archive.setAttribute('aria-hidden', !isArchive);
-        }
         tabLongform.setAttribute('aria-selected', isLongform);
         tabLongform.classList.toggle('view-switcher__btn--active', isLongform);
         tabBlocks.setAttribute('aria-selected', isBlocks);
         tabBlocks.classList.toggle('view-switcher__btn--active', isBlocks);
-        if (tabArchive) {
-            tabArchive.setAttribute('aria-selected', isArchive);
-            tabArchive.classList.toggle('view-switcher__btn--active', isArchive);
-        }
         if (isBlocks) {
             loadBlockView();
             location.hash = 'blocks';
-        } else if (isArchive) {
-            initArchiveView();
-            location.hash = 'archive';
         } else {
-            if (location.hash === '#blocks' || location.hash === '#archive') location.hash = '';
+            if (location.hash === '#blocks') location.hash = '';
         }
     }
 
     function initViewSwitcher() {
         if (location.hash === '#blocks') showView('blocks');
-        else if (location.hash === '#archive') showView('archive');
         document.querySelectorAll('.view-switcher__btn').forEach(function(btn) {
             btn.addEventListener('click', function() {
                 const view = btn.getAttribute('data-view');
