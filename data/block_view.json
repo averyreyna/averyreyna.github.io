@@ -22,7 +22,7 @@
     "span": 3,
     "title": "University of Central Florida",
     "meta": "Cultural Anthropology, Political Science, and Sociology",
-    "description": "Took additional classes in computer science, research design, and security studies",
+    "description": "Took additional classes in computer science and interdisciplinary seminars",
     "url": null,
     "linkLabel": null
   },
@@ -66,7 +66,7 @@
     "id": "experience-capone",
     "span": 3,
     "title": "All Access",
-    "meta": "Angular · AngularJS · AWS · Java",
+    "meta": "Angular · AWS · Java",
     "description": "Maintained custom authorization plugins for the company's access portal touching UX design, frontend development, and backend infrastructure",
     "url": null,
     "linkLabel": null
@@ -83,10 +83,28 @@
   {
     "id": "research",
     "span": 3,
+    "title": "CoupCast",
+    "meta": "Jonathan Powell · UCF",
+    "description": "Primary data vizualization developer working in D3.js, Datawrapper, and Inkscape—also spent time writing Julia and Python ML code",
+    "url": null,
+    "linkLabel": "Lab"
+  },
+  {
+    "id": "research",
+    "span": 3,
     "title": "Socio-Technical Interaction Research Lab",
     "meta": "Pamela Wisniewski · UCF",
-    "description": "Co-led the Instagram Data Donation project as a full stack engineer and UX researcher",
+    "description": "Co-led the Instagram Data Donation project as a UX researcher turned full stack engineer, additionally conducted NLP research with in-house datasets",
     "url": "https://hci.ucsd.edu",
+    "linkLabel": "Lab"
+  },
+  {
+    "id": "research",
+    "span": 3,
+    "title": "Institute for Social and Behavioral Science",
+    "meta": "Amy Donley · UCF",
+    "description": "Rendered maps of overdose hotspots in the Greater Orlando Area and provided reserch for white papers on local drug policy",
+    "url": null,
     "linkLabel": "Lab"
   },
   {
