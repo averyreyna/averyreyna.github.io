@@ -4,261 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avery Reyna</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <link rel="icon" type="image/svg+xml" href="/website.svg">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-white min-h-screen font-diatype">
-    <header class="w-full">
-        <div class="max-w-[800px] mx-auto px-4 py-2 flex items-center justify-between gap-3">
-            <nav class="view-switcher" role="tablist" aria-label="View">
-                <button type="button" class="view-switcher__btn view-switcher__btn--active" role="tab" aria-label="Long-form view" aria-selected="true" aria-controls="view-longform" id="tab-longform" data-view="longform">
-                    <i class="fa-solid fa-align-left" aria-hidden="true"></i>
-                </button>
-                <button type="button" class="view-switcher__btn" role="tab" aria-label="Block view" aria-selected="false" aria-controls="view-blocks" id="tab-blocks" data-view="blocks">
-                    <i class="fa-solid fa-th-large" aria-hidden="true"></i>
-                </button>
-                <button type="button" class="view-switcher__btn" role="tab" aria-label="Reference list view" aria-selected="false" aria-controls="view-reference" id="tab-reference" data-view="reference">
-                    <i class="fa-solid fa-list-ul" aria-hidden="true"></i>
-                </button>
-            </nav>
-            <h1 class="text-2xl font-bold main-heading-semi-mono">
-                avery reyna
-            </h1>
-        </div>
-    </header>
-    <main class="w-full max-w-[800px] mx-auto px-4 pb-8 pt-4 main-container">
-        <div id="view-longform" class="view-panel" aria-hidden="false">
-        <div class="mb-8">
-            <img data-src="/assets/files/me/avery_reyna_v2_catalyst.png" class="profile-image lazy-load w-[120px] h-[120px] md:w-[160px] md:h-[160px] object-cover rounded-sm mx-auto block mb-4" style="box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);" alt="Avery Reyna" />
-            <p class="text-base text-gray-800 leading-snug text-justify">
-                I'm a software designer based in DC where it's <span id="bio-time">--</span>.
-                I'm currently in the <a href="https://hci.ucsd.edu" target="_blank" rel="noopener">Foundation Interface Lab</a> at <a href="https://ucsd.edu/" target="_blank" rel="noopener">UC San Diego</a> studying AI co-programming with <a href="https://bryanmin.me" target="_blank" rel="noopener">Bryan Min</a>.
-                I have a BS in Social Sciences from <a href="https://www.ucf.edu" target="_blank" rel="noopener">UCF</a> and did <a href="https://www.nsf.gov/funding/initiatives/reu" target="_blank" rel="noopener">REUs</a> at <a href="https://www.tacoma.uw.edu" target="_blank" rel="noopener">UW Tacoma</a> and <a href="https://ceal.cs.columbia.edu/" target="_blank" rel="noopener">Columbia's CEAL Lab</a>.
-            </p>
-        </div>
-        
-        <div class="section-heading">
-            <span class="section-heading-semi-mono">announcements</span>
-            <span class="section-heading-line"></span>
-        </div>
-        <div class="mb-8">
-            <div id="announcements-container" class="space-y-1">
+<body class="font-diatype">
+    <main class="site-main">
+        <section class="site-hero" aria-label="Introduction">
+            <div class="site-hero__intro">
+                <h1 class="site-hero__name">
+                    <p>Avery Reyna</p>
+                </h1>
+                <p class="site-hero__bio">
+                    I am a <strong>PL researcher</strong> and <strong>software designer</strong>. Read more about me <a href="https://hci.ucsd.edu" target="_blank" rel="noopener noreferrer">here</a>.
+                </p>
+                <p class="site-hero__bio">
+                    My requests for collaboration are currently <strong>open</strong>. Reach me <a href="mailto:avery.reyna16@gmail.com">here</a>.
+                </p>
             </div>
-            <div class="flex justify-center items-center gap-3 mt-4">
-                <button id="prev-btn" class="flex items-center gap-1 leading-none text-gray-400 hover:text-gray-600 disabled:hover:text-gray-400 transition-colors text-xs disabled:opacity-30 disabled:cursor-not-allowed" disabled>
-                    <span class="inline-flex items-center">←</span> <span>newer</span>
-                </button>
-                <span id="page-indicator" class="text-xs text-gray-500"></span>
-                <button id="next-btn" class="flex items-center gap-1 leading-none text-gray-400 hover:text-gray-600 disabled:hover:text-gray-400 transition-colors text-xs disabled:opacity-30 disabled:cursor-not-allowed">
-                    <span>older</span> <span class="inline-flex items-center">→</span>
-                </button>
-            </div>
-        </div>
-        
-        <div class="section-heading">
-            <span class="section-heading-semi-mono">awards</span>
-            <span class="section-heading-line"></span>
-        </div>
-        <div class="mb-8">
-            <div id="awards-container" class="cv-entry-spacing text-justify">
-            </div>
-        </div>
-
-        <div class="section-heading">
-            <span class="section-heading-semi-mono">design</span>
-            <span class="section-heading-line"></span>
-        </div>
-        <div class="mb-8">
-            <p class="text-base text-gray-800 leading-snug mb-4 text-justify">
-                I solo-run an AI design studio called <a href="https://selfadjointoperator.io" target="_blank" rel="noopener">Self Adjoint Operator</a>.
-                Even though my interets can vary widely, I'm broadly focused on building prototypes that augment the creative capabilities of humans via GenAI and LLMs.
-            </p>
-            <div class="appendix-carousel-wrapper overflow-hidden w-full">
-                <div class="appendix-carousel-track">
-                    <img src="/assets/projects/design/meta_measure.gif" alt="Meta Measure" class="appendix-carousel-img" />
-                    <img src="/assets/projects/design/palestra.gif" alt="Palestra" class="appendix-carousel-img" />
-                    <img src="/assets/projects/design/perceptor.gif" alt="Perceptor" class="appendix-carousel-img" />
-                    <img src="/assets/projects/design/scrutinize.gif" alt="Scrutinize" class="appendix-carousel-img" />
-                    <img src="/assets/projects/design/specter.gif" alt="Specter" class="appendix-carousel-img" />
-                    <img src="/assets/projects/design/daydream.gif" alt="Daydream" class="appendix-carousel-img" />
-                    <img src="/assets/projects/design/rerank.gif" class="appendix-carousel-img" aria-hidden="true" />
-                    <img src="/assets/projects/design/envisiage.gif" alt="" class="appendix-carousel-img" aria-hidden="true" />
-                    <!-- duplicated for seamless loop -->
-                    <img src="/assets/projects/design/meta_measure.gif" alt="" class="appendix-carousel-img" aria-hidden="true" />
-                    <img src="/assets/projects/design/palestra.gif" alt="" class="appendix-carousel-img" aria-hidden="true" />
-                    <img src="/assets/projects/design/perceptor.gif" alt="" class="appendix-carousel-img" aria-hidden="true" />
-                    <img src="/assets/projects/design/scrutinize.gif" alt="" class="appendix-carousel-img" aria-hidden="true" />
-                    <img src="/assets/projects/design/specter.gif" alt="" class="appendix-carousel-img" aria-hidden="true" />
-                    <img src="/assets/projects/design/daydream.gif" alt="" class="appendix-carousel-img" aria-hidden="true" />
-                    <img src="/assets/projects/design/rerank.gif" alt="" class="appendix-carousel-img" aria-hidden="true" />
-                    <img src="/assets/projects/design/envisiage.gif" alt="" class="appendix-carousel-img" aria-hidden="true" />
-                </div>
-            </div>
-        </div>
-
-        <div class="section-heading">
-            <span class="section-heading-semi-mono">education</span>
-            <span class="section-heading-line"></span>
-        </div>
-        <div class="mb-8">
-            <div id="education-container" class="cv-entry-spacing text-justify">
-            </div>
-        </div>
-        
-        <div class="section-heading">
-            <span class="section-heading-semi-mono">experience</span>
-            <span class="section-heading-line"></span>
-        </div>
-        <div class="mb-8">
-            <div id="experience-container" class="cv-entry-spacing text-justify">
-            </div>
-        </div>
-        
-        <div class="section-heading">
-            <span class="section-heading-semi-mono">media</span>
-            <span class="section-heading-line"></span>
-        </div>
-        <div class="mb-8">
-            <div id="media-container" class="cv-entry-spacing text-justify">
-            </div>
-        </div>
-
-        <div class="section-heading">
-            <span class="section-heading-semi-mono">presentations</span>
-            <span class="section-heading-line"></span>
-        </div>
-        <div class="mb-8">
-            <div id="presentations-container" class="cv-entry-spacing text-justify">
-            </div>
-        </div>
-
-        <div class="section-heading">
-            <span class="section-heading-semi-mono">public scholarship</span>
-            <span class="section-heading-line"></span>
-        </div>
-        <div id="public-scholarship-container" class="cv-entry-spacing text-justify mb-8">
-        </div>
-        
-        <div class="section-heading">
-            <span class="section-heading-semi-mono">research</span>
-            <span class="section-heading-line"></span>
-        </div>
-        <div id="recent-publications-container" class="cv-entry-spacing text-justify mb-8">
-        </div>
-
-        <div class="section-heading">
-            <span class="section-heading-semi-mono">resources</span>
-            <span class="section-heading-line"></span>
-        </div>
-        <div class="mb-8">
-            <p class="text-base text-gray-800 leading-snug mb-4 text-justify">
-                I've been keeping track of (most of) my successful application materials for various programs I applied to starting as an undergraduate. 
-                Below are the documents I've been saving and I'll update this section as I apply to more programs.
-            </p>
-            <div class="resources-scroll-wrapper">
-                <div id="resources-container" class="resources-grid">
-                </div>
-            </div>
-        </div>
-
-        <div class="section-heading">
-            <span class="section-heading-semi-mono">talks</span>
-            <span class="section-heading-line"></span>
-        </div>
-        <div class="mb-8">
-            <div id="talks-container" class="cv-entry-spacing text-justify">
-            </div>
-        </div>
-
-        <div class="section-heading">
-            <span class="section-heading-semi-mono">teaching</span>
-            <span class="section-heading-line"></span>
-        </div>
-        <div class="mb-8">
-            <div id="teaching-container" class="cv-entry-spacing text-justify">
-            </div>
-        </div>
-
-        <div class="section-heading">
-            <span class="section-heading-semi-mono">undergraduate & industry</span>
-            <span class="section-heading-line"></span>
-        </div>
-        <div class="mb-8">
-            <p class="text-base text-gray-800 leading-snug mb-4 text-justify">
-                I worked almost every semester in between classes and research, working at companies like 
-                <a href="https://actblue.com" target="_blank" rel="noopener">ActBlue Technical Services</a>, 
-                <a href="https://www.newamerica.org" target="_blank" rel="noopener">New America</a>, 
-                <a href="https://swingleft.org" target="_blank" rel="noopener">Swing Left</a>, and the 
-                <a href="https://www.cfr.org" target="_blank" rel="noopener">Council on Foreign Relations</a>.
-                Interning across a multitude of roles, I intentionally treated this time as experimental, figuring out what I liked to do best.
-                After graduating, I joined Capital One as part of their 
-                <a href="https://www.capitalone.com/tech/culture/coda-making-tech-move" target="_blank" rel="noopener">CODA 13</a>
-                cohort to learn full stack web development and successfully graduated after completing Dojo in Cyber Intel.
-                I worked in Cyber IAM and D&M as a 
-                <a href="https://www.capitalonecareers.com/elevate-your-tech-career-with-the-tdp-students-tech" target="_blank" rel="noopener">TDP</a>,
-                building features for our internal access portal and data quality management platform, respectively.
-            </p>
-            <div class="appendix-carousel-wrapper overflow-hidden w-full">
-                <div class="appendix-carousel-track">
-                    <img src="/assets/projects/industry/metrics_playground.gif" alt="Metrics Playground" class="appendix-carousel-img" />
-                    <img src="/assets/projects/industry/admin_metrics_dashboard.png" alt="Admin Metrics Dashboard" class="appendix-carousel-img" />
-                    <img src="/assets/projects/industry/ilm_portal.png" alt="ILM Portal" class="appendix-carousel-img" />
-                    <img src="/assets/projects/industry/file_upload_tool.gif" alt="File Upload Tool" class="appendix-carousel-img" />
-                    <img src="/assets/projects/industry/penetration_tests.gif" alt="Penetration Test Checklists" class="appendix-carousel-img" />
-                    <img src="/assets/projects/appendix/idle_vp.png" alt="Idle VP" class="appendix-carousel-img" />
-                    <img src="/assets/projects/appendix/energy_generation.png" alt="Nuclear Power" class="appendix-carousel-img" />
-                    <img src="/assets/projects/appendix/border_wall.png" alt="Border Wall" class="appendix-carousel-img" />
-                    <img src="/assets/projects/appendix/marriage_equality_comparisons.gif" alt="Marriage Equality" class="appendix-carousel-img" />
-                    <img src="/assets/projects/appendix/public_procurement.png" alt="Public Procurement" class="appendix-carousel-img" />
-                    <img src="/assets/projects/appendix/social_media_by_country.png" alt="Social Media by Country" class="appendix-carousel-img" />
-                    <!-- duplicated for seamless loop -->
-                    <img src="/assets/projects/industry/metrics_playground.gif" alt="Metrics Playground" class="appendix-carousel-img" aria-hidden="true" />
-                    <img src="/assets/projects/industry/admin_metrics_dashboard.png" alt="" class="appendix-carousel-img" aria-hidden="true" />
-                    <img src="/assets/projects/industry/ilm_portal.png" alt="" class="appendix-carousel-img" aria-hidden="true" />
-                    <img src="/assets/projects/industry/file_upload_tool.gif" alt="" class="appendix-carousel-img" aria-hidden="true" />
-                    <img src="/assets/projects/industry/penetration_tests.gif" alt="" class="appendix-carousel-img" aria-hidden="true" />
-                    <img src="/assets/projects/appendix/idle_vp.png" alt="" class="appendix-carousel-img" aria-hidden="true" />
-                    <img src="/assets/projects/appendix/energy_generation.png" alt="" class="appendix-carousel-img" aria-hidden="true" />
-                    <img src="/assets/projects/appendix/border_wall.png" alt="" class="appendix-carousel-img" aria-hidden="true" />
-                    <img src="/assets/projects/appendix/marriage_equality_comparisons.gif" alt="" class="appendix-carousel-img" aria-hidden="true" />
-                    <img src="/assets/projects/appendix/public_procurement.png" alt="" class="appendix-carousel-img" aria-hidden="true" />
-                    <img src="/assets/projects/appendix/social_media_by_country.png" alt="" class="appendix-carousel-img" aria-hidden="true" />
-                </div>
-            </div>
-        </div>
-
-        <div class="section-heading">
-            <span class="section-heading-semi-mono">volunteering</span>
-            <span class="section-heading-line"></span>
-        </div>
-        <div class="mb-8">
-            <div id="volunteering-container" class="cv-entry-spacing text-justify">
-            </div>
-        </div>
-        </div>
-        <div id="view-blocks" class="view-panel view-panel--hidden" aria-hidden="true">
-            <div id="block-grid" class="block-view__grid"></div>
-        </div>
-        <div id="view-reference" class="view-panel view-panel--hidden" aria-hidden="true">
-            <div id="reference-view-root" class="reference-view"></div>
-        </div>
+            <div id="axis-root" class="site-axis" aria-label="Personal and professional links"></div>
+        </section>
+        <div id="reference-view-root" class="reference-view"></div>
     </main>
-    <footer>
-        <div class="footer-content">
-            <div class="flex flex-row items-center justify-between gap-4">
-                <div class="text-gray-500 shrink-0 footer-text">© 2026 Avery Reyna</div>
-                <div class="text-gray-500 flex-1 text-center footer-text footer-text--small">Last Updated: Apr 2026</div>
-                <div class="flex gap-2 footer-icons text-gray-700 shrink-0">
-                    <a href="/assets/files/cv/avery_reyna_cv.pdf" class="md:hover:text-gray-800 transition-colors" target="_blank" rel="noopener" aria-label="CV (PDF)"><i class="fa-solid fa-file-pdf"></i></a>
-                    <a href="mailto:avery.reyna16@gmail.com" class="md:hover:text-gray-800 transition-colors"><i class="fa-regular fa-envelope"></i></a>
-                    <a href="https://github.com/averyreyna" class="md:hover:text-gray-800 transition-colors" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
-                    <a href="https://scholar.google.com/citations?user=WecCIHwAAAAJ&hl=en" class="md:hover:text-gray-800 transition-colors" target="_blank" rel="noopener"><i class="fa-solid fa-graduation-cap"></i></a>
-                    <a href="https://instagram.com/selfadjointoperator" class="md:hover:text-gray-800 transition-colors" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://linkedin.com/in/avery-reyna" class="md:hover:text-gray-800 transition-colors" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i></a>
-                </div>
-            </div>
+    <footer class="site-footer">
+        <div class="site-footer__inner footer-text">
+            <span>© 2026 Avery Reyna</span>
+            <span class="site-footer__updated">Last updated: Apr 2026</span>
         </div>
     </footer>
     <script src="index.js"></script>
