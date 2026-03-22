@@ -19,6 +19,9 @@
                 <button type="button" class="view-switcher__btn" role="tab" aria-label="Block view" aria-selected="false" aria-controls="view-blocks" id="tab-blocks" data-view="blocks">
                     <i class="fa-solid fa-th-large" aria-hidden="true"></i>
                 </button>
+                <button type="button" class="view-switcher__btn" role="tab" aria-label="Reference list view" aria-selected="false" aria-controls="view-reference" id="tab-reference" data-view="reference">
+                    <i class="fa-solid fa-list-ul" aria-hidden="true"></i>
+                </button>
             </nav>
             <h1 class="text-2xl font-bold main-heading-semi-mono">
                 avery reyna
@@ -237,6 +240,9 @@
         </div>
         <div id="view-blocks" class="view-panel view-panel--hidden" aria-hidden="true">
             <div id="block-grid" class="block-view__grid"></div>
+        </div>
+        <div id="view-reference" class="view-panel view-panel--hidden" aria-hidden="true">
+            <div id="reference-view-root" class="reference-view"></div>
         </div>
     </main>
     <footer>

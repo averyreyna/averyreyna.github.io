@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     let blockViewLoaded = false;
+    let referenceViewLoaded = false;
     initLazyLoading();
     initViewSwitcher();
     initBioLocation();
@@ -476,6 +477,143 @@ document.addEventListener('DOMContentLoaded', function() {
         imageLoader.src = src;
     }
 
+    function createReferenceRow(item, stableId) {
+        const hasExpand = !!(item.detailHtml || (item.image && item.image.src) ||
+            (item.footnoteLink && item.footnoteLink.url));
+        const article = document.createElement('article');
+        article.className = 'reference-view__item';
+        article.setAttribute('role', 'listitem');
+
+        const detailsId = 'reference-details-' + stableId;
+        let details = null;
+
+        if (hasExpand) {
+            details = document.createElement('div');
+            details.id = detailsId;
+            details.className = 'reference-view__details';
+            details.hidden = true;
+
+            const inner = document.createElement('div');
+            inner.className = 'reference-view__details-inner';
+
+            const textCol = document.createElement('div');
+            textCol.className = 'reference-view__details-text';
+            if (item.detailHtml) {
+                const body = document.createElement('div');
+                body.className = 'reference-view__detail-body';
+                body.innerHTML = item.detailHtml;
+                textCol.appendChild(body);
+            }
+            if (item.footnoteLink && item.footnoteLink.url) {
+                const foot = document.createElement('p');
+                foot.className = 'reference-view__footnote';
+                const a = document.createElement('a');
+                a.href = item.footnoteLink.url;
+                a.target = '_blank';
+                a.rel = 'noopener';
+                a.textContent = item.footnoteLink.label || item.footnoteLink.url;
+                foot.appendChild(a);
+                textCol.appendChild(foot);
+            }
+            inner.appendChild(textCol);
+
+            if (item.image && item.image.src) {
+                const fig = document.createElement('figure');
+                fig.className = 'reference-view__figure';
+                const img = document.createElement('img');
+                img.src = item.image.src;
+                img.alt = item.image.alt || '';
+                img.className = 'reference-view__media';
+                img.loading = 'lazy';
+                fig.appendChild(img);
+                inner.appendChild(fig);
+            }
+
+            details.appendChild(inner);
+        }
+
+        const row = document.createElement('div');
+        row.className = 'reference-view__row';
+
+        const dateEl = document.createElement('time');
+        dateEl.className = 'reference-view__date';
+        if (item.date) dateEl.setAttribute('datetime', item.date);
+        dateEl.textContent = item.date || '';
+
+        const titleEl = document.createElement('span');
+        titleEl.className = 'reference-view__title';
+        titleEl.textContent = item.title || '';
+
+        const sumEl = document.createElement('span');
+        sumEl.className = 'reference-view__summary';
+        sumEl.textContent = item.summary || '';
+
+        row.appendChild(dateEl);
+        row.appendChild(titleEl);
+        row.appendChild(sumEl);
+
+        const toggleCell = document.createElement('div');
+        toggleCell.className = 'reference-view__toggle-cell';
+
+        if (hasExpand && details) {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'reference-view__toggle';
+            btn.setAttribute('aria-expanded', 'false');
+            btn.setAttribute('aria-controls', detailsId);
+            const titleForA11y = (item.title || 'entry').replace(/"/g, '');
+            btn.setAttribute('aria-label', 'Toggle details for ' + titleForA11y);
+            const chev = document.createElement('span');
+            chev.className = 'reference-view__chevron';
+            chev.setAttribute('aria-hidden', 'true');
+            chev.textContent = '\u2228';
+            btn.appendChild(chev);
+            btn.addEventListener('click', function() {
+                const willOpen = details.hidden;
+                details.hidden = !willOpen;
+                btn.setAttribute('aria-expanded', String(willOpen));
+                chev.textContent = willOpen ? '\u2227' : '\u2228';
+                row.classList.toggle('reference-view__row--expanded', willOpen);
+            });
+            toggleCell.appendChild(btn);
+        }
+
+        row.appendChild(toggleCell);
+        article.appendChild(row);
+        if (details) article.appendChild(details);
+        return article;
+    }
+
+    async function loadReferenceView() {
+        const root = document.getElementById('reference-view-root');
+        if (!root || referenceViewLoaded) return;
+        try {
+            const res = await fetch('/data/list_view/reference_view.json');
+            const data = await res.json();
+            root.innerHTML = '';
+
+            const sections = data.sections || [];
+            sections.forEach(function(section, secIdx) {
+                const h = document.createElement('h2');
+                h.className = 'reference-view__section-label';
+                h.textContent = section.label || '';
+                root.appendChild(h);
+
+                const list = document.createElement('div');
+                list.className = 'reference-view__section';
+                list.setAttribute('role', 'list');
+                (section.items || []).forEach(function(entry, itemIdx) {
+                    list.appendChild(createReferenceRow(entry, secIdx + '-' + itemIdx));
+                });
+                root.appendChild(list);
+            });
+
+            referenceViewLoaded = true;
+        } catch (err) {
+            console.error('Error loading reference view:', err);
+        }
+    }
+
     async function loadBlockView() {
         const grid = document.getElementById('block-grid');
         if (!grid || blockViewLoaded) return;
@@ -579,24 +717,34 @@ document.addEventListener('DOMContentLoaded', function() {
     function showView(viewName) {
         const longform = document.getElementById('view-longform');
         const blocks = document.getElementById('view-blocks');
+        const reference = document.getElementById('view-reference');
         const tabLongform = document.getElementById('tab-longform');
         const tabBlocks = document.getElementById('tab-blocks');
-        if (!longform || !blocks || !tabLongform || !tabBlocks) return;
+        const tabReference = document.getElementById('tab-reference');
+        if (!longform || !blocks || !reference || !tabLongform || !tabBlocks || !tabReference) return;
         const isLongform = viewName === 'longform';
         const isBlocks = viewName === 'blocks';
+        const isReference = viewName === 'reference';
         longform.classList.toggle('view-panel--hidden', !isLongform);
-        longform.setAttribute('aria-hidden', !isLongform);
+        longform.setAttribute('aria-hidden', String(!isLongform));
         blocks.classList.toggle('view-panel--hidden', !isBlocks);
-        blocks.setAttribute('aria-hidden', !isBlocks);
-        tabLongform.setAttribute('aria-selected', isLongform);
+        blocks.setAttribute('aria-hidden', String(!isBlocks));
+        reference.classList.toggle('view-panel--hidden', !isReference);
+        reference.setAttribute('aria-hidden', String(!isReference));
+        tabLongform.setAttribute('aria-selected', String(isLongform));
         tabLongform.classList.toggle('view-switcher__btn--active', isLongform);
-        tabBlocks.setAttribute('aria-selected', isBlocks);
+        tabBlocks.setAttribute('aria-selected', String(isBlocks));
         tabBlocks.classList.toggle('view-switcher__btn--active', isBlocks);
+        tabReference.setAttribute('aria-selected', String(isReference));
+        tabReference.classList.toggle('view-switcher__btn--active', isReference);
         if (isBlocks) {
             loadBlockView();
             location.hash = 'blocks';
         } else {
             if (location.hash === '#blocks') location.hash = '';
+            if (isReference) {
+                loadReferenceView();
+            }
         }
     }
 
