@@ -1,5 +1,49 @@
 document.addEventListener('DOMContentLoaded', function() {
+    var dcTimeFormatter = new Intl.DateTimeFormat('en-US', {
+        hour: 'numeric',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true,
+        timeZone: 'America/New_York'
+    });
+
+    setDcTime();
+    setInterval(setDcTime, 1000);
     loadSiteData();
+
+    var trailChars = ['!', '@', '#', '$', '%', '&'];
+    var lastTrailTime = 0;
+    document.addEventListener('mousemove', function(e) {
+        var now = Date.now();
+        if (now - lastTrailTime < 80) return;
+        lastTrailTime = now;
+        var span = document.createElement('span');
+        span.className = 'cursor-trail-char';
+        span.textContent = trailChars[Math.floor(Math.random() * trailChars.length)];
+        span.style.left = (e.clientX + Math.round((Math.random() - 0.5) * 16)) + 'px';
+        span.style.top  = (e.clientY + Math.round((Math.random() - 0.5) * 16)) + 'px';
+        document.body.appendChild(span);
+        setTimeout(function() { span.remove(); }, 600);
+    });
+
+    function setDcTime() {
+        var dcTimeEl = document.getElementById('dc-time');
+        if (!dcTimeEl) return;
+
+        dcTimeEl.textContent = dcTimeFormatter.format(new Date());
+    }
+
+    function axisIconForUrl(url) {
+        if (!url) return 'link';
+        var u = url.toLowerCase();
+        if (u.indexOf('mailto:') === 0) return 'mail';
+        if (u.indexOf('instagram') !== -1) return 'photo_camera';
+        if (u.indexOf('github') !== -1) return 'code';
+        if (u.indexOf('scholar') !== -1) return 'school';
+        if (u.indexOf('linkedin') !== -1) return 'work';
+        if (u.indexOf('.pdf') !== -1 || u.indexOf('/cv') !== -1) return 'description';
+        return 'link';
+    }
 
     function renderAxis(axis) {
         var root = document.getElementById('axis-root');
@@ -41,7 +85,14 @@ document.addEventListener('DOMContentLoaded', function() {
             var a = document.createElement('a');
             a.href = link.url;
             a.className = 'site-axis__link';
-            a.textContent = link.label || link.url;
+            var labelA11y = (link.label || link.url || '').replace(/"/g, '');
+            a.setAttribute('aria-label', labelA11y);
+            var iconName = link.icon || axisIconForUrl(link.url);
+            var icon = document.createElement('span');
+            icon.className = 'material-symbols-outlined site-axis__link-icon';
+            icon.setAttribute('aria-hidden', 'true');
+            icon.textContent = iconName;
+            a.appendChild(icon);
             var x = typeof link.x === 'number' ? link.x : 0;
             var y = typeof link.y === 'number' ? link.y : 0;
             a.style.left = 'calc(50% + ' + (x * 36) + '%)';
@@ -59,9 +110,25 @@ document.addEventListener('DOMContentLoaded', function() {
         root.appendChild(inner);
     }
 
+    function setLinkOpensInNewTab(a, url) {
+        if (!url) return;
+        if (url.indexOf('mailto:') === 0) {
+            a.removeAttribute('target');
+            a.removeAttribute('rel');
+        } else if (/^https?:\/\//i.test(url)) {
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+        } else {
+            a.removeAttribute('target');
+            a.removeAttribute('rel');
+        }
+    }
+
     function createReferenceRow(item, stableId) {
-        var hasExpand = !!(item.detailHtml || (item.image && item.image.src) ||
-            (item.footnoteLink && item.footnoteLink.url));
+        var hasDetailBody = !!(item.detailHtml || (item.image && item.image.src));
+        var hasExpand = hasDetailBody;
+        var footUrl = item.footnoteLink && item.footnoteLink.url;
+        var isLinkOnly = !!(footUrl && !hasDetailBody);
         var article = document.createElement('article');
         article.className = 'reference-view__item';
         article.setAttribute('role', 'listitem');
@@ -89,12 +156,11 @@ document.addEventListener('DOMContentLoaded', function() {
             if (item.footnoteLink && item.footnoteLink.url) {
                 var foot = document.createElement('p');
                 foot.className = 'reference-view__footnote';
-                var a = document.createElement('a');
-                a.href = item.footnoteLink.url;
-                a.target = '_blank';
-                a.rel = 'noopener noreferrer';
-                a.textContent = item.footnoteLink.label || item.footnoteLink.url;
-                foot.appendChild(a);
+                var fa = document.createElement('a');
+                fa.href = item.footnoteLink.url;
+                setLinkOpensInNewTab(fa, item.footnoteLink.url);
+                fa.textContent = item.footnoteLink.label || item.footnoteLink.url;
+                foot.appendChild(fa);
                 textCol.appendChild(foot);
             }
             inner.appendChild(textCol);
@@ -158,6 +224,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 row.classList.toggle('reference-view__row--expanded', willOpen);
             });
             toggleCell.appendChild(btn);
+        } else if (isLinkOnly && footUrl) {
+            var ext = document.createElement('a');
+            ext.href = footUrl;
+            ext.className = 'reference-view__row-link';
+            setLinkOpensInNewTab(ext, footUrl);
+            var linkLabel = (item.footnoteLink.label || 'link').replace(/"/g, '');
+            var titleForExt = (item.title || 'entry').replace(/"/g, '');
+            ext.setAttribute('aria-label', linkLabel + ': ' + titleForExt);
+            var icon = document.createElement('span');
+            icon.className = 'material-symbols-outlined reference-view__link-icon';
+            icon.setAttribute('aria-hidden', 'true');
+            icon.textContent = 'link';
+            ext.appendChild(icon);
+            toggleCell.appendChild(ext);
         }
 
         row.appendChild(toggleCell);
@@ -170,26 +250,84 @@ document.addEventListener('DOMContentLoaded', function() {
         var root = document.getElementById('reference-view-root');
         if (!root) return;
         try {
-            var res = await fetch('/data/list_view/reference_view.json');
+            var res = await fetch('/data/data.json');
             var data = await res.json();
             renderAxis(data.axis);
             root.innerHTML = '';
 
             var sections = data.sections || [];
+            var PREVIEW_LIMIT = 3;
             sections.forEach(function(section, secIdx) {
                 if (section.hidden === true) return;
+                var items = section.items || [];
+                var block = document.createElement('div');
+                block.className = 'reference-view__section-block';
+
                 var h = document.createElement('h2');
                 h.className = 'reference-view__section-label';
-                h.textContent = section.label || '';
-                root.appendChild(h);
+                var labelText = section.label || '';
+                if (section.labelHref) {
+                    var labelA = document.createElement('a');
+                    labelA.className = 'reference-view__section-label-link';
+                    labelA.href = section.labelHref;
+                    labelA.textContent = labelText;
+                    setLinkOpensInNewTab(labelA, section.labelHref);
+                    h.appendChild(labelA);
+                } else {
+                    h.textContent = labelText;
+                }
+                block.appendChild(h);
 
                 var list = document.createElement('div');
                 list.className = 'reference-view__section';
                 list.setAttribute('role', 'list');
-                (section.items || []).forEach(function(entry, itemIdx) {
-                    list.appendChild(createReferenceRow(entry, secIdx + '-' + itemIdx));
+
+                var hasOverflow = items.length > PREVIEW_LIMIT;
+                var overflowRows = [];
+                var previewEndRow = null;
+
+                items.forEach(function(entry, itemIdx) {
+                    var row = createReferenceRow(entry, secIdx + '-' + itemIdx);
+                    if (hasOverflow && itemIdx >= PREVIEW_LIMIT) {
+                        row.hidden = true;
+                        row.classList.add('reference-view__item--overflow');
+                        overflowRows.push(row);
+                    }
+                    if (hasOverflow && itemIdx === PREVIEW_LIMIT - 1) {
+                        row.classList.add('reference-view__item--section-end');
+                        previewEndRow = row;
+                    }
+                    list.appendChild(row);
                 });
-                root.appendChild(list);
+
+                block.appendChild(list);
+
+                var footer = document.createElement('div');
+                footer.className = 'reference-view__section-footer';
+                footer.setAttribute('aria-hidden', 'true');
+                if (hasOverflow && overflowRows.length > 0) {
+                    footer.removeAttribute('aria-hidden');
+                    var expandBtn = document.createElement('button');
+                    expandBtn.type = 'button';
+                    expandBtn.className = 'reference-view__section-expand';
+                    expandBtn.setAttribute('aria-expanded', 'false');
+                    expandBtn.textContent = 'EXPAND';
+                    expandBtn.addEventListener('click', function() {
+                        var willExpand = expandBtn.getAttribute('aria-expanded') !== 'true';
+                        overflowRows.forEach(function(r) {
+                            r.hidden = !willExpand;
+                        });
+                        expandBtn.setAttribute('aria-expanded', String(willExpand));
+                        expandBtn.textContent = willExpand ? 'COLLAPSE' : 'EXPAND';
+                        if (previewEndRow) {
+                            previewEndRow.classList.toggle('reference-view__item--section-end', !willExpand);
+                        }
+                    });
+                    footer.appendChild(expandBtn);
+                }
+                block.appendChild(footer);
+
+                root.appendChild(block);
             });
         } catch (err) {
             console.error('Error loading site data:', err);
