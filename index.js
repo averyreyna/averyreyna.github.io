@@ -33,18 +33,6 @@ document.addEventListener('DOMContentLoaded', function() {
         dcTimeEl.textContent = dcTimeFormatter.format(new Date());
     }
 
-    function axisIconForUrl(url) {
-        if (!url) return 'link';
-        var u = url.toLowerCase();
-        if (u.indexOf('mailto:') === 0) return 'mail';
-        if (u.indexOf('instagram') !== -1) return 'photo_camera';
-        if (u.indexOf('github') !== -1) return 'code';
-        if (u.indexOf('scholar') !== -1) return 'school';
-        if (u.indexOf('linkedin') !== -1) return 'work';
-        if (u.indexOf('.pdf') !== -1 || u.indexOf('/cv') !== -1) return 'description';
-        return 'link';
-    }
-
     function renderAxis(axis) {
         var root = document.getElementById('axis-root');
         if (!root || !axis) return;
@@ -87,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
             a.className = 'site-axis__link';
             var labelA11y = (link.label || link.url || '').replace(/"/g, '');
             a.setAttribute('aria-label', labelA11y);
-            var iconName = link.icon || axisIconForUrl(link.url);
+            var iconName = link.icon || 'link';
             var icon = document.createElement('span');
             icon.className = 'material-symbols-outlined site-axis__link-icon';
             icon.setAttribute('aria-hidden', 'true');
@@ -229,9 +217,8 @@ document.addEventListener('DOMContentLoaded', function() {
             ext.href = footUrl;
             ext.className = 'reference-view__row-link';
             setLinkOpensInNewTab(ext, footUrl);
-            var linkLabel = (item.footnoteLink.label || 'link').replace(/"/g, '');
             var titleForExt = (item.title || 'entry').replace(/"/g, '');
-            ext.setAttribute('aria-label', linkLabel + ': ' + titleForExt);
+            ext.setAttribute('aria-label', 'Open link: ' + titleForExt);
             var icon = document.createElement('span');
             icon.className = 'material-symbols-outlined reference-view__link-icon';
             icon.setAttribute('aria-hidden', 'true');
