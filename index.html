@@ -4,225 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avery Reyna</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <link rel="icon" type="image/svg+xml" href="/website.svg">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-white min-h-screen font-diatype">
-    <header class="w-full">
-        <div class="max-w-[800px] mx-auto px-4 py-2 flex items-center justify-between">
-            <h1 class="text-2xl font-bold main-heading-semi-mono flex items-center gap-2">
-                avery reyna
-            </h1>
-            <span class="header-favicon" aria-hidden="true">
-                <img src="/website.svg" alt="" class="w-6 h-6 object-contain" width="24" height="24" />
-            </span>
-        </div>
-    </header>
-    <main class="w-full max-w-[800px] mx-auto px-4 pb-8 pt-4 main-container">
-        <div class="mb-8">
-            <img data-src="/assets/files/me/avery_reyna_v2_catalyst.png" class="profile-image lazy-load w-[120px] h-[120px] md:w-[160px] md:h-[160px] object-cover rounded-sm mx-auto block mb-4" style="box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);" alt="Avery Reyna" />
-            <p class="text-base text-gray-800 leading-snug text-justify">
-                I'm an Independent Researcher in the <a href="https://hci.ucsd.edu" target="_blank" rel="noopener">Foundation Interface Lab</a> at <a href="https://ucsd.edu/" target="_blank" rel="noopener">UC San Diego</a> 
-                currently studying AI-assisted programming via generative UIs with <a href="https://bryanmin.me" target="_blank" rel="noopener">Bryan Min</a>,
-                and previously investigated the agentic coding workflows of experienced developers under the direction of <a href="https://people.cs.uchicago.edu/~brianhempel/" target="_blank" rel="noopener">Brian Hempel</a>.
-                I received my BS in Social Sciences from the <a href="https://www.ucf.edu" target="_blank" rel="noopener">University of Central Florida</a>
-                with minors in Cultural Anthropology, Political Science, and Sociology. 
-                I was able to work with <a href="https://amydonley.com" target="_blank" rel="noopener">Amy Donley</a>,
-                <a href="https://stirlab.org" target="_blank" rel="noopener">Pamela Wisniewski</a>, 
-                and <a href="https://jonathanmpowell.com" target="_blank" rel="noopener">Jonathan Powell</a>
-                researching applied sociology, human-computer interaction, and computational social science, respectively. 
-                I spent my summers completing <a href="https://www.nsf.gov/funding/initiatives/reu" target="_blank" rel="noopener">REUs</a> 
-                at the <a href="https://www.tacoma.uw.edu" target="_blank" rel="noopener">University of Washington Tacoma</a> 
-                with <a href="https://ceoas.oregonstate.edu/directory/jim-thatcher" target="_blank" rel="noopener">Jim Thatcher</a>
-                and <a href="https://www.columbia.edu" target="_blank" rel="noopener">Columbia University</a> 
-                in <a href="https://ceal.cs.columbia.edu/people/" target="_blank" rel="noopener">Brian Smith</a>'s <a href="https://ceal.cs.columbia.edu/" target="_blank" rel="noopener">CEAL Lab</a>.
-                In my free time, I'm blogging under <a href="https://semanticdistance.io" target="_blank" rel="noopener">Semantic Distance</a>
-                and designing as <a href="https://selfadjointoperator.io" target="_blank" rel="noopener">Self Adjoint Operator</a>.
-            </p>
-        </div>
-        
-        <div class="section-heading">
-            <span class="section-heading-semi-mono">announcements</span>
-            <span class="section-heading-line"></span>
-        </div>
-        <div class="mb-8">
-            <div id="announcements-container" class="space-y-1">
+<body class="font-favorit">
+    <main class="site-main">
+        <section class="site-hero" aria-label="Introduction">
+            <div class="site-hero__intro">
+                <h1 class="site-hero__name">
+                    <p>Avery Reyna</p>
+                </h1>
+                <p class="site-hero__bio">
+                    I am a <strong>software designer</strong> based in DC where it's <span id="dc-time">--:--</span>.
+                </p>
+                <p class="site-hero__bio">
+                    My requests for collaboration are currently <strong>open</strong>—reach me <a href="mailto:avery.reyna16@gmail.com">here</a> and see my work <a href="https://selfadjointoperator.io">here</a>.
+                </p>
             </div>
-            <div class="flex justify-center items-center gap-3 mt-4">
-                <button id="prev-btn" class="flex items-center gap-1 leading-none text-gray-400 hover:text-gray-600 disabled:hover:text-gray-400 transition-colors text-xs disabled:opacity-30 disabled:cursor-not-allowed" disabled>
-                    <span class="inline-flex items-center">←</span> <span>newer</span>
-                </button>
-                <span id="page-indicator" class="text-xs text-gray-500"></span>
-                <button id="next-btn" class="flex items-center gap-1 leading-none text-gray-400 hover:text-gray-600 disabled:hover:text-gray-400 transition-colors text-xs disabled:opacity-30 disabled:cursor-not-allowed">
-                    <span>older</span> <span class="inline-flex items-center">→</span>
-                </button>
-            </div>
-        </div>
-        
-        <div class="section-heading">
-            <span class="section-heading-semi-mono">awards</span>
-            <span class="section-heading-line"></span>
-        </div>
-        <div class="mb-8">
-            <div id="awards-container" class="cv-entry-spacing text-justify">
-            </div>
-        </div>
-
-        <div class="section-heading">
-            <span class="section-heading-semi-mono">education</span>
-            <span class="section-heading-line"></span>
-        </div>
-        <div class="mb-8">
-            <div id="education-container" class="cv-entry-spacing text-justify">
-            </div>
-        </div>
-        
-        <div class="section-heading">
-            <span class="section-heading-semi-mono">experience</span>
-            <span class="section-heading-line"></span>
-        </div>
-        <div class="mb-8">
-            <div id="experience-container" class="cv-entry-spacing text-justify">
-            </div>
-        </div>
-        
-        <div class="section-heading">
-            <span class="section-heading-semi-mono">media</span>
-            <span class="section-heading-line"></span>
-        </div>
-        <div class="mb-8">
-            <div id="media-container" class="cv-entry-spacing text-justify">
-            </div>
-        </div>
-
-        <div class="section-heading">
-            <span class="section-heading-semi-mono">presentations</span>
-            <span class="section-heading-line"></span>
-        </div>
-        <div class="mb-8">
-            <div id="presentations-container" class="cv-entry-spacing text-justify">
-            </div>
-        </div>
-
-        <div class="section-heading">
-            <span class="section-heading-semi-mono">public scholarship</span>
-            <span class="section-heading-line"></span>
-        </div>
-        <div id="public-scholarship-container" class="cv-entry-spacing text-justify mb-8">
-        </div>
-        
-        <div class="section-heading">
-            <span class="section-heading-semi-mono">research</span>
-            <span class="section-heading-line"></span>
-        </div>
-        <div id="recent-publications-container" class="cv-entry-spacing text-justify mb-8">
-        </div>
-
-        <div class="section-heading">
-            <span class="section-heading-semi-mono">resources</span>
-            <span class="section-heading-line"></span>
-        </div>
-        <div class="mb-8">
-            <p class="text-base text-gray-800 leading-snug mb-4 text-justify">
-                I've been keeping track of (most of) my application materials for various programs I applied to starting as an undergraduate. Below are the documents I've been saving and I'll update this section as I apply to more programs.
-            </p>
-            <div class="resources-scroll-wrapper">
-                <div id="resources-container" class="resources-grid">
-                </div>
-            </div>
-        </div>
-
-        <div class="section-heading">
-            <span class="section-heading-semi-mono">talks</span>
-            <span class="section-heading-line"></span>
-        </div>
-        <div class="mb-8">
-            <div id="talks-container" class="cv-entry-spacing text-justify">
-            </div>
-        </div>
-
-        <div class="section-heading">
-            <span class="section-heading-semi-mono">teaching</span>
-            <span class="section-heading-line"></span>
-        </div>
-        <div class="mb-8">
-            <div id="teaching-container" class="cv-entry-spacing text-justify">
-            </div>
-        </div>
-
-        <div class="section-heading">
-            <span class="section-heading-semi-mono">undergraduate & industry</span>
-            <span class="section-heading-line"></span>
-        </div>
-        <div class="mb-8">
-            <p class="text-base text-gray-800 leading-snug mb-4 text-justify">
-                I worked almost every semester in between classes and research, working at companies like 
-                <a href="https://actblue.com" target="_blank" rel="noopener">ActBlue Technical Services</a>, 
-                <a href="https://www.newamerica.org" target="_blank" rel="noopener">New America</a>, 
-                <a href="https://swingleft.org" target="_blank" rel="noopener">Swing Left</a>, and the 
-                <a href="https://www.cfr.org" target="_blank" rel="noopener">Council on Foreign Relations</a>.
-                Interning across a multitude of roles, I intentionally treated this time as experimental, figuring out what I liked to do best.
-                After graduating, I joined Capital One as part of their 
-                <a href="https://www.capitalone.com/tech/culture/coda-making-tech-move" target="_blank" rel="noopener">CODA 13</a>
-                cohort to learn full stack web development and successfully graduated after completing Dojo in Cyber Intel.
-                I worked in Cyber IAM and Cyber D&M as a 
-                <a href="https://www.capitalonecareers.com/elevate-your-tech-career-with-the-tdp-students-tech" target="_blank" rel="noopener">TDP</a>,
-                building features for our internal access portal and data quality management platform, respectively.
-            </p>
-            <div class="appendix-carousel-wrapper overflow-hidden w-full">
-                <div class="appendix-carousel-track">
-                    <img src="/assets/projects/industry/metrics_playground.gif" alt="Metrics Playground" class="appendix-carousel-img" />
-                    <img src="/assets/projects/industry/admin_metrics_dashboard.png" alt="Admin Metrics Dashboard" class="appendix-carousel-img" />
-                    <img src="/assets/projects/industry/ilm_portal.png" alt="ILM Portal" class="appendix-carousel-img" />
-                    <img src="/assets/projects/industry/file_upload_tool.gif" alt="File Upload Tool" class="appendix-carousel-img" />
-                    <img src="/assets/projects/industry/penetration_tests.gif" alt="Penetration Test Checklists" class="appendix-carousel-img" />
-                    <img src="/assets/projects/appendix/idle_vp.png" alt="Idle VP" class="appendix-carousel-img" />
-                    <img src="/assets/projects/appendix/energy_generation.png" alt="Nuclear Power" class="appendix-carousel-img" />
-                    <img src="/assets/projects/appendix/border_wall.png" alt="Border Wall" class="appendix-carousel-img" />
-                    <img src="/assets/projects/appendix/marriage_equality_comparisons.gif" alt="Marriage Equality" class="appendix-carousel-img" />
-                    <img src="/assets/projects/appendix/public_procurement.png" alt="Public Procurement" class="appendix-carousel-img" />
-                    <img src="/assets/projects/appendix/social_media_by_country.png" alt="Social Media by Country" class="appendix-carousel-img" />
-                    <!-- duplicated for seamless loop -->
-                    <img src="/assets/projects/industry/metrics_playground.gif" alt="Metrics Playground" class="appendix-carousel-img" aria-hidden="true" />
-                    <img src="/assets/projects/industry/admin_metrics_dashboard.png" alt="" class="appendix-carousel-img" aria-hidden="true" />
-                    <img src="/assets/projects/industry/ilm_portal.png" alt="" class="appendix-carousel-img" aria-hidden="true" />
-                    <img src="/assets/projects/industry/file_upload_tool.gif" alt="" class="appendix-carousel-img" aria-hidden="true" />
-                    <img src="/assets/projects/industry/penetration_tests.gif" alt="" class="appendix-carousel-img" aria-hidden="true" />
-                    <img src="/assets/projects/appendix/idle_vp.png" alt="" class="appendix-carousel-img" aria-hidden="true" />
-                    <img src="/assets/projects/appendix/energy_generation.png" alt="" class="appendix-carousel-img" aria-hidden="true" />
-                    <img src="/assets/projects/appendix/border_wall.png" alt="" class="appendix-carousel-img" aria-hidden="true" />
-                    <img src="/assets/projects/appendix/marriage_equality_comparisons.gif" alt="" class="appendix-carousel-img" aria-hidden="true" />
-                    <img src="/assets/projects/appendix/public_procurement.png" alt="" class="appendix-carousel-img" aria-hidden="true" />
-                    <img src="/assets/projects/appendix/social_media_by_country.png" alt="" class="appendix-carousel-img" aria-hidden="true" />
-                </div>
-            </div>
-        </div>
-
-        <div class="section-heading">
-            <span class="section-heading-semi-mono">volunteering</span>
-            <span class="section-heading-line"></span>
-        </div>
-        <div class="mb-8">
-            <div id="volunteering-container" class="cv-entry-spacing text-justify">
-            </div>
-        </div>
+            <div id="axis-root" class="site-axis" aria-label="Personal and professional links"></div>
+        </section>
+        <div id="reference-view-root" class="reference-view"></div>
     </main>
-    <footer>
-        <div class="footer-content">
-            <div class="flex flex-row items-center justify-between gap-4">
-                <div class="text-gray-500 shrink-0 footer-text">© 2026 Avery Reyna</div>
-                <div class="text-gray-500 flex-1 text-center footer-text footer-text--small">Last Updated: Feb 2026</div>
-                <div class="flex gap-2 footer-icons text-gray-700 shrink-0">
-                    <a href="/assets/files/cv/avery_reyna_cv.pdf" class="md:hover:text-gray-800 transition-colors" target="_blank" rel="noopener" aria-label="CV (PDF)"><i class="fa-solid fa-file-pdf"></i></a>
-                    <a href="mailto:avery.reyna16@gmail.com" class="md:hover:text-gray-800 transition-colors"><i class="fa-regular fa-envelope"></i></a>
-                    <a href="https://github.com/averyreyna" class="md:hover:text-gray-800 transition-colors" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
-                    <a href="https://scholar.google.com/citations?user=WecCIHwAAAAJ&hl=en" class="md:hover:text-gray-800 transition-colors" target="_blank" rel="noopener"><i class="fa-solid fa-graduation-cap"></i></a>
-                    <a href="https://instagram.com/selfadjointoperator" class="md:hover:text-gray-800 transition-colors" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://linkedin.com/in/avery-reyna" class="md:hover:text-gray-800 transition-colors" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i></a>
-                </div>
-            </div>
+    <footer class="site-footer">
+        <div class="site-footer__inner footer-text">
+            <span>© 2026 Avery Reyna</span>
+            <span class="site-footer__updated">Last updated: Apr 2026</span>
         </div>
     </footer>
     <script src="index.js"></script>
