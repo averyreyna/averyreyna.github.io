@@ -58,10 +58,9 @@
         {
           "date": "2026",
           "title": "How Experienced Developers Use AI Agents",
-          "summary": "ASE '26",
+          "summary": "In submission",
           "footnoteLink": {
-            "label": "Read on arXiv",
-            "url": "https://arxiv.org/abs/2512.14012"
+            "url": "https://ai-agents-for-coding-in-2025.vercel.app/"
           }
         },
         {
@@ -69,7 +68,6 @@
           "title": "AI Agent Use for Coding in 2025",
           "summary": "Preprint",
           "footnoteLink": {
-            "label": "Read on arXiv",
             "url": "https://arxiv.org/abs/2512.14012"
           }
         },
@@ -78,7 +76,6 @@
           "title": "Help Supporters",
           "summary": "CHI '24",
           "footnoteLink": {
-            "label": "ACM Digital Library",
             "url": "https://dl.acm.org/doi/10.1145/3613904.3642816"
           }
         },
@@ -87,7 +84,6 @@
           "title": "Spatial Interactions",
           "summary": "ASSETS '23",
           "footnoteLink": {
-            "label": "ACM Digital Library",
             "url": "https://dl.acm.org/doi/10.1145/3597638.3608412"
           }
         }
@@ -140,7 +136,7 @@
           "date": "2024",
           "title": "Penetration Test Checklists",
           "summary": "Mystique",
-          "detailHtml": "",
+          "detailHtml": "A <strong>remediation platform</strong> workflow for <strong>offensive security</strong> that imports <strong>Excel</strong> files and renders them as <strong>editable spreadsheets</strong> in the browser, so testers could <strong>track</strong> progress, <strong>assign</strong> work across the team, and <strong>export</strong> updated <strong>penetration test checklists</strong> without bouncing between static files and side channels—<em>pulling import, collaboration, and export into one surface instead of a patchwork of local copies</em>. I built the experience in <strong>React</strong> and <strong>TypeScript</strong>, focusing on faithful imports and spreadsheet-like editing so the UI stayed usable during live engagements, which <em>kept mid-engagement checklist edits on-platform instead of re-roundtripping every change through Excel</em>.",
           "image": {
             "src": "/assets/projects/industry/penetration_tests.gif",
             "alt": "Penetration test checklists preview"
@@ -155,19 +151,21 @@
           "date": "2026 — 20XX",
           "title": "University of Kentucky",
           "summary": "Independent Researcher",
-          "detailHtml": "<p>Lexington, KY (Remote)</p>"
+          "detailHtml": "<p>I designed and developed the <strong>selected prototype</strong> for a <strong>machine learning</strong>-powered web application that assesses <strong>global coup risk</strong>, which <em>became the technical foundation a multi-pronged research team adopted</em>. I led a <strong>cross-functional</strong> team of <em>5 CS students</em> building new features on that <strong>full-stack ML</strong> application—owning <strong>technical direction</strong>, <strong>task delegation</strong>, and <strong>code review</strong>. Over the course of the project we shipped <em>production-ready features</em> such as <strong>interactive mapping</strong>, <strong>filtering</strong> workflows, and <strong>risk trend charts</strong>, <em>closing the gap between model output and something researchers could explore and argue with in the browser</em>.</p>"
         },
         {
           "date": "2025 — 20XX",
           "title": "UC San Diego",
           "summary": "Independent Researcher",
-          "detailHtml": "<p>La Jolla, CA (Remote). Foundation Interface Lab.</p>"
+          "detailHtml": "<p>At the <strong>Foundation Interface Lab</strong>, I led a <strong>mixed-methods</strong> project on how <strong>experienced developers</strong> work with <strong>AI agents</strong> when coding, designing <strong>observational studies</strong> and <strong>large-scale Qualtrics</strong> surveys to analyze strategies, goals, and sentiment when practitioners rely on agents in real workflows. To support survey recruitment at scale, I developed a <strong>Python</strong>-based <strong>GitHub GraphQL</strong> scraper with <strong>parallel processing</strong> that extracted <em>2.5k+ developer emails</em> from <em>thousands of AI agent and agentic coding repositories</em>. From expert interviews, I <strong>systematized prompt transcriptions</strong> and surfaced <em>recurring patterns in how experienced practitioners structure queries</em> when they are trying to meet quality standards with <strong>AI coding agents</strong>—<em>turning raw conversation into themes we could compare against survey-scale findings</em>. I am <strong>co-first author</strong> on the resulting line of work, including <strong>AI Agent Use for Coding in 2025</strong> and the follow-on <strong>How Experienced Developers Use AI Agents</strong> (in submission).</p>"
         },
         {
           "date": "2025 — 20XX",
           "title": "Self Adjoint Operator",
           "summary": "Design Engineer",
-          "detailHtml": "Solo-running a research studio focused on developing tools for augementing human understanding."
+          "footnoteLink": {
+            "url": "https://selfadjointoperator.io"
+          }
         },
         {
           "date": "2023 — 2026",
@@ -179,13 +177,13 @@
           "date": "2020 — 2023",
           "title": "Various Companies",
           "summary": "Various Internships",
-          "detailHtml": "<p>Various locations.</p>"
+          "detailHtml": "Before full-time work I spent a few years at the intersection of technology and public interest—across editorial, data, and policy roles. At the <strong>Council on Foreign Relations</strong> I did editorial research supporting <strong>foreign policy</strong> coverage, contributing to graphics and analysis on topics ranging from <strong>Latin American vaccination efforts</strong> and <strong>border wall construction</strong> to <strong>global nuclear energy generation</strong>, <strong>LGBTQ+ rights</strong> expansions, and <strong>vice presidential history</strong>. At <strong>New America's Digital Impact and Governance Initiative</strong> I focused on <strong>tech policy research</strong>, writing about <strong>integrated data systems</strong> and examining platforms like <strong>New York's workforce development portal</strong> as case studies in how governments deliver services digitally. At <strong>ActBlue</strong> I worked on <strong>data analysis</strong> and <strong>data engineering</strong> on the progressive <strong>fundraising platform</strong>."
         },
         {
           "date": "2021 — 2023",
           "title": "University of Central Florida",
           "summary": "Undergraduate Researcher",
-          "detailHtml": "<p>Orlando, FL</p>"
+          "detailHtml": "<p>Across three years of <strong>undergraduate research</strong> I worked in <strong>political instability</strong>, <strong>adolescent online safety</strong>, and <strong>applied machine learning</strong>. With <a href=\"https://www.jonathanmpowell.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Jonathan Powell</a>, I helped build an <strong>early-warning forecasting platform</strong> that estimated monthly <strong>coup risk</strong> for <em>&gt;200 countries</em>, wiring <strong>data pipelines</strong> that fed internal reports and public-facing analysis that <em>reached over 500k readers a year</em>; the same thread of work also showed up as commentary for <a href=\"https://www.justsecurity.org/82471/anti-coup-strategies-should-address-civilian-coup-allies/\" target=\"_blank\" rel=\"noopener noreferrer\">Just Security</a> and <a href=\"https://politicalviolenceataglance.org/2022/06/14/reflecting-on-coup-risk-in-mali/\" target=\"_blank\" rel=\"noopener noreferrer\">Political Violence at a Glance</a>. With <a href=\"https://excel.ucf.edu/person/pamela-wisniewski/\" target=\"_blank\" rel=\"noopener noreferrer\">Pamela Wisniewski</a>, I coded <em>50k Instagram DMs</em> into an <strong>ecologically valid dataset</strong> for training <strong>models</strong> that flag <strong>online risks</strong> among teens, then ran an independent project comparing <strong>qualitative annotation</strong> of <strong>text summarization</strong> models at scale. With <a href=\"https://sciences.ucf.edu/sociology/person/amy-donley/\" target=\"_blank\" rel=\"noopener noreferrer\">Amy Donley</a>, I led a <strong>systematic literature review</strong> on COVID-19 and <strong>substance abuse</strong> in <strong>underserved populations</strong>, synthesizing <em>risk factors across demographic groups</em> to support <strong>evidence-based interventions</strong>.</p>"
         },
         {
           "date": "2022",
@@ -203,7 +201,9 @@
           "date": "2020",
           "title": "Progressive Turnout Project",
           "summary": "Field Representative",
-          "detailHtml": ""
+          "footnoteLink": {
+            "url": "https://www.turnoutpac.org"
+          }
         }
       ]
     },
@@ -219,6 +219,35 @@
       ]
     },
     {
+      "label": "internet art",
+      "items": [
+        {
+          "date": "2024",
+          "title": "Hermitian Matrix",
+          "summary": "learning materials",
+          "footnoteLink": {
+            "url": "/wip.html"
+          }
+        },
+        {
+          "date": "2024",
+          "title": "Physical SAO",
+          "summary": "portfolio representations",
+          "footnoteLink": {
+            "url": "/wip.html"
+          }
+        },
+        {
+          "date": "2024",
+          "title": "Realize",
+          "summary": "frequency visualizations",
+          "footnoteLink": {
+            "url": "/wip.html"
+          }
+        }
+      ]
+    },
+    {
       "label": "public scholarship",
       "labelHref": "https://scholar.google.com/citations?user=WecCIHwAAAAJ&hl=en",
       "items": [
@@ -227,7 +256,6 @@
           "title": "The Threat of Artificial Intelligence",
           "summary": "The Loop",
           "footnoteLink": {
-            "label": "Article",
             "url": "https://theloop.ecpr.eu/the-threat-of-artificial-intelligence-is-not-just-real-its-here/"
           }
         },
@@ -236,7 +264,6 @@
           "title": "Limits of Quantitative Research",
           "summary": "The Loop",
           "footnoteLink": {
-            "label": "Article",
             "url": "https://theloop.ecpr.eu/interdisciplinary-social-science-and-the-limits-of-quantitative-research/"
           }
         },
@@ -245,7 +272,6 @@
           "title": "Anti-Coup Strategies",
           "summary": "Just Security",
           "footnoteLink": {
-            "label": "Article",
             "url": "https://www.justsecurity.org/82471/anti-coup-strategies-should-address-civilian-coup-allies/"
           }
         },
@@ -254,7 +280,6 @@
           "title": "Coup Risk in Mali",
           "summary": "Political Violence at a Glance",
           "footnoteLink": {
-            "label": "Article",
             "url": "https://politicalviolenceataglance.org/2022/06/14/reflecting-on-coup-risk-in-mali/"
           }
         },
@@ -263,7 +288,6 @@
           "title": "New York's Workforce Portal",
           "summary": "New America",
           "footnoteLink": {
-            "label": "Article",
             "url": "https://www.newamerica.org/digital-impact-governance-initiative/blog/integrated-data-in-the-united-states-a-look-at-new-yorks-workforce-portal/"
           }
         },
@@ -272,7 +296,6 @@
           "title": "Latin America's Vaccination Efforts",
           "summary": "Council on Foreign Relations",
           "footnoteLink": {
-            "label": "Article",
             "url": "https://www.cfr.org/in-brief/latin-americas-vaccination-efforts-what-know"
           }
         }
@@ -287,7 +310,6 @@
           "title": "Contributing to an Open Source Project",
           "summary": "Knight Hacks | Workshops",
           "footnoteLink": {
-            "label": "Watch",
             "url": "https://www.youtube.com/watch?v=YAgk39hzpDo"
           }
         },
@@ -296,7 +318,6 @@
           "title": "How To Get Into The Industry",
           "summary": "Knight Hacks | Workshops",
           "footnoteLink": {
-            "label": "Watch",
             "url": "https://www.youtube.com/watch?v=xAXvxLWU7Ug"
           }
         },
@@ -305,7 +326,6 @@
           "title": "Sustainable Solutions for Puerto Rico",
           "summary": "PMBF Podcast Series",
           "footnoteLink": {
-            "label": "Listen",
             "url": "https://web.archive.org/web/20240627100352/https://soundcloud.com/user-159769958-674959753"
           }
         }
@@ -316,20 +336,10 @@
       "labelHref": "https://youtu.be/Og9azEDcG4k",
       "items": [
         {
-          "date": "2026",
-          "title": "Drag-And-Drop Not Considered Harmful",
-          "summary": "Pacific Programming Interfaces Confab",
-          "footnoteLink": {
-            "label": "Info",
-            "url": "/talk_unavailable.html"
-          }
-        },
-        {
           "date": "2022",
           "title": "Cartographic Limits",
           "summary": "NACIS '22",
           "footnoteLink": {
-            "label": "Talk",
             "url": "https://youtu.be/Og9azEDcG4k?si=OQHwmA7IQwXdc1u3"
           }
         },
@@ -338,7 +348,6 @@
           "title": "Legacies of Instability",
           "summary": "ISA South '22",
           "footnoteLink": {
-            "label": "Info",
             "url": "/talk_unavailable.html"
           }
         },
@@ -347,7 +356,6 @@
           "title": "Mapper-ing Communities of Interest",
           "summary": "UPS Science Seminar",
           "footnoteLink": {
-            "label": "Info",
             "url": "/talk_unavailable.html"
           }
         }
@@ -362,7 +370,6 @@
           "title": "Social Power and Inequality",
           "summary": "Undergraduate Teaching Assistant",
           "footnoteLink": {
-            "label": "UCF Sociology",
             "url": "https://www.ucf.edu/degree/sociology-ba/"
           }
         }
@@ -376,8 +383,7 @@
           "title": "draft 004",
           "summary": "gallery musings",
           "footnoteLink": {
-            "label": "Read post",
-            "url": "https://averyreyna.github.io/writing/post-001"
+            "url": "https://semanticdistance.io/draft-004-gallery-musings"
           }
         },
         {
@@ -385,8 +391,7 @@
           "title": "post 001",
           "summary": "february bullets",
           "footnoteLink": {
-            "label": "Read post",
-            "url": "https://averyreyna.github.io/writing/post-001"
+            "url": "https://semanticdistance.io/post-001-february-bullets"
           }
         },
         {
@@ -394,8 +399,7 @@
           "title": "draft 003",
           "summary": "(some) january bullets",
           "footnoteLink": {
-            "label": "Read post",
-            "url": "https://averyreyna.github.io/writing/draft-003"
+            "url": "https://semanticdistance.io/drafts-003-january-bullets"
           }
         },
         {
@@ -403,8 +407,7 @@
           "title": "draft 002",
           "summary": "living and exploring!",
           "footnoteLink": {
-            "label": "Read post",
-            "url": "https://averyreyna.github.io/writing/draft-002"
+            "url": "https://semanticdistance.io/drafts-002-living-and-exploring"
           }
         },
         {
@@ -412,8 +415,7 @@
           "title": "draft 001",
           "summary": "even in the dark, we sing",
           "footnoteLink": {
-            "label": "Read post",
-            "url": "https://averyreyna.github.io/writing/draft-001"
+            "url": "https://semanticdistance.io/drafts-001-even-in-the-dark-we-sing"
           }
         },
         {
@@ -421,8 +423,7 @@
           "title": "absorbtion 001",
           "summary": "audrey hobert, i love you",
           "footnoteLink": {
-            "label": "Read post",
-            "url": "https://averyreyna.github.io/writing/absorbtion-001"
+            "url": "https://semanticdistance.io/whos-the-clown"
           }
         }
       ]
