@@ -15,6 +15,13 @@
         "y": 0.68
       },
       {
+        "label": "Are.na",
+        "icon": "star",
+        "url": "https://www.are.na/averyreyna/",
+        "x": -0.36,
+        "y": 0.42
+      },
+      {
         "label": "Instagram",
         "icon": "photo_camera",
         "url": "https://instagram.com/selfadjointoperator",
@@ -222,7 +229,7 @@
       "label": "internet art",
       "items": [
         {
-          "date": "2024",
+          "date": "2026",
           "title": "Hermitian Matrix",
           "summary": "learning materials",
           "footnoteLink": {
@@ -230,7 +237,7 @@
           }
         },
         {
-          "date": "2024",
+          "date": "2026",
           "title": "Physical SAO",
           "summary": "portfolio representations",
           "footnoteLink": {
@@ -238,7 +245,7 @@
           }
         },
         {
-          "date": "2024",
+          "date": "2026",
           "title": "Realize",
           "summary": "frequency visualizations",
           "footnoteLink": {
