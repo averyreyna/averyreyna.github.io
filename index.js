@@ -13,7 +13,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var trailChars = ['!', '@', '#', '$', '%', '&'];
     var lastTrailTime = 0;
+
+    var cursorHead = document.createElement('span');
+    cursorHead.className = 'cursor-trail-head';
+    cursorHead.textContent = trailChars[Math.floor(Math.random() * trailChars.length)];
+    cursorHead.setAttribute('aria-hidden', 'true');
+    cursorHead.style.visibility = 'hidden';
+    document.body.appendChild(cursorHead);
+
+    document.documentElement.addEventListener('mouseleave', function() {
+        cursorHead.style.visibility = 'hidden';
+    });
+
     document.addEventListener('mousemove', function(e) {
+        cursorHead.style.left = e.clientX + 'px';
+        cursorHead.style.top = e.clientY + 'px';
+        cursorHead.style.visibility = 'visible';
+
         var now = Date.now();
         if (now - lastTrailTime < 80) return;
         lastTrailTime = now;

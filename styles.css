@@ -15,6 +15,33 @@
     user-select: none;
 }
 
+/* Leading character replaces the system cursor */
+.cursor-trail-head {
+    position: fixed;
+    pointer-events: none;
+    font-family: 'ABC Favorit Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1f2937;
+    z-index: 10000;
+    user-select: none;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    line-height: 1;
+}
+
+html,
+body,
+a,
+button,
+[role='button'],
+input,
+textarea,
+select,
+label {
+    cursor: none;
+}
+
 /* reset and base styles */
 html::-webkit-scrollbar {
     display: none;
@@ -813,8 +840,14 @@ body .reference-view__row-link:hover {
     margin: 0.3rem 0 0 0;
   }
 
+  /* `cover` + max-height crops; on narrow widths the crop is obvious — show full image */
+  .reference-view__figure {
+    min-width: 0;
+  }
+
   .reference-view__media {
-    max-height: 180px;
+    object-fit: contain;
+    max-height: min(58vh, 360px);
   }
 }
 
