@@ -42,6 +42,20 @@ label {
     cursor: none;
 }
 
+@media (pointer: coarse) {
+    html,
+    body,
+    a,
+    button,
+    [role='button'],
+    input,
+    textarea,
+    select,
+    label {
+        cursor: auto;
+    }
+}
+
 /* reset and base styles */
 html::-webkit-scrollbar {
     display: none;
