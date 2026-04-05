@@ -65,7 +65,7 @@
         {
           "date": "2026",
           "title": "How Experienced Developers Use AI Agents",
-          "summary": "In submission",
+          "summary": "In review",
           "footnoteLink": {
             "url": "https://ai-agents-for-coding-in-2025.vercel.app/"
           }
@@ -81,7 +81,7 @@
         {
           "date": "2024",
           "title": "Help Supporters",
-          "summary": "CHI '24",
+          "summary": "CHI",
           "footnoteLink": {
             "url": "https://dl.acm.org/doi/10.1145/3613904.3642816"
           }
@@ -89,7 +89,7 @@
         {
           "date": "2023",
           "title": "Spatial Interactions",
-          "summary": "ASSETS '23",
+          "summary": "ASSETS",
           "footnoteLink": {
             "url": "https://dl.acm.org/doi/10.1145/3597638.3608412"
           }
@@ -157,14 +157,12 @@
         {
           "date": "2026 — 20XX",
           "title": "University of Kentucky",
-          "summary": "Independent Researcher",
-          "detailHtml": "<p>I designed and developed the <strong>selected prototype</strong> for a <strong>machine learning</strong>-powered web application that assesses <strong>global coup risk</strong>, which <em>became the technical foundation a multi-pronged research team adopted</em>. I led a <strong>cross-functional</strong> team of <em>5 CS students</em> building new features on that <strong>full-stack ML</strong> application—owning <strong>technical direction</strong>, <strong>task delegation</strong>, and <strong>code review</strong>. Over the course of the project we shipped <em>production-ready features</em> such as <strong>interactive mapping</strong>, <strong>filtering</strong> workflows, and <strong>risk trend charts</strong>, <em>closing the gap between model output and something researchers could explore and argue with in the browser</em>.</p>"
+          "summary": "Independent Researcher"
         },
         {
           "date": "2025 — 20XX",
           "title": "UC San Diego",
-          "summary": "Independent Researcher",
-          "detailHtml": "<p>At the <strong>Foundation Interface Lab</strong>, I led a <strong>mixed-methods</strong> project on how <strong>experienced developers</strong> work with <strong>AI agents</strong> when coding, designing <strong>observational studies</strong> and <strong>large-scale Qualtrics</strong> surveys to analyze strategies, goals, and sentiment when practitioners rely on agents in real workflows. To support survey recruitment at scale, I developed a <strong>Python</strong>-based <strong>GitHub GraphQL</strong> scraper with <strong>parallel processing</strong> that extracted <em>2.5k+ developer emails</em> from <em>thousands of AI agent and agentic coding repositories</em>. From expert interviews, I <strong>systematized prompt transcriptions</strong> and surfaced <em>recurring patterns in how experienced practitioners structure queries</em> when they are trying to meet quality standards with <strong>AI coding agents</strong>—<em>turning raw conversation into themes we could compare against survey-scale findings</em>. I am <strong>co-first author</strong> on the resulting line of work, including <strong>AI Agent Use for Coding in 2025</strong> and the follow-on <strong>How Experienced Developers Use AI Agents</strong> (in submission).</p>"
+          "summary": "Independent Researcher"
         },
         {
           "date": "2025 — 20XX",
@@ -345,7 +343,7 @@
         {
           "date": "2022",
           "title": "Cartographic Limits",
-          "summary": "NACIS '22",
+          "summary": "NACIS",
           "footnoteLink": {
             "url": "https://youtu.be/Og9azEDcG4k?si=OQHwmA7IQwXdc1u3"
           }
@@ -353,7 +351,7 @@
         {
           "date": "2022",
           "title": "Legacies of Instability",
-          "summary": "ISA South '22",
+          "summary": "ISA South",
           "footnoteLink": {
             "url": "/talk_unavailable.html"
           }
