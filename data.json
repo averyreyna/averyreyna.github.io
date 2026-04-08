@@ -29,6 +29,13 @@
         "y": -0.42
       },
       {
+        "label": "Blog",
+        "icon": "rss_feed",
+        "url": "https://complexvectorspace.io",
+        "x": -0.22,
+        "y": -0.66
+      },
+      {
         "label": "GitHub",
         "icon": "code",
         "url": "https://github.com/averyreyna",
@@ -425,7 +432,7 @@
         },
         {
           "date": "2025",
-          "title": "absorbtion 001",
+          "title": "absorption 001",
           "summary": "audrey hobert, i love you",
           "footnoteLink": {
             "url": "https://semanticdistance.io/whos-the-clown"
