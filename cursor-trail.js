@@ -7,6 +7,10 @@
 
         var trailChars = ['!', '@', '#', '$', '%', '&'];
         var lastTrailTime = 0;
+        var lastX = null;
+        var lastY = null;
+        var idleHideTimer = null;
+        var IDLE_HIDE_MS = 120;
 
         var cursorHead = document.createElement('span');
         cursorHead.className = 'cursor-trail-head';
@@ -20,9 +24,18 @@
         });
 
         document.addEventListener('mousemove', function(e) {
+            var moved = lastX !== e.clientX || lastY !== e.clientY;
+            lastX = e.clientX;
+            lastY = e.clientY;
+            if (!moved) return;
+
             cursorHead.style.left = e.clientX + 'px';
             cursorHead.style.top = e.clientY + 'px';
             cursorHead.style.visibility = 'visible';
+            if (idleHideTimer) clearTimeout(idleHideTimer);
+            idleHideTimer = setTimeout(function() {
+                cursorHead.style.visibility = 'hidden';
+            }, IDLE_HIDE_MS);
 
             var now = Date.now();
             if (now - lastTrailTime < 80) return;

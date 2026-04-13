@@ -439,6 +439,34 @@
           }
         }
       ]
+    },
+    {
+      "label": "PHOTOS",
+      "type": "photos-carousel",
+      "photos": [
+        { "src": "/assets/files/photos/IMG_3617.JPG", "alt": "Photo IMG 3617" },
+        { "src": "/assets/files/photos/IMG_3618.JPG", "alt": "Photo IMG 3618" },
+        { "src": "/assets/files/photos/IMG_3619.JPG", "alt": "Photo IMG 3619" },
+        { "src": "/assets/files/photos/IMG_3620.JPG", "alt": "Photo IMG 3620" },
+        { "src": "/assets/files/photos/IMG_3621.JPG", "alt": "Photo IMG 3621" },
+        { "src": "/assets/files/photos/IMG_3622.JPG", "alt": "Photo IMG 3622" },
+        { "src": "/assets/files/photos/IMG_3623.JPG", "alt": "Photo IMG 3623" },
+        { "src": "/assets/files/photos/IMG_3624.JPG", "alt": "Photo IMG 3624" },
+        { "src": "/assets/files/photos/IMG_3625.JPG", "alt": "Photo IMG 3625" },
+        { "src": "/assets/files/photos/IMG_3626.JPG", "alt": "Photo IMG 3626" },
+        { "src": "/assets/files/photos/IMG_3627.JPG", "alt": "Photo IMG 3627" },
+        { "src": "/assets/files/photos/IMG_3628.JPG", "alt": "Photo IMG 3628" },
+        { "src": "/assets/files/photos/IMG_3629.JPG", "alt": "Photo IMG 3629" },
+        { "src": "/assets/files/photos/IMG_3630.JPG", "alt": "Photo IMG 3630" },
+        { "src": "/assets/files/photos/IMG_3631.JPG", "alt": "Photo IMG 3631" },
+        { "src": "/assets/files/photos/IMG_3632.JPG", "alt": "Photo IMG 3632" },
+        { "src": "/assets/files/photos/IMG_3633.JPG", "alt": "Photo IMG 3633" },
+        { "src": "/assets/files/photos/IMG_3634.JPG", "alt": "Photo IMG 3634" },
+        { "src": "/assets/files/photos/IMG_3635.JPG", "alt": "Photo IMG 3635" },
+        { "src": "/assets/files/photos/IMG_3636.JPG", "alt": "Photo IMG 3636" },
+        { "src": "/assets/files/photos/IMG_3637.JPG", "alt": "Photo IMG 3637" },
+        { "src": "/assets/files/photos/IMG_3638.JPG", "alt": "Photo IMG 3638" }
+      ]
     }
   ]
 }
