@@ -223,6 +223,86 @@ document.addEventListener('DOMContentLoaded', function() {
         return article;
     }
 
+    function createPhotosSection(section) {
+        var photos = Array.isArray(section.photos) ? section.photos : [];
+        if (photos.length === 0) return null;
+
+        var block = document.createElement('div');
+        block.className = 'reference-view__section-block reference-view__section-block--photos';
+
+        var h = document.createElement('h2');
+        h.className = 'reference-view__section-label';
+        h.textContent = section.label || 'PHOTOS';
+        block.appendChild(h);
+
+        var carousel = document.createElement('div');
+        carousel.className = 'reference-view__photos-carousel';
+        carousel.setAttribute('role', 'region');
+        carousel.setAttribute('aria-label', (section.label || 'Photos') + ' carousel');
+
+        var track = document.createElement('div');
+        track.className = 'reference-view__photos-track';
+        enablePhotoScrub(carousel);
+
+        function buildPhotoGroup() {
+            var group = document.createElement('div');
+            group.className = 'reference-view__photos-group';
+            photos.forEach(function(photo, idx) {
+                var figure = document.createElement('figure');
+                figure.className = 'reference-view__photo-slide';
+
+                var img = document.createElement('img');
+                img.className = 'reference-view__photo-image';
+                img.src = photo.src;
+                img.alt = photo.alt || 'Photo ' + String(idx + 1);
+                img.loading = 'lazy';
+                img.decoding = 'async';
+
+                figure.appendChild(img);
+                group.appendChild(figure);
+            });
+            return group;
+        }
+
+        track.appendChild(buildPhotoGroup());
+        carousel.appendChild(track);
+        block.appendChild(carousel);
+        return block;
+    }
+
+    function enablePhotoScrub(container) {
+        var isPointerDown = false;
+        var startX = 0;
+        var startScrollLeft = 0;
+
+        container.addEventListener('pointerdown', function(e) {
+            isPointerDown = true;
+            startX = e.clientX;
+            startScrollLeft = container.scrollLeft;
+            container.classList.add('is-scrubbing');
+            container.setPointerCapture(e.pointerId);
+        });
+
+        container.addEventListener('pointermove', function(e) {
+            if (!isPointerDown) return;
+            var deltaX = e.clientX - startX;
+            container.scrollLeft = startScrollLeft - deltaX;
+        });
+
+        function endScrub(e) {
+            if (!isPointerDown) return;
+            isPointerDown = false;
+            container.classList.remove('is-scrubbing');
+            if (e && typeof e.pointerId === 'number') {
+                container.releasePointerCapture(e.pointerId);
+            }
+        }
+
+        container.addEventListener('pointerup', endScrub);
+        container.addEventListener('pointercancel', endScrub);
+        container.addEventListener('pointerleave', endScrub);
+    }
+
     async function loadSiteData() {
         var root = document.getElementById('reference-view-root');
         if (!root) return;
@@ -236,6 +316,11 @@ document.addEventListener('DOMContentLoaded', function() {
             var PREVIEW_LIMIT = 3;
             sections.forEach(function(section, secIdx) {
                 if (section.hidden === true) return;
+                if (section.type === 'photos-carousel') {
+                    var photosBlock = createPhotosSection(section);
+                    if (photosBlock) root.appendChild(photosBlock);
+                    return;
+                }
                 var items = section.items || [];
                 var block = document.createElement('div');
                 block.className = 'reference-view__section-block';
