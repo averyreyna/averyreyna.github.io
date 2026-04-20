@@ -166,7 +166,7 @@
         },
         {
           "date": "2021",
-          "title": "Donataion Forecasting",
+          "title": "Donation Forecasting",
           "summary": "Analytics",
           "footnoteLink": {
             "url": "/project_unavilable.html"
@@ -249,14 +249,6 @@
     {
       "label": "internet art",
       "items": [
-        {
-          "date": "2026",
-          "title": "Hermitian Matrix",
-          "summary": "learning materials",
-          "footnoteLink": {
-            "url": "/wip.html"
-          }
-        },
         {
           "date": "2026",
           "title": "Physical SAO",
