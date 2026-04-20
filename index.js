@@ -224,7 +224,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function createPhotosSection(section) {
-        var photos = Array.isArray(section.photos) ? section.photos : [];
+        var photos = shuffleList(Array.isArray(section.photos) ? section.photos : []);
         if (photos.length === 0) return null;
 
         var block = document.createElement('div');
@@ -268,6 +268,17 @@ document.addEventListener('DOMContentLoaded', function() {
         carousel.appendChild(track);
         block.appendChild(carousel);
         return block;
+    }
+
+    function shuffleList(list) {
+        var shuffled = list.slice();
+        for (var i = shuffled.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var tmp = shuffled[i];
+            shuffled[i] = shuffled[j];
+            shuffled[j] = tmp;
+        }
+        return shuffled;
     }
 
     function enablePhotoScrub(container) {

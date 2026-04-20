@@ -348,6 +348,14 @@
       "labelHref": "https://youtu.be/Og9azEDcG4k",
       "items": [
         {
+          "date": "2026",
+          "title": "Coup Catalyst",
+          "summary": "RAND",
+          "footnoteLink": {
+            "url": "/talk_unavailable.html"
+          }
+        },
+        {
           "date": "2022",
           "title": "Cartographic Limits",
           "summary": "NACIS",
