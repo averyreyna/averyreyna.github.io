@@ -155,6 +155,22 @@
             "src": "/assets/projects/industry/penetration_tests.gif",
             "alt": "Penetration test checklists preview"
           }
+        },
+        {
+          "date": "2023",
+          "title": "Fundraising Redesign",
+          "summary": "Internal Tools",
+          "footnoteLink": {
+            "url": "/project_unavilable.html"
+          }
+        },
+        {
+          "date": "2021",
+          "title": "Donataion Forecasting",
+          "summary": "Analytics",
+          "footnoteLink": {
+            "url": "/project_unavilable.html"
+          }
         }
       ]
     },
@@ -373,7 +389,7 @@
         },
         {
           "date": "2022",
-          "title": "Applied ML",
+          "title": "Applied Machine Learning",
           "summary": "UCF SURPS",
           "footnoteLink": {
             "url": "/assets/files/presentations/summer_undergraduate_research_poster_showcase_22.pdf"
@@ -381,7 +397,7 @@
         },
         {
           "date": "2022",
-          "title": "TextRank/LexRank",
+          "title": "TextRank and LexRank",
           "summary": "UCF SRW",
           "footnoteLink": {
             "url": "/assets/files/presentations/student_research_week_22.pdf"
