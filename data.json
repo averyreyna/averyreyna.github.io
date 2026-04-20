@@ -372,11 +372,27 @@
           }
         },
         {
-          "date": "2021",
-          "title": "Mapper-ing Communities of Interest",
-          "summary": "UPS Science Seminar",
+          "date": "2022",
+          "title": "Applied ML",
+          "summary": "UCF SURPS",
           "footnoteLink": {
-            "url": "/talk_unavailable.html"
+            "url": "/assets/files/presentations/summer_undergraduate_research_poster_showcase_22.pdf"
+          }
+        },
+        {
+          "date": "2022",
+          "title": "TextRank/LexRank",
+          "summary": "UCF SRW",
+          "footnoteLink": {
+            "url": "/assets/files/presentations/student_research_week_22.pdf"
+          }
+        },
+        {
+          "date": "2021",
+          "title": "Adolescent Online Safety",
+          "summary": "UCF SRW",
+          "footnoteLink": {
+            "url": "/assets/files/presentations/student_research_week_21.pdf"
           }
         }
       ]
