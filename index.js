@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    var lazyImageObserver = null;
     var dcTimeFormatter = new Intl.DateTimeFormat('en-US', {
         hour: 'numeric',
         minute: '2-digit',
@@ -97,6 +98,38 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    function configureLazyImage(img, src, placeholderColor) {
+        if (!img || !src) return;
+        img.classList.add('lozad');
+        img.setAttribute('data-src', src);
+        img.setAttribute('decoding', 'async');
+        img.setAttribute('data-placeholder-background', placeholderColor || '#efefef');
+    }
+
+    function fallbackLoadLazyImages() {
+        var pending = document.querySelectorAll('img.lozad[data-src]');
+        pending.forEach(function(img) {
+            if (img.getAttribute('src')) return;
+            var source = img.getAttribute('data-src');
+            if (source) img.setAttribute('src', source);
+        });
+    }
+
+    function observeLazyImages() {
+        if (typeof window.lozad !== 'function') {
+            fallbackLoadLazyImages();
+            return;
+        }
+
+        if (!lazyImageObserver) {
+            lazyImageObserver = window.lozad('.lozad', {
+                rootMargin: '200px 0px',
+                threshold: 0.1
+            });
+        }
+        lazyImageObserver.observe();
+    }
+
     function createReferenceRow(item, stableId) {
         var hasDetailBody = !!(item.detailHtml || (item.image && item.image.src));
         var hasExpand = hasDetailBody;
@@ -142,10 +175,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 var fig = document.createElement('figure');
                 fig.className = 'reference-view__figure';
                 var img = document.createElement('img');
-                img.src = item.image.src;
                 img.alt = item.image.alt || '';
                 img.className = 'reference-view__media';
-                img.loading = 'lazy';
+                configureLazyImage(img, item.image.src, '#f2f2f2');
                 fig.appendChild(img);
                 inner.appendChild(fig);
             }
@@ -253,10 +285,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 var img = document.createElement('img');
                 img.className = 'reference-view__photo-image';
-                img.src = photo.src;
                 img.alt = photo.alt || 'Photo ' + String(idx + 1);
-                img.loading = 'lazy';
-                img.decoding = 'async';
+                configureLazyImage(img, photo.src, '#f6f6f6');
 
                 figure.appendChild(img);
                 group.appendChild(figure);
@@ -395,6 +425,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         if (previewEndRow) {
                             previewEndRow.classList.toggle('reference-view__item--section-end', !willExpand);
                         }
+                        observeLazyImages();
                     });
                     footer.appendChild(expandBtn);
                 }
@@ -402,6 +433,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 root.appendChild(block);
             });
+            observeLazyImages();
         } catch (err) {
             console.error('Error loading site data:', err);
         }
