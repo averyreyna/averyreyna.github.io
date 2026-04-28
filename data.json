@@ -1,504 +1,143 @@
 {
-  "axis": {
-    "labels": {
-      "top": "ESSENTIAL",
-      "bottom": "PERIPHERAL",
-      "left": "PERSONAL",
-      "right": "PROFESSIONAL"
-    },
-    "links": [
-      {
-        "label": "Email",
-        "icon": "mail",
-        "url": "mailto:avery.reyna16@gmail.com",
-        "x": -0.38,
-        "y": 0.68
-      },
-      {
-        "label": "Are.na",
-        "icon": "star",
-        "url": "https://www.are.na/avery-reyna",
-        "x": -0.36,
-        "y": 0.42
-      },
-      {
-        "label": "Instagram",
-        "icon": "photo_camera",
-        "url": "https://instagram.com/selfadjointoperator",
-        "x": -0.52,
-        "y": -0.42
-      },
-      {
-        "label": "Blog",
-        "icon": "rss_feed",
-        "url": "https://complexvectorspace.io",
-        "x": -0.22,
-        "y": -0.66
-      },
-      {
-        "label": "GitHub",
-        "icon": "code",
-        "url": "https://github.com/averyreyna",
-        "x": 0.28,
-        "y": 0.72
-      },
-      {
-        "label": "Google Scholar",
-        "icon": "school",
-        "url": "https://scholar.google.com/citations?user=WecCIHwAAAAJ&hl=en",
-        "x": 0.62,
-        "y": 0.58
-      },
-      {
-        "label": "LinkedIn",
-        "icon": "work",
-        "url": "https://linkedin.com/in/avery-reyna",
-        "x": 0.4,
-        "y": -0.48
-      },
-      {
-        "label": "CV",
-        "icon": "description",
-        "url": "/assets/files/cv/avery_reyna_cv.pdf",
-        "x": 0.68,
-        "y": -0.36
-      }
-    ]
-  },
+  "links": [
+    { "label": "Are.na", "url": "https://www.are.na/avery-reyna" },
+    { "label": "Blog", "url": "https://complexvectorspace.io" },
+    { "label": "CV", "url": "/assets/files/cv/avery_reyna_cv.pdf" },
+    { "label": "Email", "url": "mailto:avery.reyna16@gmail.com" },
+    { "label": "GitHub", "url": "https://github.com/averyreyna" },
+    { "label": "Google Scholar", "url": "https://scholar.google.com/citations?user=WecCIHwAAAAJ&hl=en" },
+    { "label": "Instagram", "url": "https://instagram.com/selfadjointoperator" },
+    { "label": "LinkedIn", "url": "https://linkedin.com/in/avery-reyna" }
+  ],
   "sections": [
     {
-      "label": "research",
-      "items": [
+      "label": "Research",
+      "items": [],
+      "subsections": [
         {
-          "date": "2026",
-          "title": "How Experienced Developers Use AI Agents",
-          "summary": "In review",
-          "footnoteLink": {
-            "url": "https://ai-agents-for-coding-in-2025.vercel.app/"
-          }
+          "label": "Independent",
+          "items": [
+            {
+              "title": "They Aren't Vibing: How Experienced Developers Use AI Agents",
+              "context": "Submitted. 2026",
+              "url": "https://ai-agents-for-coding-in-2025.vercel.app/"
+            },
+            {
+              "title": "Professional Software Developers Don't Vibe, They Control: AI Agent Use for Coding in 2025",
+              "context": "Preprint. 2025",
+              "url": "https://arxiv.org/abs/2512.14012"
+            }
+          ]
         },
         {
-          "date": "2025",
-          "title": "AI Agent Use for Coding in 2025",
-          "summary": "Preprint",
-          "footnoteLink": {
-            "url": "https://arxiv.org/abs/2512.14012"
-          }
-        },
-        {
-          "date": "2024",
-          "title": "Help Supporters",
-          "summary": "CHI",
-          "footnoteLink": {
-            "url": "https://dl.acm.org/doi/10.1145/3613904.3642816"
-          }
-        },
-        {
-          "date": "2023",
-          "title": "Spatial Interactions",
-          "summary": "ASSETS",
-          "footnoteLink": {
-            "url": "https://dl.acm.org/doi/10.1145/3597638.3608412"
-          }
+          "label": "Undergraduate",
+          "items": [
+            {
+              "title": "Help Supporters: Exploring the Design Space of Assistive Technologies to Support Face-to-Face Help Between Blind and Sighted Strangers",
+              "context": "CHI 2024",
+              "url": "https://help-supporters.vercel.app/"
+            },
+            {
+              "title": "Understanding Blind and Low Vision Users' Attitudes Towards Spatial Interactions in Desktop Screen Readers",
+              "context": "ASSETS 2023. Built upon in CHI '25",
+              "url": "https://ceal.cs.columbia.edu/webnext/"
+            }
+          ]
         }
       ]
     },
     {
-      "label": "industry",
-      "items": [
+      "label": "Public Scholarship",
+      "labelUrl": "https://scholar.google.com/citations?user=WecCIHwAAAAJ&hl=en",
+      "items": [],
+      "subsections": [
         {
-          "date": "2025",
-          "title": "Metrics Playground",
-          "summary": "PDQM",
-          "detailHtml": "A hands-on playground for metrics and evaluation workflows aimed at Cyber D&M engineers, focused on how <strong>agentic software development</strong> changes instrumentation, feedback loops, and what we choose to measure. I built the whole thing using agentic tooling like <strong>GitHub Copilot</strong> to walk the talk, showing how these tools invite low-stakes experimentation and make it way easier to spin up interactive prototypes without a ton of overhead. The playground itself includes <strong>interactive data tables</strong> with <strong>inline editing</strong>, <strong>JSON view toggles</strong>, and <strong>batch operations</strong>, giving engineers a real sandbox to explore and validate <strong>metadata</strong> without jumping between tools.",
-          "image": {
-            "src": "/assets/projects/industry/metrics_playground.gif",
-            "alt": "Metrics Playground preview"
-          }
-        },
-        {
-          "date": "2025",
-          "title": "Admin Metrics Dashboard",
-          "summary": "PDQM",
-          "detailHtml": "An in-house admin dashboard for cyber log monitoring, designed to replace a <strong>Grafana</strong>-heavy setup with views tuned to our operators' workflows, alert semantics, and day-to-day triage habits. This was the first iteration of a custom monitoring system built in <strong>React</strong>, <strong>TypeScript</strong>, and <strong>Python</strong>. We added <strong>dynamic timeframe filtering</strong>, <strong>real-time threshold alerting</strong>, and <strong>granular inventory tracking</strong> across <em>&gt;5k assets</em>, so admins could actually catch anomalies instead of scrolling through pages of <strong>widgets</strong> that lack customizability. ",
-          "image": {
-            "src": "/assets/projects/industry/admin_metrics_dashboard.png",
-            "alt": "Admin metrics dashboard preview"
-          }
-        },
-        {
-          "date": "2024",
-          "title": "ILM Portal",
-          "summary": "Access Vikings",
-          "detailHtml": "A centralized <strong>identity and lifecycle management</strong> portal that brings together all the <strong>plugins</strong> our team was building under one roof instead of bouncing between disconnected tools. I led the end-to-end design on this one, serving as the point of contact for all <strong>UX</strong> concerns and ensuring the experience held together as we onboarded new plugins. One of the bigger ones it housed was a <strong>toxic access pairs</strong> plugin I helped redesign, which flagged dangerous permission combinations and <em>cut security vulnerabilities by 40%</em>.",
-          "image": {
-            "src": "/assets/projects/industry/ilm_portal.png",
-            "alt": "ILM portal preview"
-          }
-        },
-        {
-          "date": "2024",
-          "title": "File Upload Tool",
-          "summary": "Access Vikings",
-          "detailHtml": "A file upload and validation path for native content feeding <strong>IAM analytics</strong> — checking format, completeness, and consistency before data lands in <strong>downstream reporting</strong> and <strong>access models</strong>. The big upgrade here was translating an existing <strong>Python</strong> validation script into our <strong>Java</strong> codebase and wiring up <strong>real-time error feedback</strong> through <strong>Angular</strong>, so users could see exactly what was wrong with their file before resubmitting instead of waiting on a manual review cycle. That alone <em>cut processing time by about 2 hours per upload</em> and <em>completely eliminated duplicate submissions</em>.",
-          "image": {
-            "src": "/assets/projects/industry/file_upload_tool.gif",
-            "alt": "File upload tool preview"
-          }
-        },
-        {
-          "date": "2024",
-          "title": "Penetration Test Checklists",
-          "summary": "Mystique",
-          "detailHtml": "A <strong>remediation platform</strong> workflow for <strong>offensive security</strong> that imports <strong>Excel</strong> files and renders them as <strong>editable spreadsheets</strong> in the browser, so testers could <strong>track</strong> progress, <strong>assign</strong> work across the team, and <strong>export</strong> updated <strong>penetration test checklists</strong> without bouncing between static files and side channels—<em>pulling import, collaboration, and export into one surface instead of a patchwork of local copies</em>. I built the experience in <strong>React</strong> and <strong>TypeScript</strong>, focusing on faithful imports and spreadsheet-like editing so the UI stayed usable during live engagements, which <em>kept mid-engagement checklist edits on-platform instead of re-roundtripping every change through Excel</em>.",
-          "image": {
-            "src": "/assets/projects/industry/penetration_tests.gif",
-            "alt": "Penetration test checklists preview"
-          }
-        },
-        {
-          "date": "2023",
-          "title": "Fundraising Redesign",
-          "summary": "Internal Tools",
-          "footnoteLink": {
-            "url": "/project_unavilable.html"
-          }
-        },
-        {
-          "date": "2021",
-          "title": "Donation Forecasting",
-          "summary": "Analytics",
-          "footnoteLink": {
-            "url": "/project_unavilable.html"
-          }
+          "label": "Undergraduate",
+          "items": [
+            {
+              "title": "The Threat of Artificial Intelligence Is Not Just Real, It’s Here",
+              "context": "The Loop. 2023",
+              "url": "https://theloop.ecpr.eu/the-threat-of-artificial-intelligence-is-not-just-real-its-here/"
+            },
+            {
+              "title": "Interdisciplinary Social Science and the Limits of Quantitative Research",
+              "context": "The Loop. 2022",
+              "url": "https://theloop.ecpr.eu/interdisciplinary-social-science-and-the-limits-of-quantitative-research/"
+            },
+            {
+              "title": "Anti-Coup Strategies Should Address Civilian Coup Allies",
+              "context": "Just Security. 2022",
+              "url": "https://www.justsecurity.org/82471/anti-coup-strategies-should-address-civilian-coup-allies/"
+            },
+            {
+              "title": "Reflecting on Coup Risk in Mali",
+              "context": "Political Violence at a Glance. 2022",
+              "url": "https://politicalviolenceataglance.org/2022/06/14/reflecting-on-coup-risk-in-mali/"
+            },
+            {
+              "title": "Integrated Data in the United States: A Look at New York's Workforce Portal",
+              "context": "New America. 2022",
+              "url": "https://www.newamerica.org/digital-impact-governance-initiative/blog/integrated-data-in-the-united-states-a-look-at-new-yorks-workforce-portal/"
+            },
+            {
+              "title": "Latin America's Vaccination Efforts: What to Know",
+              "context": "Council on Foreign Relations. 2021",
+              "url": "https://www.cfr.org/in-brief/latin-americas-vaccination-efforts-what-know"
+            }
+          ]
         }
       ]
     },
     {
-      "label": "experience",
-      "items": [
+      "label": "Talks",
+      "labelUrl": "https://youtu.be/Og9azEDcG4k",
+      "items": [],
+      "subsections": [
         {
-          "date": "2026 — 20XX",
-          "title": "University of Kentucky",
-          "summary": "Independent Researcher"
+          "label": "Independent",
+          "items": [
+            {
+              "title": "Drag-And-Drop Not Considered Harmful",
+              "context": "PIPC. 2026",
+              "url": "/talk_unavailable.html"
+            },
+            {
+              "title": "Coup Catalyst: A Coup Forecasting Tool",
+              "context": "RAND Corporation. 2026",
+              "url": "/talk_unavailable.html"
+            }
+          ]
         },
         {
-          "date": "2025 — 20XX",
-          "title": "UC San Diego",
-          "summary": "Independent Researcher"
-        },
-        {
-          "date": "2025 — 20XX",
-          "title": "Self Adjoint Operator",
-          "summary": "Design Engineer",
-          "footnoteLink": {
-            "url": "https://selfadjointoperator.io"
-          }
-        },
-        {
-          "date": "2023 — 2026",
-          "title": "Capital One",
-          "summary": "Software Engineer",
-          "detailHtml": "I built and maintained internal platforms focused on <strong>cybersecurity</strong> visibility and <strong>access management</strong>. For <strong>PDQM</strong>, I developed custom <strong>monitoring dashboards</strong> and <strong>data quality tooling</strong> using <strong>React</strong>, <strong>TypeScript</strong>, <strong>Python</strong>, and <strong>Angular</strong>—replacing third-party solutions, building <strong>security heatmap</strong> visualizations, and engineering performance optimizations that <em>cut processing times and cloud infrastructure costs significantly</em>. On <strong>Access Vikings</strong>, I led frontend development for <strong>access request tooling</strong> and <strong>identity management</strong> plugins using <strong>AngularJS</strong> and <strong>Java</strong>, redesigned security-critical features like <strong>toxic access pair</strong> detection, and drove <strong>design system</strong> adoption across the platform. Across both teams, I also contributed to developer experience improvements including <strong>CI/CD</strong> testing integrations, documentation, and <strong>ML</strong>-powered support automation."
-        },
-        {
-          "date": "2020 — 2023",
-          "title": "Various Companies",
-          "summary": "Various Internships",
-          "detailHtml": "Before full-time work I spent a few years at the intersection of technology and public interest—across editorial, data, and policy roles. At the <strong>Council on Foreign Relations</strong> I did editorial research supporting <strong>foreign policy</strong> coverage, contributing to graphics and analysis on topics ranging from <strong>Latin American vaccination efforts</strong> and <strong>border wall construction</strong> to <strong>global nuclear energy generation</strong>, <strong>LGBTQ+ rights</strong> expansions, and <strong>vice presidential history</strong>. At <strong>New America's Digital Impact and Governance Initiative</strong> I focused on <strong>tech policy research</strong>, writing about <strong>integrated data systems</strong> and examining platforms like <strong>New York's workforce development portal</strong> as case studies in how governments deliver services digitally. At <strong>ActBlue</strong> I worked on <strong>data analysis</strong> and <strong>data engineering</strong> on the progressive <strong>fundraising platform</strong>."
-        },
-        {
-          "date": "2021 — 2023",
-          "title": "University of Central Florida",
-          "summary": "Undergraduate Researcher",
-          "detailHtml": "<p>Across three years of <strong>undergraduate research</strong> I worked in <strong>political instability</strong>, <strong>adolescent online safety</strong>, and <strong>applied machine learning</strong>. With <a href=\"https://www.jonathanmpowell.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Jonathan Powell</a>, I helped build an <strong>early-warning forecasting platform</strong> that estimated monthly <strong>coup risk</strong> for <em>&gt;200 countries</em>, wiring <strong>data pipelines</strong> that fed internal reports and public-facing analysis that <em>reached over 500k readers a year</em>; the same thread of work also showed up as commentary for <a href=\"https://www.justsecurity.org/82471/anti-coup-strategies-should-address-civilian-coup-allies/\" target=\"_blank\" rel=\"noopener noreferrer\">Just Security</a> and <a href=\"https://politicalviolenceataglance.org/2022/06/14/reflecting-on-coup-risk-in-mali/\" target=\"_blank\" rel=\"noopener noreferrer\">Political Violence at a Glance</a>. With <a href=\"https://excel.ucf.edu/person/pamela-wisniewski/\" target=\"_blank\" rel=\"noopener noreferrer\">Pamela Wisniewski</a>, I coded <em>50k Instagram DMs</em> into an <strong>ecologically valid dataset</strong> for training <strong>models</strong> that flag <strong>online risks</strong> among teens, then ran an independent project comparing <strong>qualitative annotation</strong> of <strong>text summarization</strong> models at scale. With <a href=\"https://sciences.ucf.edu/sociology/person/amy-donley/\" target=\"_blank\" rel=\"noopener noreferrer\">Amy Donley</a>, I led a <strong>systematic literature review</strong> on COVID-19 and <strong>substance abuse</strong> in <strong>underserved populations</strong>, synthesizing <em>risk factors across demographic groups</em> to support <strong>evidence-based interventions</strong>.</p>"
-        },
-        {
-          "date": "2022",
-          "title": "XR Access",
-          "summary": "REU Participant",
-          "detailHtml": "I led frontend development using <strong>React.js</strong>, <strong>TypeScript</strong>, and <strong>Material UI</strong> to build accessible, interactive interfaces for a lab focused on creating new technologies and tools for disabled users. My work included designing and running <strong>usability studies</strong> for <strong>web applications</strong> that help blind and low-vision users navigate unfamiliar desktop interfaces through <strong>audio spatialization</strong>, as well as building a <strong>React Native</strong> mobile app used in a <em>20-person study</em> that uncovered new categories of <strong>assistive technology</strong> for fostering connection between sighted and blind and low-vision users."
-        },
-        {
-          "date": "2021",
-          "title": "University of Washington Tacoma",
-          "summary": "REU Participant",
-          "detailHtml": "Computational research at the intersection of <strong>topology</strong>, <strong>statistics</strong>, and <strong>machine learning</strong> to identify communities of interest for fairer political redistricting and better representation of marginalized groups in the United States. This involved building <strong>data pipelines</strong> in <strong>Python</strong> (<strong>Pandas</strong>, <strong>NumPy</strong>) to process and flag datasets at the <strong>block group</strong> level, compute <strong>summary statistics</strong> for detected districts, and lead <strong>dimensionality reduction</strong> analysis using <strong>SVD</strong>/<strong>PCA</strong> on <strong>multivariate</strong> datasets."
-        },
-        {
-          "date": "2020",
-          "title": "Progressive Turnout Project",
-          "summary": "Field Representative",
-          "footnoteLink": {
-            "url": "https://www.turnoutpac.org"
-          }
+          "label": "Undergraduate",
+          "items": [
+            {
+              "title": "Cartographic Limits and Interdisciplinary Science: Maps and Mathematics in Pursuit of Social Justice",
+              "context": "NACIS. 2022",
+              "url": "https://youtu.be/Og9azEDcG4k?si=OQHwmA7IQwXdc1u3"
+            },
+            {
+              "title": "Legacies of Instability: Military Coups and Regime Consolidation in the Modern World",
+              "context": "ISA South. 2022",
+              "url": "/talk_unavailable.html"
+            },
+            {
+              "title": "Applied Machine Learning to Detect Risk of Illegal Leadership Turnover",
+              "context": "UCF SURPS. 2022",
+              "url": "/assets/files/presentations/summer_undergraduate_research_poster_showcase_22.pdf"
+            },
+            {
+              "title": "Comparative Analysis between TextRank and LexRank: Testing Perceived Utility of Text Summarization Models for Data Annotators",
+              "context": "UCF SRW. 2022",
+              "url": "/assets/files/presentations/student_research_week_22.pdf"
+            },
+            {
+              "title": "Adolescent Online Safety: Expanding the Knowledge Base and Developing Machine Learning Algorithms",
+              "context": "UCF SRW. 2021",
+              "url": "/assets/files/presentations/student_research_week_21.pdf"
+            }
+          ]
         }
-      ]
-    },
-    {
-      "label": "education",
-      "items": [
-        {
-          "date": "2023",
-          "title": "Bachelor of Science",
-          "summary": "University of Central Florida",
-          "detailHtml": "<p>Three years of undergraduate research spanning <strong>political instability</strong>, <strong>adolescent online safety</strong>, and <strong>applied machine learning</strong>. Took courses across <strong>ethnographic methods</strong>, <strong>research design</strong>, and <strong>computer science</strong>. I helped build an <strong>early-warning forecasting platform</strong> with <a href=\"https://www.jonathanmpowell.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Jonathan Powell</a> that estimated monthly <strong>coup risk</strong> for <em>&gt;200 countries</em> and designed <strong>data pipelines</strong> that fed internal reports and public-facing articles that reached <em>over 500k readers a year</em>; I also coded <em>50k Instagram DMs</em> into an <strong>ecologically valid dataset</strong> to help train <strong>models</strong> for detecting <strong>online risks</strong> among teens with <a href=\"https://excel.ucf.edu/person/pamela-wisniewski/\" target=\"_blank\" rel=\"noopener noreferrer\">Pamela Wisniewski</a>, which led to an independent project comparing the <strong>qualitative annotation</strong> of <strong>text summarization</strong> models at scale. Alongside this, I led a <strong>systematic literature review</strong> on COVID-19's effects on <strong>substance abuse</strong> in <strong>underserved populations</strong> with <a href=\"https://sciences.ucf.edu/sociology/person/amy-donley/\" target=\"_blank\" rel=\"noopener noreferrer\">Amy Donley</a>, identifying risk factors across <strong>demographic groups</strong> to support <strong>evidence-based interventions</strong>.</p>"
-        }
-      ]
-    },
-    {
-      "label": "internet art",
-      "items": [
-        {
-          "date": "2026",
-          "title": "Physical SAO",
-          "summary": "portfolio representations",
-          "footnoteLink": {
-            "url": "/wip.html"
-          }
-        },
-        {
-          "date": "2026",
-          "title": "Realize",
-          "summary": "frequency visualizations",
-          "footnoteLink": {
-            "url": "/wip.html"
-          }
-        }
-      ]
-    },
-    {
-      "label": "public scholarship",
-      "labelHref": "https://scholar.google.com/citations?user=WecCIHwAAAAJ&hl=en",
-      "items": [
-        {
-          "date": "2023",
-          "title": "The Threat of Artificial Intelligence",
-          "summary": "The Loop",
-          "footnoteLink": {
-            "url": "https://theloop.ecpr.eu/the-threat-of-artificial-intelligence-is-not-just-real-its-here/"
-          }
-        },
-        {
-          "date": "2022",
-          "title": "Limits of Quantitative Research",
-          "summary": "The Loop",
-          "footnoteLink": {
-            "url": "https://theloop.ecpr.eu/interdisciplinary-social-science-and-the-limits-of-quantitative-research/"
-          }
-        },
-        {
-          "date": "2022",
-          "title": "Anti-Coup Strategies",
-          "summary": "Just Security",
-          "footnoteLink": {
-            "url": "https://www.justsecurity.org/82471/anti-coup-strategies-should-address-civilian-coup-allies/"
-          }
-        },
-        {
-          "date": "2022",
-          "title": "Coup Risk in Mali",
-          "summary": "Political Violence at a Glance",
-          "footnoteLink": {
-            "url": "https://politicalviolenceataglance.org/2022/06/14/reflecting-on-coup-risk-in-mali/"
-          }
-        },
-        {
-          "date": "2022",
-          "title": "New York's Workforce Portal",
-          "summary": "New America",
-          "footnoteLink": {
-            "url": "https://www.newamerica.org/digital-impact-governance-initiative/blog/integrated-data-in-the-united-states-a-look-at-new-yorks-workforce-portal/"
-          }
-        },
-        {
-          "date": "2021",
-          "title": "Latin America's Vaccination Efforts",
-          "summary": "Council on Foreign Relations",
-          "footnoteLink": {
-            "url": "https://www.cfr.org/in-brief/latin-americas-vaccination-efforts-what-know"
-          }
-        }
-      ]
-    },
-    {
-      "label": "media",
-      "labelHref": "https://github.com/KnightHacks",
-      "items": [
-        {
-          "date": "2021",
-          "title": "Contributing to an Open Source Project",
-          "summary": "Knight Hacks | Workshops",
-          "footnoteLink": {
-            "url": "https://www.youtube.com/watch?v=YAgk39hzpDo"
-          }
-        },
-        {
-          "date": "2021",
-          "title": "How To Get Into The Industry",
-          "summary": "Knight Hacks | Workshops",
-          "footnoteLink": {
-            "url": "https://www.youtube.com/watch?v=xAXvxLWU7Ug"
-          }
-        },
-        {
-          "date": "2020",
-          "title": "Sustainable Solutions for Puerto Rico",
-          "summary": "PMBF Podcast Series",
-          "footnoteLink": {
-            "url": "https://web.archive.org/web/20240627100352/https://soundcloud.com/user-159769958-674959753"
-          }
-        }
-      ]
-    },
-    {
-      "label": "talks",
-      "labelHref": "https://youtu.be/Og9azEDcG4k",
-      "items": [
-        {
-          "date": "2026",
-          "title": "Coup Catalyst",
-          "summary": "RAND Corporation",
-          "footnoteLink": {
-            "url": "/talk_unavailable.html"
-          }
-        },
-        {
-          "date": "2022",
-          "title": "Cartographic Limits",
-          "summary": "NACIS",
-          "footnoteLink": {
-            "url": "https://youtu.be/Og9azEDcG4k?si=OQHwmA7IQwXdc1u3"
-          }
-        },
-        {
-          "date": "2022",
-          "title": "Legacies of Instability",
-          "summary": "ISA South",
-          "footnoteLink": {
-            "url": "/talk_unavailable.html"
-          }
-        },
-        {
-          "date": "2022",
-          "title": "Applied Machine Learning",
-          "summary": "UCF SURPS",
-          "footnoteLink": {
-            "url": "/assets/files/presentations/summer_undergraduate_research_poster_showcase_22.pdf"
-          }
-        },
-        {
-          "date": "2022",
-          "title": "TextRank and LexRank",
-          "summary": "UCF SRW",
-          "footnoteLink": {
-            "url": "/assets/files/presentations/student_research_week_22.pdf"
-          }
-        },
-        {
-          "date": "2021",
-          "title": "Adolescent Online Safety",
-          "summary": "UCF SRW",
-          "footnoteLink": {
-            "url": "/assets/files/presentations/student_research_week_21.pdf"
-          }
-        }
-      ]
-    },
-    {
-      "label": "teaching",
-      "labelHref": "https://www.ucf.edu/degree/sociology-ba/",
-      "items": [
-        {
-          "date": "2020",
-          "title": "Social Power and Inequality",
-          "summary": "Undergraduate Teaching Assistant",
-          "footnoteLink": {
-            "url": "https://www.ucf.edu/degree/sociology-ba/"
-          }
-        }
-      ]
-    },
-    {
-      "label": "Writing",
-      "items": [
-        {
-          "date": "2026",
-          "title": "draft 004",
-          "summary": "gallery musings",
-          "footnoteLink": {
-            "url": "https://semanticdistance.io/draft-004-gallery-musings"
-          }
-        },
-        {
-          "date": "2026",
-          "title": "post 001",
-          "summary": "february bullets",
-          "footnoteLink": {
-            "url": "https://semanticdistance.io/post-001-february-bullets"
-          }
-        },
-        {
-          "date": "2026",
-          "title": "draft 003",
-          "summary": "(some) january bullets",
-          "footnoteLink": {
-            "url": "https://semanticdistance.io/drafts-003-january-bullets"
-          }
-        },
-        {
-          "date": "2025",
-          "title": "draft 002",
-          "summary": "living and exploring!",
-          "footnoteLink": {
-            "url": "https://semanticdistance.io/drafts-002-living-and-exploring"
-          }
-        },
-        {
-          "date": "2025",
-          "title": "draft 001",
-          "summary": "even in the dark, we sing",
-          "footnoteLink": {
-            "url": "https://semanticdistance.io/drafts-001-even-in-the-dark-we-sing"
-          }
-        },
-        {
-          "date": "2025",
-          "title": "absorption 001",
-          "summary": "audrey hobert, i love you",
-          "footnoteLink": {
-            "url": "https://semanticdistance.io/whos-the-clown"
-          }
-        }
-      ]
-    },
-    {
-      "label": "PHOTOS",
-      "type": "photos-carousel",
-      "photos": [
-        { "src": "/assets/files/photos/IMG_3617.JPG" },
-        { "src": "/assets/files/photos/IMG_3618.JPG" },
-        { "src": "/assets/files/photos/IMG_3619.JPG" },
-        { "src": "/assets/files/photos/IMG_3620.JPG" },
-        { "src": "/assets/files/photos/IMG_3621.JPG" },
-        { "src": "/assets/files/photos/IMG_3622.JPG" },
-        { "src": "/assets/files/photos/IMG_3623.JPG" },
-        { "src": "/assets/files/photos/IMG_3624.JPG" },
-        { "src": "/assets/files/photos/IMG_3625.JPG" },
-        { "src": "/assets/files/photos/IMG_3626.JPG" },
-        { "src": "/assets/files/photos/IMG_3627.JPG" },
-        { "src": "/assets/files/photos/IMG_3628.JPG" },
-        { "src": "/assets/files/photos/IMG_3629.JPG" },
-        { "src": "/assets/files/photos/IMG_3630.JPG" },
-        { "src": "/assets/files/photos/IMG_3631.JPG" },
-        { "src": "/assets/files/photos/IMG_3632.JPG" },
-        { "src": "/assets/files/photos/IMG_3633.JPG" },
-        { "src": "/assets/files/photos/IMG_3634.JPG" },
-        { "src": "/assets/files/photos/IMG_3635.JPG" },
-        { "src": "/assets/files/photos/IMG_3636.JPG" },
-        { "src": "/assets/files/photos/IMG_3637.JPG" },
-        { "src": "/assets/files/photos/IMG_3638.JPG" }
-   
       ]
     }
   ]
