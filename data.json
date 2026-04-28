@@ -19,7 +19,7 @@
           "items": [
             {
               "title": "They Aren't Vibing: How Experienced Developers Use AI Agents",
-              "context": "Submitted. 2026",
+              "context": "ASE. 2026",
               "url": "https://ai-agents-for-coding-in-2025.vercel.app/"
             },
             {
@@ -98,7 +98,7 @@
           "items": [
             {
               "title": "Drag-And-Drop Not Considered Harmful",
-              "context": "PIPC. 2026",
+              "context": "PPIC. 2026",
               "url": "/talk_unavailable.html"
             },
             {
@@ -130,6 +130,11 @@
               "title": "Comparative Analysis between TextRank and LexRank: Testing Perceived Utility of Text Summarization Models for Data Annotators",
               "context": "UCF SRW. 2022",
               "url": "/assets/files/presentations/student_research_week_22.pdf"
+            },
+            {
+              "title": "Mapper-ing Communities of Interest",
+              "context": "UPS Science Seminar. 2021",
+              "url": "/talk_unavailable.html"
             },
             {
               "title": "Adolescent Online Safety: Expanding the Knowledge Base and Developing Machine Learning Algorithms",
