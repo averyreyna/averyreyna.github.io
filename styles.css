@@ -1,4 +1,13 @@
 @font-face {
+    font-family: 'ABC ROM Compressed Variable';
+    src: url('/assets/ABC%20ROM%20Compressed%20Variable/ABCROMCompressedVariable-Trial.woff2') format('woff2'),
+         url('/assets/ABC%20ROM%20Compressed%20Variable/ABCROMCompressedVariable-Trial.woff') format('woff');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
     font-family: 'ABC Diatype Compressed';
     src: url('/assets/files/fonts/ABC%20Diatype%20Compressed/ABCDiatypeCompressed-Regular-Trial.woff2') format('woff2');
     font-weight: 400;
@@ -46,10 +55,10 @@ html::-webkit-scrollbar {
 }
 
 body {
-    font-family: 'ABC Diatype Compressed', sans-serif;
+    font-family: 'ABC ROM Compressed Variable', 'ABC Diatype Compressed', sans-serif;
     font-weight: 400;
     font-size: 1rem;
-    line-height: 1.5;
+    line-height: 1.2;
     color: #1f2937;
     background: #fff;
     min-height: 100vh;
@@ -85,20 +94,21 @@ a:hover {
 /* header */
 
 .site-header {
-    margin-bottom: 1.25rem;
+    margin-bottom: 0.9rem;
 }
 
 .site-header__name {
     font-size: 1.5rem;
     font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: 0.35rem;
+    line-height: 1.05;
+    margin-bottom: 0.15rem;
 }
 
 #site-links {
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.45rem;
     font-size: 1rem;
     color: #4b5563;
+    line-height: 1.1;
 }
 
 #site-links a {
@@ -112,20 +122,21 @@ a:hover {
 .site-header__bio {
     font-size: 1rem;
     color: #374151;
-    line-height: 1.55;
+    line-height: 1.18;
     text-align: justify;
 }
 
 /* sections */
 
 .section {
-    margin-bottom: 1.25rem;
+    margin-bottom: 0.9rem;
 }
 
 .section__label {
     font-size: 1rem;
     font-weight: 700;
-    margin-bottom: 0.4rem;
+    line-height: 1.1;
+    margin-bottom: 0.2rem;
     color: #1f2937;
 }
 
@@ -146,8 +157,8 @@ a:hover {
 
 .section__item {
     font-size: 1rem;
-    line-height: 1.5;
-    margin-bottom: 0.2rem;
+    line-height: 1.18;
+    margin-bottom: 0.1rem;
     color: #1f2937;
     text-align: justify;
 }
@@ -165,14 +176,15 @@ a:hover {
 }
 
 .section__subsection {
-    margin-top: 0.5rem;
+    margin-top: 0.3rem;
 }
 
 .section__subsection-label {
     font-size: 1rem;
     color: #9ca3af;
     font-style: normal;
-    margin-bottom: 0.3rem;
+    line-height: 1.1;
+    margin-bottom: 0.15rem;
 }
 
 /* footer */
@@ -195,7 +207,8 @@ a:hover {
 
     .site-footer {
         padding: 0 1.25rem 1.5rem;
-        flex-direction: column;
-        gap: 0.2rem;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: baseline;
     }
 }
