@@ -100,11 +100,6 @@
               "title": "Drag-And-Drop Not Considered Harmful",
               "context": "PPIC. 2026",
               "url": "/talk_unavailable.html"
-            },
-            {
-              "title": "Coup Catalyst: A Coup Forecasting Tool",
-              "context": "RAND Corporation. 2026",
-              "url": "/talk_unavailable.html"
             }
           ]
         },
@@ -140,6 +135,22 @@
               "title": "Adolescent Online Safety: Expanding the Knowledge Base and Developing Machine Learning Algorithms",
               "context": "UCF SRW. 2021",
               "url": "/assets/files/presentations/student_research_week_21.pdf"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Media",
+      "items": [],
+      "subsections": [
+        {
+          "label": "Independent",
+          "items": [
+            {
+              "title": "Coup Catalyst: A Coup Forecasting Tool",
+              "context": "RAND Corporation. 2026",
+              "url": "/talk_unavailable.html"
             }
           ]
         }
