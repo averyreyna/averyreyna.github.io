@@ -153,6 +153,21 @@
               "url": "/talk_unavailable.html"
             }
           ]
+        },
+        {
+          "label": "Undergradute",
+          "items": [
+            {
+              "title": "Contributing to an Open Source Project",
+              "context": "Knight Hacks. 2021",
+              "url": "https://youtu.be/YAgk39hzpDo?si=9mWM-DiclL5vT2yz"
+            },
+            {
+              "title": "How to Get Into the Industry",
+              "context": "Knight Hacks. 2021",
+              "url": "https://youtu.be/xAXvxLWU7Ug?si=maL8WAjCoHwAyt3p"
+            }
+          ]
         }
       ]
     }
