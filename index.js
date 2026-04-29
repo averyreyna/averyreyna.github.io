@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             nav.appendChild(a);
             if (i < links.length - 1) {
-                nav.appendChild(document.createTextNode(' · '));
+                nav.appendChild(document.createTextNode(' '));
             }
         });
     }

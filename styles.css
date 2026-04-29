@@ -1,41 +1,9 @@
 @font-face {
-    font-family: 'ABC ROM Compressed Variable';
-    src: url('/assets/ABC%20ROM%20Compressed%20Variable/ABCROMCompressedVariable-Trial.woff2') format('woff2'),
-         url('/assets/ABC%20ROM%20Compressed%20Variable/ABCROMCompressedVariable-Trial.woff') format('woff');
+    font-family: 'ABC Social Condensed Variable';
+    src: url('/assets/ABC%20Social%20Condensed%20Variable/ABCSocialCondensedVariable-Trial.woff2') format('woff2'),
+         url('/assets/ABC%20Social%20Condensed%20Variable/ABCSocialCondensedVariable-Trial.woff') format('woff');
     font-weight: 100 900;
     font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'ABC Diatype Compressed';
-    src: url('/assets/files/fonts/ABC%20Diatype%20Compressed/ABCDiatypeCompressed-Regular-Trial.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'ABC Diatype Compressed';
-    src: url('/assets/files/fonts/ABC%20Diatype%20Compressed/ABCDiatypeCompressed-RegularItalic-Trial.woff2') format('woff2');
-    font-weight: 400;
-    font-style: italic;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'ABC Diatype Compressed';
-    src: url('/assets/files/fonts/ABC%20Diatype%20Compressed/ABCDiatypeCompressed-Bold-Trial.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'ABC Diatype Compressed';
-    src: url('/assets/files/fonts/ABC%20Diatype%20Compressed/ABCDiatypeCompressed-BoldItalic-Trial.woff2') format('woff2');
-    font-weight: 700;
-    font-style: italic;
     font-display: swap;
 }
 
@@ -55,17 +23,16 @@ html::-webkit-scrollbar {
 }
 
 body {
-    font-family: 'ABC ROM Compressed Variable', 'ABC Diatype Compressed', sans-serif;
+    font-family: 'ABC Social Condensed Variable', sans-serif;
     font-weight: 400;
-    font-size: 1rem;
+    font-size: 14px;
     line-height: 1.2;
     color: #1f2937;
     background: #fff;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    /* alt a, alt t, alt y, alt G, alt R, alt I+J, alt 1+4, alt 6+9 */
-    font-feature-settings: "ss01" 1, "ss03" 1, "ss05" 1, "ss06" 1, "ss07" 1, "ss08" 1, "ss09" 1, "ss11" 1;
+    font-feature-settings: "ss01" 1, "ss02" 1, "ss03" 1;
 }
 
 strong {
@@ -98,7 +65,7 @@ a:hover {
 }
 
 .site-header__name {
-    font-size: 1.5rem;
+    font-size: 1.3125rem;
     font-weight: 700;
     line-height: 1.05;
     margin-bottom: 0.15rem;
@@ -106,7 +73,7 @@ a:hover {
 
 #site-links {
     margin-bottom: 0.45rem;
-    font-size: 1rem;
+    font-size: 0.875rem;
     color: #4b5563;
     line-height: 1.1;
 }
@@ -120,7 +87,7 @@ a:hover {
 }
 
 .site-header__bio {
-    font-size: 1rem;
+    font-size: 0.875rem;
     color: #374151;
     line-height: 1.18;
     text-align: justify;
@@ -133,7 +100,7 @@ a:hover {
 }
 
 .section__label {
-    font-size: 1rem;
+    font-size: 0.875rem;
     font-weight: 700;
     line-height: 1.1;
     margin-bottom: 0.2rem;
@@ -156,7 +123,7 @@ a:hover {
 }
 
 .section__item {
-    font-size: 1rem;
+    font-size: 0.875rem;
     line-height: 1.18;
     margin-bottom: 0.1rem;
     color: #1f2937;
@@ -180,7 +147,7 @@ a:hover {
 }
 
 .section__subsection-label {
-    font-size: 1rem;
+    font-size: 0.875rem;
     color: #9ca3af;
     font-style: normal;
     line-height: 1.1;
@@ -196,7 +163,7 @@ a:hover {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    font-size: 0.7rem;
+    font-size: 0.6125rem;
     color: #9ca3af;
 }
 
