@@ -1,8 +1,8 @@
 @font-face {
-    font-family: 'ABC Social Condensed Variable';
-    src: url('/assets/ABC%20Social%20Condensed%20Variable/ABCSocialCondensedVariable-Trial.woff2') format('woff2'),
-         url('/assets/ABC%20Social%20Condensed%20Variable/ABCSocialCondensedVariable-Trial.woff') format('woff');
-    font-weight: 100 900;
+    font-family: 'ABC Diatype Condensed';
+    src: url('/assets/ABC%20Diatype%20Condensed/ABCDiatypeCondensed-Regular-Trial.woff2') format('woff2'),
+         url('/assets/ABC%20Diatype%20Condensed/ABCDiatypeCondensed-Regular-Trial.woff') format('woff');
+    font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
@@ -23,10 +23,10 @@ html::-webkit-scrollbar {
 }
 
 body {
-    font-family: 'ABC Social Condensed Variable', sans-serif;
+    font-family: 'ABC Diatype Condensed', sans-serif;
     font-weight: 400;
-    font-size: 14px;
-    line-height: 1.2;
+    font-size: 13px;
+    line-height: 1.16;
     color: #1f2937;
     background: #fff;
     min-height: 100vh;
@@ -53,7 +53,7 @@ a:hover {
 .site-main {
     max-width: 800px;
     margin: 0 auto;
-    padding: 3rem 1.5rem 3rem;
+    padding: 2.35rem 1.5rem 2.35rem;
     width: 100%;
     flex: 1;
 }
@@ -61,18 +61,18 @@ a:hover {
 /* header */
 
 .site-header {
-    margin-bottom: 0.9rem;
+    margin-bottom: 0.7rem;
 }
 
 .site-header__name {
     font-size: 1.3125rem;
     font-weight: 700;
     line-height: 1.05;
-    margin-bottom: 0.15rem;
+    margin-bottom: 0.12rem;
 }
 
 #site-links {
-    margin-bottom: 0.45rem;
+    margin-bottom: 0.3rem;
     font-size: 0.875rem;
     color: #4b5563;
     line-height: 1.1;
@@ -96,14 +96,14 @@ a:hover {
 /* sections */
 
 .section {
-    margin-bottom: 0.9rem;
+    margin-bottom: 0.6rem;
 }
 
 .section__label {
-    font-size: 0.875rem;
+    font-size: 1rem;
     font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: 0.2rem;
+    line-height: 1.05;
+    margin-bottom: 0.18rem;
     color: #1f2937;
 }
 
@@ -113,45 +113,59 @@ a:hover {
 }
 
 .section__label a:hover {
-    text-decoration: underline;
-    text-decoration-color: #9ca3af;
+    text-decoration: none;
 }
 
 .section__list {
-    list-style: disc;
-    padding-left: 1.25rem;
+    list-style: none;
+    padding-left: 0;
 }
 
 .section__item {
     font-size: 0.875rem;
-    line-height: 1.18;
-    margin-bottom: 0.1rem;
+    line-height: 1.14;
+    margin-bottom: 0.35rem;
     color: #1f2937;
-    text-align: justify;
+    text-align: left;
 }
 
-.section__item a {
-    text-decoration-color: #d1d5db;
+.section__item-title {
+    background-color: rgba(74, 21, 82, 0.15);
+    color: #4a1552;
+    text-decoration: none;
+    padding: 0 0.15em;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
 }
 
-.section__item a:hover {
-    text-decoration-color: #9ca3af;
+.section__item-title:hover {
+    background-color: rgba(74, 21, 82, 0.28);
+    text-decoration: none;
+}
+
+.section__item-authors {
+    margin-top: 0.03rem;
+    color: #1f2937;
+}
+
+.section__item-authors strong {
+    font-weight: 700;
 }
 
 .section__item-context {
+    margin-top: 0.02rem;
     color: #6b7280;
 }
 
-.section__subsection {
-    margin-top: 0.3rem;
+.section__item-pdf {
+    color: #4a1552;
+    text-decoration: none;
+    font-size: 0.8em;
 }
 
-.section__subsection-label {
-    font-size: 0.875rem;
-    color: #9ca3af;
-    font-style: normal;
-    line-height: 1.1;
-    margin-bottom: 0.15rem;
+.section__item-pdf:hover {
+    text-decoration: underline;
+    text-decoration-color: rgba(74, 21, 82, 0.45);
 }
 
 /* footer */

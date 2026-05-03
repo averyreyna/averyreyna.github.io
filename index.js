@@ -29,25 +29,60 @@ document.addEventListener('DOMContentLoaded', function () {
         var li = document.createElement('li');
         li.className = 'section__item';
 
+        var titleEl;
         if (item.url) {
-            var a = document.createElement('a');
-            a.href = item.url;
-            a.textContent = item.title;
+            titleEl = document.createElement('a');
+            titleEl.href = item.url;
             if (/^https?:\/\//i.test(item.url)) {
-                a.target = '_blank';
-                a.rel = 'noopener noreferrer';
+                titleEl.target = '_blank';
+                titleEl.rel = 'noopener noreferrer';
             }
-            li.appendChild(a);
         } else {
-            li.appendChild(document.createTextNode(item.title));
+            titleEl = document.createElement('span');
+        }
+        titleEl.className = 'section__item-title';
+        titleEl.textContent = item.title;
+        li.appendChild(titleEl);
+
+        if (Array.isArray(item.authors) && item.authors.length > 0) {
+            var authorsDiv = document.createElement('div');
+            authorsDiv.className = 'section__item-authors';
+
+            item.authors.forEach(function (author, i) {
+                if (i > 0) {
+                    authorsDiv.appendChild(document.createTextNode(', '));
+                }
+
+                if (author === 'Avery Reyna') {
+                    var strong = document.createElement('strong');
+                    strong.textContent = author;
+                    authorsDiv.appendChild(strong);
+                } else {
+                    authorsDiv.appendChild(document.createTextNode(author));
+                }
+            });
+
+            li.appendChild(authorsDiv);
         }
 
         if (item.context) {
-            var sep = document.createTextNode('. ');
-            var ctx = document.createElement('span');
+            var ctx = document.createElement('div');
             ctx.className = 'section__item-context';
-            ctx.textContent = item.context + '.';
-            li.appendChild(sep);
+            ctx.textContent = item.context;
+
+            if (item.pdf) {
+                ctx.appendChild(document.createTextNode(' '));
+                var pdfLink = document.createElement('a');
+                pdfLink.className = 'section__item-pdf';
+                pdfLink.textContent = '[pdf]';
+                pdfLink.href = item.pdf;
+                if (/^https?:\/\//i.test(item.pdf) || /\.pdf$/i.test(item.pdf)) {
+                    pdfLink.target = '_blank';
+                    pdfLink.rel = 'noopener noreferrer';
+                }
+                ctx.appendChild(pdfLink);
+            }
+
             li.appendChild(ctx);
         }
 
@@ -67,40 +102,28 @@ document.addEventListener('DOMContentLoaded', function () {
             if (section.labelUrl) {
                 var la = document.createElement('a');
                 la.href = section.labelUrl;
-                la.textContent = section.label + ':';
+                la.textContent = section.label;
                 la.target = '_blank';
                 la.rel = 'noopener noreferrer';
                 h2.appendChild(la);
             } else {
-                h2.textContent = section.label + ':';
+                h2.textContent = section.label;
             }
             div.appendChild(h2);
 
             var ul = document.createElement('ul');
             ul.className = 'section__list';
+
             (section.items || []).forEach(function (item) {
                 ul.appendChild(renderItem(item));
             });
-            div.appendChild(ul);
-
             (section.subsections || []).forEach(function (sub) {
-                var subDiv = document.createElement('div');
-                subDiv.className = 'section__subsection';
-
-                var subLabel = document.createElement('p');
-                subLabel.className = 'section__subsection-label';
-                subLabel.textContent = '(' + sub.label + ')';
-                subDiv.appendChild(subLabel);
-
-                var subUl = document.createElement('ul');
-                subUl.className = 'section__list';
                 (sub.items || []).forEach(function (item) {
-                    subUl.appendChild(renderItem(item));
+                    ul.appendChild(renderItem(item));
                 });
-                subDiv.appendChild(subUl);
-                div.appendChild(subDiv);
             });
 
+            div.appendChild(ul);
             content.appendChild(div);
         });
     }

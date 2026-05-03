@@ -12,36 +12,60 @@
   "sections": [
     {
       "label": "Research",
-      "items": [],
-      "subsections": [
+      "items": [
         {
-          "label": "Independent",
-          "items": [
-            {
-              "title": "They Aren't Vibing: How Experienced Developers Use AI Agents",
-              "context": "ASE. 2026",
-              "url": "https://ai-agents-for-coding-in-2025.vercel.app/"
-            },
-            {
-              "title": "Professional Software Developers Don't Vibe, They Control: AI Agent Use for Coding in 2025",
-              "context": "Preprint. 2025",
-              "url": "https://arxiv.org/abs/2512.14012"
-            }
+          "title": "They Aren't Vibing: How Experienced Developers Use AI Agents",
+          "context": "ASE. 2026",
+          "url": "https://ai-agents-for-coding-in-2025.vercel.app/",
+          "pdf": "https://arxiv.org/abs/2512.14012",
+          "authors": [
+            "Ruanqianqian (Lisa) Huang",
+            "Avery Reyna",
+            "Sorin Lerner",
+            "Haijun Xia",
+            "Brian Hempel"
           ]
         },
         {
-          "label": "Undergraduate",
-          "items": [
-            {
-              "title": "Help Supporters: Exploring the Design Space of Assistive Technologies to Support Face-to-Face Help Between Blind and Sighted Strangers",
-              "context": "CHI. 2024",
-              "url": "https://help-supporters.vercel.app/"
-            },
-            {
-              "title": "Understanding Blind and Low Vision Users' Attitudes Towards Spatial Interactions in Desktop Screen Readers",
-              "context": "ASSETS. 2023. Built upon in CHI 2025",
-              "url": "https://ceal.cs.columbia.edu/webnext/"
-            }
+          "title": "Professional Software Developers Don't Vibe, They Control: AI Agent Use for Coding in 2025",
+          "context": "Preprint. 2025",
+          "url": "https://arxiv.org/abs/2512.14012",
+          "authors": [
+            "Ruanqianqian (Lisa) Huang",
+            "Avery Reyna",
+            "Sorin Lerner",
+            "Haijun Xia",
+            "Brian Hempel"
+          ]
+        },
+        {
+          "title": "Help Supporters: Exploring the Design Space of Assistive Technologies to Support Face-to-Face Help Between Blind and Sighted Strangers",
+          "context": "CHI. 2024",
+          "url": "https://help-supporters.vercel.app/",
+          "pdf": "https://dl.acm.org/doi/10.1145/3613904.3642816",
+          "authors": [
+            "Yuanyang Teng",
+            "Connor Courtien",
+            "David Rios",
+            "Yves Tseng",
+            "Jacqueline Gibson",
+            "Maryam Aziz",
+            "Avery Reyna",
+            "Rajan Vaish",
+            "Brian Smith"
+          ]
+        },
+        {
+          "title": "Understanding Blind and Low Vision Users' Attitudes Towards Spatial Interactions in Desktop Screen Readers",
+          "context": "ASSETS. 2023. Built upon in CHI 2025",
+          "url": "https://ceal.cs.columbia.edu/webnext/",
+          "authors": [
+            "Arnavi Chheda-Kothary",
+            "David Angel Rios",
+            "Kynnedy Simone Smith",
+            "Avery Reyna",
+            "Cecilia Zhang",
+            "Brian A. Smith"
           ]
         }
       ]
@@ -49,94 +73,100 @@
     {
       "label": "Public Scholarship",
       "labelUrl": "https://scholar.google.com/citations?user=WecCIHwAAAAJ&hl=en",
-      "items": [],
-      "subsections": [
+      "items": [
         {
-          "label": "Undergraduate",
-          "items": [
-            {
-              "title": "The Threat of Artificial Intelligence Is Not Just Real, It’s Here",
-              "context": "The Loop. 2023",
-              "url": "https://theloop.ecpr.eu/the-threat-of-artificial-intelligence-is-not-just-real-its-here/"
-            },
-            {
-              "title": "Interdisciplinary Social Science and the Limits of Quantitative Research",
-              "context": "The Loop. 2022",
-              "url": "https://theloop.ecpr.eu/interdisciplinary-social-science-and-the-limits-of-quantitative-research/"
-            },
-            {
-              "title": "Anti-Coup Strategies Should Address Civilian Coup Allies",
-              "context": "Just Security. 2022",
-              "url": "https://www.justsecurity.org/82471/anti-coup-strategies-should-address-civilian-coup-allies/"
-            },
-            {
-              "title": "Reflecting on Coup Risk in Mali",
-              "context": "Political Violence at a Glance. 2022",
-              "url": "https://politicalviolenceataglance.org/2022/06/14/reflecting-on-coup-risk-in-mali/"
-            },
-            {
-              "title": "Integrated Data in the United States: A Look at New York's Workforce Portal",
-              "context": "New America. 2022",
-              "url": "https://www.newamerica.org/digital-impact-governance-initiative/blog/integrated-data-in-the-united-states-a-look-at-new-yorks-workforce-portal/"
-            },
-            {
-              "title": "Latin America's Vaccination Efforts: What to Know",
-              "context": "Council on Foreign Relations. 2021",
-              "url": "https://www.cfr.org/in-brief/latin-americas-vaccination-efforts-what-know"
-            }
-          ]
+          "title": "The Threat of Artificial Intelligence Is Not Just Real, It’s Here",
+          "context": "The Loop. 2023",
+          "url": "https://theloop.ecpr.eu/the-threat-of-artificial-intelligence-is-not-just-real-its-here/",
+          "authors": ["Avery Reyna"]
+        },
+        {
+          "title": "Interdisciplinary Social Science and the Limits of Quantitative Research",
+          "context": "The Loop. 2022",
+          "url": "https://theloop.ecpr.eu/interdisciplinary-social-science-and-the-limits-of-quantitative-research/",
+          "authors": ["Avery Reyna"]
+        },
+        {
+          "title": "Anti-Coup Strategies Should Address Civilian Coup Allies",
+          "context": "Just Security. 2022",
+          "url": "https://www.justsecurity.org/82471/anti-coup-strategies-should-address-civilian-coup-allies/",
+          "authors": ["Avery Reyna"]
+        },
+        {
+          "title": "Reflecting on Coup Risk in Mali",
+          "context": "Political Violence at a Glance. 2022",
+          "url": "https://politicalviolenceataglance.org/2022/06/14/reflecting-on-coup-risk-in-mali/",
+          "authors": ["Avery Reyna"]
+        },
+        {
+          "title": "Integrated Data in the United States: A Look at New York's Workforce Portal",
+          "context": "New America. 2022",
+          "url": "https://www.newamerica.org/digital-impact-governance-initiative/blog/integrated-data-in-the-united-states-a-look-at-new-yorks-workforce-portal/",
+          "authors": ["Avery Reyna"]
+        },
+        {
+          "title": "Latin America's Vaccination Efforts: What to Know",
+          "context": "Council on Foreign Relations. 2021",
+          "url": "https://www.cfr.org/in-brief/latin-americas-vaccination-efforts-what-know",
+          "authors": ["Avery Reyna"]
         }
       ]
     },
     {
       "label": "Talks",
       "labelUrl": "https://youtu.be/Og9azEDcG4k",
-      "items": [],
-      "subsections": [
+      "items": [
         {
-          "label": "Independent",
-          "items": [
-            {
-              "title": "Drag-And-Drop Not Considered Harmful",
-              "context": "PPIC. 2026",
-              "url": "/talk_unavailable.html"
-            }
-          ]
+          "title": "Drag-And-Drop Not Considered Harmful",
+          "context": "PPIC. 2026",
+          "url": "/talk_unavailable.html",
+          "authors": ["Avery Reyna"]
         },
         {
-          "label": "Undergraduate",
-          "items": [
-            {
-              "title": "Cartographic Limits and Interdisciplinary Science: Maps and Mathematics in Pursuit of Social Justice",
-              "context": "NACIS. 2022",
-              "url": "https://youtu.be/Og9azEDcG4k?si=OQHwmA7IQwXdc1u3"
-            },
-            {
-              "title": "Legacies of Instability: Military Coups and Regime Consolidation in the Modern World",
-              "context": "ISA South. 2022",
-              "url": "/talk_unavailable.html"
-            },
-            {
-              "title": "Applied Machine Learning to Detect Risk of Illegal Leadership Turnover",
-              "context": "UCF SURPS. 2022",
-              "url": "/assets/files/presentations/summer_undergraduate_research_poster_showcase_22.pdf"
-            },
-            {
-              "title": "Comparative Analysis between TextRank and LexRank: Testing Perceived Utility of Text Summarization Models for Data Annotators",
-              "context": "UCF SRW. 2022",
-              "url": "/assets/files/presentations/student_research_week_22.pdf"
-            },
-            {
-              "title": "Mapper-ing Communities of Interest",
-              "context": "UPS Science Seminar. 2021",
-              "url": "/talk_unavailable.html"
-            },
-            {
-              "title": "Adolescent Online Safety: Expanding the Knowledge Base and Developing Machine Learning Algorithms",
-              "context": "UCF SRW. 2021",
-              "url": "/assets/files/presentations/student_research_week_21.pdf"
-            }
-          ]
+          "title": "Cartographic Limits and Interdisciplinary Science: Maps and Mathematics in Pursuit of Social Justice",
+          "context": "NACIS. 2022",
+          "url": "https://youtu.be/Og9azEDcG4k?si=OQHwmA7IQwXdc1u3",
+          "authors": ["Avery Reyna"]
+        },
+        {
+          "title": "Legacies of Instability: Military Coups and Regime Consolidation in the Modern World",
+          "context": "ISA South. 2022",
+          "url": "/talk_unavailable.html",
+          "authors": ["Avery Reyna"]
+        },
+        {
+          "title": "Applied Machine Learning to Detect Risk of Illegal Leadership Turnover",
+          "context": "UCF SURPS. 2022",
+          "authors": ["Jonathan Powell", "Avery Reyna"],
+          "pdf": "/assets/files/presentations/summer_undergraduate_research_poster_showcase_22.pdf"
+        },
+        {
+          "title": "Comparative Analysis between TextRank and LexRank: Testing Perceived Utility of Text Summarization Models for Data Annotators",
+          "context": "UCF SRW. 2022",
+          "authors": ["Pamela Wisniewski", "Avery Reyna", "Ashwaq Soubai"],
+          "pdf": "/assets/files/presentations/student_research_week_22.pdf"
+        },
+        {
+          "title": "Mapper-ing Communities of Interest",
+          "context": "UPS Science Seminar. 2021",
+          "url": "/talk_unavailable.html",
+          "authors": ["Avery Reyna"]
+        },
+        {
+          "title": "Adolescent Online Safety: Expanding the Knowledge Base and Developing Machine Learning Algorithms",
+          "context": "UCF SRW. 2021",
+          "authors": [
+            "Carlson Sharpless",
+            "Pallavi Dacre",
+            "Komila Khamidova",
+            "Pamela Wisniewski",
+            "Christian Lozano",
+            "Abdulrahman Al Sumaih",
+            "Avery Reyna",
+            "Afsaneh Razi",
+            "Ashwaq Soubai"
+          ],
+          "pdf": "/assets/files/presentations/student_research_week_21.pdf"
         }
       ]
     },
