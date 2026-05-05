@@ -18,7 +18,7 @@
         {
           "title": "Professional Software Developers Don't Vibe, They Control: AI Agent Use for Coding in 2025",
           "context": "Preprint",
-          "url": "https://arxiv.org/abs/2512.14012",
+          "url": "https://ai-agents-for-coding-in-2025.vercel.app/",
           "authors": [
             "Ruanqianqian (Lisa) Huang",
             "Avery Reyna",
@@ -112,31 +112,31 @@
           "title": "Cartographic Limits and Interdisciplinary Science: Maps and Mathematics in Pursuit of Social Justice",
           "context": "NACIS '22",
           "url": "https://youtu.be/Og9azEDcG4k?si=OQHwmA7IQwXdc1u3",
-          "authors": ["Avery Reyna"]
+          "authors": [
+            "Alexis Wood",
+            "Avery Reyna",
+            "Aya Konishi",
+            "David Retchless",
+            "Jim Thatcher"
+          ]
         },
         {
           "title": "Legacies of Instability: Military Coups and Regime Consolidation in the Modern World",
           "context": "ISA South '22",
           "url": "/talk_unavailable.html",
-          "authors": ["Avery Reyna"]
+          "authors": ["Jonathan Powell", "Avery Reyna"]
         },
         {
           "title": "Applied Machine Learning to Detect Risk of Illegal Leadership Turnover",
           "context": "UCF SURPS '22",
           "url": "/assets/files/presentations/summer_undergraduate_research_poster_showcase_22.pdf",
-          "authors": ["Jonathan Powell", "Avery Reyna"]
+          "authors": ["Avery Reyna", "Jonathan Powell"]
         },
         {
           "title": "Comparative Analysis between TextRank and LexRank: Testing Perceived Utility of Text Summarization Models for Data Annotators",
           "context": "UCF SRW '22",
           "url": "/assets/files/presentations/student_research_week_22.pdf",
-          "authors": ["Pamela Wisniewski", "Avery Reyna", "Ashwaq Soubai"]
-        },
-        {
-          "title": "Mapper-ing Communities of Interest",
-          "context": "UPS Science Seminar '21",
-          "url": "/talk_unavailable.html",
-          "authors": ["Avery Reyna"]
+          "authors": ["Avery Reyna", "Pamela Wisniewski", "Ashwaq Soubai"]
         },
         {
           "title": "Adolescent Online Safety: Expanding the Knowledge Base and Developing Machine Learning Algorithms",
@@ -165,7 +165,7 @@
           "items": [
             {
               "title": "Coup Catalyst: A Coup Forecasting Tool",
-              "context": "RAND Corporation. 2026",
+              "context": "RAND Corporation",
               "url": "/talk_unavailable.html"
             }
           ]
@@ -175,17 +175,22 @@
           "items": [
             {
               "title": "Contributing to an Open Source Project",
-              "context": "Knight Hacks. 2021",
+              "context": "Knight Hacks",
               "url": "https://youtu.be/YAgk39hzpDo?si=9mWM-DiclL5vT2yz"
             },
             {
               "title": "How to Get Into the Industry",
-              "context": "Knight Hacks. 2021",
+              "context": "Knight Hacks",
               "url": "https://youtu.be/xAXvxLWU7Ug?si=maL8WAjCoHwAyt3p"
             },
             {
+              "title": "Mapper-ing Communities of Interest",
+              "context": "UPS Science Seminar",
+              "url": "/talk_unavailable.html"
+            },
+            {
               "title": "Sustainable Solutions for Puerto Rico",
-              "context": "Insights From Abroad. 2020",
+              "context": "Insights From Abroad",
               "url": "https://youtu.be/HolsVNecajA?si=HiU1ktnEvJPbEAqa"
             }
           ]
