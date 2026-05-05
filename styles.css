@@ -1,195 +1,104 @@
 @font-face {
-    font-family: 'ABC Diatype Condensed';
-    src: url('/assets/ABC%20Diatype%20Condensed/ABCDiatypeCondensed-Regular-Trial.woff2') format('woff2'),
-         url('/assets/ABC%20Diatype%20Condensed/ABCDiatypeCondensed-Regular-Trial.woff') format('woff');
+    font-family: 'ABC Arizona Mix';
+    src: url('/assets/ABC%20Arizona%20Mix/ABCArizonaMix-Regular-Trial.woff2') format('woff2'),
+         url('/assets/ABC%20Arizona%20Mix/ABCArizonaMix-Regular-Trial.woff') format('woff');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+@font-face {
+    font-family: 'ABC Arizona Mix';
+    src: url('/assets/ABC%20Arizona%20Mix/ABCArizonaMix-RegularItalic-Trial.woff2') format('woff2'),
+         url('/assets/ABC%20Arizona%20Mix/ABCArizonaMix-RegularItalic-Trial.woff') format('woff');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
 }
 
-html {
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+@font-face {
+    font-family: 'ABC Arizona Mix';
+    src: url('/assets/ABC%20Arizona%20Mix/ABCArizonaMix-Bold-Trial.woff2') format('woff2'),
+         url('/assets/ABC%20Arizona%20Mix/ABCArizonaMix-Bold-Trial.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
 }
 
-html::-webkit-scrollbar {
-    display: none;
+@font-face {
+    font-family: 'ABC Arizona Mix';
+    src: url('/assets/ABC%20Arizona%20Mix/ABCArizonaMix-BoldItalic-Trial.woff2') format('woff2'),
+         url('/assets/ABC%20Arizona%20Mix/ABCArizonaMix-BoldItalic-Trial.woff') format('woff');
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
 }
 
 body {
-    font-family: 'ABC Diatype Condensed', sans-serif;
-    font-weight: 400;
-    font-size: 13px;
-    line-height: 1.16;
-    color: #1f2937;
-    background: #fff;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    font-feature-settings: "ss01" 1, "ss02" 1, "ss03" 1;
+    font-family: 'ABC Arizona Mix', Georgia, serif;
+    font-size: 14px;
+    max-width: 700px;
+    margin: 30px;
+    line-height: 1.4;
 }
 
-strong {
-    font-weight: 700;
+p {
+    text-align: justify;
+    hyphens: auto;
+    margin: 0;
 }
 
 a {
-    color: inherit;
-    text-decoration: underline;
-    text-decoration-color: #9ca3af;
-    transition: text-decoration-color 0.15s ease;
+    color: #00e;
 }
-
-a:hover {
-    text-decoration-color: #4b5563;
-}
-
-.site-main {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2.35rem 1.5rem 2.35rem;
-    width: 100%;
-    flex: 1;
-}
-
-/* header */
 
 .site-header {
-    margin-bottom: 0.7rem;
-}
-
-.site-header__name {
-    font-size: 1.3125rem;
-    font-weight: 700;
-    line-height: 1.05;
-    margin-bottom: 0.12rem;
-}
-
-#site-links {
-    margin-bottom: 0.3rem;
-    font-size: 0.875rem;
-    color: #4b5563;
-    line-height: 1.1;
-}
-
-#site-links a {
-    text-decoration-color: #d1d5db;
-}
-
-#site-links a:hover {
-    text-decoration-color: #9ca3af;
-}
-
-.site-header__bio {
-    font-size: 0.875rem;
-    color: #374151;
-    line-height: 1.18;
-    text-align: justify;
-}
-
-/* sections */
-
-.section {
-    margin-bottom: 0.6rem;
+    margin-bottom: 15px;
 }
 
 .section__label {
-    font-size: 1rem;
-    font-weight: 700;
-    line-height: 1.05;
-    margin-bottom: 0.18rem;
-    color: #1f2937;
-}
-
-.section__label a {
-    text-decoration: none;
-    color: inherit;
-}
-
-.section__label a:hover {
-    text-decoration: none;
+    margin-top: 20px;
+    margin-bottom: 3px;
 }
 
 .section__list {
     list-style: none;
-    padding-left: 0;
+    padding: 0;
+}
+
+.section__list--bulleted {
+    list-style: disc;
+    padding-left: 1.2em;
 }
 
 .section__item {
-    font-size: 0.875rem;
-    line-height: 1.14;
-    margin-bottom: 0.35rem;
-    color: #1f2937;
-    text-align: left;
+    margin-bottom: 10px;
 }
 
 .section__item-title {
-    background-color: rgba(74, 21, 82, 0.15);
-    color: #4a1552;
-    text-decoration: none;
-    padding: 0 0.15em;
-    box-decoration-break: clone;
-    -webkit-box-decoration-break: clone;
-}
-
-.section__item-title:hover {
-    background-color: rgba(74, 21, 82, 0.28);
-    text-decoration: none;
+    background: none;
+    padding: 0;
 }
 
 .section__item-authors {
-    margin-top: 0.03rem;
-    color: #1f2937;
-}
-
-.section__item-authors strong {
-    font-weight: 700;
+    font-size: 0.9em;
 }
 
 .section__item-context {
-    margin-top: 0.02rem;
-    color: #6b7280;
+    color: #666;
+    font-size: 0.9em;
 }
 
 .section__item-pdf {
-    color: #4a1552;
-    text-decoration: none;
-    font-size: 0.8em;
+    font-size: 0.9em;
 }
-
-.section__item-pdf:hover {
-    text-decoration: underline;
-    text-decoration-color: rgba(74, 21, 82, 0.45);
-}
-
-/* footer */
 
 .site-footer {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 1.5rem 2rem;
-    width: 100%;
+    margin-top: 25px;
+    padding-top: 10px;
+    border-top: 1px solid #ccc;
+    font-size: 0.9em;
+    color: #666;
     display: flex;
     justify-content: space-between;
-    font-size: 0.6125rem;
-    color: #9ca3af;
-}
-
-@media (max-width: 480px) {
-    .site-main {
-        padding: 2rem 1.25rem 2rem;
-    }
-
-    .site-footer {
-        padding: 0 1.25rem 1.5rem;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: baseline;
-    }
 }

@@ -2,28 +2,9 @@ document.addEventListener('DOMContentLoaded', function () {
     fetch('/data.json')
         .then(function (res) { return res.json(); })
         .then(function (data) {
-            renderLinks(data.links || []);
             renderSections(data.sections || []);
         })
         .catch(function (err) { console.error('Error loading site data:', err); });
-
-    function renderLinks(links) {
-        var nav = document.getElementById('site-links');
-        if (!nav || links.length === 0) return;
-        links.forEach(function (link, i) {
-            var a = document.createElement('a');
-            a.href = link.url;
-            a.textContent = link.label;
-            if (/^https?:\/\//i.test(link.url)) {
-                a.target = '_blank';
-                a.rel = 'noopener noreferrer';
-            }
-            nav.appendChild(a);
-            if (i < links.length - 1) {
-                nav.appendChild(document.createTextNode(' '));
-            }
-        });
-    }
 
     function renderItem(item) {
         var li = document.createElement('li');
@@ -69,20 +50,6 @@ document.addEventListener('DOMContentLoaded', function () {
             var ctx = document.createElement('div');
             ctx.className = 'section__item-context';
             ctx.textContent = item.context;
-
-            if (item.pdf) {
-                ctx.appendChild(document.createTextNode(' '));
-                var pdfLink = document.createElement('a');
-                pdfLink.className = 'section__item-pdf';
-                pdfLink.textContent = '[pdf]';
-                pdfLink.href = item.pdf;
-                if (/^https?:\/\//i.test(item.pdf) || /\.pdf$/i.test(item.pdf)) {
-                    pdfLink.target = '_blank';
-                    pdfLink.rel = 'noopener noreferrer';
-                }
-                ctx.appendChild(pdfLink);
-            }
-
             li.appendChild(ctx);
         }
 
@@ -99,20 +66,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
             var h2 = document.createElement('h2');
             h2.className = 'section__label';
-            if (section.labelUrl) {
-                var la = document.createElement('a');
-                la.href = section.labelUrl;
-                la.textContent = section.label;
-                la.target = '_blank';
-                la.rel = 'noopener noreferrer';
-                h2.appendChild(la);
-            } else {
-                h2.textContent = section.label;
-            }
+            h2.textContent = section.label;
             div.appendChild(h2);
 
             var ul = document.createElement('ul');
-            ul.className = 'section__list';
+            ul.className = section.bulleted
+                ? 'section__list section__list--bulleted'
+                : 'section__list';
 
             (section.items || []).forEach(function (item) {
                 ul.appendChild(renderItem(item));

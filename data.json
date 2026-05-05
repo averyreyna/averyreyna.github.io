@@ -1,23 +1,12 @@
 {
-  "links": [
-    { "label": "Are.na", "url": "https://www.are.na/avery-reyna" },
-    { "label": "CV", "url": "/assets/files/cv/avery_reyna_cv.pdf" },
-    { "label": "CVS", "url": "https://complexvectorspace.io" },
-    { "label": "Email", "url": "mailto:avery.reyna16@gmail.com" },
-    { "label": "GitHub", "url": "https://github.com/averyreyna" },
-    { "label": "Google Scholar", "url": "https://scholar.google.com/citations?user=WecCIHwAAAAJ&hl=en" },
-    { "label": "Instagram", "url": "https://instagram.com/selfadjointoperator" },
-    { "label": "LinkedIn", "url": "https://linkedin.com/in/avery-reyna" }
-  ],
   "sections": [
     {
       "label": "Research",
       "items": [
         {
           "title": "They Aren't Vibing: How Experienced Developers Use AI Agents",
-          "context": "ASE. 2026",
+          "context": "Submitted",
           "url": "https://ai-agents-for-coding-in-2025.vercel.app/",
-          "pdf": "https://arxiv.org/abs/2512.14012",
           "authors": [
             "Ruanqianqian (Lisa) Huang",
             "Avery Reyna",
@@ -28,7 +17,7 @@
         },
         {
           "title": "Professional Software Developers Don't Vibe, They Control: AI Agent Use for Coding in 2025",
-          "context": "Preprint. 2025",
+          "context": "Preprint",
           "url": "https://arxiv.org/abs/2512.14012",
           "authors": [
             "Ruanqianqian (Lisa) Huang",
@@ -40,9 +29,8 @@
         },
         {
           "title": "Help Supporters: Exploring the Design Space of Assistive Technologies to Support Face-to-Face Help Between Blind and Sighted Strangers",
-          "context": "CHI. 2024",
+          "context": "CHI '24",
           "url": "https://help-supporters.vercel.app/",
-          "pdf": "https://dl.acm.org/doi/10.1145/3613904.3642816",
           "authors": [
             "Yuanyang Teng",
             "Connor Courtien",
@@ -57,7 +45,7 @@
         },
         {
           "title": "Understanding Blind and Low Vision Users' Attitudes Towards Spatial Interactions in Desktop Screen Readers",
-          "context": "ASSETS. 2023. Built upon in CHI 2025",
+          "context": "ASSETS '23, Built upon in CHI '25",
           "url": "https://ceal.cs.columbia.edu/webnext/",
           "authors": [
             "Arnavi Chheda-Kothary",
@@ -72,41 +60,40 @@
     },
     {
       "label": "Public Scholarship",
-      "labelUrl": "https://scholar.google.com/citations?user=WecCIHwAAAAJ&hl=en",
       "items": [
         {
-          "title": "The Threat of Artificial Intelligence Is Not Just Real, It’s Here",
-          "context": "The Loop. 2023",
+          "title": "The Threat of Artificial Intelligence Is Not Just Real, It's Here",
+          "context": "The Loop",
           "url": "https://theloop.ecpr.eu/the-threat-of-artificial-intelligence-is-not-just-real-its-here/",
           "authors": ["Avery Reyna"]
         },
         {
           "title": "Interdisciplinary Social Science and the Limits of Quantitative Research",
-          "context": "The Loop. 2022",
+          "context": "The Loop",
           "url": "https://theloop.ecpr.eu/interdisciplinary-social-science-and-the-limits-of-quantitative-research/",
           "authors": ["Avery Reyna"]
         },
         {
           "title": "Anti-Coup Strategies Should Address Civilian Coup Allies",
-          "context": "Just Security. 2022",
+          "context": "Just Security",
           "url": "https://www.justsecurity.org/82471/anti-coup-strategies-should-address-civilian-coup-allies/",
           "authors": ["Avery Reyna"]
         },
         {
           "title": "Reflecting on Coup Risk in Mali",
-          "context": "Political Violence at a Glance. 2022",
+          "context": "Political Violence at a Glance",
           "url": "https://politicalviolenceataglance.org/2022/06/14/reflecting-on-coup-risk-in-mali/",
           "authors": ["Avery Reyna"]
         },
         {
           "title": "Integrated Data in the United States: A Look at New York's Workforce Portal",
-          "context": "New America. 2022",
+          "context": "New America",
           "url": "https://www.newamerica.org/digital-impact-governance-initiative/blog/integrated-data-in-the-united-states-a-look-at-new-yorks-workforce-portal/",
           "authors": ["Avery Reyna"]
         },
         {
           "title": "Latin America's Vaccination Efforts: What to Know",
-          "context": "Council on Foreign Relations. 2021",
+          "context": "Council on Foreign Relations",
           "url": "https://www.cfr.org/in-brief/latin-americas-vaccination-efforts-what-know",
           "authors": ["Avery Reyna"]
         }
@@ -114,47 +101,47 @@
     },
     {
       "label": "Talks",
-      "labelUrl": "https://youtu.be/Og9azEDcG4k",
       "items": [
         {
           "title": "Drag-And-Drop Not Considered Harmful",
-          "context": "PPIC. 2026",
+          "context": "PPIC Spring '26",
           "url": "/talk_unavailable.html",
           "authors": ["Avery Reyna"]
         },
         {
           "title": "Cartographic Limits and Interdisciplinary Science: Maps and Mathematics in Pursuit of Social Justice",
-          "context": "NACIS. 2022",
+          "context": "NACIS '22",
           "url": "https://youtu.be/Og9azEDcG4k?si=OQHwmA7IQwXdc1u3",
           "authors": ["Avery Reyna"]
         },
         {
           "title": "Legacies of Instability: Military Coups and Regime Consolidation in the Modern World",
-          "context": "ISA South. 2022",
+          "context": "ISA South '22",
           "url": "/talk_unavailable.html",
           "authors": ["Avery Reyna"]
         },
         {
           "title": "Applied Machine Learning to Detect Risk of Illegal Leadership Turnover",
-          "context": "UCF SURPS. 2022",
-          "authors": ["Jonathan Powell", "Avery Reyna"],
-          "pdf": "/assets/files/presentations/summer_undergraduate_research_poster_showcase_22.pdf"
+          "context": "UCF SURPS '22",
+          "url": "/assets/files/presentations/summer_undergraduate_research_poster_showcase_22.pdf",
+          "authors": ["Jonathan Powell", "Avery Reyna"]
         },
         {
           "title": "Comparative Analysis between TextRank and LexRank: Testing Perceived Utility of Text Summarization Models for Data Annotators",
-          "context": "UCF SRW. 2022",
-          "authors": ["Pamela Wisniewski", "Avery Reyna", "Ashwaq Soubai"],
-          "pdf": "/assets/files/presentations/student_research_week_22.pdf"
+          "context": "UCF SRW '22",
+          "url": "/assets/files/presentations/student_research_week_22.pdf",
+          "authors": ["Pamela Wisniewski", "Avery Reyna", "Ashwaq Soubai"]
         },
         {
           "title": "Mapper-ing Communities of Interest",
-          "context": "UPS Science Seminar. 2021",
+          "context": "UPS Science Seminar '21",
           "url": "/talk_unavailable.html",
           "authors": ["Avery Reyna"]
         },
         {
           "title": "Adolescent Online Safety: Expanding the Knowledge Base and Developing Machine Learning Algorithms",
-          "context": "UCF SRW. 2021",
+          "context": "UCF SRW '21",
+          "url": "/assets/files/presentations/student_research_week_21.pdf",
           "authors": [
             "Carlson Sharpless",
             "Pallavi Dacre",
@@ -165,8 +152,7 @@
             "Avery Reyna",
             "Afsaneh Razi",
             "Ashwaq Soubai"
-          ],
-          "pdf": "/assets/files/presentations/student_research_week_21.pdf"
+          ]
         }
       ]
     },
@@ -185,7 +171,7 @@
           ]
         },
         {
-          "label": "Undergradute",
+          "label": "Undergraduate",
           "items": [
             {
               "title": "Contributing to an Open Source Project",
@@ -204,6 +190,20 @@
             }
           ]
         }
+      ]
+    },
+    {
+      "label": "Links",
+      "bulleted": true,
+      "items": [
+        { "title": "Are.na", "url": "https://www.are.na/avery-reyna" },
+        { "title": "CV", "url": "/assets/files/cv/avery_reyna_cv.pdf" },
+        { "title": "CVS", "url": "https://complexvectorspace.io" },
+        { "title": "Email", "url": "mailto:avery.reyna16@gmail.com" },
+        { "title": "GitHub", "url": "https://github.com/averyreyna" },
+        { "title": "Google Scholar", "url": "https://scholar.google.com/citations?user=WecCIHwAAAAJ&hl=en" },
+        { "title": "Instagram", "url": "https://instagram.com/selfadjointoperator" },
+        { "title": "LinkedIn", "url": "https://linkedin.com/in/avery-reyna" }
       ]
     }
   ]
