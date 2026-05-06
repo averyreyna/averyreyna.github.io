@@ -1,215 +1,139 @@
 {
-  "sections": [
-    {
-      "label": "Research",
-      "items": [
-        {
-          "title": "They Aren't Vibing: How Experienced Developers Use AI Agents",
-          "context": "Submitted",
-          "url": "https://ai-agents-for-coding-in-2025.vercel.app/",
-          "authors": [
-            "Ruanqianqian (Lisa) Huang",
-            "Avery Reyna",
-            "Sorin Lerner",
-            "Haijun Xia",
-            "Brian Hempel"
-          ]
-        },
-        {
-          "title": "Professional Software Developers Don't Vibe, They Control: AI Agent Use for Coding in 2025",
-          "context": "Preprint",
-          "url": "https://ai-agents-for-coding-in-2025.vercel.app/",
-          "authors": [
-            "Ruanqianqian (Lisa) Huang",
-            "Avery Reyna",
-            "Sorin Lerner",
-            "Haijun Xia",
-            "Brian Hempel"
-          ]
-        },
-        {
-          "title": "Help Supporters: Exploring the Design Space of Assistive Technologies to Support Face-to-Face Help Between Blind and Sighted Strangers",
-          "context": "CHI '24",
-          "url": "https://help-supporters.vercel.app/",
-          "authors": [
-            "Yuanyang Teng",
-            "Connor Courtien",
-            "David Rios",
-            "Yves Tseng",
-            "Jacqueline Gibson",
-            "Maryam Aziz",
-            "Avery Reyna",
-            "Rajan Vaish",
-            "Brian Smith"
-          ]
-        },
-        {
-          "title": "Understanding Blind and Low Vision Users' Attitudes Towards Spatial Interactions in Desktop Screen Readers",
-          "context": "ASSETS '23, Built upon in CHI '25",
-          "url": "https://ceal.cs.columbia.edu/webnext/",
-          "authors": [
-            "Arnavi Chheda-Kothary",
-            "David Angel Rios",
-            "Kynnedy Simone Smith",
-            "Avery Reyna",
-            "Cecilia Zhang",
-            "Brian A. Smith"
-          ]
-        }
-      ]
-    },
-    {
-      "label": "Public Scholarship",
-      "items": [
-        {
-          "title": "The Threat of Artificial Intelligence Is Not Just Real, It's Here",
-          "context": "The Loop",
-          "url": "https://theloop.ecpr.eu/the-threat-of-artificial-intelligence-is-not-just-real-its-here/",
-          "authors": ["Avery Reyna"]
-        },
-        {
-          "title": "Interdisciplinary Social Science and the Limits of Quantitative Research",
-          "context": "The Loop",
-          "url": "https://theloop.ecpr.eu/interdisciplinary-social-science-and-the-limits-of-quantitative-research/",
-          "authors": ["Avery Reyna"]
-        },
-        {
-          "title": "Anti-Coup Strategies Should Address Civilian Coup Allies",
-          "context": "Just Security",
-          "url": "https://www.justsecurity.org/82471/anti-coup-strategies-should-address-civilian-coup-allies/",
-          "authors": ["Avery Reyna"]
-        },
-        {
-          "title": "Reflecting on Coup Risk in Mali",
-          "context": "Political Violence at a Glance",
-          "url": "https://politicalviolenceataglance.org/2022/06/14/reflecting-on-coup-risk-in-mali/",
-          "authors": ["Avery Reyna"]
-        },
-        {
-          "title": "Integrated Data in the United States: A Look at New York's Workforce Portal",
-          "context": "New America",
-          "url": "https://www.newamerica.org/digital-impact-governance-initiative/blog/integrated-data-in-the-united-states-a-look-at-new-yorks-workforce-portal/",
-          "authors": ["Avery Reyna"]
-        },
-        {
-          "title": "Latin America's Vaccination Efforts: What to Know",
-          "context": "Council on Foreign Relations",
-          "url": "https://www.cfr.org/in-brief/latin-americas-vaccination-efforts-what-know",
-          "authors": ["Avery Reyna"]
-        }
-      ]
-    },
-    {
-      "label": "Talks",
-      "items": [
-        {
-          "title": "Drag-And-Drop Not Considered Harmful",
-          "context": "PPIC Spring '26",
-          "url": "/talk_unavailable.html",
-          "authors": ["Avery Reyna"]
-        },
-        {
-          "title": "Cartographic Limits and Interdisciplinary Science: Maps and Mathematics in Pursuit of Social Justice",
-          "context": "NACIS '22",
-          "url": "https://youtu.be/Og9azEDcG4k?si=OQHwmA7IQwXdc1u3",
-          "authors": [
-            "Alexis Wood",
-            "Avery Reyna",
-            "Aya Konishi",
-            "David Retchless",
-            "Jim Thatcher"
-          ]
-        },
-        {
-          "title": "Legacies of Instability: Military Coups and Regime Consolidation in the Modern World",
-          "context": "ISA South '22",
-          "url": "/talk_unavailable.html",
-          "authors": ["Jonathan Powell", "Avery Reyna"]
-        },
-        {
-          "title": "Applied Machine Learning to Detect Risk of Illegal Leadership Turnover",
-          "context": "UCF SURPS '22",
-          "url": "/assets/files/presentations/summer_undergraduate_research_poster_showcase_22.pdf",
-          "authors": ["Avery Reyna", "Jonathan Powell"]
-        },
-        {
-          "title": "Comparative Analysis between TextRank and LexRank: Testing Perceived Utility of Text Summarization Models for Data Annotators",
-          "context": "UCF SRW '22",
-          "url": "/assets/files/presentations/student_research_week_22.pdf",
-          "authors": ["Avery Reyna", "Pamela Wisniewski", "Ashwaq Soubai"]
-        },
-        {
-          "title": "Adolescent Online Safety: Expanding the Knowledge Base and Developing Machine Learning Algorithms",
-          "context": "UCF SRW '21",
-          "url": "/assets/files/presentations/student_research_week_21.pdf",
-          "authors": [
-            "Carlson Sharpless",
-            "Pallavi Dacre",
-            "Komila Khamidova",
-            "Pamela Wisniewski",
-            "Christian Lozano",
-            "Abdulrahman Al Sumaih",
-            "Avery Reyna",
-            "Afsaneh Razi",
-            "Ashwaq Soubai"
-          ]
-        }
-      ]
-    },
-    {
-      "label": "Media",
-      "items": [],
-      "subsections": [
-        {
-          "label": "Independent",
-          "items": [
-            {
-              "title": "Coup Catalyst: A Coup Forecasting Tool",
-              "context": "RAND Corporation",
-              "url": "/talk_unavailable.html"
-            }
-          ]
-        },
-        {
-          "label": "Undergraduate",
-          "items": [
-            {
-              "title": "Contributing to an Open Source Project",
-              "context": "Knight Hacks",
-              "url": "https://youtu.be/YAgk39hzpDo?si=9mWM-DiclL5vT2yz"
-            },
-            {
-              "title": "How to Get Into the Industry",
-              "context": "Knight Hacks",
-              "url": "https://youtu.be/xAXvxLWU7Ug?si=maL8WAjCoHwAyt3p"
-            },
-            {
-              "title": "Mapper-ing Communities of Interest",
-              "context": "UPS Science Seminar",
-              "url": "/talk_unavailable.html"
-            },
-            {
-              "title": "Sustainable Solutions for Puerto Rico",
-              "context": "Insights From Abroad",
-              "url": "https://youtu.be/HolsVNecajA?si=HiU1ktnEvJPbEAqa"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "label": "Links",
-      "bulleted": true,
-      "items": [
-        { "title": "Are.na", "url": "https://www.are.na/avery-reyna" },
-        { "title": "CV", "url": "/assets/files/cv/avery_reyna_cv.pdf" },
-        { "title": "CVS", "url": "https://complexvectorspace.io" },
-        { "title": "Email", "url": "mailto:avery.reyna16@gmail.com" },
-        { "title": "GitHub", "url": "https://github.com/averyreyna" },
-        { "title": "Google Scholar", "url": "https://scholar.google.com/citations?user=WecCIHwAAAAJ&hl=en" },
-        { "title": "Instagram", "url": "https://instagram.com/selfadjointoperator" },
-        { "title": "LinkedIn", "url": "https://linkedin.com/in/avery-reyna" }
-      ]
-    }
-  ]
+  "information": {
+    "name": "avery reyna",
+    "email": "avery.reyna16@gmail.com",
+    "occupation": "[occupation]",
+    "residence": "[city, state]",
+    "birth place": "[birth place]",
+    "birth year": "[birth year]"
+  },
+  "in 2026": {
+    "submitted": ["they aren't vibing: how experienced developers use ai agents", {
+      "with": "ruanqianqian (lisa) huang, sorin lerner, haijun xia, brian hempel",
+      "url": "https://ai-agents-for-coding-in-2025.vercel.app/"
+    }],
+    "posted a preprint of": ["professional software developers don't vibe, they control: ai agent use for coding in 2025", {
+      "with": "ruanqianqian (lisa) huang, sorin lerner, haijun xia, brian hempel",
+      "url": "https://ai-agents-for-coding-in-2025.vercel.app/"
+    }],
+    "gave a talk at": ["ppic spring '26", {
+      "on": "drag-and-drop not considered harmful",
+      "url": "/talk_unavailable.html"
+    }]
+  },
+  "in 2024": {
+    "published": ["help supporters: exploring the design space of assistive technologies to support face-to-face help between blind and sighted strangers", {
+      "in": "chi '24",
+      "with": "yuanyang teng, connor courtien, david rios, yves tseng, jacqueline gibson, maryam aziz, rajan vaish, brian smith",
+      "url": "https://help-supporters.vercel.app/"
+    }]
+  },
+  "in 2023": {
+    "published": ["understanding blind and low vision users' attitudes towards spatial interactions in desktop screen readers", {
+      "in": "assets '23",
+      "with": "arnavi chheda-kothary, david angel rios, kynnedy simone smith, cecilia zhang, brian a. smith",
+      "url": "https://ceal.cs.columbia.edu/webnext/"
+    }],
+    "wrote for the loop": ["the threat of artificial intelligence is not just real, it's here", {
+      "url": "https://theloop.ecpr.eu/the-threat-of-artificial-intelligence-is-not-just-real-its-here/"
+    }]
+  },
+  "in 2022": {
+    "gave a talk at nacis": ["cartographic limits and interdisciplinary science: maps and mathematics in pursuit of social justice", {
+      "with": "alexis wood, aya konishi, david retchless, jim thatcher",
+      "url": "https://youtu.be/Og9azEDcG4k?si=OQHwmA7IQwXdc1u3"
+    }],
+    "gave a talk at isa south": ["legacies of instability: military coups and regime consolidation in the modern world", {
+      "with": "jonathan powell",
+      "url": "/talk_unavailable.html"
+    }],
+    "presented a poster at ucf surps": ["applied machine learning to detect risk of illegal leadership turnover", {
+      "with": "jonathan powell",
+      "url": "/assets/files/presentations/summer_undergraduate_research_poster_showcase_22.pdf"
+    }],
+    "gave a talk at ucf srw": ["comparative analysis between textrank and lexrank: testing perceived utility of text summarization models for data annotators", {
+      "with": "pamela wisniewski, ashwaq soubai",
+      "url": "/assets/files/presentations/student_research_week_22.pdf"
+    }],
+    "wrote for the loop": ["interdisciplinary social science and the limits of quantitative research", {
+      "url": "https://theloop.ecpr.eu/interdisciplinary-social-science-and-the-limits-of-quantitative-research/"
+    }],
+    "wrote for just security": ["anti-coup strategies should address civilian coup allies", {
+      "url": "https://www.justsecurity.org/82471/anti-coup-strategies-should-address-civilian-coup-allies/"
+    }],
+    "wrote for political violence at a glance": ["reflecting on coup risk in mali", {
+      "url": "https://politicalviolenceataglance.org/2022/06/14/reflecting-on-coup-risk-in-mali/"
+    }],
+    "wrote for new america": ["integrated data in the united states: a look at new york's workforce portal", {
+      "url": "https://www.newamerica.org/digital-impact-governance-initiative/blog/integrated-data-in-the-united-states-a-look-at-new-yorks-workforce-portal/"
+    }],
+    "worked on": ["coup catalyst: a coup forecasting tool", {
+      "for": "rand corporation",
+      "url": "/talk_unavailable.html"
+    }]
+  },
+  "in 2021": {
+    "gave a talk at ucf srw": ["adolescent online safety: expanding the knowledge base and developing machine learning algorithms", {
+      "with": "carlson sharpless, pallavi dacre, komila khamidova, pamela wisniewski, christian lozano, abdulrahman al sumaih, afsaneh razi, ashwaq soubai",
+      "url": "/assets/files/presentations/student_research_week_21.pdf"
+    }],
+    "wrote for the council on foreign relations": ["latin america's vaccination efforts: what to know", {
+      "url": "https://www.cfr.org/in-brief/latin-americas-vaccination-efforts-what-know"
+    }],
+    "spoke at the ups science seminar on": ["mapper-ing communities of interest", {
+      "url": "/talk_unavailable.html"
+    }],
+    "appeared in": ["sustainable solutions for puerto rico", {
+      "for": "insights from abroad",
+      "url": "https://youtu.be/HolsVNecajA?si=HiU1ktnEvJPbEAqa"
+    }],
+    "spoke at knight hacks about": ["contributing to an open source project", {
+      "url": "https://youtu.be/YAgk39hzpDo?si=9mWM-DiclL5vT2yz"
+    }],
+    "gave a talk at knight hacks on": ["how to get into the industry", {
+      "url": "https://youtu.be/xAXvxLWU7Ug?si=maL8WAjCoHwAyt3p"
+    }]
+  },
+  "in [year 1]": {
+    "interned at": ["[company]", {
+      "as a": "[role]",
+      "in": "[city, state]",
+      "from": "[start month]",
+      "until": "[end month]"
+    }]
+  },
+  "in [year 2]": {
+    "interned at": ["[company]", {
+      "as a": "[role]",
+      "in": "[city, state]",
+      "from": "[start month]",
+      "until": "[end month]"
+    }]
+  },
+  "in [year 3]": {
+    "interned at": ["[company]", {
+      "as a": "[role]",
+      "in": "[city, state]",
+      "from": "[start month]",
+      "until": "[end month]"
+    }]
+  },
+  "in [year 4]": {
+    "interned at": ["[company]", {
+      "as a": "[role]",
+      "in": "[city, state]",
+      "from": "[start month]",
+      "until": "[end month]"
+    }]
+  },
+  "links": {
+    "are.na": "https://www.are.na/avery-reyna",
+    "cv": "/assets/files/cv/avery_reyna_cv.pdf",
+    "cvs": "https://complexvectorspace.io",
+    "email": "avery.reyna16@gmail.com",
+    "github": "https://github.com/averyreyna",
+    "google scholar": "https://scholar.google.com/citations?user=WecCIHwAAAAJ&hl=en",
+    "instagram": "https://instagram.com/selfadjointoperator",
+    "linkedin": "https://linkedin.com/in/avery-reyna"
+  }
 }

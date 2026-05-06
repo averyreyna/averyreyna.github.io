@@ -34,18 +34,17 @@
     font-display: swap;
 }
 
-body {
+html, body {
+    margin: 0;
     font-family: 'ABC Arizona Mix', Georgia, serif;
     font-size: 14px;
-    max-width: 700px;
-    margin: 30px;
     line-height: 1.4;
-    text-align: justify;
-    hyphens: auto;
+    min-width: max-content;
 }
 
-p {
-    margin: 0;
+body {
+    padding: 20px;
+    padding-bottom: 50vh;
 }
 
 * {
@@ -63,53 +62,16 @@ a {
     color: #00e;
 }
 
-.site-header {
-    margin-bottom: 8px;
+table {
+    border-collapse: collapse;
 }
 
-.section__label {
-    margin-top: 12px;
-    margin-bottom: 2px;
+td {
+    width: 20vw;
+    vertical-align: top;
+    padding: 4px;
 }
 
-.section__list {
-    list-style: none;
-    padding: 0;
-}
-
-.section__list--bulleted {
-    list-style: disc;
-    padding-left: 1.2em;
-}
-
-.section__item {
-    margin-bottom: 4px;
-}
-
-.section__item-title {
-    background: none;
-    padding: 0;
-}
-
-.section__item-authors {
-    font-size: 0.9em;
-}
-
-.section__item-context {
-    color: #666;
-    font-size: 0.9em;
-}
-
-.section__item-pdf {
-    font-size: 0.9em;
-}
-
-.site-footer {
-    margin-top: 14px;
-    padding-top: 6px;
-    border-top: 1px solid #ccc;
-    font-size: 0.9em;
-    color: #666;
-    display: flex;
-    justify-content: space-between;
+td.value {
+    font-style: italic;
 }
