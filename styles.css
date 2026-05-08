@@ -39,12 +39,11 @@ html, body {
     font-family: 'ABC Favorit Compressed', sans-serif;
     font-feature-settings: "ss01", "ss03", "ss04", "ss05", "ss06", "ss07", "zero";
     font-size: 15px;
-    line-height: 1.6;
+    line-height: 1.2;
 }
 
 body {
-    padding: 40px 20px;
-    padding-bottom: 50vh;
+    padding: 36px 20px;
 }
 
 * {
@@ -66,13 +65,28 @@ body {
 h1 {
     font-size: 15px;
     font-weight: 700;
-    margin: 0 0 1em 0;
+    margin: 0 0 0.6em 0;
 }
 
 p {
-    margin: 0 0 1em 0;
+    margin: 0 0 0.6em 0;
 }
 
 a {
     color: #00e;
+}
+
+.section-header {
+    font-weight: 700;
+    margin-top: 1.2em;
+}
+
+.project-entry {
+    margin-bottom: 1.8em;
+}
+
+.project-image {
+    display: block;
+    max-width: 140px;
+    margin-bottom: 0.4em;
 }

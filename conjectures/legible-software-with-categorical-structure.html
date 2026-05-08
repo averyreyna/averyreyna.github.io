@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legible Software with Categorical Structure — Avery Reyna</title>
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/website.svg">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/typescript.min.js"></script>
+    <style>
+        .post-back {
+            display: block;
+            margin-bottom: 2em;
+        }
+
+        .post-author {
+            font-weight: 700;
+            margin: 0 0 0.2em 0;
+        }
+
+        .post-title {
+            font-size: 1em;
+            font-weight: 700;
+            margin: 0 0 0.3em 0;
+        }
+
+        .post-date {
+            color: #888;
+            margin: 0 0 2em 0;
+        }
+
+        .post-body h2 {
+            font-size: 1em;
+            font-weight: 700;
+            margin: 1.8em 0 0.6em 0;
+        }
+
+        .post-body p {
+            margin: 0 0 1.2em 0;
+        }
+
+        .post-body ul {
+            margin: 0 0 1.2em 0;
+            padding-left: 1.4em;
+        }
+
+        .post-body ul li {
+            margin-bottom: 0.6em;
+        }
+
+        figure {
+            margin: 1.8em 0;
+            text-align: center;
+        }
+
+        figure .img-placeholder {
+            background: #e0e0e0;
+            width: 100%;
+            max-width: 520px;
+            height: 300px;
+            display: inline-block;
+        }
+
+        figcaption {
+            font-size: 0.87em;
+            color: #666;
+            margin-top: 0.6em;
+        }
+
+        pre {
+            margin: 1.2em 0;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+
+        pre code.hljs {
+            font-family: 'Consolas', 'Menlo', 'Monaco', monospace;
+            font-size: 0.85em;
+            line-height: 1.5;
+            padding: 1.2em 1.4em;
+            border-radius: 4px;
+        }
+
+        code:not(.hljs) {
+            font-family: 'Consolas', 'Menlo', 'Monaco', monospace;
+            font-size: 0.85em;
+            background: #f3f3f3;
+            color: #000000;
+            padding: 0.15em 0.35em;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <a href="/" class="post-back">← Back</a>
+        <p class="post-author">Avery Reyna</p>
+        <h1 class="post-title">Legible Software with Categorical Structure</h1>
+        <p class="post-date">May 11, 2026</p>
+
+        <div class="post-body">
+            <p>Software is legible when you can reason about the whole from its parts' interfaces alone — without opening any of them. Most codebases fail this. Internals leak outward. Knowledge of how something works becomes load-bearing for anyone trying to use it. What starts as a clean separation collapses into a single thing you have to understand all at once.</p>
+
+            <p>Category theory has a reputation for being maximally abstract. But its core move is exactly the formal version of what legibility requires: objects are opaque. All you know about them is what morphisms go in and out. Composition is by signature, not by inspection. If A's output type matches C's input type, you can wire them together without knowing what either one does internally. That's the whole apparatus.</p>
+
+            <p>I want to work through what this looks like in practice using a concrete comparison — authentication — and a concept-based architecture that takes the categorical constraint seriously as an engineering principle.</p>
+
+            <h2>The failure mode</h2>
+
+            <p>Here is a conventional approach: an Express app with Prisma, handling user registration and login.</p>
+
+<pre><code class="language-typescript">// routes/auth.ts
+router.post('/register', async (req, res) => {
+  const { email, password } = req.body;
+
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(password, salt);
+
+  const user = await prisma.user.create({
+    data: { email, password: hashedPassword, salt }
+  });
+
+  res.json({ user });
+});
+
+router.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+
+  const user = await prisma.user.findUnique({ where: { email } });
+  const valid = await bcrypt.compare(password, user.password);
+
+  if (!valid) return res.status(401).json({ error: 'Invalid password' });
+  res.json({ user });
+});</code></pre>
+
+            <p>Three things have gone wrong. The password hashing logic appears in two places — nothing prevents a third. The <code>password</code> and <code>salt</code> columns live on the <code>User</code> table, so authentication is already entangled at the schema level. And each route handler knows about <code>bcrypt</code> directly, collapsing business logic, HTTP handling, and persistence into the same function. To work on any part of this, you have to understand all of it.</p>
+
+            <h2>The categorical structure</h2>
+
+            <p>A concept-based architecture treats each concern as an independent state machine: its own state, its own actions, no shared references with anything else. The only way into a concept's state is through its actions. Here is the same password logic written as a concept.</p>
+
+<pre><code class="language-typescript">// concepts/Password.ts
+const PasswordConcept: Concept = {
+  state: {
+    passwords: new Map&lt;string, { hash: string; salt: string }&gt;()
+  },
+
+  async execute(action, input) {
+    switch (action) {
+
+      case 'set': {
+        const { user, password } = input;
+        const salt = await bcrypt.genSalt(10);
+        const hash = await bcrypt.hash(password, salt);
+        this.state.passwords.set(user, { hash, salt });
+        return { user };
+      }
+
+      case 'check': {
+        const { user, password } = input;
+        const stored = this.state.passwords.get(user);
+        if (!stored) return { error: 'User not found' };
+        const valid = await bcrypt.compare(password, stored.hash);
+        return { valid };
+      }
+
+    }
+  }
+};</code></pre>
+
+            <p><code>Password.set</code> is the only door into that state. Aliasing across concept boundaries is structurally impossible, not just a convention. The decision to wire password creation to user registration — which in the traditional approach lives inside the route handler — is now a separate, named rule.</p>
+
+<pre><code class="language-typescript">const registrationSync: SyncRule = {
+  name: 'NewPassword',
+  when: [{ concept: 'User', action: 'register', outputPattern: { user: '?user' } }],
+  then: [{ concept: 'Password', action: 'set', input: { user: '?user', password: '?password' } }]
+};</code></pre>
+
+            <p>The person writing this sync never opened <code>User</code> or <code>Password</code>. The output of <code>User/register</code> includes a <code>user</code> field. The input of <code>Password/set</code> accepts a <code>user</code> field. The types line up, so you compose. That is the categorical move made concrete.</p>
+
+            <h2>What you gain</h2>
+
+            <p>Legibility is the obvious payoff — you can read a concept by reading its actions, and you can read the system by reading its syncs. But the structural consequences go further.</p>
+
+            <p>Adding a feature means adding a concept file and a sync rule, nothing else. No changes to existing concepts. No risk of breaking the registration flow by touching it. The new behavior wires in from the outside, the same way the original behavior was wired in.</p>
+
+            <p>Every action invocation is a record. The full execution trace of any request — every concept touched, every input and output, in order — is a path in a diagram you can query. Debugging stops being about reconstructing what happened from logs and starts being about reading what was recorded.</p>
+
+            <h2>The conjecture</h2>
+
+            <p>Software is most legible when its composition structure is categorical: each piece exposes a signature, composition is by signature alone, and nothing requires inspecting internals to use correctly. Category theory doesn't make code abstract — it formalizes the conditions under which code stays readable as it grows.</p>
+        </div>
+    </div>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>
