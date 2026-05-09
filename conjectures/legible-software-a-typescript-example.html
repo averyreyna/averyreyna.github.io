@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legible Software: A TypeScript Example — Avery Reyna</title>
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/website.svg">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/typescript.min.js"></script>
+    <style>
+        .post-back {
+            display: block;
+            margin-bottom: 2em;
+        }
+
+        .post-author {
+            font-weight: 700;
+            margin-bottom: 0.2em;
+        }
+
+        .post-title {
+            font-size: 1em;
+            font-weight: 700;
+            margin-bottom: 0.3em;
+        }
+
+        .post-date {
+            color: #888;
+            margin-bottom: 2em;
+        }
+
+        .post-body p {
+            margin-bottom: 1.2em;
+        }
+
+        pre {
+            margin: 1.2em 0;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: 'Consolas', 'Menlo', 'Monaco', monospace;
+            font-size: 0.85em;
+        }
+
+        pre code.hljs {
+            line-height: 1.5;
+            padding: 1.2em 1.4em;
+            border-radius: 4px;
+        }
+
+        code:not(.hljs) {
+            background: #f3f3f3;
+            color: #000000;
+            padding: 0.15em 0.35em;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <a href="/" class="post-back">← Back</a>
+        <p class="post-author">Avery Reyna</p>
+        <h1 class="post-title">Legible Software: A TypeScript Example</h1>
+        <p class="post-date">May 11, 2026</p>
+
+        <div class="post-body">
+            <p>Daniel Jackson's work on concept-based software design proposes a simple structural rule: each piece of behavior should live in its own concept — an independent state machine with its own state and actions. Concepts never reference each other's internals. The only way to wire them together is through synchronizations, declarative rules that say "when this action in concept A fires, trigger this action in concept B." The payoff is legibility: you can understand a concept by reading its actions, and you can understand the whole system by reading its syncs, without opening anything else.</p>
+
+            <p>Here is what that looks like in practice, using authentication as the example. The conventional approach with Express and Prisma puts everything together.</p>
+
+<pre><code class="language-typescript">// routes/auth.ts
+router.post('/register', async (req, res) => {
+  const { email, password } = req.body;
+
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(password, salt);
+
+  const user = await prisma.user.create({
+    data: { email, password: hashedPassword, salt }
+  });
+
+  res.json({ user });
+});
+
+router.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+
+  const user = await prisma.user.findUnique({ where: { email } });
+  const valid = await bcrypt.compare(password, user.password);
+
+  if (!valid) return res.status(401).json({ error: 'Invalid password' });
+  res.json({ user });
+});</code></pre>
+
+            <p>Password hashing appears in two places with nothing preventing a third. The <code>password</code> and <code>salt</code> columns live on the <code>User</code> table, so authentication is entangled at the schema level before any code is written. Each route handler knows about <code>bcrypt</code> directly. To change how passwords are stored, you have to find and touch every place that knows about it.</p>
+
+            <p>The concept approach pulls password logic into its own module with a single point of entry.</p>
+
+<pre><code class="language-typescript">// concepts/Password.ts
+const PasswordConcept: Concept = {
+  state: {
+    passwords: new Map&lt;string, { hash: string; salt: string }&gt;()
+  },
+
+  async execute(action, input) {
+    switch (action) {
+
+      case 'set': {
+        const { user, password } = input;
+        const salt = await bcrypt.genSalt(10);
+        const hash = await bcrypt.hash(password, salt);
+        this.state.passwords.set(user, { hash, salt });
+        return { user };
+      }
+
+      case 'check': {
+        const { user, password } = input;
+        const stored = this.state.passwords.get(user);
+        if (!stored) return { error: 'User not found' };
+        const valid = await bcrypt.compare(password, stored.hash);
+        return { valid };
+      }
+
+    }
+  }
+};</code></pre>
+
+            <p><code>Password.set</code> is the only door into that state. Aliasing across concept boundaries is structurally impossible, not just a convention. The decision to hash and store a password when a user registers — which in the traditional codebase lives inside a route handler mixed with HTTP parsing and database calls — is now a separate, named rule.</p>
+
+<pre><code class="language-typescript">const registrationSync: SyncRule = {
+  name: 'NewPassword',
+  when: [{ concept: 'User', action: 'register', outputPattern: { user: '?user' } }],
+  then: [{ concept: 'Password', action: 'set', input: { user: '?user', password: '?password' } }]
+};</code></pre>
+
+            <p>The person writing this sync never opens <code>User</code> or <code>Password</code>. The output of <code>User/register</code> includes a <code>user</code> field. The input of <code>Password/set</code> accepts one. The signatures match, so you compose. Adding a social login path means adding a new sync, not modifying the existing registration flow. Nothing breaks because nothing was touched.</p>
+        </div>
+    </div>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

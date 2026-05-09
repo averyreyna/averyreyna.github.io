@@ -76,13 +76,34 @@ a {
     color: #00e;
 }
 
+.page-section + .page-section {
+    margin-top: 1.2em;
+    padding-top: 1.2em;
+    border-top: 1px solid #ddd;
+}
+
 .section-header {
     font-weight: 700;
     margin-top: 1.2em;
 }
 
+.page-section .section-header:first-child {
+    margin-top: 0;
+}
+
+.project-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.8em 2em;
+    align-items: flex-start;
+}
+
 .project-entry {
     margin-bottom: 1.8em;
+}
+
+.project-list .project-entry {
+    margin-bottom: 0;
 }
 
 .project-image {
