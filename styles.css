@@ -1,43 +1,33 @@
 @font-face {
-    font-family: 'ABC Favorit Compressed';
-    src: url('/assets/ABC%20Favorit%20Compressed/ABCFavoritCompressed-Regular-Trial.woff2') format('woff2'),
-         url('/assets/ABC%20Favorit%20Compressed/ABCFavoritCompressed-Regular-Trial.woff') format('woff');
-    font-weight: 400;
+    font-family: 'ABC Gramercy Standard';
+    src: url('/assets/ABC%20Gramercy%20Variable/ABCGramercyStandardVariable-Trial.woff2') format('woff2'),
+         url('/assets/ABC%20Gramercy%20Variable/ABCGramercyStandardVariable-Trial.woff') format('woff');
+    font-weight: 100 900;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'ABC Favorit Compressed';
-    src: url('/assets/ABC%20Favorit%20Compressed/ABCFavoritCompressed-RegularItalic-Trial.woff2') format('woff2'),
-         url('/assets/ABC%20Favorit%20Compressed/ABCFavoritCompressed-RegularItalic-Trial.woff') format('woff');
-    font-weight: 400;
+    font-family: 'ABC Gramercy Standard';
+    src: url('/assets/ABC%20Gramercy%20Variable/ABCGramercyStandardItalicVariable-Trial.woff2') format('woff2'),
+         url('/assets/ABC%20Gramercy%20Variable/ABCGramercyStandardItalicVariable-Trial.woff') format('woff');
+    font-weight: 100 900;
     font-style: italic;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'ABC Favorit Compressed';
-    src: url('/assets/ABC%20Favorit%20Compressed/ABCFavoritCompressed-Bold-Trial.woff2') format('woff2'),
-         url('/assets/ABC%20Favorit%20Compressed/ABCFavoritCompressed-Bold-Trial.woff') format('woff');
-    font-weight: 700;
+    font-family: 'ABC Solar';
+    src: url('/assets/ABC%20Solar%20Variable/ABCSolarVariable-Trial.woff2') format('woff2'),
+         url('/assets/ABC%20Solar%20Variable/ABCSolarVariable-Trial.woff') format('woff');
+    font-weight: 100 900;
     font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'ABC Favorit Compressed';
-    src: url('/assets/ABC%20Favorit%20Compressed/ABCFavoritCompressed-BoldItalic-Trial.woff2') format('woff2'),
-         url('/assets/ABC%20Favorit%20Compressed/ABCFavoritCompressed-BoldItalic-Trial.woff') format('woff');
-    font-weight: 700;
-    font-style: italic;
     font-display: swap;
 }
 
 html, body {
     margin: 0;
-    font-family: 'ABC Favorit Compressed', sans-serif;
-    font-feature-settings: "ss01", "ss03", "ss04", "ss05", "ss06", "ss07", "zero";
+    font-family: 'ABC Gramercy Standard', Georgia, serif;
     font-size: 15px;
     line-height: 1.2;
 }
@@ -60,6 +50,11 @@ body {
 #content {
     max-width: 620px;
     margin: 0 auto;
+}
+
+h1,
+.section-header {
+    font-family: 'ABC Solar', sans-serif;
 }
 
 h1 {
