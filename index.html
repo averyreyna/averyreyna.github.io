@@ -23,59 +23,84 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="content">
-        <section class="page-section">
+    <div id="layout">
+        <aside id="sidebar">
             <h1>Avery Reyna</h1>
-            <p>I'm a software designer working on AI research with UC San Diego and applied ML at the University of Kentucky.</p>
-            <p>I'm broadly interested in formal methods and type systems, with past experiences in urban sociology, human-computer interaction, and computational social science.</p>
-            <p class="links">
-                <a href="https://www.are.na/avery-reyna" target="_blank" rel="noopener noreferrer">Are.na</a> |
-                <a href="https://complexvectorspace.io" target="_blank" rel="noopener noreferrer">Blog</a> |
-                <a href="/assets/files/cv/avery_reyna_cv.pdf">CV</a> |
-                <a href="mailto:avery.reyna16@gmail.com">Email</a> |
-                <a href="https://github.com/averyreyna" target="_blank" rel="noopener noreferrer">GitHub</a> |
-                <a href="https://scholar.google.com/citations?user=WecCIHwAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a> |
-                <a href="https://linkedin.com/in/avery-reyna" target="_blank" rel="noopener noreferrer">LinkedIn</a> |
+            <nav class="sidebar-nav">
+                <a href="#conjectures">Conjectures</a>
+                <a href="#projects">Projects</a>
+                <a href="#tools">Tools</a>
+                <a href="#research">Research</a>
+            </nav>
+            <div class="sidebar-links">
+                <a href="https://www.are.na/avery-reyna" target="_blank" rel="noopener noreferrer">Are.na</a>
+                <a href="https://complexvectorspace.io" target="_blank" rel="noopener noreferrer">Blog</a>
+                <a href="/assets/files/cv/avery_reyna_cv.pdf">CV</a>
+                <a href="mailto:avery.reyna16@gmail.com">Email</a>
+                <a href="https://github.com/averyreyna" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://scholar.google.com/citations?user=WecCIHwAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Scholar</a>
+                <a href="https://linkedin.com/in/avery-reyna" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                 <a href="https://selfadjointoperator.io" target="_blank" rel="noopener noreferrer">Portfolio</a>
-            </p>
-        </section>
-        <section class="page-section">
-            <p class="section-header">Conjectures 💭</p>
-            <p>
-                <a href="/conjectures/legible-software-a-typescript-example.html">Legible Software: A TypeScript Example</a><br>
-                May 11, 2026
-            </p>
-        </section>
-        <section class="page-section">
-            <p class="section-header">Projects 🛠️</p>
-            <div class="project-list">
-                <div class="project-entry">
-                    <img src="/assets/files/projects/coupcats.gif" alt="CoupCats demo" class="project-image">
-                    <a href="#" class="project-link">CoupCats</a><br>
-                    Coup prediction via R ML models
-                </div>
-                <div class="project-entry">
-                    <img src="/assets/files/projects/convoy-update.gif" alt="Convoy demo" class="project-image">
-                    <a href="#" class="project-link">Convoy</a><br>
-                    Node-based data wrangling
-                </div>
             </div>
-        </section>
-        <section class="page-section">
-            <p class="section-header">Tools 🧰</p>
-            <div class="project-list">
-                <div class="project-entry">
-                    <img src="/assets/files/tools/rater-of-music-placeholder.svg" alt="Rater of Music" class="project-image">
-                    <a href="#" class="project-link">Rater of Music</a><br>
-                    Personal ratings of saved music
+        </aside>
+        <main id="content">
+            <section class="page-section">
+                <p>I'm a software designer working on AI research with UC San Diego and applied ML at the University of Kentucky.</p>
+                <p>I'm broadly interested in formal methods and type systems, with past experiences in urban sociology, human-computer interaction, and computational social science.</p>
+            </section>
+            <section class="page-section" id="conjectures">
+                <p class="section-header">Conjectures</p>
+                <p>
+                    <a href="/conjectures/legible-software-a-typescript-example">Legible Software: A TypeScript Example</a><br>
+                    May 11, 2026
+                </p>
+                <p>
+                    <a href="/conjectures/redistricting-and-the-undefined-community">Redistricting and the Undefined Community</a><br>
+                    August 21, 2021
+                </p>
+            </section>
+            <section class="page-section" id="projects">
+                <p class="section-header">Projects</p>
+                <div class="project-list">
+                    <div class="project-entry">
+                        <img src="/assets/files/projects/convoy-update.gif" alt="Convoy demo" class="project-image">
+                        <a href="#" class="project-link">Convoy</a><br>
+                        Canvas-based data pipeline builder
+                    </div>
+                    <div class="project-entry">
+                        <img src="/assets/files/projects/coupcats.gif" alt="CoupCats demo" class="project-image">
+                        <a href="#" class="project-link">CoupCats</a><br>
+                        Coup prediction via R ML models
+                    </div>
                 </div>
-                <div class="project-entry">
-                    <img src="/assets/files/tools/daydream-demo.gif" alt="Daydream" class="project-image">
-                    <a href="#" class="project-link">Daydream</a><br>
-                    Mermaid diagrams for code
+            </section>
+            <section class="page-section" id="tools">
+                <p class="section-header">Tools</p>
+                <div class="project-list">
+                    <div class="project-entry">
+                        <img src="/assets/files/tools/rater-of-music-placeholder.svg" alt="Rater of Music" class="project-image">
+                        <a href="#" class="project-link">Rater of Music</a><br>
+                        Personal ratings of saved music
+                    </div>
+                    <div class="project-entry">
+                        <img src="/assets/files/tools/daydream-demo.gif" alt="Daydream" class="project-image">
+                        <a href="#" class="project-link">Daydream</a><br>
+                        Mermaid diagrams for code
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+            <section class="page-section" id="research">
+                <p class="section-header">Research</p>
+                <p>
+                    <strong>Help Supporters: Exploring the Design Space of Assistive Technologies to Support Face-to-Face Help Between Blind and Sighted Strangers</strong><br>
+                    <span class="research-meta">Yuanyang Teng, Connor Courtien, David Angel Rios, Yves M Tseng, Jacqueline Gibson, Maryam Aziz, Avery Reyna, Rajan Vaish, Brian A Smith &middot; CHI 2024</span>
+                </p>
+                <p>
+                    <strong>Understanding Blind and Low Vision Users' Attitudes Towards Spatial Interactions in Desktop Screen Readers</strong><br>
+                    <span class="research-meta">Arnavi Chheda-Kothary, David A Rios, Kynnedy Simone Smith, Avery Reyna, Cecilia Zhang, Brian A Smith &middot; ASSETS 2023</span>
+                </p>
+            </section>
+        </main>
     </div>
 </body>
 </html>

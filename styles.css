@@ -1,39 +1,60 @@
 @font-face {
-    font-family: 'ABC Gramercy Standard';
-    src: url('/assets/ABC%20Gramercy%20Variable/ABCGramercyStandardVariable-Trial.woff2') format('woff2'),
-         url('/assets/ABC%20Gramercy%20Variable/ABCGramercyStandardVariable-Trial.woff') format('woff');
-    font-weight: 100 900;
+    font-family: 'ABC Diatype Condensed';
+    src: url('/assets/ABC%20Diatype%20Condensed/ABCDiatypeCondensed-Regular-Trial.woff2') format('woff2'),
+         url('/assets/ABC%20Diatype%20Condensed/ABCDiatypeCondensed-Regular-Trial.woff') format('woff');
+    font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'ABC Gramercy Standard';
-    src: url('/assets/ABC%20Gramercy%20Variable/ABCGramercyStandardItalicVariable-Trial.woff2') format('woff2'),
-         url('/assets/ABC%20Gramercy%20Variable/ABCGramercyStandardItalicVariable-Trial.woff') format('woff');
-    font-weight: 100 900;
+    font-family: 'ABC Diatype Condensed';
+    src: url('/assets/ABC%20Diatype%20Condensed/ABCDiatypeCondensed-RegularItalic-Trial.woff2') format('woff2'),
+         url('/assets/ABC%20Diatype%20Condensed/ABCDiatypeCondensed-RegularItalic-Trial.woff') format('woff');
+    font-weight: 400;
     font-style: italic;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'ABC Solar';
-    src: url('/assets/ABC%20Solar%20Variable/ABCSolarVariable-Trial.woff2') format('woff2'),
-         url('/assets/ABC%20Solar%20Variable/ABCSolarVariable-Trial.woff') format('woff');
-    font-weight: 100 900;
+    font-family: 'ABC Diatype Condensed';
+    src: url('/assets/ABC%20Diatype%20Condensed/ABCDiatypeCondensed-Medium-Trial.woff2') format('woff2'),
+         url('/assets/ABC%20Diatype%20Condensed/ABCDiatypeCondensed-Medium-Trial.woff') format('woff');
+    font-weight: 500;
     font-style: normal;
     font-display: swap;
 }
 
+@font-face {
+    font-family: 'ABC Diatype Condensed';
+    src: url('/assets/ABC%20Diatype%20Condensed/ABCDiatypeCondensed-Bold-Trial.woff2') format('woff2'),
+         url('/assets/ABC%20Diatype%20Condensed/ABCDiatypeCondensed-Bold-Trial.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ABC Diatype Condensed';
+    src: url('/assets/ABC%20Diatype%20Condensed/ABCDiatypeCondensed-BoldItalic-Trial.woff2') format('woff2'),
+         url('/assets/ABC%20Diatype%20Condensed/ABCDiatypeCondensed-BoldItalic-Trial.woff') format('woff');
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+}
+
+
 html, body {
     margin: 0;
-    font-family: 'ABC Gramercy Standard', Georgia, serif;
+    font-family: 'ABC Diatype Condensed', sans-serif;
     font-size: 15px;
-    line-height: 1.2;
+    line-height: 1.15;
+    background-color: #fff;
+    color: #111;
 }
 
 body {
-    padding: 36px 20px;
+    padding: 40px 20px;
 }
 
 * {
@@ -47,62 +68,149 @@ body {
     height: 0;
 }
 
+#layout {
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    gap: 60px;
+    align-items: flex-start;
+}
+
+#sidebar {
+    width: 160px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 40px;
+    text-align: right;
+}
+
 #content {
+    flex: 1;
+    min-width: 0;
+}
+
+body > #content {
     max-width: 620px;
     margin: 0 auto;
 }
 
-h1,
-.section-header {
-    font-family: 'ABC Solar', sans-serif;
-}
-
 h1 {
+    font-family: 'ABC Diatype Condensed', sans-serif;
     font-size: 15px;
     font-weight: 700;
-    margin: 0 0 0.6em 0;
+    margin: 0 0 1.2em 0;
 }
 
 p {
-    margin: 0 0 0.6em 0;
+    margin: 0 0 0.75em 0;
 }
 
 a {
     color: #00e;
 }
 
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2em;
+    margin-bottom: 1.4em;
+}
+
+.sidebar-nav a {
+    display: block;
+    color: #00e;
+    text-decoration: none;
+}
+
+.sidebar-nav a:hover {
+    text-decoration: underline;
+}
+
+.sidebar-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2em;
+}
+
+.sidebar-links a {
+    display: block;
+    color: #00e;
+    text-decoration: none;
+}
+
+.sidebar-links a:hover {
+    text-decoration: underline;
+}
+
 .page-section + .page-section {
-    margin-top: 1.2em;
-    padding-top: 1.2em;
+    margin-top: 1.6em;
+    padding-top: 1.6em;
     border-top: 1px solid #ddd;
 }
 
 .section-header {
+    font-family: 'ABC Diatype Condensed', sans-serif;
     font-weight: 700;
-    margin-top: 1.2em;
-}
-
-.page-section .section-header:first-child {
-    margin-top: 0;
+    font-size: 15px;
+    margin: 0 0 0.75em 0;
 }
 
 .project-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 1.8em 2em;
+    gap: 1.6em 2em;
     align-items: flex-start;
 }
 
 .project-entry {
-    margin-bottom: 1.8em;
+    width: calc(33.333% - 1.34em);
 }
 
-.project-list .project-entry {
-    margin-bottom: 0;
+.project-list .project-entry:only-child {
+    width: calc(33.333% - 1.34em);
 }
 
 .project-image {
     display: block;
-    max-width: 140px;
+    width: 100%;
+    height: 110px;
+    object-fit: cover;
     margin-bottom: 0.4em;
+}
+
+.convoy-image {
+    display: block;
+    max-width: 100%;
+    margin-bottom: 0.8em;
+}
+
+.project-link {
+    text-decoration: underline;
+}
+
+.research-meta {
+    color: #666;
+}
+
+@media (max-width: 640px) {
+    #layout {
+        flex-direction: column;
+        gap: 2em;
+    }
+
+    #sidebar {
+        width: 100%;
+        position: static;
+    }
+
+    .sidebar-nav,
+    .sidebar-links {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.3em 1em;
+    }
+
+    .project-entry {
+        width: calc(50% - 1em);
+    }
 }
