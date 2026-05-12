@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoupCats — Avery Reyna</title>
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/website.svg">
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        .post-back {
+            display: block;
+            margin-bottom: 2em;
+        }
+
+        .post-author {
+            font-weight: 700;
+            margin-bottom: 0.2em;
+        }
+
+        .post-title {
+            font-size: 1em;
+            font-weight: 700;
+            margin-bottom: 0.3em;
+        }
+
+        .post-date {
+            color: #888;
+            margin-bottom: 2em;
+        }
+
+        .post-body p {
+            margin-bottom: 1.2em;
+        }
+
+        .app-preview {
+            margin: 1.5em 0 2em;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .app-preview-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5em 0.85em;
+            background: #f7f7f7;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 0.8em;
+            color: #555;
+        }
+
+        .app-preview-bar a {
+            color: #555;
+            text-decoration: none;
+        }
+
+        .app-preview-bar a:hover {
+            text-decoration: underline;
+        }
+
+        .app-preview iframe {
+            display: block;
+            width: 100%;
+            height: 520px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <a href="/" class="post-back">← Back</a>
+        <p class="post-author">Avery Reyna</p>
+        <h1 class="post-title">CoupCats</h1>
+        <p class="post-date">May 11, 2026</p>
+
+        <div class="post-body">
+            <div class="app-preview">
+                <div class="app-preview-bar">
+                    <span>coupcats.fly.dev</span>
+                    <a href="https://coupcats.fly.dev" target="_blank" rel="noopener noreferrer">Open coupcats.fly.dev ↗</a>
+                </div>
+                <iframe src="https://coupcats.fly.dev" title="CoupCats app preview" loading="lazy"></iframe>
+            </div>
+
+            <p>CoupCats is a web application for visualizing and predicting political coup risk worldwide. The starting point for all of it is a dataset of country-level coup probabilities — <code>yhat</code> values from R models trained on historical event data — loaded into the frontend as a static JSON file that gets swapped in whenever new predictions are available. That data drives a choropleth map where color encodes risk tier, a leaderboard of the highest-risk countries at any given moment, and individual country panels that surface the underlying numbers alongside narrative context written for each case.</p>
+
+            <p>The map layers two things on top of each other: the baseline model forecast and a heatmap of historical coup events pulled from a separate events dataset. Seeing them together matters — a country with high predicted risk but no event history looks different from one with both, and the two signals rarely tell the same story. Clicking into a country opens a panel with event-by-event detail, including date, type, and outcome.</p>
+
+            <p>Beyond the baseline forecast, a predictive mode lets you move sliders tied to individual risk factors and watch the map update in response. The sliders don't retrain anything — they shift the model's predicted probabilities by percentage adjustments — but the effect is that you can interrogate the model's sensitivity to each variable and ask what the risk landscape looks like if conditions change.</p>
+
+            <p>The frontend is React and TypeScript, with MapLibre for the map layer, Turf.js for country geometry operations, and Zustand managing the filter and selection state shared across the map, panels, and leaderboard. The R models that produce the underlying forecast data run entirely separately; the app is a consumer of their output, not a host for the computation.</p>
+        </div>
+    </div>
+</body>
+</html>

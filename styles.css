@@ -226,6 +226,7 @@ a {
     #sidebar {
         width: 100%;
         position: static;
+        text-align: left;
     }
 
     .sidebar-nav,

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Specter — Avery Reyna</title>
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/website.svg">
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        .post-back {
+            display: block;
+            margin-bottom: 2em;
+        }
+
+        .post-author {
+            font-weight: 700;
+            margin-bottom: 0.2em;
+        }
+
+        .post-title {
+            font-size: 1em;
+            font-weight: 700;
+            margin-bottom: 0.3em;
+        }
+
+        .post-date {
+            color: #888;
+            margin-bottom: 2em;
+        }
+
+        .post-body p {
+            margin-bottom: 1.2em;
+        }
+
+        code {
+            font-family: 'Consolas', 'Menlo', 'Monaco', monospace;
+            font-size: 0.85em;
+            background: #f3f3f3;
+            color: #000000;
+            padding: 0.15em 0.35em;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <a href="/" class="post-back">← Back</a>
+        <p class="post-author">Avery Reyna</p>
+        <h1 class="post-title">Specter</h1>
+        <p class="post-date">May 11, 2026</p>
+
+        <div class="post-body">
+            <p>Specter is a writing assistant powered by DeepSeek. You write in a textarea, optionally give the editor a topic, and ask for two things: an analysis of what you've written, or inspiration for how to start. Nothing you write is saved between sessions.</p>
+
+            <p>The analysis path sends your text — prepended with the topic if you supplied one — to <code>deepseek-chat</code> with a system prompt that instructs the model to return two labeled sections: potential directions for development and specific areas for improvement. The frontend splits the response on the "Areas for Improvement" heading, strips the heading lines, and distributes the bullet points into two side panels. Blue dots for directions, red for improvements. If the model returns an empty section the panel just stays blank.</p>
+
+            <p>The inspiration path works differently. A modal prompts you to describe what you need help starting — a topic, a challenge, a genre — and the model returns a short list of opening hooks and a rough outline. Instead of replacing your draft, the response is appended to the textarea. The idea is that you keep writing; the model hands you raw material rather than a finished thing.</p>
+
+            <p>Both calls go through the same <code>DeepSeekClient</code> class wrapping axios, but the component uses two separate <code>useDeepSeek</code> hook instances so the analysis and inspiration loading states don't interfere with each other. If you click Inspiration while an analysis is still running, neither request is blocked.</p>
+        </div>
+    </div>
+</body>
+</html>
