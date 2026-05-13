@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Views Are Now Cheap — Avery Reyna</title>
+    <title>Views Are Now Cheap</title>
     <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
     <link rel="icon" type="image/svg+xml" href="/website.svg">
     <link rel="stylesheet" href="/styles.css">
@@ -125,7 +125,7 @@
 
             <p>When generating views is cheap and the data you need lives on your machine, localhost moves towards being a general-purpose interface and away from a strictly developer tool.</p>
 
-            <p>Developers already use localhost this way: it is where you run, inspect, and iterate before shipping. But the localhost URL has a second property that matters here — it is session-scoped. The server lives as long as the process does, and nothing persists beyond the task that created it. Tools like ngrok extend this further: they expose a local port to a shareable URL for the duration of a session, letting collaborators access the same workspace without provisioning any infrastructure. The study tool from the opening would live at a localhost port, tunneled to classmates, and disappear when we closed our laptops.</p>
+            <p>Developers already use localhost this way: it is where you run, inspect, and iterate before shipping. But the localhost URL has a second property that matters here: it is session-scoped. The server lives as long as the process does, and nothing persists beyond the task that created it. Tools like ngrok extend this further: they expose a local port to a shareable URL for the duration of a session, letting collaborators access the same workspace without provisioning any infrastructure. The study tool from the opening would live at a localhost port, tunneled to classmates, and disappear when we closed our laptops.</p>
 
             <p>This is what separates the pattern from just "a local app." The combination of cheap view generation, data that stays on your machine, and session-scoped sharing produces something closer to the whiteboard analogy than to a software product — accessible, collaborative, and naturally bounded by the task that created it.</p>
 
@@ -153,8 +153,8 @@
             <div class="post-footnotes">
                 <p id="fn1">[1] Codd's abstractions also act as a prerequisite for my argument. You can't generate views of data if it's not queryable in a structured way. While Codd was making claims in the world of relational databases, his framework can be applied to UI generation, since the idea of "software fundamentally being a view of structured data" has legs to stand on, as articulated by Kay in Smalltalk.</p>
                 <p id="fn2">[2] Kay really delineated between "doing something with a computer" and "using a computer application." He had a vision for Smalltalk rooted in the idea that computers should be a medium for human thought, not just machines with executable instructions. The environment wasn't just a programming language; it was a live system that let the user point at anything on the screen to change it and inspect its behavior.</p>
-                <p id="fn3">[3] Litt argues that LLMs could enable a new era of end-user programming, where people create and modify their own tools without traditional programming skills. His frame is largely about persistent customization — software that bends to the user over time and accumulates their preferences. This post takes a different fork: rather than tools that grow alongside a user, the interesting case is tools that exist only for a task and are discarded once it ends. The distinction matters because persistent customization still implies a product with a lifecycle; ephemeral views remove the lifecycle constraint entirely.</p>
-                <p id="fn4">[4] Ink & Switch extends Kay's original vision by asking what it would take for users to reshape their tools in the moment — not by filing a feature request, but by directly modifying behavior. Their work explores systems where composable, inspectable pieces replace monolithic applications, and tools evolve alongside a user's thinking. The difference from this post's framing is scope: Ink & Switch is interested in tools that are malleable and durable. The ephemerality argument adds a third option — tools that are maximally specific precisely because they are not trying to last.</p>
+                <p id="fn3">[3] Litt argues that LLMs could enable a new era of end-user programming, where people create and modify their own tools without traditional programming skills. His frame is largely about persistent customization, software that bends to the user over time and accumulates their preferences. This post takes a different fork: rather than tools that grow alongside a user, the interesting case is tools that exist only for a task and are discarded once it ends. The distinction matters because persistent customization still implies a product with a lifecycle; ephemeral views remove the lifecycle constraint entirely.</p>
+                <p id="fn4">[4] Ink & Switch extends Kay's original vision by asking what it would take for users to reshape their tools in the moment — not by filing a feature request, but by directly modifying behavior. Their work explores systems where composable, inspectable pieces replace monolithic applications, and tools evolve alongside a user's thinking. The difference from this post's framing is scope: Ink & Switch is interested in tools that are malleable and durable. The ephemerality argument adds a third option, tools that are maximally specific precisely because they are not trying to last.</p>
             </div>
         </div>
     </div>

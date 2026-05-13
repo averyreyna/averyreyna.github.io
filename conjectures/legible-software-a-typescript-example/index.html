@@ -69,9 +69,9 @@
         <p class="post-date">May 11, 2026</p>
 
         <div class="post-body">
-            <p>Daniel Jackson's work on concept-based software design proposes a simple structural rule: each piece of behavior should live in its own concept — an independent state machine with its own state and actions. Concepts never reference each other's internals. The only way to wire them together is through synchronizations, declarative rules that say "when this action in concept A fires, trigger this action in concept B." The payoff is legibility: you can understand a concept by reading its actions, and you can understand the whole system by reading its syncs, without opening anything else.</p>
+            <p>Daniel Jackson's work on concept-based software design proposes a simple structural rule: each piece of behavior should live in its own concept, an independent state machines with their own state and actions. Concepts never reference each other's internals and the only way to wire them together is through synchronizations, declarative rules that say "when this action in concept A fires, trigger this action in concept B." The payoff is legibility: you can understand a concept by reading its actions, and you can understand the whole system by reading its syncs, without opening anything else.</p>
 
-            <p>Here is what that looks like in practice, using authentication as the example. The conventional approach with Express and Prisma puts everything together.</p>
+            <p>Here is what that looks like in practice, using authentication in a TypeScript codebase as the example. The conventional approach with Express and Prisma puts everything together:</p>
 
 <pre><code class="language-typescript">// routes/auth.ts
 router.post('/register', async (req, res) => {
@@ -99,7 +99,7 @@ router.post('/login', async (req, res) => {
 
             <p>Password hashing appears in two places with nothing preventing a third. The <code>password</code> and <code>salt</code> columns live on the <code>User</code> table, so authentication is entangled at the schema level before any code is written. Each route handler knows about <code>bcrypt</code> directly. To change how passwords are stored, you have to find and touch every place that knows about it.</p>
 
-            <p>The concept approach pulls password logic into its own module with a single point of entry.</p>
+            <p>The concept approach pulls password logic into its own module with a single point of entry:</p>
 
 <pre><code class="language-typescript">// concepts/Password.ts
 const PasswordConcept: Concept = {
@@ -130,7 +130,7 @@ const PasswordConcept: Concept = {
   }
 };</code></pre>
 
-            <p><code>Password.set</code> is the only door into that state. Aliasing across concept boundaries is structurally impossible, not just a convention. The decision to hash and store a password when a user registers — which in the traditional codebase lives inside a route handler mixed with HTTP parsing and database calls — is now a separate, named rule.</p>
+            <p><code>Password.set</code> is the only door into that state. Aliasing across concept boundaries is structurally impossible, not just a convention. The decision to hash and store a password when a user registers, which in the traditional codebase lives inside a route handler mixed with HTTP parsing and database calls, is now a separate, named rule.</p>
 
 <pre><code class="language-typescript">const registrationSync: SyncRule = {
   name: 'NewPassword',
