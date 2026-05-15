@@ -84,7 +84,6 @@ body {
     align-self: flex-start;
     display: flex;
     flex-direction: column;
-    min-height: calc(100vh - 80px);
     text-align: right;
 }
 
@@ -146,11 +145,16 @@ a {
     text-decoration: underline;
 }
 
-.sidebar-copyright {
-    margin-top: auto;
-    margin-bottom: 0;
+.content-footer {
+    margin-top: 2em;
+    padding-top: 1em;
+    text-align: right;
+}
+
+.content-footer p {
     font-size: 11px;
     color: #888;
+    margin: 0;
 }
 
 .page-section + .page-section {
@@ -239,10 +243,6 @@ a {
         position: static;
         min-height: auto;
         text-align: left;
-    }
-
-    .sidebar-copyright {
-        margin-top: 1.4em;
     }
 
     .sidebar-nav,
