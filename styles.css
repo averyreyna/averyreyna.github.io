@@ -239,4 +239,8 @@ a {
     .project-entry {
         width: calc(50% - 1em);
     }
+
+    .project-list .project-entry:only-child {
+        width: 100%;
+    }
 }
