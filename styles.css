@@ -73,7 +73,7 @@ body {
     margin: 0 auto;
     display: flex;
     gap: 60px;
-    align-items: flex-start;
+    align-items: stretch;
 }
 
 #sidebar {
@@ -81,6 +81,10 @@ body {
     flex-shrink: 0;
     position: sticky;
     top: 40px;
+    align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 80px);
     text-align: right;
 }
 
@@ -140,6 +144,13 @@ a {
 
 .sidebar-links a:hover {
     text-decoration: underline;
+}
+
+.sidebar-copyright {
+    margin-top: auto;
+    margin-bottom: 0;
+    font-size: 11px;
+    color: #888;
 }
 
 .page-section + .page-section {
@@ -226,7 +237,12 @@ a {
     #sidebar {
         width: 100%;
         position: static;
+        min-height: auto;
         text-align: left;
+    }
+
+    .sidebar-copyright {
+        margin-top: 1.4em;
     }
 
     .sidebar-nav,
