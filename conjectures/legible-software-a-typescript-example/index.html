@@ -69,9 +69,9 @@
         <p class="post-date">May 11, 2026</p>
 
         <div class="post-body">
-            <p>Daniel Jackson's work on concept-based software design proposes a simple structural rule: each piece of behavior should live in its own concept: an independent state machines with their own state and actions. Concepts never reference each other's internals and the only way to wire them together is through declarative rules that say "when this action in concept called synch A fires, trigger this action in concept B" called synchronizations. The payoff is legibility: you can understand a concept by reading its actions, and you can understand the whole system by reading its syncs, without opening anything else.</p>
+            <p>Daniel Jackson's work on concept-based software design proposes a simple structural rule: each piece of behavior should live in its own concept, an independent state machines with their own state and actions. Concepts never reference each other's internals and the only way to wire them together is through declarative rules that say "when this action in concept called synch A fires, trigger this action in concept B" called synchronizations. The payoff is legibility: you can understand a concept by reading its actions, and you can understand the whole system by reading its syncs, without opening anything else.</p>
 
-            <p>Here is what that looks like in practice, using authentication in a TypeScript codebase as the example. The conventional approach with Express and Prisma puts everything together:</p>
+            <p>Here is what that looks like in practice using authentication in a TypeScript codebase as an example. The conventional approach with Express and Prisma puts everything together:</p>
 
 <pre><code class="language-typescript">// routes/auth.ts
 router.post('/register', async (req, res) => {
