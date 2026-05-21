@@ -21,6 +21,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
 </head>
 <body>
     <div id="layout">
@@ -43,6 +44,7 @@
                 <a href="https://selfadjointoperator.io" target="_blank" rel="noopener noreferrer">Portfolio</a>
                 <a href="https://scholar.google.com/citations?user=WecCIHwAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Scholar</a>
             </div>
+            <img data-src="/assets/files/me/avery.png" alt="Avery Reyna" class="lozad sidebar-photo">
         </aside>
         <main id="content">
             <section class="page-section">
@@ -72,7 +74,7 @@
                 <p class="section-header">Interfaces</p>
                 <div class="project-list">
                     <div class="project-entry">
-                        <img src="/assets/files/tools/daydream-demo.gif" alt="Daydream" class="project-image">
+                        <img data-src="/assets/files/tools/daydream-demo.gif" alt="Daydream" class="lozad project-image">
                         <a href="https://daydream-alpha.vercel.app" class="project-link">Daydream</a><br>
                         Mermaid diagrams for code
                     </div>
@@ -82,12 +84,12 @@
                 <p class="section-header">Projects</p>
                 <div class="project-list">
                     <div class="project-entry">
-                        <img src="/assets/files/projects/convoy-update.gif" alt="Convoy demo" class="project-image">
+                        <img data-src="/assets/files/projects/convoy-update.gif" alt="Convoy demo" class="lozad project-image">
                         <a href="/projects/convoy" class="project-link">Convoy</a><br>
                         Canvas-based data pipeline builder
                     </div>
                     <div class="project-entry">
-                        <img src="/assets/files/projects/coupcats.gif" alt="CoupCats demo" class="project-image">
+                        <img data-src="/assets/files/projects/coupcats.gif" alt="CoupCats demo" class="lozad project-image">
                         <a href="/projects/coupcats" class="project-link">CoupCats</a><br>
                         Coup prediction via R ML models
                     </div>
@@ -203,12 +205,24 @@
             <section class="page-section" id="media">
                 <p class="section-header">Media</p>
                 <p>
+                    <a href="https://www.newamerica.org/digital-impact-governance-initiative/reports/digital-transformation-opportunities-and-challenges-in-the-lower-mekong-region/">Digital Transformation Opportunities and Challenges in the Lower Mekong Region</a><br>
+                    <span class="research-meta">New America</span>
+                </p>
+                <p>
+                    <a href="https://www.newamerica.org/digital-impact-governance-initiative/reports/reconceptualizing-public-procurement/">Reconceptualizing Public Procurement to Strengthen State Benefits Delivery and Improve Outcomes</a><br>
+                    <span class="research-meta">New America</span>
+                </p>
+                <p>
                     <a href="https://www.youtube.com/watch?v=YAgk39hzpDo">Contributing to an Open Source Project</a><br>
                     <span class="research-meta">Knight Hacks</span>
                 </p>
                 <p>
                     <a href="https://www.youtube.com/watch?v=xAXvxLWU7Ug">How To Get Into The Industry</a><br>
                     <span class="research-meta">Knight Hacks</span>
+                </p>
+                <p>
+                    <a href="/talk_unavailable">Mapper-ing Communities of Interest</a><br>
+                    <span class="research-meta">University of Puget Sound</span>
                 </p>
                 <p>
                     <a href="https://www.cfr.org/backgrounder/marriage-equality-global-comparisons">Marriage Equality: Global Comparisons</a><br>
@@ -236,5 +250,9 @@
             </footer>
         </main>
     </div>
+    <script>
+        const observer = lozad();
+        observer.observe();
+    </script>
 </body>
 </html>

@@ -92,6 +92,7 @@
             font-style: italic;
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
 </head>
 <body>
     <div id="content">
@@ -127,7 +128,7 @@
 
             <figure class="post-figure">
                 <div class="post-figure-crop">
-                    <img src="alabaster.jpg" alt="The Artist's Painting-Room, Mary Ann Rebecca Alabaster, 1830">
+                    <img data-src="alabaster.jpg" alt="The Artist's Painting-Room, Mary Ann Rebecca Alabaster, 1830" class="lozad">
                 </div>
                 <figcaption>Cropped section of <em>The Artist's Painting-Room</em>, Mary Ann Rebecca Alabaster, 1830. © Art Gallery of Ontario.</figcaption>
             </figure>
@@ -154,5 +155,9 @@
             </div>
         </div>
     </div>
+    <script>
+        const observer = lozad();
+        observer.observe();
+    </script>
 </body>
 </html>
