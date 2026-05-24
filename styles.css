@@ -238,6 +238,11 @@ a {
     color: #666;
 }
 
+.conjectures-read-more {
+    text-align: right;
+    margin: 0.4em 0 0 0;
+}
+
 @media (max-width: 640px) {
     #layout {
         flex-direction: column;
@@ -264,5 +269,13 @@ a {
 
     .project-list .project-entry:only-child {
         width: 100%;
+    }
+
+    body.conjectures-list #layout {
+        gap: 0.5em;
+    }
+
+    body.conjectures-list #sidebar h1 {
+        margin-bottom: 0;
     }
 }
