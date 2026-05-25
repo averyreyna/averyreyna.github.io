@@ -243,6 +243,10 @@ a {
     margin: 0.4em 0 0 0;
 }
 
+.mobile-back {
+    display: none;
+}
+
 @media (max-width: 640px) {
     #layout {
         flex-direction: column;
@@ -272,10 +276,18 @@ a {
     }
 
     body.conjectures-list #layout {
-        gap: 0.5em;
+        gap: 0.75em;
     }
 
     body.conjectures-list #sidebar h1 {
         margin-bottom: 0;
+    }
+
+    body.conjectures-list .mobile-back {
+        display: block;
+    }
+
+    body.conjectures-list .conjectures-read-more {
+        display: none;
     }
 }
