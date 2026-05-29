@@ -212,7 +212,8 @@ interp handle (Eff eff k) =
   handle eff >>= interp handle . k</code></pre>
 
             <p>
-                The problem surfaces when we try to write a static analyzer as a function inside Haskell itself. Suppose we want to count the number of post operations, or collect all URLs being posted to. Consider this function:
+                The problem surfaces when we try to write a static analyzer as a function inside Haskell itself.
+                Suppose we want to count the number of post operations, or collect all URLs being posted to. Consider this function:
             </p>
 
 <pre><code class="language-haskell">postDepends :: URL -> [String] -> String ->
@@ -223,7 +224,8 @@ postDepends url params body =
   (read :: String -> Integer)</code></pre>
 
             <p>
-                Here, the number of post operations depends on the result of the get operation at runtime. We can only know it <em>after</em> actually performing the get. Now consider:
+                Here, the number of post operations depends on the result of the get operation at runtime. 
+                We can only know it <em>after</em> actually performing the get. Now consider:
             </p>
 
 <pre><code class="language-haskell">echo :: URL -> URL -> [String] ->
@@ -232,17 +234,22 @@ echo url1 url2 params =
   get url1 params >>= post url2 params</code></pre>
 
             <p>
-                In this case, the URLs are statically visible in the code&mdash;there is one get and one post, and neither depends on an effectful result. But because monads are so expressive, there is no way to write a static analyzer that can distinguish this case from <code>postDepends</code>. The dynamic nature of bind means we cannot inspect the structure of the computation without running it.
+                In this case, the URLs are statically visible in the code&mdash;there is one get and one post,
+                 and neither depends on an effectful result. But because monads are so expressive, there is no way 
+                 to write a static analyzer that can distinguish this case from <code>postDepends</code>. 
+                 The dynamic nature of bind means we cannot inspect the structure of the computation without running it.
             </p>
 
             <p class="post-section-header">Freer Arrows for Static Analysis</p>
 
             <p>
-                Freer arrows are a relatively expressive structure that is amenable to static analysis, offering an alternative trade-off between expressiveness and static analyzeability compared to freer monads.
+                Freer arrows are a relatively expressive structure that is amenable to static analysis, offering an alternative
+                trade-off between expressiveness and static analyzeability compared to freer monads.
             </p>
 
             <p>
-                To revisit the web service example, the <code>WebServiceOps</code> datatype is redefined with an additional type argument for the input:
+                To revisit the web service example, the <code>WebServiceOps</code> datatype is redefined with an additional type
+                 argument for the input:
             </p>
 
 <pre><code class="language-haskell">data WebServiceOps :: Type -> Type -> Type where
