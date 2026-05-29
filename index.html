@@ -56,6 +56,10 @@
             <section class="page-section" id="conjectures">
                 <p class="section-header">Conjectures</p>
                 <p>
+                    <a href="/conjectures/figuring-out-freerer-arrows">Figuring Out Freerer Arrows</a><br>
+                    June 1, 2026
+                </p>
+                <p>
                     <a href="/conjectures/placement-atomicity-and-crash-safety">Placement, Atomicity, and Crash Safety</a><br>
                     May 19, 2026
                 </p>
@@ -63,16 +67,22 @@
                     <a href="/conjectures/legible-software-a-typescript-example">Legible Software: A TypeScript Example</a><br>
                     May 11, 2026
                 </p>
-                <p>
-                    <a href="/conjectures/views-are-now-cheap">Views Are Now Cheap</a><br>
-                    April 14, 2026
-                </p>
-                <p>
-                    <a href="/conjectures/unfinished-thoughts-from-smed-reu">Unfinished Thoughts from SMED REU</a><br>
-                    August 21, 2021
-                </p>
+                <div id="conjectures-extra" style="display:none">
+                    <p>
+                        <a href="/conjectures/views-are-now-cheap">Views Are Now Cheap</a><br>
+                        April 14, 2026
+                    </p>
+                    <p>
+                        <a href="/conjectures/unfinished-thoughts-from-smed-reu">Unfinished Thoughts from SMED REU</a><br>
+                        August 21, 2021
+                    </p>
+                    <p>
+                        <a href="/conjectures/boundary-block-groups">Boundary Block Groups</a><br>
+                        July 23, 2021
+                    </p>
+                </div>
                 <p class="conjectures-read-more">
-                    <a href="/conjectures.html">Read more -&gt;</a>
+                    <a href="#" id="conjectures-toggle">View all</a>
                 </p>
             </section>
             <section class="page-section" id="tools">
@@ -266,13 +276,26 @@
                 </p>
             </section>
             <footer class="content-footer">
-                <p>&copy; 2026 Avery Reyna</p>
+                <p>2025 — 2026 &copy; Avery Reyna</p>
             </footer>
         </main>
     </div>
     <script>
         const observer = lozad();
         observer.observe();
+
+        const toggle = document.getElementById('conjectures-toggle');
+        const extra = document.getElementById('conjectures-extra');
+        toggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (extra.style.display === 'none') {
+                extra.style.display = '';
+                toggle.textContent = 'View less';
+            } else {
+                extra.style.display = 'none';
+                toggle.textContent = 'View all';
+            }
+        });
     </script>
 </body>
 </html>

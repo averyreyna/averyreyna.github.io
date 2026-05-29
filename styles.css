@@ -275,19 +275,4 @@ a {
         width: 100%;
     }
 
-    body.conjectures-list #layout {
-        gap: 0.75em;
-    }
-
-    body.conjectures-list #sidebar h1 {
-        margin-bottom: 0;
-    }
-
-    body.conjectures-list .mobile-back {
-        display: block;
-    }
-
-    body.conjectures-list .conjectures-read-more {
-        display: none;
-    }
 }
