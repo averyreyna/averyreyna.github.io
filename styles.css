@@ -154,7 +154,9 @@ a {
 .content-footer {
     margin-top: 2em;
     padding-top: 1em;
-    text-align: right;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
 }
 
 .content-footer p {
@@ -162,6 +164,16 @@ a {
     color: #888;
     margin: 0;
 }
+
+#another-life-section .section-header ~ .section-header {
+    margin-top: 1.6em;
+}
+
+#another-life-section .award + .award::before {
+    content: '· ';
+    color: #666;
+}
+
 
 .page-section + .page-section {
     margin-top: 1.6em;
@@ -184,10 +196,6 @@ a {
 }
 
 .project-entry {
-    width: calc(33.333% - 1.34em);
-}
-
-.project-list .project-entry:only-child {
     width: calc(33.333% - 1.34em);
 }
 
@@ -273,6 +281,12 @@ a {
 
     .project-list .project-entry:only-child {
         width: 100%;
+    }
+
+    .content-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5em;
     }
 
 }

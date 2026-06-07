@@ -300,7 +300,86 @@
                     <span class="research-meta">PMBF Podcast Series</span>
                 </p>
             </section>
+            <section class="page-section" id="another-life-section" style="display:none">
+                <p class="section-header">Awards</p>
+
+                <p>
+                    <span class="research-meta">National —</span>
+                    <span class="award">DECA National Qualifier in Marketing Team Decision Making</span>
+                    <span class="award">Debate Academic All-American</span>
+                    <span class="award">Degree of Superior Distinction in NSDA</span>
+                    <span class="award">Tournament of Champions Qualifier</span>
+                    <span class="award">Semifinalist in Student Congress at Barkley Forum</span>
+                    <span class="award">Semifinalist in Student Congress at Florida Blue Key</span>
+                    <span class="award">Semifinalist in Student Congress at New York City Invitational</span>
+                    <span class="award">Semifinalist in JV Public Forum at Florida Blue Key</span>
+                    <span class="award">AP Scholar</span>
+                </p>
+                <p>
+                    <span class="research-meta">State & Regional —</span>
+                    <span class="award">Finalist in Varsity Student Congress at Colt Invitational</span>
+                    <span class="award">District Semifinalist in Student Congress at NSDA Qualifiers</span>
+                    <span class="award">Top 12 at DECA Regionals in Business Management Long-Paper Event</span>
+                    <span class="award">6th Place at DECA State Competition in Marketing Team Decision Making</span>
+                    <span class="award">3rd Place at DECA Regionals in Marketing Team Decision Making</span>
+                    <span class="award">All Superior Rankings at FBA Wind Orchestra Evaluations</span>
+                    <span class="award">2nd Place at Democracy in Action Legislation Writing</span>
+                </p>
+                <p>
+                    <span class="research-meta">School —</span>
+                    <span class="award">Outstanding Distinction in Fine Arts</span>
+                </p>
+
+                <p class="section-header">Activities</p>
+
+                <p>
+                    Congressional Debate Squad Leader<br>
+                    <span class="research-meta">Grades 11 – 12</span>
+                </p>
+                <p>
+                    HOPE Sunshine Club President<br>
+                    <span class="research-meta">Grades 11 – 12</span>
+                </p>
+                <p>
+                    College Advisory President<br>
+                    <span class="research-meta">Grades 11 – 12</span>
+                </p>
+                <p>
+                    Bassoon Section Leader & First Chair<br>
+                    <span class="research-meta">Grades 9 – 12</span>
+                </p>
+
+                <p class="section-header">Teaching</p>
+
+                <p>
+                    Teaching Assistant<br>
+                    <span class="research-meta">Debate III Honors</span>
+                </p>
+
+                <p class="section-header">Summers</p>
+
+                <p>
+                    Champion Briefs Institute (CBI) Summer Program<br>
+                    <span class="research-meta">Nova Southeastern University</span>
+                </p>
+
+                <p class="section-header">Service</p>
+
+                <p>
+                    Young Falcon Flyers<br>
+                    <span class="research-meta">Grades 11 – 12</span>
+                </p>
+                <p>
+                    Relay for Life<br>
+                    <span class="research-meta">Grades 11 – 12</span>
+                </p>
+                <p>
+                    Speech & Debate Mentor<br>
+                    <span class="research-meta">Grades 10 – 12</span>
+                </p>
+            </section>
             <footer class="content-footer">
+                <p><a href="#" id="another-life-toggle">In another life...</a></p>
                 <p>&copy; Avery Reyna</p>
             </footer>
         </main>
@@ -309,18 +388,23 @@
         const observer = lozad();
         observer.observe();
 
-        const toggle = document.getElementById('conjectures-toggle');
-        const extra = document.getElementById('conjectures-extra');
-        toggle.addEventListener('click', function(e) {
-            e.preventDefault();
-            if (extra.style.display === 'none') {
-                extra.style.display = '';
-                toggle.textContent = 'View less';
-            } else {
-                extra.style.display = 'none';
-                toggle.textContent = 'View all';
-            }
-        });
+        function makeToggle(toggleId, targetId, showText, hideText) {
+            const toggle = document.getElementById(toggleId);
+            const target = document.getElementById(targetId);
+            toggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (target.style.display === 'none') {
+                    target.style.display = '';
+                    toggle.textContent = hideText;
+                } else {
+                    target.style.display = 'none';
+                    toggle.textContent = showText;
+                }
+            });
+        }
+
+        makeToggle('conjectures-toggle', 'conjectures-extra', 'View all', 'View less');
+        makeToggle('another-life-toggle', 'another-life-section', 'In another life...', 'Back to this one...');
     </script>
 </body>
 </html>
