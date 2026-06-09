@@ -169,9 +169,28 @@ a {
     margin-top: 1.6em;
 }
 
-#another-life-section .award + .award::before {
-    content: '· ';
-    color: #666;
+#another-life-section .award-group {
+    margin-bottom: 0.5em;
+}
+
+#another-life-section .award-category {
+    margin: 0 0 0.15em 0;
+}
+
+#another-life-section .award-list {
+    margin: 0 0 0.25em 0;
+    padding-left: 1.1em;
+    list-style-type: disc;
+}
+
+#another-life-section .award-list li {
+    margin: 0;
+    padding: 0;
+    line-height: 1.15;
+}
+
+#another-life-section .award-list li + li {
+    margin-top: 0.1em;
 }
 
 
@@ -281,12 +300,6 @@ a {
 
     .project-list .project-entry:only-child {
         width: 100%;
-    }
-
-    .content-footer {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5em;
     }
 
 }
