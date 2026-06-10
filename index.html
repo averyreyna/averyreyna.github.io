@@ -46,7 +46,7 @@
                 <a href="https://scholar.google.com/citations?user=WecCIHwAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Scholar</a>
                 <a href="https://semanticdistance.io" target="_blank" rel="noopener noreferrer">Writing</a>
             </div>
-            <img data-src="/assets/files/me/avery.jpg" alt="" class="lozad sidebar-photo">
+            <img data-src="/assets/files/me/avery.jpg" class="lozad sidebar-photo">
         </aside>
         <main id="content">
             <section class="page-section">
@@ -55,19 +55,23 @@
             </section>
             <section class="page-section" id="conjectures">
                 <p class="section-header">Conjectures</p>
-                <p>
-                    <a href="/conjectures/figuring-out-freerer-arrows">Figuring Out Freerer Arrows</a><br>
-                    May 29, 2026
-                </p>
-                <p>
-                    <a href="/conjectures/placement-atomicity-and-crash-safety">Placement, Atomicity, and Crash Safety</a><br>
-                    May 19, 2026
-                </p>
-                <p>
-                    <a href="/conjectures/legible-software-a-typescript-example">Legible Software: A TypeScript Example</a><br>
-                    May 11, 2026
-                </p>
-                <div id="conjectures-extra" style="display:none">
+                <div id="conjectures-list">
+                    <p>
+                        <a href="/conjectures/db-indexing-via-ddia">DB Indexing via DDIA</a><br>
+                        June 11, 2026
+                    </p>
+                    <p>
+                        <a href="/conjectures/figuring-out-freerer-arrows">Figuring Out Freerer Arrows</a><br>
+                        May 29, 2026
+                    </p>
+                    <p>
+                        <a href="/conjectures/placement-atomicity-and-crash-safety">Placement, Atomicity, and Crash Safety</a><br>
+                        May 19, 2026
+                    </p>
+                    <p>
+                        <a href="/conjectures/legible-software-a-typescript-example">Legible Software: A TypeScript Example</a><br>
+                        May 11, 2026
+                    </p>
                     <p>
                         <a href="/conjectures/views-are-now-cheap">Views Are Now Cheap</a><br>
                         April 14, 2026
@@ -81,7 +85,8 @@
                         July 23, 2021
                     </p>
                 </div>
-                <p class="conjectures-read-more">
+                <div id="conjectures-extra" style="display:none"></div>
+                <p class="section-read-more" id="conjectures-read-more">
                     <a href="#" id="conjectures-toggle">View all</a>
                 </p>
             </section>
@@ -89,9 +94,14 @@
                 <p class="section-header">Interfaces</p>
                 <div class="project-list">
                     <div class="project-entry">
-                        <img data-src="/assets/files/tools/daydream-demo.gif" alt="Daydream" class="lozad project-image">
+                        <img data-src="/assets/files/tools/daydream-demo.gif" class="lozad project-image">
                         <a href="https://daydream-alpha.vercel.app" class="project-link">Daydream</a><br>
                         Mermaid diagrams for code
+                    </div>
+                    <div class="project-entry">
+                        <img data-src="/assets/files/projects/specter.gif" class="lozad project-image">
+                        <a href="/project_unavailable" class="project-link">Specter</a><br>
+                        Ephemeral writing assistant
                     </div>
                 </div>
             </section>
@@ -99,12 +109,12 @@
                 <p class="section-header">Projects</p>
                 <div class="project-list">
                     <div class="project-entry">
-                        <img data-src="/assets/files/projects/convoy-update.gif" alt="Convoy demo" class="lozad project-image">
+                        <img data-src="/assets/files/projects/convoy-update.gif" class="lozad project-image">
                         <a href="/projects/convoy" class="project-link">Convoy</a><br>
                         Canvas-based data pipeline builder
                     </div>
                     <div class="project-entry">
-                        <img data-src="/assets/files/projects/coupcats.gif" alt="CoupCats demo" class="lozad project-image">
+                        <img data-src="/assets/files/projects/coupcats.gif" class="lozad project-image">
                         <a href="/projects/coupcats" class="project-link">CoupCats</a><br>
                         Coup prediction via R ML models
                     </div>
@@ -138,9 +148,23 @@
             </section>
             <section class="page-section" id="current-media">
                 <p class="section-header">Media</p>
-                <p>
-                    <a href="/talk_unavailable">Coup Catalyst: A Coup Forecasting Tool</a><br>
-                    <span class="research-meta">RAND Corporation</span>
+                <div id="current-media-list">
+                    <p>
+                        <a href="/talk_unavailable">Coup Catalyst: A Coup Forecasting Tool</a><br>
+                        <span class="research-meta">RAND Corporation</span>
+                    </p>
+                    <p>
+                        <a href="https://www.forbes.com/sites/joetoscano1/2026/01/20/developers-use-ai-coding-tools-to-get-started-not-finish-the-job/">Developers Use AI Coding Tools To Get Started, Not Finish The Job</a><br>
+                        <span class="research-meta">Forbes</span>
+                    </p>
+                    <p>
+                        <a href="https://news.ycombinator.com/item?id=46437391">Professional Software Developers Don't Vibe, They Control</a><br>
+                        <span class="research-meta">Hacker News</span>
+                    </p>
+                </div>
+                <div id="current-media-extra" style="display:none"></div>
+                <p class="section-read-more" id="current-media-read-more">
+                    <a href="#" id="current-media-toggle">View all</a>
                 </p>
             </section>
             <div class="undergrad-banner">
@@ -161,47 +185,53 @@
             </section>
             <section class="page-section" id="public-scholarship">
                 <p class="section-header">Public Scholarship</p>
-                <p>
-                    <a href="https://theloop.ecpr.eu/the-threat-of-artificial-intelligence-is-not-just-real-its-here/">The Threat of Artificial Intelligence Is Not Just Real, It's Here</a><br>
-                    <span class="research-meta"><b>Avery Reyna</b></span><br>
-                    <span class="research-meta">The Loop</span>
-                </p>
-                <p>
-                    <a href="https://theloop.ecpr.eu/interdisciplinary-social-science-and-the-limits-of-quantitative-research/">Interdisciplinary Social Science and the Limits of Quantitative Research</a><br>
-                    <span class="research-meta"><b>Avery Reyna</b></span><br>
-                    <span class="research-meta">The Loop</span>
-                </p>
-                <p>
-                    <a href="https://www.justsecurity.org/82471/anti-coup-strategies-should-address-civilian-coup-allies/">Anti-Coup Strategies Should Address Civilian Coup Allies</a><br>
-                    <span class="research-meta">Salah Ben Hammou and <b>Avery Reyna</b></span><br>
-                    <span class="research-meta">Just Security</span>
-                </p>
-                <p>
-                    <a href="https://politicalviolenceataglance.org/2022/06/14/reflecting-on-coup-risk-in-mali/">Reflecting on Coup Risk in Mali</a><br>
-                    <span class="research-meta"><b>Avery Reyna</b> and Salah Ben Hammou</span><br>
-                    <span class="research-meta">Political Violence at a Glance</span>
-                </p>
-                <p>
-                    <a href="https://www.newamerica.org/digital-impact-governance-initiative/blog/integrated-data-in-the-united-states-a-look-at-new-yorks-workforce-portal/">Integrated Data in the United States: A Look at New York's Workforce Portal</a><br>
-                    <span class="research-meta"><b>Avery Reyna</b></span><br>
-                    <span class="research-meta">New America</span>
-                </p>
-                <p>
-                    <a href="https://www.cfr.org/in-brief/latin-americas-vaccination-efforts-what-know">Latin America's Vaccination Efforts: What to Know</a><br>
-                    <span class="research-meta"><b>Avery Reyna</b></span><br>
-                    <span class="research-meta">Council on Foreign Relations</span>
+                <div id="public-scholarship-list">
+                    <p>
+                        <a href="https://theloop.ecpr.eu/the-threat-of-artificial-intelligence-is-not-just-real-its-here/">The Threat of Artificial Intelligence Is Not Just Real, It's Here</a><br>
+                        <span class="research-meta"><b>Avery Reyna</b></span><br>
+                        <span class="research-meta">The Loop</span>
+                    </p>
+                    <p>
+                        <a href="https://theloop.ecpr.eu/interdisciplinary-social-science-and-the-limits-of-quantitative-research/">Interdisciplinary Social Science and the Limits of Quantitative Research</a><br>
+                        <span class="research-meta"><b>Avery Reyna</b></span><br>
+                        <span class="research-meta">The Loop</span>
+                    </p>
+                    <p>
+                        <a href="https://www.justsecurity.org/82471/anti-coup-strategies-should-address-civilian-coup-allies/">Anti-Coup Strategies Should Address Civilian Coup Allies</a><br>
+                        <span class="research-meta">Salah Ben Hammou and <b>Avery Reyna</b></span><br>
+                        <span class="research-meta">Just Security</span>
+                    </p>
+                    <p>
+                        <a href="https://politicalviolenceataglance.org/2022/06/14/reflecting-on-coup-risk-in-mali/">Reflecting on Coup Risk in Mali</a><br>
+                        <span class="research-meta"><b>Avery Reyna</b> and Salah Ben Hammou</span><br>
+                        <span class="research-meta">Political Violence at a Glance</span>
+                    </p>
+                    <p>
+                        <a href="https://www.newamerica.org/digital-impact-governance-initiative/blog/integrated-data-in-the-united-states-a-look-at-new-yorks-workforce-portal/">Integrated Data in the United States: A Look at New York's Workforce Portal</a><br>
+                        <span class="research-meta"><b>Avery Reyna</b></span><br>
+                        <span class="research-meta">New America</span>
+                    </p>
+                    <p>
+                        <a href="https://www.cfr.org/in-brief/latin-americas-vaccination-efforts-what-know">Latin America's Vaccination Efforts: What to Know</a><br>
+                        <span class="research-meta"><b>Avery Reyna</b></span><br>
+                        <span class="research-meta">Council on Foreign Relations</span>
+                    </p>
+                </div>
+                <div id="public-scholarship-extra" style="display:none"></div>
+                <p class="section-read-more" id="public-scholarship-read-more">
+                    <a href="#" id="public-scholarship-toggle">View all</a>
                 </p>
             </section>
             <section class="page-section" id="undergrad-projects">
                 <p class="section-header">Projects</p>
                 <div class="project-list">
                     <div class="project-entry">
-                        <img data-src="/assets/files/projects/pickupplaylist.png" alt="PickupPlaylist" class="lozad project-image">
+                        <img data-src="/assets/files/projects/pickupplaylist.png" class="lozad project-image">
                         <a href="/project_unavailable" class="project-link">PickupPlaylist</a><br>
                         Video recommendations with BART
                     </div>
                     <div class="project-entry">
-                        <img data-src="/assets/files/projects/admin_tool.png" alt="Admin Tool" class="lozad project-image">
+                        <img data-src="/assets/files/projects/admin_tool.png" class="lozad project-image">
                         <a href="/project_unavailable" class="project-link">KH Admin Tool</a><br>
                         Hackathon scheduler for 2022 events
                     </div>
@@ -209,30 +239,36 @@
             </section>
             <section class="page-section" id="presentations">
                 <p class="section-header">Presentations</p>
-                <p>
-                    <a href="https://youtu.be/Og9azEDcG4k?si=OQHwmA7IQwXdc1u3">Cartographic Limits and Interdisciplinary Science: Maps and Mathematics in Pursuit of Social Justice</a><br>
-                    <span class="research-meta"><b>Avery Reyna</b>, Alexis Wood, Aya Konishi, David Retchless, and Jim Thatcher</span><br>
-                    <span class="research-meta">NACIS '22</span>
-                </p>
-                <p>
-                    <a href="/talk_unavailable">Legacies of Instability: Military Coups and Regime Consolidation in the Modern World</a><br>
-                    <span class="research-meta"><b>Avery Reyna</b> and Jonathan Powell</span><br>
-                    <span class="research-meta">ISA South '22</span>
-                </p>
-                <p>
-                    <a href="/assets/files/presentations/summer_undergraduate_research_poster_showcase_22.pdf">Applied Machine Learning to Detect Risk of Illegal Leadership Turnover</a><br>
-                    <span class="research-meta"><b>Avery Reyna</b> and Jonathan Powell</span><br>
-                    <span class="research-meta">UCF Summer Undergraduate Research Poster Showcase '22</span>
-                </p>
-                <p>
-                    <a href="/assets/files/presentations/student_research_week_22.pdf">Comparative Analysis between TextRank and LexRank: Testing Perceived Utility of Text Summarization Models for Data Annotators</a><br>
-                    <span class="research-meta"><b>Avery Reyna</b>, Ashwaq Soubai, and Pamela Wisniewski</span><br>
-                    <span class="research-meta">UCF Student Research Week '22</span>
-                </p>
-                <p>
-                    <a href="/assets/files/presentations/student_research_week_21.pdf">Adolescent Online Safety: Expanding the Knowledge Base and Developing Machine Learning Algorithms</a><br>
-                    <span class="research-meta">Carlson Sharpless, Pallavi Dacre, Komila Khamidova, <b>Avery Reyna</b>, Abdulrahman Sumaih, Christian Lozano, Afsaneh Razi, Ashwaq Soubai, and Pamela Wisniewski</span><br>
-                    <span class="research-meta">UCF Student Research Week '21</span>
+                <div id="presentations-list">
+                    <p>
+                        <a href="https://youtu.be/Og9azEDcG4k?si=OQHwmA7IQwXdc1u3">Cartographic Limits and Interdisciplinary Science: Maps and Mathematics in Pursuit of Social Justice</a><br>
+                        <span class="research-meta"><b>Avery Reyna</b>, Alexis Wood, Aya Konishi, David Retchless, and Jim Thatcher</span><br>
+                        <span class="research-meta">NACIS '22</span>
+                    </p>
+                    <p>
+                        <a href="/talk_unavailable">Legacies of Instability: Military Coups and Regime Consolidation in the Modern World</a><br>
+                        <span class="research-meta"><b>Avery Reyna</b> and Jonathan Powell</span><br>
+                        <span class="research-meta">ISA South '22</span>
+                    </p>
+                    <p>
+                        <a href="/assets/files/presentations/summer_undergraduate_research_poster_showcase_22.pdf">Applied Machine Learning to Detect Risk of Illegal Leadership Turnover</a><br>
+                        <span class="research-meta"><b>Avery Reyna</b> and Jonathan Powell</span><br>
+                        <span class="research-meta">UCF Summer Undergraduate Research Poster Showcase '22</span>
+                    </p>
+                    <p>
+                        <a href="/assets/files/presentations/student_research_week_22.pdf">Comparative Analysis between TextRank and LexRank: Testing Perceived Utility of Text Summarization Models for Data Annotators</a><br>
+                        <span class="research-meta"><b>Avery Reyna</b>, Ashwaq Soubai, and Pamela Wisniewski</span><br>
+                        <span class="research-meta">UCF Student Research Week '22</span>
+                    </p>
+                    <p>
+                        <a href="/assets/files/presentations/student_research_week_21.pdf">Adolescent Online Safety: Expanding the Knowledge Base and Developing Machine Learning Algorithms</a><br>
+                        <span class="research-meta">Carlson Sharpless, Pallavi Dacre, Komila Khamidova, <b>Avery Reyna</b>, Abdulrahman Sumaih, Christian Lozano, Afsaneh Razi, Ashwaq Soubai, and Pamela Wisniewski</span><br>
+                        <span class="research-meta">UCF Student Research Week '21</span>
+                    </p>
+                </div>
+                <div id="presentations-extra" style="display:none"></div>
+                <p class="section-read-more" id="presentations-read-more">
+                    <a href="#" id="presentations-toggle">View all</a>
                 </p>
             </section>
             <section class="page-section" id="internships">
@@ -259,45 +295,51 @@
             </section>
             <section class="page-section" id="media">
                 <p class="section-header">Media</p>
-                <p>
-                    <a href="https://ceal.cs.columbia.edu/webnext">WebNExt</a><br>
-                    <span class="research-meta">Computer-Enabled Abilities Laboratory</span>
-                </p>
-                <p>
-                    <a href="https://www.newamerica.org/digital-impact-governance-initiative/reports/digital-transformation-opportunities-and-challenges-in-the-lower-mekong-region/">Digital Transformation Opportunities and Challenges in the Lower Mekong Region</a><br>
-                    <span class="research-meta">New America</span>
-                </p>
-                <p>
-                    <a href="https://www.newamerica.org/digital-impact-governance-initiative/reports/reconceptualizing-public-procurement/">Reconceptualizing Public Procurement to Strengthen State Benefits Delivery and Improve Outcomes</a><br>
-                    <span class="research-meta">New America</span>
-                </p>
-                <p>
-                    <a href="https://www.youtube.com/watch?v=YAgk39hzpDo">Contributing to an Open Source Project</a><br>
-                    <span class="research-meta">Knight Hacks</span>
-                </p>
-                <p>
-                    <a href="https://www.youtube.com/watch?v=xAXvxLWU7Ug">How To Get Into The Industry</a><br>
-                    <span class="research-meta">Knight Hacks</span>
-                </p>
-                <p>
-                    <a href="https://www.cfr.org/backgrounder/marriage-equality-global-comparisons">Marriage Equality: Global Comparisons</a><br>
-                    <span class="research-meta">Council on Foreign Relations</span>
-                </p>
-                <p>
-                    <a href="https://www.cfr.org/backgrounder/how-us-patrols-its-borders">How the U.S. Patrols Its Borders</a><br>
-                    <span class="research-meta">Council on Foreign Relations</span>
-                </p>
-                <p>
-                    <a href="https://www.cfr.org/backgrounder/us-vice-president-and-foreign-policy">The U.S. Vice President and Foreign Policy</a><br>
-                    <span class="research-meta">Council on Foreign Relations</span>
-                </p>
-                <p>
-                    <a href="https://www.cfr.org/in-brief/fukushima-disaster-didnt-scare-world-nuclear-power">The Fukushima Disaster Didn't Scare the World Off Nuclear Power</a><br>
-                    <span class="research-meta">Council on Foreign Relations</span>
-                </p>
-                <p>
-                    <a href="https://www.youtube.com/watch?v=HolsVNecajA">Sustainable Solutions for Puerto Rico</a><br>
-                    <span class="research-meta">PMBF Podcast Series</span>
+                <div id="media-list">
+                    <p>
+                        <a href="https://ceal.cs.columbia.edu/webnext">WebNExt</a><br>
+                        <span class="research-meta">Computer-Enabled Abilities Laboratory</span>
+                    </p>
+                    <p>
+                        <a href="https://www.newamerica.org/digital-impact-governance-initiative/reports/digital-transformation-opportunities-and-challenges-in-the-lower-mekong-region/">Digital Transformation Opportunities and Challenges in the Lower Mekong Region</a><br>
+                        <span class="research-meta">New America</span>
+                    </p>
+                    <p>
+                        <a href="https://www.newamerica.org/digital-impact-governance-initiative/reports/reconceptualizing-public-procurement/">Reconceptualizing Public Procurement to Strengthen State Benefits Delivery and Improve Outcomes</a><br>
+                        <span class="research-meta">New America</span>
+                    </p>
+                    <p>
+                        <a href="https://www.youtube.com/watch?v=YAgk39hzpDo">Contributing to an Open Source Project</a><br>
+                        <span class="research-meta">Knight Hacks</span>
+                    </p>
+                    <p>
+                        <a href="https://www.youtube.com/watch?v=xAXvxLWU7Ug">How To Get Into The Industry</a><br>
+                        <span class="research-meta">Knight Hacks</span>
+                    </p>
+                    <p>
+                        <a href="https://www.cfr.org/backgrounder/marriage-equality-global-comparisons">Marriage Equality: Global Comparisons</a><br>
+                        <span class="research-meta">Council on Foreign Relations</span>
+                    </p>
+                    <p>
+                        <a href="https://www.cfr.org/backgrounder/how-us-patrols-its-borders">How the U.S. Patrols Its Borders</a><br>
+                        <span class="research-meta">Council on Foreign Relations</span>
+                    </p>
+                    <p>
+                        <a href="https://www.cfr.org/backgrounder/us-vice-president-and-foreign-policy">The U.S. Vice President and Foreign Policy</a><br>
+                        <span class="research-meta">Council on Foreign Relations</span>
+                    </p>
+                    <p>
+                        <a href="https://www.cfr.org/in-brief/fukushima-disaster-didnt-scare-world-nuclear-power">The Fukushima Disaster Didn't Scare the World Off Nuclear Power</a><br>
+                        <span class="research-meta">Council on Foreign Relations</span>
+                    </p>
+                    <p>
+                        <a href="https://www.youtube.com/watch?v=HolsVNecajA">Sustainable Solutions for Puerto Rico</a><br>
+                        <span class="research-meta">PMBF Podcast Series</span>
+                    </p>
+                </div>
+                <div id="media-extra" style="display:none"></div>
+                <p class="section-read-more" id="media-read-more">
+                    <a href="#" id="media-toggle">View all</a>
                 </p>
             </section>
             <section class="page-section" id="another-life-section" style="display:none">
@@ -308,7 +350,7 @@
                     <ul class="award-list">
                         <li>DECA National Qualifier in Marketing Team Decision Making</li>
                         <li>Debate Academic All-American</li>
-                        <li>Degree of Superior Distinction in NSDA</li>
+                        <li>NSDA Degree of Superior Distinction</li>
                         <li>Tournament of Champions Qualifier</li>
                         <li>Semifinalist in Student Congress at Barkley Forum</li>
                         <li>Semifinalist in Student Congress at Florida Blue Key</li>
@@ -365,7 +407,7 @@
                 <p class="section-header">Summers</p>
 
                 <p>
-                    Champion Briefs Institute (CBI) Summer Program<br>
+                    CBI Summer Program<br>
                     <span class="research-meta">Nova Southeastern University</span>
                 </p>
 
@@ -385,32 +427,11 @@
                 </p>
             </section>
             <footer class="content-footer">
-                <p><a href="#" id="another-life-toggle">In another life...</a></p>
-                <p>&copy; Avery Reyna</p>
+                <p><a href="#" id="another-life-toggle">In a past life...</a></p>
+                <p>&copy; 2026 Avery Reyna</p>
             </footer>
         </main>
     </div>
-    <script>
-        const observer = lozad();
-        observer.observe();
-
-        function makeToggle(toggleId, targetId, showText, hideText) {
-            const toggle = document.getElementById(toggleId);
-            const target = document.getElementById(targetId);
-            toggle.addEventListener('click', function(e) {
-                e.preventDefault();
-                if (target.style.display === 'none') {
-                    target.style.display = '';
-                    toggle.textContent = hideText;
-                } else {
-                    target.style.display = 'none';
-                    toggle.textContent = showText;
-                }
-            });
-        }
-
-        makeToggle('conjectures-toggle', 'conjectures-extra', 'View all', 'View less');
-        makeToggle('another-life-toggle', 'another-life-section', 'In another life...', 'Back to this one...');
-    </script>
+    <script src="/index.js"></script>
 </body>
 </html>

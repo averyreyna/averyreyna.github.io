@@ -169,27 +169,27 @@ a {
     margin-top: 1.6em;
 }
 
-#another-life-section .award-group {
+.award-group {
     margin-bottom: 0.5em;
 }
 
-#another-life-section .award-category {
+.award-category {
     margin: 0 0 0.15em 0;
 }
 
-#another-life-section .award-list {
+.award-list {
     margin: 0 0 0.25em 0;
     padding-left: 1.1em;
     list-style-type: disc;
 }
 
-#another-life-section .award-list li {
+.award-list li {
     margin: 0;
     padding: 0;
     line-height: 1.15;
 }
 
-#another-life-section .award-list li + li {
+.award-list li + li {
     margin-top: 0.1em;
 }
 
@@ -265,7 +265,8 @@ a {
     color: #666;
 }
 
-.conjectures-read-more {
+.conjectures-read-more,
+.section-read-more {
     text-align: right;
     margin: 0.4em 0 0 0;
 }

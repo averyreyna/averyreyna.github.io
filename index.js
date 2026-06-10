@@ -1,80 +1,89 @@
-document.addEventListener('DOMContentLoaded', () => {
-    fetch('/data.json')
-        .then(res => res.json())
-        .then(data => {
-            document.getElementById('content').innerHTML = jsonToTable(data);
-        })
-        .catch(err => console.error('Error loading site data:', err));
-});
-
-const IMAGE_EXT = /\.(png|jpe?g|gif|webp|svg|avif)$/i;
-const URL_ABS = /^https?:\/\//i;
-const URL_REL = /^\//;
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-function esc(s) {
-    return String(s)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;');
+function initLozad() {
+    if (typeof lozad === 'undefined') return;
+    lozad().observe();
 }
 
-function countRows(v) {
-    if (Array.isArray(v))
-        return Math.max(1, v.reduce((sum, item) => sum + countRows(item), 0));
-    if (v !== null && typeof v === 'object')
-        return Math.max(1, Object.values(v).reduce((sum, child) => sum + countRows(child), 0));
-    return 1;
+function parseEntryDate(entry) {
+    return new Date(entry.textContent.trim().split('\n').pop().trim());
 }
 
-function buildNode(v) {
-    if (Array.isArray(v))
-        return v.length
-            ? buildChildren(v.map((item, i) => [String(i), item]), true)
-            : { firstRow: '<td></td>', extraRows: '' };
-    if (v !== null && typeof v === 'object')
-        return Object.keys(v).length
-            ? buildChildren(Object.entries(v))
-            : { firstRow: '<td></td>', extraRows: '' };
+function initListPreview({ listId, extraId, toggleWrapId, limit = 3, sortFn = null }) {
+    const list = document.getElementById(listId);
+    const extra = document.getElementById(extraId);
+    const toggleWrap = document.getElementById(toggleWrapId);
+    if (!list || !extra) return;
 
-    const s = v === null ? 'null' : String(v);
-
-    if (typeof v === 'string' && IMAGE_EXT.test(v))
-        return { firstRow: `<td class="value"><img src="${esc(v)}" alt="${esc(v)}"></td>`, extraRows: '' };
-
-    if (typeof v === 'string' && EMAIL_RE.test(v))
-        return { firstRow: `<td class="value"><a href="mailto:${esc(v)}">${esc(v)}</a></td>`, extraRows: '' };
-
-    if (typeof v === 'string' && URL_ABS.test(v))
-        return { firstRow: `<td class="value"><a href="${esc(v)}" target="_blank" rel="noopener noreferrer">${esc(v)}</a></td>`, extraRows: '' };
-
-    if (typeof v === 'string' && URL_REL.test(v))
-        return { firstRow: `<td class="value"><a href="${esc(v)}">${esc(s)}</a></td>`, extraRows: '' };
-
-    return {
-        firstRow: `<td class="value"><a href="https://www.google.com/search?q=${encodeURIComponent(s)}" target="_blank" rel="noopener noreferrer">${esc(s)}</a></td>`,
-        extraRows: '',
-    };
-}
-
-function buildChildren(entries, isList = false) {
-    let firstRow = '', extraRows = '', isFirst = true;
-    for (const [k, v] of entries) {
-        const span = countRows(v);
-        const keyTd = isList ? '' : `<td rowspan="${span}">${esc(k)}</td>`;
-        const child = buildNode(v);
-        if (isFirst) {
-            firstRow += keyTd + child.firstRow;
-            extraRows += child.extraRows;
-            isFirst = false;
-        } else {
-            extraRows += `<tr>${keyTd}${child.firstRow}</tr>${child.extraRows}`;
-        }
+    const entries = Array.from(list.querySelectorAll(':scope > p'));
+    if (sortFn) {
+        entries.sort(sortFn);
+        entries.forEach(entry => list.appendChild(entry));
     }
-    return { firstRow, extraRows };
+
+    extra.replaceChildren(...entries.slice(limit));
+
+    if (toggleWrap && entries.length <= limit) {
+        toggleWrap.hidden = true;
+    }
 }
 
-function jsonToTable(obj) {
-    const { firstRow, extraRows } = buildChildren(Object.entries(obj));
-    return `<table><tr>${firstRow}</tr>${extraRows}</table>`;
+function makeToggle(toggleId, targetId, showText, hideText) {
+    const toggle = document.getElementById(toggleId);
+    const target = document.getElementById(targetId);
+    if (!toggle || !target) return;
+
+    toggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (target.style.display === 'none') {
+            target.style.display = '';
+            toggle.textContent = hideText;
+        } else {
+            target.style.display = 'none';
+            toggle.textContent = showText;
+        }
+    });
 }
+
+const listPreviews = [
+    {
+        listId: 'conjectures-list',
+        extraId: 'conjectures-extra',
+        toggleWrapId: 'conjectures-read-more',
+        toggleId: 'conjectures-toggle',
+        sortFn: (a, b) => parseEntryDate(b) - parseEntryDate(a),
+    },
+    {
+        listId: 'current-media-list',
+        extraId: 'current-media-extra',
+        toggleWrapId: 'current-media-read-more',
+        toggleId: 'current-media-toggle',
+    },
+    {
+        listId: 'public-scholarship-list',
+        extraId: 'public-scholarship-extra',
+        toggleWrapId: 'public-scholarship-read-more',
+        toggleId: 'public-scholarship-toggle',
+    },
+    {
+        listId: 'presentations-list',
+        extraId: 'presentations-extra',
+        toggleWrapId: 'presentations-read-more',
+        toggleId: 'presentations-toggle',
+    },
+    {
+        listId: 'media-list',
+        extraId: 'media-extra',
+        toggleWrapId: 'media-read-more',
+        toggleId: 'media-toggle',
+    },
+];
+
+document.addEventListener('DOMContentLoaded', () => {
+    initLozad();
+
+    for (const preview of listPreviews) {
+        initListPreview(preview);
+        makeToggle(preview.toggleId, preview.extraId, 'View all', 'View less');
+    }
+
+    makeToggle('another-life-toggle', 'another-life-section', 'In a past life...', 'Back to this one...');
+});
