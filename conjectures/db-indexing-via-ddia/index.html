@@ -41,11 +41,17 @@
         <p class="post-date">June 11, 2026</p>
 
         <div class="post-body">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+            <p>Here's a breakdown of hash indexes, as explained by Kleppmann in <em>Designing Data-Intensive Applications</em>, and how your databases store information and how applications retrieve it.</p>
 
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>The core example layed out is that suppose you have a database that's a file you keep appending to, where every write adds a new line. This is obviously a simple operation, but how do we find anything fast?</p>
 
-            <p>Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris.</p>
+            <p>One solution is to keep an in-memory hash map where every key is an actual data key (e.g., 12345) and every value is the byte offset in the file where that record lives. This allows us to scan the database for what we need, putting us in the correct spot every time.
+                Whenever we write a new record to the DB, the hash map is updated with the new byte offset. On read, we look up the key in the hash map, get the offset, gp to that position, and read the value—all in one disk seek.
+            </p>
+
+            <p>The immediate issue that comes up is how we can only ever append, resulting in the file growing forever. The fix is compaction: periodically merging segments and throwing away duplicate keys, keeping the only recent value for each.
+                This happens in a background thread, letting us read and write to the database uninterrupted. Even with that, all keys must fit within RAM (since the hash map lives in-memory) and if there are too many distinct keys, everything breaks down.
+            </p>
         </div>
     </div>
 </body>

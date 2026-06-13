@@ -265,6 +265,11 @@ a {
     color: #666;
 }
 
+.activity-org {
+    color: #355e3b;
+    font-style: italic;
+}
+
 .conjectures-read-more,
 .section-read-more {
     text-align: right;
