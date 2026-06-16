@@ -1,52 +1,16 @@
 @font-face {
-    font-family: 'ABC Diatype Condensed';
-    src: url('/assets/ABC%20Diatype%20Condensed/ABCDiatypeCondensed-Regular-Trial.woff2') format('woff2'),
-         url('/assets/ABC%20Diatype%20Condensed/ABCDiatypeCondensed-Regular-Trial.woff') format('woff');
-    font-weight: 400;
+    font-family: 'ABC ROM Condensed';
+    src: url('/assets/ABC%20ROM%20Condensed%20Variable/ABCROMCondensedVariable-Trial.woff2') format('woff2'),
+         url('/assets/ABC%20ROM%20Condensed%20Variable/ABCROMCondensedVariable-Trial.woff') format('woff');
+    font-weight: 100 900;
     font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'ABC Diatype Condensed';
-    src: url('/assets/ABC%20Diatype%20Condensed/ABCDiatypeCondensed-RegularItalic-Trial.woff2') format('woff2'),
-         url('/assets/ABC%20Diatype%20Condensed/ABCDiatypeCondensed-RegularItalic-Trial.woff') format('woff');
-    font-weight: 400;
-    font-style: italic;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'ABC Diatype Condensed';
-    src: url('/assets/ABC%20Diatype%20Condensed/ABCDiatypeCondensed-Medium-Trial.woff2') format('woff2'),
-         url('/assets/ABC%20Diatype%20Condensed/ABCDiatypeCondensed-Medium-Trial.woff') format('woff');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'ABC Diatype Condensed';
-    src: url('/assets/ABC%20Diatype%20Condensed/ABCDiatypeCondensed-Bold-Trial.woff2') format('woff2'),
-         url('/assets/ABC%20Diatype%20Condensed/ABCDiatypeCondensed-Bold-Trial.woff') format('woff');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'ABC Diatype Condensed';
-    src: url('/assets/ABC%20Diatype%20Condensed/ABCDiatypeCondensed-BoldItalic-Trial.woff2') format('woff2'),
-         url('/assets/ABC%20Diatype%20Condensed/ABCDiatypeCondensed-BoldItalic-Trial.woff') format('woff');
-    font-weight: 700;
-    font-style: italic;
     font-display: swap;
 }
 
 
 html, body {
     margin: 0;
-    font-family: 'ABC Diatype Condensed', sans-serif;
+    font-family: 'ABC ROM Condensed', sans-serif;
     font-size: 15px;
     line-height: 1.15;
     background-color: #fff;
@@ -98,7 +62,7 @@ body > #content {
 }
 
 h1 {
-    font-family: 'ABC Diatype Condensed', sans-serif;
+    font-family: 'ABC ROM Condensed', sans-serif;
     font-size: 15px;
     font-weight: 700;
     margin: 0 0 1.2em 0;
@@ -201,7 +165,7 @@ a {
 }
 
 .section-header {
-    font-family: 'ABC Diatype Condensed', sans-serif;
+    font-family: 'ABC ROM Condensed', sans-serif;
     font-weight: 700;
     font-size: 15px;
     margin: 0 0 0.75em 0;
@@ -248,7 +212,7 @@ a {
 }
 
 .undergrad-label {
-    font-family: 'ABC Diatype Condensed', sans-serif;
+    font-family: 'ABC ROM Condensed', sans-serif;
     font-weight: 700;
     font-size: 15px;
     color: #111;
