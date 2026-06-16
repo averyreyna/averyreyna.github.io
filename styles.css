@@ -115,6 +115,51 @@ a {
     display: block;
 }
 
+.post-nav {
+    margin-top: 3em;
+    padding-top: 1.4em;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    gap: 2em;
+}
+
+.post-nav-link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2em;
+    min-width: 0;
+    max-width: 48%;
+    text-decoration: none;
+    color: #00e;
+}
+
+.post-nav-prev {
+    text-align: left;
+}
+
+.post-nav-next {
+    margin-left: auto;
+    text-align: right;
+}
+
+.post-nav-label {
+    font-size: 11px;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.post-nav-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.post-nav-link:hover .post-nav-title {
+    text-decoration: underline;
+}
+
 .content-footer {
     margin-top: 2em;
     padding-top: 1em;

@@ -198,6 +198,17 @@ func place(hosts []Host, req Request) (Host, bool) {
                 <p id="fn2">[2] BoltDB is a single-writer database by design, which distinguishes it from SQLite in WAL mode, where concurrent reads are allowed alongside a single writer. Both would solve the double-booking problem here, but BoltDB's model is simpler to reason about: there is no concurrent write access, period. The cost is that BoltDB doesn't support SQL, so any querying beyond key lookups requires scanning buckets manually.</p>
             </div>
         </div>
+
+        <nav class="post-nav">
+            <a class="post-nav-link post-nav-prev" href="/conjectures/figuring-out-freerer-arrows">
+                <span class="post-nav-label">← Previous</span>
+                <span class="post-nav-title">Figuring Out Freerer Arrows</span>
+            </a>
+            <a class="post-nav-link post-nav-next" href="/conjectures/legible-software-a-typescript-example">
+                <span class="post-nav-label">Next →</span>
+                <span class="post-nav-title">Legible Software: A TypeScript Example</span>
+            </a>
+        </nav>
     </div>
     <script>hljs.highlightAll();</script>
 </body>
