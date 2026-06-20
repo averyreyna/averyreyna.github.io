@@ -227,13 +227,15 @@ a {
 
 .project-list {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 1.6em 2em;
     align-items: flex-start;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .project-entry {
-    width: calc(33.333% - 1.34em);
+    flex: 0 0 calc(33.333% - 1.34em);
 }
 
 .project-image {
@@ -318,11 +320,11 @@ a {
     }
 
     .project-entry {
-        width: calc(50% - 1em);
+        flex: 0 0 calc(50% - 1em);
     }
 
     .project-list .project-entry:only-child {
-        width: 100%;
+        flex-basis: 100%;
     }
 
 }
