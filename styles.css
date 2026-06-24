@@ -134,13 +134,17 @@ a {
 }
 
 .post-nav-link {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2em;
     min-width: 0;
     max-width: 48%;
     text-decoration: none;
     color: #00e;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.post-nav-link:hover {
+    text-decoration: underline;
 }
 
 .post-nav-prev {
@@ -150,23 +154,6 @@ a {
 .post-nav-next {
     margin-left: auto;
     text-align: right;
-}
-
-.post-nav-label {
-    font-size: 11px;
-    color: #888;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-}
-
-.post-nav-title {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.post-nav-link:hover .post-nav-title {
-    text-decoration: underline;
 }
 
 .content-footer {
@@ -287,6 +274,10 @@ a {
 
 .activity-org {
     color: #355e3b;
+}
+
+.award-district {
+    color: #1e3a5f;
 }
 
 .conjectures-read-more,
