@@ -75,6 +75,12 @@ const listPreviews = [
         toggleWrapId: 'media-read-more',
         toggleId: 'media-toggle',
     },
+    {
+        listId: 'service-list',
+        extraId: 'service-extra',
+        toggleWrapId: 'service-read-more',
+        toggleId: 'service-toggle',
+    },
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
