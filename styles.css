@@ -1,14 +1,14 @@
 @font-face {
-    font-family: 'ABC Diatype Semi Mono Compressed';
-    src: url('/assets/ABC%20Diatype%20Semi%20Mono%20Compressed/ABCDiatypeSemiMonoCompressedTrial-Regular.otf') format('opentype');
+    font-family: 'ABC Arizona Text Compressed';
+    src: url('/assets/ABC%20Arizona%20Text%20Compressed/ABCArizonaTextCompressedTrial-Regular.otf') format('opentype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'ABC Diatype Semi Mono Compressed';
-    src: url('/assets/ABC%20Diatype%20Semi%20Mono%20Compressed/ABCDiatypeSemiMonoCompressedTrial-Bold.otf') format('opentype');
+    font-family: 'ABC Arizona Text Compressed';
+    src: url('/assets/ABC%20Arizona%20Text%20Compressed/ABCArizonaTextCompressedTrial-Bold.otf') format('opentype');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
@@ -17,7 +17,7 @@
 
 html, body {
     margin: 0;
-    font-family: 'ABC Diatype Semi Mono Compressed', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'ABC Arizona Text Compressed', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-size: 15px;
     line-height: 1.15;
     background-color: #fff;
@@ -69,7 +69,7 @@ body > #content {
 }
 
 h1 {
-    font-family: 'ABC Diatype Semi Mono Compressed', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'ABC Arizona Text Compressed', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-size: 15px;
     font-weight: 700;
     margin: 0 0 1.2em 0;
@@ -204,7 +204,7 @@ a {
 }
 
 .section-header {
-    font-family: 'ABC Diatype Semi Mono Compressed', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'ABC Arizona Text Compressed', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-weight: 700;
     font-size: 15px;
     margin: 0 0 0.75em 0;
@@ -253,7 +253,7 @@ a {
 }
 
 .undergrad-label {
-    font-family: 'ABC Diatype Semi Mono Compressed', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'ABC Arizona Text Compressed', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-weight: 700;
     font-size: 15px;
     color: #111;
