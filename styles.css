@@ -235,6 +235,62 @@ a {
     text-decoration: underline;
 }
 
+.iw-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8em;
+}
+
+.iw-card {
+    position: relative;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 0.6em 0.7em 1.8em;
+    box-sizing: border-box;
+}
+
+.iw-card-title {
+    display: block;
+    text-decoration: underline;
+    margin-bottom: 0.3em;
+}
+
+.iw-card-desc {
+    display: block;
+    color: #666;
+    font-size: 13px;
+    line-height: 1.2;
+}
+
+.iw-card-date {
+    position: absolute;
+    right: 0.7em;
+    bottom: 0.5em;
+    color: #888;
+    font-size: 11px;
+}
+
+.iw-grid:not(.is-expanded) .iw-card:nth-child(n+4) {
+    display: none;
+}
+
+.iw-view-all {
+    display: block;
+    margin-top: 0.8em;
+    text-align: center;
+    text-decoration: none;
+    color: #00e;
+}
+
+.section-read-more a {
+    text-decoration: none;
+}
+
+.iw-view-all:hover,
+.section-read-more a:hover {
+    text-decoration: underline;
+}
+
 .undergrad-banner {
     margin-top: 1.6em;
     border-radius: 6px;
@@ -271,8 +327,8 @@ a {
 
 .conjectures-read-more,
 .section-read-more {
-    text-align: right;
-    margin: 0.4em 0 0 0;
+    text-align: center;
+    margin: 0.8em 0 0;
 }
 
 .mobile-back {
@@ -305,6 +361,14 @@ a {
 
     .project-list .project-entry:only-child {
         flex-basis: 100%;
+    }
+
+    .iw-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .iw-grid:not(.is-expanded) .iw-card:nth-child(4) {
+        display: block;
     }
 
 }

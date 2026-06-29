@@ -11,7 +11,7 @@ function initListPreview({ listId, extraId, toggleWrapId, limit = 3, sortFn = nu
     const list = document.getElementById(listId);
     const extra = document.getElementById(extraId);
     const toggleWrap = document.getElementById(toggleWrapId);
-    if (!list || !extra) return;
+    if (!list || !extra) return 0;
 
     const entries = Array.from(list.querySelectorAll(':scope > p'));
     if (sortFn) {
@@ -21,9 +21,11 @@ function initListPreview({ listId, extraId, toggleWrapId, limit = 3, sortFn = nu
 
     extra.replaceChildren(...entries.slice(limit));
 
-    if (toggleWrap && entries.length <= limit) {
+    const hidden = entries.length - limit;
+    if (toggleWrap && hidden <= 0) {
         toggleWrap.hidden = true;
     }
+    return hidden;
 }
 
 function makeToggle(toggleId, targetId, showText, hideText) {
@@ -40,6 +42,27 @@ function makeToggle(toggleId, targetId, showText, hideText) {
             target.style.display = 'none';
             toggle.textContent = showText;
         }
+    });
+}
+
+function initGridPreview(toggleId, limit = 3) {
+    const toggle = document.getElementById(toggleId);
+    if (!toggle) return;
+    const grid = toggle.previousElementSibling;
+    if (!grid) return;
+
+    const previewLimit = window.matchMedia('(max-width: 640px)').matches ? 4 : limit;
+    const hidden = grid.querySelectorAll(':scope > .iw-card').length - previewLimit;
+    if (hidden <= 0) {
+        toggle.hidden = true;
+        return;
+    }
+
+    toggle.textContent = `View all (+${hidden})`;
+    toggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        const expanded = grid.classList.toggle('is-expanded');
+        toggle.textContent = expanded ? 'View less' : `View all (+${hidden})`;
     });
 }
 
@@ -94,9 +117,15 @@ document.addEventListener('DOMContentLoaded', () => {
     initLozad();
 
     for (const preview of listPreviews) {
-        initListPreview(preview);
-        makeToggle(preview.toggleId, preview.extraId, 'View all', 'View less');
+        const hidden = initListPreview(preview);
+        if (hidden > 0) {
+            const showText = `View all (+${hidden})`;
+            document.getElementById(preview.toggleId).textContent = showText;
+            makeToggle(preview.toggleId, preview.extraId, showText, 'View less');
+        }
     }
+
+    ['iw-prototypes-toggle', 'iw-experiments-toggle', 'iw-industry-work-toggle', 'iw-resources-toggle', 'undergrad-resources-toggle'].forEach(id => initGridPreview(id));
 
     makeToggle('another-life-toggle', 'another-life-section', 'In a past life...', 'Back to this one...');
 });
