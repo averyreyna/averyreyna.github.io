@@ -318,6 +318,11 @@ a {
     text-decoration: underline;
 }
 
+.sidebar-private-note {
+    justify-content: flex-end;
+    text-align: right;
+}
+
 .iw-grid:not(.is-expanded) .iw-card:nth-child(n+4) {
     display: none;
 }
