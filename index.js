@@ -51,7 +51,7 @@ function initGridPreview(toggleId, limit = 3) {
     const grid = toggle.previousElementSibling;
     if (!grid) return;
 
-    const previewLimit = window.matchMedia('(max-width: 640px)').matches ? 4 : limit;
+    const previewLimit = window.matchMedia('(max-width: 640px)').matches ? 2 : limit;
     const hidden = grid.querySelectorAll(':scope > .iw-card').length - previewLimit;
     if (hidden <= 0) {
         toggle.hidden = true;
