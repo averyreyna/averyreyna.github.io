@@ -68,6 +68,12 @@ function initGridPreview(toggleId, limit = 3) {
 
 const listPreviews = [
     {
+        listId: 'work-list',
+        extraId: 'work-extra',
+        toggleWrapId: 'work-read-more',
+        toggleId: 'work-toggle',
+    },
+    {
         listId: 'conjectures-list',
         extraId: 'conjectures-extra',
         toggleWrapId: 'conjectures-read-more',
