@@ -16,11 +16,6 @@
             margin-bottom: 2em;
         }
 
-        .post-author {
-            font-weight: 700;
-            margin-bottom: 0.2em;
-        }
-
         .post-title {
             font-size: 1em;
             font-weight: 700;
@@ -77,7 +72,6 @@
 <body>
     <div id="content">
         <a href="/" class="post-back">← Back</a>
-        <p class="post-author">Avery Reyna</p>
         <h1 class="post-title">Scrutinize</h1>
         <p class="post-date">April 5, 2026</p>
 
@@ -86,9 +80,9 @@
                 <img src="/assets/projects/independent/scrutinize.gif" alt="Scrutinize preview" loading="lazy">
             </div>
 
-            <p>Scrutinize is a document viewer for close-reading and annotating essays. Text is generated on demand by <strong>DeepSeek</strong>'s chat model from whatever topic you type in, giving you a fresh document to mark up each time rather than a fixed corpus. You select a phrase, tag it with an annotation type and a short note, and the tool tracks that span as a highlighted region in the document going forward.</p>
+            <p>Scrutinize is a document viewer for close-reading and annotating essays. Text is generated on demand by <strong>DeepSeek</strong>'s chat model from whatever topic you type in, so you get a fresh document to mark up every time instead of pulling from a fixed corpus. You select a phrase, tag it with an annotation type and a short note, and the tool tracks that span as a highlighted region in the document going forward.</p>
 
-            <p>The interesting part is how it turns a flat list of <code>{start, end}</code> annotations back into a segmented document without ever touching the underlying string. Annotations are sorted by start offset, and the content is sliced into alternating plain-text and highlighted-span chunks in a single pass, memoized so it only recomputes when the content or annotation set actually changes:</p>
+            <p>The interesting part is how it turns a flat list of <code>{start, end}</code> annotations back into a segmented document without ever touching the underlying string. Annotations get sorted by start offset, then the content is sliced into alternating plain-text and highlighted-span chunks in a single pass, memoized so it only recomputes when the content or annotation set actually changes:</p>
 
 <pre><code class="language-typescript">const highlightedContent = useMemo(() => {
   if (annotations.length === 0) return content;
@@ -118,7 +112,7 @@
   return nodes;
 }, [content, annotations, handleHighlightMouseEnter, handleHighlightMouseLeave]);</code></pre>
 
-            <p>New selections are checked against existing annotation ranges before they're allowed to land — if a proposed <code>[start, end)</code> overlaps any existing one, the selection is silently dropped instead of creating a nested or conflicting highlight, which keeps the slicing logic above simple since it never has to reason about overlapping spans.</p>
+            <p>New selections are checked against existing annotation ranges before they're allowed to land. If a proposed <code>[start, end)</code> overlaps any existing one, the selection just gets dropped instead of creating a nested or conflicting highlight. That keeps the slicing logic above simple: it never has to reason about overlapping spans.</p>
         </div>
     </div>
     <script>hljs.highlightAll();</script>

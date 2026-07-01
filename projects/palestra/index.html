@@ -16,11 +16,6 @@
             margin-bottom: 2em;
         }
 
-        .post-author {
-            font-weight: 700;
-            margin-bottom: 0.2em;
-        }
-
         .post-title {
             font-size: 1em;
             font-weight: 700;
@@ -77,7 +72,6 @@
 <body>
     <div id="content">
         <a href="/" class="post-back">← Back</a>
-        <p class="post-author">Avery Reyna</p>
         <h1 class="post-title">Palestra</h1>
         <p class="post-date">March 6, 2026</p>
 
@@ -86,7 +80,7 @@
                 <img src="/assets/projects/independent/palestra.gif" alt="Palestra preview" loading="lazy">
             </div>
 
-            <p>Palestra is a coding education platform — file explorer, code editor, and chat panel in one workspace — where the twist is that the codebase you're practicing on doesn't have to exist yet. A React frontend talks to an Express/TypeScript backend that asks <strong>Claude</strong> to generate an entire project from a short description, and the result becomes something you can click through, open files in, and edit like a real repo.</p>
+            <p>Palestra is a coding education platform (file explorer, code editor, and chat panel in one workspace) where the twist is that the codebase you're practicing on doesn't have to exist yet. A React frontend talks to an Express/TypeScript backend that asks <strong>Claude</strong> to generate an entire project from a short description, and the result becomes something you can click through, open files in, and edit like a real repo.</p>
 
             <p>Getting a language model to produce a multi-file project reliably comes down to how the prompt is shaped: it isn't asked for "some code," it's asked for a strict JSON tree of folders and files with full file contents inline, with the schema spelled out in the prompt itself and an explicit instruction to return nothing else.</p>
 
@@ -115,7 +109,7 @@ Please structure your response as a JSON object with this exact format:
 Important: Return ONLY the JSON object, no additional text or formatting.`;
 }</code></pre>
 
-            <p>The response gets parsed back into the same <code>FileStructure</code> tree the file explorer already renders, which is why the generated project can be dropped straight into the editor without a separate code path — as far as the UI is concerned, an AI-generated codebase and a hand-written one look identical.</p>
+            <p>The response gets parsed back into the same <code>FileStructure</code> tree the file explorer already renders, which is why the generated project can be dropped straight into the editor without a separate code path. As far as the UI is concerned, an AI-generated codebase and a hand-written one look identical.</p>
         </div>
     </div>
     <script>hljs.highlightAll();</script>

@@ -16,11 +16,6 @@
             margin-bottom: 2em;
         }
 
-        .post-author {
-            font-weight: 700;
-            margin-bottom: 0.2em;
-        }
-
         .post-title {
             font-size: 1em;
             font-weight: 700;
@@ -77,7 +72,6 @@
 <body>
     <div id="content">
         <a href="/" class="post-back">← Back</a>
-        <p class="post-author">Avery Reyna</p>
         <h1 class="post-title">Daydream</h1>
         <p class="post-date">April 23, 2026</p>
 
@@ -119,7 +113,7 @@ function pathToD(points: PathPoint[]): string {
   return d;
 }</code></pre>
 
-            <p>Comparing squared distance against a squared threshold avoids a square root on every pointer move, and the decimated points feed straight into an SVG path string — the stroke annotation is just an <code>&lt;path&gt;</code> element sitting in the same coordinate space as the diagram, which is also what makes it draggable and resizable alongside the text annotations.</p>
+            <p>Comparing squared distance against a squared threshold avoids a square root on every pointer move, and the decimated points feed straight into an SVG path string. The stroke annotation is just an <code>&lt;path&gt;</code> element sitting in the same coordinate space as the diagram, which is also what makes it draggable and resizable alongside the text annotations.</p>
         </div>
     </div>
     <script>hljs.highlightAll();</script>

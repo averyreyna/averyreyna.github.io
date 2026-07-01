@@ -16,11 +16,6 @@
             margin-bottom: 2em;
         }
 
-        .post-author {
-            font-weight: 700;
-            margin-bottom: 0.2em;
-        }
-
         .post-title {
             font-size: 1em;
             font-weight: 700;
@@ -77,7 +72,6 @@
 <body>
     <div id="content">
         <a href="/" class="post-back">← Back</a>
-        <p class="post-author">Avery Reyna</p>
         <h1 class="post-title">Conjure Code</h1>
         <p class="post-date">March 25, 2026</p>
 
@@ -86,7 +80,7 @@
                 <img src="/assets/projects/independent/conjure-code.gif" alt="Conjure Code preview" loading="lazy">
             </div>
 
-            <p>Conjure Code is a CLI that turns a codebase — local or a GitHub slug like <code>sveltejs/kit</code> — into a navigable node graph. It walks the project, uses <strong>ts-morph</strong> to statically analyze exports, functions, classes, and their references, and serves the result as an interactive canvas in the browser, with files and modules as nodes and imports and calls as edges between them.</p>
+            <p>Conjure Code is a CLI that turns a codebase (local, or a GitHub slug like <code>sveltejs/kit</code>) into a navigable node graph. It walks the project, uses <strong>ts-morph</strong> to statically analyze exports, functions, classes, and their references, and serves the result as an interactive canvas in the browser, with files and modules as nodes and imports and calls as edges between them.</p>
 
             <p>Real codebases produce graphs with far more nodes than a browser can comfortably render at once, so the canvas does viewport culling on every pan and zoom: before drawing, it checks each node's screen-space position against the visible area (plus a padding margin) and skips anything outside it. Edges get the same treatment, but an edge only needs to survive if <em>either</em> endpoint is visible, or if the line between two off-screen endpoints still crosses the viewport:</p>
 
@@ -118,7 +112,7 @@ export function edgeInView(
   return !(maxSX < 0 || minSX > viewWidth || maxSY < 0 || minSY > viewHeight);
 }</code></pre>
 
-            <p>That bounding-box check on the edge's full span is what makes the "aperture" zoom feel continuous instead of glitchy — a long edge connecting two far-apart, off-screen nodes still gets drawn if it passes through what you're looking at, rather than popping in and out as its endpoints cross the frame.</p>
+            <p>That bounding-box check on the edge's full span is what makes the "aperture" zoom feel continuous instead of glitchy. A long edge connecting two far-apart, off-screen nodes still gets drawn if it passes through what you're looking at, rather than popping in and out as its endpoints cross the frame.</p>
         </div>
     </div>
     <script>hljs.highlightAll();</script>

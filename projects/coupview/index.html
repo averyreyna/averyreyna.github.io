@@ -16,11 +16,6 @@
             margin-bottom: 2em;
         }
 
-        .post-author {
-            font-weight: 700;
-            margin-bottom: 0.2em;
-        }
-
         .post-title {
             font-size: 1em;
             font-weight: 700;
@@ -77,7 +72,6 @@
 <body>
     <div id="content">
         <a href="/" class="post-back">← Back</a>
-        <p class="post-author">Avery Reyna</p>
         <h1 class="post-title">CoupView</h1>
         <p class="post-date">April 5, 2026</p>
 
@@ -112,7 +106,7 @@
   "circle-opacity": 1,
 };</code></pre>
 
-            <p>A separate R service (built with <strong>plumber</strong>) is scaffolded alongside the map to eventually serve model-based turnover predictions over the same event data, with the frontend already wired to call it through a small <code>predict()</code> client. The map itself, though, works entirely off the static dataset — filtering, search, and the legend all run client-side over the in-memory feature collection.</p>
+            <p>A separate R service (built with <strong>plumber</strong>) is scaffolded alongside the map to eventually serve model-based turnover predictions over the same event data, with the frontend already wired to call it through a small <code>predict()</code> client. The map itself, though, works entirely off the static dataset: filtering, search, and the legend all run client-side over the in-memory feature collection.</p>
         </div>
     </div>
     <script>hljs.highlightAll();</script>

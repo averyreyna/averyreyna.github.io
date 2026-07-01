@@ -16,11 +16,6 @@
             margin-bottom: 2em;
         }
 
-        .post-author {
-            font-weight: 700;
-            margin-bottom: 0.2em;
-        }
-
         .post-title {
             font-size: 1em;
             font-weight: 700;
@@ -98,7 +93,6 @@
 <body>
     <div id="content">
         <a href="/" class="post-back">← Back</a>
-        <p class="post-author">Avery Reyna</p>
         <h1 class="post-title">Convoy v1.5</h1>
         <p class="post-date">May 11, 2026</p>
 
@@ -113,7 +107,7 @@
 
             <p>Convoy is a canvas-based data pipeline builder. You drag nodes onto a React Flow canvas (data sources, filters, group-bys, sorts, transforms, computed columns, reshapes, and chart outputs) wire them together, and the pipeline runs. Each node type corresponds to a discrete operation on tabular data: a filter node takes a column, an operator, and a value; a group-by node takes a column and an aggregation function; a chart node takes axis assignments and a chart type. Connections between nodes define the execution order. A data preview collapses in and out of each node so you can inspect what a step is actually producing without leaving the canvas.</p>
 
-            <p>A code panel alongside the canvas generates equivalent Python at every change. The output is a pandas script—or a Jupyter notebook if you prefer—that mirrors the node graph one step at a time. It stays in sync automatically, so the canvas and the code are always the same pipeline described two different ways. You can export either at any point, or paste existing Python back in and have the canvas reconstruct the graph from it.</p>
+            <p>A code panel alongside the canvas generates equivalent Python at every change. The output is a pandas script (or a Jupyter notebook, if you prefer) that mirrors the node graph one step at a time. It stays in sync automatically, so the canvas and the code are always the same pipeline described two different ways. You can export either at any point, or paste existing Python back in and have the canvas reconstruct the graph from it.</p>
 
             <p>Chart nodes render previews through a Python subprocess rather than anything running in the browser. The Express backend spawns <code>python3</code> on demand, sends the chart configuration and row data as JSON over stdin, and reads a base64-encoded PNG back from stdout.</p>
 

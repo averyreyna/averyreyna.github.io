@@ -16,11 +16,6 @@
             margin-bottom: 2em;
         }
 
-        .post-author {
-            font-weight: 700;
-            margin-bottom: 0.2em;
-        }
-
         .post-title {
             font-size: 1em;
             font-weight: 700;
@@ -77,7 +72,6 @@
 <body>
     <div id="content">
         <a href="/" class="post-back">← Back</a>
-        <p class="post-author">Avery Reyna</p>
         <h1 class="post-title">Perceptor</h1>
         <p class="post-date">March 5, 2026</p>
 
@@ -86,7 +80,7 @@
                 <img src="/assets/projects/independent/perceptor.gif" alt="Perceptor preview" loading="lazy">
             </div>
 
-            <p>Perceptor is a CLI coding tutor built around a Socratic method system prompt — it's told outright to <strong>never</strong> hand over a direct answer, never send a student to outside tutorials, and instead break whatever they're stuck on into a small, immediately doable exercise. The whole tool is really just that constraint enforced consistently across a conversation loop with <strong>Claude</strong>, plus a couple of special commands layered on top.</p>
+            <p>Perceptor is a CLI coding tutor built around a Socratic method system prompt. It's told outright to <strong>never</strong> hand over a direct answer, never send a student to outside tutorials, and instead break whatever they're stuck on into a small, immediately doable exercise. The whole tool is really just that constraint enforced consistently across a conversation loop with <strong>Claude</strong>, plus a couple of special commands layered on top.</p>
 
             <p>One of those commands lets a student ask about "codebase structure" mid-conversation. Rather than a slash command, it's detected from plain language: the input is scanned against a list of trigger phrases, and if one matches, a static analysis of the current directory gets appended to the message before it ever reaches the model.</p>
 
@@ -119,7 +113,7 @@
   return assistantMessage;
 }</code></pre>
 
-            <p>The rest of the tutor is conversation-history bookkeeping — every turn gets appended to <code>this.conversationHistory</code> and replayed in full on each call, so the Socratic thread (and whatever it's already made the student figure out for themselves) carries forward instead of resetting each time.</p>
+            <p>The rest of the tutor is conversation-history bookkeeping: every turn gets appended to <code>this.conversationHistory</code> and replayed in full on each call, so the Socratic thread (and whatever it's already made the student figure out for themselves) carries forward instead of resetting each time.</p>
         </div>
     </div>
     <script>hljs.highlightAll();</script>

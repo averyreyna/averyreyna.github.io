@@ -16,11 +16,6 @@
             margin-bottom: 2em;
         }
 
-        .post-author {
-            font-weight: 700;
-            margin-bottom: 0.2em;
-        }
-
         .post-title {
             font-size: 1em;
             font-weight: 700;
@@ -77,7 +72,6 @@
 <body>
     <div id="content">
         <a href="/" class="post-back">← Back</a>
-        <p class="post-author">Avery Reyna</p>
         <h1 class="post-title">Meta Measure</h1>
         <p class="post-date">April 5, 2026</p>
 
@@ -86,9 +80,9 @@
                 <img src="/assets/projects/independent/meta-measure.gif" alt="Meta Measure preview" loading="lazy">
             </div>
 
-            <p>Meta Measure takes a list of research ideas and plots them on a scatter graph—quantitative to qualitative on one axis, traditional to novel on the other—so you can see at a glance how a set of topics balances against each other methodologically. There's no scoring rubric baked into the app itself; every placement comes from <strong>Claude</strong> reasoning about each idea fresh, which makes the graph less a fixed taxonomy and more a snapshot of one model's judgment at one point in time.</p>
+            <p>Meta Measure takes a list of research ideas and drops them on a scatter plot: quantitative to qualitative on one axis, traditional to novel on the other, so you can see at a glance how a set of topics balances out methodologically. There's no scoring rubric anywhere in the app. Every placement comes from <strong>Claude</strong> reasoning about each idea fresh, so the graph ends up less a fixed taxonomy and more a snapshot of one model's judgment at one point in time.</p>
 
-            <p>The interesting part isn't the graph rendering, it's the prompt behind it. The API route sends the full list of ideas in a single request and asks for strict JSON back—coordinates for each idea plus a written explanation of the reasoning—and it explicitly asks the model to interrogate its own placements: what assumptions it made, what it favored by default, and whether its evaluation systematically privileges certain research approaches over others.</p>
+            <p>The graph rendering isn't really the interesting part. The prompt behind it is. The API route sends the whole list of ideas in a single request and asks for strict JSON back: coordinates for each idea, plus a written explanation of the reasoning. It also asks the model to interrogate its own placements: what assumptions it made, what it defaulted to, and whether its evaluation quietly favors certain research approaches over others.</p>
 
 <pre><code class="language-typescript">const message = `Given the following words: ${JSON.stringify(ideas)}
 
@@ -109,7 +103,7 @@ each placement... Be transparent about any default interpretations you applied w
 information was limited. Address whether certain fields or methodologies were
 implicitly favored in your evaluation and why.`;</code></pre>
 
-            <p>That self-critique is asked for on every call, not bolted on as a separate step—the model has to justify its own coordinate system in the same response that produces it. The route itself is a thin Next.js handler behind a cookie-gated access check, with a regex fallback to pull a JSON object out of the response if Claude wraps it in extra text.</p>
+            <p>That self-critique isn't a separate step tacked on afterward. It's asked for on every call, so the model has to justify its own coordinate system in the same response that produces it. The route itself is a thin Next.js handler sitting behind a cookie-gated access check, with a regex fallback to pull a JSON object out of the response in case Claude wraps it in extra text.</p>
         </div>
     </div>
     <script>hljs.highlightAll();</script>

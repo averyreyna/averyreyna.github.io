@@ -16,11 +16,6 @@
             margin-bottom: 2em;
         }
 
-        .post-author {
-            font-weight: 700;
-            margin-bottom: 0.2em;
-        }
-
         .post-title {
             font-size: 1em;
             font-weight: 700;
@@ -77,7 +72,6 @@
 <body>
     <div id="content">
         <a href="/" class="post-back">← Back</a>
-        <p class="post-author">Avery Reyna</p>
         <h1 class="post-title">Form</h1>
         <p class="post-date">March 31, 2026</p>
 
@@ -107,7 +101,7 @@ if (!component || typeof component !== 'function') {
   return null;
 }</code></pre>
 
-            <p>The returned component gets wrapped in its own try/catch at render time, so a broken feature fails as a small red error box in place rather than crashing the rest of the notes app around it—every user-written feature is one bad render away from a bug, but never one bad render away from taking down the editor.</p>
+            <p>The returned component gets wrapped in its own try/catch at render time, so a broken feature fails as a small red error box in place rather than crashing the rest of the notes app around it. Every user-written feature is one bad render away from a bug, but never one bad render away from taking down the editor.</p>
         </div>
     </div>
     <script>hljs.highlightAll();</script>
