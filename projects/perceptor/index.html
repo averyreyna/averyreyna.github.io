@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perceptor</title>
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/website.svg">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"></script>
+    <style>
+        .post-back {
+            display: block;
+            margin-bottom: 2em;
+        }
+
+        .post-author {
+            font-weight: 700;
+            margin-bottom: 0.2em;
+        }
+
+        .post-title {
+            font-size: 1em;
+            font-weight: 700;
+            margin-bottom: 0.3em;
+        }
+
+        .post-date {
+            color: #888;
+            margin-bottom: 2em;
+        }
+
+        .post-body p {
+            margin-bottom: 1.2em;
+        }
+
+        pre {
+            margin: 1.2em 0;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: 'Consolas', 'Menlo', 'Monaco', monospace;
+            font-size: 0.85em;
+        }
+
+        pre code.hljs {
+            line-height: 1.5;
+            padding: 1.2em 1.4em;
+            border-radius: 4px;
+        }
+
+        code:not(.hljs) {
+            background: #f3f3f3;
+            color: #000000;
+            padding: 0.15em 0.35em;
+            border-radius: 3px;
+        }
+
+        .post-media {
+            margin: 0 0 2em;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .post-media img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <a href="/" class="post-back">← Back</a>
+        <p class="post-author">Avery Reyna</p>
+        <h1 class="post-title">Perceptor</h1>
+        <p class="post-date">March 5, 2026</p>
+
+        <div class="post-body">
+            <div class="post-media">
+                <img src="/assets/projects/independent/perceptor.gif" alt="Perceptor preview" loading="lazy">
+            </div>
+
+            <p>Perceptor is a CLI coding tutor built around a Socratic method system prompt — it's told outright to <strong>never</strong> hand over a direct answer, never send a student to outside tutorials, and instead break whatever they're stuck on into a small, immediately doable exercise. The whole tool is really just that constraint enforced consistently across a conversation loop with <strong>Claude</strong>, plus a couple of special commands layered on top.</p>
+
+            <p>One of those commands lets a student ask about "codebase structure" mid-conversation. Rather than a slash command, it's detected from plain language: the input is scanned against a list of trigger phrases, and if one matches, a static analysis of the current directory gets appended to the message before it ever reaches the model.</p>
+
+<pre><code class="language-javascript">async respond(userInput) {
+  const needsCodebaseAnalysis = this.shouldAnalyzeCodebase(userInput);
+  let messageContent = userInput;
+
+  if (needsCodebaseAnalysis) {
+    try {
+      const analysis = this.codebaseAnalyzer.analyzeCurrentDirectory();
+      const formattedAnalysis = this.codebaseAnalyzer.formatAnalysisForLLM(analysis);
+      messageContent = `${userInput}\n\n[CODEBASE ANALYSIS]\n${formattedAnalysis}`;
+    } catch (error) {
+      messageContent = `${userInput}\n\n[CODEBASE ANALYSIS ERROR: ${error.message}]`;
+    }
+  }
+
+  this.conversationHistory.push({ role: 'user', content: messageContent });
+
+  const response = await this.anthropic.messages.create({
+    model: 'claude-3-5-sonnet-20241022',
+    max_tokens: 1000,
+    system: this.systemPrompt,
+    messages: this.conversationHistory
+  });
+
+  const assistantMessage = response.content[0].text;
+  this.conversationHistory.push({ role: 'assistant', content: assistantMessage });
+
+  return assistantMessage;
+}</code></pre>
+
+            <p>The rest of the tutor is conversation-history bookkeeping — every turn gets appended to <code>this.conversationHistory</code> and replayed in full on each call, so the Socratic thread (and whatever it's already made the student figure out for themselves) carries forward instead of resetting each time.</p>
+        </div>
+    </div>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

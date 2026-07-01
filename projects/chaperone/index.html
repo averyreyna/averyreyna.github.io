@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chaperone</title>
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/website.svg">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/typescript.min.js"></script>
+    <style>
+        .post-back {
+            display: block;
+            margin-bottom: 2em;
+        }
+
+        .post-author {
+            font-weight: 700;
+            margin-bottom: 0.2em;
+        }
+
+        .post-title {
+            font-size: 1em;
+            font-weight: 700;
+            margin-bottom: 0.3em;
+        }
+
+        .post-date {
+            color: #888;
+            margin-bottom: 2em;
+        }
+
+        .post-body p {
+            margin-bottom: 1.2em;
+        }
+
+        pre {
+            margin: 1.2em 0;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: 'Consolas', 'Menlo', 'Monaco', monospace;
+            font-size: 0.85em;
+        }
+
+        pre code.hljs {
+            line-height: 1.5;
+            padding: 1.2em 1.4em;
+            border-radius: 4px;
+        }
+
+        code:not(.hljs) {
+            background: #f3f3f3;
+            color: #000000;
+            padding: 0.15em 0.35em;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <a href="/" class="post-back">← Back</a>
+        <p class="post-author">Avery Reyna</p>
+        <h1 class="post-title">Chaperone</h1>
+        <p class="post-date">June 23, 2026</p>
+
+        <div class="post-body">
+            <p>Chaperone is live, data-derived schema feedback for a pandas-like method-chain DSL, built in the style of <strong>Hazel</strong>'s hole-driven editors. You write a short pipeline like <code>df.groupby("region")["amount_usd"].sum()</code> against a real CSV, and Chaperone infers a rich column schema (key, email, currency, categorical, nullability, cardinality) straight from the data, then gives you squiggles, a ranked completion inspector, and a live result pane as you type — before anything actually runs.</p>
+
+            <p>The core idea is that a hole doesn't just carry a type expectation, it closes over the <strong>live DataFrame</strong> in scope. Every op has a matched-elimination rule that says what a hole must look like and what comes out the other side; <code>meet</code> is the gradual-typing consistency check underneath all of them, returning the glb of two schema types or <code>null</code> on a squiggle:</p>
+
+<pre><code class="language-typescript">export function meet(a: SchemaType, b: SchemaType): SchemaType | null {
+  if (isUnknown(a)) return b; // ? ~ anything
+  if (isUnknown(b)) return a;
+  if (a.kind === "numeric-column" && b.kind === "column")
+    return isNumericElem(b.elem) ? b : null;
+  if (b.kind === "numeric-column" && a.kind === "column")
+    return isNumericElem(a.elem) ? a : null;
+  if (a.kind === "column" && b.kind === "column")
+    return meetElem(a.elem, b.elem) ? a : null;
+  if (a.kind === "column-name" && b.kind === "column-name") return a;
+  if (a.kind === "frame" && b.kind === "frame") return a;
+  return a.kind === b.kind ? a : null;
+}</code></pre>
+
+            <p>Because the type walk and the value walk mirror each other over the same parsed program, swapping the underlying CSV re-runs both at once: a drift pass diffs schema A against schema B and names exactly which op's check flips from pass to fail, while the result pane shows the numbers actually moving. A hole with no column picked yet is still hole-tolerant — aggregations show a <code>⬚</code> gap that fills in the instant you choose one.</p>
+        </div>
+    </div>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

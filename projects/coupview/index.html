@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoupView</title>
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/website.svg">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/typescript.min.js"></script>
+    <style>
+        .post-back {
+            display: block;
+            margin-bottom: 2em;
+        }
+
+        .post-author {
+            font-weight: 700;
+            margin-bottom: 0.2em;
+        }
+
+        .post-title {
+            font-size: 1em;
+            font-weight: 700;
+            margin-bottom: 0.3em;
+        }
+
+        .post-date {
+            color: #888;
+            margin-bottom: 2em;
+        }
+
+        .post-body p {
+            margin-bottom: 1.2em;
+        }
+
+        pre {
+            margin: 1.2em 0;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: 'Consolas', 'Menlo', 'Monaco', monospace;
+            font-size: 0.85em;
+        }
+
+        pre code.hljs {
+            line-height: 1.5;
+            padding: 1.2em 1.4em;
+            border-radius: 4px;
+        }
+
+        code:not(.hljs) {
+            background: #f3f3f3;
+            color: #000000;
+            padding: 0.15em 0.35em;
+            border-radius: 3px;
+        }
+
+        .post-media {
+            margin: 0 0 2em;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .post-media img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <a href="/" class="post-back">← Back</a>
+        <p class="post-author">Avery Reyna</p>
+        <h1 class="post-title">CoupView</h1>
+        <p class="post-date">April 5, 2026</p>
+
+        <div class="post-body">
+            <div class="post-media">
+                <img src="/assets/projects/independent/coupview.gif" alt="CoupView preview" loading="lazy">
+            </div>
+
+            <p>CoupView is a proof-of-concept map for exploring historical coups and illegal leader turnover around the world. Events live as a <strong>GeoJSON</strong> feature collection rendered on a dark-themed <strong>MapLibre GL</strong> basemap, with a sidebar for searching and filtering by region, decade, outcome, and tag. Clicking a marker opens a popup with the event's title, description, and sourcing, so the map works as both an overview and a way to drill into a single case.</p>
+
+            <p>Each coup is color-coded by outcome directly in the GL style, not in application code. The circle layer's paint spec is a MapLibre <code>match</code> expression keyed on the feature's <code>outcome</code> property, and radius is driven by <code>feature-state</code> so hovering a marker grows it without touching React state at all:</p>
+
+<pre><code class="language-typescript">const circleLayerPaint: CircleLayerSpecification["paint"] = {
+  "circle-radius": [
+    "case",
+    ["boolean", ["feature-state", "hover"], false],
+    14,
+    10,
+  ],
+  "circle-color": [
+    "match",
+    ["get", "outcome"],
+    "successful", OUTCOME_COLORS.successful,
+    "failed", OUTCOME_COLORS.failed,
+    "attempted", OUTCOME_COLORS.attempted,
+    "plot", OUTCOME_COLORS.plot,
+    "alleged", OUTCOME_COLORS.alleged,
+    OUTCOME_COLORS.alleged,
+  ],
+  "circle-stroke-width": 2,
+  "circle-stroke-color": "#020617",
+  "circle-opacity": 1,
+};</code></pre>
+
+            <p>A separate R service (built with <strong>plumber</strong>) is scaffolded alongside the map to eventually serve model-based turnover predictions over the same event data, with the frontend already wired to call it through a small <code>predict()</code> client. The map itself, though, works entirely off the static dataset — filtering, search, and the legend all run client-side over the in-memory feature collection.</p>
+        </div>
+    </div>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

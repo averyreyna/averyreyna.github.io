@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrutinize</title>
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/website.svg">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/typescript.min.js"></script>
+    <style>
+        .post-back {
+            display: block;
+            margin-bottom: 2em;
+        }
+
+        .post-author {
+            font-weight: 700;
+            margin-bottom: 0.2em;
+        }
+
+        .post-title {
+            font-size: 1em;
+            font-weight: 700;
+            margin-bottom: 0.3em;
+        }
+
+        .post-date {
+            color: #888;
+            margin-bottom: 2em;
+        }
+
+        .post-body p {
+            margin-bottom: 1.2em;
+        }
+
+        pre {
+            margin: 1.2em 0;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: 'Consolas', 'Menlo', 'Monaco', monospace;
+            font-size: 0.85em;
+        }
+
+        pre code.hljs {
+            line-height: 1.5;
+            padding: 1.2em 1.4em;
+            border-radius: 4px;
+        }
+
+        code:not(.hljs) {
+            background: #f3f3f3;
+            color: #000000;
+            padding: 0.15em 0.35em;
+            border-radius: 3px;
+        }
+
+        .post-media {
+            margin: 0 0 2em;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .post-media img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <a href="/" class="post-back">← Back</a>
+        <p class="post-author">Avery Reyna</p>
+        <h1 class="post-title">Scrutinize</h1>
+        <p class="post-date">April 5, 2026</p>
+
+        <div class="post-body">
+            <div class="post-media">
+                <img src="/assets/projects/independent/scrutinize.gif" alt="Scrutinize preview" loading="lazy">
+            </div>
+
+            <p>Scrutinize is a document viewer for close-reading and annotating essays. Text is generated on demand by <strong>DeepSeek</strong>'s chat model from whatever topic you type in, giving you a fresh document to mark up each time rather than a fixed corpus. You select a phrase, tag it with an annotation type and a short note, and the tool tracks that span as a highlighted region in the document going forward.</p>
+
+            <p>The interesting part is how it turns a flat list of <code>{start, end}</code> annotations back into a segmented document without ever touching the underlying string. Annotations are sorted by start offset, and the content is sliced into alternating plain-text and highlighted-span chunks in a single pass, memoized so it only recomputes when the content or annotation set actually changes:</p>
+
+<pre><code class="language-typescript">const highlightedContent = useMemo(() => {
+  if (annotations.length === 0) return content;
+  const sorted = [...annotations].sort((a, b) => a.start - b.start);
+  let lastIdx = 0;
+  const nodes: React.ReactNode[] = [];
+  sorted.forEach((ann) => {
+    if (ann.start > lastIdx) {
+      nodes.push(content.slice(lastIdx, ann.start));
+    }
+    nodes.push(
+      <span
+        key={ann.id}
+        data-annotation-id={ann.id}
+        style={{ background: ann.color + '33', borderRadius: 3, cursor: 'pointer' }}
+        onMouseEnter={handleHighlightMouseEnter}
+        onMouseLeave={handleHighlightMouseLeave}
+      >
+        {content.slice(ann.start, ann.end)}
+      </span>
+    );
+    lastIdx = ann.end;
+  });
+  if (lastIdx < content.length) {
+    nodes.push(content.slice(lastIdx));
+  }
+  return nodes;
+}, [content, annotations, handleHighlightMouseEnter, handleHighlightMouseLeave]);</code></pre>
+
+            <p>New selections are checked against existing annotation ranges before they're allowed to land — if a proposed <code>[start, end)</code> overlaps any existing one, the selection is silently dropped instead of creating a nested or conflicting highlight, which keeps the slicing logic above simple since it never has to reason about overlapping spans.</p>
+        </div>
+    </div>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

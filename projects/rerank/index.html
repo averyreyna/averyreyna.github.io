@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rerank</title>
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/website.svg">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/typescript.min.js"></script>
+    <style>
+        .post-back {
+            display: block;
+            margin-bottom: 2em;
+        }
+
+        .post-author {
+            font-weight: 700;
+            margin-bottom: 0.2em;
+        }
+
+        .post-title {
+            font-size: 1em;
+            font-weight: 700;
+            margin-bottom: 0.3em;
+        }
+
+        .post-date {
+            color: #888;
+            margin-bottom: 2em;
+        }
+
+        .post-body p {
+            margin-bottom: 1.2em;
+        }
+
+        pre {
+            margin: 1.2em 0;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: 'Consolas', 'Menlo', 'Monaco', monospace;
+            font-size: 0.85em;
+        }
+
+        pre code.hljs {
+            line-height: 1.5;
+            padding: 1.2em 1.4em;
+            border-radius: 4px;
+        }
+
+        code:not(.hljs) {
+            background: #f3f3f3;
+            color: #000000;
+            padding: 0.15em 0.35em;
+            border-radius: 3px;
+        }
+
+        .post-media {
+            margin: 0 0 2em;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .post-media img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <a href="/" class="post-back">← Back</a>
+        <p class="post-author">Avery Reyna</p>
+        <h1 class="post-title">Rerank</h1>
+        <p class="post-date">April 5, 2026</p>
+
+        <div class="post-body">
+            <div class="post-media">
+                <img src="/assets/projects/independent/rerank.gif" alt="Rerank preview" loading="lazy">
+            </div>
+
+            <p>Rerank runs the same document through three different summarization methods — <strong>TextRank</strong>, <strong>LexRank</strong>, and <strong>BART</strong> — and lets you compare their output side by side instead of committing to whichever one a library happens to default to. TextRank and LexRank aren't wrappers around an existing package; they're implemented directly in TypeScript and run entirely client-side, scoring sentences by how similar they are to every other sentence in the document.</p>
+
+            <p>Both build a sentence-similarity matrix from cosine similarity over tokenized sentences, then treat it as a graph and rank nodes the way PageRank ranks web pages — a sentence is "important" if it's similar to other important sentences. TextRank's version runs the classic damped iteration to convergence:</p>
+
+<pre><code class="language-typescript">const scores = new Array(sentences.length).fill(1);
+const damping = 0.85;
+const iterations = 50;
+
+for (let iter = 0; iter < iterations; iter++) {
+  const newScores = [...scores];
+  for (let i = 0; i < sentences.length; i++) {
+    let sum = 0;
+    for (let j = 0; j < sentences.length; j++) {
+      if (i !== j) {
+        const totalSim = similarityMatrix[j].reduce((a, b) => a + b, 0);
+        if (totalSim > 0) {
+          sum += (similarityMatrix[j][i] / totalSim) * scores[j];
+        }
+      }
+    }
+    newScores[i] = (1 - damping) + damping * sum;
+  }
+  scores.splice(0, scores.length, ...newScores);
+}</code></pre>
+
+            <p>LexRank instead thresholds the similarity matrix before row-normalizing it into a proper transition matrix, which is the main mathematical difference between the two approaches. BART, being an actual transformer model, calls out to a hosted inference API and falls back to an extractive method if that request fails — so a summary always comes back, even offline.</p>
+        </div>
+    </div>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

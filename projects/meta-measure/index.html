@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meta Measure</title>
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/website.svg">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/typescript.min.js"></script>
+    <style>
+        .post-back {
+            display: block;
+            margin-bottom: 2em;
+        }
+
+        .post-author {
+            font-weight: 700;
+            margin-bottom: 0.2em;
+        }
+
+        .post-title {
+            font-size: 1em;
+            font-weight: 700;
+            margin-bottom: 0.3em;
+        }
+
+        .post-date {
+            color: #888;
+            margin-bottom: 2em;
+        }
+
+        .post-body p {
+            margin-bottom: 1.2em;
+        }
+
+        pre {
+            margin: 1.2em 0;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: 'Consolas', 'Menlo', 'Monaco', monospace;
+            font-size: 0.85em;
+        }
+
+        pre code.hljs {
+            line-height: 1.5;
+            padding: 1.2em 1.4em;
+            border-radius: 4px;
+        }
+
+        code:not(.hljs) {
+            background: #f3f3f3;
+            color: #000000;
+            padding: 0.15em 0.35em;
+            border-radius: 3px;
+        }
+
+        .post-media {
+            margin: 0 0 2em;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .post-media img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <a href="/" class="post-back">← Back</a>
+        <p class="post-author">Avery Reyna</p>
+        <h1 class="post-title">Meta Measure</h1>
+        <p class="post-date">April 5, 2026</p>
+
+        <div class="post-body">
+            <div class="post-media">
+                <img src="/assets/projects/independent/meta-measure.gif" alt="Meta Measure preview" loading="lazy">
+            </div>
+
+            <p>Meta Measure takes a list of research ideas and plots them on a scatter graph—quantitative to qualitative on one axis, traditional to novel on the other—so you can see at a glance how a set of topics balances against each other methodologically. There's no scoring rubric baked into the app itself; every placement comes from <strong>Claude</strong> reasoning about each idea fresh, which makes the graph less a fixed taxonomy and more a snapshot of one model's judgment at one point in time.</p>
+
+            <p>The interesting part isn't the graph rendering, it's the prompt behind it. The API route sends the full list of ideas in a single request and asks for strict JSON back—coordinates for each idea plus a written explanation of the reasoning—and it explicitly asks the model to interrogate its own placements: what assumptions it made, what it favored by default, and whether its evaluation systematically privileges certain research approaches over others.</p>
+
+<pre><code class="language-typescript">const message = `Given the following words: ${JSON.stringify(ideas)}
+
+Your response must ONLY contain valid JSON in the following format, with no additional text:
+{
+  "ideas": [
+    { "title": "string", "x": number, "y": number }
+  ],
+  "explanation": "string"
+}
+
+Evaluate each word on these scales:
+- X-axis: Quantitative (-1) to Qualitative (1)
+- Y-axis: Traditional (-1) to Novel (1)
+
+In the explanation field, provide a detailed analysis of your reasoning process for
+each placement... Be transparent about any default interpretations you applied when
+information was limited. Address whether certain fields or methodologies were
+implicitly favored in your evaluation and why.`;</code></pre>
+
+            <p>That self-critique is asked for on every call, not bolted on as a separate step—the model has to justify its own coordinate system in the same response that produces it. The route itself is a thin Next.js handler behind a cookie-gated access check, with a regex fallback to pull a JSON object out of the response if Claude wraps it in extra text.</p>
+        </div>
+    </div>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

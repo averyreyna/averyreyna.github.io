@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conjure Code</title>
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/website.svg">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/typescript.min.js"></script>
+    <style>
+        .post-back {
+            display: block;
+            margin-bottom: 2em;
+        }
+
+        .post-author {
+            font-weight: 700;
+            margin-bottom: 0.2em;
+        }
+
+        .post-title {
+            font-size: 1em;
+            font-weight: 700;
+            margin-bottom: 0.3em;
+        }
+
+        .post-date {
+            color: #888;
+            margin-bottom: 2em;
+        }
+
+        .post-body p {
+            margin-bottom: 1.2em;
+        }
+
+        pre {
+            margin: 1.2em 0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        code {
+            font-family: 'Consolas', 'Menlo', 'Monaco', monospace;
+            font-size: 0.85em;
+        }
+
+        pre code.hljs {
+            display: block;
+            line-height: 1.5;
+            padding: 1.2em 1.4em;
+        }
+
+        code:not(.hljs) {
+            background: #f3f3f3;
+            color: #000000;
+            padding: 0.15em 0.35em;
+            border-radius: 3px;
+        }
+
+        .post-media {
+            margin-bottom: 2em;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .post-media img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <a href="/" class="post-back">← Back</a>
+        <p class="post-author">Avery Reyna</p>
+        <h1 class="post-title">Conjure Code</h1>
+        <p class="post-date">March 25, 2026</p>
+
+        <div class="post-body">
+            <div class="post-media">
+                <img src="/assets/projects/independent/conjure-code.gif" alt="Conjure Code preview" loading="lazy">
+            </div>
+
+            <p>Conjure Code is a CLI that turns a codebase — local or a GitHub slug like <code>sveltejs/kit</code> — into a navigable node graph. It walks the project, uses <strong>ts-morph</strong> to statically analyze exports, functions, classes, and their references, and serves the result as an interactive canvas in the browser, with files and modules as nodes and imports and calls as edges between them.</p>
+
+            <p>Real codebases produce graphs with far more nodes than a browser can comfortably render at once, so the canvas does viewport culling on every pan and zoom: before drawing, it checks each node's screen-space position against the visible area (plus a padding margin) and skips anything outside it. Edges get the same treatment, but an edge only needs to survive if <em>either</em> endpoint is visible, or if the line between two off-screen endpoints still crosses the viewport:</p>
+
+<pre><code class="language-typescript">export function isInView(
+  graphX: number, graphY: number,
+  transform: ViewTransform, viewWidth: number, viewHeight: number,
+  padding = 80
+): boolean {
+  const screenX = graphX * transform.k + transform.x;
+  const screenY = graphY * transform.k + transform.y;
+  return (
+    screenX >= -padding && screenX <= viewWidth + padding &&
+    screenY >= -padding && screenY <= viewHeight + padding
+  );
+}
+
+export function edgeInView(
+  ax: number, ay: number, bx: number, by: number,
+  transform: ViewTransform, viewWidth: number, viewHeight: number,
+  padding = 80
+): boolean {
+  if (isInView(ax, ay, transform, viewWidth, viewHeight, padding)) return true;
+  if (isInView(bx, by, transform, viewWidth, viewHeight, padding)) return true;
+
+  const sax = ax * transform.k + transform.x, say = ay * transform.k + transform.y;
+  const sbx = bx * transform.k + transform.x, sby = by * transform.k + transform.y;
+  const minSX = Math.min(sax, sbx) - padding, maxSX = Math.max(sax, sbx) + padding;
+  const minSY = Math.min(say, sby) - padding, maxSY = Math.max(say, sby) + padding;
+  return !(maxSX < 0 || minSX > viewWidth || maxSY < 0 || minSY > viewHeight);
+}</code></pre>
+
+            <p>That bounding-box check on the edge's full span is what makes the "aperture" zoom feel continuous instead of glitchy — a long edge connecting two far-apart, off-screen nodes still gets drawn if it passes through what you're looking at, rather than popping in and out as its endpoints cross the frame.</p>
+        </div>
+    </div>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

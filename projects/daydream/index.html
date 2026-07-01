@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daydream</title>
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/website.svg">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/typescript.min.js"></script>
+    <style>
+        .post-back {
+            display: block;
+            margin-bottom: 2em;
+        }
+
+        .post-author {
+            font-weight: 700;
+            margin-bottom: 0.2em;
+        }
+
+        .post-title {
+            font-size: 1em;
+            font-weight: 700;
+            margin-bottom: 0.3em;
+        }
+
+        .post-date {
+            color: #888;
+            margin-bottom: 2em;
+        }
+
+        .post-body p {
+            margin-bottom: 1.2em;
+        }
+
+        pre {
+            margin: 1.2em 0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        code {
+            font-family: 'Consolas', 'Menlo', 'Monaco', monospace;
+            font-size: 0.85em;
+        }
+
+        pre code.hljs {
+            display: block;
+            line-height: 1.5;
+            padding: 1.2em 1.4em;
+        }
+
+        code:not(.hljs) {
+            background: #f3f3f3;
+            color: #000000;
+            padding: 0.15em 0.35em;
+            border-radius: 3px;
+        }
+
+        .post-media {
+            margin-bottom: 2em;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .post-media img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <a href="/" class="post-back">← Back</a>
+        <p class="post-author">Avery Reyna</p>
+        <h1 class="post-title">Daydream</h1>
+        <p class="post-date">April 23, 2026</p>
+
+        <div class="post-body">
+            <div class="post-media">
+                <img src="/assets/projects/independent/daydream.gif" alt="Daydream preview" loading="lazy">
+            </div>
+
+            <p>Daydream is a <strong>SvelteKit</strong> playground that turns pasted code into <strong>Mermaid</strong> diagrams via <strong>Claude</strong>. You paste a snippet into the editor, it comes back as a rendered diagram, and an edit mode lets you drop draggable text annotations and freehand highlight strokes directly on top of the result without touching the underlying Mermaid source.</p>
+
+            <p>The freehand strokes are the more interesting part. Pointer move events fire far more often than the annotation actually needs, so raw input is decimated by minimum distance before it's stored as a path: each new point is only kept if it's far enough from the last one that was kept, which throws away redundant points from slow drags while keeping fast ones detailed.</p>
+
+<pre><code class="language-typescript">function dist2(a: PathPoint, b: PathPoint) {
+  const dx = a.x - b.x;
+  const dy = a.y - b.y;
+  return dx * dx + dy * dy;
+}
+
+function decimatePoints(points: PathPoint[], minDistPct: number): PathPoint[] {
+  if (points.length <= 2) return points;
+  const out: PathPoint[] = [points[0]];
+  const minDist2 = minDistPct * minDistPct;
+  let last = points[0];
+  for (let i = 1; i < points.length - 1; i++) {
+    const p = points[i];
+    if (dist2(p, last) >= minDist2) {
+      out.push(p);
+      last = p;
+    }
+  }
+  out.push(points[points.length - 1]);
+  return out;
+}
+
+function pathToD(points: PathPoint[]): string {
+  if (!points.length) return '';
+  let d = `M ${points[0].x} ${points[0].y}`;
+  for (let i = 1; i < points.length; i++) d += ` L ${points[i].x} ${points[i].y}`;
+  return d;
+}</code></pre>
+
+            <p>Comparing squared distance against a squared threshold avoids a square root on every pointer move, and the decimated points feed straight into an SVG path string — the stroke annotation is just an <code>&lt;path&gt;</code> element sitting in the same coordinate space as the diagram, which is also what makes it draggable and resizable alongside the text annotations.</p>
+        </div>
+    </div>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

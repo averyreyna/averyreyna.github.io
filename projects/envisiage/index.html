@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Envisiage</title>
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/website.svg">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/typescript.min.js"></script>
+    <style>
+        .post-back {
+            display: block;
+            margin-bottom: 2em;
+        }
+
+        .post-author {
+            font-weight: 700;
+            margin-bottom: 0.2em;
+        }
+
+        .post-title {
+            font-size: 1em;
+            font-weight: 700;
+            margin-bottom: 0.3em;
+        }
+
+        .post-date {
+            color: #888;
+            margin-bottom: 2em;
+        }
+
+        .post-body p {
+            margin-bottom: 1.2em;
+        }
+
+        pre {
+            margin: 1.2em 0;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: 'Consolas', 'Menlo', 'Monaco', monospace;
+            font-size: 0.85em;
+        }
+
+        pre code.hljs {
+            line-height: 1.5;
+            padding: 1.2em 1.4em;
+            border-radius: 4px;
+        }
+
+        code:not(.hljs) {
+            background: #f3f3f3;
+            color: #000000;
+            padding: 0.15em 0.35em;
+            border-radius: 3px;
+        }
+
+        .post-media {
+            margin: 0 0 2em;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .post-media img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <a href="/" class="post-back">← Back</a>
+        <p class="post-author">Avery Reyna</p>
+        <h1 class="post-title">Envisiage</h1>
+        <p class="post-date">April 23, 2026</p>
+
+        <div class="post-body">
+            <div class="post-media">
+                <img src="/assets/projects/independent/envisiage.gif" alt="Envisiage preview" loading="lazy">
+            </div>
+
+            <p>Envisiage is an inline code tutor built on a multi-file <strong>Monaco</strong> editor: select any span of code, press a shortcut, and an AI explanation streams into a resizable panel anchored to that selection, with room for follow-up questions underneath it. Multiple annotations can sit open at once, each one scoped to the exact lines it explains rather than to the file as a whole.</p>
+
+            <p>What makes the explanations actually useful across skill levels is a small "granularity" layer sitting in front of the explain prompt. Rather than writing four separate prompts, there's one explanation prompt and four short natural-language modifiers keyed off a single type, each steering the same request toward a different kind of answer.</p>
+
+<pre><code class="language-typescript">export type Granularity = 'eli5' | 'step-through' | 'technical' | 'debug';
+
+const GRANULARITY_MODIFIERS: Record&lt;Granularity, string&gt; = {
+  eli5:
+    "Explain like I'm a beginner. No assumed programming knowledge. Use simple analogies and avoid jargon. If you must use a technical term, define it in one sentence.",
+  'step-through':
+    'Walk through the logic line by line, step by step. Number each step. Describe what happens at each line and how it leads to the next.',
+  technical:
+    "Assume I know the language. Explain the *why* — design choices, performance implications, or idioms — not the *what*. Be concise and precise.",
+  debug:
+    "I think something might be wrong here. Help me find it. Consider edge cases, off-by-one errors, and common pitfalls. Suggest what to check or log."
+};
+
+export function getGranularityModifier(granularity: Granularity): string {
+  return GRANULARITY_MODIFIERS[granularity] ?? '';
+}</code></pre>
+
+            <p>That modifier gets appended onto the underlying explain prompt before it ever reaches the model, so switching from "ELI5" to "Debug" on the same selection doesn't call a different endpoint or template — it's the same request with a different lens bolted on, which keeps the follow-up Q&amp;A path consistent no matter which granularity a student picked to get there.</p>
+        </div>
+    </div>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

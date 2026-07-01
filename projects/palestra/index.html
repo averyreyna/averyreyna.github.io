@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palestra</title>
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/website.svg">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/typescript.min.js"></script>
+    <style>
+        .post-back {
+            display: block;
+            margin-bottom: 2em;
+        }
+
+        .post-author {
+            font-weight: 700;
+            margin-bottom: 0.2em;
+        }
+
+        .post-title {
+            font-size: 1em;
+            font-weight: 700;
+            margin-bottom: 0.3em;
+        }
+
+        .post-date {
+            color: #888;
+            margin-bottom: 2em;
+        }
+
+        .post-body p {
+            margin-bottom: 1.2em;
+        }
+
+        pre {
+            margin: 1.2em 0;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: 'Consolas', 'Menlo', 'Monaco', monospace;
+            font-size: 0.85em;
+        }
+
+        pre code.hljs {
+            line-height: 1.5;
+            padding: 1.2em 1.4em;
+            border-radius: 4px;
+        }
+
+        code:not(.hljs) {
+            background: #f3f3f3;
+            color: #000000;
+            padding: 0.15em 0.35em;
+            border-radius: 3px;
+        }
+
+        .post-media {
+            margin: 0 0 2em;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .post-media img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <a href="/" class="post-back">← Back</a>
+        <p class="post-author">Avery Reyna</p>
+        <h1 class="post-title">Palestra</h1>
+        <p class="post-date">March 6, 2026</p>
+
+        <div class="post-body">
+            <div class="post-media">
+                <img src="/assets/projects/independent/palestra.gif" alt="Palestra preview" loading="lazy">
+            </div>
+
+            <p>Palestra is a coding education platform — file explorer, code editor, and chat panel in one workspace — where the twist is that the codebase you're practicing on doesn't have to exist yet. A React frontend talks to an Express/TypeScript backend that asks <strong>Claude</strong> to generate an entire project from a short description, and the result becomes something you can click through, open files in, and edit like a real repo.</p>
+
+            <p>Getting a language model to produce a multi-file project reliably comes down to how the prompt is shaped: it isn't asked for "some code," it's asked for a strict JSON tree of folders and files with full file contents inline, with the schema spelled out in the prompt itself and an explicit instruction to return nothing else.</p>
+
+<pre><code class="language-typescript">private buildCodeGenerationPrompt(request: CodeGenerationRequest): string {
+  return `Generate a ${request.complexity} ${request.framework} project called "${request.projectName}".
+
+Project Description: ${request.projectDescription}
+
+Required Features:
+${request.features.map(f => `- ${f}`).join('\n')}
+
+Please structure your response as a JSON object with this exact format:
+{
+  "files": [
+    {
+      "name": "folder-name",
+      "type": "folder",
+      "isOpen": true,
+      "children": [
+        { "name": "file-name.tsx", "type": "file", "content": "// Complete file content here" }
+      ]
+    }
+  ]
+}
+
+Important: Return ONLY the JSON object, no additional text or formatting.`;
+}</code></pre>
+
+            <p>The response gets parsed back into the same <code>FileStructure</code> tree the file explorer already renders, which is why the generated project can be dropped straight into the editor without a separate code path — as far as the UI is concerned, an AI-generated codebase and a hand-written one look identical.</p>
+        </div>
+    </div>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>
