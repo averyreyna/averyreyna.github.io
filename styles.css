@@ -17,7 +17,8 @@
 
 :root {
     --font-sans: 'ABC Arizona Sans Compressed', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --accent-industry: #9333ea;
+    --accent-industry: #431b4e;
+    --accent-wip: #a9cac8;
 }
 
 html, body {
@@ -283,8 +284,13 @@ a {
     flex-shrink: 0;
 }
 
+.contact-dot-wip {
+    background: var(--accent-wip);
+}
+
 /* dot sits in a line-tall box so it stays centered on the first line even when the text wraps */
-.is-private::before {
+.is-private::before,
+.is-wip::before {
     content: "";
     display: inline-block;
     width: 0.45em;
@@ -292,6 +298,10 @@ a {
     margin-right: 0.4em;
     vertical-align: top;
     background: radial-gradient(circle at center, var(--accent-industry) 0.225em, transparent 0.225em);
+}
+
+.is-wip::before {
+    background: radial-gradient(circle at center, var(--accent-wip) 0.225em, transparent 0.225em);
 }
 
 .is-private {
@@ -321,6 +331,10 @@ a {
 .sidebar-private-note {
     justify-content: flex-end;
     text-align: right;
+}
+
+.sidebar-private-note + .sidebar-private-note {
+    margin-top: 0.15em;
 }
 
 .iw-grid:not(.is-expanded) .iw-card:nth-child(n+4) {
