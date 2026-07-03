@@ -4,78 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Views Are Now Cheap</title>
+    <meta name="description" content="LLMs collapse the cost of building views on your data. What happens when software can be maximally specific, ephemeral, and disposable?">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Views Are Now Cheap">
+    <meta property="og:description" content="LLMs collapse the cost of building views on your data. What happens when software can be maximally specific, ephemeral, and disposable?">
+    <meta property="og:url" content="https://avryryn.io/conjectures/views-are-now-cheap/">
+    <meta property="og:image" content="https://avryryn.io/og-image.png">
+    <meta name="twitter:card" content="summary">
     <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
     <link rel="icon" type="image/svg+xml" href="/website.svg">
     <link rel="stylesheet" href="/styles.css">
     <style>
-        .post-back {
-            display: block;
-            margin-bottom: 2em;
-        }
-
-        .post-author {
-            font-weight: 700;
-            margin-bottom: 0.2em;
-        }
-
-        .post-title {
-            font-size: 1em;
-            font-weight: 700;
-            margin-bottom: 0.3em;
-        }
-
-        .post-date {
-            color: #888;
-            margin-bottom: 2em;
-        }
-
-        .post-body p {
-            margin-bottom: 1.2em;
-        }
-
-        .post-section-header {
-            font-weight: 700;
-            margin-top: 2em;
-            margin-bottom: 1.2em;
-        }
-
         blockquote {
             margin: 0 0 1.2em 0;
             padding: 0.8em 1.2em;
             border-left: 3px solid #ddd;
             color: #555;
         }
-
         .post-body blockquote p {
             margin-bottom: 0;
         }
-
-        .post-footnotes {
-            margin-top: 3em;
-            padding-top: 1em;
-            border-top: 1px solid #e0e0e0;
-            font-size: 0.85em;
-            color: #555;
-        }
-
-        .post-footnotes p {
-            margin-bottom: 0.6em;
-        }
-
-        sup a {
-            text-decoration: none;
-            color: inherit;
-        }
-
         .post-figure {
             margin: 2em 0 1.2em 0;
         }
-
         .post-figure-crop {
             overflow: hidden;
             aspect-ratio: 5 / 3;
         }
-
         .post-figure-crop img {
             width: 100%;
             height: 100%;
@@ -83,7 +38,6 @@
             object-position: center 55%;
             display: block;
         }
-
         .post-figure figcaption {
             font-size: 0.8em;
             color: #888;
@@ -92,7 +46,6 @@
             font-style: italic;
         }
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
 </head>
 <body>
     <div id="content">
@@ -127,7 +80,7 @@
 
             <figure class="post-figure">
                 <div class="post-figure-crop">
-                    <img data-src="alabaster.jpg" class="lozad">
+                    <img src="alabaster.jpg" loading="lazy" alt="">
                 </div>
                 <figcaption>Cropped section of <em>The Artist's Painting-Room</em>, Mary Ann Rebecca Alabaster, 1830. © Art Gallery of Ontario.</figcaption>
             </figure>
@@ -159,9 +112,5 @@
             <a class="post-nav-link post-nav-next" href="/conjectures/unfinished-thoughts-from-smed-reu">Unfinished Thoughts from SMED REU →</a>
         </nav>
     </div>
-    <script>
-        const observer = lozad();
-        observer.observe();
-    </script>
 </body>
 </html>

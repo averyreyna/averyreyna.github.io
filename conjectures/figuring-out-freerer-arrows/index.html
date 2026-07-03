@@ -4,85 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Figuring Out Freerer Arrows</title>
+    <meta name="description" content="Monads are essentially a design pattern for sequencing computations that have side effects.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Figuring Out Freerer Arrows">
+    <meta property="og:description" content="Monads are essentially a design pattern for sequencing computations that have side effects.">
+    <meta property="og:url" content="https://avryryn.io/conjectures/figuring-out-freerer-arrows/">
+    <meta property="og:image" content="https://avryryn.io/og-image.png">
+    <meta name="twitter:card" content="summary">
     <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
     <link rel="icon" type="image/svg+xml" href="/website.svg">
     <link rel="stylesheet" href="/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/haskell.min.js"></script>
-    <style>
-        .post-back {
-            display: block;
-            margin-bottom: 2em;
-        }
-
-        .post-author {
-            font-weight: 700;
-            margin-bottom: 0.2em;
-        }
-
-        .post-title {
-            font-size: 1em;
-            font-weight: 700;
-            margin-bottom: 0.3em;
-        }
-
-        .post-date {
-            color: #888;
-            margin-bottom: 2em;
-        }
-
-        .post-body p {
-            margin-bottom: 1.2em;
-        }
-
-        .post-section-header {
-            font-weight: 700;
-            margin-top: 2em;
-            margin-bottom: 1.2em;
-        }
-
-        .post-footnotes {
-            margin-top: 3em;
-            padding-top: 1em;
-            border-top: 1px solid #e0e0e0;
-            font-size: 0.85em;
-            color: #555;
-        }
-
-        .post-footnotes p {
-            margin-bottom: 0.6em;
-        }
-
-        sup a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        pre {
-            margin: 1.2em 0;
-            border-radius: 4px;
-            overflow-x: auto;
-        }
-
-        code {
-            font-family: 'Consolas', 'Menlo', 'Monaco', monospace;
-            font-size: 0.85em;
-        }
-
-        pre code.hljs {
-            line-height: 1.5;
-            padding: 1.2em 1.4em;
-        }
-
-        code:not(.hljs) {
-            background: #f3f3f3;
-            color: #000000;
-            padding: 0.15em 0.35em;
-            border-radius: 3px;
-        }
-    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/haskell.min.js" defer></script>
 </head>
 <body>
     <div id="content">
@@ -291,6 +226,6 @@ echo url1 url2 params =
             <a class="post-nav-link post-nav-next" href="/conjectures/placement-atomicity-and-crash-safety">Placement, Atomicity, and Crash Safety →</a>
         </nav>
     </div>
-    <script>hljs.highlightAll();</script>
+    <script>document.addEventListener('DOMContentLoaded', () => hljs.highlightAll());</script>
 </body>
 </html>

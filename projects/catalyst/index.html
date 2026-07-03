@@ -4,70 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catalyst</title>
+    <meta name="description" content="Catalyst is a desktop editor, built with PyQt6, for turning photos into pointillist mosaics.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Catalyst">
+    <meta property="og:description" content="Catalyst is a desktop editor, built with PyQt6, for turning photos into pointillist mosaics.">
+    <meta property="og:url" content="https://avryryn.io/projects/catalyst/">
+    <meta property="og:image" content="https://avryryn.io/og-image.png">
+    <meta name="twitter:card" content="summary">
     <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
     <link rel="icon" type="image/svg+xml" href="/website.svg">
     <link rel="stylesheet" href="/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
-    <style>
-        .post-back {
-            display: block;
-            margin-bottom: 2em;
-        }
-
-        .post-title {
-            font-size: 1em;
-            font-weight: 700;
-            margin-bottom: 0.3em;
-        }
-
-        .post-date {
-            color: #888;
-            margin-bottom: 2em;
-        }
-
-        .post-body p {
-            margin-bottom: 1.2em;
-        }
-
-        pre {
-            margin: 1.2em 0;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        code {
-            font-family: 'Consolas', 'Menlo', 'Monaco', monospace;
-            font-size: 0.85em;
-        }
-
-        pre code.hljs {
-            display: block;
-            line-height: 1.5;
-            padding: 1.2em 1.4em;
-        }
-
-        code:not(.hljs) {
-            background: #f3f3f3;
-            color: #000000;
-            padding: 0.15em 0.35em;
-            border-radius: 3px;
-        }
-
-        .post-media {
-            margin-bottom: 2em;
-            border: 1px solid #e0e0e0;
-            border-radius: 6px;
-            overflow: hidden;
-        }
-
-        .post-media img {
-            display: block;
-            width: 100%;
-            height: auto;
-        }
-    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js" defer></script>
 </head>
 <body>
     <div id="content">
@@ -77,7 +26,7 @@
 
         <div class="post-body">
             <div class="post-media">
-                <img src="/assets/projects/independent/catalyst.gif" alt="Catalyst preview" loading="lazy">
+                <video src="/assets/projects/independent/catalyst.mp4" autoplay loop muted playsinline aria-label="Catalyst preview"></video>
             </div>
 
             <p>Catalyst is a desktop editor, built with <strong>PyQt6</strong>, for turning photos into pointillist mosaics. You load an image, tune block size and color settings, and flip between the original and processed views side by side before exporting a PNG or a print-ready PDF with grid overlays and ruler ticks sized for an actual painting layout.</p>
@@ -114,6 +63,6 @@
             <p>That gap-insertion step is the same trick twice: build a coordinate remap from old pixel indices to their gapped positions, then scatter the whole block-averaged image into a zeroed canvas with a single fancy-indexing assignment. It's the kind of operation that would be a nested loop in most image tools; here it's two <code>np.ix_</code> calls.</p>
         </div>
     </div>
-    <script>hljs.highlightAll();</script>
+    <script>document.addEventListener('DOMContentLoaded', () => hljs.highlightAll());</script>
 </body>
 </html>

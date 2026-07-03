@@ -4,57 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chaperone</title>
+    <meta name="description" content="Chaperone is an editor for a pandas-like method-chain DSL that gives you live, data-derived feedback as you type, in the style of Hazel's hole-driven editors.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Chaperone">
+    <meta property="og:description" content="Chaperone is an editor for a pandas-like method-chain DSL that gives you live, data-derived feedback as you type, in the style of Hazel's hole-driven editors.">
+    <meta property="og:url" content="https://avryryn.io/projects/chaperone/">
+    <meta property="og:image" content="https://avryryn.io/og-image.png">
+    <meta name="twitter:card" content="summary">
     <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
     <link rel="icon" type="image/svg+xml" href="/website.svg">
     <link rel="stylesheet" href="/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/typescript.min.js"></script>
-    <style>
-        .post-back {
-            display: block;
-            margin-bottom: 2em;
-        }
-
-        .post-title {
-            font-size: 1em;
-            font-weight: 700;
-            margin-bottom: 0.3em;
-        }
-
-        .post-date {
-            color: #888;
-            margin-bottom: 2em;
-        }
-
-        .post-body p {
-            margin-bottom: 1.2em;
-        }
-
-        pre {
-            margin: 1.2em 0;
-            border-radius: 4px;
-            overflow-x: auto;
-        }
-
-        code {
-            font-family: 'Consolas', 'Menlo', 'Monaco', monospace;
-            font-size: 0.85em;
-        }
-
-        pre code.hljs {
-            line-height: 1.5;
-            padding: 1.2em 1.4em;
-            border-radius: 4px;
-        }
-
-        code:not(.hljs) {
-            background: #f3f3f3;
-            color: #000000;
-            padding: 0.15em 0.35em;
-            border-radius: 3px;
-        }
-    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/typescript.min.js" defer></script>
 </head>
 <body>
     <div id="content">
@@ -84,6 +46,6 @@
             <p>Because the type walk and the value walk mirror each other over the same parsed program, swapping the underlying CSV re-runs both at once: a drift pass diffs schema A against schema B and names exactly which op's check flips from pass to fail, while the result pane shows the numbers actually moving. A hole with no column picked yet is still hole-tolerant: aggregations show a <code>⬚</code> gap that fills in the instant you choose one.</p>
         </div>
     </div>
-    <script>hljs.highlightAll();</script>
+    <script>document.addEventListener('DOMContentLoaded', () => hljs.highlightAll());</script>
 </body>
 </html>

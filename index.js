@@ -1,8 +1,3 @@
-function initLozad() {
-    if (typeof lozad === 'undefined') return;
-    lozad().observe();
-}
-
 function parseEntryDate(entry) {
     return new Date(entry.textContent.trim().split('\n').pop().trim());
 }
@@ -120,8 +115,6 @@ const listPreviews = [
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
-    initLozad();
-
     for (const preview of listPreviews) {
         const hidden = initListPreview(preview);
         if (hidden > 0) {

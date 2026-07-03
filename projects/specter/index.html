@@ -4,70 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Specter</title>
+    <meta name="description" content="Specter is a writing assistant built around a constraint: it never writes text for you, returning directions to develop and areas to improve instead.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Specter">
+    <meta property="og:description" content="Specter is a writing assistant built around a constraint: it never writes text for you, returning directions to develop and areas to improve instead.">
+    <meta property="og:url" content="https://avryryn.io/projects/specter/">
+    <meta property="og:image" content="https://avryryn.io/og-image.png">
+    <meta name="twitter:card" content="summary">
     <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
     <link rel="icon" type="image/svg+xml" href="/website.svg">
     <link rel="stylesheet" href="/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/typescript.min.js"></script>
-    <style>
-        .post-back {
-            display: block;
-            margin-bottom: 2em;
-        }
-
-        .post-title {
-            font-size: 1em;
-            font-weight: 700;
-            margin-bottom: 0.3em;
-        }
-
-        .post-date {
-            color: #888;
-            margin-bottom: 2em;
-        }
-
-        .post-body p {
-            margin-bottom: 1.2em;
-        }
-
-        pre {
-            margin: 1.2em 0;
-            border-radius: 4px;
-            overflow-x: auto;
-        }
-
-        code {
-            font-family: 'Consolas', 'Menlo', 'Monaco', monospace;
-            font-size: 0.85em;
-        }
-
-        pre code.hljs {
-            line-height: 1.5;
-            padding: 1.2em 1.4em;
-            border-radius: 4px;
-        }
-
-        code:not(.hljs) {
-            background: #f3f3f3;
-            color: #000000;
-            padding: 0.15em 0.35em;
-            border-radius: 3px;
-        }
-
-        .post-media {
-            margin: 0 0 2em;
-            border: 1px solid #e0e0e0;
-            border-radius: 6px;
-            overflow: hidden;
-        }
-
-        .post-media img {
-            display: block;
-            width: 100%;
-            height: auto;
-        }
-    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/typescript.min.js" defer></script>
 </head>
 <body>
     <div id="content">
@@ -77,7 +26,7 @@
 
         <div class="post-body">
             <div class="post-media">
-                <img src="/assets/projects/independent/specter.gif" alt="Specter preview" loading="lazy">
+                <video src="/assets/projects/independent/specter.mp4" autoplay loop muted playsinline aria-label="Specter preview"></video>
             </div>
 
             <p>Specter is a writing assistant built around a deliberate constraint: the system prompt tells <strong>DeepSeek</strong> its goal is "not to write the text for the user, but to help the user write better." Instead of generating replacement prose, every analysis pass returns two lists: potential directions to develop and specific areas for improvement. That keeps the suggestions ephemeral scaffolding around your draft rather than content that could just replace it.</p>
@@ -99,6 +48,6 @@ setAreasForImprovement(improvements);</code></pre>
             <p>A separate "inspiration" mode uses a different system prompt entirely: one asking for opening hooks and an outline rather than critique. Its output gets appended straight into the draft textarea instead of a suggestions panel, since the point there is to get you unstuck, not to evaluate what you've already written.</p>
         </div>
     </div>
-    <script>hljs.highlightAll();</script>
+    <script>document.addEventListener('DOMContentLoaded', () => hljs.highlightAll());</script>
 </body>
 </html>
