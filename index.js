@@ -69,20 +69,6 @@ const listPreviews = [
         toggleId: 'work-toggle',
     },
     {
-        listId: 'conjectures-list',
-        extraId: 'conjectures-extra',
-        toggleWrapId: 'conjectures-read-more',
-        toggleId: 'conjectures-toggle',
-        sortFn: (a, b) => parseEntryDate(b) - parseEntryDate(a),
-    },
-    {
-        listId: 'blog-list',
-        extraId: 'blog-extra',
-        toggleWrapId: 'blog-read-more',
-        toggleId: 'blog-toggle',
-        sortFn: (a, b) => parseEntryDate(b) - parseEntryDate(a),
-    },
-    {
         listId: 'current-media-list',
         extraId: 'current-media-extra',
         toggleWrapId: 'current-media-read-more',
