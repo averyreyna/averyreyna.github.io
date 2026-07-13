@@ -92,25 +92,18 @@ a {
     color: #00e;
 }
 
-.sidebar-nav,
 .sidebar-links {
     display: flex;
     flex-direction: column;
     gap: 0.2em;
 }
 
-.sidebar-nav {
-    margin-bottom: 1.4em;
-}
-
-.sidebar-nav a,
 .sidebar-links a {
     display: block;
     color: #00e;
     text-decoration: none;
 }
 
-.sidebar-nav a:hover,
 .sidebar-links a:hover {
     text-decoration: underline;
 }
@@ -525,7 +518,6 @@ sup a {
         text-align: left;
     }
 
-    .sidebar-nav,
     .sidebar-links {
         flex-direction: row;
         flex-wrap: wrap;
