@@ -1,0 +1,288 @@
+{
+  "axis": {
+    "labels": {
+      "top": "ESSENTIAL",
+      "bottom": "PERIPHERAL",
+      "left": "PERSONAL",
+      "right": "PROFESSIONAL"
+    },
+    "links": [
+      { "label": "Email", "icon": "mail", "url": "mailto:avery.reyna16@gmail.com", "x": -0.30, "y": 0.68 },
+      { "label": "Are.na", "icon": "star", "url": "https://www.are.na/avery-reyna", "x": -0.28, "y": 0.16 },
+      { "label": "Blog", "icon": "rss_feed", "url": "/gulf-of-execution/", "x": -0.22, "y": -0.20 },
+      { "label": "Forest", "icon": "forest", "url": "https://averyreyna.github.io/hermitianmatrix", "x": -0.68, "y": -0.76 },
+      { "label": "Photos", "icon": "photo_camera", "url": "https://vsco.co/avryryn", "x": -0.50, "y": -0.42 },
+      { "label": "Writing", "icon": "edit_note", "url": "https://semanticdistance.io", "x": -0.62, "y": 0.62 },
+      { "label": "GitHub", "icon": "code", "url": "https://github.com/averyreyna", "x": 0.22, "y": 0.76 },
+      { "label": "CV", "icon": "description", "url": "/assets/files/cv/avery_reyna_cv.pdf", "x": 0.72, "y": 0.28 },
+      { "label": "Google Scholar", "icon": "school", "url": "https://scholar.google.com/citations?user=WecCIHwAAAAJ&hl=en", "x": 0.56, "y": 0.68 },
+      { "label": "LinkedIn", "icon": "work", "url": "https://linkedin.com/in/avery-reyna", "x": 0.40, "y": -0.48 }
+    ]
+  },
+  "sections": [
+    {
+      "label": "Work",
+      "items": [
+        { "date": "2025 — 2026", "title": "Self Adjoint Operator", "summary": "Design Engineer", "footnoteLink": { "url": "https://archive.ph/t8bbN" } },
+        { "date": "2023 — 2026", "title": "Capital One", "summary": "Software Engineer", "footnoteLink": { "url": "https://www.capitalone.com" } },
+        { "date": "2022", "title": "Columbia University", "summary": "REU Participant", "footnoteLink": { "url": "https://www.columbia.edu" } },
+        { "date": "2021", "title": "University of Washington Tacoma", "summary": "REU Participant", "footnoteLink": { "url": "https://www.columbia.edu" } },
+        { "date": "2020", "title": "Progressive Turnout Project", "summary": "Field Representative", "footnoteLink": { "url": "https://www.progressiveturnoutproject.com" } }
+      ]
+    },
+    { "type": "banner", "label": "Independent + New Grad Work" },
+    {
+      "label": "Prototypes",
+      "items": [
+        { "date": "2026", "title": "Convoy v1.5", "summary": "Node canvas for data wrangling", "wip": true, "footnoteLink": { "url": "https://convoy-one.vercel.app" } },
+        { "date": "2026", "title": "Daydream", "summary": "AI Mermaid diagrams from code", "footnoteLink": { "url": "/projects/daydream/" } },
+        { "date": "2026", "title": "Envisiage", "summary": "Inline AI with anchored annotations", "footnoteLink": { "url": "/projects/envisiage/" } },
+        { "date": "2026", "title": "Catalyst", "summary": "Pointillist photo editor", "footnoteLink": { "url": "/projects/catalyst/" } },
+        { "date": "2026", "title": "Convoy", "summary": "Node canvas editor + Datawrapper export", "footnoteLink": { "url": "/projects/convoy-v1/" } },
+        { "date": "2025", "title": "Palestra", "summary": "In-context Q&A on AI codebases", "footnoteLink": { "url": "/projects/palestra/" } },
+        { "date": "2025", "title": "Rerank", "summary": "Summarization models for text annotation", "footnoteLink": { "url": "/projects/rerank/" } },
+        { "date": "2025", "title": "Perceptor", "summary": "CLI assistant for building software", "footnoteLink": { "url": "/projects/perceptor/" } },
+        { "date": "2025", "title": "Scrutinize", "summary": "Human-centered annotation on essays", "footnoteLink": { "url": "/projects/scrutinize/" } },
+        { "date": "2025", "title": "Specter", "summary": "Ephemeral AI for writing", "footnoteLink": { "url": "/projects/specter/" } },
+        { "date": "2025", "title": "Meta Measure", "summary": "Claude rates cross-discipline ideas", "footnoteLink": { "url": "/projects/meta-measure/" } }
+      ]
+    },
+    {
+      "label": "Experiments",
+      "items": [
+        { "date": "2026", "title": "Chaperone", "summary": "Live, data-derived schema feedback", "wip": true, "footnoteLink": { "url": "/projects/chaperone/" } },
+        { "date": "2026", "title": "Conjure Code", "summary": "Repo viz with aperture-style UX", "footnoteLink": { "url": "/projects/conjure-code/" } },
+        { "date": "2026", "title": "CoupView", "summary": "POC global illegal-leader turnover map", "footnoteLink": { "url": "/projects/coupview/" } },
+        { "date": "2026", "title": "Transparent", "summary": "LLMs build UIs and explain code", "footnoteLink": { "url": "/projects/transparent/" } },
+        { "date": "2026", "title": "Form", "summary": "Malleable notes + codegen snippets", "footnoteLink": { "url": "/projects/form/" } },
+        { "date": "2025", "title": "GraphQL Scraper", "summary": "Stargazer data for agentic repos", "footnoteLink": { "url": "https://www.instagram.com/p/DOKMaynD8U5/" } }
+      ]
+    },
+    {
+      "label": "Research",
+      "items": [
+        { "date": "2026", "title": "They Aren't Vibing", "summary": "Submitted", "footnoteLink": { "url": "https://ai-agents-for-coding-in-2025.vercel.app/" } },
+        { "date": "2025", "title": "Professional Software Developers Don't Vibe", "summary": "Preprint", "footnoteLink": { "url": "https://arxiv.org/abs/2512.14012" } }
+      ]
+    },
+    {
+      "label": "Industry",
+      "items": [
+        {
+          "date": "2025",
+          "title": "Metrics Playground",
+          "summary": "Teaching engineers agentic coding",
+          "footnoteLink": { "url": "/projects/metrics-playground/" }
+        },
+        {
+          "date": "2025",
+          "title": "Admin Metrics Dashboard",
+          "summary": "In-house heartbeat monitoring solution",
+          "footnoteLink": { "url": "/projects/admin-metrics-dashboard/" }
+        },
+        {
+          "date": "2024",
+          "title": "ILM Portal",
+          "summary": "Lifecycle for custom authorization plugins",
+          "footnoteLink": { "url": "/projects/ilm-portal/" }
+        },
+        {
+          "date": "2024",
+          "title": "File Upload Tool",
+          "summary": "Native content verifier upgrade",
+          "footnoteLink": { "url": "/projects/file-upload-tool/" }
+        },
+        {
+          "date": "2024",
+          "title": "Penetration Test Checklists",
+          "summary": "Rendering simulated cyberattacks",
+          "footnoteLink": { "url": "/projects/penetration-test-checklists/" }
+        }
+      ]
+    },
+    {
+      "label": "Media",
+      "items": [
+        { "date": "2026", "title": "Coup Catalyst", "summary": "RAND Corporation", "private": true },
+        { "date": "2026", "title": "Agent Use for Coding in 2025", "summary": "MLOps Community", "footnoteLink": { "url": "https://home.mlops.community/public/videos/agent-use-for-coding-in-2025-mlops-reading-group-january-2026" } },
+        { "date": "2026", "title": "Developers Use AI Coding Tools To Get Started", "summary": "Forbes", "footnoteLink": { "url": "https://www.forbes.com/sites/joetoscano1/2026/01/20/developers-use-ai-coding-tools-to-get-started-not-finish-the-job/" } },
+        { "date": "2026", "title": "Professional Software Developers Don't Vibe, They Control", "summary": "Hacker News", "footnoteLink": { "url": "https://news.ycombinator.com/item?id=46437391" } }
+      ]
+    },
+    {
+      "label": "Resources",
+      "items": [
+        { "date": "2025", "title": "Recurse Center", "summary": "Essay", "footnoteLink": { "url": "/assets/files/resources/industry/recurse_center_essays.pdf" } },
+        { "date": "2024", "title": "SWE Positions", "summary": "Resumé", "footnoteLink": { "url": "/assets/files/resources/industry/avery_reyna_resume.pdf" } },
+        { "date": "2024", "title": "TDP", "summary": "Resumé", "footnoteLink": { "url": "/assets/files/resources/industry/avery_reyna_tdp_resume.pdf" } },
+        { "date": "2024", "title": "CV", "summary": "Master's Application", "footnoteLink": { "url": "/assets/files/resources/graduate/avery_reyna_merrimack_cv.pdf" } },
+        { "date": "2024", "title": "Merrimack Personal Statement", "summary": "Master's Application", "footnoteLink": { "url": "/assets/files/resources/graduate/merrimack_personal_statement.pdf" } },
+        { "date": "2024", "title": "Georgia Tech Essays", "summary": "Master's Application", "footnoteLink": { "url": "/assets/files/resources/graduate/georgia_tech_essays.pdf" } }
+      ]
+    },
+    { "type": "banner", "label": "Undergraduate Work" },
+    {
+      "label": "Papers",
+      "items": [
+        { "date": "2024", "title": "Help Supporters", "summary": "CHI 2024", "footnoteLink": { "url": "https://dl.acm.org/doi/10.1145/3613904.3642816" } },
+        { "date": "2023", "title": "Spatial Interactions in Desktop Screen Readers", "summary": "ASSETS 2023", "footnoteLink": { "url": "https://dl.acm.org/doi/10.1145/3597638.3608412" } }
+      ]
+    },
+    {
+      "label": "Public Scholarship",
+      "labelHref": "https://scholar.google.com/citations?user=WecCIHwAAAAJ&hl=en",
+      "items": [
+        { "date": "2023", "title": "The Threat of Artificial Intelligence", "summary": "The Loop", "footnoteLink": { "url": "https://theloop.ecpr.eu/the-threat-of-artificial-intelligence-is-not-just-real-its-here/" } },
+        { "date": "2022", "title": "Interdisciplinary Social Science", "summary": "The Loop", "footnoteLink": { "url": "https://theloop.ecpr.eu/interdisciplinary-social-science-and-the-limits-of-quantitative-research/" } },
+        { "date": "2022", "title": "Anti-Coup Strategies Should Address Civilian Coup Allies", "summary": "Just Security", "footnoteLink": { "url": "https://www.justsecurity.org/82471/anti-coup-strategies-should-address-civilian-coup-allies/" } },
+        { "date": "2022", "title": "Reflecting on Coup Risk in Mali", "summary": "Political Violence at a Glance", "footnoteLink": { "url": "https://politicalviolenceataglance.org/2022/06/14/reflecting-on-coup-risk-in-mali/" } },
+        { "date": "2022", "title": "Integrated Data in the United States", "summary": "New America", "footnoteLink": { "url": "https://www.newamerica.org/digital-impact-governance-initiative/blog/integrated-data-in-the-united-states-a-look-at-new-yorks-workforce-portal/" } },
+        { "date": "2021", "title": "Latin America's Vaccination Efforts", "summary": "Council on Foreign Relations", "footnoteLink": { "url": "https://www.cfr.org/in-brief/latin-americas-vaccination-efforts-what-know" } }
+      ]
+    },
+    {
+      "label": "Projects",
+      "items": [
+        { "date": "2022", "title": "CoupCast", "summary": "ML + REIGN for likely coups", "footnoteLink": { "url": "https://www.deeplearning.ai/the-batch/coupcast-prediction" } },
+        { "date": "2021", "title": "PickupPlaylist", "summary": "Video recommendations with BART", "private": true },
+        { "date": "2021", "title": "KH Admin Tool", "summary": "Hackathon event scheduler", "private": true },
+        { "date": "2021", "title": "MOSafely", "summary": "Dashboard for online safety", "footnoteLink": { "url": "https://mosafely.org/" } }
+      ]
+    },
+    {
+      "label": "Industry",
+      "items": [
+        { "date": "2023", "title": "Fundraising Redesign", "summary": "UI overhaul on internal data platform", "private": true },
+        { "date": "2021", "title": "Donation Patterns", "summary": "Logistic regression models for donation volume", "private": true }
+      ]
+    },
+    {
+      "label": "Presentations",
+      "items": [
+        { "date": "2022", "title": "Cartographic Limits", "summary": "NACIS '22", "footnoteLink": { "url": "https://youtu.be/Og9azEDcG4k?si=OQHwmA7IQwXdc1u3" } },
+        { "date": "2022", "title": "Legacies of Instability", "summary": "ISA South '22", "private": true },
+        { "date": "2022", "title": "Applied ML", "summary": "UCF SURPS '22", "footnoteLink": { "url": "/assets/files/presentations/summer_undergraduate_research_poster_showcase_22.pdf" } },
+        { "date": "2022", "title": "TextRank and LexRank", "summary": "UCF SRW '22", "footnoteLink": { "url": "/assets/files/presentations/student_research_week_22.pdf" } },
+        { "date": "2021", "title": "Adolescent Online Safety", "summary": "UCF SRW '21", "footnoteLink": { "url": "/assets/files/presentations/student_research_week_21.pdf" } }
+      ]
+    },
+    {
+      "label": "Internships",
+      "items": [
+        { "date": "2023", "title": "ActBlue Technical Services", "summary": "PM Intern", "private": true },
+        { "date": "2022 — 2023", "title": "ActBlue", "summary": "Internship", "footnoteLink": { "url": "https://www.actblue.com" } },
+        { "date": "2022", "title": "KRC Research", "summary": "Research Intern", "footnoteLink": { "url": "https://www.krcresearch.com" } },
+        { "date": "2021 — 2022", "title": "Swing Left", "summary": "Analytics Intern", "footnoteLink": { "url": "https://swingleft.org" } },
+        { "date": "2021 — 2022", "title": "New America", "summary": "DIGI Intern", "footnoteLink": { "url": "https://www.newamerica.org" } },
+        { "date": "2021", "title": "Council on Foreign Relations", "summary": "Editorial Intern", "footnoteLink": { "url": "https://www.cfr.org" } },
+        { "date": "2021", "title": "The Hub Project", "summary": "PREA Intern", "footnoteLink": { "url": "https://thehubproject.org" } },
+        { "date": "2020", "title": "Main Street One", "summary": "Tech Intern", "private": true },
+        { "date": "2020", "title": "The COVID-19 Tracking Project", "summary": "Analytics Intern", "footnoteLink": { "url": "https://covidtracking.com" } },
+        { "date": "2020", "title": "BallotReady", "summary": "Research Intern", "footnoteLink": { "url": "https://www.ballotready.org" } },
+        { "date": "2020", "title": "UNA-Orlando", "summary": "Research Intern", "footnoteLink": { "url": "https://unausa.org/chapter/orlando/" } },
+        { "date": "2020", "title": "PMBF Program", "summary": "Research Intern", "footnoteLink": { "url": "https://sciences.ucf.edu/pmbfprogram/" } }
+      ]
+    },
+    {
+      "label": "Service",
+      "items": [
+        { "date": "2021 — 2023", "title": "Knight Hacks", "summary": "Director of Workshops → UX Research", "footnoteLink": { "url": "https://www.knighthacks.org" } },
+        { "date": "2021 — 2022", "title": "UCF Office of Undergraduate Research", "summary": "Student Leader", "footnoteLink": { "url": "https://our.ucf.edu" } },
+        { "date": "2020", "title": "NextGen America", "summary": "Digital Organizer", "footnoteLink": { "url": "https://nextgenamerica.org" } },
+        { "date": "2020", "title": "Organizing Together 2020", "summary": "Digital Organizer", "footnoteLink": { "url": "https://web.archive.org/web/20200930070430/https://organizing2020.com/" } }
+      ]
+    },
+    {
+      "label": "Teaching",
+      "items": [
+        { "date": "2020", "title": "SYO 3530", "summary": "Social Power & Inequality", "footnoteLink": { "url": "https://sciences.ucf.edu/cosas/wp-content/uploads/sites/21/2022/05/Sociology-Restricted-Electives-2022.pdf" } }
+      ]
+    },
+    {
+      "label": "Media",
+      "items": [
+        { "date": "2022", "title": "WebNExt", "summary": "CEAL Lab", "footnoteLink": { "url": "https://ceal.cs.columbia.edu/webnext" } },
+        { "date": "2021", "title": "Digital Transformation Opportunities", "summary": "New America", "footnoteLink": { "url": "https://www.newamerica.org/digital-impact-governance-initiative/reports/digital-transformation-opportunities-and-challenges-in-the-lower-mekong-region/" } },
+        { "date": "2021", "title": "Reconceptualizing Public Procurement", "summary": "New America", "footnoteLink": { "url": "https://www.newamerica.org/digital-impact-governance-initiative/reports/reconceptualizing-public-procurement/" } },
+        { "date": "2021", "title": "Contributing to an Open Source Project", "summary": "Knight Hacks", "footnoteLink": { "url": "https://www.youtube.com/watch?v=YAgk39hzpDo" } },
+        { "date": "2021", "title": "How To Get Into The Industry", "summary": "Knight Hacks", "footnoteLink": { "url": "https://www.youtube.com/watch?v=xAXvxLWU7Ug" } },
+        { "date": "2021", "title": "Marriage Equality: Global Comparisons", "summary": "Council on Foreign Relations", "footnoteLink": { "url": "https://www.cfr.org/backgrounder/marriage-equality-global-comparisons" } },
+        { "date": "2021", "title": "How the U.S. Patrols Its Borders", "summary": "Council on Foreign Relations", "footnoteLink": { "url": "https://www.cfr.org/backgrounder/how-us-patrols-its-borders" } },
+        { "date": "2020", "title": "The U.S. Vice President and Foreign Policy", "summary": "Council on Foreign Relations", "footnoteLink": { "url": "https://www.cfr.org/backgrounder/us-vice-president-and-foreign-policy" } },
+        { "date": "2020", "title": "The Fukushima Disaster", "summary": "Council on Foreign Relations", "footnoteLink": { "url": "https://www.cfr.org/in-brief/fukushima-disaster-didnt-scare-world-nuclear-power" } },
+        { "date": "2020", "title": "Sustainable Solutions for Puerto Rico", "summary": "PMBF Podcast Series", "footnoteLink": { "url": "https://www.youtube.com/watch?v=HolsVNecajA" } }
+      ]
+    },
+    {
+      "label": "Resources",
+      "items": [
+        { "date": "2022", "title": "CODA", "summary": "New Grad Resumé", "footnoteLink": { "url": "/assets/files/resources/undergraduate/new_grad/avery_reyna_coda_resume.pdf" } },
+        { "date": "2022", "title": "Predoc Positions", "summary": "New Grad Resumé", "footnoteLink": { "url": "/assets/files/resources/undergraduate/new_grad/avery_reyna_research_cv.pdf" } },
+        { "date": "2022", "title": "UX Research Positions", "summary": "New Grad Resumé", "footnoteLink": { "url": "/assets/files/resources/undergraduate/new_grad/avery_reyna_ux_resume.pdf" } },
+        { "date": "2021", "title": "ActBlue", "summary": "Internship Cover Letter", "footnoteLink": { "url": "/assets/files/resources/undergraduate/internships/actblue_cover_letter.pdf" } },
+        { "date": "2021", "title": "KRC Research", "summary": "Internship Cover Letter", "footnoteLink": { "url": "/assets/files/resources/undergraduate/internships/krc_research_cover_letter.pdf" } },
+        { "date": "2021", "title": "New America", "summary": "Internship Cover Letter", "footnoteLink": { "url": "/assets/files/resources/undergraduate/internships/new_america_cover_letter.pdf" } },
+        { "date": "2021", "title": "The Hub Project", "summary": "Internship Cover Letter", "footnoteLink": { "url": "/assets/files/resources/undergraduate/internships/the_hub_project_cover_letter.pdf" } },
+        { "date": "2021", "title": "ML in Cybersecurity REU", "summary": "Essay", "footnoteLink": { "url": "/assets/files/resources/undergraduate/reu/machine_learning_in_cybersecurity.pdf" } },
+        { "date": "2021", "title": "SMED REU", "summary": "Essay", "footnoteLink": { "url": "/assets/files/resources/undergraduate/reu/spatial_models_and_electoral_districting.pdf" } },
+        { "date": "2021", "title": "The SPEC Lab REU", "summary": "Essay", "footnoteLink": { "url": "/assets/files/resources/undergraduate/reu/the_security_and_political_economy_lab.pdf" } }
+      ]
+    }
+  ],
+  "anotherLife": {
+    "sections": [
+      {
+        "label": "Awards",
+        "items": [
+          { "date": "2018", "title": "Debate Academic All-American", "summary": "National" },
+          { "date": "2018", "title": "NSDA Degree of Superior Distinction", "summary": "National" },
+          { "date": "2018", "title": "Silver Tournament of Champions Qualifier in Public Forum", "summary": "National" },
+          { "date": "2018", "title": "AP Scholar", "summary": "National" },
+          { "date": "2018", "title": "3rd Place at DECA Regionals in Marketing Team Decision Making", "summary": "State & Regional" },
+          { "date": "2017 — 2018", "title": "Semifinalist in Student Congress at NYC Invitational", "summary": "National" },
+          { "date": "2014 — 2018", "title": "Superior Ranking at FBA Wind Orchestra Evaluation", "summary": "State & Regional" },
+          { "date": "2017", "title": "DECA National Qualifier in Marketing Team Decision Making", "summary": "National" },
+          { "date": "2017", "title": "Gold Tournament of Champions Qualifier in Student Congress", "summary": "National" },
+          { "date": "2014", "title": "Finalist in Varsity Student Congress at Colt Invitational", "summary": "State & Regional" },
+          { "date": "2017", "title": "Semifinalist in Student Congress at Barkley Forum", "summary": "National" },
+          { "date": "2017", "title": "Semifinalist in Varsity Student Congress at Florida Blue Key", "summary": "National" },
+          { "date": "2017", "title": "Semifinalist in JV Public Forum at Florida Blue Key", "summary": "National" },
+          { "date": "2017", "title": "6th Place at DECA State in Marketing Team Decision Making", "summary": "State & Regional" },
+          { "date": "2017", "title": "2nd Place at Democracy in Action Legislation Writing", "summary": "State & Regional" },
+          { "date": "2016", "title": "Top 12 at DECA Regionals in Business Management Long Paper", "summary": "State & Regional" },
+          { "date": "2016", "title": "Outstanding Distinction in Fine Arts", "summary": "School" },
+          { "date": "2015", "title": "Semifinalist in Student Congress at NSDA Qualifiers", "summary": "State & Regional" }
+        ]
+      },
+      {
+        "label": "Activities",
+        "items": [
+          { "date": "2017 — 2018", "title": "Falcon Speech & Debate", "summary": "Student Congress Squad Leader" },
+          { "date": "2017 — 2018", "title": "HOPE Sunshine Club", "summary": "President" },
+          { "date": "2017 — 2018", "title": "College Advisory Club", "summary": "President" },
+          { "date": "2014 — 2018", "title": "Falcon Sound", "summary": "Bassoon Section Leader & First Chair" }
+        ]
+      },
+      {
+        "label": "Teaching",
+        "items": [
+          { "date": "2017 — 2018", "title": "English III Honors", "summary": "Teaching Assistant" }
+        ]
+      },
+      {
+        "label": "Summers",
+        "items": [
+          { "date": "2016", "title": "Champion Briefs Institute", "summary": "Nova Southeastern University" }
+        ]
+      },
+      {
+        "label": "Service",
+        "items": [
+          { "date": "2017 — 2018", "title": "Young Falcon Flyers", "summary": "Debate Coach" },
+          { "date": "2017 — 2018", "title": "Relay for Life", "summary": "Fundraising Committee" },
+          { "date": "2016 — 2018", "title": "Falcon Speech & Debate", "summary": "Debate Mentor" }
+        ]
+      }
+    ]
+  }
+}
