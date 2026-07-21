@@ -83,7 +83,7 @@
         {
           "date": "2024",
           "title": "ILM Portal",
-          "summary": "Lifecycle for custom authorization plugins",
+          "summary": "Home for custom authorization plugins",
           "footnoteLink": { "url": "/projects/ilm-portal/" }
         },
         {
@@ -134,7 +134,7 @@
       "items": [
         { "date": "2023", "title": "The Threat of Artificial Intelligence", "summary": "The Loop", "footnoteLink": { "url": "https://theloop.ecpr.eu/the-threat-of-artificial-intelligence-is-not-just-real-its-here/" } },
         { "date": "2022", "title": "Interdisciplinary Social Science", "summary": "The Loop", "footnoteLink": { "url": "https://theloop.ecpr.eu/interdisciplinary-social-science-and-the-limits-of-quantitative-research/" } },
-        { "date": "2022", "title": "Anti-Coup Strategies Should Address Civilian Coup Allies", "summary": "Just Security", "footnoteLink": { "url": "https://www.justsecurity.org/82471/anti-coup-strategies-should-address-civilian-coup-allies/" } },
+        { "date": "2022", "title": "Anti-Coup Strategies", "summary": "Just Security", "footnoteLink": { "url": "https://www.justsecurity.org/82471/anti-coup-strategies-should-address-civilian-coup-allies/" } },
         { "date": "2022", "title": "Reflecting on Coup Risk in Mali", "summary": "Political Violence at a Glance", "footnoteLink": { "url": "https://politicalviolenceataglance.org/2022/06/14/reflecting-on-coup-risk-in-mali/" } },
         { "date": "2022", "title": "Integrated Data in the United States", "summary": "New America", "footnoteLink": { "url": "https://www.newamerica.org/digital-impact-governance-initiative/blog/integrated-data-in-the-united-states-a-look-at-new-yorks-workforce-portal/" } },
         { "date": "2021", "title": "Latin America's Vaccination Efforts", "summary": "Council on Foreign Relations", "footnoteLink": { "url": "https://www.cfr.org/in-brief/latin-americas-vaccination-efforts-what-know" } }
