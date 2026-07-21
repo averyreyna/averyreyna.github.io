@@ -507,6 +507,10 @@ a {
     background: var(--accent-wip);
 }
 
+.contact-dot-private {
+    background: #6b7280;
+}
+
 .iw-private-note {
     display: flex;
     flex-wrap: wrap;
