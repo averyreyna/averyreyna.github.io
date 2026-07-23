@@ -307,7 +307,7 @@ a {
 
 .reference-view__row {
     display: grid;
-    grid-template-columns: 4.25em minmax(0, 1fr) minmax(0, 1.15fr) 1.5em;
+    grid-template-columns: 4.25em minmax(0, 1fr) minmax(0, 1.15fr) minmax(1.5em, max-content);
     gap: 0.35em 0.65em;
     align-items: start;
     padding: 0.6em 0;
@@ -335,9 +335,8 @@ a {
 .reference-view__toggle-cell {
     display: flex;
     justify-content: flex-end;
-    align-items: flex-start;
+    align-items: center;
     gap: 0.35em;
-    padding-top: 0.05em;
 }
 
 .reference-view__toggle {
@@ -392,7 +391,6 @@ a {
     border-radius: 50%;
     background: #6b7280;
     flex-shrink: 0;
-    margin-top: 3px;
 }
 
 .reference-view__static-marker--private {
@@ -455,7 +453,6 @@ a {
 
     .reference-view__toggle-cell {
         grid-area: toggle;
-        padding-top: 0;
     }
 
     .reference-view__title {
