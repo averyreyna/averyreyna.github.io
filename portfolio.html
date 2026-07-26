@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Avery Reyna</title>
+    <title>Portfolio</title>
     <meta name="description" content="Prototypes, experiments, and industry work by Avery Reyna.">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Portfolio - Avery Reyna">
@@ -51,6 +51,19 @@
             <hr>
         </div>
 
+                <div class="project experiments">
+            <h2>Conjure Code</h2>
+            <div class="projectHeader">
+                <div class="projectHeaderText">
+                    <p><i><span>TypeScript, ts-morph</span><br><span class="date">2026</span></i></p>
+                </div>
+                <video class="projectHeaderImage" src="/assets/projects/independent/conjure-code.mp4" autoplay loop muted playsinline></video>
+            </div>
+            <p>Conjure Code is a CLI that turns a codebase (local, or a GitHub slug like sveltejs/kit) into a navigable node graph. It walks the project, uses ts-morph to statically analyze exports, functions, classes, and their references, and serves the result as an interactive canvas in the browser, with files and modules as nodes and imports and calls as edges between them.</p>
+            <p>Real codebases produce graphs with far more nodes than a browser can comfortably render at once, so the canvas does viewport culling on every pan and zoom: before drawing, it checks each node's screen-space position against the visible area (plus a padding margin) and skips anything outside it. Edges get the same treatment, but an edge only needs to survive if either endpoint is visible, or if the line between two off-screen endpoints still crosses the viewport at all. That bounding-box check on the edge's full span is what makes the "aperture" zoom feel continuous instead of glitchy: a long edge connecting two far-apart, off-screen nodes still gets drawn if it passes through what you're looking at, rather than popping in and out as its endpoints cross the frame.</p>
+            <hr>
+        </div>
+
         <div class="project experiments">
             <h2>CoupView</h2>
             <div class="projectHeader">
@@ -61,32 +74,6 @@
             </div>
             <p>CoupView is a proof-of-concept map for exploring historical coups and illegal leader turnover around the world. Events live as a GeoJSON feature collection rendered on a dark-themed MapLibre GL basemap, with a sidebar for searching and filtering by region, decade, outcome, and tag. Clicking a marker opens a popup with the event's title, description, and sourcing, so the map works as both an overview and a way to drill into a single case.</p>
             <p>Each coup is color-coded by outcome directly in the GL style, not in application code: the circle layer's paint spec is a MapLibre match expression keyed on the feature's outcome property, and radius is driven by feature-state so hovering a marker grows it without touching React state at all. A separate R service, built with plumber, is scaffolded alongside the map to eventually serve model-based turnover predictions over the same event data, with the frontend already wired to call it through a small client. The map itself, though, works entirely off the static dataset: filtering, search, and the legend all run client-side over the in-memory feature collection.</p>
-            <hr>
-        </div>
-
-        <div class="project experiments">
-            <h2>Transparent</h2>
-            <div class="projectHeader">
-                <div class="projectHeaderText">
-                    <p><i><span>JavaScript, Claude</span><br><span class="date">2026</span></i></p>
-                </div>
-                <video class="projectHeaderImage" src="/assets/projects/independent/transparent.mp4" autoplay loop muted playsinline></video>
-            </div>
-            <p>Transparent takes a plain-language UI request, generates working HTML/CSS/JS for it with Claude, renders the result live, and then turns around and explains its own output back to you: concept by concept, tied to specific line numbers, ordered from beginner to advanced. The idea is to make the generated code legible rather than treating it as a black box you just paste and run.</p>
-            <p>The concept-extraction step is its own separate API call: it hands the generated code and the original request back to Claude and asks for a structured breakdown covering what concept appears, where, its difficulty, its prerequisites, what to learn next, and even a small interactive exercise for practicing it. Claude's replies aren't always clean JSON, so the parser has to defend against text wrapped around the object and responses that get cut off mid-structure: stripping stray markdown fences, pulling out the JSON-looking span, and counting braces by hand to find where the object actually ends rather than trusting a single parse to fail cleanly. That means the app can recover the intended object even when Claude appends trailing commentary, and a separate truncation check catches responses that stop before the closing brace so the UI can retry instead of showing a broken lesson.</p>
-            <hr>
-        </div>
-
-        <div class="project experiments">
-            <h2>Form</h2>
-            <div class="projectHeader">
-                <div class="projectHeaderText">
-                    <p><i><span>React, TypeScript, Babel</span><br><span class="date">2026</span></i></p>
-                </div>
-                <video class="projectHeaderImage" src="/assets/projects/independent/form.mp4" autoplay loop muted playsinline></video>
-            </div>
-            <p>Form is a notes app with an unusual second half: alongside the notes overview and editor sits a feature builder where you write a small React/TypeScript component and have it become a live part of the running app, no rebuild or redeploy required. You type a component with a default export, and it starts rendering inside Form immediately.</p>
-            <p>That works because the sandbox compiles and executes arbitrary user code entirely in the browser: Babel's standalone build transpiles the TSX down to plain JavaScript on the fly, and the compiled string is handed to a dynamic Function constructor along with a hand-built module/exports shim, so the code can behave like a real ES module even though it never went through a bundler. The returned component gets wrapped in its own try/catch at render time, so a broken feature fails as a small red error box in place rather than crashing the rest of the notes app around it. Every user-written feature is one bad render away from a bug, but never one bad render away from taking down the editor.</p>
             <hr>
         </div>
 
@@ -116,15 +103,41 @@
             <hr>
         </div>
 
+        <div class="project experiments">
+            <h2>Form</h2>
+            <div class="projectHeader">
+                <div class="projectHeaderText">
+                    <p><i><span>React, TypeScript, Babel</span><br><span class="date">2026</span></i></p>
+                </div>
+                <video class="projectHeaderImage" src="/assets/projects/independent/form.mp4" autoplay loop muted playsinline></video>
+            </div>
+            <p>Form is a notes app with an unusual second half: alongside the notes overview and editor sits a feature builder where you write a small React/TypeScript component and have it become a live part of the running app, no rebuild or redeploy required. You type a component with a default export, and it starts rendering inside Form immediately.</p>
+            <p>That works because the sandbox compiles and executes arbitrary user code entirely in the browser: Babel's standalone build transpiles the TSX down to plain JavaScript on the fly, and the compiled string is handed to a dynamic Function constructor along with a hand-built module/exports shim, so the code can behave like a real ES module even though it never went through a bundler. The returned component gets wrapped in its own try/catch at render time, so a broken feature fails as a small red error box in place rather than crashing the rest of the notes app around it. Every user-written feature is one bad render away from a bug, but never one bad render away from taking down the editor.</p>
+            <hr>
+        </div>
+
+        <div class="project experiments">
+            <h2>Transparent</h2>
+            <div class="projectHeader">
+                <div class="projectHeaderText">
+                    <p><i><span>JavaScript, Claude</span><br><span class="date">2026</span></i></p>
+                </div>
+                <video class="projectHeaderImage" src="/assets/projects/independent/transparent.mp4" autoplay loop muted playsinline></video>
+            </div>
+            <p>Transparent takes a plain-language UI request, generates working HTML/CSS/JS for it with Claude, renders the result live, and then turns around and explains its own output back to you: concept by concept, tied to specific line numbers, ordered from beginner to advanced. The idea is to make the generated code legible rather than treating it as a black box you just paste and run.</p>
+            <p>The concept-extraction step is its own separate API call: it hands the generated code and the original request back to Claude and asks for a structured breakdown covering what concept appears, where, its difficulty, its prerequisites, what to learn next, and even a small interactive exercise for practicing it. Claude's replies aren't always clean JSON, so the parser has to defend against text wrapped around the object and responses that get cut off mid-structure: stripping stray markdown fences, pulling out the JSON-looking span, and counting braces by hand to find where the object actually ends rather than trusting a single parse to fail cleanly. That means the app can recover the intended object even when Claude appends trailing commentary, and a separate truncation check catches responses that stop before the closing brace so the UI can retry instead of showing a broken lesson.</p>
+            <hr>
+        </div>
+
         <div class="project industry">
             <h2>Metrics Playground</h2>
             <div class="projectHeader">
                 <div class="projectHeaderText">
-                    <p><i><span>GitHub Copilot</span><br><span class="date">2025</span></i></p>
+                    <p><i><span>React, TypeScript, Python</span><br><span class="date">2025</span></i></p>
                 </div>
                 <video class="projectHeaderImage" src="/assets/projects/industry/metrics_playground.mp4" autoplay loop muted playsinline></video>
             </div>
-            <p>A hands-on playground for metrics and evaluation workflows, built for Cyber D&amp;M engineers, and really about how agentic software development changes instrumentation, feedback loops, and what we even choose to measure. I built the whole thing with agentic tooling like GitHub Copilot, partly to walk the talk: these tools make low-stakes experimentation a lot easier, and spinning up an interactive prototype stopped requiring much overhead at all. The playground itself has data tables with inline editing, a JSON view toggle, and batch operations, so engineers get a real sandbox to poke at metadata instead of jumping between tools.</p>
+            <p>A hands-on playground for metrics and evaluation workflows, built for Cyber D&amp;M engineers, and really about how agentic software development changes instrumentation, feedback loops, and what we even choose to measure. I built (most) of it with agentic tooling, primarily GitHub Copilot, partly to walk the presentation: these tools make low-stakes experimentation a lot easier. Spinning up an interactive prototype stopped requiring much overhead at all. The playground itself has data tables with inline editing, a JSON view toggle, and batch operations, so engineers get a real sandbox to poke at metadata instead of jumping between tools.</p>
             <p>It became something of a reference point internally for what an agent-built internal tool could look like end to end, from data model to UI polish, without a dedicated frontend engineer on the work.</p>
             <hr>
         </div>
@@ -133,7 +146,7 @@
             <h2>Palestra</h2>
             <div class="projectHeader">
                 <div class="projectHeaderText">
-                    <p><i><span>React, Express, TypeScript, Claude</span><br><span class="date">2025</span></i></p>
+                    <p><i><span>React, Express, TypeScript</span><br><span class="date">2025</span></i></p>
                 </div>
                 <video class="projectHeaderImage" src="/assets/projects/independent/palestra.mp4" autoplay loop muted playsinline></video>
             </div>
@@ -142,32 +155,6 @@
             <hr>
         </div>
 
-        <div class="project prototypes">
-            <h2>Rerank</h2>
-            <div class="projectHeader">
-                <div class="projectHeaderText">
-                    <p><i><span>TypeScript</span><br><span class="date">2025</span></i></p>
-                </div>
-                <video class="projectHeaderImage" src="/assets/projects/independent/rerank.mp4" autoplay loop muted playsinline></video>
-            </div>
-            <p>Rerank runs the same document through three different summarization methods (TextRank, LexRank, and BART) and lets you compare their output side by side instead of committing to whichever one a library happens to default to. TextRank and LexRank aren't wrappers around an existing package; they're implemented directly in TypeScript and run entirely client-side, scoring sentences by how similar they are to every other sentence in the document.</p>
-            <p>Both build a sentence-similarity matrix from cosine similarity over tokenized sentences, then treat it as a graph and rank nodes the way PageRank ranks web pages: a sentence is "important" if it's similar to other important sentences. TextRank runs the classic damped iteration to convergence, while LexRank instead thresholds the similarity matrix before row-normalizing it into a proper transition matrix. That's the main mathematical difference between the two approaches. BART, being an actual transformer model, calls out to a hosted inference API and falls back to an extractive method if that request fails, so a summary always comes back, even offline.</p>
-            <hr>
-        </div>
-
-        <div class="project prototypes">
-            <h2>Perceptor</h2>
-            <div class="projectHeader">
-                <div class="projectHeaderText">
-                    <p><i><span>Node.js, Claude</span><br><span class="date">2025</span></i></p>
-                </div>
-                <video class="projectHeaderImage" src="/assets/projects/independent/perceptor.mp4" autoplay loop muted playsinline></video>
-            </div>
-            <p>Perceptor is a CLI coding tutor built around a Socratic method system prompt. It's told outright to never hand over a direct answer, never send a student to outside tutorials, and instead break whatever they're stuck on into a small, immediately doable exercise. The whole tool is really just that constraint enforced consistently across a conversation loop with Claude, plus a couple of special commands layered on top.</p>
-            <p>One of those commands lets a student ask about "codebase structure" mid-conversation. Rather than a slash command, it's detected from plain language: the input is scanned against a list of trigger phrases, and if one matches, a static analysis of the current directory gets appended to the message before it ever reaches the model. The rest of the tutor is conversation-history bookkeeping: every turn gets appended to the running history and replayed in full on each call, so the Socratic thread (and whatever it's already made the student figure out for themselves) carries forward instead of resetting each time.</p>
-            <hr>
-        </div>
-        
         <div class="project industry">
             <h2>Admin Metrics Dashboard</h2>
             <div class="projectHeader">
@@ -178,6 +165,32 @@
             </div>
             <p>An in-house admin dashboard for cyber log monitoring, built to replace a Grafana-heavy setup with views actually tuned to how our operators triage things day to day. It was the first iteration of a custom monitoring system in React, TypeScript, and Python. The main additions were timeframe filtering, threshold-based alerting, and inventory tracking across more than 5,000 assets, so admins could catch anomalies instead of scrolling through pages of widgets that didn't let them customize much of anything.</p>
             <p>Threshold alerting in particular replaced a habit of manually eyeballing dashboards for spikes, turning that into something that surfaced on its own.</p>
+            <hr>
+        </div>
+
+        <div class="project prototypes">
+            <h2>Perceptor</h2>
+            <div class="projectHeader">
+                <div class="projectHeaderText">
+                    <p><i><span>Node.js</span><br><span class="date">2025</span></i></p>
+                </div>
+                <video class="projectHeaderImage" src="/assets/projects/independent/perceptor.mp4" autoplay loop muted playsinline></video>
+            </div>
+            <p>Perceptor is a CLI coding tutor built around a Socratic method system prompt. It's told outright to never hand over a direct answer, never send a student to outside tutorials, and instead break whatever they're stuck on into a small, immediately doable exercise. The whole tool is really just that constraint enforced consistently across a conversation loop with Claude, plus a couple of special commands layered on top.</p>
+            <p>One of those commands lets a student ask about "codebase structure" mid-conversation. Rather than a slash command, it's detected from plain language: the input is scanned against a list of trigger phrases, and if one matches, a static analysis of the current directory gets appended to the message before it ever reaches the model. The rest of the tutor is conversation-history bookkeeping: every turn gets appended to the running history and replayed in full on each call, so the Socratic thread (and whatever it's already made the student figure out for themselves) carries forward instead of resetting each time.</p>
+            <hr>
+        </div>
+
+        <div class="project prototypes">
+            <h2>Rerank</h2>
+            <div class="projectHeader">
+                <div class="projectHeaderText">
+                    <p><i><span>React, TypeScript</span><br><span class="date">2025</span></i></p>
+                </div>
+                <video class="projectHeaderImage" src="/assets/projects/independent/rerank.mp4" autoplay loop muted playsinline></video>
+            </div>
+            <p>Rerank runs the same document through three different summarization methods (TextRank, LexRank, and BART) and lets you compare their output side by side instead of committing to whichever one a library happens to default to. TextRank and LexRank aren't wrappers around an existing package; they're implemented directly in TypeScript and run entirely client-side, scoring sentences by how similar they are to every other sentence in the document.</p>
+            <p>Both build a sentence-similarity matrix from cosine similarity over tokenized sentences, then treat it as a graph and rank nodes the way PageRank ranks web pages: a sentence is "important" if it's similar to other important sentences. TextRank runs the classic damped iteration to convergence, while LexRank instead thresholds the similarity matrix before row-normalizing it into a proper transition matrix. That's the main mathematical difference between the two approaches. BART, being an actual transformer model, calls out to a hosted inference API and falls back to an extractive method if that request fails, so a summary always comes back, even offline.</p>
             <hr>
         </div>
 
@@ -217,19 +230,6 @@
             </div>
             <p>Meta Measure takes a list of research ideas and drops them on a scatter plot: quantitative to qualitative on one axis, traditional to novel on the other, so you can see at a glance how a set of topics balances out methodologically. There's no scoring rubric anywhere in the app. Every placement comes from Claude reasoning about each idea fresh, so the graph ends up less a fixed taxonomy and more a snapshot of one model's judgment at one point in time.</p>
             <p>The graph rendering isn't really the interesting part; the prompt behind it is. The API route sends the whole list of ideas in a single request and asks for strict JSON back (coordinates for each idea, plus a written explanation of the reasoning) and also asks the model to interrogate its own placements: what assumptions it made, what it defaulted to, and whether its evaluation quietly favors certain research approaches over others. That self-critique isn't a separate step tacked on afterward; it's asked for on every call, so the model has to justify its own coordinate system in the same response that produces it. The route itself is a thin Next.js handler sitting behind a cookie-gated access check, with a regex fallback to pull a JSON object out of the response in case Claude wraps it in extra text.</p>
-            <hr>
-        </div>
-
-        <div class="project experiments">
-            <h2>Conjure Code</h2>
-            <div class="projectHeader">
-                <div class="projectHeaderText">
-                    <p><i><span>TypeScript, ts-morph</span><br><span class="date">2026</span></i></p>
-                </div>
-                <video class="projectHeaderImage" src="/assets/projects/independent/conjure-code.mp4" autoplay loop muted playsinline></video>
-            </div>
-            <p>Conjure Code is a CLI that turns a codebase (local, or a GitHub slug like sveltejs/kit) into a navigable node graph. It walks the project, uses ts-morph to statically analyze exports, functions, classes, and their references, and serves the result as an interactive canvas in the browser, with files and modules as nodes and imports and calls as edges between them.</p>
-            <p>Real codebases produce graphs with far more nodes than a browser can comfortably render at once, so the canvas does viewport culling on every pan and zoom: before drawing, it checks each node's screen-space position against the visible area (plus a padding margin) and skips anything outside it. Edges get the same treatment, but an edge only needs to survive if either endpoint is visible, or if the line between two off-screen endpoints still crosses the viewport at all. That bounding-box check on the edge's full span is what makes the "aperture" zoom feel continuous instead of glitchy: a long edge connecting two far-apart, off-screen nodes still gets drawn if it passes through what you're looking at, rather than popping in and out as its endpoints cross the frame.</p>
             <hr>
         </div>
 
