@@ -1,4 +1,4 @@
-import { playhtml } from "/playhtml-init.js";
+import { playhtml } from "/js/playhtml-init.js";
 
 const MAX_MESSAGES = 100;
 

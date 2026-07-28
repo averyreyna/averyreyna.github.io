@@ -1,4 +1,4 @@
-import { playhtml } from "/playhtml-init.js";
+import { playhtml } from "/js/playhtml-init.js";
 
 const VISITED_KEY = "site-badge-visited";
 
