@@ -46,7 +46,7 @@
 
         <br>
         <p>wip</p>
-        <p><a href="/projects/chaperone/">chaperone</a> — live, data-derived schema feedback</p>
+        <p>chaperone — live, data-derived schema feedback</p>
         <p><a href="https://convoy-one.vercel.app" target="_blank">convoy v1.5</a> — node canvas for data wrangling</p>
 
         <br>
@@ -55,16 +55,19 @@
 
         <p>avery.reyna16 (at) gmail (dot) com</p>
     </div>
-    <div class="site-badge" aria-live="polite">
+    <div class="site-badge" id="site-badge" can-play aria-live="polite">
+        <span class="drag-hint drag-hint-badge">grab me!</span>
         <p class="site-badge-row"><span class="site-badge-dot site-badge-dot-online"></span><span id="site-badge-online">&ndash;</span>&nbsp;online now</p>
         <p class="site-badge-row"><span class="site-badge-dot site-badge-dot-visits"></span><span id="site-badge-visits">&ndash;</span>&nbsp;total visits</p>
     </div>
-    <div class="site-chat">
-        <button can-toggle id="site-switch" class="site-switch">
-            <span class="site-switch-dot"></span>
-            <span class="site-switch-label-off">turn on</span>
-            <span class="site-switch-label-on">turn off</span>
-        </button>
+    <button can-toggle can-play id="site-switch" class="site-switch">
+        <span class="drag-hint drag-hint-switch">grab me too!</span>
+        <span class="site-switch-dot"></span>
+        <span class="site-switch-label-off">turn on</span>
+        <span class="site-switch-label-on">turn off</span>
+    </button>
+    <div class="site-chat" id="site-chat" can-play>
+        <span class="drag-hint drag-hint-chat">and me!</span>
         <div class="site-chat-panel" id="site-chat-panel" hidden>
             <div class="site-chat-messages" id="site-chat-messages"></div>
             <form class="site-chat-form" id="site-chat-form">
@@ -77,8 +80,19 @@
             <span class="site-badge-dot site-chat-dot"></span>chat
         </button>
     </div>
+    <div class="past-life" id="past-life" can-play>
+        <span class="drag-hint drag-hint-pastlife">and this!</span>
+        <div class="past-life-panel" id="past-life-panel" hidden>
+            <div class="past-life-revealed" id="past-life-revealed"></div>
+            <div class="past-life-mystery" id="past-life-mystery"></div>
+        </div>
+        <button class="past-life-toggle" id="past-life-toggle" aria-expanded="false" aria-controls="past-life-panel">
+            <span class="site-badge-dot past-life-dot"></span>past life
+        </button>
+    </div>
     <script src="/js/index.js"></script>
     <script type="module" src="/js/site-badge.js"></script>
     <script type="module" src="/js/site-chat.js"></script>
+    <script type="module" src="/js/past-life.js"></script>
 </body>
 </html>

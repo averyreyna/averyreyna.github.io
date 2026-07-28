@@ -10,6 +10,14 @@ const nameInput = document.getElementById("site-chat-name");
 const textInput = document.getElementById("site-chat-input");
 
 if (toggle && panel && list && form && nameInput && textInput) {
+    // #site-chat's drag handler preventDefaults every mousedown on the
+    // widget (no movement threshold), which blocks click-to-focus on these
+    // inputs unless we stop the event from bubbling up to it.
+    for (const input of [nameInput, textInput]) {
+        input.addEventListener("mousedown", (event) => event.stopPropagation());
+        input.addEventListener("touchstart", (event) => event.stopPropagation());
+    }
+
     toggle.addEventListener("click", () => {
         const willOpen = panel.hidden;
         panel.hidden = !willOpen;
@@ -24,18 +32,18 @@ if (toggle && panel && list && form && nameInput && textInput) {
 
     form.addEventListener("submit", (event) => {
         event.preventDefault();
-        if (!chat) return; // not connected yet
+        if (!chat) return;
 
         const text = textInput.value.trim().slice(0, 280);
         if (!text) return;
 
         const name = nameInput.value.trim().slice(0, 24);
-        if (name) playhtml.users.me.name = name;
+        if (name) window.cursors.name = name;
 
         chat.setData((draft) => {
             draft.messages.push({
                 name: name || "anon",
-                color: playhtml.users.me.color,
+                color: window.cursors.color,
                 text,
                 ts: Date.now(),
             });
@@ -51,7 +59,7 @@ if (toggle && panel && list && form && nameInput && textInput) {
         if (!data.messages.length) {
             const empty = document.createElement("p");
             empty.className = "site-chat-message site-chat-empty";
-            empty.textContent = "say hi";
+            empty.textContent = "say hi :)";
             list.appendChild(empty);
         }
         for (const msg of data.messages) {
@@ -70,7 +78,7 @@ if (toggle && panel && list && form && nameInput && textInput) {
 
     playhtml.ready
         .then(() => {
-            nameInput.value = playhtml.users.me.name ?? "";
+            nameInput.value = window.cursors.name ?? "";
             chat = playhtml.createPageData("site-chat-messages", { messages: [] });
             chat.onUpdate(render);
             render(chat.getData());

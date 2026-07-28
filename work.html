@@ -46,6 +46,7 @@
         <p><a href="https://home.mlops.community/public/videos/agent-use-for-coding-in-2025-mlops-reading-group-january-2026" target="_blank">agent use for coding in 2025</a><br><i><span style="font-size: small;">mlops community · 2026</span></i></p>
         <p><a href="https://www.forbes.com/sites/joetoscano1/2026/01/20/developers-use-ai-coding-tools-to-get-started-not-finish-the-job/" target="_blank">developers use ai coding tools to get started</a><br><i><span style="font-size: small;">forbes · 2026</span></i></p>
         <p><a href="https://news.ycombinator.com/item?id=46437391" target="_blank">professional software developers don't vibe, they control</a><br><i><span style="font-size: small;">hacker news · 2026</span></i></p>
+        <p><a href="https://ceal.cs.columbia.edu/webnext" target="_blank">webnext</a><br><i><span style="font-size: small;">ceal lab · 2025</span></i></p>
         <br>
 
         <p><b>resources</b></p>
@@ -131,7 +132,6 @@
 
         <p><b>media</b></p>
         <br>
-        <p><a href="https://ceal.cs.columbia.edu/webnext" target="_blank">webnext</a><br><i><span style="font-size: small;">ceal lab · 2022</span></i></p>
         <p><a href="https://www.newamerica.org/digital-impact-governance-initiative/reports/digital-transformation-opportunities-and-challenges-in-the-lower-mekong-region/" target="_blank">digital transformation opportunities</a><br><i><span style="font-size: small;">new america · 2021</span></i></p>
         <p><a href="https://www.newamerica.org/digital-impact-governance-initiative/reports/reconceptualizing-public-procurement/" target="_blank">reconceptualizing public procurement</a><br><i><span style="font-size: small;">new america · 2021</span></i></p>
         <p><a href="https://www.youtube.com/watch?v=YAgk39hzpDo" target="_blank">contributing to an open source project</a><br><i><span style="font-size: small;">knight hacks · 2021</span></i></p>
@@ -156,16 +156,19 @@
         <p><a href="/assets/files/resources/undergraduate/reu/spatial_models_and_electoral_districting.pdf" target="_blank">smed reu</a><br><i><span style="font-size: small;">essay · 2021</span></i></p>
         <p><a href="/assets/files/resources/undergraduate/reu/the_security_and_political_economy_lab.pdf" target="_blank">the spec lab reu</a><br><i><span style="font-size: small;">essay · 2021</span></i></p>
     </div>
-    <div class="site-badge" aria-live="polite">
+    <div class="site-badge" id="site-badge" can-play aria-live="polite">
+        <span class="drag-hint drag-hint-badge">grab me!</span>
         <p class="site-badge-row"><span class="site-badge-dot site-badge-dot-online"></span><span id="site-badge-online">&ndash;</span>&nbsp;online now</p>
         <p class="site-badge-row"><span class="site-badge-dot site-badge-dot-visits"></span><span id="site-badge-visits">&ndash;</span>&nbsp;total visits</p>
     </div>
-    <div class="site-chat">
-        <button can-toggle id="site-switch" class="site-switch">
-            <span class="site-switch-dot"></span>
-            <span class="site-switch-label-off">turn on</span>
-            <span class="site-switch-label-on">turn off</span>
-        </button>
+    <button can-toggle can-play id="site-switch" class="site-switch">
+        <span class="drag-hint drag-hint-switch">grab me too!</span>
+        <span class="site-switch-dot"></span>
+        <span class="site-switch-label-off">turn on</span>
+        <span class="site-switch-label-on">turn off</span>
+    </button>
+    <div class="site-chat" id="site-chat" can-play>
+        <span class="drag-hint drag-hint-chat">and me!</span>
         <div class="site-chat-panel" id="site-chat-panel" hidden>
             <div class="site-chat-messages" id="site-chat-messages"></div>
             <form class="site-chat-form" id="site-chat-form">
@@ -178,8 +181,19 @@
             <span class="site-badge-dot site-chat-dot"></span>chat
         </button>
     </div>
+    <div class="past-life" id="past-life" can-play>
+        <span class="drag-hint drag-hint-pastlife">and this!</span>
+        <div class="past-life-panel" id="past-life-panel" hidden>
+            <div class="past-life-revealed" id="past-life-revealed"></div>
+            <div class="past-life-mystery" id="past-life-mystery"></div>
+        </div>
+        <button class="past-life-toggle" id="past-life-toggle" aria-expanded="false" aria-controls="past-life-panel">
+            <span class="site-badge-dot past-life-dot"></span>past life
+        </button>
+    </div>
     <script src="/js/index.js"></script>
     <script type="module" src="/js/site-badge.js"></script>
     <script type="module" src="/js/site-chat.js"></script>
+    <script type="module" src="/js/past-life.js"></script>
 </body>
 </html>

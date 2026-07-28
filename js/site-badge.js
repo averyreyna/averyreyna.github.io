@@ -8,10 +8,9 @@ playhtml.ready
         const visitsEl = document.getElementById("site-badge-visits");
         if (!onlineEl || !visitsEl) return;
 
-        playhtml.users.onChange((users) => {
-            onlineEl.textContent = String(users.length);
+        playhtml.presence.onPresenceChange("site-badge-online", (presences) => {
+            onlineEl.textContent = String(presences.size);
         });
-        onlineEl.textContent = String(playhtml.users.getAll().length);
 
         const visits = playhtml.createPageData("total-visits", { count: 0 });
         visits.onUpdate((data) => {

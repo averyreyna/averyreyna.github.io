@@ -54,7 +54,7 @@ a {
 }
 
 /* legacy layout, still used by the handful of standalone /projects/ pages
-   (chaperone, convoy, coupcats) that weren't folded into portfolio.html */
+   (convoy, coupcats) that weren't folded into portfolio.html */
 
 body {
     padding: 40px 20px;
@@ -113,6 +113,33 @@ body.no-scroll {
     margin-bottom: 40px;
 }
 
+.project-type {
+    display: inline-block;
+    font-size: 0.5em;
+    font-style: italic;
+    font-weight: 400;
+    color: #999;
+    margin-left: 0.6em;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+.project-type--a {
+    transform: rotate(-4deg);
+}
+
+.project-type--b {
+    transform: rotate(3deg) translateY(-2px);
+}
+
+.project-type--c {
+    transform: rotate(-2deg) translateY(2px);
+}
+
+.project-type--d {
+    transform: rotate(5deg);
+}
+
 .projectHeader {
     display: flex;
     margin-bottom: 0.6em;
@@ -161,7 +188,7 @@ hr {
     }
 }
 
-/* shared post/project page styles (still used by chaperone, convoy, coupcats) */
+/* shared post/project page styles (still used by convoy, coupcats) */
 
 .post-back {
     display: block;
@@ -281,6 +308,43 @@ sup a {
     border: none;
 }
 
+/* drag hints: invite visitors to grab the draggable widgets */
+
+.drag-hint {
+    position: absolute;
+    bottom: 100%;
+    margin-bottom: 6px;
+    font-size: 0.7em;
+    font-style: italic;
+    color: #999;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.drag-hint-badge {
+    left: 4px;
+    transform: rotate(-3deg);
+}
+
+.drag-hint-switch {
+    right: 4px;
+    transform: rotate(2deg);
+}
+
+.drag-hint-chat {
+    right: 4px;
+    transform: rotate(-2deg);
+}
+
+.drag-hint-pastlife {
+    bottom: auto;
+    top: 100%;
+    margin-bottom: 0;
+    margin-top: 6px;
+    right: 4px;
+    transform: rotate(3deg);
+}
+
 /* site badge: sitewide online/visits indicator, lower-left corner */
 
 .site-badge {
@@ -291,11 +355,19 @@ sup a {
     font-size: 0.75em;
     line-height: 1.6;
     color: #666;
-    pointer-events: none;
+    cursor: grab;
+    touch-action: none;
     background: #fff;
     border: 1px solid #e0e0e0;
     border-radius: 6px;
     padding: 6px 10px;
+}
+
+.site-badge.cursordown,
+.site-chat.cursordown,
+.site-switch.cursordown,
+.past-life.cursordown {
+    cursor: grabbing;
 }
 
 .site-badge-row {
@@ -332,9 +404,15 @@ sup a {
     flex-direction: column;
     align-items: flex-end;
     gap: 8px;
+    cursor: grab;
+    touch-action: none;
 }
 
 .site-switch {
+    position: fixed;
+    right: 14px;
+    bottom: 50px;
+    z-index: 1000;
     display: flex;
     align-items: center;
     gap: 6px;
@@ -344,7 +422,8 @@ sup a {
     padding: 4px 10px;
     font: inherit;
     color: #666;
-    cursor: pointer;
+    cursor: grab;
+    touch-action: none;
 }
 
 .site-switch:hover {
@@ -415,6 +494,7 @@ sup a {
     max-height: 190px;
     min-height: 60px;
     padding: 8px 10px;
+    touch-action: pan-y;
 }
 
 .site-chat-message {
@@ -449,6 +529,7 @@ sup a {
     outline: none;
     min-width: 0;
     background: none;
+    cursor: text;
 }
 
 .site-chat-name {
@@ -477,6 +558,108 @@ sup a {
 
 @media screen and (max-width: 600px) {
     .site-chat-panel {
+        width: calc(100vw - 28px);
+        max-width: 260px;
+    }
+}
+
+/* past life: playhtml-backed shared fact reveal, top-right corner */
+
+.past-life {
+    position: fixed;
+    top: 14px;
+    right: 14px;
+    z-index: 1000;
+    font-size: 0.75em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    cursor: grab;
+    touch-action: none;
+}
+
+.past-life-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 999px;
+    padding: 4px 10px;
+    font: inherit;
+    color: #666;
+    cursor: pointer;
+}
+
+.past-life-toggle:hover {
+    color: #111;
+}
+
+.past-life-dot {
+    background: #a855f7;
+}
+
+.past-life-panel {
+    display: flex;
+    flex-direction: column;
+    width: 220px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.past-life-panel[hidden] {
+    display: none;
+}
+
+.past-life-revealed {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    overflow-y: auto;
+    max-height: 190px;
+    min-height: 40px;
+    padding: 8px 10px;
+    touch-action: pan-y;
+}
+
+.past-life-fact {
+    margin: 0;
+    line-height: 1.35;
+}
+
+.past-life-empty {
+    margin: 0;
+    color: #888;
+}
+
+.past-life-mystery {
+    display: flex;
+    gap: 6px;
+    padding: 8px 10px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.past-life-mystery-btn {
+    flex: 1;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    background: none;
+    padding: 6px 0;
+    font: inherit;
+    color: #666;
+    cursor: pointer;
+}
+
+.past-life-mystery-btn:hover {
+    color: #111;
+    border-color: #a855f7;
+}
+
+@media screen and (max-width: 600px) {
+    .past-life-panel {
         width: calc(100vw - 28px);
         max-width: 260px;
     }
