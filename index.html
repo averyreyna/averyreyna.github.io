@@ -55,6 +55,30 @@
 
         <p>avery.reyna16 (at) gmail (dot) com</p>
     </div>
+    <div class="site-badge" aria-live="polite">
+        <p class="site-badge-row"><span class="site-badge-dot site-badge-dot-online"></span><span id="site-badge-online">&ndash;</span>&nbsp;online now</p>
+        <p class="site-badge-row"><span class="site-badge-dot site-badge-dot-visits"></span><span id="site-badge-visits">&ndash;</span>&nbsp;total visits</p>
+    </div>
+    <div class="site-chat">
+        <button can-toggle id="site-switch" class="site-switch">
+            <span class="site-switch-dot"></span>
+            <span class="site-switch-label-off">turn on</span>
+            <span class="site-switch-label-on">turn off</span>
+        </button>
+        <div class="site-chat-panel" id="site-chat-panel" hidden>
+            <div class="site-chat-messages" id="site-chat-messages"></div>
+            <form class="site-chat-form" id="site-chat-form">
+                <input type="text" id="site-chat-name" class="site-chat-name" placeholder="name" maxlength="24" autocomplete="off">
+                <input type="text" id="site-chat-input" class="site-chat-input" placeholder="say something…" maxlength="280" autocomplete="off">
+                <button type="submit" class="site-chat-send" aria-label="send">&#8629;</button>
+            </form>
+        </div>
+        <button class="site-chat-toggle" id="site-chat-toggle" aria-expanded="false" aria-controls="site-chat-panel">
+            <span class="site-badge-dot site-chat-dot"></span>chat
+        </button>
+    </div>
     <script src="/index.js"></script>
+    <script type="module" src="/site-badge.js"></script>
+    <script type="module" src="/site-chat.js"></script>
 </body>
 </html>
