@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galois Connections</title>
+    <meta name="description" content="Avery Reyna's personal website.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Galois Connections">
+    <meta property="og:image" content="https://avryryn.io/og-image.png">
+    <meta property="og:url" content="https://avryryn.io/notes/galois-connections/">
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/website.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <style>
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+        body{max-width:70ch;font-family:'ABC Diatype Mono',monospace;font-size:13px}
+        h2{font-weight:500}
+        a,a:visited{color:#00e;text-decoration:none}
+    </style>
+</head>
+<body>
+    <nav><a href="/">Home</a></nav>
+    <br>
+    <h1>Galois Connections</h1>
+
+    <p>A <em>Galois connection</em> between two partially ordered sets (C, ≤) and (A, ⊑) is a pair of monotone functions α : C → A and γ : A → C satisfying α(c) ⊑ a ⇔ c ≤ γ(a).</p>
+
+    <ul>
+        <li>α is the <em>abstraction function</em>, mapping concrete values to abstract ones</li>
+        <li>γ is the <em>concretization function</em>, mapping abstract values back to sets of concrete values</li>
+        <li>Galois connections are the mathematical core of <a href="/notes/abstract-interpretation/">abstract interpretation</a>: they formalize what it means for an abstraction to be sound</li>
+        <li>The sign abstraction has α mapping integers to {−, 0, +} and γ mapping each sign to the corresponding integers</li>
+        <li>Galois connections are adjunctions in the category of partially ordered sets, directly connecting abstract interpretation to <a href="/notes/intro-to-category-theory-functors/">category theory</a></li>
+    </ul>
+
+    <blockquote>
+        <p>Every sound static analysis corresponds to a Galois connection. The adjunction perspective shows why: abstraction and concretization are left and right adjoints.</p>
+    </blockquote>
+</body>
+</html>

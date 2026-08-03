@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Synthesis: Introduction and Definitions</title>
+    <meta name="description" content="Avery Reyna's personal website.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Program Synthesis: Introduction and Definitions">
+    <meta property="og:image" content="https://avryryn.io/og-image.png">
+    <meta property="og:url" content="https://avryryn.io/notes/program-synthesis-introduction-and-definitions/">
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/website.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <style>
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+        body{max-width:70ch;font-family:'ABC Diatype Mono',monospace;font-size:13px}
+        h2{font-weight:500}
+        a,a:visited{color:#00e;text-decoration:none}
+    </style>
+</head>
+<body>
+    <nav><a href="/">Home</a></nav>
+    <br>
+    <h1>Program Synthesis: Introduction and Definitions</h1>
+
+    <p>Program synthesis is the class of techniques that generate a program from a collection of artifacts establishing semantic and syntactic requirements for the generated code. Code presents unique opportunities here: unlike other tasks where LLMs have shown promise, code benefits from precise semantics, which let us test it and reason formally about its behavior. Automating software development has been a dream since 1945, with Alan Turing arguing for the Automatic Computing Engine.</p>
+
+    <h2>Synthesis vs. Its Neighbors</h2>
+
+    <ul>
+        <li><strong>Compilation</strong> shares the same goal of generating software from a high-level description of its behavior, but we expect synthesizers to <em>discover how</em> to perform the desired task. Search used to be the distinguishing factor, though the line has blurred: compilers now use search to optimize generated code, and LLMs synthesize entire programs without explicit search.</li>
+        <li><strong>Logic programming</strong> dreamed of programmers expressing requirements in logical form, with the runtime deriving satisfying outputs through search and deduction. Two distinctions: it relies on a generic algorithm to search for a solution to <em>every</em> problem rather than discovering an algorithm for the problem at hand (often making it slow), and an under-specified problem can yield a solution the user did not expect.</li>
+        <li><strong>Machine learning</strong> seeks a predictor matching a dataset of input/output pairs; squint and it is synthesis of a function mapping each <em>x</em> to its <em>y</em>. But ML restricts the function space to a fixed structure (linear, neural network, …) while synthesis discovers what structure is needed, such as loops, branches, or recursion. Synthesis also traditionally demands programs that <em>always precisely</em> match the specification, where ML embraced noisy data and real-valued success measures from the start. That gap is narrowing from both sides.</li>
+    </ul>
+
+    <h2>Specifying Intent</h2>
+
+    <p>FlashFill in Excel/Sheets is the canonical deployed example: give a few examples of how the remaining cells should look and the synthesized program fills them in. It popularized input/output examples as a specification form. The standing challenge is how users should communicate goals at all: natural language is becoming the preferred specification, but it is imprecise.</p>
+
+    <h2>Notes</h2>
+
+    <p>The compiler/synthesizer/ML triangle is really one axis: how much of the <em>how</em> the human provides versus the machine discovers. That framing makes "LLMs as synthesizers" feel less like a rupture and more like the search component getting a vastly better prior.</p>
+
+    <p>Sources: <a href="https://people.csail.mit.edu/asolar/SynthesisCourse/Lecture1.htm">Armando Solar-Lezama's synthesis course, Lecture 1</a>; see also <a href="https://jamesbornholt.com/blog/building-synthesizer/">Building a Program Synthesizer</a>.</p>
+</body>
+</html>

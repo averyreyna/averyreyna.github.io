@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRDT Semantics as a Pure Function</title>
+    <meta name="description" content="Avery Reyna's personal website.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="CRDT Semantics as a Pure Function">
+    <meta property="og:image" content="https://avryryn.io/og-image.png">
+    <meta property="og:url" content="https://avryryn.io/notes/crdt-semantics-as-a-pure-function/">
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/website.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <style>
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+        body{max-width:70ch;font-family:'ABC Diatype Mono',monospace;font-size:13px}
+        h2{font-weight:500}
+        a,a:visited{color:#00e;text-decoration:none}
+    </style>
+</head>
+<body>
+    <nav><a href="/">Home</a></nav>
+    <br>
+    <h1>CRDT Semantics as a Pure Function</h1>
+
+    <p>Part 2 of the survey reframes everything from <a href="/notes/crdts-operations-state-and-merge/">the introduction</a> around a single idea: CRDT semantics are a <strong>pure function of the operation history</strong>. The function maps the history of operations users have performed to the current app-visible state, and like any pure function it is deterministic and side-effect free — the same input always produces the same output.</p>
+
+    <pre><code>  operation history
+  [+1  +1]
+  [+1  +1]  ----&gt;  pure function  ----&gt;  app state (6)
+  [+1  +1]</code></pre>
+
+    <p>The operation history is a <em>set</em>, and that is the load-bearing word. Because sets are unordered, the function must produce the same result regardless of the order in which operations happen to arrive across different nodes. In the functional-programming sense this purity is not just about correctness — it is specifically about <strong>convergence</strong>. Every replica runs the same algorithm over the same set and is therefore guaranteed to reach the same state.</p>
+
+    <h2>The Three Components</h2>
+
+    <p>Concretely, a CRDT's semantics consist of three pieces:</p>
+
+    <ul>
+        <li>A <strong>collection of operations</strong> users are allowed to perform on the CRDT (for example, calling <code>inc()</code>)</li>
+        <li>For each operation, a <strong>translated</strong> version that gets stored in the abstract operation history — the index-based "delete the item at index 0" becomes something tombstone-aware that names <em>what</em> was deleted</li>
+        <li>A <strong>pure function</strong> that inputs a set of translated operations plus some ordering metadata and outputs the intended state of a user who is aware of those operations</li>
+    </ul>
+
+    <p>It helps to picture the history as a git commit graph. The "ordering metadata" is the collection of arrows indicating which operations were aware of which others. The translation and pure-function steps are equal in importance: translation stabilizes the input so the function has something order-independent to work on.</p>
+
+    <p><a href="/notes/unique-ids-append-only-logs-and-unique-sets/">Unique ids</a> are the connector that makes translation possible, because they are what render a translated operation context-independent. "Delete at index 0" is a context-dependent instruction whose meaning shifts depending on what else has run; "delete the element with this id" means the same thing even under concurrency. The ids are load-bearing on purpose.</p>
+
+    <h2>Causal Order</h2>
+
+    <p>The arrows in those history diagrams are the <em>causal order</em>, the partial order ≺ on pairs of operations defined by two rules:</p>
+
+    <ul>
+        <li>If a user had received operation o before performing their own operation p, then o ≺ p — this includes the case where one user performed both o and p in that order</li>
+        <li><strong>Transitivity:</strong> if o ≺ p and p ≺ q, then o ≺ q</li>
+    </ul>
+
+    <p>The vocabulary that comes off of this is worth pinning down. When o ≺ p we say o is <em>causally prior</em> to p, that o is a <em>causal predecessor</em> of p, and that p is <em>causally greater</em> than o; equivalently, "o happened before p" or "p is causally aware of o." When neither o ≺ p nor p ≺ o holds, o and p are <em>concurrent</em>. Finally, o is an <em>immediate</em> causal predecessor of p iff o ≺ p and there is no r with o ≺ r ≺ p.</p>
+
+    <pre><code>  A ---&gt; B
+          \
+           v
+           D ---&gt; C</code></pre>
+
+    <p>Reading the diagram: B is causally greater than A, B is causally prior to C, and B is concurrent to D. The immediate causal predecessors of C are B and D; A is a causal predecessor of C but not an immediate one, since its relationship is implied by transitivity. These immediate predecessors are exactly the pairs connected by an arrow — every non-immediate predecessor is left implicit.</p>
+
+    <p>This is why a CRDT can track the causal order cheaply: label each operation with the ids of its immediate causal predecessors, the tails of its incoming arrows, and the rest follows by transitivity. Many CRDT-based apps go further and enforce <strong>causal-order delivery</strong> — a replica will not process an operation, or update the app state, until it has processed every causally-prior operation first. If B causally depends on A, then A is always delivered before B on every node.</p>
+
+    <h2>Notes</h2>
+
+    <p>The basic techniques here come straight out of database and programming folklore; the survey's contribution is naming them as <em>semantic</em> techniques — building blocks you reach for when deciding what concurrent edits should mean, not just how to replicate them efficiently.</p>
+
+    <p>Source: <a href="https://mattweidner.com/2023/09/26/crdt-survey-2.html">Matt Weidner's CRDT survey, part 2</a>.</p>
+</body>
+</html>

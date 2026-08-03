@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abstract Interpretation</title>
+    <meta name="description" content="Avery Reyna's personal website.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Abstract Interpretation">
+    <meta property="og:image" content="https://avryryn.io/og-image.png">
+    <meta property="og:url" content="https://avryryn.io/notes/abstract-interpretation/">
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/website.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <style>
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+        body{max-width:70ch;font-family:'ABC Diatype Mono',monospace;font-size:13px}
+        h2{font-weight:500}
+        a,a:visited{color:#00e;text-decoration:none}
+    </style>
+</head>
+<body>
+    <nav><a href="/">Home</a></nav>
+    <br>
+    <h1>Abstract Interpretation</h1>
+
+    <p>Abstract interpretation (Cousot &amp; Cousot, 1977) is a framework for static analysis of programs; it computes sound approximations of program behavior. The key idea: instead of tracking exact values, track abstract values from a domain where computation is decidable. Instead of the exact integer value of a variable, track only its sign (positive, negative, zero).</p>
+
+    <ul>
+        <li><strong>Soundness</strong>: if the abstract analysis says a property holds, it holds for all concrete executions, but not vice versa, so false positives are possible</li>
+        <li>The framework is parametric: choose an abstract domain and the analysis follows; the same framework applies to many different properties</li>
+        <li>The abstract domain is a <a href="/notes/lattices/">lattice</a>, and the analysis computes a fixed point on it, connecting directly to <a href="/notes/crdt-introduction/">CRDT</a> convergence</li>
+    </ul>
+
+    <blockquote>
+        <p>Abstract interpretation is why static analyzers can be sound without being complete. The abstraction trades away precision (false positives) to gain decidability.</p>
+    </blockquote>
+
+    <p>The soundness story is made precise by <a href="/notes/galois-connections/">Galois connections</a> between the concrete and abstract domains.</p>
+</body>
+</html>

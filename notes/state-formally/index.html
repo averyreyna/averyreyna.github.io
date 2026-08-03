@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>State, Formally</title>
+    <meta name="description" content="Avery Reyna's personal website.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="State, Formally">
+    <meta property="og:image" content="https://avryryn.io/og-image.png">
+    <meta property="og:url" content="https://avryryn.io/notes/state-formally/">
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/website.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <style>
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+        body{max-width:70ch;font-family:'ABC Diatype Mono',monospace;font-size:13px}
+        h2{font-weight:500}
+        a,a:visited{color:#00e;text-decoration:none}
+    </style>
+</head>
+<body>
+    <nav><a href="/">Home</a></nav>
+    <br>
+    <h1>State, Formally</h1>
+
+    <p>In PL theory, <em>state</em> is any information that persists and can change over time during a computation. A variable holding a value is state; a memory address containing a number is state. The fact that something <em>can change</em> is what makes it state, as opposed to a pure value, which is fixed.</p>
+
+    <h2>State Machines</h2>
+
+    <p>The mathematical model underlying most of PL theory's treatment of state is the state machine: a set of possible states, a set of actions or transitions that move you between them, and an initial state. When the WYSIWID paper says a concept is "defined as its own state machine," it means the concept has a set of possible configurations its data could be in, and actions are the <em>only</em> thing that transitions between them, a very classical formalization.</p>
+
+    <pre><code>state: {
+  users: new Map([
+    ['uuid-123', { name: 'alice', email: 'alice@example.com' }],
+    ['uuid-456', { name: 'bob',   email: 'bob@example.com'   }],
+  ])
+}</code></pre>
+
+    <blockquote>Think of each concept like a tiny database that only accepts writes through a strict API. The Password concept's state is essentially a table of hashed passwords. The only way to write to it is through Password.set. The only way to read from it (directly) is through Password.check. No other concept can reach in and touch it. That's the whole independence guarantee.</blockquote>
+
+    <h2>Stateful vs. Stateless</h2>
+
+    <ul>
+        <li><strong>Stateful</strong> computation, where the result can depend on history, not just current inputs: calling <code>register("alice")</code> twice gives a different result the second time</li>
+        <li><strong>Stateless / pure</strong> computation, where the same inputs always give the same outputs and nothing is remembered</li>
+    </ul>
+
+    <p>Most real programs mix both, which is where a lot of complexity comes from. In the <a href="/notes/lambda-calculus/">lambda calculus</a>, pure computation has no state at all; you substitute expressions for variables and reduce. State had to be <em>added on top</em>, and adding it cleanly is genuinely hard; it gave rise to monads in Haskell (threading state through pure functions), effect systems (type-level tracking of which functions may have effects), and <a href="/notes/linear-types/">linear types</a> (state used exactly once, preventing aliasing bugs).</p>
+
+    <h2>Aliasing and Concept Boundaries</h2>
+
+    <p>The thorniest thing state introduces is aliasing, two names pointing at the same piece of state, so changing it through one unexpectedly changes it through the other. This is why the paper is so strict about concepts never sharing state or referencing each other's internals: aliasing across concept boundaries would break the independence guarantee completely.</p>
+
+    <h2>Notes</h2>
+
+    <p>The paper takes a classical position: concepts as state machines, explicit transitions, no state leaking across boundaries. This is the discipline formal-methods people like Daniel Jackson (who built Alloy) have advocated for decades. The new part is applying it to LLM-assisted development and asking what software structure makes generated code more reliable. Whether state lives in RDF triples or a plain <code>Map</code> is mechanism, not concept.</p>
+</body>
+</html>

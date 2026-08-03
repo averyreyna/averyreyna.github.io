@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metric Spaces</title>
+    <meta name="description" content="Avery Reyna's personal website.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Metric Spaces">
+    <meta property="og:image" content="https://avryryn.io/og-image.png">
+    <meta property="og:url" content="https://avryryn.io/notes/metric-spaces/">
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/website.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <style>
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+        body{max-width:70ch;font-family:'ABC Diatype Mono',monospace;font-size:13px}
+        h2{font-weight:500}
+        a,a:visited{color:#00e;text-decoration:none}
+    </style>
+</head>
+<body>
+    <nav><a href="/">Home</a></nav>
+    <br>
+    <h1>Metric Spaces</h1>
+
+    <p>A metric space is a set X with a distance function d : X × X → ℝ satisfying non-negativity, identity of indiscernibles, symmetry, and the triangle inequality.</p>
+
+    <ul>
+        <li>Every metric space is automatically a <a href="/notes/topological-spaces/">topological space</a>, since the open balls form a basis</li>
+        <li><em>Cauchy sequences</em> and <em>completeness</em>: a metric space is complete if every Cauchy sequence converges (ℝ is complete, ℚ is not)</li>
+        <li><em>Uniform continuity</em> is stronger than continuity: the ε can be chosen independently of the point</li>
+        <li>Metric spaces appear in the UH course sequence (MATH 4337/6342) as the concrete entry point into topology</li>
+    </ul>
+
+    <blockquote>
+        <p>Metric spaces are the comfortable middle ground between analysis and topology. Most examples in category theory that involve topology start as metric spaces before being generalized.</p>
+    </blockquote>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schema Inferred from Live Data</title>
+    <meta name="description" content="Avery Reyna's personal website.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Schema Inferred from Live Data">
+    <meta property="og:image" content="https://avryryn.io/og-image.png">
+    <meta property="og:url" content="https://avryryn.io/notes/schema-inferred-from-live-data/">
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/website.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <style>
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+        body{max-width:70ch;font-family:'ABC Diatype Mono',monospace;font-size:13px}
+        h2{font-weight:500}
+        a,a:visited{color:#00e;text-decoration:none}
+    </style>
+</head>
+<body>
+    <nav><a href="/">Home</a></nav>
+    <br>
+    <h1>Schema Inferred from Live Data</h1>
+
+    <p><a href="/notes/typed-holes-and-gradual-consistency/">Typed holes</a> need an expected type at the cursor. The usual source of that type is a declaration: you wrote a signature, and the editor reads it back. A more interesting source is the data itself. If a program is a chain of operations over a table, the expected type at a hole can be inferred from the live data flowing to that point, so the type is the runtime schema at that stage of the pipeline. The feedback is the same kind of expectation at the cursor, but it works in plain text with no declarations and stays grounded in the actual data.</p>
+
+    <h2>Rich Types from a Sample</h2>
+
+    <p>The worry with inferring types from data is that you only recover ints and bools. Sampling the actual rows recovers much more. A unique, non-null, monotonic column reads as a key; a column whose values all match an email pattern reads as an email; a non-negative float reads as a currency; and a column with only a few distinct values reads as a categorical. Nullability, cardinality, and ranges come along too. That richness is what makes feedback at the hole worth having:</p>
+
+    <pre><code>column         | inferred type           | why
+---------------|-------------------------|-----------------------------------
+order_id       | Key[int]                | unique, non-null, monotonic
+customer_email | Email                   | every value matches an email pattern
+order_date     | Date                    | parses as ISO dates
+amount_usd     | Currency[USD] (&gt;= 0)    | float, non-null, never negative
+region         | Categorical{NA,EU,APAC} | few distinct values, low cardinality
+is_refunded    | Bool                    | true / false</code></pre>
+
+    <h2>Ranked by What the Operation Means</h2>
+
+    <p>Once the columns carry rich types, completion can rank candidates by what the operation means rather than alphabetically. Grouping by a categorical or a date makes sense, while grouping by a unique key does not, since every group would hold a single row. A sum wants a numeric column, so an email column can be flagged before anything runs.</p>
+
+    <h2>The Error You Would Otherwise Never See</h2>
+
+    <p>Typing a non-numeric column into a sum draws a squiggle at the cursor. In plain pandas that same code runs: it concatenates every string in each group into one long value and quietly returns garbage. Because the expected type came from the data, the editor can catch the mistake before execution.</p>
+
+    <h2>Why "Live" Is the Point</h2>
+
+    <p>Everything above could be faked with a declared schema. The part that cannot be faked is that the expectation came from the data, so changing the data changes the expectation. Swap the source file and a category that is no longer present drops out of the ranking; a column that now has blanks becomes nullable, and the sum warns that it will skip those nulls. The code is untouched in both cases, and the feedback moved because the data moved. A declared schema is frozen, while an inferred one tracks whatever is actually there.</p>
+
+    <h2>Notes</h2>
+
+    <p>This depends on the hole machinery from <a href="/notes/typed-holes-and-gradual-consistency/">typed holes and gradual consistency</a> for the expectation, and it sets up the dynamic side, where the partial program runs and the result fills in as you type: <a href="/notes/value-liveness-and-hole-closures/">value liveness and hole closures</a>.</p>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session Types</title>
+    <meta name="description" content="Avery Reyna's personal website.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Session Types">
+    <meta property="og:image" content="https://avryryn.io/og-image.png">
+    <meta property="og:url" content="https://avryryn.io/notes/session-types/">
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/website.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <style>
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+        body{max-width:70ch;font-family:'ABC Diatype Mono',monospace;font-size:13px}
+        h2{font-weight:500}
+        a,a:visited{color:#00e;text-decoration:none}
+    </style>
+</head>
+<body>
+    <nav><a href="/">Home</a></nav>
+    <br>
+    <h1>Session Types</h1>
+
+    <p><em>Session types</em> are a type discipline for communication protocols. The type of a channel describes the sequence of messages that will be exchanged on it. A session type enforces that both sides of a communication follow the protocol at the type level: protocol violations become type errors.</p>
+
+    <ul>
+        <li>Basic constructs: !A.S (send a value of type A, continue with session S), ?A.S (receive A, continue with S), end (session complete)</li>
+        <li>Introduced by Honda (1993) and developed by Caires, Pfenning, Wadler, and others</li>
+        <li>Work by Caires and Pérez connects session types to <a href="/notes/crdt-introduction/">CRDTs</a>, giving typed guarantees about distributed protocols carrying replicated state</li>
+    </ul>
+
+    <blockquote>
+        <p>Session types are to communication what <a href="/notes/lambda-calculus/">type theory</a> is to computation: a way of ruling out entire classes of errors at compile time, before the program runs.</p>
+    </blockquote>
+</body>
+</html>

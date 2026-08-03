@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dafny: Our First Program</title>
+    <meta name="description" content="Avery Reyna's personal website.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Dafny: Our First Program">
+    <meta property="og:image" content="https://avryryn.io/og-image.png">
+    <meta property="og:url" content="https://avryryn.io/notes/dafny-our-first-program/">
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/website.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <style>
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+        body{max-width:70ch;font-family:'ABC Diatype Mono',monospace;font-size:13px}
+        h2{font-weight:500}
+        a,a:visited{color:#00e;text-decoration:none}
+    </style>
+</head>
+<body>
+    <nav><a href="/">Home</a></nav>
+    <br>
+    <h1>Dafny: Our First Program</h1>
+
+    <p>Dafny incorporates at least two formal systems: mathematical logic at compile time, and evaluation of programs at runtime. If a program compiles successfully, meaning Dafny manages to prove whatever we ask of it, it proceeds to execute at runtime. Verification of proofs first, then compiled code.</p>
+
+    <pre><code>method Main()
+    ensures 3 * 2 == 6
+{
+    print "Hello World!\n";
+}</code></pre>
+
+    <p>The area before the body is the <em>specifications</em> area; if a specification is not met, we get an error at compile time. Change the claim to something false and the verifier objects:</p>
+
+    <pre><code>method Main()
+    // this will cause an error saying "a postcondition might not hold
+    // in this return path"
+    ensures 3 * 2 == 7
+{
+    print "Hello World!\n";
+}</code></pre>
+
+    <h2>Notes</h2>
+
+    <p>What makes this a good first program: the <code>ensures</code> clause has nothing to do with the body. The program prints a greeting; the proof obligation is pure arithmetic. Keeping those two layers visibly separate from the very first example is the clearest statement of what Dafny is.</p>
+</body>
+</html>

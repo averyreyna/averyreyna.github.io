@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dependent Types</title>
+    <meta name="description" content="Avery Reyna's personal website.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Dependent Types">
+    <meta property="og:image" content="https://avryryn.io/og-image.png">
+    <meta property="og:url" content="https://avryryn.io/notes/dependent-types/">
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/website.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <style>
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+        body{max-width:70ch;font-family:'ABC Diatype Mono',monospace;font-size:13px}
+        h2{font-weight:500}
+        a,a:visited{color:#00e;text-decoration:none}
+    </style>
+</head>
+<body>
+    <nav><a href="/">Home</a></nav>
+    <br>
+    <h1>Dependent Types</h1>
+
+    <p>A <em>dependent type</em> is a type that can depend on a value. The type of "a vector of length n" is dependent: the type changes based on the value n.</p>
+
+    <ul>
+        <li><em>Π-types</em> (dependent functions), written Π(x : A). B(x): given a : A, produce a term of type B(a), generalizing function types</li>
+        <li><em>Σ-types</em> (dependent pairs): a pair (a, b) where b has type B(a), generalizing product types</li>
+        <li>Agda is built on dependent type theory; all proofs in PLFA are Agda terms with dependent types</li>
+        <li><a href="/notes/dafny-our-first-program/">Dafny</a> uses a restricted form: specifications are a kind of dependent type, but without the full generality of Agda</li>
+    </ul>
+
+    <blockquote>
+        <p>Σ-types are propositions with witnesses: "there exists x such that P(x)" is Σ(x : A). P(x). The pair is the x and the proof that P holds.</p>
+    </blockquote>
+</body>
+</html>

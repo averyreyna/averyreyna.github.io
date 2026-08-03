@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dafny: Computation</title>
+    <meta name="description" content="Avery Reyna's personal website.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Dafny: Computation">
+    <meta property="og:image" content="https://avryryn.io/og-image.png">
+    <meta property="og:url" content="https://avryryn.io/notes/dafny-computation/">
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/website.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <style>
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+        body{max-width:70ch;font-family:'ABC Diatype Mono',monospace;font-size:13px}
+        h2{font-weight:500}
+        a,a:visited{color:#00e;text-decoration:none}
+    </style>
+</head>
+<body>
+    <nav><a href="/">Home</a></nav>
+    <br>
+    <h1>Dafny: Computation</h1>
+
+    <p><em>Algorithms</em> represent a sequence of steps in some process; at the lowest level, a procedure represents operations upon symbols in a formal system. Computation is itself a type of formal system, the symbols being 0s and 1s, the inference rules representing procedures.</p>
+
+    <h2>Assertions</h2>
+
+    <pre><code>method Main() {
+    var v := 3;
+    assert 0 &lt;= v;
+}</code></pre>
+
+    <p>The assertion claims the value of <code>v</code> will be non-negative, and Dafny confirms it. Assert something false and Dafny returns an assertion violation. Assertions work on computed results too: storing <code>1 + 2</code> and asserting the result is larger than 0 verifies fine.</p>
+
+    <h2>Functions vs. Methods</h2>
+
+    <ul>
+        <li><strong>Functions</strong> contain a single expression, can be used in specifications, cannot be used in method bodies, and are not part of the final program, acting as substitution at compile time</li>
+        <li><strong>Methods</strong> can contain multiple statements, cannot be used in specifications, can be called from method bodies, and are part of the final program, computation at runtime</li>
+    </ul>
+
+    <blockquote>
+        <p>In Dafny, functions are ghost by default. They exist only for the verifier, not in the compiled executable. The "substitution at compile time" phrasing describes how the verifier handles function calls: it can unfold the function body wherever the function is called in a proof context, rather than treating it as an opaque call with pre/postconditions (which is how methods work).</p>
+    </blockquote>
+
+    <p>Here is the same product computation in both forms. Note how the function can call <em>itself</em> in its own <code>ensures</code> clause, while the method specifies an output variable that holds the return value:</p>
+
+    <pre><code>function Product(a: int, b: int): int
+    ensures Product(a, b) == a * b
+{
+    a * b
+}
+
+method Product(x : int, y : int) returns (product : int)
+    ensures product == x * y;
+{
+    product := x * y;
+}</code></pre>
+
+    <p>Verification and compilation are independent steps. You <em>can</em> compile without verifying, the whole point of Dafny being that you don't want to. The split in what runs: ghost code (erased at compile time; <code>requires</code>/<code>ensures</code>/<code>invariant</code>) versus non-ghost code (method bodies, regular variables, imperative logic). The compiled executable can target any of several languages. Also: <code>print</code> is a statement, not a function call.</p>
+
+    <h2>Predicates</h2>
+
+    <pre><code>predicate GreaterThanZero(n : nat)
+{
+    n > 0
+}
+
+method Main(x : int) returns (y : int)
+    ensures GreaterThanZero(x)
+{
+    y := x * 2;
+}</code></pre>
+
+    <p>Predicates are top-level declarations, boolean functions usable in specifications, but not definable inside one.</p>
+
+    <h2>Recursion and Termination</h2>
+
+    <pre><code>function Summation(n : nat): nat
+    decreases n
+{
+    if n == 0 then 0 else n + Summation(n-1)
+}</code></pre>
+
+    <p>For tail-recursive functions the computation is captured completely by the arguments: some variable carries all the work done so far. <code>Summation</code> is <em>not</em> tail recursive: <code>n</code> does not keep track of the result until the base case is hit, so the additions pile up on the way back out.</p>
+
+    <p>A method can then be verified against the function as its specification:</p>
+
+    <pre><code>function Summation(x : nat): nat
+    decreases x
+{
+    if x == 0 then 0 else x + Summation(x-1)
+}
+
+method Sum(x : nat) returns (summation : nat)
+    ensures summation == Summation(x)
+{
+    summation := Summation(x)
+}</code></pre>
+
+    <h2>Algebraic Datatypes</h2>
+
+    <p><code>datatype Tree&lt;T&gt; = Leaf | Node(nat, TreeNat, TreeNat)</code> is <em>not</em> initializing a tree; it declares the shape of what a tree can be:</p>
+
+    <ul>
+        <li><code>datatype</code> defines an algebraic datatype (superficially like a Python <code>@dataclass</code>, but more powerful: it describes every possible form the data can take)</li>
+        <li><code>Tree&lt;T&gt;</code> is the type name with a generic parameter</li>
+        <li><code>Leaf | Node(...)</code> are the two possible forms, separated by <code>|</code></li>
+        <li><code>Node(nat, TreeNat, TreeNat)</code> holds three things: a <code>nat</code> and two subtrees</li>
+    </ul>
+</body>
+</html>

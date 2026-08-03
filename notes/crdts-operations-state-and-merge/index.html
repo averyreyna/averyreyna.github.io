@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRDTs: Operations, State, and Merge</title>
+    <meta name="description" content="Avery Reyna's personal website.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="CRDTs: Operations, State, and Merge">
+    <meta property="og:image" content="https://avryryn.io/og-image.png">
+    <meta property="og:url" content="https://avryryn.io/notes/crdts-operations-state-and-merge/">
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/website.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <style>
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+        body{max-width:70ch;font-family:'ABC Diatype Mono',monospace;font-size:13px}
+        h2{font-weight:500}
+        a,a:visited{color:#00e;text-decoration:none}
+    </style>
+</head>
+<body>
+    <nav><a href="/">Home</a></nav>
+    <br>
+    <h1>CRDTs: Operations, State, and Merge</h1>
+
+    <p>Picking the <a href="/notes/crdt-introduction/">CRDT survey</a> back up where it started: in a collaborative app, users expect to see their own operations immediately, without waiting for a round-trip to a central server. This is the whole premise of local-first software, where edits happen even while offline. Immediate local edits are exactly what make it possible for two users to perform operations <em>concurrently</em>, and that forces the central question a collaborative app has to answer — what is the state resulting from concurrent operations?</p>
+
+    <p>Concurrent operations are logically simultaneous: there is no agreement on the order in which they happened, so for a while the users will genuinely see different states. The job is to combine those operations in a way that matches user expectations rather than pretending they occurred in some sequential order. Eventually every replica learns of every operation and they all converge on the same state.</p>
+
+    <h2>Semantics and Consistency</h2>
+
+    <p>A collaborative app's <em>semantics</em> are an abstract description of what the app's state should be, given the operations that users have performed. The non-negotiable property is consistency:</p>
+
+    <blockquote>
+        <p>The state must be consistent across users: two users who are aware of the same operations must be in the same state.</p>
+    </blockquote>
+
+    <p>A small example shows why naive operations break this. Editing a shared list of ingredients by <em>index</em> — "delete the item at index 0," "change the contents of the cell at index 1" — fails the moment a concurrent deletion shifts everything over, because the index no longer points at the thing the user meant. The fix is to interpret operations in a concurrency-aware way, and the general move is to give each ingredient a stable <a href="/notes/unique-ids-append-only-logs-and-unique-sets/">unique id</a> instead of referring to it by a position that other operations can invalidate.</p>
+
+    <h2>Op-Based CRDTs</h2>
+
+    <p>An <strong>op-based</strong> CRDT broadcasts each operation to every device, and works even if the network has unbounded delays or delivers messages in different orders to different users. A counter is the minimal case:</p>
+
+    <ul>
+        <li><strong>Per-user state:</strong> O, the current count</li>
+        <li><strong>Operation</strong> <code>inc()</code>: broadcast a +1 message to all devices; when the message is received, each user increments their own state</li>
+    </ul>
+
+    <p>Because addition commutes, the messages can arrive in any order and every replica lands on the same total.</p>
+
+    <h2>State-Based CRDTs</h2>
+
+    <p>A <strong>state-based</strong> CRDT exchanges whole states rather than individual operations, assuming only that every message eventually arrives, without duplication mattering. Such a CRDT consists of a per-user state, a function that updates the local state to reflect an operation, and a <strong>merge</strong> function that takes a second state and folds it into the current one — effectively a replicated union of operations.</p>
+
+    <p>Merging two counters that have each seen some increments just collects the union of those increments:</p>
+
+    <pre><code>  current state      other state         merged state
+  [+1  +1]           [+1  +1]            [+1  +1]
+  [+1  +1]     +     [+1  +1]      =&gt;     [+1  +1]
+                     [+1  +1]            [+1  +1]</code></pre>
+
+    <p>The merge is idempotent, commutative, and associative, so re-merging a state you have already absorbed changes nothing and the order of merges does not matter.</p>
+
+    <h2>Notes</h2>
+
+    <p>The definition worth holding onto strips away the op-based / state-based distinction entirely:</p>
+
+    <blockquote>
+        <p>A CRDT is a distributed algorithm that computes a collaborative app's state from its operation history.</p>
+    </blockquote>
+
+    <p>Both flavors are just two implementations of that same idea — one shipping the operations, the other shipping the states they accumulate into.</p>
+
+    <p>Source: <a href="https://mattweidner.com/2023/09/26/crdt-survey-1.html">Matt Weidner's CRDT survey, part 1</a>.</p>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lambda Calculus</title>
+    <meta name="description" content="Avery Reyna's personal website.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Lambda Calculus">
+    <meta property="og:image" content="https://avryryn.io/og-image.png">
+    <meta property="og:url" content="https://avryryn.io/notes/lambda-calculus/">
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/website.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <style>
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+        body{max-width:70ch;font-family:'ABC Diatype Mono',monospace;font-size:13px}
+        h2{font-weight:500}
+        a,a:visited{color:#00e;text-decoration:none}
+    </style>
+</head>
+<body>
+    <nav><a href="/">Home</a></nav>
+    <br>
+    <h1>Lambda Calculus</h1>
+
+    <p>The lambda calculus is a formal system for expressing computation via function abstraction and application: λx. e is a function taking x and returning e, and (λx. e) v reduces to e[v/x], substituting v for x in e (β-reduction).</p>
+
+    <ul>
+        <li>The <em>simply typed lambda calculus</em> (STLC) assigns types to terms to rule out nontermination; types are built from base types and the function type A → B</li>
+        <li>Every well-typed STLC term terminates (strong normalization)</li>
+        <li>Under <a href="/notes/curry-howard-correspondence/">Curry–Howard</a>, A → B is implication: a function from A to B is a proof that A implies B</li>
+        <li>PLFA (<em>Programming Language Foundations in Agda</em>) covers the lambda calculus formally and mechanizes the metatheorems in Agda</li>
+    </ul>
+
+    <blockquote>
+        <p>Lambda calculus is the computational core of type theory and the semantic foundation for functional languages like <a href="/notes/elm-introduction-and-core-language/">Elm</a>. Agda is essentially a dependently-typed lambda calculus with a universe hierarchy.</p>
+    </blockquote>
+</body>
+</html>

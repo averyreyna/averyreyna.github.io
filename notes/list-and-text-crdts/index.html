@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List and Text CRDTs</title>
+    <meta name="description" content="Avery Reyna's personal website.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="List and Text CRDTs">
+    <meta property="og:image" content="https://avryryn.io/og-image.png">
+    <meta property="og:url" content="https://avryryn.io/notes/list-and-text-crdts/">
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/website.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <style>
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+        body{max-width:70ch;font-family:'ABC Diatype Mono',monospace;font-size:13px}
+        h2{font-weight:500}
+        a,a:visited{color:#00e;text-decoration:none}
+    </style>
+</head>
+<body>
+    <nav><a href="/">Home</a></nav>
+    <br>
+    <h1>List and Text CRDTs</h1>
+
+    <p>Ordered collections are where the <a href="/notes/unique-ids-append-only-logs-and-unique-sets/">unique set</a> needs a twist. In a list or a text document users insert and delete elements at <em>positions</em>, and inserting or deleting a character shifts the indices of everything after it &mdash; the behavior of JavaScript's <code>Array.splice</code>. Referring to those positions by raw index is exactly the index-instability problem again, so a list CRDT gives every element its own immutable <em>list CRDT position</em> at the moment it is typed.</p>
+
+    <p>Unlike a generic <a href="/notes/unique-ids-append-only-logs-and-unique-sets/">UID</a>, these positions are <strong>ordered</strong>: given two positions p and q you can always ask whether p &lt; q or q &lt; p. A text CRDT is the same construction specialized to individual characters as values, which makes the state trivial to describe:</p>
+
+    <ul>
+    <li>Sort all (position, char) elements by position</li>
+    <li>Display the characters in that order</li>
+    </ul>
+
+    <h2>What the Ordering Must Guarantee</h2>
+
+    <p>For that sort to give every replica a "stable, consistent" sequence, the positions have to satisfy three properties:</p>
+
+    <ul>
+    <li><strong>Total order</strong> &mdash; every position has a definite less-than relationship with every other position, even ones created concurrently by different users. There are no ties: "we both inserted at position 5, now what?" still resolves to a single agreed order</li>
+    <li><strong>Immutability</strong> &mdash; once p comes before q, that never changes no matter what is inserted or deleted around them. A text editor does not reshuffle chapters because someone edited nearby, and the relationship holds even if the element between them is later deleted</li>
+    <li><strong>Transitivity</strong> &mdash; ordinary ordering logic: if A &lt; B and B &lt; C, then A &lt; C</li>
+    </ul>
+
+    <p>Positions with all three properties are genuinely hard to implement correctly &mdash; the survey spends its closing paragraphs on the machinery &mdash; but the payoff of the abstraction is that you do not have to understand the internals. You insert and delete against opaque positions and trust that the order they induce is total, stable, and transitive.</p>
+
+    <h2>Notes</h2>
+
+    <p>The split is the satisfying part: identity (<a href="/notes/unique-ids-append-only-logs-and-unique-sets/">UIDs</a>) handles <em>which</em> element an operation refers to, and order (list positions) handles <em>where</em> it sits, and neither one leaks index arithmetic into the operations themselves.</p>
+
+    <p>Source: <a href="https://mattweidner.com/2023/09/26/crdt-survey-2.html">Matt Weidner's CRDT survey, part 2</a>.</p>
+</body>
+</html>

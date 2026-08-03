@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Derivatives of Datatypes: Zippers</title>
+    <meta name="description" content="Avery Reyna's personal website.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Derivatives of Datatypes: Zippers">
+    <meta property="og:image" content="https://avryryn.io/og-image.png">
+    <meta property="og:url" content="https://avryryn.io/notes/derivatives-of-datatypes-zippers/">
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/website.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <style>
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+        body{max-width:70ch;font-family:'ABC Diatype Mono',monospace;font-size:13px}
+        h2{font-weight:500}
+        a,a:visited{color:#00e;text-decoration:none}
+    </style>
+</head>
+<body>
+    <nav><a href="/">Home</a></nav>
+    <br>
+    <h1>Derivatives of Datatypes: Zippers</h1>
+
+    <p>A <em>zipper</em> gives O(1) local navigation via a cursor instead of O(n) re-traversal: the data at the cursor, plus a "context" describing how to rebuild everything around it. Differentiating a datatype's algebraic equation produces exactly this context, and the calculus turns out to be legitimate the whole way through, unlike solving the equation itself.</p>
+
+    <h2>List Zipper</h2>
+
+    <p>A list is L(&#945;) = 1 + &#945; &middot; L(&#945;). Differentiating gives L'(1&minus;&#945;) = L, so L'(&#945;) = L(&#945;)&sup2;, literally a <em>pair</em> of lists: before-cursor and after-cursor. That matches the informal zipper idea exactly.</p>
+
+    <h2>Tree Zipper and the "2 = bool" Insight</h2>
+
+    <p>A tree with values at nodes is T(&#945;) = 1 + &#945; &middot; T(&#945;)&sup2;. Differentiating with the product and chain rules:</p>
+
+    <p>T'(&#945;) = T(&#945;)&sup2; + 2&#945; &middot; T(&#945;) &middot; T'(&#945;)</p>
+
+    <p>T'(&#945;) = T(&#945;)&sup2; / (1 &minus; 2&#945; &middot; T(&#945;)) = T(&#945;)&sup2; &times; L(2&#945; &middot; T(&#945;))</p>
+
+    <p>Reading the result: T(&#945;)&sup2; is the current node's two children, needed to descend back down. L(2 &middot; T(&#945;)) is the ancestor chain back to the root, a <em>list</em> of steps, each step a direction (left or right, a <code>bool</code>, i.e. the type 2) plus the sibling subtree not taken.</p>
+
+    <p>The 2 is not a scalar. It falls out of the product rule on T &times; T (d(T &times; T) = T'T + TT' = 2TT'), and combinatorially it answers "is the hole in the left T or the right T?", a genuine two-way choice. The calculus's power-rule coefficient and an actual data field you would have to store both mean the same thing here. Every calculus rule (sum, product, chain, power) corresponds to a real, checkable operation on "where could the hole be."</p>
+
+    <h2>HW2: One-Hole Context for Binode/Trinode</h2>
+
+    <p>The same trick on a tree with two- and three-way branching:</p>
+
+    <pre><code>datatype 'a t = Empty
+              | Binode of 'a * ('a t * 'a t)
+              | Trinode of 'a * ('a t * 'a t * 'a t)</code></pre>
+
+    <p>The algebra is T = 1 + a&middot;T&sup2; + a&middot;T&sup3;. Differentiating:</p>
+
+    <p>T' = (T&sup2;+T&sup3;) + a &middot; (2T+3T&sup2;) &middot; T' = (T&sup2;+T&sup3;) &times; L(2aT+3aT&sup2;)</p>
+
+    <p>T&sup2;+T&sup3; is the case where the search stopped here, meaning this node's own payload is the hole and its children are untouched. L(2aT+3aT&sup2;) is a list of steps down, each either a Binode step (2 choices of which child) or a Trinode step (3 choices):</p>
+
+    <pre><code>(* one step on the way down *)
+datatype 'a step =
+    BinodeL of 'a * 'a t
+  | BinodeR of 'a * 'a t
+  | Trinode1 of 'a * 'a t * 'a t
+  | Trinode2 of 'a * 'a t * 'a t
+  | Trinode3 of 'a * 'a t * 'a t
+
+(* where the search stops *)
+datatype 'a innermost =
+    HereBinode  of 'a t * 'a t
+  | HereTrinode of 'a t * 'a t * 'a t
+
+(* the full one-hole context *)
+type 'a context = 'a step list * 'a innermost</code></pre>
+
+    <p>A sanity check in the fold style: filling the hole and walking the step list back up should exactly reconstruct the original tree, the same round-trip property as fold/unfold.</p>
+
+    <pre><code>fun fillInnermost (h: 'a) (HereBinode (l, r))     = Binode (h, (l, r))
+  | fillInnermost (h: 'a) (HereTrinode (x, y, z)) = Trinode (h, (x, y, z))
+
+fun fill ((steps, inner): 'a context, h: 'a) : 'a t =
+  let
+    fun rebuild [] node = node
+      | rebuild (BinodeL (p, r) :: rest)     node = rebuild rest (Binode  (p, (node, r)))
+      | rebuild (BinodeR (p, l) :: rest)     node = rebuild rest (Binode  (p, (l, node)))
+      | rebuild (Trinode1 (p, y, z) :: rest) node = rebuild rest (Trinode (p, (node, y, z)))
+      | rebuild (Trinode2 (p, x, z) :: rest) node = rebuild rest (Trinode (p, (x, node, z)))
+      | rebuild (Trinode3 (p, x, y) :: rest) node = rebuild rest (Trinode (p, (x, y, node)))
+  in
+    rebuild steps (fillInnermost h inner)
+  end</code></pre>
+</body>
+</html>
