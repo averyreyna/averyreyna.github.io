@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Views Are Now Cheap</title>
-    <meta name="description" content="Avery Reyna's personal website.">
+    <meta name="description" content="My always-changing personal website.">
     <meta property="og:type" content="article">
     <meta property="og:title" content="Views Are Now Cheap">
     <meta property="og:image" content="https://avryryn.io/og-image.png">
@@ -16,10 +16,10 @@
     <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
     <style>
-        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
-        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
-        @font-face{font-family:'ABC Diatype Mono';src:url('/assets/fonts/ABCDiatypeMono-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
-        body{max-width:70ch;font-family:'ABC Diatype Mono',monospace;font-size:13px}
+        @font-face{font-family:'ABC ROM Mono';src:url('/assets/fonts/ABCROMMono-Regular-Trial.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+        @font-face{font-family:'ABC ROM Mono';src:url('/assets/fonts/ABCROMMono-Medium-Trial.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+        @font-face{font-family:'ABC ROM Mono';src:url('/assets/fonts/ABCROMMono-Bold-Trial.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+        body{max-width:70ch;font-family:'ABC ROM Mono',monospace;font-size:13px}
         h2{font-weight:500}
         a,a:visited{color:#00e;text-decoration:none}
     </style>
@@ -51,11 +51,6 @@
     <h2>Localhost as the Interface</h2>
 
     <p>When generating views is cheap and the data you need lives on your machine, localhost moves towards being a general-purpose interface and away from a strictly developer tool. Developers already use localhost this way: it is where you run, inspect, and iterate before shipping. But the localhost URL has a second property that matters here: it is session-scoped. The server lives as long as the process does, and nothing persists beyond the task that created it. Tools like ngrok extend this further: they expose a local port to a shareable URL for the duration of a session, letting collaborators access the same workspace without provisioning any infrastructure. The study tool from the opening would live at a localhost port, tunneled to classmates, and disappear when we closed our laptops.</p>
-
-    <figure>
-        <img src="/assets/images/alabaster.jpg" loading="lazy" alt="">
-        <figcaption>Cropped section of <em>The Artist's Painting-Room</em>, Mary Ann Rebecca Alabaster, 1830. © Art Gallery of Ontario.</figcaption>
-    </figure>
 
     <h2>Software as a Medium</h2>
 
