@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experimenting with Schema Feedback</title>
+    <meta name="description" content="My always-changing personal website.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Experimenting with Schema Feedback">
+    <meta property="og:image" content="https://avryryn.io/og-image.png">
+    <meta property="og:url" content="https://avryryn.io/blog/experimenting-with-schema-feedback/">
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/website.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <style>
+        @font-face{font-family:'ABC ROM Mono';src:url('/assets/fonts/ABCROMMono-Regular-Trial.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+        @font-face{font-family:'ABC ROM Mono';src:url('/assets/fonts/ABCROMMono-Medium-Trial.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+        @font-face{font-family:'ABC ROM Mono';src:url('/assets/fonts/ABCROMMono-Bold-Trial.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+        body{max-width:70ch;font-family:'ABC ROM Mono',monospace;font-size:13px}
+        h2{font-weight:500}
+        a,a:visited{color:#00e;text-decoration:none}
+    </style>
+</head>
+<body>
+    <nav><a href="/">Home</a></nav>
+    <br>
+    <h1>Experimenting with Schema Feedback</h1>
+    <p>August 5, 2026</p>
+
+    <p>Over the past couple of months I've been building Chaperone, a browser-only TypeScript editor built over a pandas-like DSL. It supports operations such as variable assignment, column indexing, and a handful of chained methods, including <code>group_by</code>, <code>sum</code>, and <code>mean</code>. When you load in a CSV, it produces a schema—one rich, data-derived type per column, such as <code>amount_usd: Currency[USD] (&gt;=0)</code>, rather than the raw machine dtype (<code>int64</code>, <code>float</code>, etc.) pandas itself would report.</p>
+
+    <p>I was initially inspired to start this project after learning a lot about Hazel, a live functional programming environment with typed holes that allows incomplete programs to be compiled and parsed, giving the user another layer of reasoning to properly fill in their code. More specifically, Chaperone descends from Hazelnut, the bidirectionally typed structure-editor calculus that Hazel extends itself. While I did not fully mechanize the type inferences in the backend, I did want to create a transplant for the judgment discipline that allows Chaperone to show from which hole a hole's type is derived.</p>
+
+    <h2>Some of the Inspiration</h2>
+
+    <p>When you work in data quality management at the enterprise-level, you routinely see how the dynamically-typed programming languages we use to analyze large swaths of data can fail users and developers alike. There were many times when one (seemingly minuscule) change could completely break Databricks workflows, for example, costing engineers time and stakeholders money. When the schema is originally written, many variables are still unknown, and type systems<sup id="fnref1"><a href="#fn1">1</a></sup> that check against it are especially susceptible to schema drift and to more upstream changes that programs can rarely account for.</p>
+
+    <p>There are some tools out there that try to prevent these issues:</p>
+
+    <ul>
+        <li><a href="https://github.com/unionai-oss/pandera">pandera</a> lets a user declare a schema once, as a class, and validates against it. However, this validation happens at runtime against a schema the programmer still has to write by hand.</li>
+        <li><a href="https://strictly-typed-pandas.readthedocs.io/en/latest/">Strictly Typed Pandas</a> takes a similar approach by enforcing a caller-provided schema at construction time.</li>
+        <li><a href="https://mypy.readthedocs.io/en/stable/">mypy</a> stops short of modeling column-level types at all.</li>
+    </ul>
+
+    <p>The biggest limitation of these approaches is that the schema is declared before it can check anything, so feedback only arrives after the data is loaded. What's needed (in my opinion) is tying the timing and source together with feedback that updates live as the programmer writes or before anything runs, derived from the data itself.</p>
+
+    <h2>How Does It Work</h2>
+
+    <p>In Chaperone, every keystroke re-parses the program and walks it twice against that schema. A <em>type thread</em> decides what each hole and operation is allowed to mean, and a <em>value thread</em> computes what the program's live rows are, with each hole closing over the DataFrame currently in scope. These two walks share one parsed program and one schema, meaning they can't drift from each other by construction, with each thread's operations describing the same hole always.</p>
+
+    <p>Each column's type comes from the rows themselves. A CSV load samples the file's non-null values and runs them through a fixed cascade of detectors, refinements tried before their generalizations,<sup id="fnref2"><a href="#fn2">2</a></sup> and the first detector to accept the column wins. There is logic that operationalizes the checks each type needs (e.g., <code>order_id</code> passes a key check because every sampled value is a unique, non-null integer, and <code>customer_email</code> passes the email check because every value matches the shape of an address). What comes out is a per-column type, richer than any dtype pandas itself can report, carrying element kind, nullability, null count, and sample cardinality alongside it.</p>
+
+    <p><code>traceColumn</code> runs the identical cascade as the inference pass does, but records the walk itself instead of just its outcome. Every detector gets tried in the same fixed order, and each run is kept as a verdict, either winner, rejected (with a specific reason), or not-reached once an earlier run has already won. The trace is a lever on the schema, not just an explanation of it. It and the inference are two views of the same walk, not two implementations; both iterate the same detector list in the same order so the type a column ends up with and the reason Chaperone gives for it can't disagree.</p>
+
+    <pre><code>const attempts: DetectorAttempt[] = [];
+  let decided = false;
+  DETECTORS.forEach((detect, k) =&gt; {
+    const label = DETECTOR_LABELS[k];
+    if (decided) {
+      attempts.push({ name: label, verdict: "not-reached", detail: "", highlight: [], culprit: false });
+      return;
+    }
+    const r = detect(name, nonNull, cells.length - nonNull.length);
+    if (r.ok) {
+      decided = true;
+      attempts.push({ name: label, verdict: "winner", detail: r.evidence, highlight: nonNullIdx, culprit: false });
+    } else {
+      const highlight = r.culprit === undefined ? [] : [nonNullIdx[r.culprit]];
+      attempts.push({ name: label, verdict: "rejected", detail: r.reason, highlight, culprit: r.culprit !== undefined });
+    }
+  });
+  attempts.push(
+    decided
+      ? { name: "string", verdict: "not-reached", detail: "", highlight: [], culprit: false }
+      : { name: "string", verdict: "winner", detail: "no detector matched — treated as free text", highlight: nonNullIdx, culprit: false },
+  );</code></pre>
+
+    <h2>Typing Data Without a Declaration</h2>
+
+    <p>The closest <a href="https://www.microsoft.com/en-us/research/publication/f3-0-strongly-typed-language-support-for-internet-scale-information-sources/">prior work</a> is F# type providers, specifically the shape-inference algorithm behind <a href="https://dl.acm.org/doi/10.1145/2908080.2908115">F# Data</a>, which already infers a structural type from sample JSON/CSV/XML records. It unifies primitive types across samples (i.e., an int sample and a float sample unify to float) and turns a field missing from some samples into an optional field rather than a type error. This is a precedent for the earlier claim that a type can come from data instead of a pre-made declaration.</p>
+
+    <p>While this is crucial for grounding the development of Chaperone, what differs is where and when inference happens. A type provider runs once, at compile time, generating an ordinary static F# type that the F# compiler then checks the same way it checks any other declared type. In other words, the declaration is auto-generated from a sample instead of handwritten, but it's still a declaration. Consequently, nothing about the type revisits itself as the programmer edits and nothing rederives if the underlying data changes shape later. A type provider's soundness guarantee is explicitly conditional on future data matching the shape of the samples it saw once. As such, Chaperone never generates a static declaration and the schema gets recomputed at the hole on every keystroke and every data swap, with no compilation step in between. Chaperone's delta over type providers isn't that shape inference from data is new—it's deriving that shape <em>live</em>, at the hole, rather than once, ahead of time.</p>
+
+    <h2>More on Implementation and Limitations</h2>
+
+    <p>Chaperone's rigor claim and its implementation are two different things. The object type system (Hazel's statics discipline with its collapsed ana/syn-switch mode and consistency-as-meet) is ported faithfully from <a href="https://dl.acm.org/doi/abs/10.1145/3290327">Hazel's own formalization</a>. That is where the soundness claim lives and it's independent of host language—TypeScript is substrate, not proof. It was chosen because free-text, keystroke-level liveness in a browser needs a real editor and runtime, not because its own type-checker does any work toward Chaperone's judgements.</p>
+
+    <p>There are some limitations in the rigor, of course. For instance, the <em>meet</em> in the current implementation is flat: A Currency and a Float meet to a Float, an Email and a String meet to a String, and that's the end of it. Nullability, numeric ranges, and units like Currency's non-negative bound are tracked as metadata alongside a column's kind, not enforced through an operation the way a refinement type would be.</p>
+
+    <p>Setting the closeable gaps aside, the more interesting question this project raises is less about a shortfall in this implementation than about the workflow an implementation like it, done well, would produce. In Chaperone, filling in the code around a hole doesn't retire the hole's liveness because the thing the hole was ever provisional about (what the data looks like) was never something the programmer's edit could settle. It isn't obvious yet what said programmers do with that. Do the defensive checks people currently write by hand to guard against upstream drift become redundant once the editor already surfaces the same information live, at the point of writing? Or do they persist anyway, as executable documentation the editor's feedback doesn't replace?</p>
+
+    <h2>In Closing</h2>
+
+    <p>Chaperone takes one piece of Hazel's typed-hole discipline and changes where a hole's type comes from—from a declaration the programmer writes to the data flowing through the hole itself. The move is narrow by design, and what it buys in exchange is a liveness prior systems in this space don't have.</p>
+
+    <p>Chaperone's schema re-derives on every keystroke and every data swap, and the type-derivation trace keeps a rejected hypothesis inspectable rather than silent, at the cost of a hand-tuned cascade in place of a learned or dependently typed one. The real question: what does a programmer do differently once schema feedback is live rather than fixed?</p>
+
+    <hr>
+    <ol>
+        <li id="fn1">I'm using this term loosely; I'm trying to get at how schemas are usually written once, and the code that assesses said schema can be definitionally "well-typed," but fail once the schema drifts. <a href="#fnref1">↩</a></li>
+        <li id="fn2">This is basically a list that runs checks from Key down to Bool, covertly checking each row value to determine which type it belongs to within its schema. <a href="#fnref2">↩</a></li>
+    </ol>
+</body>
+</html>
