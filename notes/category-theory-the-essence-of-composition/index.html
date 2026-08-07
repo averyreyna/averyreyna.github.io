@@ -4,29 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Category Theory: The Essence of Composition</title>
-    <meta name="description" content="My always-changing personal website.">
     <meta property="og:type" content="article">
     <meta property="og:title" content="Category Theory: The Essence of Composition">
-    <meta property="og:image" content="https://avryryn.io/og-image.png">
     <meta property="og:url" content="https://avryryn.io/notes/category-theory-the-essence-of-composition/">
     <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
-    <link rel="icon" type="image/svg+xml" href="/website.svg">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
-    <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <style>
-        @font-face{font-family:'ABC ROM Mono';src:url('/assets/fonts/ABCROMMono-Regular-Trial.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
-        @font-face{font-family:'ABC ROM Mono';src:url('/assets/fonts/ABCROMMono-Medium-Trial.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
-        @font-face{font-family:'ABC ROM Mono';src:url('/assets/fonts/ABCROMMono-Bold-Trial.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
-        body{max-width:70ch;font-family:'ABC ROM Mono',monospace;font-size:13px}
-        h2{font-weight:500}
-        a,a:visited{color:#00e;text-decoration:none}
-    </style>
+    <style>body{max-width:65ch}a,a:visited{color:#00e}</style>
 </head>
 <body>
-    <nav><a href="/">Home</a></nav>
-    <br>
+    <a href="/">Home</a>
     <h1>Category Theory: The Essence of Composition</h1>
 
     <p>A <em>category</em> is almost nothing: a collection of <strong>objects</strong> and <strong>arrows</strong> (<em>morphisms</em>) between them, where arrows compose. If there is an arrow from A to B and one from B to C, then there must be an arrow from A to C — their composition. Morphisms are essentially functions, and composition is the whole game.</p>
@@ -84,6 +69,6 @@ large  | 54      | 27     | 2:1</code></pre>
 
     <h2>Notes</h2>
 
-    <p>Category theory is "black box" thinking taken to an extreme: it actively discourages looking inside the objects. For f : String → Int you do not care how the length is computed, only that an arrow from String to Int exists. This is what makes the abstraction powerful — two completely different systems can share the same categorical structure. The same lens reframes everyday objects: the web becomes a category with pages as objects and links as arrows, and a social graph becomes one with people as objects and friendships as morphisms. Once composition and identity are in place, <a href="/notes/intro-to-category-theory-functors/">functors</a> are the next step — the structure-preserving maps <em>between</em> categories.</p>
+    <p>Category theory is "black box" thinking taken to an extreme: it actively discourages looking inside the objects. For f : String → Int you do not care how the length is computed, only that an arrow from String to Int exists. This is what makes the abstraction powerful — two completely different systems can share the same categorical structure. The same lens reframes everyday objects: the web becomes a category with pages as objects and links as arrows, and a social graph becomes one with people as objects and friendships as morphisms. Once composition and identity are in place, functors are the next step — the structure-preserving maps <em>between</em> categories.</p>
 </body>
 </html>

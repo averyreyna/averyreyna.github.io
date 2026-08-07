@@ -4,29 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>State, Formally</title>
-    <meta name="description" content="My always-changing personal website.">
     <meta property="og:type" content="article">
     <meta property="og:title" content="State, Formally">
-    <meta property="og:image" content="https://avryryn.io/og-image.png">
     <meta property="og:url" content="https://avryryn.io/notes/state-formally/">
     <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
-    <link rel="icon" type="image/svg+xml" href="/website.svg">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
-    <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <style>
-        @font-face{font-family:'ABC ROM Mono';src:url('/assets/fonts/ABCROMMono-Regular-Trial.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
-        @font-face{font-family:'ABC ROM Mono';src:url('/assets/fonts/ABCROMMono-Medium-Trial.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
-        @font-face{font-family:'ABC ROM Mono';src:url('/assets/fonts/ABCROMMono-Bold-Trial.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
-        body{max-width:70ch;font-family:'ABC ROM Mono',monospace;font-size:13px}
-        h2{font-weight:500}
-        a,a:visited{color:#00e;text-decoration:none}
-    </style>
+    <style>body{max-width:65ch}a,a:visited{color:#00e}</style>
 </head>
 <body>
-    <nav><a href="/">Home</a></nav>
-    <br>
+    <a href="/">Home</a>
     <h1>State, Formally</h1>
 
     <p>In PL theory, <em>state</em> is any information that persists and can change over time during a computation. A variable holding a value is state; a memory address containing a number is state. The fact that something <em>can change</em> is what makes it state, as opposed to a pure value, which is fixed.</p>
@@ -51,7 +36,7 @@
         <li><strong>Stateless / pure</strong> computation, where the same inputs always give the same outputs and nothing is remembered</li>
     </ul>
 
-    <p>Most real programs mix both, which is where a lot of complexity comes from. In the <a href="/notes/lambda-calculus/">lambda calculus</a>, pure computation has no state at all; you substitute expressions for variables and reduce. State had to be <em>added on top</em>, and adding it cleanly is genuinely hard; it gave rise to monads in Haskell (threading state through pure functions), effect systems (type-level tracking of which functions may have effects), and <a href="/notes/linear-types/">linear types</a> (state used exactly once, preventing aliasing bugs).</p>
+    <p>Most real programs mix both, which is where a lot of complexity comes from. In the lambda calculus, pure computation has no state at all; you substitute expressions for variables and reduce. State had to be <em>added on top</em>, and adding it cleanly is genuinely hard; it gave rise to monads in Haskell (threading state through pure functions), effect systems (type-level tracking of which functions may have effects), and linear types (state used exactly once, preventing aliasing bugs).</p>
 
     <h2>Aliasing and Concept Boundaries</h2>
 

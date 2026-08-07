@@ -4,29 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRDT Introduction</title>
-    <meta name="description" content="My always-changing personal website.">
     <meta property="og:type" content="article">
     <meta property="og:title" content="CRDT Introduction">
-    <meta property="og:image" content="https://avryryn.io/og-image.png">
     <meta property="og:url" content="https://avryryn.io/notes/crdt-introduction/">
     <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
-    <link rel="icon" type="image/svg+xml" href="/website.svg">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
-    <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <style>
-        @font-face{font-family:'ABC ROM Mono';src:url('/assets/fonts/ABCROMMono-Regular-Trial.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
-        @font-face{font-family:'ABC ROM Mono';src:url('/assets/fonts/ABCROMMono-Medium-Trial.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
-        @font-face{font-family:'ABC ROM Mono';src:url('/assets/fonts/ABCROMMono-Bold-Trial.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
-        body{max-width:70ch;font-family:'ABC ROM Mono',monospace;font-size:13px}
-        h2{font-weight:500}
-        a,a:visited{color:#00e;text-decoration:none}
-    </style>
+    <style>body{max-width:65ch}a,a:visited{color:#00e}</style>
 </head>
 <body>
-    <nav><a href="/">Home</a></nav>
-    <br>
+    <a href="/">Home</a>
     <h1>CRDT Introduction</h1>
 
     <p>Conflict-free replicated data types (CRDTs) are crucial for collaborative apps. Users expect to see their own operations immediately, without waiting for a round-trip to a central server, especially in a local-first app, where edits happen even while offline. Each device therefore applies operations to its own replica and the replicas must converge later.</p>
@@ -37,7 +22,7 @@
 
     <ul>
         <li><strong>Op-based</strong> CRDTs broadcast each operation to every replica; convergence requires concurrent operations to <em>commute</em>, so applying them in either order gives the same state</li>
-        <li><strong>State-based</strong> CRDTs exchange whole states and merge them; the states form a <a href="/notes/semilattices/">join-semilattice</a> and merge is the least upper bound (idempotent, commutative, and associative by construction)</li>
+        <li><strong>State-based</strong> CRDTs exchange whole states and merge them; the states form a join-semilattice and merge is the least upper bound (idempotent, commutative, and associative by construction)</li>
     </ul>
 
     <h2>Notes</h2>

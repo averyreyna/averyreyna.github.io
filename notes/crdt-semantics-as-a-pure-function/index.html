@@ -4,29 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRDT Semantics as a Pure Function</title>
-    <meta name="description" content="My always-changing personal website.">
     <meta property="og:type" content="article">
     <meta property="og:title" content="CRDT Semantics as a Pure Function">
-    <meta property="og:image" content="https://avryryn.io/og-image.png">
     <meta property="og:url" content="https://avryryn.io/notes/crdt-semantics-as-a-pure-function/">
     <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
-    <link rel="icon" type="image/svg+xml" href="/website.svg">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
-    <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <style>
-        @font-face{font-family:'ABC ROM Mono';src:url('/assets/fonts/ABCROMMono-Regular-Trial.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
-        @font-face{font-family:'ABC ROM Mono';src:url('/assets/fonts/ABCROMMono-Medium-Trial.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
-        @font-face{font-family:'ABC ROM Mono';src:url('/assets/fonts/ABCROMMono-Bold-Trial.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
-        body{max-width:70ch;font-family:'ABC ROM Mono',monospace;font-size:13px}
-        h2{font-weight:500}
-        a,a:visited{color:#00e;text-decoration:none}
-    </style>
+    <style>body{max-width:65ch}a,a:visited{color:#00e}</style>
 </head>
 <body>
-    <nav><a href="/">Home</a></nav>
-    <br>
+    <a href="/">Home</a>
     <h1>CRDT Semantics as a Pure Function</h1>
 
     <p>Part 2 of the survey reframes everything from <a href="/notes/crdts-operations-state-and-merge/">the introduction</a> around a single idea: CRDT semantics are a <strong>pure function of the operation history</strong>. The function maps the history of operations users have performed to the current app-visible state, and like any pure function it is deterministic and side-effect free — the same input always produces the same output.</p>

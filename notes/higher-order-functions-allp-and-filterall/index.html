@@ -4,29 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Higher-Order Functions: allp and filterAll</title>
-    <meta name="description" content="My always-changing personal website.">
     <meta property="og:type" content="article">
     <meta property="og:title" content="Higher-Order Functions: allp and filterAll">
-    <meta property="og:image" content="https://avryryn.io/og-image.png">
     <meta property="og:url" content="https://avryryn.io/notes/higher-order-functions-allp-and-filterall/">
     <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
-    <link rel="icon" type="image/svg+xml" href="/website.svg">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
-    <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <style>
-        @font-face{font-family:'ABC ROM Mono';src:url('/assets/fonts/ABCROMMono-Regular-Trial.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
-        @font-face{font-family:'ABC ROM Mono';src:url('/assets/fonts/ABCROMMono-Medium-Trial.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
-        @font-face{font-family:'ABC ROM Mono';src:url('/assets/fonts/ABCROMMono-Bold-Trial.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
-        body{max-width:70ch;font-family:'ABC ROM Mono',monospace;font-size:13px}
-        h2{font-weight:500}
-        a,a:visited{color:#00e;text-decoration:none}
-    </style>
+    <style>body{max-width:65ch}a,a:visited{color:#00e}</style>
 </head>
 <body>
-    <nav><a href="/">Home</a></nav>
-    <br>
+    <a href="/">Home</a>
     <h1>Higher-Order Functions: allp and filterAll</h1>
 
     <p>Exercise 2.3 from <em>A Quarter of Haskell</em>. The task is to write <code>allp</code>, which asks whether a value satisfies every predicate in a list, and <code>filterAll</code>, which keeps the values that satisfy all of them.</p>
@@ -66,7 +51,7 @@ divisibleBy 2 6   :: Bool                       -- now it is a Bool (True)</code
 
     <h2>Notes</h2>
 
-    <p>Why it is safe to put functions in a list at all comes down to referential transparency. A pure function returns the same output for the same input and has no side effects, so a list of them carries no hidden state. The larger shift is that you write an equation saying what the answer is rather than the steps to compute it. <code>allp ps x = and [ p x | p &lt;- ps ]</code> is a definition, not a loop, with no iteration and no mutable state, and the type <code>[a -&gt; Bool] -&gt; a -&gt; Bool</code> tells most of the story before you read the body. This connects back to the <a href="/notes/lambda-calculus/">lambda calculus</a>, where functions are first-class values, and to the <a href="/notes/intro-to-category-theory-functors/">functor</a> view of <code>map</code>.</p>
+    <p>Why it is safe to put functions in a list at all comes down to referential transparency. A pure function returns the same output for the same input and has no side effects, so a list of them carries no hidden state. The larger shift is that you write an equation saying what the answer is rather than the steps to compute it. <code>allp ps x = and [ p x | p &lt;- ps ]</code> is a definition, not a loop, with no iteration and no mutable state, and the type <code>[a -&gt; Bool] -&gt; a -&gt; Bool</code> tells most of the story before you read the body. This connects back to the lambda calculus, where functions are first-class values, and to the functor view of <code>map</code>.</p>
 
     <p>One method worth keeping: when the explanations stopped helping, what worked was closing the prose, opening GHCi, and going one line at a time, predicting each result before running it. Start from something that already works, like <code>divisibleBy 2 6</code>, hardcode everything first, and generalize last. The rename from concrete values to variables is how the general function gets born.</p>
 </body>

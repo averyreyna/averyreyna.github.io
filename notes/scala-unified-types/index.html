@@ -4,29 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scala: Unified Types</title>
-    <meta name="description" content="My always-changing personal website.">
     <meta property="og:type" content="article">
     <meta property="og:title" content="Scala: Unified Types">
-    <meta property="og:image" content="https://avryryn.io/og-image.png">
     <meta property="og:url" content="https://avryryn.io/notes/scala-unified-types/">
     <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
-    <link rel="icon" type="image/svg+xml" href="/website.svg">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
-    <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <style>
-        @font-face{font-family:'ABC ROM Mono';src:url('/assets/fonts/ABCROMMono-Regular-Trial.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
-        @font-face{font-family:'ABC ROM Mono';src:url('/assets/fonts/ABCROMMono-Medium-Trial.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
-        @font-face{font-family:'ABC ROM Mono';src:url('/assets/fonts/ABCROMMono-Bold-Trial.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
-        body{max-width:70ch;font-family:'ABC ROM Mono',monospace;font-size:13px}
-        h2{font-weight:500}
-        a,a:visited{color:#00e;text-decoration:none}
-    </style>
+    <style>body{max-width:65ch}a,a:visited{color:#00e}</style>
 </head>
 <body>
-    <nav><a href="/">Home</a></nav>
-    <br>
+    <a href="/">Home</a>
     <h1>Scala: Unified Types</h1>
 
     <p>In Scala, <em>all</em> values have a type (numbers, functions, everything), and the whole hierarchy hangs off a single top type. The diagram below shows a subset of it:</p>
@@ -77,7 +62,7 @@ val number: Int = face    // 9786</code></pre>
 
     <h2>Notes</h2>
 
-    <p>Top and bottom types make the hierarchy a lattice rather than a tree, which is what lets the type checker compute least upper bounds for things like the branches of an <code>if</code>. The same top/bottom structure reappears abstractly in <a href="/notes/lattices/">lattice theory</a>.</p>
+    <p>Top and bottom types make the hierarchy a lattice rather than a tree, which is what lets the type checker compute least upper bounds for things like the branches of an <code>if</code>. The same top/bottom structure reappears abstractly in lattice theory.</p>
 
     <p>Source: <a href="https://docs.scala-lang.org/tour/unified-types.html">Tour of Scala: Unified Types</a>.</p>
 </body>
