@@ -1,0 +1,389 @@
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Figuring Out Freerer Arrows | Avery Reyna</title><link rel="alternate" type="application/rss+xml" title="Avery Reyna" href="/blog/feed"><script>
+            function toggleTheme() {
+              document.body.classList.toggle('dark');
+              localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+            }
+
+            // Apply saved theme on load
+            if (localStorage.getItem('theme') === 'dark' ||
+                (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+              document.body.classList.add('dark');
+            }
+          </script><style>
+            * {
+              box-sizing: border-box;
+            }
+
+            body {
+              font-family: "Times New Roman", Times, serif;
+              line-height: 1.6;
+              margin: 0;
+              padding: 0;
+              background: #fff;
+              color: #333;
+              font-size: 18px;
+            }
+
+            body.dark {
+              background: #111;
+              color: #eee;
+            }
+
+            .container {
+              max-width: 680px;
+              margin: 0 auto;
+              padding: 3rem 2rem;
+            }
+
+            .header {
+              display: flex;
+              align-items: center;
+              margin-bottom: 4rem;
+              position: relative;
+            }
+
+            .avatar {
+              width: 80px;
+              height: 80px;
+              margin-right: 1.5rem;
+            }
+
+            .header-content {
+              flex: 1;
+            }
+
+            .site-title {
+              font-size: 1.875rem;
+              font-weight: 800;
+              margin: 0 0 0.5rem 0;
+              line-height: 1.2;
+            }
+
+            .links {
+              display: flex;
+              gap: 1rem;
+              align-items: center;
+            }
+
+            .theme-toggle, .back-button {
+              background: none;
+              border: 1px solid #ddd;
+              border-radius: 4px;
+              padding: 4px 8px;
+              font-size: 0.75rem;
+              cursor: pointer;
+              color: #666;
+              text-decoration: none;
+              display: inline-block;
+            }
+
+            .theme-toggle {
+              position: absolute;
+              top: 0;
+              right: 0;
+            }
+
+            .back-button {
+              position: absolute;
+              top: 0;
+              left: 0;
+            }
+
+            .theme-toggle:hover, .back-button:hover {
+              background: #f8f8f8;
+              color: #333;
+              text-decoration: none;
+            }
+
+            body.dark .theme-toggle, body.dark .back-button {
+              border-color: #555;
+              color: #aaa;
+            }
+
+            body.dark .theme-toggle:hover, body.dark .back-button:hover {
+              background: #333;
+              color: #eee;
+            }
+
+            .links a {
+              font-size: 0.875rem;
+              color: #666;
+            }
+
+            .links a:hover {
+              color: #06c;
+            }
+
+            body.dark .links a {
+              color: #aaa;
+            }
+
+            body.dark .links a:hover {
+              color: #6bf;
+            }
+
+            @media (max-width: 640px) {
+              .header {
+                gap: 1rem;
+              }
+
+              .avatar {
+                width: 64px;
+                height: 64px;
+              }
+
+              .site-title {
+                font-size: 1.5rem;
+              }
+            }
+
+            a {
+              color: #06c;
+              text-decoration: none;
+            }
+
+            a:hover {
+              text-decoration: underline;
+            }
+
+            body.dark a {
+              color: #6bf;
+            }
+
+            h1, h2, h3, h4, h5, h6 {
+              font-weight: 700;
+              line-height: 1.25;
+              margin: 2rem 0 1rem 0;
+            }
+
+            h1, .post-title {
+              font-size: 2.25rem;
+            }
+
+            h2 { font-size: 1.875rem; }
+            h3 { font-size: 1.5rem; }
+
+            .post-meta, .post-list .post-date {
+              color: #666;
+              font-size: 0.875rem;
+            }
+
+            .post-meta {
+              margin-bottom: 3rem;
+            }
+
+            body.dark .post-meta, body.dark .post-list .post-date {
+              color: #aaa;
+            }
+
+            .post-cover {
+              margin-bottom: 3rem;
+            }
+
+            .post-cover svg {
+              width: 100%;
+              height: auto;
+              max-height: 350px;
+            }
+
+            .post-list {
+              list-style: none;
+              padding: 0;
+              margin: 0;
+            }
+
+            .post-list li {
+              margin-bottom: 1.5rem;
+            }
+
+            .post-list h2 {
+              margin: 0 0 0.5rem 0;
+              font-size: 1.5rem;
+              font-weight: 600;
+            }
+
+            .content p {
+              margin-bottom: 1.5rem;
+            }
+
+            .content blockquote {
+              border-left: 4px solid #eee;
+              margin: 2rem 0;
+              padding: 1rem 0 1rem 1.5rem;
+              font-style: italic;
+            }
+
+            body.dark .content blockquote {
+              border-left-color: #555;
+            }
+
+            .content pre {
+              background-color: #f8f8f8;
+              padding: 1.5rem;
+              border-radius: 0.375rem;
+              overflow-x: auto;
+              font-size: 0.875rem;
+              margin: 2rem 0;
+            }
+
+            body.dark .content pre {
+              background-color: #1a1a1a;
+            }
+
+            .content code {
+              background-color: #f8f8f8;
+              padding: 0.125rem 0.25rem;
+              border-radius: 0.25rem;
+              font-size: 0.875em;
+            }
+
+            body.dark .content code {
+              background-color: #1a1a1a;
+            }
+
+            .content.hidden-links a {
+              color: inherit;
+              text-decoration: underline;
+              text-decoration-color: color-mix(in srgb, currentColor 20%, transparent);
+            }
+
+            .content.hidden-links a:hover {
+              opacity: 0.7;
+            }
+
+            @media (max-width: 640px) {
+              .container {
+                padding: 2rem 1.5rem;
+              }
+
+              body {
+                font-size: 16px;
+              }
+
+              h1, .post-title { font-size: 1.875rem; }
+              h2 { font-size: 1.5rem; }
+            }
+          </style></head><body><div class="container"><div class="header"><a href="/blog/" class="back-button">← Back</a><button type="button" class="theme-toggle" onclick="toggleTheme()">🌓</button></div><h1 class="post-title">Figuring Out Freerer Arrows</h1><div class="post-meta">2026-05-29</div><div class="content"><p>Monads are essentially a design pattern for sequencing computations that have side effects. It acts as a &quot;wrapper&quot; around a value that carries some &quot;context,&quot; plus some rules for chaining operations that respect it. As a developer, it might be your intuition to think that monads are an alternative to running multiple computations across scatered functions, sort of connecting it to error and type safety. However, they're more about effect management and composition, ensuring that these said effects are explicit in a type system and composable in a principled way.</p>
+<p>In terms of coding parallels, <code>Maybe</code>/<code>Optional</code>, <code>Promise&lt;T&gt;</code>, and <code>flatMap</code> on arrays are similar to monads conceptually. Here are some comparisons:</p>
+<p><strong>Maybe/Optional — &quot;this might not exist&quot;</strong></p>
+<p>Imperative (JS without monads):</p>
+<pre><code class="language-js">function getCity(user) {
+  if (user !== null) {
+    if (user.address !== null) {
+      if (user.address.city !== null) {
+        return user.address.city;
+      }
+    }
+  }
+  return null;
+}
+</code></pre>
+<p>Monadic (using optional chaining, which JS borrowed from FP):</p>
+<pre><code class="language-js">const city = user?.address?.city ?? &quot;unknown&quot;;
+</code></pre>
+<p>The <code>?.</code> operator <em>is</em> basically the Maybe monad. The &quot;null&quot; context propagates through the chain automatically — if any step is null, the whole thing short-circuits.</p>
+<p><strong>Promise — &quot;this value arrives later&quot;</strong></p>
+<pre><code class="language-js">fetchUser(id)
+  .then(user =&gt; fetchOrders(user.id))    // only runs if fetchUser succeeded
+  .then(orders =&gt; formatOrders(orders))  // only runs if fetchOrders succeeded
+  .catch(err =&gt; showError(err));         // catches failure anywhere in the chain
+</code></pre>
+<p>The async/rejected context flows through every <code>.then()</code>. You never manually check &quot;did the previous step finish?&quot; since the monad handles that for you. Compare to callback hell we would have without it:</p>
+<pre><code class="language-js">fetchUser(id, function(err, user) {
+  if (err) return showError(err);
+  fetchOrders(user.id, function(err, orders) {
+    if (err) return showError(err);
+    formatOrders(orders, function(err, result) {
+      if (err) return showError(err);
+      // finally do something
+    });
+  });
+});
+</code></pre>
+<p>Same logic, but now error handling is manually repeated at every step. The monad eliminates that repetition.</p>
+<p><strong>flatMap — &quot;this one thing produces many things&quot;</strong></p>
+<pre><code class="language-js">const items = users
+  .flatMap(user =&gt; user.orders)
+  .flatMap(order =&gt; order.items);
+</code></pre>
+<p>Each <code>flatMap</code> is bind. Without it, you need nested loops that grow with each level:</p>
+<pre><code class="language-js">const items = [];
+for (const user of users) {
+  for (const order of user.orders) {
+    for (const item of order.items) {
+      items.push(item);
+    }
+  }
+}
+</code></pre>
+<p>The structure is the same as the Promise case—each step produces a container (an array instead of a Promise), and flatMap sequences them without manual unwrapping.</p>
+<p>While this structure is expressive, there is a limitation to how opaque we can make its operations—as pointed out by VanDomelen et al.<sup id="fnref1"><a href="#fn1">1</a></sup> in their <em>Freer Arrows</em> paper. To make this premise moer concret, the authors consider building an EDSL for web services in Haskell. They define the effects as a GADT and model them with a freer monad:</p>
+<pre><code class="language-hs">data FreerMonad (e :: Type -&gt; Type) (a :: Type) where
+  Ret :: a -&gt; FreerMonad e a
+  Eff :: e x -&gt; (x -&gt; FreerMonad e a) -&gt;
+          FreerMonad e a
+
+data WebServiceOps :: Type -&gt; Type where
+  Get  :: URL -&gt; [String] -&gt; WebServiceOps String
+  Post :: URL -&gt; [String] -&gt; String -&gt; WebServiceOps ()
+
+get :: URL -&gt; [String] -&gt;
+        FreerMonad WebServiceOps String
+get url params = Eff (Get url params) Ret
+
+post :: URL -&gt; [String] -&gt; String -&gt;
+         FreerMonad WebServiceOps ()
+post url params body = Eff (Post url params body) Ret
+</code></pre>
+<p>We can interpret these into any monad by supplying an effect handler:</p>
+<pre><code class="language-hs">interp :: Monad m =&gt; (forall a. e a -&gt; m a) -&gt;
+                      FreerMonad e a -&gt; m a
+interp _      (Ret a)       = return a
+interp handle (Eff eff k) =
+  handle eff &gt;&gt;= interp handle . k
+</code></pre>
+<p>The problem surfaces when we try to write a static analyzer as a function inside Haskell itself. Suppose we want to count the number of post operations, or collect all URLs being posted to. Consider this function:</p>
+<pre><code class="language-hs">postDepends :: URL -&gt; [String] -&gt; String -&gt;
+                FreerMonad WebServiceOps ()
+postDepends url params body =
+  get url params &gt;&gt;=
+  postNTimes url params body .
+  (read :: String -&gt; Integer)
+</code></pre>
+<p>Here, the number of post operations depends on the result of the get operation at runtime. We can only know it <em>after</em> actually performing the get. Now consider:</p>
+<pre><code class="language-hs">echo :: URL -&gt; URL -&gt; [String] -&gt;
+         FreerMonad WebServiceOps ()
+echo url1 url2 params =
+  get url1 params &gt;&gt;= post url2 params
+</code></pre>
+<p>In this case, the URLs are statically visible in the code—there is one get and one post, and neither depends on an effectful result. But because monads are so expressive, there is no way to write a static analyzer that can distinguish this case from <code>postDepends</code>. The dynamic nature of bind means we cannot inspect the structure of the computation without running it.</p>
+<h2>Freer Arrows for Static Analysis</h2>
+<p>Freer arrows are a relatively expressive structure that is amenable to static analysis, offering an alternative trade-off between expressiveness and static analyzeability compared to freer monads.</p>
+<p>To revisit the web service example, the <code>WebServiceOps</code> datatype is redefined with an additional type argument for the input:</p>
+<pre><code class="language-hs">data WebServiceOps :: Type -&gt; Type -&gt; Type where
+  Get  :: URL -&gt; [String] -&gt; WebServiceOps () String
+  Post :: URL -&gt; [String] -&gt; WebServiceOps String ()
+</code></pre>
+<p>Compared with the <code>WebServiceOps</code> shown above, this datatype additionally contains the type of the input as its first type argument. We can further define the following &quot;smart constructors&quot; for <code>Get</code> and <code>Post</code>:</p>
+<pre><code class="language-hs">embed :: e x y -&gt; FreerArrow e x y
+embed f = Comp (,()) f (arr fst)
+
+get :: URL -&gt; [String] -&gt;
+        FreerArrow WebServiceOps () String
+get url params = embed $ Get url params
+
+post :: URL -&gt; [String] -&gt;
+         FreerArrow WebServiceOps String ()
+post url params = embed $ Post url params
+</code></pre>
+<p>The <code>embed</code> function &quot;embeds&quot; an effect in a <code>Comp</code>. <code>Comp</code> requires an existential type—<em>i.e.</em>, the type of the carried value—but we do not need to carry any values in this case, so we just use <code>()</code> as that type. Then <code>get</code> and <code>post</code> are defined as embedding <code>Get</code> and <code>Post</code>, respectively. We can now re-implement the <code>echo</code> function shown previously using freer arrows:</p>
+<pre><code class="language-hs">echo :: URL -&gt; URL -&gt; [String] -&gt;
+         FreerArrow WebServiceOps () ()
+echo url1 url2 params =
+  get url1 params &gt;&gt;&gt; post url2 params
+</code></pre>
+<hr>
+<ol>
+<li id="fn1">VanDomelen et al.'s paper covers freer arrows in much more depth than this post does, including three distinct variants: freer pre-arrows, freer arrows, and freer choice arrows—along with a full case study in choreographic programming using the HasChor framework. This post focuses on the core motivation for why the structure is worth reaching for in the first place. <a href="#fnref1">↩</a></li>
+</ol>
+</div></div></body></html>

@@ -1,0 +1,280 @@
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Programming with Abstraction | Avery Reyna</title><link rel="alternate" type="application/rss+xml" title="Avery Reyna" href="/blog/feed"><script>
+            function toggleTheme() {
+              document.body.classList.toggle('dark');
+              localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+            }
+
+            // Apply saved theme on load
+            if (localStorage.getItem('theme') === 'dark' ||
+                (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+              document.body.classList.add('dark');
+            }
+          </script><style>
+            * {
+              box-sizing: border-box;
+            }
+
+            body {
+              font-family: "Times New Roman", Times, serif;
+              line-height: 1.6;
+              margin: 0;
+              padding: 0;
+              background: #fff;
+              color: #333;
+              font-size: 18px;
+            }
+
+            body.dark {
+              background: #111;
+              color: #eee;
+            }
+
+            .container {
+              max-width: 680px;
+              margin: 0 auto;
+              padding: 3rem 2rem;
+            }
+
+            .header {
+              display: flex;
+              align-items: center;
+              margin-bottom: 4rem;
+              position: relative;
+            }
+
+            .avatar {
+              width: 80px;
+              height: 80px;
+              margin-right: 1.5rem;
+            }
+
+            .header-content {
+              flex: 1;
+            }
+
+            .site-title {
+              font-size: 1.875rem;
+              font-weight: 800;
+              margin: 0 0 0.5rem 0;
+              line-height: 1.2;
+            }
+
+            .links {
+              display: flex;
+              gap: 1rem;
+              align-items: center;
+            }
+
+            .theme-toggle, .back-button {
+              background: none;
+              border: 1px solid #ddd;
+              border-radius: 4px;
+              padding: 4px 8px;
+              font-size: 0.75rem;
+              cursor: pointer;
+              color: #666;
+              text-decoration: none;
+              display: inline-block;
+            }
+
+            .theme-toggle {
+              position: absolute;
+              top: 0;
+              right: 0;
+            }
+
+            .back-button {
+              position: absolute;
+              top: 0;
+              left: 0;
+            }
+
+            .theme-toggle:hover, .back-button:hover {
+              background: #f8f8f8;
+              color: #333;
+              text-decoration: none;
+            }
+
+            body.dark .theme-toggle, body.dark .back-button {
+              border-color: #555;
+              color: #aaa;
+            }
+
+            body.dark .theme-toggle:hover, body.dark .back-button:hover {
+              background: #333;
+              color: #eee;
+            }
+
+            .links a {
+              font-size: 0.875rem;
+              color: #666;
+            }
+
+            .links a:hover {
+              color: #06c;
+            }
+
+            body.dark .links a {
+              color: #aaa;
+            }
+
+            body.dark .links a:hover {
+              color: #6bf;
+            }
+
+            @media (max-width: 640px) {
+              .header {
+                gap: 1rem;
+              }
+
+              .avatar {
+                width: 64px;
+                height: 64px;
+              }
+
+              .site-title {
+                font-size: 1.5rem;
+              }
+            }
+
+            a {
+              color: #06c;
+              text-decoration: none;
+            }
+
+            a:hover {
+              text-decoration: underline;
+            }
+
+            body.dark a {
+              color: #6bf;
+            }
+
+            h1, h2, h3, h4, h5, h6 {
+              font-weight: 700;
+              line-height: 1.25;
+              margin: 2rem 0 1rem 0;
+            }
+
+            h1, .post-title {
+              font-size: 2.25rem;
+            }
+
+            h2 { font-size: 1.875rem; }
+            h3 { font-size: 1.5rem; }
+
+            .post-meta, .post-list .post-date {
+              color: #666;
+              font-size: 0.875rem;
+            }
+
+            .post-meta {
+              margin-bottom: 3rem;
+            }
+
+            body.dark .post-meta, body.dark .post-list .post-date {
+              color: #aaa;
+            }
+
+            .post-cover {
+              margin-bottom: 3rem;
+            }
+
+            .post-cover svg {
+              width: 100%;
+              height: auto;
+              max-height: 350px;
+            }
+
+            .post-list {
+              list-style: none;
+              padding: 0;
+              margin: 0;
+            }
+
+            .post-list li {
+              margin-bottom: 1.5rem;
+            }
+
+            .post-list h2 {
+              margin: 0 0 0.5rem 0;
+              font-size: 1.5rem;
+              font-weight: 600;
+            }
+
+            .content p {
+              margin-bottom: 1.5rem;
+            }
+
+            .content blockquote {
+              border-left: 4px solid #eee;
+              margin: 2rem 0;
+              padding: 1rem 0 1rem 1.5rem;
+              font-style: italic;
+            }
+
+            body.dark .content blockquote {
+              border-left-color: #555;
+            }
+
+            .content pre {
+              background-color: #f8f8f8;
+              padding: 1.5rem;
+              border-radius: 0.375rem;
+              overflow-x: auto;
+              font-size: 0.875rem;
+              margin: 2rem 0;
+            }
+
+            body.dark .content pre {
+              background-color: #1a1a1a;
+            }
+
+            .content code {
+              background-color: #f8f8f8;
+              padding: 0.125rem 0.25rem;
+              border-radius: 0.25rem;
+              font-size: 0.875em;
+            }
+
+            body.dark .content code {
+              background-color: #1a1a1a;
+            }
+
+            .content.hidden-links a {
+              color: inherit;
+              text-decoration: underline;
+              text-decoration-color: color-mix(in srgb, currentColor 20%, transparent);
+            }
+
+            .content.hidden-links a:hover {
+              opacity: 0.7;
+            }
+
+            @media (max-width: 640px) {
+              .container {
+                padding: 2rem 1.5rem;
+              }
+
+              body {
+                font-size: 16px;
+              }
+
+              h1, .post-title { font-size: 1.875rem; }
+              h2 { font-size: 1.5rem; }
+            }
+          </style></head><body><div class="container"><div class="header"><a href="/blog/" class="back-button">← Back</a><button type="button" class="theme-toggle" onclick="toggleTheme()">🌓</button></div><h1 class="post-title">Programming with Abstraction</h1><div class="post-meta">2026-08-12</div><div class="content"><p>Programming is about about altitude. Machine code gave way to assembly, assembly to C, C to Python, and now (so the current version goes) to prompting and context. Boris Cherny put it plainly: <em>the engineers he admired used to spend their highest-leverage hours on vim macros, lint rules, end-to-end test suites</em>; that work didn't disappear, it just moved. Tom Smykowski named the analogy outright: <em>context engineering is what C was to assembly, the next rung on the same ladder</em>. On the surface, these two notions are congruent. It has the shape of every abstraction story that came before it, hide more of the machine, work with more of your own intent, repeat.</p>
+<p>To me, that's not the right story, or at least not for the reason everyone reaches for. Min et al., in <em>Making Abstraction Concrete</em>, makes a point to flesh out how &quot;higher-level&quot; was never about an objective height to begin with. What counts as simple, familiar, or abstract is relative to the conceptual interests of the person doing the abstracting—meaning the ladder was always <em>somebody's</em> ladder built out of what they already found legible. Context engineering isn't a new rung because there's no ladder to add a rung to. It's a schema change, the same leverage work Cherny described, aimed at a different object, legible to a different kind of reader. Schema, not simplification, is what the rest of this is actually about.</p>
+<p>This isn't only a theoretical correction since it holds up historically. Compilers and program synthesizers have always shared a goal, generating software from a description of its behavior, but the difference between them was never altitude—it was who supplies the how. A compiler still expects a human to have written a procedure, however abstractly, and just makes the lower-level procedure invisible. A synthesizer starts from a specification of <em>what</em> and searches for a procedure that satisfies it, no human hand required. That's not a smaller step up the same ladder, it's a different axis, and it isn't new. Alan Turing's <em>Intelligent Machinery</em>, written in 1948 and shelved by his own supervisor as a &quot;schoolboy essay,&quot; already describes searching for a program that fits a specification. Cordell Green formalized program synthesis as a theorem-proving task twenty years later, in 1969; Zohar Manna and Richard Waldinger spent the following two decades building it out into deductive synthesis. The dream of getting behavior without writing the procedure by hand is closer to eighty years old than five.</p>
+<p>What's actually new is which mechanism finally made that dream work at scale. Deductive synthesis bet on logic and theorem-proving, and largely stayed slow and narrow, precise only on problems small enough to formally specify. LLMs are making the same bet with a completely different instrument, pattern-matching learned from an enormous corpus instead of proof search, and that instrument generalizes where the old one didn't. So when Cherny says the leverage work moved, or Smykowski says we climbed a rung, what actually happened is a seventy-year-old axis, sitting orthogonal to the abstraction ladder the whole time, finally got the technique it needed. Nobody moved up. Something else came online.</p>
+<p>If the level didn't change, the obvious objection is that the object automated away is exactly the part that used to demand rigor, so lowering it should lower the bar. Daisy Hollman is a useful person to test this against, since she has about as little reason as anyone to wave the objection away. A decade on the ISO C++ standards committee, chairing the ranges study group, contributing to <code>std::mdspan</code> and the executors work behind <code>std::execution</code>—if there's a corner of the industry where correctness is genuinely non-negotiable, template metaprogramming in C++ is it. Her position, now working on Claude Code at Anthropic, isn't that coding is solved: LLMs are much better at augmenting engineers than they are at replacing them, and what gets automated is the mechanical part, not the judgment.<sup id="fnref1"><a href="#fn1">1</a></sup></p>
+<p>Her prescription for writing code in an AI-assisted codebase is smaller files, strong encapsulation, high cohesion, clear naming, real test coverage—the same virtues that were always good practice, not a relaxed version of them. &quot;Writing code that LLMs will understand is not that different from writing code that humans will understand,&quot; she says. That's the schema argument stated from inside the practitioner's chair: legibility used to have one reader, and now it has two. A codebase that satisfies both isn't a lower bar than one that satisfied a single human reviewer, it's a stricter one. The failure mode everyone points to, bloated, unreviewable code shipped by someone who never read the diff, isn't evidence the bar dropped. It's what happens when nobody bothered to write for either reader at all.</p>
+<p>That distinction between good and bad design needs a mechanism, not just an assertion, and this is where the framing from Min et al. becomes useful for crystalization. The paper names a <em>Gulf of Envisioning</em> (i.e, the gap between what a user wants and their ability to formulate a prompt that will get it) and proposes closing it with feedforward: previews of a response's anticipated length, the kinds of representations it will include, even a brief look at the model's inner dialogue before it commits to an answer. That's not a metaphor for what a skill file or a CLAUDE.md is doing, it's a literal description of it. Context engineering isn't a vague persistent-knowledge layer; it's feedforward design, aimed at a gulf HCI has been naming since long before language models existed.</p>
+<p>The paper goes a step further. It describes the system abstracting a goal-model from the user's prompt, then choosing whether to generate a response that aligns with that model or one that deliberately diverges from it, presenting both so the user can reflect on and refine their own goals. That's the schema argument with the metaphor stripped out: the abstraction isn't the model working one level up from code, it's the model constructing a schema of intent and a design decision about whether to confirm or challenge it. It's also why the failure mode, bloat, unreviewable diffs, the burnout that comes from vibe-coding without care, isn't a tax on working at this layer. The paper's own framing is that deliberately designed abstraction is what ends up &quot;augmenting and preserving their cognition and control over the interface.&quot; Skip the design and you get exactly what the critics describe. Do it and you get the thing Cherny and Hollman are both describing from opposite ends of the industry: the same rigor, relocated.</p>
+<p>Take the schema framing seriously and the interesting question changes. &quot;How high up are we now&quot; was never the right question, since there was no ladder to measure altitude against, only a series of schemas built for whoever did the building. The question worth asking is whose schema this one is, and who it was built legible for. Feedforward, goal-model transparency, the two-reader craftsmanship Hollman describes, these are all answers to that question, not evidence of a rung climbed. Get the schema wrong and you get exactly the failure mode critics reach for: bloated diffs, engineers who can't explain their own code, atrophy dressed up as productivity. Get it right and the same rigor that used to live in a linter or a type system now lives in a skill file instead.</p>
+<p>None of this is settled, and it shouldn't read as settled. Turing's version of the idea sat shelved as a schoolboy essay for twenty years before the field caught up to it; the vocabulary for this moment is probably still that far out from being written. What's worth holding onto in the meantime isn't a conclusion, it's the distinction: abstraction was never a height, and mistaking it for one is how a real argument about design gets flattened into a referendum on whether coding is dead. It isn't. It just found a new schema to be precise in.</p>
+<hr>
+<ol>
+<li id="fn1">If someone with this much technical depth still finds real complexity in a system the discourse has already filed under "higher-level," what is the average developer missing by not looking as closely? I don't mean this as an argument that everyone should be running an agentic coding workflow, or that adoption itself is the point. What I'm actually after is what it means for how we'll talk about programming once this settles. We don't have good language for it yet, practitioners at Hollman's level are effectively doing fieldwork on their own discipline in real time, and the mental models the rest of us will eventually inherit from that work are still being built. <a href="#fnref1">↩</a></li>
+</ol>
+</div></div></body></html>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Avery Reyna</title>
+    <description>Personal blog of Avery Reyna</description>
+    <link>https://avryryn.io/blog</link>
+    <language>en</language>
+    <generator>Lume v3.0.5</generator>
+    <item>
+      <title>Programming with Abstraction</title>
+      <link>https://avryryn.io/blog/programming-with-abstraction/</link>
+      <guid>https://avryryn.io/blog/programming-with-abstraction/</guid>
+      <pubDate>Wed, 12 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Experimenting with Schema Feedback</title>
+      <link>https://avryryn.io/blog/experimenting-with-schema-feedback/</link>
+      <guid>https://avryryn.io/blog/experimenting-with-schema-feedback/</guid>
+      <pubDate>Wed, 05 Aug 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Figuring Out Freerer Arrows</title>
+      <link>https://avryryn.io/blog/figuring-out-freerer-arrows/</link>
+      <guid>https://avryryn.io/blog/figuring-out-freerer-arrows/</guid>
+      <pubDate>Fri, 29 May 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Placement, Atomicity, and Crash Safety</title>
+      <link>https://avryryn.io/blog/placement-atomicity-and-crash-safety/</link>
+      <guid>https://avryryn.io/blog/placement-atomicity-and-crash-safety/</guid>
+      <pubDate>Tue, 19 May 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Legible Software: A TypeScript Example</title>
+      <link>https://avryryn.io/blog/legible-software-a-typescript-example/</link>
+      <guid>https://avryryn.io/blog/legible-software-a-typescript-example/</guid>
+      <pubDate>Mon, 11 May 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Drag-and-Drop Not Considered Harmful</title>
+      <link>https://avryryn.io/blog/drag-and-drop-not-considered-harmful/</link>
+      <guid>https://avryryn.io/blog/drag-and-drop-not-considered-harmful/</guid>
+      <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Views Are Now Cheap</title>
+      <link>https://avryryn.io/blog/views-are-now-cheap/</link>
+      <guid>https://avryryn.io/blog/views-are-now-cheap/</guid>
+      <pubDate>Tue, 14 Apr 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Unfinished Thoughts from SMED REU</title>
+      <link>https://avryryn.io/blog/unfinished-thoughts-from-smed-reu/</link>
+      <guid>https://avryryn.io/blog/unfinished-thoughts-from-smed-reu/</guid>
+      <pubDate>Sat, 21 Aug 2021 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Boundary Block Groups</title>
+      <link>https://avryryn.io/blog/boundary-block-groups/</link>
+      <guid>https://avryryn.io/blog/boundary-block-groups/</guid>
+      <pubDate>Fri, 23 Jul 2021 00:00:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>

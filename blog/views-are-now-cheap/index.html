@@ -1,0 +1,293 @@
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Views Are Now Cheap | Avery Reyna</title><link rel="alternate" type="application/rss+xml" title="Avery Reyna" href="/blog/feed"><script>
+            function toggleTheme() {
+              document.body.classList.toggle('dark');
+              localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+            }
+
+            // Apply saved theme on load
+            if (localStorage.getItem('theme') === 'dark' ||
+                (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+              document.body.classList.add('dark');
+            }
+          </script><style>
+            * {
+              box-sizing: border-box;
+            }
+
+            body {
+              font-family: "Times New Roman", Times, serif;
+              line-height: 1.6;
+              margin: 0;
+              padding: 0;
+              background: #fff;
+              color: #333;
+              font-size: 18px;
+            }
+
+            body.dark {
+              background: #111;
+              color: #eee;
+            }
+
+            .container {
+              max-width: 680px;
+              margin: 0 auto;
+              padding: 3rem 2rem;
+            }
+
+            .header {
+              display: flex;
+              align-items: center;
+              margin-bottom: 4rem;
+              position: relative;
+            }
+
+            .avatar {
+              width: 80px;
+              height: 80px;
+              margin-right: 1.5rem;
+            }
+
+            .header-content {
+              flex: 1;
+            }
+
+            .site-title {
+              font-size: 1.875rem;
+              font-weight: 800;
+              margin: 0 0 0.5rem 0;
+              line-height: 1.2;
+            }
+
+            .links {
+              display: flex;
+              gap: 1rem;
+              align-items: center;
+            }
+
+            .theme-toggle, .back-button {
+              background: none;
+              border: 1px solid #ddd;
+              border-radius: 4px;
+              padding: 4px 8px;
+              font-size: 0.75rem;
+              cursor: pointer;
+              color: #666;
+              text-decoration: none;
+              display: inline-block;
+            }
+
+            .theme-toggle {
+              position: absolute;
+              top: 0;
+              right: 0;
+            }
+
+            .back-button {
+              position: absolute;
+              top: 0;
+              left: 0;
+            }
+
+            .theme-toggle:hover, .back-button:hover {
+              background: #f8f8f8;
+              color: #333;
+              text-decoration: none;
+            }
+
+            body.dark .theme-toggle, body.dark .back-button {
+              border-color: #555;
+              color: #aaa;
+            }
+
+            body.dark .theme-toggle:hover, body.dark .back-button:hover {
+              background: #333;
+              color: #eee;
+            }
+
+            .links a {
+              font-size: 0.875rem;
+              color: #666;
+            }
+
+            .links a:hover {
+              color: #06c;
+            }
+
+            body.dark .links a {
+              color: #aaa;
+            }
+
+            body.dark .links a:hover {
+              color: #6bf;
+            }
+
+            @media (max-width: 640px) {
+              .header {
+                gap: 1rem;
+              }
+
+              .avatar {
+                width: 64px;
+                height: 64px;
+              }
+
+              .site-title {
+                font-size: 1.5rem;
+              }
+            }
+
+            a {
+              color: #06c;
+              text-decoration: none;
+            }
+
+            a:hover {
+              text-decoration: underline;
+            }
+
+            body.dark a {
+              color: #6bf;
+            }
+
+            h1, h2, h3, h4, h5, h6 {
+              font-weight: 700;
+              line-height: 1.25;
+              margin: 2rem 0 1rem 0;
+            }
+
+            h1, .post-title {
+              font-size: 2.25rem;
+            }
+
+            h2 { font-size: 1.875rem; }
+            h3 { font-size: 1.5rem; }
+
+            .post-meta, .post-list .post-date {
+              color: #666;
+              font-size: 0.875rem;
+            }
+
+            .post-meta {
+              margin-bottom: 3rem;
+            }
+
+            body.dark .post-meta, body.dark .post-list .post-date {
+              color: #aaa;
+            }
+
+            .post-cover {
+              margin-bottom: 3rem;
+            }
+
+            .post-cover svg {
+              width: 100%;
+              height: auto;
+              max-height: 350px;
+            }
+
+            .post-list {
+              list-style: none;
+              padding: 0;
+              margin: 0;
+            }
+
+            .post-list li {
+              margin-bottom: 1.5rem;
+            }
+
+            .post-list h2 {
+              margin: 0 0 0.5rem 0;
+              font-size: 1.5rem;
+              font-weight: 600;
+            }
+
+            .content p {
+              margin-bottom: 1.5rem;
+            }
+
+            .content blockquote {
+              border-left: 4px solid #eee;
+              margin: 2rem 0;
+              padding: 1rem 0 1rem 1.5rem;
+              font-style: italic;
+            }
+
+            body.dark .content blockquote {
+              border-left-color: #555;
+            }
+
+            .content pre {
+              background-color: #f8f8f8;
+              padding: 1.5rem;
+              border-radius: 0.375rem;
+              overflow-x: auto;
+              font-size: 0.875rem;
+              margin: 2rem 0;
+            }
+
+            body.dark .content pre {
+              background-color: #1a1a1a;
+            }
+
+            .content code {
+              background-color: #f8f8f8;
+              padding: 0.125rem 0.25rem;
+              border-radius: 0.25rem;
+              font-size: 0.875em;
+            }
+
+            body.dark .content code {
+              background-color: #1a1a1a;
+            }
+
+            .content.hidden-links a {
+              color: inherit;
+              text-decoration: underline;
+              text-decoration-color: color-mix(in srgb, currentColor 20%, transparent);
+            }
+
+            .content.hidden-links a:hover {
+              opacity: 0.7;
+            }
+
+            @media (max-width: 640px) {
+              .container {
+                padding: 2rem 1.5rem;
+              }
+
+              body {
+                font-size: 16px;
+              }
+
+              h1, .post-title { font-size: 1.875rem; }
+              h2 { font-size: 1.5rem; }
+            }
+          </style></head><body><div class="container"><div class="header"><a href="/blog/" class="back-button">← Back</a><button type="button" class="theme-toggle" onclick="toggleTheme()">🌓</button></div><h1 class="post-title">Views Are Now Cheap</h1><div class="post-meta">2026-04-14</div><div class="content"><p>As an undergraduate student taking CS classes with little coding background, I found it difficult to build the intuition needed to discern which technical concepts were connected and how certain programming tasks were related. While this wasn't for lack of trying, I found the ecosystem of learning tools to be disjointed. In a perfect world, I'd be able to collaborate with a couple of my classmates to compile lecture notes, PDFs, and problem sets for a final, spinning up a shareable localhost tool that pulls it all together. This then becomes a shared workspace where annotations, solutions, and even visualizations can uniquely illustrate how concepts interact. Once we're done studying and the final is taken, this study tool dies with no funeral. Although that is too morbid a metaphor, the question still remains: what happens when software can be this specific and this disposable?</p>
+<p>Stewing on it more, what I was in search for was not an application in the traditional sense (i.e., making an account, syncing to someone else's cloud, or being built for a user base that isn't me and two classmates right now). The conventional model forces generality: software is expensive to build, so it gets designed for many people across many contexts.</p>
+<h2>An Initial Observation</h2>
+<p>While thinking about local-first software and how it's situated as a (sort of) complement to malleable software, I wrote down:</p>
+<blockquote>
+<p>&quot;[a] database is structured data, UI is a medium for interacting with that data... most applications are just some variation of that, plus some added business logic&quot; → &quot;If an agent can generate both a structure to some data and a view for said data via a web app, 'software' becomes more a view than a product you [pay for]&quot; → &quot;ephemeral and personal (truly)&quot;</p>
+</blockquote>
+<p>In short, once you strip that away and its associated multitenancy, all you have left is data and a view shaped for some task. This thinking is not new, with relational DBs and SQL rooted in adding a layer of abstraction above physical storage and accessing it via a query language.<sup id="fnref1"><a href="#fn1">1</a></sup> However, the interface layer has not seen the same evolution. The way you see and interact with your data is still determined by the encoded assumptions about the median user, which naturally shape how the software makes you think about your own data. For example, a calendar app makes a claim about how you spatially organize time in a year, a word processing document has a set of assumptions about the structure of the writing process, and even a spreadsheet encodes rules about which types of computation should be accessed first. Alan Kay argued decades ago that this was a failure of the medium,<sup id="fnref2"><a href="#fn2">2</a></sup> suggesting that computers should be shaped to our thinking rather than appliances we adapt to our thinking; the mental models of other people are frozen into an interface and optimized for this convergence towards the center. As such, the application-as-product model is an artifact of the view layer being too expensive to produce.</p>
+<h2>Views Are Now Cheap</h2>
+<p>The timing of this observation matters in the post-ChatGPT era, since generating views is increasingly becoming a thing of the past. I'm not arguing that average users are creating their own solutions for external tools like Grafana or QuickBooks; rather, the decision to learn development skills becomes more approachable since code generation is cheaper and more abundant than ever. LLMs, on average, collapse the cost for bound, low-stakes, and specific views. This is akin to a whiteboard—the sketching, erasing, and connections between elements don't have to be archived or made more serious than the task at hand. Geoffrey Litt's thoughts on malleable software in the age of LLMs<sup id="fnref3"><a href="#fn3">3</a></sup> serve as an anchor here, but I'm focusing specifically on ephemerality rather than persistent customization.</p>
+<p>LLMs compress a slow, product-mediated feedback loop, making iteration much quicker, and the app shifts from a fixed product to a flexible view shaped by the user's needs. Once the development loop is tight enough, the &quot;app&quot; in the middle stops being a persistent source of friction that constantly needs updating and becomes something generated, used, and discarded. Similarly, Ink &amp; Switch considers persistent, malleable tools<sup id="fnref4"><a href="#fn4">4</a></sup> and extends Kay's framework on software's shape changing over time, but what happens when these tools are allowed to be maximally specific?</p>
+<h2>Localhost as the Interface</h2>
+<p>When generating views is cheap and the data you need lives on your machine, localhost moves towards being a general-purpose interface and away from a strictly developer tool. Developers already use localhost this way: it is where you run, inspect, and iterate before shipping. But the localhost URL has a second property that matters here: it is session-scoped. The server lives as long as the process does, and nothing persists beyond the task that created it. Tools like ngrok extend this further: they expose a local port to a shareable URL for the duration of a session, letting collaborators access the same workspace without provisioning any infrastructure. The study tool from the opening would live at a localhost port, tunneled to classmates, and disappear when we closed our laptops.</p>
+<h2>Software as a Medium</h2>
+<p>Given all this, software is becoming an artifact of collaboration shaped by the interaction and disposed of afterward. Similar to the whiteboard analogy, the marks left on display are a residue that indicates the studying process—software can now become what's left over. Compared to custom tooling and vibe coding, this perspective approaches software as something that can be social, situational, and ephemeral first and foremost. For the former, it is built for a role and persists across uses; for the latter, it is entirely focused on producing a product you can deploy regardless of its initial quality.</p>
+<h2>Current Tensions</h2>
+<p>With any new ideas involving agents and LLMs, there are immediate concerns about trust and security. Who should audit the code an LLM wrote that has read access to your filesystem? My initial thoughts are that the trust model has to shift from institutional to personal. When you install an app, trust is outsourced to a review process and the company behind it. When you generate code locally, you become the auditor or you accept the risk of not being one. For a developer, this is manageable: the generated code is readable and the blast radius is your own machine. For a non-technical user, the risk calculus is harder, since they lack the vocabulary to inspect what the tool is actually doing. Sandboxing and containerization can lower this risk, but they add friction back into the loop, partially undoing the cost savings that made ephemeral views attractive in the first place. There is no clean resolution here yet, only a tradeoff that becomes more tolerable as LLM code quality improves and as tooling for sandboxed local execution matures.</p>
+<p>There are also problems with schemas, as there is no standard way to point an LLM at your stuff and have it understand its structure. With codebases, there is an innate, searchable architecture afforded to agents by the folder hierarchy across all software repositories. However, with unstructured data, the agent cannot make safe assumptions about context and traversal, making it difficult to properly spin up views to match the cadence at which you want to produce them. As with anything related to software construction, the activation energy between groups varies widely. For CS students and engineers, creating views via LLM-assisted programming is much easier, since they are beginning to acquire the language to describe exactly how data should be manipulated. The more non-technical version of this is further out, but as LLMs progressively get better at writing code more consistently, the explanations for its scaffolding can occur simultaneously.</p>
+<h2>Future Research Directions</h2>
+<p>The view layer is now cheap. What's next? The interesting research directions are two-fold. For starters, we can now consider how to better support ad-hoc view generation, ideally striking a balance among correct persistent context, secure routes to that context, and the standardization of unstructured file data. More broadly, there are questions concerning data access conventions, trust models for generated code, and whether this interface pattern generalizes beyond technical users.</p>
+<hr>
+<ol>
+<li id="fn1">Codd's abstractions also act as a prerequisite for my argument. You can't generate views of data if it's not queryable in a structured way. While Codd was making claims in the world of relational databases, his framework can be applied to UI generation, since the idea of "software fundamentally being a view of structured data" has legs to stand on, as articulated by Kay in Smalltalk. <a href="#fnref1">↩</a></li>
+<li id="fn2">Kay really delineated between "doing something with a computer" and "using a computer application." He had a vision for Smalltalk rooted in the idea that computers should be a medium for human thought, not just machines with executable instructions. The environment wasn't just a programming language; it was a live system that let the user point at anything on the screen to change it and inspect its behavior. <a href="#fnref2">↩</a></li>
+<li id="fn3">Litt argues that LLMs could enable a new era of end-user programming, where people create and modify their own tools without traditional programming skills. His frame is largely about persistent customization, software that bends to the user over time and accumulates their preferences. This post takes a different fork: rather than tools that grow alongside a user, the interesting case is tools that exist only for a task and are discarded once it ends. The distinction matters because persistent customization still implies a product with a lifecycle; ephemeral views remove the lifecycle constraint entirely. <a href="#fnref3">↩</a></li>
+<li id="fn4">Ink & Switch extends Kay's original vision by asking what it would take for users to reshape their tools in the moment, not by filing a feature request, but by directly modifying behavior. Their work explores systems where composable, inspectable pieces replace monolithic applications, and tools evolve alongside a user's thinking. The difference from this post's framing is scope: Ink & Switch is interested in tools that are malleable and durable. The ephemerality argument adds a third option, tools that are maximally specific precisely because they are not trying to last. <a href="#fnref4">↩</a></li>
+</ol>
+</div></div></body></html>
