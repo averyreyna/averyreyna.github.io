@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; script-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category Theory: The Essence of Composition</title>
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Category Theory: The Essence of Composition">
+    <meta property="og:url" content="https://avryryn.io/research/notes/category-theory-the-essence-of-composition/">
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <style>body{max-width:65ch;font-family:Arial}a,a:visited{color:#00e}</style>
+</head>
+<body>
+    <a href="/">Home</a>
+    <h1>Category Theory: The Essence of Composition</h1>
+
+    <p>A <em>category</em> is almost nothing: a collection of <strong>objects</strong> and <strong>arrows</strong> (<em>morphisms</em>) between them, where arrows compose. If there is an arrow from A to B and one from B to C, then there must be an arrow from A to C — their composition. Morphisms are essentially functions, and composition is the whole game.</p>
+
+    <h2>Objects, Arrows, and Composition</h2>
+
+    <p>If <code>f</code> takes an A and returns a B, and <code>g</code> takes a B and returns a C, you can compose them by feeding the result of <code>f</code> into <code>g</code>, producing a function that takes an A and returns a C. This composite is written g ∘ f, read "g after f," and it runs right-to-left:</p>
+
+    <pre><code>// C++: g after f, right-to-left
+C g_after_f(A a)
+{
+    return g(f(a));
+}</code></pre>
+
+    <pre><code>-- Haskell
+f :: A -&gt; B
+g :: B -&gt; C
+g . f   -- composition</code></pre>
+
+    <p>The arrow notation is the right mental model rather than thinking of f as returning a value into g. The composite does not depend on f as such; it depends on <em>some</em> value of type B, and f happens to produce one. The objects match end-to-end, and that is all composition needs.</p>
+
+    <h2>Associativity and Identity</h2>
+
+    <p>Composition obeys two laws. First, it is <em>associative</em>: given three composable arrows f : A → B, g : B → C, and h : C → D, the grouping does not matter, so parentheses are unnecessary —</p>
+
+    <p>h ∘ (g ∘ f) = (h ∘ g) ∘ f = h ∘ g ∘ f</p>
+
+    <p>Second, every object A has an <em>identity</em> arrow id_A that loops from A back to itself and acts as a unit of composition: composing it with any arrow into or out of A gives that arrow back.</p>
+
+    <p>f ∘ id_A = f and id_B ∘ f = f</p>
+
+    <p>The identity is not <em>about</em> a function, it <em>is</em> the function — the "do nothing" arrow for an object, the categorical analogue of multiplying by 1 or adding 0. For f : String → Int, the arrow id_String returns its string unchanged: no effect on the input side, no effect on the output side. The point is that these identity arrows are <em>required</em> to exist for every object, which is why <code>id</code> lives in the standard library:</p>
+
+    <pre><code>-- Haskell
+id :: a -&gt; a
+id x = x</code></pre>
+
+    <h2>When a Directed Graph Becomes a Category</h2>
+
+    <p>A directed graph is a set of vertices joined by directed edges (ordered pairs). It becomes a category once you add an identity arrow on every node and a composite arrow for every path. There is no requirement of rich connectivity — this answers a question I had while reading, namely whether every pair of objects must be related. They need not be; a category only insists that the arrows which <em>do</em> exist compose and that identities are present. This construction is the <em>free category</em> on a graph.</p>
+
+    <h2>Decomposition and the Surface-to-Volume Ratio</h2>
+
+    <p>Programming is composition turned into a method. Even assembly instructions express something more meaningful than shuffling memory, and we solve large problems by decomposing them into smaller ones until each piece is tractable — a process that only makes sense because we can compose the pieces back together. This hierarchical decomposition is forced on us less by the machine than by our own minds, which can only hold a few chunks at once.</p>
+
+    <p>A chunk has two sizes. Its <em>surface</em> is the interface — the type signatures, inputs, and outputs visible from outside, what you must know to use it. Its <em>volume</em> is the implementation — the internal logic and state you do not have to think about. As chunks grow, surface scales like n² while volume scales like n³, so the ratio drops:</p>
+
+    <pre><code>size   | surface | volume | ratio
+-------|---------|--------|------
+small  | 6       | 1      | 6:1
+medium | 24      | 8      | 3:1
+large  | 54      | 27     | 2:1</code></pre>
+
+    <p>A tiny function can have a signature nearly as complex as its body, whereas a well-designed module hides enormous internal complexity behind a small, clean interface. Elegant code finds the cuts where the interface between pieces is thinnest, producing chunks just the right size and number for our mental digestion to assimilate.</p>
+
+    <h2>Notes</h2>
+
+    <p>Category theory is "black box" thinking taken to an extreme: it actively discourages looking inside the objects. For f : String → Int you do not care how the length is computed, only that an arrow from String to Int exists. This is what makes the abstraction powerful — two completely different systems can share the same categorical structure. The same lens reframes everyday objects: the web becomes a category with pages as objects and links as arrows, and a social graph becomes one with people as objects and friendships as morphisms. Once composition and identity are in place, functors are the next step — the structure-preserving maps <em>between</em> categories.</p>
+</body>
+</html>

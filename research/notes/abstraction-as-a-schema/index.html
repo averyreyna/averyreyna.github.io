@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; script-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abstraction as a Schema</title>
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Abstraction as a Schema">
+    <meta property="og:url" content="https://avryryn.io/research/notes/abstraction-as-a-schema/">
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <style>body{max-width:65ch;font-family:Arial}a,a:visited{color:#00e}</style>
+</head>
+<body>
+    <a href="/">Home</a>
+    <h1>Abstraction as a Schema</h1>
+
+    <p>Reading Min et al.'s <em>Making Abstraction Concrete</em>. The paper resists the instinct to treat abstraction as synonymous with "higher-levelness" or simplicity: what counts as simple, familiar, or abstract is relative to the conceptual interests of whoever is doing the abstracting, which makes abstraction hard to fully separate from generalization.</p>
+
+    <h2>Grounding the Claim</h2>
+
+    <ul>
+        <li>Dijkstra: the point of abstraction is to create a new semantic level in which one can be absolutely precise in depicting a phenomenon.</li>
+        <li>Abstraction is widely used in interactive systems, typically through GUIs guiding users between levels of abstraction so they can get a feel for the entire system.</li>
+        <li>AI research has explored invoking the abstraction process directly in LLMs, to define higher-level, reusable modules for managing complexity in domains like system design.</li>
+        <li>Abstraction design choices don't touch just one of Norman's seven stages of action, they shape all of them—suggesting an orthogonal dimension of abstraction across the Gulfs could reveal richer patterns of how these designs influence interaction than treating "level" as a single dial.</li>
+        <li>A user's mental model can span the gulf of abstraction not only by shifting to a higher or lower level, but by moving <em>through</em> a space. Abstraction isn't strictly hierarchical.</li>
+    </ul>
+
+    <h2>Designing for the Gulf of Envisioning</h2>
+
+    <p>The paper names a specific gap: the distance between what a user wants and their ability to formulate a prompt that will get it. Two design strategies for closing it stood out:</p>
+
+    <ul>
+        <li><strong>Feedforward</strong>—giving users a preview of how the model might respond before they submit: anticipated length, the kinds of representations it might include, even a brief look at the model's inner dialogue before it commits.</li>
+        <li><strong>Goal inference</strong>—having the system abstract a model of the user's higher-level goals from the prompt itself, then choosing to generate a response that either aligns with that model or deliberately diverges from it, presenting both so the user can reflect on and refine what they actually meant.</li>
+    </ul>
+
+    <p>Both are framed as ways deliberate abstraction design can augment and preserve a user's cognition and control over the interface, rather than eroding it.</p>
+
+    <h2>Notes</h2>
+
+    <p>Still working out how much weight "schema" can carry versus just being a rebrand of relativity. The random thread I keep thinking about: Slim Lim's writing on concrete syntax, and whether treating syntax itself as an interface is underexplored precisely because most abstraction discourse defaults to a height metaphor this paper is explicitly arguing against. Also unresolved: is Python "high-level" in any real sense, or is that just opacity dressed up as altitude?</p>
+</body>
+</html>

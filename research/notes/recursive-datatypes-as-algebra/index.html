@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; script-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursive Datatypes as Algebra</title>
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Recursive Datatypes as Algebra">
+    <meta property="og:url" content="https://avryryn.io/research/notes/recursive-datatypes-as-algebra/">
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <style>body{max-width:65ch;font-family:Arial}a,a:visited{color:#00e}</style>
+</head>
+<body>
+    <a href="/">Home</a>
+    <h1>Recursive Datatypes as Algebra</h1>
+
+    <p>A binary tree is T = 1 + T &times; T: a leaf is the <code>unit</code>/INL side, and a node is a pair of subtrees on the INR side. This equation is an <em>isomorphism</em>, not a literal unfolding-forever definition, and the subtlety is worth sitting with.</p>
+
+    <h2>fold and unfold</h2>
+
+    <p>Two functions witness the isomorphism. <code>unfold</code> is <code>case</code>/pattern match: <code>Leaf</code> goes to (), and <code>Node(l, r)</code> goes to the pair (l, r). <code>fold</code> runs the constructors: () goes to <code>Leaf</code>, and (l, r) goes to <code>Node(l, r)</code>.</p>
+
+    <p>They are mutually inverse, so round-tripping any tree through <code>unfold</code> then <code>fold</code> returns the exact same tree. That round-trip property, checkable on real values, <em>is</em> the whole content of "isomorphism." Nothing deeper is going on.</p>
+
+    <h2>HW1: Reading Off the Algebra</h2>
+
+    <p>Three SML datatypes, each read straight into its algebraic equation:</p>
+
+    <ul>
+    <li><code>datatype r = A | B of r | C of (r*r*r)</code> is r = 1 + r + r&sup3;</li>
+    <li><code>datatype t = Z | S of t</code> is t = 1 + t, the naturals in Peano encoding</li>
+    <li><code>datatype 'a u = NN | SS of 'a</code> is u = 1 + a. It is <em>not</em> recursive, since u does not appear on the right, so there is nothing to solve, just a description. This is <code>Option</code>/<code>Maybe</code> under different constructor names.</li>
+    </ul>
+
+    <h2>Notes</h2>
+
+    <p>Because T = 1 + T&sup2; is a genuine isomorphism, it is tempting to treat T as an algebraic unknown and solve it like a real equation. <a href="/research/notes/seven-trees-in-one/">That temptation is where things go wrong, and also, strangely, somewhere true</a>.</p>
+</body>
+</html>

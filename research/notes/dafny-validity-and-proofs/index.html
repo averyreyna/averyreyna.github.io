@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; script-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dafny: Validity and Proofs</title>
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Dafny: Validity and Proofs">
+    <meta property="og:url" content="https://avryryn.io/research/notes/dafny-validity-and-proofs/">
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <style>body{max-width:65ch;font-family:Arial}a,a:visited{color:#00e}</style>
+</head>
+<body>
+    <a href="/">Home</a>
+    <h1>Dafny: Validity and Proofs</h1>
+
+    <p>Once propositional connectives let me write down a claim, the next question is whether it holds for <em>every</em> assignment of its variables. A truth table settles this mechanically: enumerate every combination of inputs and read the final column. True in every row means the formula is <em>valid</em>; a single false row is enough to sink it.</p>
+
+    <h2>Truth Tables and Validity</h2>
+
+    <p>Take (A ∧ B) ⇒ (A ∨ B). An implication is only false when its left side is true and its right side is false, so the only way to break this would be a row where the antecedent holds but the consequent fails — and there isn't one:</p>
+
+    <pre><code>A     | B     | A &amp;&amp; B | A || B | (A &amp;&amp; B) ==&gt; (A || B)
+------|-------|--------|--------|----------------------
+true  | true  | true   | true   | true
+true  | false | false  | true   | true
+false | true  | false  | true   | true
+false | false | false  | false  | true</code></pre>
+
+    <p>Every row in the final column is true, so the formula is valid. Reversing the connectives breaks it. (A ∨ B) ⇒ (A ∧ B) reads "if at least one side holds, then both hold," which is too strong a demand:</p>
+
+    <pre><code>A     | B     | A || B | A &amp;&amp; B | (A || B) ==&gt; (A &amp;&amp; B)
+------|-------|--------|--------|----------------------
+true  | true  | true   | true   | true
+true  | false | true   | false  | false
+false | true  | true   | false  | false
+false | false | false  | false  | true</code></pre>
+
+    <p>The two mixed rows are enough: the antecedent is true while the consequent is false, so the implication is false and the formula is not valid. The same reading explains why A ⇒ (A ∨ B) always holds — <em>or-introduction</em> — and why an implication with a false premise is vacuously true: there is simply no row left for it to fail in.</p>
+
+    <h2>Substitution and Bound Variables</h2>
+
+    <p><em>Substitution</em> is the systematic replacement of every appearance of a symbol with a value or expression, written P[E/x]: every occurrence of x in P becomes E. Whether a variable can be substituted at all depends on whether it is <em>free</em> or <em>bound</em>.</p>
+
+    <ul>
+        <li>A variable is <em>free</em> when nothing in the expression binds it — in f(x) = x + y, y is free because nothing introduces it</li>
+        <li>A variable is <em>bound</em> when a binder, such as a quantifier or a function parameter, introduces it — x is bound by the parameter in f(x) = x + y, and in ∀x. x &gt; z the x is bound by the ∀</li>
+    </ul>
+
+    <p>The piece a binder reaches over — x &gt; z under the ∀ above — is a <em>subformula</em> of the larger expression. Substitution only touches free occurrences, which is what keeps P[E/x] from quietly capturing a variable that an inner binder already owns.</p>
+
+    <h2>Arguments and Proofs</h2>
+
+    <p>A <em>mathematical argument</em> is a set of statements assembled to show that some claim is true or false. A <em>proof</em> is the stricter version: an inferential argument that establishes a given mathematical proposition from its premises by valid steps. The truth tables above are the smallest instance of this — a proof of validity carried out by exhaustion rather than by inference.</p>
+</body>
+</html>

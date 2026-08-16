@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; script-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elm: Types and Error Messages</title>
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Elm: Types and Error Messages">
+    <meta property="og:url" content="https://avryryn.io/research/notes/elm-types-and-error-messages/">
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <style>body{max-width:65ch;font-family:Arial}a,a:visited{color:#00e}</style>
+</head>
+<body>
+    <a href="/">Home</a>
+    <h1>Elm: Types and Error Messages</h1>
+
+    <p>Every Elm expression has a type, and the compiler checks all of them before anything runs. The error messages are the best part. They read like a helpful colleague rather than a stack trace:</p>
+
+    <pre><code>-- TYPE MISMATCH ---------------------------------------------------------------
+
+The argument to function `toFullName` is causing a mismatch.
+
+6|   toFullName { fistName = "Hermann", lastName = "Hesse" }
+
+Function `toFullName` is expecting the argument to be:
+
+    { …, firstName : … }
+
+But it is:
+
+    { …, fistName : … }
+
+Hint: I compared the record fields and found some potential typos.
+
+    firstName &lt;-&gt; fistName</code></pre>
+
+    <h2>Reading Type Signatures</h2>
+
+    <ul>
+        <li>Asking the REPL for a function's type prints its signature: <code>String.length : String -&gt; Int</code></li>
+        <li><code>round : Float -&gt; Int</code> means <code>round</code> must take a <code>Float</code> argument and will definitely return an <code>Int</code>; "definitely" is the operative word, since the compiler enforces it</li>
+    </ul>
+
+    <h2>Notes</h2>
+
+    <p>The typo-detection hint above is a small thing, but it shows the design philosophy: the type checker has all the information needed to guess what you <em>meant</em>, so it should. Compare with the wall of text a similar mistake produces in most ML-family compilers.</p>
+</body>
+</html>

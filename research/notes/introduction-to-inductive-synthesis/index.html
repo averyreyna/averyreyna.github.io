@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; script-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to Inductive Synthesis</title>
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Introduction to Inductive Synthesis">
+    <meta property="og:url" content="https://avryryn.io/research/notes/introduction-to-inductive-synthesis/">
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <style>body{max-width:65ch;font-family:Arial}a,a:visited{color:#00e}</style>
+</head>
+<body>
+    <a href="/">Home</a>
+    <h1>Introduction to Inductive Synthesis</h1>
+
+    <p>The goal of inductive synthesis is to generate a function that matches a given set of input/output examples. The literature distinguishes two modes. <em>Programming by example (PBE)</em> infers a function given only inputs and outputs, like <code>factorial(6) = 720</code>. <em>Programming by demonstration (PBD)</em> has the user also provide a trace of how the output was computed: <code>factorial(6) = 6 * (5 * (4 * (3 * (2 * 1)))) = 720</code>. Full traces make it easier to infer the intended computation. They are something like context.</p>
+
+    <p>[Image: Diagram of the two core challenges of inductive synthesis]</p>
+
+    <h2>The Two Challenges</h2>
+
+    <ul>
+        <li><em>How do you find a program that matches the observations?</em></li>
+        <li><em>How do you know the program you found is the one you were actually looking for?</em></li>
+    </ul>
+
+    <p>These are fundamentally under-specified problems. There is potentially a large space of programs matching the given observations. Traditional ML focused historically on the second challenge; modern PBE focuses on the space of programs itself. Early systems restricted the space to an extreme degree (literally a short list of programs to scan), but recent synthesis brought powerful mechanisms to search <em>arbitrary</em> program spaces, so the space can be designed to exclude undesirable solutions and focus the search on "reasonable" programs. Ranking is still needed, but if you can search a large, highly constrained space efficiently, you are more likely to get what you were looking for, without the brittleness of the list-of-programs approach.</p>
+
+    <h2>Programs, Languages, and DSLs</h2>
+
+    <p>A <em>program</em>, in this context, is a description of how to perform a computation; describing one requires a notation, a <em>programming language</em>, that composes individual syntactic elements with well-defined meaning. Even when the end goal is Python or C, it is often useful to frame the synthesis problem in a narrower notation capturing only the programs relevant to the task: a <em>domain-specific language</em>, conveniently thought of as a subset of a general language with a limited set of constructs and functions.</p>
+
+    <p>Functional languages are a good synthesis target: pure functions mean the same inputs always produce the same outputs, simplifying reasoning, and the conciseness means non-trivial programs require discovering only small amounts of code. Compare list reversal in Java and Haskell:</p>
+
+    <pre><code>class ListReverser{
+    static List reverseList(List myList) {
+        List output = new ArrayList();
+        for (int i = 0; i &lt; myList.size(); i++) {
+            output.add(myList.get(myList.size() - 1 - i));
+        }
+    return output;
+    }
+}</code></pre>
+
+    <pre><code>reverse lst = case lst of
+                [] -&gt; []
+                head:rest -&gt; (reverse rest) ++ [head]</code></pre>
+
+    <h2>Notes</h2>
+
+    <p>String representations of programs used to be frowned upon for synthesis: sparse (most strings are not valid programs) and wasteful (parse immediately into a structure anyway). Today strings and structured representations are likely to coexist in systems combining symbolic and neural techniques, which is exactly the LLM-era compromise.</p>
+
+    <p>Source: <a href="https://people.csail.mit.edu/asolar/SynthesisCourse/Lecture2.htm">Armando Solar-Lezama's synthesis course, Lecture 2</a>.</p>
+</body>
+</html>

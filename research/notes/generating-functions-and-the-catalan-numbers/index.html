@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; script-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generating Functions and the Catalan Numbers</title>
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Generating Functions and the Catalan Numbers">
+    <meta property="og:url" content="https://avryryn.io/research/notes/generating-functions-and-the-catalan-numbers/">
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <style>body{max-width:65ch;font-family:Arial}a,a:visited{color:#00e}</style>
+</head>
+<body>
+    <a href="/">Home</a>
+    <h1>Generating Functions and the Catalan Numbers</h1>
+
+    <p><a href="/research/notes/seven-trees-in-one/">Solving T = 1 + T&sup2; directly for T</a> is nonsense, but there is a place nearby where treating the equation as algebra is completely legitimate: counting.</p>
+
+    <h2>Counting Trees by Size</h2>
+
+    <p>Count trees by size, meaning the number of <code>Node</code>s. A size-n node splits into independently-chosen left and right subtrees whose sizes sum to n &minus; 1, so the counts obey a convolution, which is exactly what multiplying power series does. Package the counts into T(x) = &#931; a&#8345; x&#8319; and the recursive structure becomes a legitimate quadratic in the bookkeeping variable x (which tracks <em>size</em>, not "the value of the type"):</p>
+
+    <p>T(x) = 1 + x &middot; T(x)&sup2;</p>
+
+    <p>Solving this reproduces the Catalan numbers, 1, 1, 2, 5, 14, 42, &hellip;, real, meaningful, non-negative integer counts. This explains <em>why</em> something interesting was lurking in the tree equation, but it is not the same move as <a href="/research/notes/seven-trees-in-one/">solving T = 1 + T&sup2; for T itself</a>; that stays invalid.</p>
+
+    <h2>Contrast: the Naturals</h2>
+
+    <p>The naturals, t = 1 + t (<code>Z | S of t</code>), have no branching, no product, in their recursive case. Solving algebraically gives t &minus; t = 1, i.e. 0 = 1, a flat contradiction, which reflects that there is no fixed point: you can always build a bigger t. The generating function is B(x) = 1/(1&minus;x), the trivial geometric series, with no interesting roots, because there was never a combinatorial <em>choice</em> being made.</p>
+
+    <h2>Notes</h2>
+
+    <p>The tree equation was interesting precisely because T &times; T encodes a real choice, namely which subtree gets which size, and that same 2 from the product shows up again as a genuine data field in <a href="/research/notes/derivatives-of-datatypes-zippers/">the tree zipper</a>.</p>
+</body>
+</html>
