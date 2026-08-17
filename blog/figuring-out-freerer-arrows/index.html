@@ -263,7 +263,7 @@
               h1, .post-title { font-size: 1.875rem; }
               h2 { font-size: 1.5rem; }
             }
-          </style></head><body><div class="container"><div class="header"><a href="/blog/" class="back-button">← Back</a><button type="button" class="theme-toggle" onclick="toggleTheme()">🌓</button></div><h1 class="post-title">Figuring Out Freerer Arrows</h1><div class="post-meta">2026-05-29</div><div class="content"><p>Monads are essentially a design pattern for sequencing computations that have side effects. It acts as a &quot;wrapper&quot; around a value that carries some &quot;context,&quot; plus some rules for chaining operations that respect it. As a developer, it might be your intuition to think that monads are an alternative to running multiple computations across scatered functions, sort of connecting it to error and type safety. However, they're more about effect management and composition, ensuring that these said effects are explicit in a type system and composable in a principled way.</p>
+          </style></head><body><div class="container"><div class="header"><a href="/blog/" class="back-button">← Back</a><button type="button" class="theme-toggle" onclick="toggleTheme()">🌓</button></div><h1 class="post-title">Figuring Out Freerer Arrows</h1><div class="post-meta">2026-05-29</div><div class="content"><p>Monads are essentially a design pattern for sequencing computations that have side effects. A monad acts as a &quot;wrapper&quot; around a value that carries some &quot;context,&quot; plus some rules for chaining operations that respect it. As a developer, it might be your intuition to think that monads are an alternative to running multiple computations across scattered functions, sort of connecting it to error and type safety. However, they're more about effect management and composition, ensuring that these effects are explicit in a type system and composable in a principled way.</p>
 <p>In terms of coding parallels, <code>Maybe</code>/<code>Optional</code>, <code>Promise&lt;T&gt;</code>, and <code>flatMap</code> on arrays are similar to monads conceptually. Here are some comparisons:</p>
 <p><strong>Maybe/Optional — &quot;this might not exist&quot;</strong></p>
 <p>Imperative (JS without monads):</p>
@@ -317,7 +317,7 @@ for (const user of users) {
 }
 </code></pre>
 <p>The structure is the same as the Promise case—each step produces a container (an array instead of a Promise), and flatMap sequences them without manual unwrapping.</p>
-<p>While this structure is expressive, there is a limitation to how opaque we can make its operations—as pointed out by VanDomelen et al.<sup id="fnref1"><a href="#fn1">1</a></sup> in their <em>Freer Arrows</em> paper. To make this premise moer concret, the authors consider building an EDSL for web services in Haskell. They define the effects as a GADT and model them with a freer monad:</p>
+<p>While this structure is expressive, there is a limitation to how opaque we can make its operations—as pointed out by VanDomelen et al.<sup id="fnref1"><a href="#fn1">1</a></sup> in their <em>Freer Arrows</em> paper. To make this premise more concrete, the authors consider building an EDSL for web services in Haskell. They define the effects as a GADT and model them with a freer monad:</p>
 <pre><code class="language-hs">data FreerMonad (e :: Type -&gt; Type) (a :: Type) where
   Ret :: a -&gt; FreerMonad e a
   Eff :: e x -&gt; (x -&gt; FreerMonad e a) -&gt;
@@ -358,7 +358,7 @@ echo url1 url2 params =
 </code></pre>
 <p>In this case, the URLs are statically visible in the code—there is one get and one post, and neither depends on an effectful result. But because monads are so expressive, there is no way to write a static analyzer that can distinguish this case from <code>postDepends</code>. The dynamic nature of bind means we cannot inspect the structure of the computation without running it.</p>
 <h2>Freer Arrows for Static Analysis</h2>
-<p>Freer arrows are a relatively expressive structure that is amenable to static analysis, offering an alternative trade-off between expressiveness and static analyzeability compared to freer monads.</p>
+<p>Freer arrows are a relatively expressive structure that is amenable to static analysis, offering an alternative trade-off between expressiveness and static analyzability compared to freer monads.</p>
 <p>To revisit the web service example, the <code>WebServiceOps</code> datatype is redefined with an additional type argument for the input:</p>
 <pre><code class="language-hs">data WebServiceOps :: Type -&gt; Type -&gt; Type where
   Get  :: URL -&gt; [String] -&gt; WebServiceOps () String
