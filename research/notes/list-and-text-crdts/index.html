@@ -12,7 +12,7 @@
     <style>body{max-width:65ch;font-family:Arial}a,a:visited{color:#00e}</style>
 </head>
 <body>
-    <a href="/">Home</a>
+    <a href="/research/notes">Back</a>
     <h1>List and Text CRDTs</h1>
 
     <p>Ordered collections are where the <a href="/research/notes/unique-ids-append-only-logs-and-unique-sets/">unique set</a> needs a twist. In a list or a text document users insert and delete elements at <em>positions</em>, and inserting or deleting a character shifts the indices of everything after it &mdash; the behavior of JavaScript's <code>Array.splice</code>. Referring to those positions by raw index is exactly the index-instability problem again, so a list CRDT gives every element its own immutable <em>list CRDT position</em> at the moment it is typed.</p>

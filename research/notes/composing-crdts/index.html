@@ -12,7 +12,7 @@
     <style>body{max-width:65ch;font-family:Arial}a,a:visited{color:#00e}</style>
 </head>
 <body>
-    <a href="/">Home</a>
+    <a href="/research/notes">Back</a>
     <h1>Composing CRDTs</h1>
 
     <p>Everything so far has been a <em>primitive</em> CRDT &mdash; a <a href="/research/notes/crdts-operations-state-and-merge/">counter</a>, <a href="/research/notes/registers-last-writer-wins-and-multi-value/">register</a>, <a href="/research/notes/list-and-text-crdts/">list, or text</a> solving one specific problem. Real applications combine several, which raises the question of how to build something complex without losing the guarantees established earlier. The answer leans on the definition: a CRDT's semantics are a <a href="/research/notes/crdt-semantics-as-a-pure-function/">pure function over the operation history</a>, and if you compose two CRDTs properly the result is still such a pure function, so it is still a valid CRDT. The guarantee comes for free.</p>

@@ -12,7 +12,7 @@
     <style>body{max-width:65ch;font-family:Arial}a,a:visited{color:#00e}</style>
 </head>
 <body>
-    <a href="/">Home</a>
+    <a href="/research/notes">Back</a>
     <h1>Schema Inferred from Live Data</h1>
 
     <p><a href="/research/notes/typed-holes-and-gradual-consistency/">Typed holes</a> need an expected type at the cursor. The usual source of that type is a declaration: you wrote a signature, and the editor reads it back. A more interesting source is the data itself. If a program is a chain of operations over a table, the expected type at a hole can be inferred from the live data flowing to that point, so the type is the runtime schema at that stage of the pipeline. The feedback is the same kind of expectation at the cursor, but it works in plain text with no declarations and stays grounded in the actual data.</p>

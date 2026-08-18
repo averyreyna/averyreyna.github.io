@@ -12,7 +12,7 @@
     <style>body{max-width:65ch;font-family:Arial}a,a:visited{color:#00e}</style>
 </head>
 <body>
-    <a href="/">Home</a>
+    <a href="/research/notes">Back</a>
     <h1>Typed Holes and Gradual Consistency</h1>
 
     <p>An incomplete program usually means there is no program at all: the compiler refuses it and you get nothing back. A <em>typed hole</em> takes a different view, treating a missing piece as a known gap that the type system can still reason about, so the rest of the program keeps its meaning while a piece is absent. The hole has an <em>expected type</em>, and the editor can say what belongs there before you fill it. Reading through how Hazel's statics layer implements this, a few ideas do most of the work.</p>

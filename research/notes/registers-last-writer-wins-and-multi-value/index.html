@@ -12,7 +12,7 @@
     <style>body{max-width:65ch;font-family:Arial}a,a:visited{color:#00e}</style>
 </head>
 <body>
-    <a href="/">Home</a>
+    <a href="/research/notes">Back</a>
     <h1>Registers: Last Writer Wins and Multi-Value</h1>
 
     <p>Not every conflict has a structural answer the way list order does. When several users set the same single value concurrently and there is no better way to reconcile them, a <strong>register</strong> has to make a choice, and the two standard choices &mdash; discard all but one, or keep them all &mdash; are themselves CRDTs.</p>
