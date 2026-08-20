@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; script-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conjure Code — Avery Reyna</title>
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Conjure Code">
+    <meta property="og:url" content="https://avryryn.io/work/projects/conjure-code/">
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <style>
+        body {
+            max-width: 680px;
+        }
+    </style>
+</head>
+<body>
+    <p><a class="secondary" href="/work/projects">&larr; Projects</a></p>
+    <h1>Conjure Code</h1>
+    <div class="content">
+        <p>Conjure Code is a CLI that turns a codebase — local or a GitHub slug like <code>sveltejs/kit</code> — into a navigable node graph. It walks the project, uses <strong>ts-morph</strong> to statically analyze exports, functions, classes, and their references, and serves the result as an interactive canvas in the browser, with files and modules as nodes and imports and calls as edges between them.</p>
+
+        <p>Real codebases produce graphs with far more nodes than a browser can comfortably render at once, so the canvas does viewport culling on every pan and zoom: before drawing, it checks each node's screen-space position against the visible area (plus a padding margin) and skips anything outside it. Edges get the same treatment, but an edge only needs to survive if <em>either</em> endpoint is visible, or if the line between two off-screen endpoints still crosses the viewport:</p>
+
+<pre><code>export function isInView(
+  graphX: number, graphY: number,
+  transform: ViewTransform, viewWidth: number, viewHeight: number,
+  padding = 80
+): boolean {
+  const screenX = graphX * transform.k + transform.x;
+  const screenY = graphY * transform.k + transform.y;
+  return (
+    screenX >= -padding && screenX <= viewWidth + padding &&
+    screenY >= -padding && screenY <= viewHeight + padding
+  );
+}
+
+export function edgeInView(
+  ax: number, ay: number, bx: number, by: number,
+  transform: ViewTransform, viewWidth: number, viewHeight: number,
+  padding = 80
+): boolean {
+  if (isInView(ax, ay, transform, viewWidth, viewHeight, padding)) return true;
+  if (isInView(bx, by, transform, viewWidth, viewHeight, padding)) return true;
+
+  const sax = ax * transform.k + transform.x, say = ay * transform.k + transform.y;
+  const sbx = bx * transform.k + transform.x, sby = by * transform.k + transform.y;
+  const minSX = Math.min(sax, sbx) - padding, maxSX = Math.max(sax, sbx) + padding;
+  const minSY = Math.min(say, sby) - padding, maxSY = Math.max(say, sby) + padding;
+  return !(maxSX < 0 || minSX > viewWidth || maxSY < 0 || minSY > viewHeight);
+}</code></pre>
+
+        <p>That bounding-box check on the edge's full span is what makes the "aperture" zoom feel continuous instead of glitchy — a long edge connecting two far-apart, off-screen nodes still gets drawn if it passes through what you're looking at, rather than popping in and out as its endpoints cross the frame.</p>
+    </div>
+</body>
+</html>

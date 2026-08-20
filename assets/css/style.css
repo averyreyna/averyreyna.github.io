@@ -18,16 +18,16 @@
 
   --light-blue: rgb(80, 140, 255);
 
-  --shade-0: rgb(6, 7, 10);
-  --shade-1: rgb(14, 16, 22);
-  --shade-2: rgb(24, 29, 39);
-  --shade-3: rgb(33, 39, 53);
-  --shade-4: rgb(47, 56, 75);
-  --shade-5: rgb(55, 67, 98);
-  --shade-6: rgb(87, 101, 147);
-  --shade-7: rgb(135, 146, 171);
-  --shade-8: rgb(159, 174, 204);
-  --shade-9: rgb(224, 224, 224);
+  --shade-0: rgb(9, 6, 10);
+  --shade-1: rgb(23, 9, 27);
+  --shade-2: rgb(40, 16, 47);
+  --shade-3: rgb(67, 27, 78);
+  --shade-4: rgb(78, 31, 91);
+  --shade-5: rgb(98, 39, 114);
+  --shade-6: rgb(149, 60, 174);
+  --shade-7: rgb(181, 103, 203);
+  --shade-8: rgb(202, 146, 217);
+  --shade-9: rgb(232, 209, 239);
   --shade-10: rgb(255, 255, 255);
 
   --best-colour: #9faeee;
@@ -51,7 +51,7 @@
   --rainbow-8: var(--orange);
   --rainbow-9: var(--yellow);
 
-  --background: rgb(31, 39, 54);
+  --background: var(--shade-3);
 
   --rainbow-gradient: linear-gradient(
     135deg,
@@ -86,13 +86,13 @@ code {
 }
 
 * {
-  accent-color: #4680ff;
+  accent-color: var(--coral);
   box-sizing: border-box;
 }
 
 body {
   color: white;
-  background-color: rgb(31, 39, 54);
+  background-color: var(--background);
   font-family: sans-serif;
   max-width: 750px;
   margin: 0 auto;
@@ -106,11 +106,11 @@ video {
 }
 
 a {
-  color: #46ff80;
+  color: var(--coral);
 }
 
 :target {
-  outline: 2px solid #4680ff;
+  outline: 2px solid var(--coral);
   outline-offset: 2px;
 }
 
@@ -131,14 +131,14 @@ label {
 }
 
 a:focus-visible {
-  outline: 2px solid #46ff80;
+  outline: 2px solid var(--coral);
   outline-offset: 2px;
 }
 
 a:hover {
   color: black;
-  background-color: #46ff80;
-  outline: 2px solid #46ff80;
+  background-color: var(--coral);
+  outline: 2px solid var(--coral);
 }
 
 figcaption {
@@ -167,13 +167,13 @@ ul > li {
 }
 
 a.secondary {
-  color: #4699ff;
+  color: var(--orange);
 }
 
 a.secondary:hover {
   color: black;
-  background-color: #4699ff;
-  outline: 2px solid #4699ff;
+  background-color: var(--orange);
+  outline: 2px solid var(--orange);
 }
 
 a.black {
@@ -187,33 +187,33 @@ a.black:hover {
 }
 
 a.danger {
-  color: #ff4346;
+  color: var(--red);
 }
 
 a.danger:hover {
   color: black;
-  background-color: #ff4346;
-  outline: 2px solid #ff4346;
+  background-color: var(--red);
+  outline: 2px solid var(--red);
 }
 
 a.warning {
-  color: #ffff46;
+  color: var(--calm-yellow);
 }
 
 a.warning:hover {
   color: black;
-  background-color: #ffff46;
-  outline: 2px solid #ffff46;
+  background-color: var(--calm-yellow);
+  outline: 2px solid var(--calm-yellow);
 }
 
 a.tertiary {
-  color: #9faeee;
+  color: var(--best-colour);
 }
 
 a.tertiary:hover {
   color: black;
-  background-color: #9faeee;
-  outline: 2px solid #9faeee;
+  background-color: var(--best-colour);
+  outline: 2px solid var(--best-colour);
 }
 
 summary.button {
@@ -228,7 +228,7 @@ dialog input[type="password"],
 dialog input[type="text"],
 dialog textarea {
   max-width: 100%;
-  background-color: #9faeee;
+  background-color: var(--best-colour);
   border: 1px solid black;
   color: black;
   width: 100%;
@@ -238,13 +238,13 @@ dialog textarea {
 dialog::selection,
 dialog p::selection,
 dialog h2::selection {
-  background-color: #46ff80;
+  background-color: var(--coral);
 }
 
 dialog input[type="password"]::selection,
 dialog input[type="text"]::selection,
 dialog textarea::selection {
-  background-color: #46ff80;
+  background-color: var(--coral);
 }
 
 dialog input[type="password"]:disabled,
@@ -260,7 +260,7 @@ label.disabled {
 }
 
 a.button {
-  border: 3px solid #46ff80;
+  border: 3px solid var(--coral);
   padding: 4px 5px;
   text-decoration: none;
   line-height: 2.3;
@@ -272,11 +272,11 @@ a.button:hover {
 }
 
 a.button.secondary {
-  border-color: #4699ff;
+  border-color: var(--orange);
 }
 
 a.button.danger {
-  border-color: #ff4346;
+  border-color: var(--red);
 }
 
 a.button.tertiary {
@@ -284,13 +284,13 @@ a.button.tertiary {
 }
 
 a.button.warning {
-  border-color: #ffff46;
+  border-color: var(--calm-yellow);
 }
 
 label.secondary,
 span.secondary,
 p.secondary {
-  color: #9faeee;
+  color: var(--best-colour);
 }
 
 label.danger,
@@ -302,7 +302,7 @@ p.danger {
 label.warning,
 span.warning,
 p.warning {
-  color: #ffff46;
+  color: var(--calm-yellow);
 }
 
 label.positive,
@@ -312,10 +312,10 @@ p.positive {
 }
 
 blockquote {
-  color: #9faeee;
+  color: var(--best-colour);
   margin: 0px;
   padding-left: 23px;
-  border-left: 1px #9faeee solid;
+  border-left: 1px var(--best-colour) solid;
 }
 
 hr {
@@ -325,7 +325,7 @@ hr {
 }
 
 hr.secondary {
-  background-color: #9faeee;
+  background-color: var(--best-colour);
 }
 
 h1,
@@ -351,8 +351,8 @@ summary {
   user-select: none;
   cursor: pointer;
   padding: 5px;
-  border: 1px solid #9faeee;
-  background-color: #374362;
+  border: 1px solid var(--best-colour);
+  background-color: var(--shade-5);
   width: fit-content;
 }
 
@@ -363,8 +363,8 @@ input[type="number"],
 input[type="search"],
 input[type="url"],
 textarea {
-  background-color: #374362;
-  border: 1px solid #9faeee;
+  background-color: var(--shade-5);
+  border: 1px solid var(--best-colour);
   color: white;
   padding: 5px;
   width: 100%;
@@ -377,7 +377,7 @@ input[type="password"]::placeholder,
 input[type="search"]::placeholder,
 input[type="url"]::placeholder,
 textarea::placeholder {
-  color: #9faeee;
+  color: var(--best-colour);
 }
 
 :focus {
@@ -404,28 +404,28 @@ button:disabled {
 }
 
 button.danger {
-  background-color: #ff4346;
+  background-color: var(--red);
   color: white;
 }
 
 button.primary {
-  background-color: #4680ff;
-  color: white;
+  background-color: var(--coral);
+  color: black;
 }
 
 button.warning {
-  background-color: #ffff46;
+  background-color: var(--calm-yellow);
   color: black;
 }
 
 pre {
-  background-color: #374362;
+  background-color: var(--shade-5);
   padding: 11px;
   overflow-x: auto;
 }
 
 pre.changelog {
-  color: #9faeee;
+  color: var(--best-colour);
 }
 
 pre.changelog mark {
@@ -433,13 +433,13 @@ pre.changelog mark {
 }
 
 pre mark {
-  color: #46ff80;
+  color: var(--coral);
   background: none;
 }
 
 select {
-  background-color: #374362;
-  border: 1px solid #9faeee;
+  background-color: var(--shade-5);
+  border: 1px solid var(--best-colour);
   color: white;
   padding: 5px;
   font-size: 1em;

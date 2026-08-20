@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; script-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalyst — Avery Reyna</title>
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Catalyst">
+    <meta property="og:url" content="https://avryryn.io/work/projects/catalyst/">
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <style>
+        body {
+            max-width: 680px;
+        }
+    </style>
+</head>
+<body>
+    <p><a class="secondary" href="/work/projects">&larr; Projects</a></p>
+    <h1>Catalyst</h1>
+    <div class="content">
+        <p>Catalyst is a desktop editor, built with <strong>PyQt6</strong>, for turning photos into pointillist mosaics. You load an image, tune block size and color settings, and flip between the original and processed views side by side before exporting a PNG or a print-ready PDF with grid overlays and ruler ticks sized for an actual painting layout.</p>
+
+        <p>The mosaic itself comes from a block-averaging pass over the image that never loops over individual pixels. The image is padded to a multiple of the block size, reshaped so each block becomes its own axis, and averaged along those axes in one <strong>NumPy</strong> call; the result is then broadcast back out to full resolution and, optionally, spread apart with black gaps between blocks using a fully vectorized index remap:</p>
+
+<pre><code>def apply_mosaic(image, block_size, gap_px=0):
+    h, w = image.shape[0], image.shape[1]
+    bs = block_size
+    pad_h, pad_w = (bs - h % bs) % bs, (bs - w % bs) % bs
+    padded = np.pad(image, ((0, pad_h), (0, pad_w), (0, 0)), mode="edge")
+    ph, pw = padded.shape[0], padded.shape[1]
+    n_h, n_w = ph // bs, pw // bs
+
+    # Reshape into blocks (n_h, bs, n_w, bs, 3), mean over block axes
+    blocks = padded.reshape(n_h, bs, n_w, bs, 3)
+    block_means = blocks.mean(axis=(1, 3)).astype(np.uint8)
+
+    # Expand each averaged block back to block_size x block_size, no loop
+    expanded = np.broadcast_to(
+        block_means[:, np.newaxis, :, np.newaxis, :], (n_h, bs, n_w, bs, 3)
+    ).copy()
+    out = expanded.reshape(n_h * bs, n_w * bs, 3)[:h, :w].copy()
+
+    if gap_px <= 0:
+        return out
+    new_h, new_w = n_h * bs + (n_h - 1) * gap_px, n_w * bs + (n_w - 1) * gap_px
+    result = np.zeros((new_h, new_w, 3), dtype=np.uint8)
+    old_i, old_j = np.arange(n_h * bs), np.arange(n_w * bs)
+    new_i, new_j = old_i + (old_i // bs) * gap_px, old_j + (old_j // bs) * gap_px
+    result[np.ix_(new_i, new_j)] = out
+    return result</code></pre>
+
+        <p>That gap-insertion step is the same trick twice: build a coordinate remap from old pixel indices to their gapped positions, then scatter the whole block-averaged image into a zeroed canvas with a single fancy-indexing assignment. It's the kind of operation that would be a nested loop in most image tools; here it's two <code>np.ix_</code> calls.</p>
+    </div>
+</body>
+</html>

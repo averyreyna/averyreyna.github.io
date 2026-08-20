@@ -50,30 +50,107 @@
             color: var(--shade-7);
             font-style: italic;
         }
+
+        details,
+        details ul {
+            margin-top: 10px;
+        }
+
+        details summary {
+            font-size: 0.9em;
+        }
+
+        #positions h3 {
+            font-size: 1em;
+            margin: 20px 0 6px;
+            color: var(--shade-8);
+        }
+
+        #positions h3:first-of-type {
+            margin-top: 0;
+        }
     </style>
 </head>
 <body>
     <header>
-        <h1>Avery Reyna</h1>
-        <p>Hi, I'm Avery. I build, make, and write.</p>
+        <h1>Hi, I'm Avery.</h1>
+        <p>I build, make, and write.</p>
     </header>
 
     <ul class="links">
         <li><a class="button" href="https://www.are.na/avry-ryn">Are.na</a></li>
         <li><a class="button secondary" href="/blog">Blog</a></li>
-        <li><a class="button tertiary" href="/research">Research</a></li>
-        <li><a class="button tertiary" href="/work">Work</a></li>
         <li><a class="button" href="mailto:avery.reyna16@gmail.com">Email</a></li>
     </ul>
 
-    <!-- TODO: replace with a couple sentences about what you're up to right now -->
     <section>
         <h2>Now</h2>
-        <p class="placeholder">What are you currently working on, reading, or thinking about?</p>
+        <p class="placeholder">I'm currently a developer on <a href="">Mutiny Monitor</a>. Before that, I was an engineer at <a href="">Capital One</a> working on a data platform. Before <strong>that</strong>, I studied sociology + political science + cultural anthropology at <a href="">UCF</a>.</p>
+    </section>
+
+    <section id="positions">
+        <h2>Positions</h2>
+
+        <h3>Work</h3>
+        <ul>
+            <li><a href="https://archive.ph/t8bbN">Self Adjoint Operator</a> — Prototyper · 2025–Now</li>
+            <li><a href="https://www.capitalone.com">Capital One</a> — Software Engineer · 2023–2026</li>
+        </ul>
+
+        <h3>Research</h3>
+        <ul>
+            <li><a href="https://www.uky.edu">University of Kentucky</a> — Visiting Researcher · 2026–Now</li>
+            <li><a href="https://www.ucsd.edu">UC San Diego</a> — Visiting Researcher · 2025–Now</li>
+        </ul>
+        <details>
+            <summary>Show all</summary>
+            <ul>
+                <li><a href="https://www.ucf.edu">University of Central Florida</a> — Researcher + Developer · 2021–2023</li>
+                <li><a href="https://www.columbia.edu">Columbia University</a> — REU Participant · 2022</li>
+                <li><a href="https://www.tacoma.uw.edu">University of Washington Tacoma</a> — REU Participant · 2021</li>
+                <li><a href="https://sciences.ucf.edu/cosas/wp-content/uploads/sites/21/2022/05/Sociology-Restricted-Electives-2022.pdf">SYO 3530: Social Power &amp; Inequality</a> — Instructor · 2020</li>
+            </ul>
+        </details>
+
+        <h3>Service</h3>
+        <ul>
+            <li><a href="https://mlcommons.org/">MLCommons</a> — Contributor · 2024–2025</li>
+            <li><a href="https://www.capitalone.com/coders/">Capital One Coders</a> — Coding Instructor · 2024</li>
+        </ul>
+        <details>
+            <summary>Show all</summary>
+            <ul>
+                <li><a href="https://www.knighthacks.org">Knight Hacks</a> — Director of Workshops/UX Research · 2021–2023</li>
+                <li><a href="https://our.ucf.edu">UCF Office of Undergraduate Research</a> — Student Leader · 2021–2022</li>
+                <li><a href="https://nextgenamerica.org">NextGen America</a> — Digital Organizer · 2020</li>
+                <li><a href="https://web.archive.org/web/20200930070430/https://organizing2020.com/">Organizing Together 2020</a> — Digital Organizer · 2020</li>
+            </ul>
+        </details>
+
+        <h3>Internships</h3>
+        <ul>
+            <li><a href="https://www.actblue.com">ActBlue Technical Services</a> — PM Intern · 2023</li>
+            <li><a href="https://www.actblue.com">ActBlue</a> — ODR Intern · 2022–2023</li>
+        </ul>
+        <details>
+            <summary>Show all</summary>
+            <ul>
+                <li><a href="https://www.krcresearch.com">KRC Research</a> — Research Intern · 2022</li>
+                <li><a href="https://swingleft.org">Swing Left</a> — Analytics Intern · 2021–2022</li>
+                <li><a href="https://www.newamerica.org">New America</a> — DIGI Intern · 2021–2022</li>
+                <li><a href="https://www.cfr.org">Council on Foreign Relations</a> — Editorial Intern · 2021</li>
+                <li><a href="https://thehubproject.org">The Hub Project</a> — PREA Intern · 2021</li>
+                <li>Main Street One — Tech Intern · 2020</li>
+                <li><a href="https://covidtracking.com">The COVID-19 Tracking Project</a> — Data Intern · 2020</li>
+                <li><a href="https://www.ballotready.org">BallotReady</a> — Research Intern · 2020</li>
+                <li><a href="https://unausa.org/chapter/orlando/">UNA-Orlando</a> — Research Intern · 2020</li>
+                <li><a href="https://sciences.ucf.edu/pmbfprogram/">PMBF Program</a> — Research Intern · 2020</li>
+            </ul>
+        </details>
     </section>
 
     <section>
-        <h2>Writing</h2>
+        <h2>Blog</h2>
         <ul>
             <li><a href="/blog/programming-with-abstraction/">Programming with Abstraction</a></li>
             <li><a href="/blog/experimenting-with-schema-feedback/">Experimenting with Schema Feedback</a></li>
@@ -83,12 +160,80 @@
         </ul>
     </section>
 
-    <!-- TODO: highlight a few projects, or delete this section if the Work link above is enough -->
+    <section>
+        <h2>Microblog</h2>
+        <ul>
+            <li><a href="/research/microblog#2026-08-16">More on Motivation</a></li>
+            <li><a href="/research/microblog#2026-08-12">Notes from Making Abstraction Concrete</a></li>
+            <li><a href="/research/microblog#2026-08-10">FP (Can Be) Universal</a></li>
+            <li><a href="/research/microblog#2026-08-08">Why PL + HCI?</a></li>
+            <li><a class="secondary" href="/research/microblog">See all entries →</a></li>
+        </ul>
+    </section>
+
     <section>
         <h2>Selected work</h2>
         <ul>
-            <li class="placeholder">Project name — one line about what it is</li>
+            <li><a href="/work/projects/chaperone/">Chaperone</a></li>
+            <li><a href="/work/projects/conjure-code/">Conjure Code</a></li>
         </ul>
+        <details>
+            <summary>Show all</summary>
+            <ul>
+                <li><a href="/work/projects/convoy/">Convoy</a></li>
+                <li><a href="/work/projects/convoy-v15/">Convoy v1.5</a></li>
+                <li><a href="/work/projects/catalyst/">Catalyst</a></li>
+                <li><a href="/work/projects/admin-metrics-dashboard/">Admin Metrics Dashboard</a></li>
+                <li><a href="/work/projects/form/">Form</a></li>
+            </ul>
+        </details>
+    </section>
+
+    <section>
+        <h2>Papers</h2>
+        <ul>
+            <li><a href="https://arxiv.org/abs/2512.14012">Professional Software Developers Don't Vibe, They Control</a></li>
+            <li><a href="https://dl.acm.org/doi/10.1145/3613904.3642816">Help Supporters</a></li>
+        </ul>
+        <details>
+            <summary>Show all</summary>
+            <ul>
+                <li><a href="https://dl.acm.org/doi/10.1145/3597638.3608412">Understanding Blind and Low Vision Users' Attitudes</a></li>
+            </ul>
+        </details>
+    </section>
+
+    <section>
+        <h2>Presentations</h2>
+        <ul>
+            <li><a href="https://youtu.be/Og9azEDcG4k?si=OQHwmA7IQwXdc1u3">Cartographic Limits and Interdisciplinary Science</a></li>
+            <li>Legacies of Instability</li>
+        </ul>
+        <details>
+            <summary>Show all</summary>
+            <ul>
+                <li><a href="/assets/files/presentations/summer_undergraduate_research_poster_showcase_22.pdf">Applied Machine Learning to Detect Risk of Illegal Leadership Turnover</a></li>
+                <li><a href="/assets/files/presentations/student_research_week_22.pdf">Comparative Analysis between TextRank and LexRank</a></li>
+                <li><a href="/assets/files/presentations/student_research_week_21.pdf">Adolescent Online Safety</a></li>
+            </ul>
+        </details>
+    </section>
+
+    <section>
+        <h2>Public Scholarship</h2>
+        <ul>
+            <li><a href="https://theloop.ecpr.eu/the-threat-of-artificial-intelligence-is-not-just-real-its-here/">The Threat of Artificial Intelligence Is Not Just Real, It's Here</a></li>
+            <li><a href="https://theloop.ecpr.eu/interdisciplinary-social-science-and-the-limits-of-quantitative-research/">Interdisciplinary Social Science and the Limits of Quantitative Research</a></li>
+        </ul>
+        <details>
+            <summary>Show all</summary>
+            <ul>
+                <li><a href="https://www.justsecurity.org/82471/anti-coup-strategies-should-address-civilian-coup-allies/">Anti-Coup Strategies Should Address Civilian Coup Allies</a></li>
+                <li><a href="https://politicalviolenceataglance.org/2022/06/14/reflecting-on-coup-risk-in-mali/">Reflecting on Coup Risk in Mali</a></li>
+                <li><a href="https://www.newamerica.org/digital-impact-governance-initiative/blog/integrated-data-in-the-united-states-a-look-at-new-yorks-workforce-portal/">Integrated Data in the United States</a></li>
+                <li><a href="https://www.cfr.org/in-brief/latin-americas-vaccination-efforts-what-know">Latin America's Vaccination Efforts</a></li>
+            </ul>
+        </details>
     </section>
 </body>
 </html>
