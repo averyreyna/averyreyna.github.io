@@ -1,328 +1,56 @@
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Avery Reyna</title><link rel="alternate" type="application/rss+xml" title="Avery Reyna" href="/blog/feed"><link rel="icon" type="image/png" href="/blog/assets/files/self_adjoint_operator_catalyst.png"><script>
-            function toggleTheme() {
-              document.body.classList.toggle('dark');
-              localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
-            }
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; script-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog — Avery Reyna</title>
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Blog — Avery Reyna">
+    <meta property="og:url" content="https://avryryn.io/blog/">
+    <link rel="alternate" type="application/rss+xml" title="Avery Reyna" href="/blog/feed">
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <style>
+        body {
+            max-width: 680px;
+        }
 
-            // Apply saved theme on load
-            if (localStorage.getItem('theme') === 'dark' ||
-                (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-              document.body.classList.add('dark');
-            }
-          </script><style>
-            * {
-              box-sizing: border-box;
-            }
+        .post-list {
+            padding: 0;
+        }
 
-            body {
-              font-family: "Times New Roman", Times, serif;
-              line-height: 1.6;
-              margin: 0;
-              padding: 0;
-              background: #fff;
-              color: #333;
-              font-size: 18px;
-            }
+        .post-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 20px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--shade-3);
+        }
 
-            body.dark {
-              background: #111;
-              color: #eee;
-            }
-
-            .container {
-              max-width: 680px;
-              margin: 0 auto;
-              padding: 3rem 2rem;
-            }
-
-            .header {
-              display: flex;
-              align-items: center;
-              margin-bottom: 4rem;
-              position: relative;
-            }
-
-            .avatar {
-              width: 80px;
-              height: 80px;
-              margin-right: 1.5rem;
-            }
-
-            .header-content {
-              flex: 1;
-            }
-
-            .site-title {
-              font-size: 1.875rem;
-              font-weight: 800;
-              margin: 0 0 0.5rem 0;
-              line-height: 1.2;
-            }
-
-            .links {
-              display: flex;
-              gap: 1rem;
-              align-items: center;
-            }
-
-            .theme-toggle, .back-button {
-              background: none;
-              border: 1px solid #ddd;
-              border-radius: 4px;
-              padding: 4px 8px;
-              font-size: 0.75rem;
-              cursor: pointer;
-              color: #666;
-              text-decoration: none;
-              display: inline-block;
-            }
-
-            .theme-toggle {
-              position: absolute;
-              top: 0;
-              right: 0;
-            }
-
-            .back-button {
-              position: absolute;
-              top: 0;
-              left: 0;
-            }
-
-            .theme-toggle:hover, .back-button:hover {
-              background: #f8f8f8;
-              color: #333;
-              text-decoration: none;
-            }
-
-            body.dark .theme-toggle, body.dark .back-button {
-              border-color: #555;
-              color: #aaa;
-            }
-
-            body.dark .theme-toggle:hover, body.dark .back-button:hover {
-              background: #333;
-              color: #eee;
-            }
-
-            .links a {
-              font-size: 0.875rem;
-              color: #666;
-            }
-
-            .links a:hover {
-              color: #06c;
-            }
-
-            body.dark .links a {
-              color: #aaa;
-            }
-
-            body.dark .links a:hover {
-              color: #6bf;
-            }
-
-            @media (max-width: 640px) {
-              .header {
-                gap: 1rem;
-              }
-
-              .avatar {
-                width: 64px;
-                height: 64px;
-              }
-
-              .site-title {
-                font-size: 1.5rem;
-              }
-            }
-
-            a {
-              color: #06c;
-              text-decoration: none;
-            }
-
-            a:hover {
-              text-decoration: underline;
-            }
-
-            body.dark a {
-              color: #6bf;
-            }
-
-            h1, h2, h3, h4, h5, h6 {
-              font-weight: 700;
-              line-height: 1.25;
-              margin: 2rem 0 1rem 0;
-            }
-
-            h1, .post-title {
-              font-size: 2.25rem;
-            }
-
-            h2 { font-size: 1.875rem; }
-            h3 { font-size: 1.5rem; }
-
-            .post-meta, .post-list .post-date {
-              color: #666;
-              font-size: 0.875rem;
-            }
-
-            .post-meta {
-              margin-bottom: 3rem;
-            }
-
-            body.dark .post-meta, body.dark .post-list .post-date {
-              color: #aaa;
-            }
-
-            .post-cover {
-              margin-bottom: 3rem;
-            }
-
-            .post-cover svg {
-              width: 100%;
-              height: auto;
-              max-height: 350px;
-            }
-
-            .post-list {
-              list-style: none;
-              padding: 0;
-              margin: 0;
-            }
-
-            .post-list li {
-              margin-bottom: 1.5rem;
-            }
-
-            .post-list h2 {
-              margin: 0 0 0.5rem 0;
-              font-size: 1.5rem;
-              font-weight: 600;
-            }
-
-            .content p {
-              margin-bottom: 1.5rem;
-            }
-
-            .content blockquote {
-              border-left: 4px solid #eee;
-              margin: 2rem 0;
-              padding: 1rem 0 1rem 1.5rem;
-              font-style: italic;
-            }
-
-            body.dark .content blockquote {
-              border-left-color: #555;
-            }
-
-            .content pre {
-              background-color: #f8f8f8;
-              padding: 1.5rem;
-              border-radius: 0.375rem;
-              overflow-x: auto;
-              font-size: 0.875rem;
-              margin: 2rem 0;
-            }
-
-            body.dark .content pre {
-              background-color: #1a1a1a;
-            }
-
-            .content code {
-              background-color: #f8f8f8;
-              padding: 0.125rem 0.25rem;
-              border-radius: 0.25rem;
-              font-size: 0.875em;
-            }
-
-            body.dark .content code {
-              background-color: #1a1a1a;
-            }
-
-            .content.hidden-links a {
-              color: inherit;
-              text-decoration: underline;
-              text-decoration-color: color-mix(in srgb, currentColor 20%, transparent);
-            }
-
-            .content.hidden-links a:hover {
-              opacity: 0.7;
-            }
-
-            @media (max-width: 640px) {
-              .container {
-                padding: 2rem 1.5rem;
-              }
-
-              body {
-                font-size: 16px;
-              }
-
-              h1, .post-title { font-size: 1.875rem; }
-              h2 { font-size: 1.5rem; }
-            }
-          </style></head><body><div class="container">
-    <div class="header">
-      <img src="/blog/assets/files/self_adjoint_operator_catalyst.png" alt="" class="avatar">
-      <div class="header-content">
-        <h1 class="site-title">Avery Reyna</h1>
-        <div class="links">
-          <a href="mailto:avery.reyna16@gmail.com">Email</a>
-          <a href="https://github.com/">GitHub</a>
-          <a href="/blog/feed">RSS</a>
-        </div>
-      </div>
-      <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
-    </div>
+        .post-date {
+            color: var(--shade-7);
+            font-size: 0.9em;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <p><a class="secondary" href="/">&larr; Avery Reyna</a></p>
+    <h1>Blog</h1>
+    <p><a class="tertiary" href="/blog/feed">RSS feed</a></p>
 
     <ul class="post-list">
-      
-          <li>
-            <h2><a href="/blog/programming-with-abstraction/">Programming with Abstraction</a></h2>
-            <div class="post-date">2026-08-12</div>
-          </li>
-        
-          <li>
-            <h2><a href="/blog/experimenting-with-schema-feedback/">Experimenting with Schema Feedback</a></h2>
-            <div class="post-date">2026-08-05</div>
-          </li>
-        
-          <li>
-            <h2><a href="/blog/figuring-out-freerer-arrows/">Figuring Out Freerer Arrows</a></h2>
-            <div class="post-date">2026-05-29</div>
-          </li>
-        
-          <li>
-            <h2><a href="/blog/placement-atomicity-and-crash-safety/">Placement, Atomicity, and Crash Safety</a></h2>
-            <div class="post-date">2026-05-19</div>
-          </li>
-        
-          <li>
-            <h2><a href="/blog/legible-software-a-typescript-example/">Legible Software: A TypeScript Example</a></h2>
-            <div class="post-date">2026-05-11</div>
-          </li>
-        
-          <li>
-            <h2><a href="/blog/drag-and-drop-not-considered-harmful/">Drag-and-Drop Not Considered Harmful</a></h2>
-            <div class="post-date">2026-05-05</div>
-          </li>
-        
-          <li>
-            <h2><a href="/blog/views-are-now-cheap/">Views Are Now Cheap</a></h2>
-            <div class="post-date">2026-04-14</div>
-          </li>
-        
-          <li>
-            <h2><a href="/blog/unfinished-thoughts-from-smed-reu/">Unfinished Thoughts from SMED REU</a></h2>
-            <div class="post-date">2021-08-21</div>
-          </li>
-        
-          <li>
-            <h2><a href="/blog/boundary-block-groups/">Boundary Block Groups</a></h2>
-            <div class="post-date">2021-07-23</div>
-          </li>
-        
+        <li><a href="/blog/programming-with-abstraction/">Programming with Abstraction</a><span class="post-date">2026-08-12</span></li>
+        <li><a href="/blog/experimenting-with-schema-feedback/">Experimenting with Schema Feedback</a><span class="post-date">2026-08-05</span></li>
+        <li><a href="/blog/figuring-out-freerer-arrows/">Figuring Out Freerer Arrows</a><span class="post-date">2026-05-29</span></li>
+        <li><a href="/blog/placement-atomicity-and-crash-safety/">Placement, Atomicity, and Crash Safety</a><span class="post-date">2026-05-19</span></li>
+        <li><a href="/blog/legible-software-a-typescript-example/">Legible Software: A TypeScript Example</a><span class="post-date">2026-05-11</span></li>
+        <li><a href="/blog/drag-and-drop-not-considered-harmful/">Drag-and-Drop Not Considered Harmful</a><span class="post-date">2026-05-05</span></li>
+        <li><a href="/blog/views-are-now-cheap/">Views Are Now Cheap</a><span class="post-date">2026-04-14</span></li>
+        <li><a href="/blog/unfinished-thoughts-from-smed-reu/">Unfinished Thoughts from SMED REU</a><span class="post-date">2021-08-21</span></li>
+        <li><a href="/blog/boundary-block-groups/">Boundary Block Groups</a><span class="post-date">2021-07-23</span></li>
     </ul>
-  </div></body></html>
+</body>
+</html>
