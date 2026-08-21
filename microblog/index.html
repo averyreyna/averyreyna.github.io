@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; script-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microblog — Avery Reyna</title>
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Microblog">
+    <meta property="og:url" content="https://avryryn.io/microblog/">
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <style>body{max-width:65ch;font-family:Arial}a,a:visited{color:#00e}</style>
+</head>
+<body>
+    <a href="/">Back</a>
+    <h1>Microblog</h1>
+
+    <p>Short, unfinished, and low-stakes.</p>
+    <h2 id="2026-08-16">August 16, 2026</h2>
+    <h3 id="more-on-motivation">More on Motivation</h3>
+    <p>I have felt a <em>too-muchness</em> when diving into fields like formal methods or program synthesis, subjects that are anachronistic in its applications and learnings. You can ask questions about user interfaces and stretch its concepts to the actual syntax itself (the brackets, the keywords, the symbols) to gauge where we can decrease the bottleneck in our gulf of execution as code writers. It's funny to think about how I got to this field by way of AI-assisted coding, fully obsessed with structured knowledge transfer between developer eyes and programming agents. I think I'm just fond of correctness and verification. While this quote from Flusser's <em>Gestures</em> (a collection of essays that ask heady questions like "Does writing have a future?") is a little too cynical for my taste, the gist of the excerpt still rings true. Every discipline feels like its some applied version of the one below, abstracting more details in order to observe relationships between concepts more clearly.</p>
+    <quote><em>The so-called humanities appear to be working on such a theory. But are they? They work under the influence of the natural sciences, and so they give us better and more complete causal explanations. Of course, these explanations are not and perhaps never will be as rigorous as those in physics or chemistry, but that is not what makes them unsatisfactory.</em></quote>
+
+    <h2 id="2026-08-12">August 12, 2026</h2>
+    <h3 id="notes-from-making-abstraction-concrete">Notes from Making Abstraction Concrete</h3>
+    <ul>
+        <li>Dijkstra points out that the point of abstraction is to create a new semantic level in which one can be absolutely precise in depicting a phenomenon</li>
+        <li>AI research explores invoking the abstraction process in LLMs to define higher-level, reusable modules for managing complexity in domains such as system design</li>
+        <li>Abstraction is widely used in interactive systems, typically through GUIs guiding the user between levels of abstraction in order to get a feel for the entire system</li>
+        <li>Min et al. makes a deliberate deemphasis of common associations with "higher-levelness" and/or simplicity; this is due in part to relativity: a user's conceptual interests shape what they deem as "easy" or familiar; this distinction is important because it is difficult to disentangle the process of abstraction from notions of generalization</li>
+        <li><em>More on that: this connects with the evolvement of programming languages: is Python really "high-level" from a conceptual standpoint? I understand it's a ways away from being something more procedural, actually manipulating memory allocation. However, maybe it's something closer to opacity: the syntactic capabilities of a language make engineering tasks more/less abstract, with differing languages being good at different things (duh!)</em></li>
+        <li>Abstraction designs do not influence only a single stage of Norman's seven stages of action—they shape all stages—suggesting that introducing an orthogonal dimension of abstraction across the Gulfs may reveal richer patterns of how these designs influence interaction</li>
+        <li>A user's mental model and the system can span the gulf of abstraction not only by shifting to higher/lower levels, but by moving through a space</li>
+        <li><em>Random thought: can this be applied to actual programming language text? re: Slim Lim's thoughts on concrete syntax; only up until very recently, the only way to actually develop meaningful, substantial software was to manipulate code; sure, we have direct manipulation programs with robust type checkers to make writing code easier, but that still required at least some technical savviness—would a regular software dev be able to reason with those programs effectively? I guess I'm trying to get at the fact that we're realizing software engineering is not only about coding, and that rings true outside of an agile workplace; back to this opacity analogy: through natural language, now, you can be an expert in system design, and even if you're not technically literate or working on something outside of your scope, you're now able to "abstract" away code and focus on its interactions; and I mean "abstract" in the schema way, not the simplification way.</em></li>
+        <li>The emergence of LLMs has enabled ways to significantly reduce the costs involved in the sensemaking stages</li>
+    </ul>
+
+    <h2 id="2026-08-10">August 10, 2026</h2>
+    <h3 id="fp-can-be-universal">FP (Can Be) Universal</h3>
+    <p>The initial friction for writing somewhat complicated programs in functional programming languages (specifically OCaml) feels less abrasive than other static languages like C/C++, and definitely much more pleasant than dynamically typed languages like Python.</p>
+    <p>Because everything is an expression, you know that there are no side effects you need to worry about. Even writing programs that compute a factorial or Fibonacci sequence are much easier to wrap your head around.</p>
+    <p>The immutability afforded to us by mathematical foundations creates a shared language both technical and non-technical users can understand.</p>
+
+    <h2 id="2026-08-08">August 8, 2026</h2>
+    <h3 id="why-pl-and-hci">Why PL + HCI?</h3>
+    <p>I think it's because I am drawn to the specificity of language—including the acute semantics of programming.</p>
+    <p>That one Solar-Lezama quote sums up some of my feelings:</p>
+    <quote>Code presents unique challenges that derive from the extreme precision required to write correct programs — a few characters can be the difference between a correct program and one that contains a dangerous vulnerability. But code also presents unique opportunities; unlike other tasks for which LLMs have shown promise, code benefits from precise semantics, which allow us to test it and to reason formally about its behavior.</quote>
+    <p>Code is its own interface and through things like type systems, you make the process of translating abstract ideas for programs into a reality. I want to create a language with heuristics that are intuitive.</p>
+    <p>Something something, <a href="https://www.youtube.com/watch?v=AmrBpxAtPrI">is high-level the goal</a>?</p>
+
+    <h2 id="2026-08-07">August 7, 2026</h2>
+    <h3 id="moving-through-abstraction">Moving Through Abstraction</h3>
+    <p>I mean to write a proper blog post about this but I think we have the AI-assisted programming conversation all wrong. Writing code by hand and LLM-driven development don't necessarily have to stand as opposing forces. Good, proper software fundamentals are, and always will be, important as an engineer. I think it's misplaced to call vibe coding pure dopamine hits. Do some people just prompt for what they want and don't bother learning code or industry standard practices that make life easier? Yeah. However, code has always been an interface that requires deep technical knowledge (or whatever depth is required for the proper maintenance of software systems). Now that interface is malleable.</p>
+    <p>I'm hesitant to completely villainize those that appreciate handmade software and scoff at the idea of an agent indexing their codebase, even as part of its training data.</p>
+    <p>Coding is not solved. I don't care if someone from the Claude Code/Codex/etc. team tries to convince me otherwise. Did we forget that functional programming exists? Coding tasks go beyond business logic tasks. Feature-driven development is obviously the most common way software gets created.</p>
+    <p>(Somewhat) related to the previous point, technical communicators like Daisy Hollman are interesting to me. She's been contributing to C++ versions and was the programmer's programmer (her words). Hollman sees the utility of agentic workflows through a refreshingly grounded lens. Like if someone that was giving talks in template metaprogramming before the advent of ChatGPT is enthusiastic about LLMs, is there something we can learn? Is something missing in our worldview?</p>
+    <p>If we really wanna extrapolate, text will always be the interface that outlives technological innovation. The sci-fi fantasies of autonomous agents do not bode well for actual people who care about things like community, care, and friendship—i.e., any sensible person with a good head on their shoulders. We need a way to communicate with autonomy! The precision of language is more important than ever.</p>
+
+    <h2 id="2026-08-06">August 6, 2026</h2>
+    <h3 id="data-hoarding">Data Hoarding</h3>
+    <p>Currently reading about shadow libraries, and by extension, pirate archivists. First started reading <a href="https://web.archive.org/web/20240226093550/https://annas-blog.org/blog-how-to-become-a-pirate-archivist.html">Anna's Blog</a> to get acquainted with the subject.</p>
+    <p>I somehow philosophically relate to the mission of these pirates; I often (non-conspiratorially) think about who controls digital media and what that means for cultural preservation.</p>
+    <p>It's funny to read about this a couple years out of college since I used my fair share of shadow libraries to get textbooks for those 3000-level classes that require insider editions for reading materials.</p>
+    <p>The inclusion of these repositories in the datasets of LLMs, especially at the early stages ~three years ago, is sorta paradoxical. The Common Crawl dataset has been tokenized by GenAI applications for what seems like forever. The (un-)paywalled content is a part of culture.</p>
+    <p>I mean... fundamentally this phenomenon is a natural response to the privatization of academia's pools of knowledge. Of course it's not all bad: the ACM Digital Library is now open access and having complete access to the conference proceedings of HCI venues, for instance, is on net a good thing.</p>
+    <p>Part of the reason why AI is so hated is because of the black box of it all. Do you think people really want a tech company promising the automation of thought? Do you think the average person can explain what "AI" really encapsulates? It's become a misnomer fueled by societal projections, sometimes rightfully so.</p>
+    <p>The cultural metabolism for new technology is fast-tracked if science communication is easy to understand and starts from a place of familiarity, likely rooted in history as context.</p>
+    <p>Everyone needs to read <em>Calm Technology</em>, especially technologists. Technology amplifies humanness by being invisible.</p>
+    <p><em>Edits: AI is a stand-in for quote-unquote "not thinking." Technological intervention of any kind in anything remotely creative is blasphemous. For the most part, I agree. You cannot call yourself an artist if your "art" is generated by a diffusion model. You cannot call yourself an author if your words are coming from a stochastic parrot. I'm hesitant to project any further than that. There is research being done on computational creativity. As such, the thinking models we have are underdeveloped and rightfully so since the proliferation of this technology in the cultural zeitgeist happened not too long ago.</em></p>
+</body>
+</html>
