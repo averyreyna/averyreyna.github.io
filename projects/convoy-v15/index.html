@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; script-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convoy v1.5 — Avery Reyna</title>
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Convoy v1.5">
+    <meta property="og:url" content="https://avryryn.io/projects/convoy-v15/">
+    <link rel="icon" href="/assets/favicon/favicon.ico" sizes="any">
+    <style>body{max-width:65ch;font-family:Arial}a,a:visited{color:#00e}</style>
+</head>
+<body>
+    <a href="/">Back</a>
+    <h1>Convoy v1.5</h1>
+
+    <p>Convoy is a canvas-based data pipeline builder. You drag nodes onto a React Flow canvas (data sources, filters, group-bys, sorts, transforms, computed columns, reshapes, and chart outputs), wire them together, and the pipeline runs. Each node type corresponds to a discrete operation on tabular data: a filter node takes a column, an operator, and a value; a group-by node takes a column and an aggregation function; a chart node takes axis assignments and a chart type. Connections between nodes define the execution order. A data preview collapses in and out of each node so you can inspect what a step is actually producing without leaving the canvas.</p>
+
+    <p>A code panel alongside the canvas generates equivalent Python at every change. The output is a pandas script — or a Jupyter notebook if you prefer — that mirrors the node graph one step at a time. It stays in sync automatically, so the canvas and the code are always the same pipeline described two different ways. You can export either at any point, or paste existing Python back in and have the canvas reconstruct the graph from it.</p>
+
+    <p>Chart nodes render previews through a Python subprocess rather than anything running in the browser. The Express backend spawns <code>python3</code> on demand, sends the chart configuration and row data as JSON over stdin, and reads a base64-encoded PNG back from stdout.</p>
+
+<pre><code>function runRenderChart(payload): Promise&lt;{ image: string } | { error: string }&gt; {
+  return new Promise((resolve) => {
+    const proc = spawn('python3', [scriptPath], { stdio: ['pipe', 'pipe', 'pipe'] });
+    let stdout = '';
+
+    proc.stdout?.on('data', (chunk) => { stdout += chunk; });
+    proc.stdin?.write(JSON.stringify(payload));
+    proc.stdin?.end();
+
+    proc.on('close', (code) => {
+      if (code !== 0) { resolve({ error: stderr }); return; }
+      const result = JSON.parse(stdout);
+      resolve(result.image ? { image: result.image } : { error: result.error });
+    });
+  });
+}</code></pre>
+
+    <p>The Python script uses matplotlib with the <code>Agg</code> backend (non-interactive, no display required) and writes the rendered chart back as a base64 string for the frontend to drop into an <code>&lt;img&gt;</code> tag. No Python server stays running between requests; each chart preview spawns and exits its own process. If Python or matplotlib isn't installed, the chart area shows an error, but nothing else in the pipeline breaks.</p>
+
+    <p>The AI layer, powered by the Anthropic API, runs through the same backend. It can suggest nodes to add to a partial pipeline, explain what any individual node does, edit a node's configuration from a natural language description, and diagnose why a node is in an error state. Each capability is a separate route with its own prompt; none of them share state with each other or with the chart renderer.</p>
+</body>
+</html>
