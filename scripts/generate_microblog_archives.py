@@ -25,7 +25,7 @@ HEAD = """<!doctype html>
     <style>body{{max-width:65ch;font-family:Arial}}a,a:visited{{color:#00e}}</style>
 </head>
 <body>
-    <a href="/microblog/">Back to microblog</a>
+    <a href="/microblog/">Back</a>
 """
 
 ARTICLE_RE = re.compile(
