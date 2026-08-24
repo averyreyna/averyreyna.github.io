@@ -4,9 +4,11 @@
 referencing exciting-times-stains.png becomes very-exciting-times.png (or
 very-exciting-times-2.png, -3.png, ... for a second/third image in the same
 post). Rewrites the <img src="..."> in microblog/index.html to match, then
-regenerates the tags/years archives.
+regenerates the tags/years archives (even if no renames were needed, since
+microblog/index.html may have been edited directly, e.g. new posts or
+tweaked <img> styles).
 
-Run after adding a new microblog image, or any time to (re-)standardize:
+Run after adding/editing a microblog post, or any time to (re-)standardize:
 
     python3 scripts/standardize_image_names.py [--dry-run]
 """
@@ -50,41 +52,42 @@ def main():
 
     if not renames:
         print("Nothing to rename; image names already standardized.")
-        return
-
-    seen_targets = {}
-    for old_name, new_name in renames:
-        if new_name in seen_targets and seen_targets[new_name] != old_name:
-            raise SystemExit(
-                f"Naming collision: both {old_name!r} and "
-                f"{seen_targets[new_name]!r} would become {new_name!r}"
-            )
-        seen_targets[new_name] = old_name
-
-    for old_name, new_name in renames:
-        old_path = IMAGES_DIR / old_name
-        new_path = IMAGES_DIR / new_name
-        if not old_path.exists():
-            print(f"skip (not found on disk): {old_name}")
-            continue
-
-        print(f"{old_name} -> {new_name}")
         if dry_run:
-            continue
+            return
+    else:
+        seen_targets = {}
+        for old_name, new_name in renames:
+            if new_name in seen_targets and seen_targets[new_name] != old_name:
+                raise SystemExit(
+                    f"Naming collision: both {old_name!r} and "
+                    f"{seen_targets[new_name]!r} would become {new_name!r}"
+                )
+            seen_targets[new_name] = old_name
 
-        if is_tracked(old_path):
-            subprocess.run(["git", "mv", str(old_path), str(new_path)], cwd=ROOT, check=True)
-        else:
-            old_path.rename(new_path)
+        for old_name, new_name in renames:
+            old_path = IMAGES_DIR / old_name
+            new_path = IMAGES_DIR / new_name
+            if not old_path.exists():
+                print(f"skip (not found on disk): {old_name}")
+                continue
 
-        source = source.replace(f"/assets/images/{old_name}", f"/assets/images/{new_name}")
+            print(f"{old_name} -> {new_name}")
+            if dry_run:
+                continue
 
-    if dry_run:
-        print("\n(dry run — no files or references changed)")
-        return
+            if is_tracked(old_path):
+                subprocess.run(["git", "mv", str(old_path), str(new_path)], cwd=ROOT, check=True)
+            else:
+                old_path.rename(new_path)
 
-    SOURCE.write_text(source)
-    print(f"\nUpdated {SOURCE.relative_to(ROOT)}")
+            source = source.replace(f"/assets/images/{old_name}", f"/assets/images/{new_name}")
+
+        if dry_run:
+            print("\n(dry run — no files or references changed)")
+            return
+
+        SOURCE.write_text(source)
+        print(f"\nUpdated {SOURCE.relative_to(ROOT)}")
 
     subprocess.run(
         [sys.executable, str(ROOT / "scripts" / "generate_microblog_archives.py")],
