@@ -27,61 +27,61 @@
 
     <h3 id="daydream">Daydream</h3>
     <p><small>SvelteKit, TypeScript &middot; 2026</small></p>
-    <video src="/assets/projects/independent/daydream.mp4" poster="/assets/projects/posters/daydream.jpg" controls preload="none" style="max-width:400px"></video>
+    <video src="/assets/projects/independent/daydream.mp4" poster="/assets/projects/posters/daydream.jpg" controls preload="none" style="width:100%;max-width:400px"></video>
     <p>Daydream is a SvelteKit playground that turns pasted code into Mermaid diagrams via Claude. You paste a snippet into the editor, it comes back as a rendered diagram, and an edit mode lets you drop draggable text annotations and freehand highlight strokes directly on top of the result without touching the underlying Mermaid source.</p>
     <p>The freehand strokes are the more interesting part. Pointer move events fire far more often than the annotation actually needs, so raw input is decimated by minimum distance before it's stored as a path: each new point only survives if it's far enough from the last kept point, which throws out redundant samples from slow drags while keeping fast ones detailed. The distance check compares squared distances rather than pulling a square root on every pointer move, and the decimated points feed straight into an SVG path string, so the stroke ends up as a plain path element sitting in the same coordinate space as the diagram, which is also what makes it draggable and resizable right alongside the text annotations.</p>
 
     <h3 id="envisiage">Envisiage</h3>
     <p><small>Monaco, TypeScript &middot; 2026</small></p>
-    <video src="/assets/projects/independent/envisiage.mp4" poster="/assets/projects/posters/envisiage.jpg" controls preload="none" style="max-width:400px"></video>
+    <video src="/assets/projects/independent/envisiage.mp4" poster="/assets/projects/posters/envisiage.jpg" controls preload="none" style="width:100%;max-width:400px"></video>
     <p>Envisiage is an inline code tutor built on a multi-file Monaco editor: select any span of code, press a shortcut, and an AI explanation streams into a resizable panel anchored to that selection, with room for follow-up questions underneath it. Multiple annotations can sit open at once, each one scoped to the exact lines it explains rather than to the file as a whole.</p>
     <p>What makes the explanations useful across skill levels is a small "granularity" layer sitting in front of the explain prompt. Rather than writing four separate prompts, there's one explanation prompt and four short natural-language modifiers (ELI5, step-through, technical, and debug), each steering the same request toward a different kind of answer: beginner analogies with no assumed knowledge, a numbered line-by-line walkthrough, a concise why-not-what breakdown of design choices, or a look for likely bugs and edge cases. That modifier gets appended onto the underlying explain prompt before it ever reaches the model, so switching from ELI5 to Debug on the same selection doesn't call a different endpoint or template. It's the same request with a different lens bolted on, which keeps the follow-up Q&amp;A path consistent no matter which granularity a student picked to get there.</p>
 
     <h3 id="catalyst">Catalyst</h3>
     <p><small>Python, PyQt6, NumPy &middot; 2026</small></p>
-    <video src="/assets/projects/independent/catalyst.mp4" poster="/assets/projects/posters/catalyst.jpg" controls preload="none" style="max-width:400px"></video>
+    <video src="/assets/projects/independent/catalyst.mp4" poster="/assets/projects/posters/catalyst.jpg" controls preload="none" style="width:100%;max-width:400px"></video>
     <p>Catalyst is a desktop editor, built with PyQt6, for turning photos into pointillist mosaics. You load an image, tune block size and color settings, and flip between the original and processed views side by side before exporting a PNG or a print-ready PDF with grid overlays and ruler ticks sized for an actual painting layout.</p>
     <p>The mosaic itself comes from a block-averaging pass over the image that never loops over individual pixels: the image is padded to a multiple of the block size, reshaped so each block becomes its own axis, and averaged along those axes in a single vectorized NumPy call, then broadcast back out to full resolution. Spreading the blocks apart with black gaps between them is the same trick run twice: a coordinate remap from old pixel indices to their gapped positions, then a single fancy-indexing assignment that scatters the whole block-averaged image into a zeroed canvas. It's the kind of operation that would be a nested loop in most image tools; here it's two array-indexing calls.</p>
 
     <h3 id="convoy">Convoy</h3>
     <p><small>React Flow, TypeScript, Datawrapper API &middot; 2026</small></p>
-    <video src="/assets/projects/independent/convoy-v1.mp4" poster="/assets/projects/posters/convoy-v1.jpg" controls preload="none" style="max-width:400px"></video>
+    <video src="/assets/projects/independent/convoy-v1.mp4" poster="/assets/projects/posters/convoy-v1.jpg" controls preload="none" style="width:100%;max-width:400px"></video>
     <p>This was the first version of Convoy, before it grew into a Python/notebook codegen tool: a canvas-based node graph for building data pipelines, where dragging in sources, filters, and transforms produces a chart you can push straight to Datawrapper instead of a static export. The pipeline runs entirely as an in-memory DataFrame, and a chart node's job is just to describe an axis mapping and a chart type against whatever the graph produces upstream.</p>
     <p>The Datawrapper handoff needed two conversions: the internal chart type had to map onto Datawrapper's own vocabulary (bar to d3-bars, scatter to d3-scatter-plot, and so on), and the DataFrame itself had to become a CSV payload for their upload API. The CSV serialization is the fiddlier of the two, since every cell that would otherwise break the format (commas, quotes, embedded newlines) has to get quoted and escaped before the rows are joined into the final payload.</p>
 
     <h3 id="palestra">Palestra</h3>
     <p><small>React, Express, TypeScript &middot; 2025</small></p>
-    <video src="/assets/projects/independent/palestra.mp4" poster="/assets/projects/posters/palestra.jpg" controls preload="none" style="max-width:400px"></video>
+    <video src="/assets/projects/independent/palestra.mp4" poster="/assets/projects/posters/palestra.jpg" controls preload="none" style="width:100%;max-width:400px"></video>
     <p>Palestra is a coding education platform (file explorer, code editor, and chat panel in one workspace) where the twist is that the codebase you're practicing on doesn't have to exist yet. A React frontend talks to an Express/TypeScript backend that asks Claude to generate an entire project from a short description, and the result becomes something you can click through, open files in, and edit like a real repo.</p>
     <p>Getting a language model to produce a multi-file project reliably comes down to how the prompt is shaped: it isn't asked for "some code," it's asked for a strict JSON tree of folders and files with full file contents inline, with the schema spelled out in the prompt itself and an explicit instruction to return nothing else. The response gets parsed back into the same file-tree structure the file explorer already renders, which is why a generated project can be dropped straight into the editor without a separate code path: as far as the UI is concerned, an AI-generated codebase and a hand-written one look identical.</p>
 
     <h3 id="perceptor">Perceptor</h3>
     <p><small>Node.js &middot; 2025</small></p>
-    <video src="/assets/projects/independent/perceptor.mp4" poster="/assets/projects/posters/perceptor.jpg" controls preload="none" style="max-width:400px"></video>
+    <video src="/assets/projects/independent/perceptor.mp4" poster="/assets/projects/posters/perceptor.jpg" controls preload="none" style="width:100%;max-width:400px"></video>
     <p>Perceptor is a CLI coding tutor built around a Socratic method system prompt. It's told outright to never hand over a direct answer, never send a student to outside tutorials, and instead break whatever they're stuck on into a small, immediately doable exercise. The whole tool is really just that constraint enforced consistently across a conversation loop with Claude, plus a couple of special commands layered on top.</p>
     <p>One of those commands lets a student ask about "codebase structure" mid-conversation. Rather than a slash command, it's detected from plain language: the input is scanned against a list of trigger phrases, and if one matches, a static analysis of the current directory gets appended to the message before it ever reaches the model. The rest of the tutor is conversation-history bookkeeping: every turn gets appended to the running history and replayed in full on each call, so the Socratic thread (and whatever it's already made the student figure out for themselves) carries forward instead of resetting each time.</p>
 
     <h3 id="rerank">Rerank</h3>
     <p><small>React, TypeScript &middot; 2025</small></p>
-    <video src="/assets/projects/independent/rerank.mp4" poster="/assets/projects/posters/rerank.jpg" controls preload="none" style="max-width:400px"></video>
+    <video src="/assets/projects/independent/rerank.mp4" poster="/assets/projects/posters/rerank.jpg" controls preload="none" style="width:100%;max-width:400px"></video>
     <p>Rerank runs the same document through three different summarization methods (TextRank, LexRank, and BART) and lets you compare their output side by side instead of committing to whichever one a library happens to default to. TextRank and LexRank aren't wrappers around an existing package; they're implemented directly in TypeScript and run entirely client-side, scoring sentences by how similar they are to every other sentence in the document.</p>
     <p>Both build a sentence-similarity matrix from cosine similarity over tokenized sentences, then treat it as a graph and rank nodes the way PageRank ranks web pages: a sentence is "important" if it's similar to other important sentences. TextRank runs the classic damped iteration to convergence, while LexRank instead thresholds the similarity matrix before row-normalizing it into a proper transition matrix. That's the main mathematical difference between the two approaches. BART, being an actual transformer model, calls out to a hosted inference API and falls back to an extractive method if that request fails, so a summary always comes back, even offline.</p>
 
     <h3 id="scrutinize">Scrutinize</h3>
     <p><small>React, TypeScript &middot; 2025</small></p>
-    <video src="/assets/projects/independent/scrutinize.mp4" poster="/assets/projects/posters/scrutinize.jpg" controls preload="none" style="max-width:400px"></video>
+    <video src="/assets/projects/independent/scrutinize.mp4" poster="/assets/projects/posters/scrutinize.jpg" controls preload="none" style="width:100%;max-width:400px"></video>
     <p>Scrutinize is a document viewer for close-reading and annotating essays. Text is generated on demand by DeepSeek's chat model from whatever topic you type in, so you get a fresh document to mark up every time instead of pulling from a fixed corpus. You select a phrase, tag it with an annotation type and a short note, and the tool tracks that span as a highlighted region in the document going forward.</p>
     <p>The interesting part is how it turns a flat list of start/end annotations back into a segmented document without ever touching the underlying string: annotations get sorted by start offset, then the content is sliced into alternating plain-text and highlighted-span chunks in a single pass, memoized so it only recomputes when the content or annotation set actually changes. New selections are checked against existing annotation ranges before they're allowed to land: if a proposed span overlaps any existing one, the selection just gets dropped instead of creating a nested or conflicting highlight, which keeps the slicing logic simple enough that it never has to reason about overlapping spans.</p>
 
     <h3 id="specter">Specter</h3>
     <p><small>React, TypeScript &middot; 2025</small></p>
-    <video src="/assets/projects/independent/specter.mp4" poster="/assets/projects/posters/specter.jpg" controls preload="none" style="max-width:400px"></video>
+    <video src="/assets/projects/independent/specter.mp4" poster="/assets/projects/posters/specter.jpg" controls preload="none" style="width:100%;max-width:400px"></video>
     <p>Specter is a writing assistant built around a deliberate constraint: the system prompt tells DeepSeek its goal is "not to write the text for the user, but to help the user write better." Instead of generating replacement prose, every analysis pass returns two lists: potential directions to develop and specific areas for improvement. That keeps the suggestions ephemeral scaffolding around your draft rather than content that could just replace it.</p>
     <p>Those two lists come back from the model as one block of free text, not structured JSON, so the client has to split it back apart itself: the system prompt asks for the headings "Potential Directions" and "Areas for Improvement," and the response handler splits on that boundary and filters out the heading lines from each half. A separate "inspiration" mode uses a different system prompt entirely, one asking for opening hooks and an outline rather than critique, and its output gets appended straight into the draft textarea instead of a suggestions panel, since the point there is to get you unstuck, not to evaluate what you've already written.</p>
 
     <h3 id="meta-measure">Meta Measure</h3>
     <p><small>Next.js &middot; 2025</small></p>
-    <video src="/assets/projects/independent/meta-measure.mp4" poster="/assets/projects/posters/meta-measure.jpg" controls preload="none" style="max-width:400px"></video>
+    <video src="/assets/projects/independent/meta-measure.mp4" poster="/assets/projects/posters/meta-measure.jpg" controls preload="none" style="width:100%;max-width:400px"></video>
     <p>Meta Measure takes a list of research ideas and drops them on a scatter plot: quantitative to qualitative on one axis, traditional to novel on the other, so you can see at a glance how a set of topics balances out methodologically. There's no scoring rubric anywhere in the app. Every placement comes from Claude reasoning about each idea fresh, so the graph ends up less a fixed taxonomy and more a snapshot of one model's judgment at one point in time.</p>
     <p>The graph rendering isn't really the interesting part; the prompt behind it is. The API route sends the whole list of ideas in a single request and asks for strict JSON back (coordinates for each idea, plus a written explanation of the reasoning) and also asks the model to interrogate its own placements: what assumptions it made, what it defaulted to, and whether its evaluation quietly favors certain research approaches over others. That self-critique isn't a separate step tacked on afterward; it's asked for on every call, so the model has to justify its own coordinate system in the same response that produces it. The route itself is a thin Next.js handler sitting behind a cookie-gated access check, with a regex fallback to pull a JSON object out of the response in case Claude wraps it in extra text.</p>
 
@@ -89,19 +89,19 @@
 
     <h3 id="conjure-code">Conjure Code</h3>
     <p><small>TypeScript, ts-morph &middot; 2026</small></p>
-    <video src="/assets/projects/independent/conjure-code.mp4" poster="/assets/projects/posters/conjure-code.jpg" controls preload="none" style="max-width:400px"></video>
+    <video src="/assets/projects/independent/conjure-code.mp4" poster="/assets/projects/posters/conjure-code.jpg" controls preload="none" style="width:100%;max-width:400px"></video>
     <p>Conjure Code is a CLI that turns a codebase (local, or a GitHub slug like sveltejs/kit) into a navigable node graph. It walks the project, uses ts-morph to statically analyze exports, functions, classes, and their references, and serves the result as an interactive canvas in the browser, with files and modules as nodes and imports and calls as edges between them.</p>
     <p>Real codebases produce graphs with far more nodes than a browser can comfortably render at once, so the canvas does viewport culling on every pan and zoom: before drawing, it checks each node's screen-space position against the visible area (plus a padding margin) and skips anything outside it. Edges get the same treatment, but an edge only needs to survive if either endpoint is visible, or if the line between two off-screen endpoints still crosses the viewport at all. That bounding-box check on the edge's full span is what makes the "aperture" zoom feel continuous instead of glitchy: a long edge connecting two far-apart, off-screen nodes still gets drawn if it passes through what you're looking at, rather than popping in and out as its endpoints cross the frame.</p>
 
     <h3 id="form">Form</h3>
     <p><small>React, TypeScript, Babel &middot; 2026</small></p>
-    <video src="/assets/projects/independent/form.mp4" poster="/assets/projects/posters/form.jpg" controls preload="none" style="max-width:400px"></video>
+    <video src="/assets/projects/independent/form.mp4" poster="/assets/projects/posters/form.jpg" controls preload="none" style="width:100%;max-width:400px"></video>
     <p>Form is a notes app with an unusual second half: alongside the notes overview and editor sits a feature builder where you write a small React/TypeScript component and have it become a live part of the running app, no rebuild or redeploy required. You type a component with a default export, and it starts rendering inside Form immediately.</p>
     <p>That works because the sandbox compiles and executes arbitrary user code entirely in the browser: Babel's standalone build transpiles the TSX down to plain JavaScript on the fly, and the compiled string is handed to a dynamic Function constructor along with a hand-built module/exports shim, so the code can behave like a real ES module even though it never went through a bundler. The returned component gets wrapped in its own try/catch at render time, so a broken feature fails as a small red error box in place rather than crashing the rest of the notes app around it. Every user-written feature is one bad render away from a bug, but never one bad render away from taking down the editor.</p>
 
     <h3 id="transparent">Transparent</h3>
     <p><small>JavaScript &middot; 2026</small></p>
-    <video src="/assets/projects/independent/transparent.mp4" poster="/assets/projects/posters/transparent.jpg" controls preload="none" style="max-width:400px"></video>
+    <video src="/assets/projects/independent/transparent.mp4" poster="/assets/projects/posters/transparent.jpg" controls preload="none" style="width:100%;max-width:400px"></video>
     <p>Transparent takes a plain-language UI request, generates working HTML/CSS/JS for it with Claude, renders the result live, and then turns around and explains its own output back to you: concept by concept, tied to specific line numbers, ordered from beginner to advanced. The idea is to make the generated code legible rather than treating it as a black box you just paste and run.</p>
     <p>The concept-extraction step is its own separate API call: it hands the generated code and the original request back to Claude and asks for a structured breakdown covering what concept appears, where, its difficulty, its prerequisites, what to learn next, and even a small interactive exercise for practicing it. Claude's replies aren't always clean JSON, so the parser has to defend against text wrapped around the object and responses that get cut off mid-structure: stripping stray markdown fences, pulling out the JSON-looking span, and counting braces by hand to find where the object actually ends rather than trusting a single parse to fail cleanly. That means the app can recover the intended object even when Claude appends trailing commentary, and a separate truncation check catches responses that stop before the closing brace so the UI can retry instead of showing a broken lesson.</p>
 
@@ -109,7 +109,7 @@
 
     <h3 id="coupview">CoupView</h3>
     <p><small>TypeScript, MapLibre GL, R &middot; 2026</small></p>
-    <video src="/assets/projects/independent/coupview.mp4" poster="/assets/projects/posters/coupview.jpg" controls preload="none" style="max-width:400px"></video>
+    <video src="/assets/projects/independent/coupview.mp4" poster="/assets/projects/posters/coupview.jpg" controls preload="none" style="width:100%;max-width:400px"></video>
     <p>CoupView is a proof-of-concept map for exploring historical coups and illegal leader turnover around the world. Events live as a GeoJSON feature collection rendered on a dark-themed MapLibre GL basemap, with a sidebar for searching and filtering by region, decade, outcome, and tag. Clicking a marker opens a popup with the event's title, description, and sourcing, so the map works as both an overview and a way to drill into a single case.</p>
     <p>Each coup is color-coded by outcome directly in the GL style, not in application code: the circle layer's paint spec is a MapLibre match expression keyed on the feature's outcome property, and radius is driven by feature-state so hovering a marker grows it without touching React state at all. A separate R service, built with plumber, is scaffolded alongside the map to eventually serve model-based turnover predictions over the same event data, with the frontend already wired to call it through a small client. The map itself, though, works entirely off the static dataset: filtering, search, and the legend all run client-side over the in-memory feature collection.</p>
 
@@ -117,31 +117,31 @@
 
     <h3 id="metrics-playground">Metrics Playground</h3>
     <p><small>React, TypeScript, Python &middot; 2025</small></p>
-    <video src="/assets/projects/industry/metrics_playground.mp4" poster="/assets/projects/posters/metrics_playground.jpg" controls preload="none" style="max-width:400px"></video>
+    <video src="/assets/projects/industry/metrics_playground.mp4" poster="/assets/projects/posters/metrics_playground.jpg" controls preload="none" style="width:100%;max-width:400px"></video>
     <p>A hands-on playground for metrics and evaluation workflows, built for Cyber D&amp;M engineers, and really about how agentic software development changes instrumentation, feedback loops, and what we even choose to measure. I built (most) of it with agentic tooling, primarily GitHub Copilot, partly to walk the presentation: these tools make low-stakes experimentation a lot easier. Spinning up an interactive prototype stopped requiring much overhead at all. The playground itself has data tables with inline editing, a JSON view toggle, and batch operations, so engineers get a real sandbox to poke at metadata instead of jumping between tools.</p>
     <p>It became something of a reference point internally for what an agent-built internal tool could look like end to end, from data model to UI polish, without a dedicated frontend engineer on the work.</p>
 
     <h3 id="admin-metrics-dashboard">Admin Metrics Dashboard</h3>
     <p><small>React, TypeScript, Python &middot; 2025</small></p>
-    <img src="/assets/projects/industry/admin_metrics_dashboard.png" alt="Admin Metrics Dashboard" style="max-width:400px">
+    <img src="/assets/projects/industry/admin_metrics_dashboard.png" alt="Admin Metrics Dashboard" style="width:100%;max-width:400px">
     <p>An in-house admin dashboard for cyber log monitoring, built to replace a Grafana-heavy setup with views actually tuned to how our operators triage things day to day. It was the first iteration of a custom monitoring system in React, TypeScript, and Python. The main additions were timeframe filtering, threshold-based alerting, and inventory tracking across more than 5,000 assets, so admins could catch anomalies instead of scrolling through pages of widgets that didn't let them customize much of anything.</p>
     <p>Threshold alerting in particular replaced a habit of manually eyeballing dashboards for spikes, turning that into something that surfaced on its own.</p>
 
     <h3 id="ilm-portal">ILM Portal</h3>
     <p><small>Penpot, Angular &middot; 2024</small></p>
-    <img src="/assets/projects/industry/ilm_portal.png" alt="ILM Portal" style="max-width:400px">
+    <img src="/assets/projects/industry/ilm_portal.png" alt="ILM Portal" style="width:100%;max-width:400px">
     <p>A portal that pulled together all the identity and lifecycle management plugins our team was building, so people weren't bouncing between a handful of disconnected tools. I led the design end to end on this one: I was the point of contact for anything UX related, and made sure the experience held together as we kept onboarding new plugins. One of the bigger ones it housed was a toxic access pairs plugin I helped redesign, which flagged dangerous permission combinations and cut security vulnerabilities by 40%.</p>
     <p>Keeping a consistent design language across plugins built by different engineers ended up being most of the actual work: the portal succeeds mostly by making a growing pile of internal tools feel like one product instead of many.</p>
 
     <h3 id="file-upload-tool">File Upload Tool</h3>
     <p><small>Python, Java, Angular &middot; 2024</small></p>
-    <video src="/assets/projects/industry/file_upload_tool.mp4" poster="/assets/projects/posters/file_upload_tool.jpg" controls preload="none" style="max-width:400px"></video>
+    <video src="/assets/projects/industry/file_upload_tool.mp4" poster="/assets/projects/posters/file_upload_tool.jpg" controls preload="none" style="width:100%;max-width:400px"></video>
     <p>A file upload and validation path for the content feeding IAM analytics, checking format, completeness, and consistency before anything lands in downstream reporting and access models. The real upgrade was porting an existing Python validation script into our Java codebase and wiring up immediate error feedback in Angular, so people could see exactly what was wrong with their file before resubmitting instead of waiting on a manual review cycle. That alone cut processing time by about two hours per upload and got rid of duplicate submissions entirely.</p>
     <p>Most of the porting work was making sure the Java rewrite matched the original Python script's validation behavior exactly, edge cases included, since any drift there would have silently changed what counted as a valid file.</p>
 
     <h3 id="penetration-test-checklists">Penetration Test Checklists</h3>
     <p><small>React, TypeScript, MongoDB &middot; 2024</small></p>
-    <video src="/assets/projects/industry/penetration_tests.mp4" poster="/assets/projects/posters/penetration_tests.jpg" controls preload="none" style="max-width:400px"></video>
+    <video src="/assets/projects/industry/penetration_tests.mp4" poster="/assets/projects/posters/penetration_tests.jpg" controls preload="none" style="width:100%;max-width:400px"></video>
     <p>A tool that turns imported Excel files of simulated cyberattacks into editable spreadsheets inside a security remediation platform. Red teams already tracked their penetration test findings in spreadsheets; this made that format a first-class citizen of the platform instead of an attachment, so a checklist could be imported, assigned, and tracked through remediation the same way any other finding was, without anyone re-keying rows by hand.</p>
 
 </body>
